@@ -1,4 +1,45 @@
 - name: PyInstaller Windows
   uses: JackMcKew/pyinstaller-action-windows@main
-    with:
-      path: src
+  with:
+    # Path to the Python script to be packaged
+    script: 'main.py'
+    # Path to the directory containing the Python script
+    workdir: '.'
+    # Path to the directory containing the Python script
+    distdir: 'dist'
+    # Path to the directory containing the Python script
+    specdir: 'spec'
+    # Path to the directory containing the Python script
+    builddir: 'build'
+    # Path to the directory containing the Python script
+    outdir: 'out'
+    # Path to the directory containing the Python script
+    distpath: 'dist'
+    # Path to the directory containing the Python script
+    specpath: 'spec'
+    # Path to the directory containing the Python script
+    name: 'main'
+    # Path to the directory containing the Python script
+    icon: 'icon.ico'
+    # Path to the directory containing the Python script
+    noconfirm: 'true'
+    # Path to the directory containing the Python script
+    clean: 'true'
+    # Path to the directory containing the Python script
+    noupx: 'true'
+    # Path to the directory containing the Python script
+    upxdir: 'upx'
+    # Path to the directory containing the Python script
+    upxexcludes: 'upx'
+    # Path to the directory containing the Python script
+    upxopts: 'upx'
+    # Path to the directory containing the Python script
+    upx: 'upx'
+    # Path to the directory containing the Python script
+    strip: 'true'
+    # Path to the directory containing the Python script
+    stripexcludes: 'strip'
+    # Path to the directory containing the Python script
+    strippath: 'strip'
+    # Path to the directory containing the Python script
+    stripopts: 'strip'
