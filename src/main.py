@@ -1,6 +1,7 @@
 import sys
 from PySide6.QtWidgets import *
 from PySide6.QtCore import *
+from PySide6.QtGui import *
 from ui.ui_main import Ui_MainWindow
 
 
