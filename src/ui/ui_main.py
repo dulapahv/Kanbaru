@@ -40,7 +40,13 @@ class Ui_MainWindow(object):
         self.horizontalLayout_4.setContentsMargins(0, 0, 0, 0)
         self.widget_7 = QWidget(self.widget)
         self.widget_7.setObjectName(u"widget_7")
-        self.widget_7.setMinimumSize(QSize(0, 0))
+        sizePolicy = QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Preferred)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.widget_7.sizePolicy().hasHeightForWidth())
+        self.widget_7.setSizePolicy(sizePolicy)
+        self.widget_7.setMinimumSize(QSize(150, 0))
+        self.widget_7.setMaximumSize(QSize(144, 16777215))
         self.widget_7.setStyleSheet(u"background-color: #282c34;")
         self.verticalLayout_2 = QVBoxLayout(self.widget_7)
         self.verticalLayout_2.setObjectName(u"verticalLayout_2")
@@ -57,54 +63,186 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_2.addWidget(self.label_5)
 
-        self.pushButton_2 = QPushButton(self.widget_7)
+        self.scrollArea_2 = QScrollArea(self.widget_7)
+        self.scrollArea_2.setObjectName(u"scrollArea_2")
+        sizePolicy1 = QSizePolicy(QSizePolicy.Expanding, QSizePolicy.MinimumExpanding)
+        sizePolicy1.setHorizontalStretch(0)
+        sizePolicy1.setVerticalStretch(0)
+        sizePolicy1.setHeightForWidth(self.scrollArea_2.sizePolicy().hasHeightForWidth())
+        self.scrollArea_2.setSizePolicy(sizePolicy1)
+        self.scrollArea_2.setStyleSheet(u"QScrollBar:vertical {width: 10px; margin: 0px 0px 0px 0px; background-color: #343943}")
+        self.scrollArea_2.setFrameShape(QFrame.NoFrame)
+        self.scrollArea_2.setWidgetResizable(True)
+        self.scrollAreaWidgetContents_2 = QWidget()
+        self.scrollAreaWidgetContents_2.setObjectName(u"scrollAreaWidgetContents_2")
+        self.scrollAreaWidgetContents_2.setGeometry(QRect(0, -76, 122, 434))
+        self.verticalLayout_4 = QVBoxLayout(self.scrollAreaWidgetContents_2)
+        self.verticalLayout_4.setSpacing(12)
+        self.verticalLayout_4.setObjectName(u"verticalLayout_4")
+        self.verticalLayout_4.setContentsMargins(0, 0, 2, 0)
+        self.pushButton_2 = QPushButton(self.scrollAreaWidgetContents_2)
         self.pushButton_2.setObjectName(u"pushButton_2")
+        sizePolicy2 = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Fixed)
+        sizePolicy2.setHorizontalStretch(0)
+        sizePolicy2.setVerticalStretch(0)
+        sizePolicy2.setHeightForWidth(self.pushButton_2.sizePolicy().hasHeightForWidth())
+        self.pushButton_2.setSizePolicy(sizePolicy2)
         self.pushButton_2.setMinimumSize(QSize(0, 50))
         font1 = QFont()
         font1.setFamilies([u"Torus Pro"])
         font1.setPointSize(14)
         self.pushButton_2.setFont(font1)
         self.pushButton_2.setCursor(QCursor(Qt.PointingHandCursor))
-        self.pushButton_2.setStyleSheet(u"QPushButton {background-color: #acb2bf; color: #ffffff; border-radius: 5px}\n"
+        self.pushButton_2.setStyleSheet(u"QPushButton {background-color: #6badee; color: #ffffff; border-radius: 5px}\n"
 "QPushButton:hover {background-color: #7e828c;}")
 
-        self.verticalLayout_2.addWidget(self.pushButton_2)
+        self.verticalLayout_4.addWidget(self.pushButton_2)
 
-        self.pushButton_3 = QPushButton(self.widget_7)
+        self.pushButton_3 = QPushButton(self.scrollAreaWidgetContents_2)
         self.pushButton_3.setObjectName(u"pushButton_3")
         self.pushButton_3.setMinimumSize(QSize(0, 50))
         self.pushButton_3.setFont(font1)
         self.pushButton_3.setCursor(QCursor(Qt.PointingHandCursor))
-        self.pushButton_3.setStyleSheet(u"QPushButton {background-color: #acb2bf; color: #ffffff; border-radius: 5px}\n"
+        self.pushButton_3.setStyleSheet(u"QPushButton {background-color: #fb568a; color: #ffffff; border-radius: 5px}\n"
 "QPushButton:hover {background-color: #7e828c;}")
 
-        self.verticalLayout_2.addWidget(self.pushButton_3)
+        self.verticalLayout_4.addWidget(self.pushButton_3)
 
-        self.verticalSpacer_5 = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
+        self.pushButton_8 = QPushButton(self.scrollAreaWidgetContents_2)
+        self.pushButton_8.setObjectName(u"pushButton_8")
+        self.pushButton_8.setMinimumSize(QSize(0, 50))
+        self.pushButton_8.setFont(font1)
+        self.pushButton_8.setCursor(QCursor(Qt.PointingHandCursor))
+        self.pushButton_8.setStyleSheet(u"QPushButton {background-color: #fbd945; color: #ffffff; border-radius: 5px}\n"
+"QPushButton:hover {background-color: #7e828c;}")
+
+        self.verticalLayout_4.addWidget(self.pushButton_8)
+
+        self.pushButton_9 = QPushButton(self.scrollAreaWidgetContents_2)
+        self.pushButton_9.setObjectName(u"pushButton_9")
+        self.pushButton_9.setMinimumSize(QSize(0, 50))
+        self.pushButton_9.setFont(font1)
+        self.pushButton_9.setCursor(QCursor(Qt.PointingHandCursor))
+        self.pushButton_9.setStyleSheet(u"QPushButton {background-color: #99c37b; color: #ffffff; border-radius: 5px}\n"
+"QPushButton:hover {background-color: #7e828c;}")
+
+        self.verticalLayout_4.addWidget(self.pushButton_9)
+
+        self.pushButton_10 = QPushButton(self.scrollAreaWidgetContents_2)
+        self.pushButton_10.setObjectName(u"pushButton_10")
+        self.pushButton_10.setMinimumSize(QSize(0, 50))
+        self.pushButton_10.setFont(font1)
+        self.pushButton_10.setCursor(QCursor(Qt.PointingHandCursor))
+        self.pushButton_10.setStyleSheet(u"QPushButton {background-color: #c577dc; color: #ffffff; border-radius: 5px}\n"
+"QPushButton:hover {background-color: #7e828c;}")
+
+        self.verticalLayout_4.addWidget(self.pushButton_10)
+
+        self.pushButton_11 = QPushButton(self.scrollAreaWidgetContents_2)
+        self.pushButton_11.setObjectName(u"pushButton_11")
+        self.pushButton_11.setMinimumSize(QSize(0, 50))
+        self.pushButton_11.setFont(font1)
+        self.pushButton_11.setCursor(QCursor(Qt.PointingHandCursor))
+        self.pushButton_11.setStyleSheet(u"QPushButton {background-color: #c577dc; color: #ffffff; border-radius: 5px}\n"
+"QPushButton:hover {background-color: #7e828c;}")
+
+        self.verticalLayout_4.addWidget(self.pushButton_11)
+
+        self.pushButton_12 = QPushButton(self.scrollAreaWidgetContents_2)
+        self.pushButton_12.setObjectName(u"pushButton_12")
+        self.pushButton_12.setMinimumSize(QSize(0, 50))
+        self.pushButton_12.setFont(font1)
+        self.pushButton_12.setCursor(QCursor(Qt.PointingHandCursor))
+        self.pushButton_12.setStyleSheet(u"QPushButton {background-color: #c577dc; color: #ffffff; border-radius: 5px}\n"
+"QPushButton:hover {background-color: #7e828c;}")
+
+        self.verticalLayout_4.addWidget(self.pushButton_12)
+
+        self.verticalSpacer_11 = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
+
+        self.verticalLayout_4.addItem(self.verticalSpacer_11)
+
+        self.scrollArea_2.setWidget(self.scrollAreaWidgetContents_2)
+
+        self.verticalLayout_2.addWidget(self.scrollArea_2)
+
+        self.verticalSpacer_10 = QSpacerItem(20, 5, QSizePolicy.Minimum, QSizePolicy.Fixed)
+
+        self.verticalLayout_2.addItem(self.verticalSpacer_10)
+
+        self.pushButton_13 = QPushButton(self.widget_7)
+        self.pushButton_13.setObjectName(u"pushButton_13")
+        self.pushButton_13.setMinimumSize(QSize(0, 25))
+        font2 = QFont()
+        font2.setFamilies([u"Torus Pro"])
+        font2.setPointSize(12)
+        self.pushButton_13.setFont(font2)
+        self.pushButton_13.setStyleSheet(u"QPushButton {background-color: #acb2bf; color: #ffffff; border-radius: 5px}\n"
+"QPushButton:hover {background-color: #7e828c;}")
+
+        self.verticalLayout_2.addWidget(self.pushButton_13)
+
+        self.verticalSpacer_5 = QSpacerItem(20, 5, QSizePolicy.Minimum, QSizePolicy.Fixed)
 
         self.verticalLayout_2.addItem(self.verticalSpacer_5)
+
+        self.pushButton_7 = QPushButton(self.widget_7)
+        self.pushButton_7.setObjectName(u"pushButton_7")
+        self.pushButton_7.setMinimumSize(QSize(0, 50))
+        self.pushButton_7.setFont(font1)
+        self.pushButton_7.setCursor(QCursor(Qt.PointingHandCursor))
+        self.pushButton_7.setStyleSheet(u"QPushButton {background-color: #6badee; color: #ffffff; border-radius: 5px}\n"
+"QPushButton:hover {background-color: #5487bb;}")
+
+        self.verticalLayout_2.addWidget(self.pushButton_7)
+
+        self.verticalSpacer_9 = QSpacerItem(20, 10, QSizePolicy.Minimum, QSizePolicy.Fixed)
+
+        self.verticalLayout_2.addItem(self.verticalSpacer_9)
 
 
         self.horizontalLayout_4.addWidget(self.widget_7)
 
         self.verticalLayout = QVBoxLayout()
         self.verticalLayout.setObjectName(u"verticalLayout")
+        self.horizontalLayout_3 = QHBoxLayout()
+        self.horizontalLayout_3.setSpacing(0)
+        self.horizontalLayout_3.setObjectName(u"horizontalLayout_3")
         self.label = QLabel(self.widget)
         self.label.setObjectName(u"label")
         self.label.setFont(font)
-        self.label.setStyleSheet(u"background-color: #343943;\n"
+        self.label.setStyleSheet(u"background-color: qlineargradient(spread:pad, x1:0.35, y1:0.522727, x2:0.95, y2:0.5, stop:0 rgba(107, 173, 238, 255), stop:1 rgba(69, 76, 90, 255));\n"
 "color: #FFFFFF;")
         self.label.setMargin(10)
 
-        self.verticalLayout.addWidget(self.label)
+        self.horizontalLayout_3.addWidget(self.label)
+
+        self.pushButton_14 = QPushButton(self.widget)
+        self.pushButton_14.setObjectName(u"pushButton_14")
+        sizePolicy3 = QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed)
+        sizePolicy3.setHorizontalStretch(0)
+        sizePolicy3.setVerticalStretch(0)
+        sizePolicy3.setHeightForWidth(self.pushButton_14.sizePolicy().hasHeightForWidth())
+        self.pushButton_14.setSizePolicy(sizePolicy3)
+        self.pushButton_14.setMinimumSize(QSize(100, 73))
+        self.pushButton_14.setFont(font1)
+        self.pushButton_14.setStyleSheet(u"QPushButton {background-color: #454c5a; color: #ffffff; border-radius: 5px}\n"
+"QPushButton:hover {background-color: #7e828c;}")
+        self.pushButton_14.setAutoDefault(False)
+        self.pushButton_14.setFlat(False)
+
+        self.horizontalLayout_3.addWidget(self.pushButton_14)
+
+
+        self.verticalLayout.addLayout(self.horizontalLayout_3)
 
         self.widget_2 = QWidget(self.widget)
         self.widget_2.setObjectName(u"widget_2")
-        sizePolicy = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Preferred)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.widget_2.sizePolicy().hasHeightForWidth())
-        self.widget_2.setSizePolicy(sizePolicy)
+        sizePolicy4 = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Preferred)
+        sizePolicy4.setHorizontalStretch(0)
+        sizePolicy4.setVerticalStretch(0)
+        sizePolicy4.setHeightForWidth(self.widget_2.sizePolicy().hasHeightForWidth())
+        self.widget_2.setSizePolicy(sizePolicy4)
         self.widget_2.setMinimumSize(QSize(280, 500))
         self.horizontalLayout_2 = QHBoxLayout(self.widget_2)
         self.horizontalLayout_2.setSpacing(0)
@@ -117,7 +255,7 @@ class Ui_MainWindow(object):
         self.scrollArea.setWidgetResizable(True)
         self.scrollAreaWidgetContents = QWidget()
         self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
-        self.scrollAreaWidgetContents.setGeometry(QRect(-162, 0, 1040, 500))
+        self.scrollAreaWidgetContents.setGeometry(QRect(-168, 0, 1040, 498))
         self.gridLayout = QGridLayout(self.scrollAreaWidgetContents)
         self.gridLayout.setObjectName(u"gridLayout")
         self.gridLayout.setHorizontalSpacing(8)
@@ -125,11 +263,8 @@ class Ui_MainWindow(object):
         self.gridLayout.setContentsMargins(8, 0, 0, 8)
         self.widget_3 = QWidget(self.scrollAreaWidgetContents)
         self.widget_3.setObjectName(u"widget_3")
-        sizePolicy1 = QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Preferred)
-        sizePolicy1.setHorizontalStretch(0)
-        sizePolicy1.setVerticalStretch(0)
-        sizePolicy1.setHeightForWidth(self.widget_3.sizePolicy().hasHeightForWidth())
-        self.widget_3.setSizePolicy(sizePolicy1)
+        sizePolicy.setHeightForWidth(self.widget_3.sizePolicy().hasHeightForWidth())
+        self.widget_3.setSizePolicy(sizePolicy)
         self.widget_3.setMinimumSize(QSize(250, 0))
         self.widget_3.setStyleSheet(u"background-color: #343943;\n"
 "border-radius: 10px;")
@@ -140,10 +275,10 @@ class Ui_MainWindow(object):
         self.label_2 = QLabel(self.widget_3)
         self.label_2.setObjectName(u"label_2")
         self.label_2.setMinimumSize(QSize(0, 50))
-        font2 = QFont()
-        font2.setFamilies([u"Torus Pro"])
-        font2.setPointSize(20)
-        self.label_2.setFont(font2)
+        font3 = QFont()
+        font3.setFamilies([u"Torus Pro"])
+        font3.setPointSize(20)
+        self.label_2.setFont(font3)
         self.label_2.setStyleSheet(u"color: #282c33;\n"
 "background-color: #ebecf0;\n"
 "border-radius: 5px;")
@@ -193,10 +328,7 @@ class Ui_MainWindow(object):
         self.pushButton_4 = QPushButton(self.widget_3)
         self.pushButton_4.setObjectName(u"pushButton_4")
         self.pushButton_4.setMinimumSize(QSize(0, 25))
-        font3 = QFont()
-        font3.setFamilies([u"Torus Pro"])
-        font3.setPointSize(12)
-        self.pushButton_4.setFont(font3)
+        self.pushButton_4.setFont(font2)
         self.pushButton_4.setStyleSheet(u"QPushButton {background-color: #acb2bf; color: #ffffff; border-radius: 5px}\n"
 "QPushButton:hover {background-color: #7e828c;}")
 
@@ -207,8 +339,8 @@ class Ui_MainWindow(object):
 
         self.widget_5 = QWidget(self.scrollAreaWidgetContents)
         self.widget_5.setObjectName(u"widget_5")
-        sizePolicy1.setHeightForWidth(self.widget_5.sizePolicy().hasHeightForWidth())
-        self.widget_5.setSizePolicy(sizePolicy1)
+        sizePolicy.setHeightForWidth(self.widget_5.sizePolicy().hasHeightForWidth())
+        self.widget_5.setSizePolicy(sizePolicy)
         self.widget_5.setMinimumSize(QSize(250, 0))
         self.widget_5.setStyleSheet(u"background-color: #343943;\n"
 "border-radius: 10px;")
@@ -219,7 +351,7 @@ class Ui_MainWindow(object):
         self.label_4 = QLabel(self.widget_5)
         self.label_4.setObjectName(u"label_4")
         self.label_4.setMinimumSize(QSize(0, 50))
-        self.label_4.setFont(font2)
+        self.label_4.setFont(font3)
         self.label_4.setStyleSheet(u"color: #282c33;\n"
 "background-color: #ebecf0;\n"
 "border-radius: 5px;")
@@ -261,7 +393,7 @@ class Ui_MainWindow(object):
         self.pushButton_6 = QPushButton(self.widget_5)
         self.pushButton_6.setObjectName(u"pushButton_6")
         self.pushButton_6.setMinimumSize(QSize(0, 25))
-        self.pushButton_6.setFont(font3)
+        self.pushButton_6.setFont(font2)
         self.pushButton_6.setStyleSheet(u"QPushButton {background-color: #acb2bf; color: #ffffff; border-radius: 5px}\n"
 "QPushButton:hover {background-color: #7e828c;}")
 
@@ -272,8 +404,8 @@ class Ui_MainWindow(object):
 
         self.widget_6 = QWidget(self.scrollAreaWidgetContents)
         self.widget_6.setObjectName(u"widget_6")
-        sizePolicy1.setHeightForWidth(self.widget_6.sizePolicy().hasHeightForWidth())
-        self.widget_6.setSizePolicy(sizePolicy1)
+        sizePolicy.setHeightForWidth(self.widget_6.sizePolicy().hasHeightForWidth())
+        self.widget_6.setSizePolicy(sizePolicy)
         self.widget_6.setMinimumSize(QSize(250, 0))
         self.verticalLayout_9 = QVBoxLayout(self.widget_6)
         self.verticalLayout_9.setSpacing(0)
@@ -298,8 +430,8 @@ class Ui_MainWindow(object):
 
         self.widget_4 = QWidget(self.scrollAreaWidgetContents)
         self.widget_4.setObjectName(u"widget_4")
-        sizePolicy1.setHeightForWidth(self.widget_4.sizePolicy().hasHeightForWidth())
-        self.widget_4.setSizePolicy(sizePolicy1)
+        sizePolicy.setHeightForWidth(self.widget_4.sizePolicy().hasHeightForWidth())
+        self.widget_4.setSizePolicy(sizePolicy)
         self.widget_4.setMinimumSize(QSize(250, 0))
         self.widget_4.setStyleSheet(u"background-color: #343943;\n"
 "border-radius: 10px;")
@@ -310,7 +442,7 @@ class Ui_MainWindow(object):
         self.label_3 = QLabel(self.widget_4)
         self.label_3.setObjectName(u"label_3")
         self.label_3.setMinimumSize(QSize(0, 50))
-        self.label_3.setFont(font2)
+        self.label_3.setFont(font3)
         self.label_3.setStyleSheet(u"color: #282c33;\n"
 "background-color: #ebecf0;\n"
 "border-radius: 5px;")
@@ -351,7 +483,7 @@ class Ui_MainWindow(object):
         self.pushButton_5 = QPushButton(self.widget_4)
         self.pushButton_5.setObjectName(u"pushButton_5")
         self.pushButton_5.setMinimumSize(QSize(0, 25))
-        self.pushButton_5.setFont(font3)
+        self.pushButton_5.setFont(font2)
         self.pushButton_5.setStyleSheet(u"QPushButton {background-color: #acb2bf; color: #ffffff; border-radius: 5px}\n"
 "QPushButton:hover {background-color: #7e828c;}")
 
@@ -381,6 +513,9 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
+        self.pushButton_14.setDefault(False)
+
+
         QMetaObject.connectSlotsByName(MainWindow)
     # setupUi
 
@@ -390,7 +525,16 @@ class Ui_MainWindow(object):
 "baru", None))
         self.pushButton_2.setText(QCoreApplication.translate("MainWindow", u"Board 1", None))
         self.pushButton_3.setText(QCoreApplication.translate("MainWindow", u"Board 2", None))
+        self.pushButton_8.setText(QCoreApplication.translate("MainWindow", u"Board 3", None))
+        self.pushButton_9.setText(QCoreApplication.translate("MainWindow", u"Board 4", None))
+        self.pushButton_10.setText(QCoreApplication.translate("MainWindow", u"Board 5", None))
+        self.pushButton_11.setText(QCoreApplication.translate("MainWindow", u"Board 5", None))
+        self.pushButton_12.setText(QCoreApplication.translate("MainWindow", u"Board 5", None))
+        self.pushButton_13.setText(QCoreApplication.translate("MainWindow", u"+ Add a board", None))
+        self.pushButton_7.setText(QCoreApplication.translate("MainWindow", u"Logout", None))
         self.label.setText(QCoreApplication.translate("MainWindow", u"Board 1", None))
+        self.pushButton_14.setText(QCoreApplication.translate("MainWindow", u"Board\n"
+"Settings", None))
         self.label_2.setText(QCoreApplication.translate("MainWindow", u"Not Done", None))
 
         __sortingEnabled = self.listWidget_3.isSortingEnabled()
@@ -435,7 +579,7 @@ class Ui_MainWindow(object):
         self.listWidget_5.setSortingEnabled(__sortingEnabled1)
 
         self.pushButton_6.setText(QCoreApplication.translate("MainWindow", u"+ Add a card", None))
-        self.pushButton.setText(QCoreApplication.translate("MainWindow", u"+ Add more list", None))
+        self.pushButton.setText(QCoreApplication.translate("MainWindow", u"+ Add a list", None))
         self.label_3.setText(QCoreApplication.translate("MainWindow", u"Doing", None))
 
         __sortingEnabled2 = self.listWidget_4.isSortingEnabled()
