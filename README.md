@@ -8,4 +8,4 @@ Kanbaru is free and open source, released under the MIT license.
 
 ## 📃 License
 
-Kanbaru is released under the MIT license. See [LICENSE](https://github.com/dulapahv/Kanbaru/blob/master/LICENSE) for more information.
+Kanbaru is released under the MIT license. See [LICENSE](https://github.com/dulapahv/Kanbaru/blob/main/LICENSE) for more information.
