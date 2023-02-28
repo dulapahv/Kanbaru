@@ -134,7 +134,7 @@ baru</string>
                <x>0</x>
                <y>0</y>
                <width>134</width>
-               <height>407</height>
+               <height>417</height>
               </rect>
              </property>
              <layout class="QVBoxLayout" name="verticalLayout_4">
@@ -402,8 +402,8 @@ QPushButton:hover {background-color: #7e828c;}</string>
              <cursorShape>PointingHandCursor</cursorShape>
             </property>
             <property name="styleSheet">
-             <string notr="true">QPushButton {background-color: #acb2bf; color: #ffffff; border-radius: 5px}
-QPushButton:hover {background-color: #7e828c;}</string>
+             <string notr="true">QPushButton {background-color: #7f8ca6; color: #ffffff; border-radius: 5px}
+QPushButton:hover {background-color: #576073;}</string>
             </property>
             <property name="text">
              <string>Board Settings</string>
@@ -415,24 +415,24 @@ QPushButton:hover {background-color: #7e828c;}</string>
             <property name="minimumSize">
              <size>
               <width>0</width>
-              <height>40</height>
+              <height>30</height>
              </size>
             </property>
             <property name="font">
              <font>
               <family>Torus Pro</family>
-              <pointsize>14</pointsize>
+              <pointsize>12</pointsize>
              </font>
             </property>
             <property name="cursor">
              <cursorShape>PointingHandCursor</cursorShape>
             </property>
             <property name="styleSheet">
-             <string notr="true">QPushButton {background-color: #d63a3e; color: #ffffff; border-radius: 5px}
-QPushButton:hover {background-color: #9e2a2a;}</string>
+             <string notr="true">QPushButton {background-color: #7f8ca6; color: #ffffff; border-radius: 5px}
+QPushButton:hover {background-color: #576073;}</string>
             </property>
             <property name="text">
-             <string>Logout</string>
+             <string>App Settings</string>
             </property>
            </widget>
           </item>
@@ -518,7 +518,7 @@ color: #FFFFFF;</string>
               <widget class="QWidget" name="scrollAreaWidgetContents">
                <property name="geometry">
                 <rect>
-                 <x>-20</x>
+                 <x>0</x>
                  <y>0</y>
                  <width>1032</width>
                  <height>579</height>

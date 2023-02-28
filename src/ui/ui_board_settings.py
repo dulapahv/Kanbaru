@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'card_description.ui'
+## Form generated from reading UI file 'board_settings.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.4.2
 ##
@@ -15,16 +15,16 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QFont, QFontDatabase, QGradient, QIcon,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
-from PySide6.QtWidgets import (QApplication, QCalendarWidget, QHBoxLayout, QLabel,
-    QLineEdit, QMainWindow, QPushButton, QRadioButton,
-    QSizePolicy, QSpacerItem, QTextEdit, QTimeEdit,
+from PySide6.QtWidgets import (QAbstractItemView, QApplication, QHBoxLayout, QLabel,
+    QLineEdit, QListWidget, QListWidgetItem, QMainWindow,
+    QPushButton, QRadioButton, QSizePolicy, QSpacerItem,
     QVBoxLayout, QWidget)
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
-        MainWindow.resize(620, 678)
+        MainWindow.resize(576, 678)
         MainWindow.setStyleSheet(u"background-color: #454c5a;")
         self.centralwidget = QWidget(MainWindow)
         self.centralwidget.setObjectName(u"centralwidget")
@@ -82,50 +82,8 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_3 = QHBoxLayout()
         self.horizontalLayout_3.setObjectName(u"horizontalLayout_3")
-        self.verticalLayout_4 = QVBoxLayout()
-        self.verticalLayout_4.setObjectName(u"verticalLayout_4")
-        self.label_5 = QLabel(self.widget1)
-        self.label_5.setObjectName(u"label_5")
-        self.label_5.setFont(font1)
-        self.label_5.setStyleSheet(u"color: #282c33;")
-
-        self.verticalLayout_4.addWidget(self.label_5)
-
-        self.calendarWidget = QCalendarWidget(self.widget1)
-        self.calendarWidget.setObjectName(u"calendarWidget")
-        self.calendarWidget.setFont(font2)
-        self.calendarWidget.setCursor(QCursor(Qt.PointingHandCursor))
-        self.calendarWidget.setStyleSheet(u"background-color: rgb(107, 173, 238);\n"
-"height: 28px;")
-        self.calendarWidget.setGridVisible(False)
-
-        self.verticalLayout_4.addWidget(self.calendarWidget)
-
-
-        self.horizontalLayout_3.addLayout(self.verticalLayout_4)
-
         self.verticalLayout_2 = QVBoxLayout()
         self.verticalLayout_2.setObjectName(u"verticalLayout_2")
-        self.label_4 = QLabel(self.widget1)
-        self.label_4.setObjectName(u"label_4")
-        self.label_4.setFont(font1)
-        self.label_4.setStyleSheet(u"color: #282c33;")
-
-        self.verticalLayout_2.addWidget(self.label_4)
-
-        self.timeEdit = QTimeEdit(self.widget1)
-        self.timeEdit.setObjectName(u"timeEdit")
-        self.timeEdit.setMinimumSize(QSize(0, 40))
-        font3 = QFont()
-        font3.setFamilies([u"Torus Pro"])
-        font3.setPointSize(16)
-        self.timeEdit.setFont(font3)
-        self.timeEdit.setCursor(QCursor(Qt.PointingHandCursor))
-        self.timeEdit.setStyleSheet(u"QTimeEdit {background-color: #6badee; color: #ffffff; border-radius: 5px}")
-        self.timeEdit.setTimeSpec(Qt.LocalTime)
-
-        self.verticalLayout_2.addWidget(self.timeEdit)
-
         self.label_7 = QLabel(self.widget1)
         self.label_7.setObjectName(u"label_7")
         self.label_7.setFont(font1)
@@ -217,13 +175,44 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_2.addLayout(self.horizontalLayout_4)
 
-        self.horizontalSpacer_2 = QSpacerItem(40, 0, QSizePolicy.Expanding, QSizePolicy.Minimum)
+        self.label_8 = QLabel(self.widget1)
+        self.label_8.setObjectName(u"label_8")
+        self.label_8.setFont(font1)
+        self.label_8.setStyleSheet(u"color: #282c33;")
 
-        self.verticalLayout_2.addItem(self.horizontalSpacer_2)
+        self.verticalLayout_2.addWidget(self.label_8)
 
-        self.verticalSpacer = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
+        self.label_2 = QLabel(self.widget1)
+        self.label_2.setObjectName(u"label_2")
+        font3 = QFont()
+        font3.setFamilies([u"Torus Pro"])
+        font3.setPointSize(11)
+        self.label_2.setFont(font3)
 
-        self.verticalLayout_2.addItem(self.verticalSpacer)
+        self.verticalLayout_2.addWidget(self.label_2)
+
+        self.listWidget = QListWidget(self.widget1)
+        QListWidgetItem(self.listWidget)
+        QListWidgetItem(self.listWidget)
+        QListWidgetItem(self.listWidget)
+        self.listWidget.setObjectName(u"listWidget")
+        font4 = QFont()
+        font4.setFamilies([u"Torus Pro"])
+        font4.setPointSize(12)
+        font4.setBold(True)
+        self.listWidget.setFont(font4)
+        self.listWidget.setStyleSheet(u"QListWidget::item {height: 40px; padding: 0px 0px 0px 8px}\n"
+"QListWidget::item {background-color: #ffffff; color: #000000; border-radius: 5px}\n"
+"QListWidget::item:hover {background-color: #f4f5f7; color: #000000}\n"
+"QScrollBar:vertical {width: 10px; margin: 0px 0px 0px 0px; background-color: #acb2bf}")
+        self.listWidget.setDragEnabled(True)
+        self.listWidget.setDragDropMode(QAbstractItemView.InternalMove)
+        self.listWidget.setDefaultDropAction(Qt.MoveAction)
+        self.listWidget.setProperty("isWrapping", False)
+        self.listWidget.setSpacing(5)
+        self.listWidget.setWordWrap(True)
+
+        self.verticalLayout_2.addWidget(self.listWidget)
 
 
         self.horizontalLayout_3.addLayout(self.verticalLayout_2)
@@ -231,44 +220,25 @@ class Ui_MainWindow(object):
 
         self.verticalLayout.addLayout(self.horizontalLayout_3)
 
-        self.label_2 = QLabel(self.widget1)
-        self.label_2.setObjectName(u"label_2")
-        self.label_2.setFont(font1)
-        self.label_2.setStyleSheet(u"color: #282c33;")
-
-        self.verticalLayout.addWidget(self.label_2)
-
-        self.textEdit = QTextEdit(self.widget1)
-        self.textEdit.setObjectName(u"textEdit")
-        font4 = QFont()
-        font4.setFamilies([u"Torus Pro"])
-        font4.setPointSize(12)
-        font4.setBold(False)
-        self.textEdit.setFont(font4)
-        self.textEdit.setStyleSheet(u"QTextEdit {background-color: #ffffff; color: #282c33; border-radius: 5px}\n"
-"QScrollBar:vertical {width: 10px; margin: 0px 0px 0px 0px; background-color: #acb2bf}")
-
-        self.verticalLayout.addWidget(self.textEdit)
-
         self.horizontalLayout = QHBoxLayout()
         self.horizontalLayout.setObjectName(u"horizontalLayout")
-        self.pushButton_4 = QPushButton(self.widget1)
-        self.pushButton_4.setObjectName(u"pushButton_4")
+        self.pushButton_6 = QPushButton(self.widget1)
+        self.pushButton_6.setObjectName(u"pushButton_6")
         sizePolicy = QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.pushButton_4.sizePolicy().hasHeightForWidth())
-        self.pushButton_4.setSizePolicy(sizePolicy)
-        self.pushButton_4.setMinimumSize(QSize(140, 40))
+        sizePolicy.setHeightForWidth(self.pushButton_6.sizePolicy().hasHeightForWidth())
+        self.pushButton_6.setSizePolicy(sizePolicy)
+        self.pushButton_6.setMinimumSize(QSize(140, 40))
         font5 = QFont()
         font5.setFamilies([u"Torus Pro"])
         font5.setPointSize(14)
-        self.pushButton_4.setFont(font5)
-        self.pushButton_4.setCursor(QCursor(Qt.PointingHandCursor))
-        self.pushButton_4.setStyleSheet(u"QPushButton {background-color: #d63a3e; color: #ffffff; border-radius: 5px}\n"
+        self.pushButton_6.setFont(font5)
+        self.pushButton_6.setCursor(QCursor(Qt.PointingHandCursor))
+        self.pushButton_6.setStyleSheet(u"QPushButton {background-color: #d63a3e; color: #ffffff; border-radius: 5px}\n"
 "QPushButton:hover {background-color: #9e2a2a;}")
 
-        self.horizontalLayout.addWidget(self.pushButton_4)
+        self.horizontalLayout.addWidget(self.pushButton_6)
 
         self.horizontalSpacer = QSpacerItem(0, 0, QSizePolicy.Expanding, QSizePolicy.Minimum)
 
@@ -308,10 +278,7 @@ class Ui_MainWindow(object):
         self.verticalLayout_3.addWidget(self.widget)
 
         MainWindow.setCentralWidget(self.centralwidget)
-        QWidget.setTabOrder(self.lineEdit, self.calendarWidget)
-        QWidget.setTabOrder(self.calendarWidget, self.timeEdit)
-        QWidget.setTabOrder(self.timeEdit, self.textEdit)
-        QWidget.setTabOrder(self.textEdit, self.pushButton_2)
+        QWidget.setTabOrder(self.lineEdit, self.pushButton_2)
         QWidget.setTabOrder(self.pushButton_2, self.pushButton_3)
 
         self.retranslateUi(MainWindow)
@@ -320,12 +287,10 @@ class Ui_MainWindow(object):
     # setupUi
 
     def retranslateUi(self, MainWindow):
-        MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"Card Description", None))
-        self.label_3.setText(QCoreApplication.translate("MainWindow", u"Card Description", None))
+        MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"Board Settings", None))
+        self.label_3.setText(QCoreApplication.translate("MainWindow", u"Board Settings", None))
         self.label.setText(QCoreApplication.translate("MainWindow", u"Title", None))
         self.lineEdit.setText(QCoreApplication.translate("MainWindow", u"Test Title", None))
-        self.label_5.setText(QCoreApplication.translate("MainWindow", u"Date", None))
-        self.label_4.setText(QCoreApplication.translate("MainWindow", u"Time", None))
         self.label_7.setText(QCoreApplication.translate("MainWindow", u"Color", None))
         self.radioButton_2.setText(QCoreApplication.translate("MainWindow", u"Light blue", None))
         self.radioButton_3.setText(QCoreApplication.translate("MainWindow", u"Rose", None))
@@ -333,16 +298,20 @@ class Ui_MainWindow(object):
         self.radioButton.setText(QCoreApplication.translate("MainWindow", u"Green", None))
         self.radioButton_4.setText(QCoreApplication.translate("MainWindow", u"Lavender", None))
         self.radioButton_6.setText(QCoreApplication.translate("MainWindow", u"Teal", None))
-        self.label_2.setText(QCoreApplication.translate("MainWindow", u"Description", None))
-        self.textEdit.setHtml(QCoreApplication.translate("MainWindow", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><meta charset=\"utf-8\" /><style type=\"text/css\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"hr { height: 1px; border-width: 0; }\n"
-"li.unchecked::marker { content: \"\\2610\"; }\n"
-"li.checked::marker { content: \"\\2612\"; }\n"
-"</style></head><body style=\" font-family:'Torus Pro'; font-size:12pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'Segoe UI';\">Test Desc</span></p></body></html>", None))
-        self.pushButton_4.setText(QCoreApplication.translate("MainWindow", u"Delete Card", None))
+        self.label_8.setText(QCoreApplication.translate("MainWindow", u"Edit", None))
+        self.label_2.setText(QCoreApplication.translate("MainWindow", u"Drag to rearrange. Select and press Delete List to delete it.", None))
+
+        __sortingEnabled = self.listWidget.isSortingEnabled()
+        self.listWidget.setSortingEnabled(False)
+        ___qlistwidgetitem = self.listWidget.item(0)
+        ___qlistwidgetitem.setText(QCoreApplication.translate("MainWindow", u"To Do", None));
+        ___qlistwidgetitem1 = self.listWidget.item(1)
+        ___qlistwidgetitem1.setText(QCoreApplication.translate("MainWindow", u"Doing", None));
+        ___qlistwidgetitem2 = self.listWidget.item(2)
+        ___qlistwidgetitem2.setText(QCoreApplication.translate("MainWindow", u"Done", None));
+        self.listWidget.setSortingEnabled(__sortingEnabled)
+
+        self.pushButton_6.setText(QCoreApplication.translate("MainWindow", u"Delete List", None))
         self.pushButton_2.setText(QCoreApplication.translate("MainWindow", u"Cancel", None))
         self.pushButton_3.setText(QCoreApplication.translate("MainWindow", u"Save", None))
     # retranslateUi

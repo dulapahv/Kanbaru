@@ -76,7 +76,7 @@ class Ui_MainWindow(object):
         self.scrollArea_2.setWidgetResizable(True)
         self.scrollAreaWidgetContents_2 = QWidget()
         self.scrollAreaWidgetContents_2.setObjectName(u"scrollAreaWidgetContents_2")
-        self.scrollAreaWidgetContents_2.setGeometry(QRect(0, 0, 134, 407))
+        self.scrollAreaWidgetContents_2.setGeometry(QRect(0, 0, 134, 417))
         self.verticalLayout_4 = QVBoxLayout(self.scrollAreaWidgetContents_2)
         self.verticalLayout_4.setSpacing(10)
         self.verticalLayout_4.setObjectName(u"verticalLayout_4")
@@ -182,21 +182,18 @@ class Ui_MainWindow(object):
         self.pushButton_15.setMinimumSize(QSize(0, 30))
         self.pushButton_15.setFont(font1)
         self.pushButton_15.setCursor(QCursor(Qt.PointingHandCursor))
-        self.pushButton_15.setStyleSheet(u"QPushButton {background-color: #acb2bf; color: #ffffff; border-radius: 5px}\n"
-"QPushButton:hover {background-color: #7e828c;}")
+        self.pushButton_15.setStyleSheet(u"QPushButton {background-color: #7f8ca6; color: #ffffff; border-radius: 5px}\n"
+"QPushButton:hover {background-color: #576073;}")
 
         self.verticalLayout_2.addWidget(self.pushButton_15)
 
         self.pushButton_7 = QPushButton(self.widget_7)
         self.pushButton_7.setObjectName(u"pushButton_7")
-        self.pushButton_7.setMinimumSize(QSize(0, 40))
-        font2 = QFont()
-        font2.setFamilies([u"Torus Pro"])
-        font2.setPointSize(14)
-        self.pushButton_7.setFont(font2)
+        self.pushButton_7.setMinimumSize(QSize(0, 30))
+        self.pushButton_7.setFont(font1)
         self.pushButton_7.setCursor(QCursor(Qt.PointingHandCursor))
-        self.pushButton_7.setStyleSheet(u"QPushButton {background-color: #d63a3e; color: #ffffff; border-radius: 5px}\n"
-"QPushButton:hover {background-color: #9e2a2a;}")
+        self.pushButton_7.setStyleSheet(u"QPushButton {background-color: #7f8ca6; color: #ffffff; border-radius: 5px}\n"
+"QPushButton:hover {background-color: #576073;}")
 
         self.verticalLayout_2.addWidget(self.pushButton_7)
 
@@ -211,10 +208,10 @@ class Ui_MainWindow(object):
         self.label = QLabel(self.widget)
         self.label.setObjectName(u"label")
         self.label.setMinimumSize(QSize(0, 70))
-        font3 = QFont()
-        font3.setFamilies([u"Torus Pro"])
-        font3.setPointSize(28)
-        self.label.setFont(font3)
+        font2 = QFont()
+        font2.setFamilies([u"Torus Pro"])
+        font2.setPointSize(28)
+        self.label.setFont(font2)
         self.label.setStyleSheet(u"background-color: qlineargradient(spread:pad, x1:0.5, y1:0.5, x2:0.95, y2:0.5, stop:0 rgba(107, 173, 238, 255), stop:1 rgba(69, 76, 90, 255));\n"
 "color: #FFFFFF;")
         self.label.setMargin(10)
@@ -243,7 +240,7 @@ class Ui_MainWindow(object):
         self.scrollArea.setWidgetResizable(True)
         self.scrollAreaWidgetContents = QWidget()
         self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
-        self.scrollAreaWidgetContents.setGeometry(QRect(-20, 0, 1032, 579))
+        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 1032, 579))
         self.horizontalLayout_5 = QHBoxLayout(self.scrollAreaWidgetContents)
         self.horizontalLayout_5.setObjectName(u"horizontalLayout_5")
         self.horizontalLayout_5.setContentsMargins(8, 0, 0, 8)
@@ -264,11 +261,11 @@ class Ui_MainWindow(object):
         self.label_2 = QLabel(self.widget_3)
         self.label_2.setObjectName(u"label_2")
         self.label_2.setMinimumSize(QSize(0, 30))
-        font4 = QFont()
-        font4.setFamilies([u"Torus Pro"])
-        font4.setPointSize(12)
-        font4.setBold(True)
-        self.label_2.setFont(font4)
+        font3 = QFont()
+        font3.setFamilies([u"Torus Pro"])
+        font3.setPointSize(12)
+        font3.setBold(True)
+        self.label_2.setFont(font3)
         self.label_2.setStyleSheet(u"color: #282c33;\n"
 "background-color: #ebecf0;\n"
 "border-radius: 5px;\n"
@@ -354,7 +351,7 @@ class Ui_MainWindow(object):
         self.label_3 = QLabel(self.widget_4)
         self.label_3.setObjectName(u"label_3")
         self.label_3.setMinimumSize(QSize(0, 30))
-        self.label_3.setFont(font4)
+        self.label_3.setFont(font3)
         self.label_3.setStyleSheet(u"color: #282c33;\n"
 "background-color: #ebecf0;\n"
 "border-radius: 5px;\n"
@@ -428,7 +425,7 @@ class Ui_MainWindow(object):
         self.label_4 = QLabel(self.widget_5)
         self.label_4.setObjectName(u"label_4")
         self.label_4.setMinimumSize(QSize(0, 30))
-        self.label_4.setFont(font4)
+        self.label_4.setFont(font3)
         self.label_4.setStyleSheet(u"color: #282c33;\n"
 "background-color: #ebecf0;\n"
 "border-radius: 5px;\n"
@@ -500,11 +497,11 @@ class Ui_MainWindow(object):
         self.pushButton = QPushButton(self.widget_6)
         self.pushButton.setObjectName(u"pushButton")
         self.pushButton.setMinimumSize(QSize(0, 30))
-        font5 = QFont()
-        font5.setFamilies([u"Torus Pro"])
-        font5.setPointSize(12)
-        font5.setBold(False)
-        self.pushButton.setFont(font5)
+        font4 = QFont()
+        font4.setFamilies([u"Torus Pro"])
+        font4.setPointSize(12)
+        font4.setBold(False)
+        self.pushButton.setFont(font4)
         self.pushButton.setCursor(QCursor(Qt.PointingHandCursor))
         self.pushButton.setStyleSheet(u"QPushButton {background-color: #acb2bf; color: #ffffff; border-radius: 5px}\n"
 "QPushButton:hover {background-color: #7e828c;}")
@@ -567,7 +564,7 @@ class Ui_MainWindow(object):
         self.pushButton_12.setText(QCoreApplication.translate("MainWindow", u"Board 5", None))
         self.pushButton_13.setText(QCoreApplication.translate("MainWindow", u"+ Add a board", None))
         self.pushButton_15.setText(QCoreApplication.translate("MainWindow", u"Board Settings", None))
-        self.pushButton_7.setText(QCoreApplication.translate("MainWindow", u"Logout", None))
+        self.pushButton_7.setText(QCoreApplication.translate("MainWindow", u"App Settings", None))
         self.label.setText(QCoreApplication.translate("MainWindow", u"Board 1", None))
         self.label_2.setText(QCoreApplication.translate("MainWindow", u"To Do", None))
 
