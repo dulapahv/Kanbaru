@@ -382,6 +382,7 @@ padding: 0px 5px 0px 5px;</string>
                  <string notr="true">QListWidget::item {height: 40px; padding: 0px 0px 0px 8px}
 QListWidget::item {background-color: #ffffff; color: #000000; border-radius: 5px}
 QListWidget::item:hover {background-color: #f4f5f7; color: #000000}
+QListWidget::item:selected {background-color: #cccccc; color: #000000}
 QScrollBar:vertical {width: 10px; margin: 0px 0px 0px 0px; background-color: #acb2bf}</string>
                 </property>
                 <property name="frameShape">

@@ -99,6 +99,7 @@ class Ui_MainWindow(object):
         self.listWidget.setStyleSheet(u"QListWidget::item {height: 40px; padding: 0px 0px 0px 8px}\n"
 "QListWidget::item {background-color: #ffffff; color: #000000; border-radius: 5px}\n"
 "QListWidget::item:hover {background-color: #f4f5f7; color: #000000}\n"
+"QListWidget::item:selected {background-color: #cccccc; color: #000000}\n"
 "QScrollBar:vertical {width: 10px; margin: 0px 0px 0px 0px; background-color: #acb2bf}")
         self.listWidget.setFrameShape(QFrame.NoFrame)
         self.listWidget.setDragEnabled(True)

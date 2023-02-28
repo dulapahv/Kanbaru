@@ -640,6 +640,7 @@ padding: 5px 0px 0px 5px;</string>
                       <string notr="true">QListWidget::item {height: 40px; padding: 0px 0px 0px 8px}
 QListWidget::item {background-color: qlineargradient(spread:pad, x1:0, y1:0.5, x2:0.95, y2:0.5, stop:0 rgba(251, 217, 69, 255), stop:0.0338983 rgba(251, 217, 69, 255), stop:0.039548 rgba(255, 255, 255, 255), stop:1 rgba(255, 255, 255, 255)); color: #000000; border-radius: 5px}
 QListWidget::item:hover {background-color: qlineargradient(spread:pad, x1:0, y1:0.5, x2:0.95, y2:0.5, stop:0 rgba(251, 217, 69, 255), stop:0.0338983 rgba(251, 217, 69, 255), stop:0.039548 rgba(244, 245, 247, 255), stop:1 rgba(244, 245, 247, 255)); color: #000000}
+QListWidget::item:selected {background-color: qlineargradient(spread:pad, x1:0, y1:0.5, x2:0.95, y2:0.5, stop:0 rgba(251, 217, 69, 255), stop:0.0338983 rgba(251, 217, 69, 255), stop:0.039548 rgba(204, 204, 204, 255), stop:1 rgba(204, 204, 204, 255)); color: #000000}
 QScrollBar:vertical {width: 10px; margin: 0px 0px 0px 0px; background-color: #acb2bf}</string>
                      </property>
                      <property name="frameShape">
@@ -890,6 +891,7 @@ padding: 5px 0px 0px 5px;</string>
                       <string notr="true">QListWidget::item {height: 40px; padding: 0px 0px 0px 8px}
 QListWidget::item {background-color: qlineargradient(spread:pad, x1:0, y1:0.5, x2:0.95, y2:0.5, stop:0 rgba(251, 217, 69, 255), stop:0.0338983 rgba(251, 217, 69, 255), stop:0.039548 rgba(255, 255, 255, 255), stop:1 rgba(255, 255, 255, 255)); color: #000000; border-radius: 5px}
 QListWidget::item:hover {background-color: qlineargradient(spread:pad, x1:0, y1:0.5, x2:0.95, y2:0.5, stop:0 rgba(251, 217, 69, 255), stop:0.0338983 rgba(251, 217, 69, 255), stop:0.039548 rgba(244, 245, 247, 255), stop:1 rgba(244, 245, 247, 255)); color: #000000}
+QListWidget::item:selected {background-color: qlineargradient(spread:pad, x1:0, y1:0.5, x2:0.95, y2:0.5, stop:0 rgba(251, 217, 69, 255), stop:0.0338983 rgba(251, 217, 69, 255), stop:0.039548 rgba(204, 204, 204, 255), stop:1 rgba(204, 204, 204, 255)); color: #000000}
 QScrollBar:vertical {width: 10px; margin: 0px 0px 0px 0px; background-color: #acb2bf}</string>
                      </property>
                      <property name="frameShape">
@@ -1095,6 +1097,7 @@ padding: 5px 0px 0px 5px;</string>
                       <string notr="true">QListWidget::item {height: 40px; padding: 0px 0px 0px 8px}
 QListWidget::item {background-color: qlineargradient(spread:pad, x1:0, y1:0.5, x2:0.95, y2:0.5, stop:0 rgba(251, 217, 69, 255), stop:0.0338983 rgba(251, 217, 69, 255), stop:0.039548 rgba(255, 255, 255, 255), stop:1 rgba(255, 255, 255, 255)); color: #000000; border-radius: 5px}
 QListWidget::item:hover {background-color: qlineargradient(spread:pad, x1:0, y1:0.5, x2:0.95, y2:0.5, stop:0 rgba(251, 217, 69, 255), stop:0.0338983 rgba(251, 217, 69, 255), stop:0.039548 rgba(244, 245, 247, 255), stop:1 rgba(244, 245, 247, 255)); color: #000000}
+QListWidget::item:selected {background-color: qlineargradient(spread:pad, x1:0, y1:0.5, x2:0.95, y2:0.5, stop:0 rgba(251, 217, 69, 255), stop:0.0338983 rgba(251, 217, 69, 255), stop:0.039548 rgba(204, 204, 204, 255), stop:1 rgba(204, 204, 204, 255)); color: #000000}
 QScrollBar:vertical {width: 10px; margin: 0px 0px 0px 0px; background-color: #acb2bf}</string>
                      </property>
                      <property name="frameShape">
