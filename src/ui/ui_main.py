@@ -285,15 +285,24 @@ class Ui_MainWindow(object):
         __qlistwidgetitem1.setFlags(Qt.ItemIsSelectable|Qt.ItemIsEditable|Qt.ItemIsDragEnabled|Qt.ItemIsUserCheckable|Qt.ItemIsEnabled);
         __qlistwidgetitem2 = QListWidgetItem(self.listWidget_3)
         __qlistwidgetitem2.setFlags(Qt.ItemIsSelectable|Qt.ItemIsEditable|Qt.ItemIsDragEnabled|Qt.ItemIsUserCheckable|Qt.ItemIsEnabled);
-        QListWidgetItem(self.listWidget_3)
-        QListWidgetItem(self.listWidget_3)
-        QListWidgetItem(self.listWidget_3)
-        QListWidgetItem(self.listWidget_3)
-        QListWidgetItem(self.listWidget_3)
-        QListWidgetItem(self.listWidget_3)
-        QListWidgetItem(self.listWidget_3)
-        QListWidgetItem(self.listWidget_3)
-        QListWidgetItem(self.listWidget_3)
+        __qlistwidgetitem3 = QListWidgetItem(self.listWidget_3)
+        __qlistwidgetitem3.setFlags(Qt.ItemIsSelectable|Qt.ItemIsEditable|Qt.ItemIsDragEnabled|Qt.ItemIsUserCheckable|Qt.ItemIsEnabled);
+        __qlistwidgetitem4 = QListWidgetItem(self.listWidget_3)
+        __qlistwidgetitem4.setFlags(Qt.ItemIsSelectable|Qt.ItemIsEditable|Qt.ItemIsDragEnabled|Qt.ItemIsUserCheckable|Qt.ItemIsEnabled);
+        __qlistwidgetitem5 = QListWidgetItem(self.listWidget_3)
+        __qlistwidgetitem5.setFlags(Qt.ItemIsSelectable|Qt.ItemIsEditable|Qt.ItemIsDragEnabled|Qt.ItemIsUserCheckable|Qt.ItemIsEnabled);
+        __qlistwidgetitem6 = QListWidgetItem(self.listWidget_3)
+        __qlistwidgetitem6.setFlags(Qt.ItemIsSelectable|Qt.ItemIsEditable|Qt.ItemIsDragEnabled|Qt.ItemIsUserCheckable|Qt.ItemIsEnabled);
+        __qlistwidgetitem7 = QListWidgetItem(self.listWidget_3)
+        __qlistwidgetitem7.setFlags(Qt.ItemIsSelectable|Qt.ItemIsEditable|Qt.ItemIsDragEnabled|Qt.ItemIsUserCheckable|Qt.ItemIsEnabled);
+        __qlistwidgetitem8 = QListWidgetItem(self.listWidget_3)
+        __qlistwidgetitem8.setFlags(Qt.ItemIsSelectable|Qt.ItemIsEditable|Qt.ItemIsDragEnabled|Qt.ItemIsUserCheckable|Qt.ItemIsEnabled);
+        __qlistwidgetitem9 = QListWidgetItem(self.listWidget_3)
+        __qlistwidgetitem9.setFlags(Qt.ItemIsSelectable|Qt.ItemIsEditable|Qt.ItemIsDragEnabled|Qt.ItemIsUserCheckable|Qt.ItemIsEnabled);
+        __qlistwidgetitem10 = QListWidgetItem(self.listWidget_3)
+        __qlistwidgetitem10.setFlags(Qt.ItemIsSelectable|Qt.ItemIsEditable|Qt.ItemIsDragEnabled|Qt.ItemIsUserCheckable|Qt.ItemIsEnabled);
+        __qlistwidgetitem11 = QListWidgetItem(self.listWidget_3)
+        __qlistwidgetitem11.setFlags(Qt.ItemIsSelectable|Qt.ItemIsEditable|Qt.ItemIsDragEnabled|Qt.ItemIsUserCheckable|Qt.ItemIsEnabled);
         self.listWidget_3.setObjectName(u"listWidget_3")
         sizePolicy5 = QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Expanding)
         sizePolicy5.setHorizontalStretch(0)
@@ -302,6 +311,7 @@ class Ui_MainWindow(object):
         self.listWidget_3.setSizePolicy(sizePolicy5)
         self.listWidget_3.setMaximumSize(QSize(250, 16777215))
         self.listWidget_3.setFont(font1)
+        self.listWidget_3.setAcceptDrops(True)
         self.listWidget_3.setStyleSheet(u"QListWidget::item {height: 40px; padding: 0px 0px 0px 8px}\n"
 "QListWidget::item {background-color: qlineargradient(spread:pad, x1:0, y1:0.5, x2:0.95, y2:0.5, stop:0 rgba(251, 217, 69, 255), stop:0.0338983 rgba(251, 217, 69, 255), stop:0.039548 rgba(255, 255, 255, 255), stop:1 rgba(255, 255, 255, 255)); color: #000000; border-radius: 5px}\n"
 "QListWidget::item:hover {background-color: qlineargradient(spread:pad, x1:0, y1:0.5, x2:0.95, y2:0.5, stop:0 rgba(251, 217, 69, 255), stop:0.0338983 rgba(251, 217, 69, 255), stop:0.039548 rgba(244, 245, 247, 255), stop:1 rgba(244, 245, 247, 255)); color: #000000}\n"
@@ -314,6 +324,7 @@ class Ui_MainWindow(object):
         self.listWidget_3.setDefaultDropAction(Qt.MoveAction)
         self.listWidget_3.setSelectionMode(QAbstractItemView.ExtendedSelection)
         self.listWidget_3.setSpacing(5)
+        self.listWidget_3.setUniformItemSizes(True)
         self.listWidget_3.setWordWrap(True)
         self.listWidget_3.setSelectionRectVisible(True)
 
@@ -368,17 +379,28 @@ class Ui_MainWindow(object):
         self.verticalLayout_5.addItem(self.verticalSpacer_3)
 
         self.listWidget_4 = QListWidget(self.widget_4)
-        __qlistwidgetitem3 = QListWidgetItem(self.listWidget_4)
-        __qlistwidgetitem3.setFlags(Qt.ItemIsSelectable|Qt.ItemIsEditable|Qt.ItemIsDragEnabled|Qt.ItemIsUserCheckable|Qt.ItemIsEnabled);
-        __qlistwidgetitem4 = QListWidgetItem(self.listWidget_4)
-        __qlistwidgetitem4.setFlags(Qt.ItemIsSelectable|Qt.ItemIsEditable|Qt.ItemIsDragEnabled|Qt.ItemIsUserCheckable|Qt.ItemIsEnabled);
-        __qlistwidgetitem5 = QListWidgetItem(self.listWidget_4)
-        __qlistwidgetitem5.setFlags(Qt.ItemIsSelectable|Qt.ItemIsEditable|Qt.ItemIsDragEnabled|Qt.ItemIsUserCheckable|Qt.ItemIsEnabled);
+        __qlistwidgetitem12 = QListWidgetItem(self.listWidget_4)
+        __qlistwidgetitem12.setFlags(Qt.ItemIsSelectable|Qt.ItemIsEditable|Qt.ItemIsDragEnabled|Qt.ItemIsUserCheckable|Qt.ItemIsEnabled);
+        __qlistwidgetitem13 = QListWidgetItem(self.listWidget_4)
+        __qlistwidgetitem13.setFlags(Qt.ItemIsSelectable|Qt.ItemIsEditable|Qt.ItemIsDragEnabled|Qt.ItemIsUserCheckable|Qt.ItemIsEnabled);
+        __qlistwidgetitem14 = QListWidgetItem(self.listWidget_4)
+        __qlistwidgetitem14.setFlags(Qt.ItemIsSelectable|Qt.ItemIsEditable|Qt.ItemIsDragEnabled|Qt.ItemIsUserCheckable|Qt.ItemIsEnabled);
+        __qlistwidgetitem15 = QListWidgetItem(self.listWidget_4)
+        __qlistwidgetitem15.setFlags(Qt.ItemIsSelectable|Qt.ItemIsEditable|Qt.ItemIsDragEnabled|Qt.ItemIsUserCheckable|Qt.ItemIsEnabled);
+        __qlistwidgetitem16 = QListWidgetItem(self.listWidget_4)
+        __qlistwidgetitem16.setFlags(Qt.ItemIsSelectable|Qt.ItemIsEditable|Qt.ItemIsDragEnabled|Qt.ItemIsUserCheckable|Qt.ItemIsEnabled);
+        __qlistwidgetitem17 = QListWidgetItem(self.listWidget_4)
+        __qlistwidgetitem17.setFlags(Qt.ItemIsSelectable|Qt.ItemIsEditable|Qt.ItemIsDragEnabled|Qt.ItemIsUserCheckable|Qt.ItemIsEnabled);
+        __qlistwidgetitem18 = QListWidgetItem(self.listWidget_4)
+        __qlistwidgetitem18.setFlags(Qt.ItemIsSelectable|Qt.ItemIsEditable|Qt.ItemIsDragEnabled|Qt.ItemIsUserCheckable|Qt.ItemIsEnabled);
+        __qlistwidgetitem19 = QListWidgetItem(self.listWidget_4)
+        __qlistwidgetitem19.setFlags(Qt.ItemIsSelectable|Qt.ItemIsEditable|Qt.ItemIsDragEnabled|Qt.ItemIsUserCheckable|Qt.ItemIsEnabled);
         self.listWidget_4.setObjectName(u"listWidget_4")
         sizePolicy5.setHeightForWidth(self.listWidget_4.sizePolicy().hasHeightForWidth())
         self.listWidget_4.setSizePolicy(sizePolicy5)
         self.listWidget_4.setMaximumSize(QSize(250, 16777215))
         self.listWidget_4.setFont(font1)
+        self.listWidget_4.setAcceptDrops(True)
         self.listWidget_4.setStyleSheet(u"QListWidget::item {height: 40px; padding: 0px 0px 0px 8px}\n"
 "QListWidget::item {background-color: qlineargradient(spread:pad, x1:0, y1:0.5, x2:0.95, y2:0.5, stop:0 rgba(251, 217, 69, 255), stop:0.0338983 rgba(251, 217, 69, 255), stop:0.039548 rgba(255, 255, 255, 255), stop:1 rgba(255, 255, 255, 255)); color: #000000; border-radius: 5px}\n"
 "QListWidget::item:hover {background-color: qlineargradient(spread:pad, x1:0, y1:0.5, x2:0.95, y2:0.5, stop:0 rgba(251, 217, 69, 255), stop:0.0338983 rgba(251, 217, 69, 255), stop:0.039548 rgba(244, 245, 247, 255), stop:1 rgba(244, 245, 247, 255)); color: #000000}\n"
@@ -391,6 +413,7 @@ class Ui_MainWindow(object):
         self.listWidget_4.setDefaultDropAction(Qt.MoveAction)
         self.listWidget_4.setSelectionMode(QAbstractItemView.ExtendedSelection)
         self.listWidget_4.setSpacing(5)
+        self.listWidget_4.setUniformItemSizes(True)
         self.listWidget_4.setWordWrap(True)
         self.listWidget_4.setSelectionRectVisible(True)
 
@@ -445,17 +468,36 @@ class Ui_MainWindow(object):
         self.verticalLayout_8.addItem(self.verticalSpacer_4)
 
         self.listWidget_5 = QListWidget(self.widget_5)
-        __qlistwidgetitem6 = QListWidgetItem(self.listWidget_5)
-        __qlistwidgetitem6.setFlags(Qt.ItemIsSelectable|Qt.ItemIsEditable|Qt.ItemIsDragEnabled|Qt.ItemIsUserCheckable|Qt.ItemIsEnabled);
-        __qlistwidgetitem7 = QListWidgetItem(self.listWidget_5)
-        __qlistwidgetitem7.setFlags(Qt.ItemIsSelectable|Qt.ItemIsEditable|Qt.ItemIsDragEnabled|Qt.ItemIsUserCheckable|Qt.ItemIsEnabled);
-        __qlistwidgetitem8 = QListWidgetItem(self.listWidget_5)
-        __qlistwidgetitem8.setFlags(Qt.ItemIsSelectable|Qt.ItemIsEditable|Qt.ItemIsDragEnabled|Qt.ItemIsUserCheckable|Qt.ItemIsEnabled);
+        __qlistwidgetitem20 = QListWidgetItem(self.listWidget_5)
+        __qlistwidgetitem20.setFlags(Qt.ItemIsSelectable|Qt.ItemIsEditable|Qt.ItemIsDragEnabled|Qt.ItemIsUserCheckable|Qt.ItemIsEnabled);
+        __qlistwidgetitem21 = QListWidgetItem(self.listWidget_5)
+        __qlistwidgetitem21.setFlags(Qt.ItemIsSelectable|Qt.ItemIsEditable|Qt.ItemIsDragEnabled|Qt.ItemIsUserCheckable|Qt.ItemIsEnabled);
+        __qlistwidgetitem22 = QListWidgetItem(self.listWidget_5)
+        __qlistwidgetitem22.setFlags(Qt.ItemIsSelectable|Qt.ItemIsEditable|Qt.ItemIsDragEnabled|Qt.ItemIsUserCheckable|Qt.ItemIsEnabled);
+        __qlistwidgetitem23 = QListWidgetItem(self.listWidget_5)
+        __qlistwidgetitem23.setFlags(Qt.ItemIsSelectable|Qt.ItemIsEditable|Qt.ItemIsDragEnabled|Qt.ItemIsUserCheckable|Qt.ItemIsEnabled);
+        __qlistwidgetitem24 = QListWidgetItem(self.listWidget_5)
+        __qlistwidgetitem24.setFlags(Qt.ItemIsSelectable|Qt.ItemIsEditable|Qt.ItemIsDragEnabled|Qt.ItemIsUserCheckable|Qt.ItemIsEnabled);
+        __qlistwidgetitem25 = QListWidgetItem(self.listWidget_5)
+        __qlistwidgetitem25.setFlags(Qt.ItemIsSelectable|Qt.ItemIsEditable|Qt.ItemIsDragEnabled|Qt.ItemIsUserCheckable|Qt.ItemIsEnabled);
+        __qlistwidgetitem26 = QListWidgetItem(self.listWidget_5)
+        __qlistwidgetitem26.setFlags(Qt.ItemIsSelectable|Qt.ItemIsEditable|Qt.ItemIsDragEnabled|Qt.ItemIsUserCheckable|Qt.ItemIsEnabled);
+        __qlistwidgetitem27 = QListWidgetItem(self.listWidget_5)
+        __qlistwidgetitem27.setFlags(Qt.ItemIsSelectable|Qt.ItemIsEditable|Qt.ItemIsDragEnabled|Qt.ItemIsUserCheckable|Qt.ItemIsEnabled);
+        __qlistwidgetitem28 = QListWidgetItem(self.listWidget_5)
+        __qlistwidgetitem28.setFlags(Qt.ItemIsSelectable|Qt.ItemIsEditable|Qt.ItemIsDragEnabled|Qt.ItemIsUserCheckable|Qt.ItemIsEnabled);
+        __qlistwidgetitem29 = QListWidgetItem(self.listWidget_5)
+        __qlistwidgetitem29.setFlags(Qt.ItemIsSelectable|Qt.ItemIsEditable|Qt.ItemIsDragEnabled|Qt.ItemIsUserCheckable|Qt.ItemIsEnabled);
+        __qlistwidgetitem30 = QListWidgetItem(self.listWidget_5)
+        __qlistwidgetitem30.setFlags(Qt.ItemIsSelectable|Qt.ItemIsEditable|Qt.ItemIsDragEnabled|Qt.ItemIsUserCheckable|Qt.ItemIsEnabled);
+        __qlistwidgetitem31 = QListWidgetItem(self.listWidget_5)
+        __qlistwidgetitem31.setFlags(Qt.ItemIsSelectable|Qt.ItemIsEditable|Qt.ItemIsDragEnabled|Qt.ItemIsUserCheckable|Qt.ItemIsEnabled);
         self.listWidget_5.setObjectName(u"listWidget_5")
         sizePolicy5.setHeightForWidth(self.listWidget_5.sizePolicy().hasHeightForWidth())
         self.listWidget_5.setSizePolicy(sizePolicy5)
         self.listWidget_5.setMaximumSize(QSize(250, 16777215))
         self.listWidget_5.setFont(font1)
+        self.listWidget_5.setAcceptDrops(True)
         self.listWidget_5.setStyleSheet(u"QListWidget::item {height: 40px; padding: 0px 0px 0px 8px}\n"
 "QListWidget::item {background-color: qlineargradient(spread:pad, x1:0, y1:0.5, x2:0.95, y2:0.5, stop:0 rgba(251, 217, 69, 255), stop:0.0338983 rgba(251, 217, 69, 255), stop:0.039548 rgba(255, 255, 255, 255), stop:1 rgba(255, 255, 255, 255)); color: #000000; border-radius: 5px}\n"
 "QListWidget::item:hover {background-color: qlineargradient(spread:pad, x1:0, y1:0.5, x2:0.95, y2:0.5, stop:0 rgba(251, 217, 69, 255), stop:0.0338983 rgba(251, 217, 69, 255), stop:0.039548 rgba(244, 245, 247, 255), stop:1 rgba(244, 245, 247, 255)); color: #000000}\n"
@@ -468,6 +510,7 @@ class Ui_MainWindow(object):
         self.listWidget_5.setDefaultDropAction(Qt.MoveAction)
         self.listWidget_5.setSelectionMode(QAbstractItemView.ExtendedSelection)
         self.listWidget_5.setSpacing(5)
+        self.listWidget_5.setUniformItemSizes(True)
         self.listWidget_5.setWordWrap(True)
         self.listWidget_5.setSelectionRectVisible(True)
 
@@ -611,11 +654,21 @@ class Ui_MainWindow(object):
         __sortingEnabled1 = self.listWidget_4.isSortingEnabled()
         self.listWidget_4.setSortingEnabled(False)
         ___qlistwidgetitem12 = self.listWidget_4.item(0)
-        ___qlistwidgetitem12.setText(QCoreApplication.translate("MainWindow", u"Test11", None));
+        ___qlistwidgetitem12.setText(QCoreApplication.translate("MainWindow", u"Test1", None));
         ___qlistwidgetitem13 = self.listWidget_4.item(1)
-        ___qlistwidgetitem13.setText(QCoreApplication.translate("MainWindow", u"Test22", None));
+        ___qlistwidgetitem13.setText(QCoreApplication.translate("MainWindow", u"Test2", None));
         ___qlistwidgetitem14 = self.listWidget_4.item(2)
-        ___qlistwidgetitem14.setText(QCoreApplication.translate("MainWindow", u"Test33", None));
+        ___qlistwidgetitem14.setText(QCoreApplication.translate("MainWindow", u"Test3", None));
+        ___qlistwidgetitem15 = self.listWidget_4.item(3)
+        ___qlistwidgetitem15.setText(QCoreApplication.translate("MainWindow", u"New Item", None));
+        ___qlistwidgetitem16 = self.listWidget_4.item(4)
+        ___qlistwidgetitem16.setText(QCoreApplication.translate("MainWindow", u"New Item", None));
+        ___qlistwidgetitem17 = self.listWidget_4.item(5)
+        ___qlistwidgetitem17.setText(QCoreApplication.translate("MainWindow", u"New Item", None));
+        ___qlistwidgetitem18 = self.listWidget_4.item(6)
+        ___qlistwidgetitem18.setText(QCoreApplication.translate("MainWindow", u"New Item", None));
+        ___qlistwidgetitem19 = self.listWidget_4.item(7)
+        ___qlistwidgetitem19.setText(QCoreApplication.translate("MainWindow", u"New Item", None));
         self.listWidget_4.setSortingEnabled(__sortingEnabled1)
 
         self.pushButton_5.setText(QCoreApplication.translate("MainWindow", u"+ Add a card", None))
@@ -623,12 +676,30 @@ class Ui_MainWindow(object):
 
         __sortingEnabled2 = self.listWidget_5.isSortingEnabled()
         self.listWidget_5.setSortingEnabled(False)
-        ___qlistwidgetitem15 = self.listWidget_5.item(0)
-        ___qlistwidgetitem15.setText(QCoreApplication.translate("MainWindow", u"Test111", None));
-        ___qlistwidgetitem16 = self.listWidget_5.item(1)
-        ___qlistwidgetitem16.setText(QCoreApplication.translate("MainWindow", u"Test222", None));
-        ___qlistwidgetitem17 = self.listWidget_5.item(2)
-        ___qlistwidgetitem17.setText(QCoreApplication.translate("MainWindow", u"Test333", None));
+        ___qlistwidgetitem20 = self.listWidget_5.item(0)
+        ___qlistwidgetitem20.setText(QCoreApplication.translate("MainWindow", u"Test1", None));
+        ___qlistwidgetitem21 = self.listWidget_5.item(1)
+        ___qlistwidgetitem21.setText(QCoreApplication.translate("MainWindow", u"Test2", None));
+        ___qlistwidgetitem22 = self.listWidget_5.item(2)
+        ___qlistwidgetitem22.setText(QCoreApplication.translate("MainWindow", u"Test3", None));
+        ___qlistwidgetitem23 = self.listWidget_5.item(3)
+        ___qlistwidgetitem23.setText(QCoreApplication.translate("MainWindow", u"New Item", None));
+        ___qlistwidgetitem24 = self.listWidget_5.item(4)
+        ___qlistwidgetitem24.setText(QCoreApplication.translate("MainWindow", u"New Item", None));
+        ___qlistwidgetitem25 = self.listWidget_5.item(5)
+        ___qlistwidgetitem25.setText(QCoreApplication.translate("MainWindow", u"New Item", None));
+        ___qlistwidgetitem26 = self.listWidget_5.item(6)
+        ___qlistwidgetitem26.setText(QCoreApplication.translate("MainWindow", u"New Item", None));
+        ___qlistwidgetitem27 = self.listWidget_5.item(7)
+        ___qlistwidgetitem27.setText(QCoreApplication.translate("MainWindow", u"New Item", None));
+        ___qlistwidgetitem28 = self.listWidget_5.item(8)
+        ___qlistwidgetitem28.setText(QCoreApplication.translate("MainWindow", u"New Item", None));
+        ___qlistwidgetitem29 = self.listWidget_5.item(9)
+        ___qlistwidgetitem29.setText(QCoreApplication.translate("MainWindow", u"New Item", None));
+        ___qlistwidgetitem30 = self.listWidget_5.item(10)
+        ___qlistwidgetitem30.setText(QCoreApplication.translate("MainWindow", u"New Item", None));
+        ___qlistwidgetitem31 = self.listWidget_5.item(11)
+        ___qlistwidgetitem31.setText(QCoreApplication.translate("MainWindow", u"New Item", None));
         self.listWidget_5.setSortingEnabled(__sortingEnabled2)
 
         self.pushButton_6.setText(QCoreApplication.translate("MainWindow", u"+ Add a card", None))

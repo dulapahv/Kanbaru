@@ -167,6 +167,9 @@ QScrollBar:vertical {width: 10px; margin: 0px 0px 0px 0px; background-color: #ac
                 <property name="spacing">
                  <number>5</number>
                 </property>
+                <property name="uniformItemSizes">
+                 <bool>true</bool>
+                </property>
                 <property name="wordWrap">
                  <bool>true</bool>
                 </property>
@@ -177,35 +180,56 @@ QScrollBar:vertical {width: 10px; margin: 0px 0px 0px 0px; background-color: #ac
                  <property name="text">
                   <string>Board 1</string>
                  </property>
+                 <property name="flags">
+                  <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsUserCheckable|ItemIsEnabled</set>
+                 </property>
                 </item>
                 <item>
                  <property name="text">
                   <string>Board 2</string>
+                 </property>
+                 <property name="flags">
+                  <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsUserCheckable|ItemIsEnabled</set>
                  </property>
                 </item>
                 <item>
                  <property name="text">
                   <string>Board 3</string>
                  </property>
+                 <property name="flags">
+                  <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsUserCheckable|ItemIsEnabled</set>
+                 </property>
                 </item>
                 <item>
                  <property name="text">
                   <string>Board 4</string>
                  </property>
-                </item>
-                <item>
-                 <property name="text">
-                  <string>Board 5</string>
+                 <property name="flags">
+                  <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsUserCheckable|ItemIsEnabled</set>
                  </property>
                 </item>
                 <item>
                  <property name="text">
                   <string>Board 5</string>
                  </property>
+                 <property name="flags">
+                  <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsUserCheckable|ItemIsEnabled</set>
+                 </property>
                 </item>
                 <item>
                  <property name="text">
                   <string>Board 5</string>
+                 </property>
+                 <property name="flags">
+                  <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsUserCheckable|ItemIsEnabled</set>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>Board 5</string>
+                 </property>
+                 <property name="flags">
+                  <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsUserCheckable|ItemIsEnabled</set>
                  </property>
                 </item>
                </widget>

@@ -636,6 +636,9 @@ padding: 5px 0px 0px 5px;</string>
                        <pointsize>12</pointsize>
                       </font>
                      </property>
+                     <property name="acceptDrops">
+                      <bool>true</bool>
+                     </property>
                      <property name="styleSheet">
                       <string notr="true">QListWidget::item {height: 40px; padding: 0px 0px 0px 8px}
 QListWidget::item {background-color: qlineargradient(spread:pad, x1:0, y1:0.5, x2:0.95, y2:0.5, stop:0 rgba(251, 217, 69, 255), stop:0.0338983 rgba(251, 217, 69, 255), stop:0.039548 rgba(255, 255, 255, 255), stop:1 rgba(255, 255, 255, 255)); color: #000000; border-radius: 5px}
@@ -663,6 +666,9 @@ QScrollBar:vertical {width: 10px; margin: 0px 0px 0px 0px; background-color: #ac
                      </property>
                      <property name="spacing">
                       <number>5</number>
+                     </property>
+                     <property name="uniformItemSizes">
+                      <bool>true</bool>
                      </property>
                      <property name="wordWrap">
                       <bool>true</bool>
@@ -698,45 +704,72 @@ QScrollBar:vertical {width: 10px; margin: 0px 0px 0px 0px; background-color: #ac
                       <property name="text">
                        <string>New Item</string>
                       </property>
-                     </item>
-                     <item>
-                      <property name="text">
-                       <string>New Item</string>
+                      <property name="flags">
+                       <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsUserCheckable|ItemIsEnabled</set>
                       </property>
                      </item>
                      <item>
                       <property name="text">
                        <string>New Item</string>
                       </property>
-                     </item>
-                     <item>
-                      <property name="text">
-                       <string>New Item</string>
+                      <property name="flags">
+                       <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsUserCheckable|ItemIsEnabled</set>
                       </property>
                      </item>
                      <item>
                       <property name="text">
                        <string>New Item</string>
                       </property>
-                     </item>
-                     <item>
-                      <property name="text">
-                       <string>New Item</string>
+                      <property name="flags">
+                       <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsUserCheckable|ItemIsEnabled</set>
                       </property>
                      </item>
                      <item>
                       <property name="text">
                        <string>New Item</string>
                       </property>
-                     </item>
-                     <item>
-                      <property name="text">
-                       <string>New Item</string>
+                      <property name="flags">
+                       <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsUserCheckable|ItemIsEnabled</set>
                       </property>
                      </item>
                      <item>
                       <property name="text">
                        <string>New Item</string>
+                      </property>
+                      <property name="flags">
+                       <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsUserCheckable|ItemIsEnabled</set>
+                      </property>
+                     </item>
+                     <item>
+                      <property name="text">
+                       <string>New Item</string>
+                      </property>
+                      <property name="flags">
+                       <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsUserCheckable|ItemIsEnabled</set>
+                      </property>
+                     </item>
+                     <item>
+                      <property name="text">
+                       <string>New Item</string>
+                      </property>
+                      <property name="flags">
+                       <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsUserCheckable|ItemIsEnabled</set>
+                      </property>
+                     </item>
+                     <item>
+                      <property name="text">
+                       <string>New Item</string>
+                      </property>
+                      <property name="flags">
+                       <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsUserCheckable|ItemIsEnabled</set>
+                      </property>
+                     </item>
+                     <item>
+                      <property name="text">
+                       <string>New Item</string>
+                      </property>
+                      <property name="flags">
+                       <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsUserCheckable|ItemIsEnabled</set>
                       </property>
                      </item>
                     </widget>
@@ -887,6 +920,9 @@ padding: 5px 0px 0px 5px;</string>
                        <pointsize>12</pointsize>
                       </font>
                      </property>
+                     <property name="acceptDrops">
+                      <bool>true</bool>
+                     </property>
                      <property name="styleSheet">
                       <string notr="true">QListWidget::item {height: 40px; padding: 0px 0px 0px 8px}
 QListWidget::item {background-color: qlineargradient(spread:pad, x1:0, y1:0.5, x2:0.95, y2:0.5, stop:0 rgba(251, 217, 69, 255), stop:0.0338983 rgba(251, 217, 69, 255), stop:0.039548 rgba(255, 255, 255, 255), stop:1 rgba(255, 255, 255, 255)); color: #000000; border-radius: 5px}
@@ -915,6 +951,9 @@ QScrollBar:vertical {width: 10px; margin: 0px 0px 0px 0px; background-color: #ac
                      <property name="spacing">
                       <number>5</number>
                      </property>
+                     <property name="uniformItemSizes">
+                      <bool>true</bool>
+                     </property>
                      <property name="wordWrap">
                       <bool>true</bool>
                      </property>
@@ -923,7 +962,7 @@ QScrollBar:vertical {width: 10px; margin: 0px 0px 0px 0px; background-color: #ac
                      </property>
                      <item>
                       <property name="text">
-                       <string>Test11</string>
+                       <string>Test1</string>
                       </property>
                       <property name="flags">
                        <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsUserCheckable|ItemIsEnabled</set>
@@ -931,7 +970,7 @@ QScrollBar:vertical {width: 10px; margin: 0px 0px 0px 0px; background-color: #ac
                      </item>
                      <item>
                       <property name="text">
-                       <string>Test22</string>
+                       <string>Test2</string>
                       </property>
                       <property name="flags">
                        <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsUserCheckable|ItemIsEnabled</set>
@@ -939,7 +978,47 @@ QScrollBar:vertical {width: 10px; margin: 0px 0px 0px 0px; background-color: #ac
                      </item>
                      <item>
                       <property name="text">
-                       <string>Test33</string>
+                       <string>Test3</string>
+                      </property>
+                      <property name="flags">
+                       <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsUserCheckable|ItemIsEnabled</set>
+                      </property>
+                     </item>
+                     <item>
+                      <property name="text">
+                       <string>New Item</string>
+                      </property>
+                      <property name="flags">
+                       <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsUserCheckable|ItemIsEnabled</set>
+                      </property>
+                     </item>
+                     <item>
+                      <property name="text">
+                       <string>New Item</string>
+                      </property>
+                      <property name="flags">
+                       <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsUserCheckable|ItemIsEnabled</set>
+                      </property>
+                     </item>
+                     <item>
+                      <property name="text">
+                       <string>New Item</string>
+                      </property>
+                      <property name="flags">
+                       <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsUserCheckable|ItemIsEnabled</set>
+                      </property>
+                     </item>
+                     <item>
+                      <property name="text">
+                       <string>New Item</string>
+                      </property>
+                      <property name="flags">
+                       <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsUserCheckable|ItemIsEnabled</set>
+                      </property>
+                     </item>
+                     <item>
+                      <property name="text">
+                       <string>New Item</string>
                       </property>
                       <property name="flags">
                        <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsUserCheckable|ItemIsEnabled</set>
@@ -1093,6 +1172,9 @@ padding: 5px 0px 0px 5px;</string>
                        <pointsize>12</pointsize>
                       </font>
                      </property>
+                     <property name="acceptDrops">
+                      <bool>true</bool>
+                     </property>
                      <property name="styleSheet">
                       <string notr="true">QListWidget::item {height: 40px; padding: 0px 0px 0px 8px}
 QListWidget::item {background-color: qlineargradient(spread:pad, x1:0, y1:0.5, x2:0.95, y2:0.5, stop:0 rgba(251, 217, 69, 255), stop:0.0338983 rgba(251, 217, 69, 255), stop:0.039548 rgba(255, 255, 255, 255), stop:1 rgba(255, 255, 255, 255)); color: #000000; border-radius: 5px}
@@ -1121,6 +1203,9 @@ QScrollBar:vertical {width: 10px; margin: 0px 0px 0px 0px; background-color: #ac
                      <property name="spacing">
                       <number>5</number>
                      </property>
+                     <property name="uniformItemSizes">
+                      <bool>true</bool>
+                     </property>
                      <property name="wordWrap">
                       <bool>true</bool>
                      </property>
@@ -1129,7 +1214,7 @@ QScrollBar:vertical {width: 10px; margin: 0px 0px 0px 0px; background-color: #ac
                      </property>
                      <item>
                       <property name="text">
-                       <string>Test111</string>
+                       <string>Test1</string>
                       </property>
                       <property name="flags">
                        <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsUserCheckable|ItemIsEnabled</set>
@@ -1137,7 +1222,7 @@ QScrollBar:vertical {width: 10px; margin: 0px 0px 0px 0px; background-color: #ac
                      </item>
                      <item>
                       <property name="text">
-                       <string>Test222</string>
+                       <string>Test2</string>
                       </property>
                       <property name="flags">
                        <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsUserCheckable|ItemIsEnabled</set>
@@ -1145,7 +1230,79 @@ QScrollBar:vertical {width: 10px; margin: 0px 0px 0px 0px; background-color: #ac
                      </item>
                      <item>
                       <property name="text">
-                       <string>Test333</string>
+                       <string>Test3</string>
+                      </property>
+                      <property name="flags">
+                       <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsUserCheckable|ItemIsEnabled</set>
+                      </property>
+                     </item>
+                     <item>
+                      <property name="text">
+                       <string>New Item</string>
+                      </property>
+                      <property name="flags">
+                       <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsUserCheckable|ItemIsEnabled</set>
+                      </property>
+                     </item>
+                     <item>
+                      <property name="text">
+                       <string>New Item</string>
+                      </property>
+                      <property name="flags">
+                       <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsUserCheckable|ItemIsEnabled</set>
+                      </property>
+                     </item>
+                     <item>
+                      <property name="text">
+                       <string>New Item</string>
+                      </property>
+                      <property name="flags">
+                       <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsUserCheckable|ItemIsEnabled</set>
+                      </property>
+                     </item>
+                     <item>
+                      <property name="text">
+                       <string>New Item</string>
+                      </property>
+                      <property name="flags">
+                       <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsUserCheckable|ItemIsEnabled</set>
+                      </property>
+                     </item>
+                     <item>
+                      <property name="text">
+                       <string>New Item</string>
+                      </property>
+                      <property name="flags">
+                       <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsUserCheckable|ItemIsEnabled</set>
+                      </property>
+                     </item>
+                     <item>
+                      <property name="text">
+                       <string>New Item</string>
+                      </property>
+                      <property name="flags">
+                       <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsUserCheckable|ItemIsEnabled</set>
+                      </property>
+                     </item>
+                     <item>
+                      <property name="text">
+                       <string>New Item</string>
+                      </property>
+                      <property name="flags">
+                       <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsUserCheckable|ItemIsEnabled</set>
+                      </property>
+                     </item>
+                     <item>
+                      <property name="text">
+                       <string>New Item</string>
+                      </property>
+                      <property name="flags">
+                       <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsUserCheckable|ItemIsEnabled</set>
+                      </property>
+                     </item>
+                     <item>
+                      <property name="text">
+                       <string>New Item</string>
                       </property>
                       <property name="flags">
                        <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsUserCheckable|ItemIsEnabled</set>

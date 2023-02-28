@@ -83,13 +83,20 @@ class Ui_MainWindow(object):
         self.verticalLayout_2.addWidget(self.label_2)
 
         self.listWidget = QListWidget(self.widget1)
-        QListWidgetItem(self.listWidget)
-        QListWidgetItem(self.listWidget)
-        QListWidgetItem(self.listWidget)
-        QListWidgetItem(self.listWidget)
-        QListWidgetItem(self.listWidget)
-        QListWidgetItem(self.listWidget)
-        QListWidgetItem(self.listWidget)
+        __qlistwidgetitem = QListWidgetItem(self.listWidget)
+        __qlistwidgetitem.setFlags(Qt.ItemIsSelectable|Qt.ItemIsEditable|Qt.ItemIsDragEnabled|Qt.ItemIsUserCheckable|Qt.ItemIsEnabled);
+        __qlistwidgetitem1 = QListWidgetItem(self.listWidget)
+        __qlistwidgetitem1.setFlags(Qt.ItemIsSelectable|Qt.ItemIsEditable|Qt.ItemIsDragEnabled|Qt.ItemIsUserCheckable|Qt.ItemIsEnabled);
+        __qlistwidgetitem2 = QListWidgetItem(self.listWidget)
+        __qlistwidgetitem2.setFlags(Qt.ItemIsSelectable|Qt.ItemIsEditable|Qt.ItemIsDragEnabled|Qt.ItemIsUserCheckable|Qt.ItemIsEnabled);
+        __qlistwidgetitem3 = QListWidgetItem(self.listWidget)
+        __qlistwidgetitem3.setFlags(Qt.ItemIsSelectable|Qt.ItemIsEditable|Qt.ItemIsDragEnabled|Qt.ItemIsUserCheckable|Qt.ItemIsEnabled);
+        __qlistwidgetitem4 = QListWidgetItem(self.listWidget)
+        __qlistwidgetitem4.setFlags(Qt.ItemIsSelectable|Qt.ItemIsEditable|Qt.ItemIsDragEnabled|Qt.ItemIsUserCheckable|Qt.ItemIsEnabled);
+        __qlistwidgetitem5 = QListWidgetItem(self.listWidget)
+        __qlistwidgetitem5.setFlags(Qt.ItemIsSelectable|Qt.ItemIsEditable|Qt.ItemIsDragEnabled|Qt.ItemIsUserCheckable|Qt.ItemIsEnabled);
+        __qlistwidgetitem6 = QListWidgetItem(self.listWidget)
+        __qlistwidgetitem6.setFlags(Qt.ItemIsSelectable|Qt.ItemIsEditable|Qt.ItemIsDragEnabled|Qt.ItemIsUserCheckable|Qt.ItemIsEnabled);
         self.listWidget.setObjectName(u"listWidget")
         font3 = QFont()
         font3.setFamilies([u"Torus Pro"])
@@ -108,6 +115,7 @@ class Ui_MainWindow(object):
         self.listWidget.setSelectionMode(QAbstractItemView.ExtendedSelection)
         self.listWidget.setProperty("isWrapping", False)
         self.listWidget.setSpacing(5)
+        self.listWidget.setUniformItemSizes(True)
         self.listWidget.setWordWrap(True)
         self.listWidget.setSelectionRectVisible(True)
 

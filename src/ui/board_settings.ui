@@ -406,6 +406,9 @@ QScrollBar:vertical {width: 10px; margin: 0px 0px 0px 0px; background-color: #ac
                 <property name="spacing">
                  <number>5</number>
                 </property>
+                <property name="uniformItemSizes">
+                 <bool>true</bool>
+                </property>
                 <property name="wordWrap">
                  <bool>true</bool>
                 </property>
@@ -416,15 +419,24 @@ QScrollBar:vertical {width: 10px; margin: 0px 0px 0px 0px; background-color: #ac
                  <property name="text">
                   <string>To Do</string>
                  </property>
+                 <property name="flags">
+                  <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsUserCheckable|ItemIsEnabled</set>
+                 </property>
                 </item>
                 <item>
                  <property name="text">
                   <string>Doing</string>
                  </property>
+                 <property name="flags">
+                  <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsUserCheckable|ItemIsEnabled</set>
+                 </property>
                 </item>
                 <item>
                  <property name="text">
                   <string>Done</string>
+                 </property>
+                 <property name="flags">
+                  <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsUserCheckable|ItemIsEnabled</set>
                  </property>
                 </item>
                </widget>
