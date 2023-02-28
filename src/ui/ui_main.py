@@ -311,6 +311,7 @@ class Ui_MainWindow(object):
         self.listWidget_3.setDragEnabled(True)
         self.listWidget_3.setDragDropMode(QAbstractItemView.DragDrop)
         self.listWidget_3.setDefaultDropAction(Qt.MoveAction)
+        self.listWidget_3.setSelectionMode(QAbstractItemView.ExtendedSelection)
         self.listWidget_3.setSpacing(5)
         self.listWidget_3.setWordWrap(True)
 
@@ -385,6 +386,7 @@ class Ui_MainWindow(object):
         self.listWidget_4.setDragEnabled(True)
         self.listWidget_4.setDragDropMode(QAbstractItemView.DragDrop)
         self.listWidget_4.setDefaultDropAction(Qt.MoveAction)
+        self.listWidget_4.setSelectionMode(QAbstractItemView.ExtendedSelection)
         self.listWidget_4.setSpacing(5)
         self.listWidget_4.setWordWrap(True)
 
@@ -459,6 +461,7 @@ class Ui_MainWindow(object):
         self.listWidget_5.setDragEnabled(True)
         self.listWidget_5.setDragDropMode(QAbstractItemView.DragDrop)
         self.listWidget_5.setDefaultDropAction(Qt.MoveAction)
+        self.listWidget_5.setSelectionMode(QAbstractItemView.ExtendedSelection)
         self.listWidget_5.setSpacing(5)
         self.listWidget_5.setWordWrap(True)
 

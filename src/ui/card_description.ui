@@ -620,9 +620,16 @@ QPushButton:hover {background-color: #5487bb;}</string>
   <tabstop>lineEdit</tabstop>
   <tabstop>calendarWidget</tabstop>
   <tabstop>timeEdit</tabstop>
+  <tabstop>radioButton_2</tabstop>
+  <tabstop>radioButton_3</tabstop>
+  <tabstop>radioButton_5</tabstop>
+  <tabstop>radioButton</tabstop>
+  <tabstop>radioButton_4</tabstop>
+  <tabstop>radioButton_6</tabstop>
   <tabstop>textEdit</tabstop>
-  <tabstop>pushButton_2</tabstop>
   <tabstop>pushButton_3</tabstop>
+  <tabstop>pushButton_2</tabstop>
+  <tabstop>pushButton_4</tabstop>
  </tabstops>
  <resources/>
  <connections/>

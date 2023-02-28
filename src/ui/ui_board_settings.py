@@ -15,10 +15,10 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QFont, QFontDatabase, QGradient, QIcon,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
-from PySide6.QtWidgets import (QAbstractItemView, QApplication, QHBoxLayout, QLabel,
-    QLineEdit, QListWidget, QListWidgetItem, QMainWindow,
-    QPushButton, QRadioButton, QSizePolicy, QSpacerItem,
-    QVBoxLayout, QWidget)
+from PySide6.QtWidgets import (QAbstractItemView, QApplication, QFrame, QHBoxLayout,
+    QLabel, QLineEdit, QListWidget, QListWidgetItem,
+    QMainWindow, QPushButton, QRadioButton, QSizePolicy,
+    QSpacerItem, QVBoxLayout, QWidget)
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -205,9 +205,11 @@ class Ui_MainWindow(object):
 "QListWidget::item {background-color: #ffffff; color: #000000; border-radius: 5px}\n"
 "QListWidget::item:hover {background-color: #f4f5f7; color: #000000}\n"
 "QScrollBar:vertical {width: 10px; margin: 0px 0px 0px 0px; background-color: #acb2bf}")
+        self.listWidget.setFrameShape(QFrame.NoFrame)
         self.listWidget.setDragEnabled(True)
         self.listWidget.setDragDropMode(QAbstractItemView.InternalMove)
         self.listWidget.setDefaultDropAction(Qt.MoveAction)
+        self.listWidget.setSelectionMode(QAbstractItemView.ExtendedSelection)
         self.listWidget.setProperty("isWrapping", False)
         self.listWidget.setSpacing(5)
         self.listWidget.setWordWrap(True)
@@ -278,8 +280,16 @@ class Ui_MainWindow(object):
         self.verticalLayout_3.addWidget(self.widget)
 
         MainWindow.setCentralWidget(self.centralwidget)
-        QWidget.setTabOrder(self.lineEdit, self.pushButton_2)
-        QWidget.setTabOrder(self.pushButton_2, self.pushButton_3)
+        QWidget.setTabOrder(self.lineEdit, self.radioButton_2)
+        QWidget.setTabOrder(self.radioButton_2, self.radioButton_3)
+        QWidget.setTabOrder(self.radioButton_3, self.radioButton_5)
+        QWidget.setTabOrder(self.radioButton_5, self.radioButton)
+        QWidget.setTabOrder(self.radioButton, self.radioButton_4)
+        QWidget.setTabOrder(self.radioButton_4, self.radioButton_6)
+        QWidget.setTabOrder(self.radioButton_6, self.listWidget)
+        QWidget.setTabOrder(self.listWidget, self.pushButton_3)
+        QWidget.setTabOrder(self.pushButton_3, self.pushButton_2)
+        QWidget.setTabOrder(self.pushButton_2, self.pushButton_6)
 
         self.retranslateUi(MainWindow)
 
@@ -298,7 +308,7 @@ class Ui_MainWindow(object):
         self.radioButton.setText(QCoreApplication.translate("MainWindow", u"Green", None))
         self.radioButton_4.setText(QCoreApplication.translate("MainWindow", u"Lavender", None))
         self.radioButton_6.setText(QCoreApplication.translate("MainWindow", u"Teal", None))
-        self.label_8.setText(QCoreApplication.translate("MainWindow", u"Edit", None))
+        self.label_8.setText(QCoreApplication.translate("MainWindow", u"Manage List", None))
         self.label_2.setText(QCoreApplication.translate("MainWindow", u"Drag to rearrange. Select and press Delete List to delete it.", None))
 
         __sortingEnabled = self.listWidget.isSortingEnabled()

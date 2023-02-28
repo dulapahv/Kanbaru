@@ -657,6 +657,9 @@ QScrollBar:vertical {width: 10px; margin: 0px 0px 0px 0px; background-color: #ac
                      <property name="defaultDropAction">
                       <enum>Qt::MoveAction</enum>
                      </property>
+                     <property name="selectionMode">
+                      <enum>QAbstractItemView::ExtendedSelection</enum>
+                     </property>
                      <property name="spacing">
                       <number>5</number>
                      </property>
@@ -901,6 +904,9 @@ QScrollBar:vertical {width: 10px; margin: 0px 0px 0px 0px; background-color: #ac
                      <property name="defaultDropAction">
                       <enum>Qt::MoveAction</enum>
                      </property>
+                     <property name="selectionMode">
+                      <enum>QAbstractItemView::ExtendedSelection</enum>
+                     </property>
                      <property name="spacing">
                       <number>5</number>
                      </property>
@@ -1099,6 +1105,9 @@ QScrollBar:vertical {width: 10px; margin: 0px 0px 0px 0px; background-color: #ac
                      </property>
                      <property name="defaultDropAction">
                       <enum>Qt::MoveAction</enum>
+                     </property>
+                     <property name="selectionMode">
+                      <enum>QAbstractItemView::ExtendedSelection</enum>
                      </property>
                      <property name="spacing">
                       <number>5</number>

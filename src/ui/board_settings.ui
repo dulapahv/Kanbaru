@@ -352,7 +352,7 @@ padding: 0px 5px 0px 5px;</string>
                  <string notr="true">color: #282c33;</string>
                 </property>
                 <property name="text">
-                 <string>Edit</string>
+                 <string>Manage List</string>
                 </property>
                </widget>
               </item>
@@ -384,6 +384,9 @@ QListWidget::item {background-color: #ffffff; color: #000000; border-radius: 5px
 QListWidget::item:hover {background-color: #f4f5f7; color: #000000}
 QScrollBar:vertical {width: 10px; margin: 0px 0px 0px 0px; background-color: #acb2bf}</string>
                 </property>
+                <property name="frameShape">
+                 <enum>QFrame::NoFrame</enum>
+                </property>
                 <property name="dragEnabled">
                  <bool>true</bool>
                 </property>
@@ -392,6 +395,9 @@ QScrollBar:vertical {width: 10px; margin: 0px 0px 0px 0px; background-color: #ac
                 </property>
                 <property name="defaultDropAction">
                  <enum>Qt::MoveAction</enum>
+                </property>
+                <property name="selectionMode">
+                 <enum>QAbstractItemView::ExtendedSelection</enum>
                 </property>
                 <property name="isWrapping" stdset="0">
                  <bool>false</bool>
@@ -547,8 +553,16 @@ QPushButton:hover {background-color: #5487bb;}</string>
  </widget>
  <tabstops>
   <tabstop>lineEdit</tabstop>
-  <tabstop>pushButton_2</tabstop>
+  <tabstop>radioButton_2</tabstop>
+  <tabstop>radioButton_3</tabstop>
+  <tabstop>radioButton_5</tabstop>
+  <tabstop>radioButton</tabstop>
+  <tabstop>radioButton_4</tabstop>
+  <tabstop>radioButton_6</tabstop>
+  <tabstop>listWidget</tabstop>
   <tabstop>pushButton_3</tabstop>
+  <tabstop>pushButton_2</tabstop>
+  <tabstop>pushButton_6</tabstop>
  </tabstops>
  <resources/>
  <connections/>

@@ -15,9 +15,10 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QFont, QFontDatabase, QGradient, QIcon,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
-from PySide6.QtWidgets import (QAbstractItemView, QApplication, QHBoxLayout, QLabel,
-    QListWidget, QListWidgetItem, QMainWindow, QPushButton,
-    QSizePolicy, QSpacerItem, QVBoxLayout, QWidget)
+from PySide6.QtWidgets import (QAbstractItemView, QApplication, QFrame, QHBoxLayout,
+    QLabel, QListWidget, QListWidgetItem, QMainWindow,
+    QPushButton, QSizePolicy, QSpacerItem, QVBoxLayout,
+    QWidget)
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -99,14 +100,106 @@ class Ui_MainWindow(object):
 "QListWidget::item {background-color: #ffffff; color: #000000; border-radius: 5px}\n"
 "QListWidget::item:hover {background-color: #f4f5f7; color: #000000}\n"
 "QScrollBar:vertical {width: 10px; margin: 0px 0px 0px 0px; background-color: #acb2bf}")
+        self.listWidget.setFrameShape(QFrame.NoFrame)
         self.listWidget.setDragEnabled(True)
         self.listWidget.setDragDropMode(QAbstractItemView.InternalMove)
         self.listWidget.setDefaultDropAction(Qt.MoveAction)
+        self.listWidget.setSelectionMode(QAbstractItemView.ExtendedSelection)
         self.listWidget.setProperty("isWrapping", False)
         self.listWidget.setSpacing(5)
         self.listWidget.setWordWrap(True)
 
         self.verticalLayout_2.addWidget(self.listWidget)
+
+        self.pushButton_4 = QPushButton(self.widget1)
+        self.pushButton_4.setObjectName(u"pushButton_4")
+        sizePolicy = QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.pushButton_4.sizePolicy().hasHeightForWidth())
+        self.pushButton_4.setSizePolicy(sizePolicy)
+        self.pushButton_4.setMinimumSize(QSize(150, 40))
+        font4 = QFont()
+        font4.setFamilies([u"Torus Pro"])
+        font4.setPointSize(14)
+        self.pushButton_4.setFont(font4)
+        self.pushButton_4.setCursor(QCursor(Qt.PointingHandCursor))
+        self.pushButton_4.setStyleSheet(u"QPushButton {background-color: #d63a3e; color: #ffffff; border-radius: 5px}\n"
+"QPushButton:hover {background-color: #9e2a2a;}")
+
+        self.verticalLayout_2.addWidget(self.pushButton_4)
+
+        self.line_2 = QFrame(self.widget1)
+        self.line_2.setObjectName(u"line_2")
+        self.line_2.setStyleSheet(u"background-color: #505b76;")
+        self.line_2.setFrameShadow(QFrame.Plain)
+        self.line_2.setLineWidth(0)
+        self.line_2.setMidLineWidth(0)
+        self.line_2.setFrameShape(QFrame.HLine)
+
+        self.verticalLayout_2.addWidget(self.line_2)
+
+        self.label_9 = QLabel(self.widget1)
+        self.label_9.setObjectName(u"label_9")
+        self.label_9.setFont(font1)
+        self.label_9.setStyleSheet(u"color: #282c33;")
+
+        self.verticalLayout_2.addWidget(self.label_9)
+
+        self.horizontalLayout_2 = QHBoxLayout()
+        self.horizontalLayout_2.setObjectName(u"horizontalLayout_2")
+        self.pushButton_6 = QPushButton(self.widget1)
+        self.pushButton_6.setObjectName(u"pushButton_6")
+        sizePolicy.setHeightForWidth(self.pushButton_6.sizePolicy().hasHeightForWidth())
+        self.pushButton_6.setSizePolicy(sizePolicy)
+        self.pushButton_6.setMinimumSize(QSize(100, 40))
+        self.pushButton_6.setFont(font4)
+        self.pushButton_6.setCursor(QCursor(Qt.PointingHandCursor))
+        self.pushButton_6.setStyleSheet(u"QPushButton {background-color: #acb2bf; color: #ffffff; border-radius: 5px}\n"
+"QPushButton:hover {background-color: #7e828c;}")
+
+        self.horizontalLayout_2.addWidget(self.pushButton_6)
+
+        self.pushButton_8 = QPushButton(self.widget1)
+        self.pushButton_8.setObjectName(u"pushButton_8")
+        sizePolicy.setHeightForWidth(self.pushButton_8.sizePolicy().hasHeightForWidth())
+        self.pushButton_8.setSizePolicy(sizePolicy)
+        self.pushButton_8.setMinimumSize(QSize(290, 40))
+        self.pushButton_8.setFont(font4)
+        self.pushButton_8.setCursor(QCursor(Qt.PointingHandCursor))
+        self.pushButton_8.setStyleSheet(u"QPushButton {background-color: #acb2bf; color: #ffffff; border-radius: 5px}\n"
+"QPushButton:hover {background-color: #7e828c;}")
+
+        self.horizontalLayout_2.addWidget(self.pushButton_8)
+
+        self.horizontalSpacer_2 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.horizontalLayout_2.addItem(self.horizontalSpacer_2)
+
+
+        self.verticalLayout_2.addLayout(self.horizontalLayout_2)
+
+        self.pushButton_5 = QPushButton(self.widget1)
+        self.pushButton_5.setObjectName(u"pushButton_5")
+        sizePolicy.setHeightForWidth(self.pushButton_5.sizePolicy().hasHeightForWidth())
+        self.pushButton_5.setSizePolicy(sizePolicy)
+        self.pushButton_5.setMinimumSize(QSize(150, 40))
+        self.pushButton_5.setFont(font4)
+        self.pushButton_5.setCursor(QCursor(Qt.PointingHandCursor))
+        self.pushButton_5.setStyleSheet(u"QPushButton {border-color: #d63a3e; border-width: 1.5px; border-style: solid; color: #000000; border-radius: 5px}\n"
+"QPushButton:hover {background-color: #d63a3e; color: #ffffff;}")
+
+        self.verticalLayout_2.addWidget(self.pushButton_5)
+
+        self.line = QFrame(self.widget1)
+        self.line.setObjectName(u"line")
+        self.line.setStyleSheet(u"background-color: #505b76;")
+        self.line.setFrameShadow(QFrame.Plain)
+        self.line.setLineWidth(0)
+        self.line.setMidLineWidth(0)
+        self.line.setFrameShape(QFrame.HLine)
+
+        self.verticalLayout_2.addWidget(self.line)
 
 
         self.horizontalLayout_3.addLayout(self.verticalLayout_2)
@@ -116,36 +209,6 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout = QHBoxLayout()
         self.horizontalLayout.setObjectName(u"horizontalLayout")
-        self.pushButton_6 = QPushButton(self.widget1)
-        self.pushButton_6.setObjectName(u"pushButton_6")
-        sizePolicy = QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.pushButton_6.sizePolicy().hasHeightForWidth())
-        self.pushButton_6.setSizePolicy(sizePolicy)
-        self.pushButton_6.setMinimumSize(QSize(100, 40))
-        font4 = QFont()
-        font4.setFamilies([u"Torus Pro"])
-        font4.setPointSize(14)
-        self.pushButton_6.setFont(font4)
-        self.pushButton_6.setCursor(QCursor(Qt.PointingHandCursor))
-        self.pushButton_6.setStyleSheet(u"QPushButton {background-color: #d63a3e; color: #ffffff; border-radius: 5px}\n"
-"QPushButton:hover {background-color: #9e2a2a;}")
-
-        self.horizontalLayout.addWidget(self.pushButton_6)
-
-        self.pushButton_4 = QPushButton(self.widget1)
-        self.pushButton_4.setObjectName(u"pushButton_4")
-        sizePolicy.setHeightForWidth(self.pushButton_4.sizePolicy().hasHeightForWidth())
-        self.pushButton_4.setSizePolicy(sizePolicy)
-        self.pushButton_4.setMinimumSize(QSize(150, 40))
-        self.pushButton_4.setFont(font4)
-        self.pushButton_4.setCursor(QCursor(Qt.PointingHandCursor))
-        self.pushButton_4.setStyleSheet(u"QPushButton {background-color: #d63a3e; color: #ffffff; border-radius: 5px}\n"
-"QPushButton:hover {background-color: #9e2a2a;}")
-
-        self.horizontalLayout.addWidget(self.pushButton_4)
-
         self.horizontalSpacer = QSpacerItem(0, 0, QSizePolicy.Expanding, QSizePolicy.Minimum)
 
         self.horizontalLayout.addItem(self.horizontalSpacer)
@@ -184,7 +247,8 @@ class Ui_MainWindow(object):
         self.verticalLayout_3.addWidget(self.widget)
 
         MainWindow.setCentralWidget(self.centralwidget)
-        QWidget.setTabOrder(self.pushButton_2, self.pushButton_3)
+        QWidget.setTabOrder(self.listWidget, self.pushButton_3)
+        QWidget.setTabOrder(self.pushButton_3, self.pushButton_2)
 
         self.retranslateUi(MainWindow)
 
@@ -194,7 +258,7 @@ class Ui_MainWindow(object):
     def retranslateUi(self, MainWindow):
         MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"App Settings", None))
         self.label_3.setText(QCoreApplication.translate("MainWindow", u"App Settings", None))
-        self.label_8.setText(QCoreApplication.translate("MainWindow", u"Edit", None))
+        self.label_8.setText(QCoreApplication.translate("MainWindow", u"Manage Board", None))
         self.label_2.setText(QCoreApplication.translate("MainWindow", u"Drag to rearrange. Select and press Delete Board to delete it.", None))
 
         __sortingEnabled = self.listWidget.isSortingEnabled()
@@ -215,8 +279,11 @@ class Ui_MainWindow(object):
         ___qlistwidgetitem6.setText(QCoreApplication.translate("MainWindow", u"Board 5", None));
         self.listWidget.setSortingEnabled(__sortingEnabled)
 
-        self.pushButton_6.setText(QCoreApplication.translate("MainWindow", u"Logout", None))
         self.pushButton_4.setText(QCoreApplication.translate("MainWindow", u"Delete Board", None))
+        self.label_9.setText(QCoreApplication.translate("MainWindow", u"Manage Account", None))
+        self.pushButton_6.setText(QCoreApplication.translate("MainWindow", u"Logout", None))
+        self.pushButton_8.setText(QCoreApplication.translate("MainWindow", u"Change Username/Password", None))
+        self.pushButton_5.setText(QCoreApplication.translate("MainWindow", u"Delete Account", None))
         self.pushButton_2.setText(QCoreApplication.translate("MainWindow", u"Cancel", None))
         self.pushButton_3.setText(QCoreApplication.translate("MainWindow", u"Save", None))
     # retranslateUi
