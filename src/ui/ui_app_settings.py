@@ -108,6 +108,7 @@ class Ui_MainWindow(object):
         self.listWidget.setProperty("isWrapping", False)
         self.listWidget.setSpacing(5)
         self.listWidget.setWordWrap(True)
+        self.listWidget.setSelectionRectVisible(True)
 
         self.verticalLayout_2.addWidget(self.listWidget)
 

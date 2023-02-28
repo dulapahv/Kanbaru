@@ -314,6 +314,7 @@ class Ui_MainWindow(object):
         self.listWidget_3.setSelectionMode(QAbstractItemView.ExtendedSelection)
         self.listWidget_3.setSpacing(5)
         self.listWidget_3.setWordWrap(True)
+        self.listWidget_3.setSelectionRectVisible(True)
 
         self.verticalLayout_3.addWidget(self.listWidget_3)
 
@@ -389,6 +390,7 @@ class Ui_MainWindow(object):
         self.listWidget_4.setSelectionMode(QAbstractItemView.ExtendedSelection)
         self.listWidget_4.setSpacing(5)
         self.listWidget_4.setWordWrap(True)
+        self.listWidget_4.setSelectionRectVisible(True)
 
         self.verticalLayout_5.addWidget(self.listWidget_4)
 
@@ -464,6 +466,7 @@ class Ui_MainWindow(object):
         self.listWidget_5.setSelectionMode(QAbstractItemView.ExtendedSelection)
         self.listWidget_5.setSpacing(5)
         self.listWidget_5.setWordWrap(True)
+        self.listWidget_5.setSelectionRectVisible(True)
 
         self.verticalLayout_8.addWidget(self.listWidget_5)
 

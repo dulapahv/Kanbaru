@@ -666,6 +666,9 @@ QScrollBar:vertical {width: 10px; margin: 0px 0px 0px 0px; background-color: #ac
                      <property name="wordWrap">
                       <bool>true</bool>
                      </property>
+                     <property name="selectionRectVisible">
+                      <bool>true</bool>
+                     </property>
                      <item>
                       <property name="text">
                        <string>Test1</string>
@@ -913,6 +916,9 @@ QScrollBar:vertical {width: 10px; margin: 0px 0px 0px 0px; background-color: #ac
                      <property name="wordWrap">
                       <bool>true</bool>
                      </property>
+                     <property name="selectionRectVisible">
+                      <bool>true</bool>
+                     </property>
                      <item>
                       <property name="text">
                        <string>Test11</string>
@@ -1113,6 +1119,9 @@ QScrollBar:vertical {width: 10px; margin: 0px 0px 0px 0px; background-color: #ac
                       <number>5</number>
                      </property>
                      <property name="wordWrap">
+                      <bool>true</bool>
+                     </property>
+                     <property name="selectionRectVisible">
                       <bool>true</bool>
                      </property>
                      <item>
