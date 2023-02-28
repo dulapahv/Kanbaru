@@ -24,7 +24,7 @@ class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
-        MainWindow.resize(1024, 646)
+        MainWindow.resize(1024, 678)
         MainWindow.setStyleSheet(u"background-color: #454c5a;")
         self.centralwidget = QWidget(MainWindow)
         self.centralwidget.setObjectName(u"centralwidget")
@@ -49,8 +49,9 @@ class Ui_MainWindow(object):
         self.widget_7.setMaximumSize(QSize(144, 16777215))
         self.widget_7.setStyleSheet(u"background-color: #282c34;")
         self.verticalLayout_2 = QVBoxLayout(self.widget_7)
+        self.verticalLayout_2.setSpacing(8)
         self.verticalLayout_2.setObjectName(u"verticalLayout_2")
-        self.verticalLayout_2.setContentsMargins(9, 0, -1, 0)
+        self.verticalLayout_2.setContentsMargins(8, 0, 8, 8)
         self.label_5 = QLabel(self.widget_7)
         self.label_5.setObjectName(u"label_5")
         font = QFont()
@@ -75,7 +76,7 @@ class Ui_MainWindow(object):
         self.scrollArea_2.setWidgetResizable(True)
         self.scrollAreaWidgetContents_2 = QWidget()
         self.scrollAreaWidgetContents_2.setObjectName(u"scrollAreaWidgetContents_2")
-        self.scrollAreaWidgetContents_2.setGeometry(QRect(0, 0, 132, 389))
+        self.scrollAreaWidgetContents_2.setGeometry(QRect(0, 0, 134, 407))
         self.verticalLayout_4 = QVBoxLayout(self.scrollAreaWidgetContents_2)
         self.verticalLayout_4.setSpacing(10)
         self.verticalLayout_4.setObjectName(u"verticalLayout_4")
@@ -166,10 +167,6 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_2.addWidget(self.scrollArea_2)
 
-        self.verticalSpacer_10 = QSpacerItem(20, 5, QSizePolicy.Minimum, QSizePolicy.Fixed)
-
-        self.verticalLayout_2.addItem(self.verticalSpacer_10)
-
         self.pushButton_13 = QPushButton(self.widget_7)
         self.pushButton_13.setObjectName(u"pushButton_13")
         self.pushButton_13.setMinimumSize(QSize(0, 30))
@@ -180,9 +177,15 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_2.addWidget(self.pushButton_13)
 
-        self.verticalSpacer_5 = QSpacerItem(20, 5, QSizePolicy.Minimum, QSizePolicy.Fixed)
+        self.pushButton_15 = QPushButton(self.widget_7)
+        self.pushButton_15.setObjectName(u"pushButton_15")
+        self.pushButton_15.setMinimumSize(QSize(0, 30))
+        self.pushButton_15.setFont(font1)
+        self.pushButton_15.setCursor(QCursor(Qt.PointingHandCursor))
+        self.pushButton_15.setStyleSheet(u"QPushButton {background-color: #acb2bf; color: #ffffff; border-radius: 5px}\n"
+"QPushButton:hover {background-color: #7e828c;}")
 
-        self.verticalLayout_2.addItem(self.verticalSpacer_5)
+        self.verticalLayout_2.addWidget(self.pushButton_15)
 
         self.pushButton_7 = QPushButton(self.widget_7)
         self.pushButton_7.setObjectName(u"pushButton_7")
@@ -192,14 +195,10 @@ class Ui_MainWindow(object):
         font2.setPointSize(14)
         self.pushButton_7.setFont(font2)
         self.pushButton_7.setCursor(QCursor(Qt.PointingHandCursor))
-        self.pushButton_7.setStyleSheet(u"QPushButton {background-color: #6badee; color: #ffffff; border-radius: 5px}\n"
-"QPushButton:hover {background-color: #5487bb;}")
+        self.pushButton_7.setStyleSheet(u"QPushButton {background-color: #d63a3e; color: #ffffff; border-radius: 5px}\n"
+"QPushButton:hover {background-color: #9e2a2a;}")
 
         self.verticalLayout_2.addWidget(self.pushButton_7)
-
-        self.verticalSpacer_9 = QSpacerItem(20, 10, QSizePolicy.Minimum, QSizePolicy.Fixed)
-
-        self.verticalLayout_2.addItem(self.verticalSpacer_9)
 
 
         self.horizontalLayout_4.addWidget(self.widget_7)
@@ -211,43 +210,27 @@ class Ui_MainWindow(object):
         self.horizontalLayout_3.setObjectName(u"horizontalLayout_3")
         self.label = QLabel(self.widget)
         self.label.setObjectName(u"label")
+        self.label.setMinimumSize(QSize(0, 70))
         font3 = QFont()
         font3.setFamilies([u"Torus Pro"])
         font3.setPointSize(28)
         self.label.setFont(font3)
-        self.label.setStyleSheet(u"background-color: qlineargradient(spread:pad, x1:0.35, y1:0.5, x2:0.95, y2:0.5, stop:0 rgba(107, 173, 238, 255), stop:1 rgba(69, 76, 90, 255));\n"
+        self.label.setStyleSheet(u"background-color: qlineargradient(spread:pad, x1:0.5, y1:0.5, x2:0.95, y2:0.5, stop:0 rgba(107, 173, 238, 255), stop:1 rgba(69, 76, 90, 255));\n"
 "color: #FFFFFF;")
         self.label.setMargin(10)
 
         self.horizontalLayout_3.addWidget(self.label)
-
-        self.pushButton_14 = QPushButton(self.widget)
-        self.pushButton_14.setObjectName(u"pushButton_14")
-        sizePolicy3 = QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed)
-        sizePolicy3.setHorizontalStretch(0)
-        sizePolicy3.setVerticalStretch(0)
-        sizePolicy3.setHeightForWidth(self.pushButton_14.sizePolicy().hasHeightForWidth())
-        self.pushButton_14.setSizePolicy(sizePolicy3)
-        self.pushButton_14.setMinimumSize(QSize(100, 73))
-        self.pushButton_14.setFont(font2)
-        self.pushButton_14.setCursor(QCursor(Qt.PointingHandCursor))
-        self.pushButton_14.setStyleSheet(u"QPushButton {background-color: #454c5a; color: #ffffff; border-radius: 5px}\n"
-"QPushButton:hover {background-color: #7e828c;}")
-        self.pushButton_14.setAutoDefault(False)
-        self.pushButton_14.setFlat(False)
-
-        self.horizontalLayout_3.addWidget(self.pushButton_14)
 
 
         self.verticalLayout.addLayout(self.horizontalLayout_3)
 
         self.widget_2 = QWidget(self.widget)
         self.widget_2.setObjectName(u"widget_2")
-        sizePolicy4 = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Preferred)
-        sizePolicy4.setHorizontalStretch(0)
-        sizePolicy4.setVerticalStretch(0)
-        sizePolicy4.setHeightForWidth(self.widget_2.sizePolicy().hasHeightForWidth())
-        self.widget_2.setSizePolicy(sizePolicy4)
+        sizePolicy3 = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Preferred)
+        sizePolicy3.setHorizontalStretch(0)
+        sizePolicy3.setVerticalStretch(0)
+        sizePolicy3.setHeightForWidth(self.widget_2.sizePolicy().hasHeightForWidth())
+        self.widget_2.setSizePolicy(sizePolicy3)
         self.widget_2.setMinimumSize(QSize(280, 500))
         self.horizontalLayout_2 = QHBoxLayout(self.widget_2)
         self.horizontalLayout_2.setSpacing(0)
@@ -260,17 +243,17 @@ class Ui_MainWindow(object):
         self.scrollArea.setWidgetResizable(True)
         self.scrollAreaWidgetContents = QWidget()
         self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
-        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 1032, 544))
+        self.scrollAreaWidgetContents.setGeometry(QRect(-20, 0, 1032, 579))
         self.horizontalLayout_5 = QHBoxLayout(self.scrollAreaWidgetContents)
         self.horizontalLayout_5.setObjectName(u"horizontalLayout_5")
         self.horizontalLayout_5.setContentsMargins(8, 0, 0, 8)
         self.widget_3 = QWidget(self.scrollAreaWidgetContents)
         self.widget_3.setObjectName(u"widget_3")
-        sizePolicy5 = QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Minimum)
-        sizePolicy5.setHorizontalStretch(0)
-        sizePolicy5.setVerticalStretch(0)
-        sizePolicy5.setHeightForWidth(self.widget_3.sizePolicy().hasHeightForWidth())
-        self.widget_3.setSizePolicy(sizePolicy5)
+        sizePolicy4 = QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Minimum)
+        sizePolicy4.setHorizontalStretch(0)
+        sizePolicy4.setVerticalStretch(0)
+        sizePolicy4.setHeightForWidth(self.widget_3.sizePolicy().hasHeightForWidth())
+        self.widget_3.setSizePolicy(sizePolicy4)
         self.widget_3.setMinimumSize(QSize(250, 0))
         self.widget_3.setStyleSheet(u"background-color: #ebecf0;\n"
 "border-radius: 10px;")
@@ -315,16 +298,16 @@ class Ui_MainWindow(object):
         QListWidgetItem(self.listWidget_3)
         QListWidgetItem(self.listWidget_3)
         self.listWidget_3.setObjectName(u"listWidget_3")
-        sizePolicy6 = QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Expanding)
-        sizePolicy6.setHorizontalStretch(0)
-        sizePolicy6.setVerticalStretch(0)
-        sizePolicy6.setHeightForWidth(self.listWidget_3.sizePolicy().hasHeightForWidth())
-        self.listWidget_3.setSizePolicy(sizePolicy6)
+        sizePolicy5 = QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Expanding)
+        sizePolicy5.setHorizontalStretch(0)
+        sizePolicy5.setVerticalStretch(0)
+        sizePolicy5.setHeightForWidth(self.listWidget_3.sizePolicy().hasHeightForWidth())
+        self.listWidget_3.setSizePolicy(sizePolicy5)
         self.listWidget_3.setMaximumSize(QSize(250, 16777215))
         self.listWidget_3.setFont(font1)
         self.listWidget_3.setStyleSheet(u"QListWidget::item {height: 40px; padding: 0px 0px 0px 8px}\n"
 "QListWidget::item {background-color: qlineargradient(spread:pad, x1:0, y1:0.5, x2:0.95, y2:0.5, stop:0 rgba(251, 217, 69, 255), stop:0.0338983 rgba(251, 217, 69, 255), stop:0.039548 rgba(255, 255, 255, 255), stop:1 rgba(255, 255, 255, 255)); color: #000000; border-radius: 5px}\n"
-"QListWidget::item:hover {background-color: qlineargradient(spread:pad, x1:0, y1:0.5, x2:0.95, y2:0.5, stop:0 rgba(199, 172, 54, 255), stop:0.0338983 rgba(199, 172, 54, 255), stop:0.039548 rgba(244, 245, 247, 255), stop:1 rgba(244, 245, 247, 255)); color: #000000}\n"
+"QListWidget::item:hover {background-color: qlineargradient(spread:pad, x1:0, y1:0.5, x2:0.95, y2:0.5, stop:0 rgba(251, 217, 69, 255), stop:0.0338983 rgba(251, 217, 69, 255), stop:0.039548 rgba(244, 245, 247, 255), stop:1 rgba(244, 245, 247, 255)); color: #000000}\n"
 "QScrollBar:vertical {width: 10px; margin: 0px 0px 0px 0px; background-color: #acb2bf}")
         self.listWidget_3.setFrameShape(QFrame.NoFrame)
         self.listWidget_3.setAutoScroll(True)
@@ -336,27 +319,31 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_3.addWidget(self.listWidget_3)
 
-        self.verticalSpacer_6 = QSpacerItem(20, 5, QSizePolicy.Minimum, QSizePolicy.Fixed)
-
-        self.verticalLayout_3.addItem(self.verticalSpacer_6)
-
-        self.pushButton_4 = QPushButton(self.widget_3)
+        self.widget_8 = QWidget(self.widget_3)
+        self.widget_8.setObjectName(u"widget_8")
+        self.verticalLayout_6 = QVBoxLayout(self.widget_8)
+        self.verticalLayout_6.setObjectName(u"verticalLayout_6")
+        self.verticalLayout_6.setContentsMargins(6, 6, 6, 6)
+        self.pushButton_4 = QPushButton(self.widget_8)
         self.pushButton_4.setObjectName(u"pushButton_4")
         self.pushButton_4.setMinimumSize(QSize(0, 25))
         self.pushButton_4.setFont(font1)
         self.pushButton_4.setCursor(QCursor(Qt.PointingHandCursor))
-        self.pushButton_4.setStyleSheet(u"QPushButton {background-color: #acb2bf; color: #ffffff; border-radius: 5px}\n"
-"QPushButton:hover {background-color: #7e828c;}")
+        self.pushButton_4.setStyleSheet(u"QPushButton {background-color: #ebecf0; color: #6a758b; border-radius: 5px}\n"
+"QPushButton:hover {background-color: #dadbe2; color: #505b76}")
 
-        self.verticalLayout_3.addWidget(self.pushButton_4)
+        self.verticalLayout_6.addWidget(self.pushButton_4)
+
+
+        self.verticalLayout_3.addWidget(self.widget_8)
 
 
         self.horizontalLayout_5.addWidget(self.widget_3)
 
         self.widget_4 = QWidget(self.scrollAreaWidgetContents)
         self.widget_4.setObjectName(u"widget_4")
-        sizePolicy5.setHeightForWidth(self.widget_4.sizePolicy().hasHeightForWidth())
-        self.widget_4.setSizePolicy(sizePolicy5)
+        sizePolicy4.setHeightForWidth(self.widget_4.sizePolicy().hasHeightForWidth())
+        self.widget_4.setSizePolicy(sizePolicy4)
         self.widget_4.setMinimumSize(QSize(250, 0))
         self.widget_4.setStyleSheet(u"background-color: #ebecf0;\n"
 "border-radius: 10px;")
@@ -366,8 +353,6 @@ class Ui_MainWindow(object):
         self.verticalLayout_5.setContentsMargins(0, 0, 0, 0)
         self.label_3 = QLabel(self.widget_4)
         self.label_3.setObjectName(u"label_3")
-        sizePolicy2.setHeightForWidth(self.label_3.sizePolicy().hasHeightForWidth())
-        self.label_3.setSizePolicy(sizePolicy2)
         self.label_3.setMinimumSize(QSize(0, 30))
         self.label_3.setFont(font4)
         self.label_3.setStyleSheet(u"color: #282c33;\n"
@@ -396,7 +381,7 @@ class Ui_MainWindow(object):
         self.listWidget_4.setFont(font1)
         self.listWidget_4.setStyleSheet(u"QListWidget::item {height: 40px; padding: 0px 0px 0px 8px}\n"
 "QListWidget::item {background-color: qlineargradient(spread:pad, x1:0, y1:0.5, x2:0.95, y2:0.5, stop:0 rgba(251, 217, 69, 255), stop:0.0338983 rgba(251, 217, 69, 255), stop:0.039548 rgba(255, 255, 255, 255), stop:1 rgba(255, 255, 255, 255)); color: #000000; border-radius: 5px}\n"
-"QListWidget::item:hover {background-color: qlineargradient(spread:pad, x1:0, y1:0.5, x2:0.95, y2:0.5, stop:0 rgba(199, 172, 54, 255), stop:0.0338983 rgba(199, 172, 54, 255), stop:0.039548 rgba(244, 245, 247, 255), stop:1 rgba(244, 245, 247, 255)); color: #000000}\n"
+"QListWidget::item:hover {background-color: qlineargradient(spread:pad, x1:0, y1:0.5, x2:0.95, y2:0.5, stop:0 rgba(251, 217, 69, 255), stop:0.0338983 rgba(251, 217, 69, 255), stop:0.039548 rgba(244, 245, 247, 255), stop:1 rgba(244, 245, 247, 255)); color: #000000}\n"
 "QScrollBar:vertical {width: 10px; margin: 0px 0px 0px 0px; background-color: #acb2bf}")
         self.listWidget_4.setFrameShape(QFrame.NoFrame)
         self.listWidget_4.setAutoScroll(True)
@@ -408,34 +393,38 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_5.addWidget(self.listWidget_4)
 
-        self.verticalSpacer_7 = QSpacerItem(20, 5, QSizePolicy.Minimum, QSizePolicy.Fixed)
-
-        self.verticalLayout_5.addItem(self.verticalSpacer_7)
-
-        self.pushButton_5 = QPushButton(self.widget_4)
+        self.widget_9 = QWidget(self.widget_4)
+        self.widget_9.setObjectName(u"widget_9")
+        self.verticalLayout_7 = QVBoxLayout(self.widget_9)
+        self.verticalLayout_7.setObjectName(u"verticalLayout_7")
+        self.verticalLayout_7.setContentsMargins(6, 6, 6, 6)
+        self.pushButton_5 = QPushButton(self.widget_9)
         self.pushButton_5.setObjectName(u"pushButton_5")
         self.pushButton_5.setMinimumSize(QSize(0, 25))
         self.pushButton_5.setFont(font1)
         self.pushButton_5.setCursor(QCursor(Qt.PointingHandCursor))
-        self.pushButton_5.setStyleSheet(u"QPushButton {background-color: #acb2bf; color: #ffffff; border-radius: 5px}\n"
-"QPushButton:hover {background-color: #7e828c;}")
+        self.pushButton_5.setStyleSheet(u"QPushButton {background-color: #ebecf0; color: #6a758b; border-radius: 5px}\n"
+"QPushButton:hover {background-color: #dadbe2; color: #505b76}")
 
-        self.verticalLayout_5.addWidget(self.pushButton_5)
+        self.verticalLayout_7.addWidget(self.pushButton_5)
+
+
+        self.verticalLayout_5.addWidget(self.widget_9)
 
 
         self.horizontalLayout_5.addWidget(self.widget_4)
 
         self.widget_5 = QWidget(self.scrollAreaWidgetContents)
         self.widget_5.setObjectName(u"widget_5")
-        sizePolicy5.setHeightForWidth(self.widget_5.sizePolicy().hasHeightForWidth())
-        self.widget_5.setSizePolicy(sizePolicy5)
+        sizePolicy4.setHeightForWidth(self.widget_5.sizePolicy().hasHeightForWidth())
+        self.widget_5.setSizePolicy(sizePolicy4)
         self.widget_5.setMinimumSize(QSize(250, 0))
         self.widget_5.setStyleSheet(u"background-color: #ebecf0;\n"
 "border-radius: 10px;")
-        self.verticalLayout_7 = QVBoxLayout(self.widget_5)
-        self.verticalLayout_7.setSpacing(0)
-        self.verticalLayout_7.setObjectName(u"verticalLayout_7")
-        self.verticalLayout_7.setContentsMargins(0, 0, 0, 0)
+        self.verticalLayout_8 = QVBoxLayout(self.widget_5)
+        self.verticalLayout_8.setSpacing(0)
+        self.verticalLayout_8.setObjectName(u"verticalLayout_8")
+        self.verticalLayout_8.setContentsMargins(0, 0, 0, 0)
         self.label_4 = QLabel(self.widget_5)
         self.label_4.setObjectName(u"label_4")
         self.label_4.setMinimumSize(QSize(0, 30))
@@ -446,11 +435,11 @@ class Ui_MainWindow(object):
 "padding: 5px 0px 0px 5px;")
         self.label_4.setMargin(0)
 
-        self.verticalLayout_7.addWidget(self.label_4)
+        self.verticalLayout_8.addWidget(self.label_4)
 
         self.verticalSpacer_4 = QSpacerItem(20, 5, QSizePolicy.Minimum, QSizePolicy.Fixed)
 
-        self.verticalLayout_7.addItem(self.verticalSpacer_4)
+        self.verticalLayout_8.addItem(self.verticalSpacer_4)
 
         self.listWidget_5 = QListWidget(self.widget_5)
         __qlistwidgetitem6 = QListWidgetItem(self.listWidget_5)
@@ -460,38 +449,41 @@ class Ui_MainWindow(object):
         __qlistwidgetitem8 = QListWidgetItem(self.listWidget_5)
         __qlistwidgetitem8.setFlags(Qt.ItemIsSelectable|Qt.ItemIsEditable|Qt.ItemIsDragEnabled|Qt.ItemIsUserCheckable|Qt.ItemIsEnabled);
         self.listWidget_5.setObjectName(u"listWidget_5")
-        sizePolicy6.setHeightForWidth(self.listWidget_5.sizePolicy().hasHeightForWidth())
-        self.listWidget_5.setSizePolicy(sizePolicy6)
+        sizePolicy5.setHeightForWidth(self.listWidget_5.sizePolicy().hasHeightForWidth())
+        self.listWidget_5.setSizePolicy(sizePolicy5)
         self.listWidget_5.setMaximumSize(QSize(250, 16777215))
         self.listWidget_5.setFont(font1)
         self.listWidget_5.setStyleSheet(u"QListWidget::item {height: 40px; padding: 0px 0px 0px 8px}\n"
 "QListWidget::item {background-color: qlineargradient(spread:pad, x1:0, y1:0.5, x2:0.95, y2:0.5, stop:0 rgba(251, 217, 69, 255), stop:0.0338983 rgba(251, 217, 69, 255), stop:0.039548 rgba(255, 255, 255, 255), stop:1 rgba(255, 255, 255, 255)); color: #000000; border-radius: 5px}\n"
-"QListWidget::item:hover {background-color: qlineargradient(spread:pad, x1:0, y1:0.5, x2:0.95, y2:0.5, stop:0 rgba(199, 172, 54, 255), stop:0.0338983 rgba(199, 172, 54, 255), stop:0.039548 rgba(244, 245, 247, 255), stop:1 rgba(244, 245, 247, 255)); color: #000000}\n"
+"QListWidget::item:hover {background-color: qlineargradient(spread:pad, x1:0, y1:0.5, x2:0.95, y2:0.5, stop:0 rgba(251, 217, 69, 255), stop:0.0338983 rgba(251, 217, 69, 255), stop:0.039548 rgba(244, 245, 247, 255), stop:1 rgba(244, 245, 247, 255)); color: #000000}\n"
 "QScrollBar:vertical {width: 10px; margin: 0px 0px 0px 0px; background-color: #acb2bf}")
         self.listWidget_5.setFrameShape(QFrame.NoFrame)
         self.listWidget_5.setAutoScroll(True)
         self.listWidget_5.setDragEnabled(True)
         self.listWidget_5.setDragDropMode(QAbstractItemView.DragDrop)
         self.listWidget_5.setDefaultDropAction(Qt.MoveAction)
-        self.listWidget_5.setAlternatingRowColors(False)
         self.listWidget_5.setSpacing(5)
         self.listWidget_5.setWordWrap(True)
 
-        self.verticalLayout_7.addWidget(self.listWidget_5)
+        self.verticalLayout_8.addWidget(self.listWidget_5)
 
-        self.verticalSpacer_8 = QSpacerItem(20, 5, QSizePolicy.Minimum, QSizePolicy.Fixed)
-
-        self.verticalLayout_7.addItem(self.verticalSpacer_8)
-
-        self.pushButton_6 = QPushButton(self.widget_5)
+        self.widget_10 = QWidget(self.widget_5)
+        self.widget_10.setObjectName(u"widget_10")
+        self.verticalLayout_10 = QVBoxLayout(self.widget_10)
+        self.verticalLayout_10.setObjectName(u"verticalLayout_10")
+        self.verticalLayout_10.setContentsMargins(6, 6, 6, 6)
+        self.pushButton_6 = QPushButton(self.widget_10)
         self.pushButton_6.setObjectName(u"pushButton_6")
         self.pushButton_6.setMinimumSize(QSize(0, 25))
         self.pushButton_6.setFont(font1)
         self.pushButton_6.setCursor(QCursor(Qt.PointingHandCursor))
-        self.pushButton_6.setStyleSheet(u"QPushButton {background-color: #acb2bf; color: #ffffff; border-radius: 5px}\n"
-"QPushButton:hover {background-color: #7e828c;}")
+        self.pushButton_6.setStyleSheet(u"QPushButton {background-color: #ebecf0; color: #6a758b; border-radius: 5px}\n"
+"QPushButton:hover {background-color: #dadbe2; color: #505b76}")
 
-        self.verticalLayout_7.addWidget(self.pushButton_6)
+        self.verticalLayout_10.addWidget(self.pushButton_6)
+
+
+        self.verticalLayout_8.addWidget(self.widget_10)
 
 
         self.horizontalLayout_5.addWidget(self.widget_5)
@@ -544,14 +536,8 @@ class Ui_MainWindow(object):
         self.horizontalLayout.addWidget(self.widget)
 
         MainWindow.setCentralWidget(self.centralwidget)
-        QWidget.setTabOrder(self.pushButton, self.pushButton_14)
-        QWidget.setTabOrder(self.pushButton_14, self.pushButton_4)
-        QWidget.setTabOrder(self.pushButton_4, self.pushButton_5)
-        QWidget.setTabOrder(self.pushButton_5, self.pushButton_6)
-        QWidget.setTabOrder(self.pushButton_6, self.listWidget_3)
-        QWidget.setTabOrder(self.listWidget_3, self.listWidget_4)
-        QWidget.setTabOrder(self.listWidget_4, self.listWidget_5)
-        QWidget.setTabOrder(self.listWidget_5, self.scrollArea)
+        QWidget.setTabOrder(self.pushButton, self.listWidget_3)
+        QWidget.setTabOrder(self.listWidget_3, self.scrollArea)
         QWidget.setTabOrder(self.scrollArea, self.pushButton_2)
         QWidget.setTabOrder(self.pushButton_2, self.scrollArea_2)
         QWidget.setTabOrder(self.scrollArea_2, self.pushButton_3)
@@ -564,9 +550,6 @@ class Ui_MainWindow(object):
         QWidget.setTabOrder(self.pushButton_13, self.pushButton_7)
 
         self.retranslateUi(MainWindow)
-
-        self.pushButton_14.setDefault(False)
-
 
         QMetaObject.connectSlotsByName(MainWindow)
     # setupUi
@@ -583,10 +566,9 @@ class Ui_MainWindow(object):
         self.pushButton_11.setText(QCoreApplication.translate("MainWindow", u"Board 5", None))
         self.pushButton_12.setText(QCoreApplication.translate("MainWindow", u"Board 5", None))
         self.pushButton_13.setText(QCoreApplication.translate("MainWindow", u"+ Add a board", None))
+        self.pushButton_15.setText(QCoreApplication.translate("MainWindow", u"Board Settings", None))
         self.pushButton_7.setText(QCoreApplication.translate("MainWindow", u"Logout", None))
         self.label.setText(QCoreApplication.translate("MainWindow", u"Board 1", None))
-        self.pushButton_14.setText(QCoreApplication.translate("MainWindow", u"Board\n"
-"Settings", None))
         self.label_2.setText(QCoreApplication.translate("MainWindow", u"To Do", None))
 
         __sortingEnabled = self.listWidget_3.isSortingEnabled()
@@ -623,11 +605,11 @@ class Ui_MainWindow(object):
         __sortingEnabled1 = self.listWidget_4.isSortingEnabled()
         self.listWidget_4.setSortingEnabled(False)
         ___qlistwidgetitem12 = self.listWidget_4.item(0)
-        ___qlistwidgetitem12.setText(QCoreApplication.translate("MainWindow", u"Test4", None));
+        ___qlistwidgetitem12.setText(QCoreApplication.translate("MainWindow", u"Test11", None));
         ___qlistwidgetitem13 = self.listWidget_4.item(1)
-        ___qlistwidgetitem13.setText(QCoreApplication.translate("MainWindow", u"Test5", None));
+        ___qlistwidgetitem13.setText(QCoreApplication.translate("MainWindow", u"Test22", None));
         ___qlistwidgetitem14 = self.listWidget_4.item(2)
-        ___qlistwidgetitem14.setText(QCoreApplication.translate("MainWindow", u"Test6", None));
+        ___qlistwidgetitem14.setText(QCoreApplication.translate("MainWindow", u"Test33", None));
         self.listWidget_4.setSortingEnabled(__sortingEnabled1)
 
         self.pushButton_5.setText(QCoreApplication.translate("MainWindow", u"+ Add a card", None))
@@ -636,11 +618,11 @@ class Ui_MainWindow(object):
         __sortingEnabled2 = self.listWidget_5.isSortingEnabled()
         self.listWidget_5.setSortingEnabled(False)
         ___qlistwidgetitem15 = self.listWidget_5.item(0)
-        ___qlistwidgetitem15.setText(QCoreApplication.translate("MainWindow", u"Test7", None));
+        ___qlistwidgetitem15.setText(QCoreApplication.translate("MainWindow", u"Test111", None));
         ___qlistwidgetitem16 = self.listWidget_5.item(1)
-        ___qlistwidgetitem16.setText(QCoreApplication.translate("MainWindow", u"Test8", None));
+        ___qlistwidgetitem16.setText(QCoreApplication.translate("MainWindow", u"Test222", None));
         ___qlistwidgetitem17 = self.listWidget_5.item(2)
-        ___qlistwidgetitem17.setText(QCoreApplication.translate("MainWindow", u"Test9", None));
+        ___qlistwidgetitem17.setText(QCoreApplication.translate("MainWindow", u"Test333", None));
         self.listWidget_5.setSortingEnabled(__sortingEnabled2)
 
         self.pushButton_6.setText(QCoreApplication.translate("MainWindow", u"+ Add a card", None))

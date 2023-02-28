@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1024</width>
-    <height>646</height>
+    <height>678</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -75,14 +75,20 @@
           <string notr="true">background-color: #282c34;</string>
          </property>
          <layout class="QVBoxLayout" name="verticalLayout_2">
+          <property name="spacing">
+           <number>8</number>
+          </property>
           <property name="leftMargin">
-           <number>9</number>
+           <number>8</number>
           </property>
           <property name="topMargin">
            <number>0</number>
           </property>
+          <property name="rightMargin">
+           <number>8</number>
+          </property>
           <property name="bottomMargin">
-           <number>0</number>
+           <number>8</number>
           </property>
           <item>
            <widget class="QLabel" name="label_5">
@@ -127,8 +133,8 @@ baru</string>
               <rect>
                <x>0</x>
                <y>0</y>
-               <width>132</width>
-               <height>389</height>
+               <width>134</width>
+               <height>407</height>
               </rect>
              </property>
              <layout class="QVBoxLayout" name="verticalLayout_4">
@@ -353,22 +359,6 @@ QPushButton:hover {background-color: #7e828c;}</string>
            </widget>
           </item>
           <item>
-           <spacer name="verticalSpacer_10">
-            <property name="orientation">
-             <enum>Qt::Vertical</enum>
-            </property>
-            <property name="sizeType">
-             <enum>QSizePolicy::Fixed</enum>
-            </property>
-            <property name="sizeHint" stdset="0">
-             <size>
-              <width>20</width>
-              <height>5</height>
-             </size>
-            </property>
-           </spacer>
-          </item>
-          <item>
            <widget class="QPushButton" name="pushButton_13">
             <property name="minimumSize">
              <size>
@@ -395,20 +385,30 @@ QPushButton:hover {background-color: #7e828c;}</string>
            </widget>
           </item>
           <item>
-           <spacer name="verticalSpacer_5">
-            <property name="orientation">
-             <enum>Qt::Vertical</enum>
-            </property>
-            <property name="sizeType">
-             <enum>QSizePolicy::Fixed</enum>
-            </property>
-            <property name="sizeHint" stdset="0">
+           <widget class="QPushButton" name="pushButton_15">
+            <property name="minimumSize">
              <size>
-              <width>20</width>
-              <height>5</height>
+              <width>0</width>
+              <height>30</height>
              </size>
             </property>
-           </spacer>
+            <property name="font">
+             <font>
+              <family>Torus Pro</family>
+              <pointsize>12</pointsize>
+             </font>
+            </property>
+            <property name="cursor">
+             <cursorShape>PointingHandCursor</cursorShape>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QPushButton {background-color: #acb2bf; color: #ffffff; border-radius: 5px}
+QPushButton:hover {background-color: #7e828c;}</string>
+            </property>
+            <property name="text">
+             <string>Board Settings</string>
+            </property>
+           </widget>
           </item>
           <item>
            <widget class="QPushButton" name="pushButton_7">
@@ -428,29 +428,13 @@ QPushButton:hover {background-color: #7e828c;}</string>
              <cursorShape>PointingHandCursor</cursorShape>
             </property>
             <property name="styleSheet">
-             <string notr="true">QPushButton {background-color: #6badee; color: #ffffff; border-radius: 5px}
-QPushButton:hover {background-color: #5487bb;}</string>
+             <string notr="true">QPushButton {background-color: #d63a3e; color: #ffffff; border-radius: 5px}
+QPushButton:hover {background-color: #9e2a2a;}</string>
             </property>
             <property name="text">
              <string>Logout</string>
             </property>
            </widget>
-          </item>
-          <item>
-           <spacer name="verticalSpacer_9">
-            <property name="orientation">
-             <enum>Qt::Vertical</enum>
-            </property>
-            <property name="sizeType">
-             <enum>QSizePolicy::Fixed</enum>
-            </property>
-            <property name="sizeHint" stdset="0">
-             <size>
-              <width>20</width>
-              <height>10</height>
-             </size>
-            </property>
-           </spacer>
           </item>
          </layout>
         </widget>
@@ -464,6 +448,12 @@ QPushButton:hover {background-color: #5487bb;}</string>
            </property>
            <item>
             <widget class="QLabel" name="label">
+             <property name="minimumSize">
+              <size>
+               <width>0</width>
+               <height>70</height>
+              </size>
+             </property>
              <property name="font">
               <font>
                <family>Torus Pro</family>
@@ -471,7 +461,7 @@ QPushButton:hover {background-color: #5487bb;}</string>
               </font>
              </property>
              <property name="styleSheet">
-              <string notr="true">background-color: qlineargradient(spread:pad, x1:0.35, y1:0.5, x2:0.95, y2:0.5, stop:0 rgba(107, 173, 238, 255), stop:1 rgba(69, 76, 90, 255));
+              <string notr="true">background-color: qlineargradient(spread:pad, x1:0.5, y1:0.5, x2:0.95, y2:0.5, stop:0 rgba(107, 173, 238, 255), stop:1 rgba(69, 76, 90, 255));
 color: #FFFFFF;</string>
              </property>
              <property name="text">
@@ -479,48 +469,6 @@ color: #FFFFFF;</string>
              </property>
              <property name="margin">
               <number>10</number>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QPushButton" name="pushButton_14">
-             <property name="sizePolicy">
-              <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-               <horstretch>0</horstretch>
-               <verstretch>0</verstretch>
-              </sizepolicy>
-             </property>
-             <property name="minimumSize">
-              <size>
-               <width>100</width>
-               <height>73</height>
-              </size>
-             </property>
-             <property name="font">
-              <font>
-               <family>Torus Pro</family>
-               <pointsize>14</pointsize>
-              </font>
-             </property>
-             <property name="cursor">
-              <cursorShape>PointingHandCursor</cursorShape>
-             </property>
-             <property name="styleSheet">
-              <string notr="true">QPushButton {background-color: #454c5a; color: #ffffff; border-radius: 5px}
-QPushButton:hover {background-color: #7e828c;}</string>
-             </property>
-             <property name="text">
-              <string>Board
-Settings</string>
-             </property>
-             <property name="autoDefault">
-              <bool>false</bool>
-             </property>
-             <property name="default">
-              <bool>false</bool>
-             </property>
-             <property name="flat">
-              <bool>false</bool>
              </property>
             </widget>
            </item>
@@ -570,10 +518,10 @@ Settings</string>
               <widget class="QWidget" name="scrollAreaWidgetContents">
                <property name="geometry">
                 <rect>
-                 <x>0</x>
+                 <x>-20</x>
                  <y>0</y>
                  <width>1032</width>
-                 <height>544</height>
+                 <height>579</height>
                 </rect>
                </property>
                <layout class="QHBoxLayout" name="horizontalLayout_5">
@@ -691,7 +639,7 @@ padding: 5px 0px 0px 5px;</string>
                      <property name="styleSheet">
                       <string notr="true">QListWidget::item {height: 40px; padding: 0px 0px 0px 8px}
 QListWidget::item {background-color: qlineargradient(spread:pad, x1:0, y1:0.5, x2:0.95, y2:0.5, stop:0 rgba(251, 217, 69, 255), stop:0.0338983 rgba(251, 217, 69, 255), stop:0.039548 rgba(255, 255, 255, 255), stop:1 rgba(255, 255, 255, 255)); color: #000000; border-radius: 5px}
-QListWidget::item:hover {background-color: qlineargradient(spread:pad, x1:0, y1:0.5, x2:0.95, y2:0.5, stop:0 rgba(199, 172, 54, 255), stop:0.0338983 rgba(199, 172, 54, 255), stop:0.039548 rgba(244, 245, 247, 255), stop:1 rgba(244, 245, 247, 255)); color: #000000}
+QListWidget::item:hover {background-color: qlineargradient(spread:pad, x1:0, y1:0.5, x2:0.95, y2:0.5, stop:0 rgba(251, 217, 69, 255), stop:0.0338983 rgba(251, 217, 69, 255), stop:0.039548 rgba(244, 245, 247, 255), stop:1 rgba(244, 245, 247, 255)); color: #000000}
 QScrollBar:vertical {width: 10px; margin: 0px 0px 0px 0px; background-color: #acb2bf}</string>
                      </property>
                      <property name="frameShape">
@@ -787,45 +735,47 @@ QScrollBar:vertical {width: 10px; margin: 0px 0px 0px 0px; background-color: #ac
                     </widget>
                    </item>
                    <item>
-                    <spacer name="verticalSpacer_6">
-                     <property name="orientation">
-                      <enum>Qt::Vertical</enum>
-                     </property>
-                     <property name="sizeType">
-                      <enum>QSizePolicy::Fixed</enum>
-                     </property>
-                     <property name="sizeHint" stdset="0">
-                      <size>
-                       <width>20</width>
-                       <height>5</height>
-                      </size>
-                     </property>
-                    </spacer>
-                   </item>
-                   <item>
-                    <widget class="QPushButton" name="pushButton_4">
-                     <property name="minimumSize">
-                      <size>
-                       <width>0</width>
-                       <height>25</height>
-                      </size>
-                     </property>
-                     <property name="font">
-                      <font>
-                       <family>Torus Pro</family>
-                       <pointsize>12</pointsize>
-                      </font>
-                     </property>
-                     <property name="cursor">
-                      <cursorShape>PointingHandCursor</cursorShape>
-                     </property>
-                     <property name="styleSheet">
-                      <string notr="true">QPushButton {background-color: #acb2bf; color: #ffffff; border-radius: 5px}
-QPushButton:hover {background-color: #7e828c;}</string>
-                     </property>
-                     <property name="text">
-                      <string>+ Add a card</string>
-                     </property>
+                    <widget class="QWidget" name="widget_8" native="true">
+                     <layout class="QVBoxLayout" name="verticalLayout_6">
+                      <property name="leftMargin">
+                       <number>6</number>
+                      </property>
+                      <property name="topMargin">
+                       <number>6</number>
+                      </property>
+                      <property name="rightMargin">
+                       <number>6</number>
+                      </property>
+                      <property name="bottomMargin">
+                       <number>6</number>
+                      </property>
+                      <item>
+                       <widget class="QPushButton" name="pushButton_4">
+                        <property name="minimumSize">
+                         <size>
+                          <width>0</width>
+                          <height>25</height>
+                         </size>
+                        </property>
+                        <property name="font">
+                         <font>
+                          <family>Torus Pro</family>
+                          <pointsize>12</pointsize>
+                         </font>
+                        </property>
+                        <property name="cursor">
+                         <cursorShape>PointingHandCursor</cursorShape>
+                        </property>
+                        <property name="styleSheet">
+                         <string notr="true">QPushButton {background-color: #ebecf0; color: #6a758b; border-radius: 5px}
+QPushButton:hover {background-color: #dadbe2; color: #505b76}</string>
+                        </property>
+                        <property name="text">
+                         <string>+ Add a card</string>
+                        </property>
+                       </widget>
+                      </item>
+                     </layout>
                     </widget>
                    </item>
                   </layout>
@@ -867,12 +817,6 @@ border-radius: 10px;</string>
                    </property>
                    <item>
                     <widget class="QLabel" name="label_3">
-                     <property name="sizePolicy">
-                      <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-                       <horstretch>0</horstretch>
-                       <verstretch>0</verstretch>
-                      </sizepolicy>
-                     </property>
                      <property name="minimumSize">
                       <size>
                        <width>0</width>
@@ -919,7 +863,7 @@ padding: 5px 0px 0px 5px;</string>
                    <item>
                     <widget class="QListWidget" name="listWidget_4">
                      <property name="sizePolicy">
-                      <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+                      <sizepolicy hsizetype="Fixed" vsizetype="Expanding">
                        <horstretch>0</horstretch>
                        <verstretch>0</verstretch>
                       </sizepolicy>
@@ -939,7 +883,7 @@ padding: 5px 0px 0px 5px;</string>
                      <property name="styleSheet">
                       <string notr="true">QListWidget::item {height: 40px; padding: 0px 0px 0px 8px}
 QListWidget::item {background-color: qlineargradient(spread:pad, x1:0, y1:0.5, x2:0.95, y2:0.5, stop:0 rgba(251, 217, 69, 255), stop:0.0338983 rgba(251, 217, 69, 255), stop:0.039548 rgba(255, 255, 255, 255), stop:1 rgba(255, 255, 255, 255)); color: #000000; border-radius: 5px}
-QListWidget::item:hover {background-color: qlineargradient(spread:pad, x1:0, y1:0.5, x2:0.95, y2:0.5, stop:0 rgba(199, 172, 54, 255), stop:0.0338983 rgba(199, 172, 54, 255), stop:0.039548 rgba(244, 245, 247, 255), stop:1 rgba(244, 245, 247, 255)); color: #000000}
+QListWidget::item:hover {background-color: qlineargradient(spread:pad, x1:0, y1:0.5, x2:0.95, y2:0.5, stop:0 rgba(251, 217, 69, 255), stop:0.0338983 rgba(251, 217, 69, 255), stop:0.039548 rgba(244, 245, 247, 255), stop:1 rgba(244, 245, 247, 255)); color: #000000}
 QScrollBar:vertical {width: 10px; margin: 0px 0px 0px 0px; background-color: #acb2bf}</string>
                      </property>
                      <property name="frameShape">
@@ -965,7 +909,7 @@ QScrollBar:vertical {width: 10px; margin: 0px 0px 0px 0px; background-color: #ac
                      </property>
                      <item>
                       <property name="text">
-                       <string>Test4</string>
+                       <string>Test11</string>
                       </property>
                       <property name="flags">
                        <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsUserCheckable|ItemIsEnabled</set>
@@ -973,7 +917,7 @@ QScrollBar:vertical {width: 10px; margin: 0px 0px 0px 0px; background-color: #ac
                      </item>
                      <item>
                       <property name="text">
-                       <string>Test5</string>
+                       <string>Test22</string>
                       </property>
                       <property name="flags">
                        <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsUserCheckable|ItemIsEnabled</set>
@@ -981,7 +925,7 @@ QScrollBar:vertical {width: 10px; margin: 0px 0px 0px 0px; background-color: #ac
                      </item>
                      <item>
                       <property name="text">
-                       <string>Test6</string>
+                       <string>Test33</string>
                       </property>
                       <property name="flags">
                        <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsUserCheckable|ItemIsEnabled</set>
@@ -990,45 +934,47 @@ QScrollBar:vertical {width: 10px; margin: 0px 0px 0px 0px; background-color: #ac
                     </widget>
                    </item>
                    <item>
-                    <spacer name="verticalSpacer_7">
-                     <property name="orientation">
-                      <enum>Qt::Vertical</enum>
-                     </property>
-                     <property name="sizeType">
-                      <enum>QSizePolicy::Fixed</enum>
-                     </property>
-                     <property name="sizeHint" stdset="0">
-                      <size>
-                       <width>20</width>
-                       <height>5</height>
-                      </size>
-                     </property>
-                    </spacer>
-                   </item>
-                   <item>
-                    <widget class="QPushButton" name="pushButton_5">
-                     <property name="minimumSize">
-                      <size>
-                       <width>0</width>
-                       <height>25</height>
-                      </size>
-                     </property>
-                     <property name="font">
-                      <font>
-                       <family>Torus Pro</family>
-                       <pointsize>12</pointsize>
-                      </font>
-                     </property>
-                     <property name="cursor">
-                      <cursorShape>PointingHandCursor</cursorShape>
-                     </property>
-                     <property name="styleSheet">
-                      <string notr="true">QPushButton {background-color: #acb2bf; color: #ffffff; border-radius: 5px}
-QPushButton:hover {background-color: #7e828c;}</string>
-                     </property>
-                     <property name="text">
-                      <string>+ Add a card</string>
-                     </property>
+                    <widget class="QWidget" name="widget_9" native="true">
+                     <layout class="QVBoxLayout" name="verticalLayout_7">
+                      <property name="leftMargin">
+                       <number>6</number>
+                      </property>
+                      <property name="topMargin">
+                       <number>6</number>
+                      </property>
+                      <property name="rightMargin">
+                       <number>6</number>
+                      </property>
+                      <property name="bottomMargin">
+                       <number>6</number>
+                      </property>
+                      <item>
+                       <widget class="QPushButton" name="pushButton_5">
+                        <property name="minimumSize">
+                         <size>
+                          <width>0</width>
+                          <height>25</height>
+                         </size>
+                        </property>
+                        <property name="font">
+                         <font>
+                          <family>Torus Pro</family>
+                          <pointsize>12</pointsize>
+                         </font>
+                        </property>
+                        <property name="cursor">
+                         <cursorShape>PointingHandCursor</cursorShape>
+                        </property>
+                        <property name="styleSheet">
+                         <string notr="true">QPushButton {background-color: #ebecf0; color: #6a758b; border-radius: 5px}
+QPushButton:hover {background-color: #dadbe2; color: #505b76}</string>
+                        </property>
+                        <property name="text">
+                         <string>+ Add a card</string>
+                        </property>
+                       </widget>
+                      </item>
+                     </layout>
                     </widget>
                    </item>
                   </layout>
@@ -1052,7 +998,7 @@ QPushButton:hover {background-color: #7e828c;}</string>
                    <string notr="true">background-color: #ebecf0;
 border-radius: 10px;</string>
                   </property>
-                  <layout class="QVBoxLayout" name="verticalLayout_7">
+                  <layout class="QVBoxLayout" name="verticalLayout_8">
                    <property name="spacing">
                     <number>0</number>
                    </property>
@@ -1136,7 +1082,7 @@ padding: 5px 0px 0px 5px;</string>
                      <property name="styleSheet">
                       <string notr="true">QListWidget::item {height: 40px; padding: 0px 0px 0px 8px}
 QListWidget::item {background-color: qlineargradient(spread:pad, x1:0, y1:0.5, x2:0.95, y2:0.5, stop:0 rgba(251, 217, 69, 255), stop:0.0338983 rgba(251, 217, 69, 255), stop:0.039548 rgba(255, 255, 255, 255), stop:1 rgba(255, 255, 255, 255)); color: #000000; border-radius: 5px}
-QListWidget::item:hover {background-color: qlineargradient(spread:pad, x1:0, y1:0.5, x2:0.95, y2:0.5, stop:0 rgba(199, 172, 54, 255), stop:0.0338983 rgba(199, 172, 54, 255), stop:0.039548 rgba(244, 245, 247, 255), stop:1 rgba(244, 245, 247, 255)); color: #000000}
+QListWidget::item:hover {background-color: qlineargradient(spread:pad, x1:0, y1:0.5, x2:0.95, y2:0.5, stop:0 rgba(251, 217, 69, 255), stop:0.0338983 rgba(251, 217, 69, 255), stop:0.039548 rgba(244, 245, 247, 255), stop:1 rgba(244, 245, 247, 255)); color: #000000}
 QScrollBar:vertical {width: 10px; margin: 0px 0px 0px 0px; background-color: #acb2bf}</string>
                      </property>
                      <property name="frameShape">
@@ -1154,9 +1100,6 @@ QScrollBar:vertical {width: 10px; margin: 0px 0px 0px 0px; background-color: #ac
                      <property name="defaultDropAction">
                       <enum>Qt::MoveAction</enum>
                      </property>
-                     <property name="alternatingRowColors">
-                      <bool>false</bool>
-                     </property>
                      <property name="spacing">
                       <number>5</number>
                      </property>
@@ -1165,7 +1108,7 @@ QScrollBar:vertical {width: 10px; margin: 0px 0px 0px 0px; background-color: #ac
                      </property>
                      <item>
                       <property name="text">
-                       <string>Test7</string>
+                       <string>Test111</string>
                       </property>
                       <property name="flags">
                        <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsUserCheckable|ItemIsEnabled</set>
@@ -1173,7 +1116,7 @@ QScrollBar:vertical {width: 10px; margin: 0px 0px 0px 0px; background-color: #ac
                      </item>
                      <item>
                       <property name="text">
-                       <string>Test8</string>
+                       <string>Test222</string>
                       </property>
                       <property name="flags">
                        <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsUserCheckable|ItemIsEnabled</set>
@@ -1181,7 +1124,7 @@ QScrollBar:vertical {width: 10px; margin: 0px 0px 0px 0px; background-color: #ac
                      </item>
                      <item>
                       <property name="text">
-                       <string>Test9</string>
+                       <string>Test333</string>
                       </property>
                       <property name="flags">
                        <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsUserCheckable|ItemIsEnabled</set>
@@ -1190,45 +1133,47 @@ QScrollBar:vertical {width: 10px; margin: 0px 0px 0px 0px; background-color: #ac
                     </widget>
                    </item>
                    <item>
-                    <spacer name="verticalSpacer_8">
-                     <property name="orientation">
-                      <enum>Qt::Vertical</enum>
-                     </property>
-                     <property name="sizeType">
-                      <enum>QSizePolicy::Fixed</enum>
-                     </property>
-                     <property name="sizeHint" stdset="0">
-                      <size>
-                       <width>20</width>
-                       <height>5</height>
-                      </size>
-                     </property>
-                    </spacer>
-                   </item>
-                   <item>
-                    <widget class="QPushButton" name="pushButton_6">
-                     <property name="minimumSize">
-                      <size>
-                       <width>0</width>
-                       <height>25</height>
-                      </size>
-                     </property>
-                     <property name="font">
-                      <font>
-                       <family>Torus Pro</family>
-                       <pointsize>12</pointsize>
-                      </font>
-                     </property>
-                     <property name="cursor">
-                      <cursorShape>PointingHandCursor</cursorShape>
-                     </property>
-                     <property name="styleSheet">
-                      <string notr="true">QPushButton {background-color: #acb2bf; color: #ffffff; border-radius: 5px}
-QPushButton:hover {background-color: #7e828c;}</string>
-                     </property>
-                     <property name="text">
-                      <string>+ Add a card</string>
-                     </property>
+                    <widget class="QWidget" name="widget_10" native="true">
+                     <layout class="QVBoxLayout" name="verticalLayout_10">
+                      <property name="leftMargin">
+                       <number>6</number>
+                      </property>
+                      <property name="topMargin">
+                       <number>6</number>
+                      </property>
+                      <property name="rightMargin">
+                       <number>6</number>
+                      </property>
+                      <property name="bottomMargin">
+                       <number>6</number>
+                      </property>
+                      <item>
+                       <widget class="QPushButton" name="pushButton_6">
+                        <property name="minimumSize">
+                         <size>
+                          <width>0</width>
+                          <height>25</height>
+                         </size>
+                        </property>
+                        <property name="font">
+                         <font>
+                          <family>Torus Pro</family>
+                          <pointsize>12</pointsize>
+                         </font>
+                        </property>
+                        <property name="cursor">
+                         <cursorShape>PointingHandCursor</cursorShape>
+                        </property>
+                        <property name="styleSheet">
+                         <string notr="true">QPushButton {background-color: #ebecf0; color: #6a758b; border-radius: 5px}
+QPushButton:hover {background-color: #dadbe2; color: #505b76}</string>
+                        </property>
+                        <property name="text">
+                         <string>+ Add a card</string>
+                        </property>
+                       </widget>
+                      </item>
+                     </layout>
                     </widget>
                    </item>
                   </layout>
@@ -1337,13 +1282,7 @@ QPushButton:hover {background-color: #7e828c;}</string>
  </widget>
  <tabstops>
   <tabstop>pushButton</tabstop>
-  <tabstop>pushButton_14</tabstop>
-  <tabstop>pushButton_4</tabstop>
-  <tabstop>pushButton_5</tabstop>
-  <tabstop>pushButton_6</tabstop>
   <tabstop>listWidget_3</tabstop>
-  <tabstop>listWidget_4</tabstop>
-  <tabstop>listWidget_5</tabstop>
   <tabstop>scrollArea</tabstop>
   <tabstop>pushButton_2</tabstop>
   <tabstop>scrollArea_2</tabstop>

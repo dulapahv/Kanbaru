@@ -24,47 +24,57 @@ class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
-        MainWindow.resize(950, 615)
+        MainWindow.resize(950, 635)
         MainWindow.setStyleSheet(u"background-color: #454c5a;")
         self.centralwidget = QWidget(MainWindow)
         self.centralwidget.setObjectName(u"centralwidget")
         self.verticalLayout_3 = QVBoxLayout(self.centralwidget)
+        self.verticalLayout_3.setSpacing(0)
         self.verticalLayout_3.setObjectName(u"verticalLayout_3")
         self.verticalLayout_3.setContentsMargins(0, 0, 0, 0)
         self.label_3 = QLabel(self.centralwidget)
         self.label_3.setObjectName(u"label_3")
+        self.label_3.setMinimumSize(QSize(0, 70))
         font = QFont()
         font.setFamilies([u"Torus Pro"])
-        font.setPointSize(36)
+        font.setPointSize(28)
         self.label_3.setFont(font)
-        self.label_3.setStyleSheet(u"background-color: qlineargradient(spread:pad, x1:0.35, y1:0.5, x2:0.95, y2:0.5, stop:0 rgba(107, 173, 238, 255), stop:1 rgba(69, 76, 90, 255));\n"
+        self.label_3.setStyleSheet(u"background-color: qlineargradient(spread:pad, x1:0.5, y1:0.5, x2:0.95, y2:0.5, stop:0 rgba(107, 173, 238, 255), stop:1 rgba(69, 76, 90, 255));\n"
 "color: #ffffff;")
         self.label_3.setMargin(10)
 
         self.verticalLayout_3.addWidget(self.label_3)
 
-        self.verticalLayout = QVBoxLayout()
+        self.widget = QWidget(self.centralwidget)
+        self.widget.setObjectName(u"widget")
+        self.verticalLayout_7 = QVBoxLayout(self.widget)
+        self.verticalLayout_7.setObjectName(u"verticalLayout_7")
+        self.widget1 = QWidget(self.widget)
+        self.widget1.setObjectName(u"widget1")
+        self.widget1.setStyleSheet(u"background-color: #ebecf0;\n"
+"border-radius: 5px;")
+        self.verticalLayout = QVBoxLayout(self.widget1)
         self.verticalLayout.setObjectName(u"verticalLayout")
-        self.verticalLayout.setContentsMargins(10, -1, 10, 10)
-        self.label = QLabel(self.centralwidget)
+        self.verticalLayout.setContentsMargins(10, 10, 10, 10)
+        self.label = QLabel(self.widget1)
         self.label.setObjectName(u"label")
         font1 = QFont()
         font1.setFamilies([u"Torus Pro"])
-        font1.setPointSize(16)
-        font1.setBold(False)
+        font1.setPointSize(14)
+        font1.setBold(True)
         self.label.setFont(font1)
-        self.label.setStyleSheet(u"color: #ffffff")
+        self.label.setStyleSheet(u"color: #282c33;")
 
         self.verticalLayout.addWidget(self.label)
 
-        self.lineEdit = QLineEdit(self.centralwidget)
+        self.lineEdit = QLineEdit(self.widget1)
         self.lineEdit.setObjectName(u"lineEdit")
         self.lineEdit.setMinimumSize(QSize(0, 30))
         font2 = QFont()
         font2.setFamilies([u"Torus Pro"])
-        font2.setPointSize(14)
+        font2.setPointSize(12)
         self.lineEdit.setFont(font2)
-        self.lineEdit.setStyleSheet(u"QLineEdit {background-color: #ebecf0; color: #000000; border-radius: 5px}")
+        self.lineEdit.setStyleSheet(u"QLineEdit {background-color: #ffffff; color: #000000; border-radius: 5px}")
 
         self.verticalLayout.addWidget(self.lineEdit)
 
@@ -72,21 +82,19 @@ class Ui_MainWindow(object):
         self.horizontalLayout_3.setObjectName(u"horizontalLayout_3")
         self.verticalLayout_4 = QVBoxLayout()
         self.verticalLayout_4.setObjectName(u"verticalLayout_4")
-        self.label_5 = QLabel(self.centralwidget)
+        self.label_5 = QLabel(self.widget1)
         self.label_5.setObjectName(u"label_5")
         self.label_5.setFont(font1)
-        self.label_5.setStyleSheet(u"color: #ffffff")
+        self.label_5.setStyleSheet(u"color: #282c33;")
 
         self.verticalLayout_4.addWidget(self.label_5)
 
-        self.calendarWidget = QCalendarWidget(self.centralwidget)
+        self.calendarWidget = QCalendarWidget(self.widget1)
         self.calendarWidget.setObjectName(u"calendarWidget")
-        font3 = QFont()
-        font3.setFamilies([u"Torus Pro"])
-        font3.setPointSize(12)
-        self.calendarWidget.setFont(font3)
+        self.calendarWidget.setFont(font2)
         self.calendarWidget.setCursor(QCursor(Qt.PointingHandCursor))
-        self.calendarWidget.setStyleSheet(u"background-color: rgb(107, 173, 238);")
+        self.calendarWidget.setStyleSheet(u"background-color: rgb(107, 173, 238);\n"
+"height: 28px;")
         self.calendarWidget.setGridVisible(False)
 
         self.verticalLayout_4.addWidget(self.calendarWidget)
@@ -96,30 +104,30 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_2 = QVBoxLayout()
         self.verticalLayout_2.setObjectName(u"verticalLayout_2")
-        self.label_4 = QLabel(self.centralwidget)
+        self.label_4 = QLabel(self.widget1)
         self.label_4.setObjectName(u"label_4")
         self.label_4.setFont(font1)
-        self.label_4.setStyleSheet(u"color: #ffffff")
+        self.label_4.setStyleSheet(u"color: #282c33;")
 
         self.verticalLayout_2.addWidget(self.label_4)
 
-        self.timeEdit = QTimeEdit(self.centralwidget)
+        self.timeEdit = QTimeEdit(self.widget1)
         self.timeEdit.setObjectName(u"timeEdit")
         self.timeEdit.setMinimumSize(QSize(0, 40))
-        font4 = QFont()
-        font4.setFamilies([u"Torus Pro"])
-        font4.setPointSize(16)
-        self.timeEdit.setFont(font4)
+        font3 = QFont()
+        font3.setFamilies([u"Torus Pro"])
+        font3.setPointSize(16)
+        self.timeEdit.setFont(font3)
         self.timeEdit.setCursor(QCursor(Qt.PointingHandCursor))
         self.timeEdit.setStyleSheet(u"QTimeEdit {background-color: #6badee; color: #ffffff; border-radius: 5px}")
         self.timeEdit.setTimeSpec(Qt.LocalTime)
 
         self.verticalLayout_2.addWidget(self.timeEdit)
 
-        self.label_7 = QLabel(self.centralwidget)
+        self.label_7 = QLabel(self.widget1)
         self.label_7.setObjectName(u"label_7")
         self.label_7.setFont(font1)
-        self.label_7.setStyleSheet(u"color: #ffffff")
+        self.label_7.setStyleSheet(u"color: #282c33;")
 
         self.verticalLayout_2.addWidget(self.label_7)
 
@@ -129,10 +137,10 @@ class Ui_MainWindow(object):
         self.verticalLayout_6 = QVBoxLayout()
         self.verticalLayout_6.setSpacing(0)
         self.verticalLayout_6.setObjectName(u"verticalLayout_6")
-        self.radioButton_2 = QRadioButton(self.centralwidget)
+        self.radioButton_2 = QRadioButton(self.widget1)
         self.radioButton_2.setObjectName(u"radioButton_2")
         self.radioButton_2.setMinimumSize(QSize(120, 40))
-        self.radioButton_2.setFont(font3)
+        self.radioButton_2.setFont(font2)
         self.radioButton_2.setCursor(QCursor(Qt.PointingHandCursor))
         self.radioButton_2.setStyleSheet(u"background-color: #6badee;\n"
 "color: #ffffff;\n"
@@ -140,10 +148,10 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_6.addWidget(self.radioButton_2)
 
-        self.radioButton_3 = QRadioButton(self.centralwidget)
+        self.radioButton_3 = QRadioButton(self.widget1)
         self.radioButton_3.setObjectName(u"radioButton_3")
         self.radioButton_3.setMinimumSize(QSize(120, 40))
-        self.radioButton_3.setFont(font3)
+        self.radioButton_3.setFont(font2)
         self.radioButton_3.setCursor(QCursor(Qt.PointingHandCursor))
         self.radioButton_3.setStyleSheet(u"background-color: #fb568a;\n"
 "color: #ffffff;\n"
@@ -151,10 +159,10 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_6.addWidget(self.radioButton_3)
 
-        self.radioButton_5 = QRadioButton(self.centralwidget)
+        self.radioButton_5 = QRadioButton(self.widget1)
         self.radioButton_5.setObjectName(u"radioButton_5")
         self.radioButton_5.setMinimumSize(QSize(120, 40))
-        self.radioButton_5.setFont(font3)
+        self.radioButton_5.setFont(font2)
         self.radioButton_5.setCursor(QCursor(Qt.PointingHandCursor))
         self.radioButton_5.setStyleSheet(u"background-color: #fbd945;\n"
 "color: #ffffff;\n"
@@ -168,10 +176,10 @@ class Ui_MainWindow(object):
         self.verticalLayout_5 = QVBoxLayout()
         self.verticalLayout_5.setSpacing(0)
         self.verticalLayout_5.setObjectName(u"verticalLayout_5")
-        self.radioButton = QRadioButton(self.centralwidget)
+        self.radioButton = QRadioButton(self.widget1)
         self.radioButton.setObjectName(u"radioButton")
         self.radioButton.setMinimumSize(QSize(120, 40))
-        self.radioButton.setFont(font3)
+        self.radioButton.setFont(font2)
         self.radioButton.setCursor(QCursor(Qt.PointingHandCursor))
         self.radioButton.setStyleSheet(u"background-color: #99c37b;\n"
 "color: #ffffff;\n"
@@ -179,10 +187,10 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_5.addWidget(self.radioButton)
 
-        self.radioButton_4 = QRadioButton(self.centralwidget)
+        self.radioButton_4 = QRadioButton(self.widget1)
         self.radioButton_4.setObjectName(u"radioButton_4")
         self.radioButton_4.setMinimumSize(QSize(120, 40))
-        self.radioButton_4.setFont(font3)
+        self.radioButton_4.setFont(font2)
         self.radioButton_4.setCursor(QCursor(Qt.PointingHandCursor))
         self.radioButton_4.setStyleSheet(u"background-color: #c577dc;\n"
 "color: #ffffff;\n"
@@ -190,10 +198,10 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_5.addWidget(self.radioButton_4)
 
-        self.radioButton_6 = QRadioButton(self.centralwidget)
+        self.radioButton_6 = QRadioButton(self.widget1)
         self.radioButton_6.setObjectName(u"radioButton_6")
         self.radioButton_6.setMinimumSize(QSize(120, 40))
-        self.radioButton_6.setFont(font3)
+        self.radioButton_6.setFont(font2)
         self.radioButton_6.setCursor(QCursor(Qt.PointingHandCursor))
         self.radioButton_6.setStyleSheet(u"background-color: #5eb5c1;\n"
 "color: #ffffff;\n"
@@ -217,42 +225,49 @@ class Ui_MainWindow(object):
 
         self.verticalLayout.addLayout(self.horizontalLayout_3)
 
-        self.label_6 = QLabel(self.centralwidget)
+        self.label_6 = QLabel(self.widget1)
         self.label_6.setObjectName(u"label_6")
         self.label_6.setFont(font1)
-        self.label_6.setStyleSheet(u"color: #ffffff")
+        self.label_6.setStyleSheet(u"color: #282c33;")
 
         self.verticalLayout.addWidget(self.label_6)
 
-        self.horizontalSlider = QSlider(self.centralwidget)
+        self.horizontalSlider = QSlider(self.widget1)
         self.horizontalSlider.setObjectName(u"horizontalSlider")
         self.horizontalSlider.setMinimumSize(QSize(0, 20))
-        self.horizontalSlider.setFont(font3)
+        self.horizontalSlider.setFont(font2)
         self.horizontalSlider.setCursor(QCursor(Qt.PointingHandCursor))
+        self.horizontalSlider.setStyleSheet(u"")
         self.horizontalSlider.setMaximum(100)
         self.horizontalSlider.setSingleStep(5)
         self.horizontalSlider.setPageStep(5)
         self.horizontalSlider.setOrientation(Qt.Horizontal)
+        self.horizontalSlider.setTickPosition(QSlider.TicksBelow)
 
         self.verticalLayout.addWidget(self.horizontalSlider)
 
-        self.label_2 = QLabel(self.centralwidget)
+        self.label_2 = QLabel(self.widget1)
         self.label_2.setObjectName(u"label_2")
         self.label_2.setFont(font1)
-        self.label_2.setStyleSheet(u"color: #ffffff")
+        self.label_2.setStyleSheet(u"color: #282c33;")
 
         self.verticalLayout.addWidget(self.label_2)
 
-        self.textEdit = QTextEdit(self.centralwidget)
+        self.textEdit = QTextEdit(self.widget1)
         self.textEdit.setObjectName(u"textEdit")
-        font5 = QFont()
-        font5.setFamilies([u"Torus Pro"])
-        font5.setPointSize(12)
-        font5.setBold(False)
-        self.textEdit.setFont(font5)
-        self.textEdit.setStyleSheet(u"QTextEdit {background-color: #ebecf0; color: #000000; border-radius: 5px}")
+        font4 = QFont()
+        font4.setFamilies([u"Torus Pro"])
+        font4.setPointSize(12)
+        font4.setBold(False)
+        self.textEdit.setFont(font4)
+        self.textEdit.setStyleSheet(u"QTextEdit {background-color: #ffffff; color: #282c33; border-radius: 5px}\n"
+"QScrollBar:vertical {width: 10px; margin: 0px 0px 0px 0px; background-color: #acb2bf}")
 
         self.verticalLayout.addWidget(self.textEdit)
+
+        self.verticalSpacer_2 = QSpacerItem(20, 5, QSizePolicy.Minimum, QSizePolicy.Fixed)
+
+        self.verticalLayout.addItem(self.verticalSpacer_2)
 
         self.horizontalLayout = QHBoxLayout()
         self.horizontalLayout.setObjectName(u"horizontalLayout")
@@ -260,7 +275,7 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout.addItem(self.horizontalSpacer)
 
-        self.pushButton_2 = QPushButton(self.centralwidget)
+        self.pushButton_2 = QPushButton(self.widget1)
         self.pushButton_2.setObjectName(u"pushButton_2")
         sizePolicy = QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
@@ -268,19 +283,19 @@ class Ui_MainWindow(object):
         sizePolicy.setHeightForWidth(self.pushButton_2.sizePolicy().hasHeightForWidth())
         self.pushButton_2.setSizePolicy(sizePolicy)
         self.pushButton_2.setMinimumSize(QSize(100, 50))
-        self.pushButton_2.setFont(font4)
+        self.pushButton_2.setFont(font3)
         self.pushButton_2.setCursor(QCursor(Qt.PointingHandCursor))
         self.pushButton_2.setStyleSheet(u"QPushButton {background-color: #acb2bf; color: #ffffff; border-radius: 5px}\n"
 "QPushButton:hover {background-color: #7e828c;}")
 
         self.horizontalLayout.addWidget(self.pushButton_2)
 
-        self.pushButton_3 = QPushButton(self.centralwidget)
+        self.pushButton_3 = QPushButton(self.widget1)
         self.pushButton_3.setObjectName(u"pushButton_3")
         sizePolicy.setHeightForWidth(self.pushButton_3.sizePolicy().hasHeightForWidth())
         self.pushButton_3.setSizePolicy(sizePolicy)
         self.pushButton_3.setMinimumSize(QSize(100, 50))
-        self.pushButton_3.setFont(font4)
+        self.pushButton_3.setFont(font3)
         self.pushButton_3.setCursor(QCursor(Qt.PointingHandCursor))
         self.pushButton_3.setStyleSheet(u"QPushButton {background-color: #6badee; color: #ffffff; border-radius: 5px}\n"
 "QPushButton:hover {background-color: #5487bb;}")
@@ -291,7 +306,10 @@ class Ui_MainWindow(object):
         self.verticalLayout.addLayout(self.horizontalLayout)
 
 
-        self.verticalLayout_3.addLayout(self.verticalLayout)
+        self.verticalLayout_7.addWidget(self.widget1)
+
+
+        self.verticalLayout_3.addWidget(self.widget)
 
         MainWindow.setCentralWidget(self.centralwidget)
         QWidget.setTabOrder(self.lineEdit, self.calendarWidget)
