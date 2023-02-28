@@ -442,13 +442,13 @@ QScrollBar:vertical {width: 10px; margin: 0px 0px 0px 0px; background-color: #ac
               <property name="minimumSize">
                <size>
                 <width>140</width>
-                <height>40</height>
+                <height>30</height>
                </size>
               </property>
               <property name="font">
                <font>
                 <family>Torus Pro</family>
-                <pointsize>14</pointsize>
+                <pointsize>12</pointsize>
                </font>
               </property>
               <property name="cursor">
@@ -487,13 +487,13 @@ QPushButton:hover {background-color: #9e2a2a;}</string>
               <property name="minimumSize">
                <size>
                 <width>100</width>
-                <height>40</height>
+                <height>30</height>
                </size>
               </property>
               <property name="font">
                <font>
                 <family>Torus Pro</family>
-                <pointsize>14</pointsize>
+                <pointsize>12</pointsize>
                </font>
               </property>
               <property name="cursor">
@@ -519,13 +519,13 @@ QPushButton:hover {background-color: #7e828c;}</string>
               <property name="minimumSize">
                <size>
                 <width>100</width>
-                <height>40</height>
+                <height>30</height>
                </size>
               </property>
               <property name="font">
                <font>
                 <family>Torus Pro</family>
-                <pointsize>14</pointsize>
+                <pointsize>12</pointsize>
                </font>
               </property>
               <property name="cursor">

@@ -118,10 +118,10 @@ class Ui_MainWindow(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.pushButton_4.sizePolicy().hasHeightForWidth())
         self.pushButton_4.setSizePolicy(sizePolicy)
-        self.pushButton_4.setMinimumSize(QSize(150, 40))
+        self.pushButton_4.setMinimumSize(QSize(150, 30))
         font4 = QFont()
         font4.setFamilies([u"Torus Pro"])
-        font4.setPointSize(14)
+        font4.setPointSize(12)
         self.pushButton_4.setFont(font4)
         self.pushButton_4.setCursor(QCursor(Qt.PointingHandCursor))
         self.pushButton_4.setStyleSheet(u"QPushButton {background-color: #d63a3e; color: #ffffff; border-radius: 5px}\n"
@@ -152,7 +152,7 @@ class Ui_MainWindow(object):
         self.pushButton_6.setObjectName(u"pushButton_6")
         sizePolicy.setHeightForWidth(self.pushButton_6.sizePolicy().hasHeightForWidth())
         self.pushButton_6.setSizePolicy(sizePolicy)
-        self.pushButton_6.setMinimumSize(QSize(100, 40))
+        self.pushButton_6.setMinimumSize(QSize(100, 30))
         self.pushButton_6.setFont(font4)
         self.pushButton_6.setCursor(QCursor(Qt.PointingHandCursor))
         self.pushButton_6.setStyleSheet(u"QPushButton {background-color: #acb2bf; color: #ffffff; border-radius: 5px}\n"
@@ -164,7 +164,7 @@ class Ui_MainWindow(object):
         self.pushButton_8.setObjectName(u"pushButton_8")
         sizePolicy.setHeightForWidth(self.pushButton_8.sizePolicy().hasHeightForWidth())
         self.pushButton_8.setSizePolicy(sizePolicy)
-        self.pushButton_8.setMinimumSize(QSize(290, 40))
+        self.pushButton_8.setMinimumSize(QSize(290, 30))
         self.pushButton_8.setFont(font4)
         self.pushButton_8.setCursor(QCursor(Qt.PointingHandCursor))
         self.pushButton_8.setStyleSheet(u"QPushButton {background-color: #acb2bf; color: #ffffff; border-radius: 5px}\n"
@@ -183,7 +183,7 @@ class Ui_MainWindow(object):
         self.pushButton_5.setObjectName(u"pushButton_5")
         sizePolicy.setHeightForWidth(self.pushButton_5.sizePolicy().hasHeightForWidth())
         self.pushButton_5.setSizePolicy(sizePolicy)
-        self.pushButton_5.setMinimumSize(QSize(150, 40))
+        self.pushButton_5.setMinimumSize(QSize(150, 30))
         self.pushButton_5.setFont(font4)
         self.pushButton_5.setCursor(QCursor(Qt.PointingHandCursor))
         self.pushButton_5.setStyleSheet(u"QPushButton {border-color: #d63a3e; border-width: 1.5px; border-style: solid; color: #000000; border-radius: 5px}\n"
@@ -217,7 +217,7 @@ class Ui_MainWindow(object):
         self.pushButton_2.setObjectName(u"pushButton_2")
         sizePolicy.setHeightForWidth(self.pushButton_2.sizePolicy().hasHeightForWidth())
         self.pushButton_2.setSizePolicy(sizePolicy)
-        self.pushButton_2.setMinimumSize(QSize(100, 40))
+        self.pushButton_2.setMinimumSize(QSize(100, 30))
         self.pushButton_2.setFont(font4)
         self.pushButton_2.setCursor(QCursor(Qt.PointingHandCursor))
         self.pushButton_2.setStyleSheet(u"QPushButton {background-color: #acb2bf; color: #ffffff; border-radius: 5px}\n"
@@ -229,7 +229,7 @@ class Ui_MainWindow(object):
         self.pushButton_3.setObjectName(u"pushButton_3")
         sizePolicy.setHeightForWidth(self.pushButton_3.sizePolicy().hasHeightForWidth())
         self.pushButton_3.setSizePolicy(sizePolicy)
-        self.pushButton_3.setMinimumSize(QSize(100, 40))
+        self.pushButton_3.setMinimumSize(QSize(100, 30))
         self.pushButton_3.setFont(font4)
         self.pushButton_3.setCursor(QCursor(Qt.PointingHandCursor))
         self.pushButton_3.setStyleSheet(u"QPushButton {background-color: #6badee; color: #ffffff; border-radius: 5px}\n"
