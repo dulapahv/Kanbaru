@@ -35,6 +35,12 @@
     </property>
     <item>
      <widget class="QLabel" name="label_3">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
       <property name="minimumSize">
        <size>
         <width>0</width>
@@ -129,7 +135,7 @@ border-radius: 5px;</string>
              </font>
             </property>
             <property name="styleSheet">
-             <string notr="true">QLineEdit {background-color: #ffffff; color: #000000; border-radius: 5px}</string>
+             <string notr="true">QLineEdit {background-color: #ffffff; color: #000000; border-radius: 5px; padding: 0px 8px 0px 8px}</string>
             </property>
             <property name="text">
              <string>Test Title</string>
@@ -480,8 +486,14 @@ padding: 0px 5px 0px 5px;</string>
              </font>
             </property>
             <property name="styleSheet">
-             <string notr="true">QTextEdit {background-color: #ffffff; color: #282c33; border-radius: 5px}
+             <string notr="true">QTextEdit {background-color: #ffffff; color: #282c33; border-radius: 5px; padding: 4px 8px 4px 8px}
 QScrollBar:vertical {width: 10px; margin: 0px 0px 0px 0px; background-color: #acb2bf}</string>
+            </property>
+            <property name="frameShape">
+             <enum>QFrame::NoFrame</enum>
+            </property>
+            <property name="autoFormatting">
+             <set>QTextEdit::AutoAll</set>
             </property>
             <property name="html">
              <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
@@ -492,6 +504,9 @@ li.unchecked::marker { content: &quot;\2610&quot;; }
 li.checked::marker { content: &quot;\2612&quot;; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Torus Pro'; font-size:12pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Segoe UI';&quot;&gt;Test Desc&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+            </property>
+            <property name="tabStopDistance">
+             <double>20.000000000000000</double>
             </property>
            </widget>
           </item>

@@ -15,10 +15,10 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QFont, QFontDatabase, QGradient, QIcon,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
-from PySide6.QtWidgets import (QAbstractItemView, QApplication, QFrame, QHBoxLayout,
-    QLabel, QListWidget, QListWidgetItem, QMainWindow,
-    QPushButton, QScrollArea, QSizePolicy, QSpacerItem,
-    QVBoxLayout, QWidget)
+from PySide6.QtWidgets import (QAbstractItemView, QAbstractScrollArea, QApplication, QFrame,
+    QHBoxLayout, QLabel, QListWidget, QListWidgetItem,
+    QMainWindow, QPushButton, QScrollArea, QSizePolicy,
+    QSpacerItem, QVBoxLayout, QWidget)
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -207,6 +207,8 @@ class Ui_MainWindow(object):
         self.horizontalLayout_3.setObjectName(u"horizontalLayout_3")
         self.label = QLabel(self.widget)
         self.label.setObjectName(u"label")
+        sizePolicy2.setHeightForWidth(self.label.sizePolicy().hasHeightForWidth())
+        self.label.setSizePolicy(sizePolicy2)
         self.label.setMinimumSize(QSize(0, 70))
         font2 = QFont()
         font2.setFamilies([u"Torus Pro"])
@@ -235,8 +237,10 @@ class Ui_MainWindow(object):
         self.horizontalLayout_2.setContentsMargins(0, 9, 0, 0)
         self.scrollArea = QScrollArea(self.widget_2)
         self.scrollArea.setObjectName(u"scrollArea")
-        self.scrollArea.setStyleSheet(u"QScrollBar:horizontal {height: 10px; margin: 0px 0px 0px 0px; background-color: #acb2bf}")
+        self.scrollArea.setStyleSheet(u"QScrollBar:vertical {width: 10px; margin: 0px 0px 0px 0px; background-color: #acb2bf}\n"
+"QScrollBar:horizontal {height: 10px; margin: 0px 0px 0px 0px; background-color: #acb2bf}")
         self.scrollArea.setFrameShape(QFrame.NoFrame)
+        self.scrollArea.setVerticalScrollBarPolicy(Qt.ScrollBarAsNeeded)
         self.scrollArea.setWidgetResizable(True)
         self.scrollAreaWidgetContents = QWidget()
         self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
@@ -252,14 +256,27 @@ class Ui_MainWindow(object):
         sizePolicy4.setHeightForWidth(self.widget_3.sizePolicy().hasHeightForWidth())
         self.widget_3.setSizePolicy(sizePolicy4)
         self.widget_3.setMinimumSize(QSize(250, 0))
-        self.widget_3.setStyleSheet(u"background-color: #ebecf0;\n"
-"border-radius: 10px;")
+        self.widget_3.setStyleSheet(u"")
         self.verticalLayout_3 = QVBoxLayout(self.widget_3)
         self.verticalLayout_3.setSpacing(0)
         self.verticalLayout_3.setObjectName(u"verticalLayout_3")
         self.verticalLayout_3.setContentsMargins(0, 0, 0, 0)
-        self.label_2 = QLabel(self.widget_3)
+        self.widget_11 = QWidget(self.widget_3)
+        self.widget_11.setObjectName(u"widget_11")
+        sizePolicy5 = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Minimum)
+        sizePolicy5.setHorizontalStretch(0)
+        sizePolicy5.setVerticalStretch(0)
+        sizePolicy5.setHeightForWidth(self.widget_11.sizePolicy().hasHeightForWidth())
+        self.widget_11.setSizePolicy(sizePolicy5)
+        self.widget_11.setStyleSheet(u"background-color: #ebecf0;\n"
+"border-radius: 10px;")
+        self.verticalLayout_11 = QVBoxLayout(self.widget_11)
+        self.verticalLayout_11.setObjectName(u"verticalLayout_11")
+        self.verticalLayout_11.setContentsMargins(0, 0, 0, 0)
+        self.label_2 = QLabel(self.widget_11)
         self.label_2.setObjectName(u"label_2")
+        sizePolicy2.setHeightForWidth(self.label_2.sizePolicy().hasHeightForWidth())
+        self.label_2.setSizePolicy(sizePolicy2)
         self.label_2.setMinimumSize(QSize(0, 30))
         font3 = QFont()
         font3.setFamilies([u"Torus Pro"])
@@ -272,13 +289,9 @@ class Ui_MainWindow(object):
 "padding: 5px 0px 0px 5px;")
         self.label_2.setMargin(0)
 
-        self.verticalLayout_3.addWidget(self.label_2)
+        self.verticalLayout_11.addWidget(self.label_2)
 
-        self.verticalSpacer_2 = QSpacerItem(20, 5, QSizePolicy.Minimum, QSizePolicy.Fixed)
-
-        self.verticalLayout_3.addItem(self.verticalSpacer_2)
-
-        self.listWidget_3 = QListWidget(self.widget_3)
+        self.listWidget_3 = QListWidget(self.widget_11)
         __qlistwidgetitem = QListWidgetItem(self.listWidget_3)
         __qlistwidgetitem.setFlags(Qt.ItemIsSelectable|Qt.ItemIsEditable|Qt.ItemIsDragEnabled|Qt.ItemIsUserCheckable|Qt.ItemIsEnabled);
         __qlistwidgetitem1 = QListWidgetItem(self.listWidget_3)
@@ -304,38 +317,36 @@ class Ui_MainWindow(object):
         __qlistwidgetitem11 = QListWidgetItem(self.listWidget_3)
         __qlistwidgetitem11.setFlags(Qt.ItemIsSelectable|Qt.ItemIsEditable|Qt.ItemIsDragEnabled|Qt.ItemIsUserCheckable|Qt.ItemIsEnabled);
         self.listWidget_3.setObjectName(u"listWidget_3")
-        sizePolicy5 = QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Expanding)
-        sizePolicy5.setHorizontalStretch(0)
-        sizePolicy5.setVerticalStretch(0)
-        sizePolicy5.setHeightForWidth(self.listWidget_3.sizePolicy().hasHeightForWidth())
-        self.listWidget_3.setSizePolicy(sizePolicy5)
+        sizePolicy4.setHeightForWidth(self.listWidget_3.sizePolicy().hasHeightForWidth())
+        self.listWidget_3.setSizePolicy(sizePolicy4)
         self.listWidget_3.setMaximumSize(QSize(250, 16777215))
         self.listWidget_3.setFont(font1)
         self.listWidget_3.setAcceptDrops(True)
-        self.listWidget_3.setStyleSheet(u"QListWidget::item {height: 40px; padding: 0px 0px 0px 8px}\n"
+        self.listWidget_3.setStyleSheet(u"QListWidget {background-color: #ebecf0; border-radius: 10px;}\n"
+"QListWidget::item {height: 40px; padding: 0px 8px 0px 8px}\n"
 "QListWidget::item {background-color: qlineargradient(spread:pad, x1:0, y1:0.5, x2:0.95, y2:0.5, stop:0 rgba(251, 217, 69, 255), stop:0.0338983 rgba(251, 217, 69, 255), stop:0.039548 rgba(255, 255, 255, 255), stop:1 rgba(255, 255, 255, 255)); color: #000000; border-radius: 5px}\n"
 "QListWidget::item:hover {background-color: qlineargradient(spread:pad, x1:0, y1:0.5, x2:0.95, y2:0.5, stop:0 rgba(251, 217, 69, 255), stop:0.0338983 rgba(251, 217, 69, 255), stop:0.039548 rgba(244, 245, 247, 255), stop:1 rgba(244, 245, 247, 255)); color: #000000}\n"
 "QListWidget::item:selected {background-color: qlineargradient(spread:pad, x1:0, y1:0.5, x2:0.95, y2:0.5, stop:0 rgba(251, 217, 69, 255), stop:0.0338983 rgba(251, 217, 69, 255), stop:0.039548 rgba(204, 204, 204, 255), stop:1 rgba(204, 204, 204, 255)); color: #000000}\n"
-"QScrollBar:vertical {width: 10px; margin: 0px 0px 0px 0px; background-color: #acb2bf}")
+"QScrollBar:vertical {width: 10px; margin: 0px 0px 0px 0px; background-color"
+                        ": #acb2bf}")
         self.listWidget_3.setFrameShape(QFrame.NoFrame)
+        self.listWidget_3.setSizeAdjustPolicy(QAbstractScrollArea.AdjustIgnored)
         self.listWidget_3.setAutoScroll(True)
         self.listWidget_3.setDragEnabled(True)
         self.listWidget_3.setDragDropMode(QAbstractItemView.DragDrop)
         self.listWidget_3.setDefaultDropAction(Qt.MoveAction)
         self.listWidget_3.setSelectionMode(QAbstractItemView.ExtendedSelection)
+        self.listWidget_3.setVerticalScrollMode(QAbstractItemView.ScrollPerPixel)
+        self.listWidget_3.setHorizontalScrollMode(QAbstractItemView.ScrollPerPixel)
+        self.listWidget_3.setProperty("isWrapping", False)
         self.listWidget_3.setSpacing(5)
         self.listWidget_3.setUniformItemSizes(True)
         self.listWidget_3.setWordWrap(True)
         self.listWidget_3.setSelectionRectVisible(True)
 
-        self.verticalLayout_3.addWidget(self.listWidget_3)
+        self.verticalLayout_11.addWidget(self.listWidget_3)
 
-        self.widget_8 = QWidget(self.widget_3)
-        self.widget_8.setObjectName(u"widget_8")
-        self.verticalLayout_6 = QVBoxLayout(self.widget_8)
-        self.verticalLayout_6.setObjectName(u"verticalLayout_6")
-        self.verticalLayout_6.setContentsMargins(6, 6, 6, 6)
-        self.pushButton_4 = QPushButton(self.widget_8)
+        self.pushButton_4 = QPushButton(self.widget_11)
         self.pushButton_4.setObjectName(u"pushButton_4")
         self.pushButton_4.setMinimumSize(QSize(0, 25))
         self.pushButton_4.setFont(font1)
@@ -343,10 +354,14 @@ class Ui_MainWindow(object):
         self.pushButton_4.setStyleSheet(u"QPushButton {background-color: #ebecf0; color: #6a758b; border-radius: 5px}\n"
 "QPushButton:hover {background-color: #dadbe2; color: #505b76}")
 
-        self.verticalLayout_6.addWidget(self.pushButton_4)
+        self.verticalLayout_11.addWidget(self.pushButton_4)
+
+        self.verticalSpacer_2 = QSpacerItem(20, 5, QSizePolicy.Minimum, QSizePolicy.Fixed)
+
+        self.verticalLayout_11.addItem(self.verticalSpacer_2)
 
 
-        self.verticalLayout_3.addWidget(self.widget_8)
+        self.verticalLayout_3.addWidget(self.widget_11)
 
 
         self.horizontalLayout_5.addWidget(self.widget_3)
@@ -356,14 +371,24 @@ class Ui_MainWindow(object):
         sizePolicy4.setHeightForWidth(self.widget_4.sizePolicy().hasHeightForWidth())
         self.widget_4.setSizePolicy(sizePolicy4)
         self.widget_4.setMinimumSize(QSize(250, 0))
-        self.widget_4.setStyleSheet(u"background-color: #ebecf0;\n"
-"border-radius: 10px;")
+        self.widget_4.setStyleSheet(u"")
         self.verticalLayout_5 = QVBoxLayout(self.widget_4)
         self.verticalLayout_5.setSpacing(0)
         self.verticalLayout_5.setObjectName(u"verticalLayout_5")
         self.verticalLayout_5.setContentsMargins(0, 0, 0, 0)
-        self.label_3 = QLabel(self.widget_4)
+        self.widget_12 = QWidget(self.widget_4)
+        self.widget_12.setObjectName(u"widget_12")
+        sizePolicy5.setHeightForWidth(self.widget_12.sizePolicy().hasHeightForWidth())
+        self.widget_12.setSizePolicy(sizePolicy5)
+        self.widget_12.setStyleSheet(u"background-color: #ebecf0;\n"
+"border-radius: 10px;")
+        self.verticalLayout_12 = QVBoxLayout(self.widget_12)
+        self.verticalLayout_12.setObjectName(u"verticalLayout_12")
+        self.verticalLayout_12.setContentsMargins(0, 0, 0, 0)
+        self.label_3 = QLabel(self.widget_12)
         self.label_3.setObjectName(u"label_3")
+        sizePolicy2.setHeightForWidth(self.label_3.sizePolicy().hasHeightForWidth())
+        self.label_3.setSizePolicy(sizePolicy2)
         self.label_3.setMinimumSize(QSize(0, 30))
         self.label_3.setFont(font3)
         self.label_3.setStyleSheet(u"color: #282c33;\n"
@@ -372,59 +397,46 @@ class Ui_MainWindow(object):
 "padding: 5px 0px 0px 5px;")
         self.label_3.setMargin(0)
 
-        self.verticalLayout_5.addWidget(self.label_3)
+        self.verticalLayout_12.addWidget(self.label_3)
 
-        self.verticalSpacer_3 = QSpacerItem(20, 5, QSizePolicy.Minimum, QSizePolicy.Fixed)
-
-        self.verticalLayout_5.addItem(self.verticalSpacer_3)
-
-        self.listWidget_4 = QListWidget(self.widget_4)
+        self.listWidget_4 = QListWidget(self.widget_12)
         __qlistwidgetitem12 = QListWidgetItem(self.listWidget_4)
         __qlistwidgetitem12.setFlags(Qt.ItemIsSelectable|Qt.ItemIsEditable|Qt.ItemIsDragEnabled|Qt.ItemIsUserCheckable|Qt.ItemIsEnabled);
         __qlistwidgetitem13 = QListWidgetItem(self.listWidget_4)
         __qlistwidgetitem13.setFlags(Qt.ItemIsSelectable|Qt.ItemIsEditable|Qt.ItemIsDragEnabled|Qt.ItemIsUserCheckable|Qt.ItemIsEnabled);
         __qlistwidgetitem14 = QListWidgetItem(self.listWidget_4)
         __qlistwidgetitem14.setFlags(Qt.ItemIsSelectable|Qt.ItemIsEditable|Qt.ItemIsDragEnabled|Qt.ItemIsUserCheckable|Qt.ItemIsEnabled);
-        __qlistwidgetitem15 = QListWidgetItem(self.listWidget_4)
-        __qlistwidgetitem15.setFlags(Qt.ItemIsSelectable|Qt.ItemIsEditable|Qt.ItemIsDragEnabled|Qt.ItemIsUserCheckable|Qt.ItemIsEnabled);
-        __qlistwidgetitem16 = QListWidgetItem(self.listWidget_4)
-        __qlistwidgetitem16.setFlags(Qt.ItemIsSelectable|Qt.ItemIsEditable|Qt.ItemIsDragEnabled|Qt.ItemIsUserCheckable|Qt.ItemIsEnabled);
-        __qlistwidgetitem17 = QListWidgetItem(self.listWidget_4)
-        __qlistwidgetitem17.setFlags(Qt.ItemIsSelectable|Qt.ItemIsEditable|Qt.ItemIsDragEnabled|Qt.ItemIsUserCheckable|Qt.ItemIsEnabled);
-        __qlistwidgetitem18 = QListWidgetItem(self.listWidget_4)
-        __qlistwidgetitem18.setFlags(Qt.ItemIsSelectable|Qt.ItemIsEditable|Qt.ItemIsDragEnabled|Qt.ItemIsUserCheckable|Qt.ItemIsEnabled);
-        __qlistwidgetitem19 = QListWidgetItem(self.listWidget_4)
-        __qlistwidgetitem19.setFlags(Qt.ItemIsSelectable|Qt.ItemIsEditable|Qt.ItemIsDragEnabled|Qt.ItemIsUserCheckable|Qt.ItemIsEnabled);
         self.listWidget_4.setObjectName(u"listWidget_4")
-        sizePolicy5.setHeightForWidth(self.listWidget_4.sizePolicy().hasHeightForWidth())
-        self.listWidget_4.setSizePolicy(sizePolicy5)
+        sizePolicy4.setHeightForWidth(self.listWidget_4.sizePolicy().hasHeightForWidth())
+        self.listWidget_4.setSizePolicy(sizePolicy4)
         self.listWidget_4.setMaximumSize(QSize(250, 16777215))
         self.listWidget_4.setFont(font1)
         self.listWidget_4.setAcceptDrops(True)
-        self.listWidget_4.setStyleSheet(u"QListWidget::item {height: 40px; padding: 0px 0px 0px 8px}\n"
+        self.listWidget_4.setStyleSheet(u"QListWidget {background-color: #ebecf0; border-radius: 10px;}\n"
+"QListWidget::item {height: 40px; padding: 0px 8px 0px 8px}\n"
 "QListWidget::item {background-color: qlineargradient(spread:pad, x1:0, y1:0.5, x2:0.95, y2:0.5, stop:0 rgba(251, 217, 69, 255), stop:0.0338983 rgba(251, 217, 69, 255), stop:0.039548 rgba(255, 255, 255, 255), stop:1 rgba(255, 255, 255, 255)); color: #000000; border-radius: 5px}\n"
 "QListWidget::item:hover {background-color: qlineargradient(spread:pad, x1:0, y1:0.5, x2:0.95, y2:0.5, stop:0 rgba(251, 217, 69, 255), stop:0.0338983 rgba(251, 217, 69, 255), stop:0.039548 rgba(244, 245, 247, 255), stop:1 rgba(244, 245, 247, 255)); color: #000000}\n"
 "QListWidget::item:selected {background-color: qlineargradient(spread:pad, x1:0, y1:0.5, x2:0.95, y2:0.5, stop:0 rgba(251, 217, 69, 255), stop:0.0338983 rgba(251, 217, 69, 255), stop:0.039548 rgba(204, 204, 204, 255), stop:1 rgba(204, 204, 204, 255)); color: #000000}\n"
-"QScrollBar:vertical {width: 10px; margin: 0px 0px 0px 0px; background-color: #acb2bf}")
+"QScrollBar:vertical {width: 10px; margin: 0px 0px 0px 0px; background-color"
+                        ": #acb2bf}")
         self.listWidget_4.setFrameShape(QFrame.NoFrame)
+        self.listWidget_4.setSizeAdjustPolicy(QAbstractScrollArea.AdjustIgnored)
         self.listWidget_4.setAutoScroll(True)
         self.listWidget_4.setDragEnabled(True)
         self.listWidget_4.setDragDropMode(QAbstractItemView.DragDrop)
         self.listWidget_4.setDefaultDropAction(Qt.MoveAction)
         self.listWidget_4.setSelectionMode(QAbstractItemView.ExtendedSelection)
+        self.listWidget_4.setVerticalScrollMode(QAbstractItemView.ScrollPerPixel)
+        self.listWidget_4.setHorizontalScrollMode(QAbstractItemView.ScrollPerPixel)
+        self.listWidget_4.setProperty("isWrapping", False)
         self.listWidget_4.setSpacing(5)
         self.listWidget_4.setUniformItemSizes(True)
         self.listWidget_4.setWordWrap(True)
         self.listWidget_4.setSelectionRectVisible(True)
 
-        self.verticalLayout_5.addWidget(self.listWidget_4)
+        self.verticalLayout_12.addWidget(self.listWidget_4)
 
-        self.widget_9 = QWidget(self.widget_4)
-        self.widget_9.setObjectName(u"widget_9")
-        self.verticalLayout_7 = QVBoxLayout(self.widget_9)
-        self.verticalLayout_7.setObjectName(u"verticalLayout_7")
-        self.verticalLayout_7.setContentsMargins(6, 6, 6, 6)
-        self.pushButton_5 = QPushButton(self.widget_9)
+        self.pushButton_5 = QPushButton(self.widget_12)
         self.pushButton_5.setObjectName(u"pushButton_5")
         self.pushButton_5.setMinimumSize(QSize(0, 25))
         self.pushButton_5.setFont(font1)
@@ -432,10 +444,14 @@ class Ui_MainWindow(object):
         self.pushButton_5.setStyleSheet(u"QPushButton {background-color: #ebecf0; color: #6a758b; border-radius: 5px}\n"
 "QPushButton:hover {background-color: #dadbe2; color: #505b76}")
 
-        self.verticalLayout_7.addWidget(self.pushButton_5)
+        self.verticalLayout_12.addWidget(self.pushButton_5)
+
+        self.verticalSpacer_3 = QSpacerItem(20, 5, QSizePolicy.Minimum, QSizePolicy.Fixed)
+
+        self.verticalLayout_12.addItem(self.verticalSpacer_3)
 
 
-        self.verticalLayout_5.addWidget(self.widget_9)
+        self.verticalLayout_5.addWidget(self.widget_12)
 
 
         self.horizontalLayout_5.addWidget(self.widget_4)
@@ -445,14 +461,24 @@ class Ui_MainWindow(object):
         sizePolicy4.setHeightForWidth(self.widget_5.sizePolicy().hasHeightForWidth())
         self.widget_5.setSizePolicy(sizePolicy4)
         self.widget_5.setMinimumSize(QSize(250, 0))
-        self.widget_5.setStyleSheet(u"background-color: #ebecf0;\n"
-"border-radius: 10px;")
+        self.widget_5.setStyleSheet(u"")
         self.verticalLayout_8 = QVBoxLayout(self.widget_5)
         self.verticalLayout_8.setSpacing(0)
         self.verticalLayout_8.setObjectName(u"verticalLayout_8")
         self.verticalLayout_8.setContentsMargins(0, 0, 0, 0)
-        self.label_4 = QLabel(self.widget_5)
+        self.widget_13 = QWidget(self.widget_5)
+        self.widget_13.setObjectName(u"widget_13")
+        sizePolicy5.setHeightForWidth(self.widget_13.sizePolicy().hasHeightForWidth())
+        self.widget_13.setSizePolicy(sizePolicy5)
+        self.widget_13.setStyleSheet(u"background-color: #ebecf0;\n"
+"border-radius: 10px;")
+        self.verticalLayout_13 = QVBoxLayout(self.widget_13)
+        self.verticalLayout_13.setObjectName(u"verticalLayout_13")
+        self.verticalLayout_13.setContentsMargins(0, 0, 0, 0)
+        self.label_4 = QLabel(self.widget_13)
         self.label_4.setObjectName(u"label_4")
+        sizePolicy2.setHeightForWidth(self.label_4.sizePolicy().hasHeightForWidth())
+        self.label_4.setSizePolicy(sizePolicy2)
         self.label_4.setMinimumSize(QSize(0, 30))
         self.label_4.setFont(font3)
         self.label_4.setStyleSheet(u"color: #282c33;\n"
@@ -461,67 +487,40 @@ class Ui_MainWindow(object):
 "padding: 5px 0px 0px 5px;")
         self.label_4.setMargin(0)
 
-        self.verticalLayout_8.addWidget(self.label_4)
+        self.verticalLayout_13.addWidget(self.label_4)
 
-        self.verticalSpacer_4 = QSpacerItem(20, 5, QSizePolicy.Minimum, QSizePolicy.Fixed)
-
-        self.verticalLayout_8.addItem(self.verticalSpacer_4)
-
-        self.listWidget_5 = QListWidget(self.widget_5)
-        __qlistwidgetitem20 = QListWidgetItem(self.listWidget_5)
-        __qlistwidgetitem20.setFlags(Qt.ItemIsSelectable|Qt.ItemIsEditable|Qt.ItemIsDragEnabled|Qt.ItemIsUserCheckable|Qt.ItemIsEnabled);
-        __qlistwidgetitem21 = QListWidgetItem(self.listWidget_5)
-        __qlistwidgetitem21.setFlags(Qt.ItemIsSelectable|Qt.ItemIsEditable|Qt.ItemIsDragEnabled|Qt.ItemIsUserCheckable|Qt.ItemIsEnabled);
-        __qlistwidgetitem22 = QListWidgetItem(self.listWidget_5)
-        __qlistwidgetitem22.setFlags(Qt.ItemIsSelectable|Qt.ItemIsEditable|Qt.ItemIsDragEnabled|Qt.ItemIsUserCheckable|Qt.ItemIsEnabled);
-        __qlistwidgetitem23 = QListWidgetItem(self.listWidget_5)
-        __qlistwidgetitem23.setFlags(Qt.ItemIsSelectable|Qt.ItemIsEditable|Qt.ItemIsDragEnabled|Qt.ItemIsUserCheckable|Qt.ItemIsEnabled);
-        __qlistwidgetitem24 = QListWidgetItem(self.listWidget_5)
-        __qlistwidgetitem24.setFlags(Qt.ItemIsSelectable|Qt.ItemIsEditable|Qt.ItemIsDragEnabled|Qt.ItemIsUserCheckable|Qt.ItemIsEnabled);
-        __qlistwidgetitem25 = QListWidgetItem(self.listWidget_5)
-        __qlistwidgetitem25.setFlags(Qt.ItemIsSelectable|Qt.ItemIsEditable|Qt.ItemIsDragEnabled|Qt.ItemIsUserCheckable|Qt.ItemIsEnabled);
-        __qlistwidgetitem26 = QListWidgetItem(self.listWidget_5)
-        __qlistwidgetitem26.setFlags(Qt.ItemIsSelectable|Qt.ItemIsEditable|Qt.ItemIsDragEnabled|Qt.ItemIsUserCheckable|Qt.ItemIsEnabled);
-        __qlistwidgetitem27 = QListWidgetItem(self.listWidget_5)
-        __qlistwidgetitem27.setFlags(Qt.ItemIsSelectable|Qt.ItemIsEditable|Qt.ItemIsDragEnabled|Qt.ItemIsUserCheckable|Qt.ItemIsEnabled);
-        __qlistwidgetitem28 = QListWidgetItem(self.listWidget_5)
-        __qlistwidgetitem28.setFlags(Qt.ItemIsSelectable|Qt.ItemIsEditable|Qt.ItemIsDragEnabled|Qt.ItemIsUserCheckable|Qt.ItemIsEnabled);
-        __qlistwidgetitem29 = QListWidgetItem(self.listWidget_5)
-        __qlistwidgetitem29.setFlags(Qt.ItemIsSelectable|Qt.ItemIsEditable|Qt.ItemIsDragEnabled|Qt.ItemIsUserCheckable|Qt.ItemIsEnabled);
-        __qlistwidgetitem30 = QListWidgetItem(self.listWidget_5)
-        __qlistwidgetitem30.setFlags(Qt.ItemIsSelectable|Qt.ItemIsEditable|Qt.ItemIsDragEnabled|Qt.ItemIsUserCheckable|Qt.ItemIsEnabled);
-        __qlistwidgetitem31 = QListWidgetItem(self.listWidget_5)
-        __qlistwidgetitem31.setFlags(Qt.ItemIsSelectable|Qt.ItemIsEditable|Qt.ItemIsDragEnabled|Qt.ItemIsUserCheckable|Qt.ItemIsEnabled);
+        self.listWidget_5 = QListWidget(self.widget_13)
         self.listWidget_5.setObjectName(u"listWidget_5")
-        sizePolicy5.setHeightForWidth(self.listWidget_5.sizePolicy().hasHeightForWidth())
-        self.listWidget_5.setSizePolicy(sizePolicy5)
+        sizePolicy4.setHeightForWidth(self.listWidget_5.sizePolicy().hasHeightForWidth())
+        self.listWidget_5.setSizePolicy(sizePolicy4)
         self.listWidget_5.setMaximumSize(QSize(250, 16777215))
         self.listWidget_5.setFont(font1)
         self.listWidget_5.setAcceptDrops(True)
-        self.listWidget_5.setStyleSheet(u"QListWidget::item {height: 40px; padding: 0px 0px 0px 8px}\n"
+        self.listWidget_5.setStyleSheet(u"QListWidget {background-color: #ebecf0; border-radius: 10px;}\n"
+"QListWidget::item {height: 40px; padding: 0px 8px 0px 8px}\n"
 "QListWidget::item {background-color: qlineargradient(spread:pad, x1:0, y1:0.5, x2:0.95, y2:0.5, stop:0 rgba(251, 217, 69, 255), stop:0.0338983 rgba(251, 217, 69, 255), stop:0.039548 rgba(255, 255, 255, 255), stop:1 rgba(255, 255, 255, 255)); color: #000000; border-radius: 5px}\n"
 "QListWidget::item:hover {background-color: qlineargradient(spread:pad, x1:0, y1:0.5, x2:0.95, y2:0.5, stop:0 rgba(251, 217, 69, 255), stop:0.0338983 rgba(251, 217, 69, 255), stop:0.039548 rgba(244, 245, 247, 255), stop:1 rgba(244, 245, 247, 255)); color: #000000}\n"
 "QListWidget::item:selected {background-color: qlineargradient(spread:pad, x1:0, y1:0.5, x2:0.95, y2:0.5, stop:0 rgba(251, 217, 69, 255), stop:0.0338983 rgba(251, 217, 69, 255), stop:0.039548 rgba(204, 204, 204, 255), stop:1 rgba(204, 204, 204, 255)); color: #000000}\n"
-"QScrollBar:vertical {width: 10px; margin: 0px 0px 0px 0px; background-color: #acb2bf}")
+"QScrollBar:vertical {width: 10px; margin: 0px 0px 0px 0px; background-color"
+                        ": #acb2bf}")
         self.listWidget_5.setFrameShape(QFrame.NoFrame)
+        self.listWidget_5.setSizeAdjustPolicy(QAbstractScrollArea.AdjustIgnored)
         self.listWidget_5.setAutoScroll(True)
         self.listWidget_5.setDragEnabled(True)
         self.listWidget_5.setDragDropMode(QAbstractItemView.DragDrop)
         self.listWidget_5.setDefaultDropAction(Qt.MoveAction)
         self.listWidget_5.setSelectionMode(QAbstractItemView.ExtendedSelection)
+        self.listWidget_5.setVerticalScrollMode(QAbstractItemView.ScrollPerPixel)
+        self.listWidget_5.setHorizontalScrollMode(QAbstractItemView.ScrollPerPixel)
+        self.listWidget_5.setProperty("isWrapping", False)
         self.listWidget_5.setSpacing(5)
         self.listWidget_5.setUniformItemSizes(True)
         self.listWidget_5.setWordWrap(True)
         self.listWidget_5.setSelectionRectVisible(True)
 
-        self.verticalLayout_8.addWidget(self.listWidget_5)
+        self.verticalLayout_13.addWidget(self.listWidget_5)
 
-        self.widget_10 = QWidget(self.widget_5)
-        self.widget_10.setObjectName(u"widget_10")
-        self.verticalLayout_10 = QVBoxLayout(self.widget_10)
-        self.verticalLayout_10.setObjectName(u"verticalLayout_10")
-        self.verticalLayout_10.setContentsMargins(6, 6, 6, 6)
-        self.pushButton_6 = QPushButton(self.widget_10)
+        self.pushButton_6 = QPushButton(self.widget_13)
         self.pushButton_6.setObjectName(u"pushButton_6")
         self.pushButton_6.setMinimumSize(QSize(0, 25))
         self.pushButton_6.setFont(font1)
@@ -529,10 +528,14 @@ class Ui_MainWindow(object):
         self.pushButton_6.setStyleSheet(u"QPushButton {background-color: #ebecf0; color: #6a758b; border-radius: 5px}\n"
 "QPushButton:hover {background-color: #dadbe2; color: #505b76}")
 
-        self.verticalLayout_10.addWidget(self.pushButton_6)
+        self.verticalLayout_13.addWidget(self.pushButton_6)
+
+        self.verticalSpacer_4 = QSpacerItem(20, 5, QSizePolicy.Minimum, QSizePolicy.Fixed)
+
+        self.verticalLayout_13.addItem(self.verticalSpacer_4)
 
 
-        self.verticalLayout_8.addWidget(self.widget_10)
+        self.verticalLayout_8.addWidget(self.widget_13)
 
 
         self.horizontalLayout_5.addWidget(self.widget_5)
@@ -585,8 +588,7 @@ class Ui_MainWindow(object):
         self.horizontalLayout.addWidget(self.widget)
 
         MainWindow.setCentralWidget(self.centralwidget)
-        QWidget.setTabOrder(self.pushButton, self.listWidget_3)
-        QWidget.setTabOrder(self.listWidget_3, self.scrollArea)
+        QWidget.setTabOrder(self.pushButton, self.scrollArea)
         QWidget.setTabOrder(self.scrollArea, self.pushButton_2)
         QWidget.setTabOrder(self.pushButton_2, self.scrollArea_2)
         QWidget.setTabOrder(self.scrollArea_2, self.pushButton_3)
@@ -654,54 +656,15 @@ class Ui_MainWindow(object):
         __sortingEnabled1 = self.listWidget_4.isSortingEnabled()
         self.listWidget_4.setSortingEnabled(False)
         ___qlistwidgetitem12 = self.listWidget_4.item(0)
-        ___qlistwidgetitem12.setText(QCoreApplication.translate("MainWindow", u"Test1", None));
+        ___qlistwidgetitem12.setText(QCoreApplication.translate("MainWindow", u"Test11", None));
         ___qlistwidgetitem13 = self.listWidget_4.item(1)
-        ___qlistwidgetitem13.setText(QCoreApplication.translate("MainWindow", u"Test2", None));
+        ___qlistwidgetitem13.setText(QCoreApplication.translate("MainWindow", u"Test22", None));
         ___qlistwidgetitem14 = self.listWidget_4.item(2)
-        ___qlistwidgetitem14.setText(QCoreApplication.translate("MainWindow", u"Test3", None));
-        ___qlistwidgetitem15 = self.listWidget_4.item(3)
-        ___qlistwidgetitem15.setText(QCoreApplication.translate("MainWindow", u"New Item", None));
-        ___qlistwidgetitem16 = self.listWidget_4.item(4)
-        ___qlistwidgetitem16.setText(QCoreApplication.translate("MainWindow", u"New Item", None));
-        ___qlistwidgetitem17 = self.listWidget_4.item(5)
-        ___qlistwidgetitem17.setText(QCoreApplication.translate("MainWindow", u"New Item", None));
-        ___qlistwidgetitem18 = self.listWidget_4.item(6)
-        ___qlistwidgetitem18.setText(QCoreApplication.translate("MainWindow", u"New Item", None));
-        ___qlistwidgetitem19 = self.listWidget_4.item(7)
-        ___qlistwidgetitem19.setText(QCoreApplication.translate("MainWindow", u"New Item", None));
+        ___qlistwidgetitem14.setText(QCoreApplication.translate("MainWindow", u"Test33", None));
         self.listWidget_4.setSortingEnabled(__sortingEnabled1)
 
         self.pushButton_5.setText(QCoreApplication.translate("MainWindow", u"+ Add a card", None))
         self.label_4.setText(QCoreApplication.translate("MainWindow", u"Done", None))
-
-        __sortingEnabled2 = self.listWidget_5.isSortingEnabled()
-        self.listWidget_5.setSortingEnabled(False)
-        ___qlistwidgetitem20 = self.listWidget_5.item(0)
-        ___qlistwidgetitem20.setText(QCoreApplication.translate("MainWindow", u"Test1", None));
-        ___qlistwidgetitem21 = self.listWidget_5.item(1)
-        ___qlistwidgetitem21.setText(QCoreApplication.translate("MainWindow", u"Test2", None));
-        ___qlistwidgetitem22 = self.listWidget_5.item(2)
-        ___qlistwidgetitem22.setText(QCoreApplication.translate("MainWindow", u"Test3", None));
-        ___qlistwidgetitem23 = self.listWidget_5.item(3)
-        ___qlistwidgetitem23.setText(QCoreApplication.translate("MainWindow", u"New Item", None));
-        ___qlistwidgetitem24 = self.listWidget_5.item(4)
-        ___qlistwidgetitem24.setText(QCoreApplication.translate("MainWindow", u"New Item", None));
-        ___qlistwidgetitem25 = self.listWidget_5.item(5)
-        ___qlistwidgetitem25.setText(QCoreApplication.translate("MainWindow", u"New Item", None));
-        ___qlistwidgetitem26 = self.listWidget_5.item(6)
-        ___qlistwidgetitem26.setText(QCoreApplication.translate("MainWindow", u"New Item", None));
-        ___qlistwidgetitem27 = self.listWidget_5.item(7)
-        ___qlistwidgetitem27.setText(QCoreApplication.translate("MainWindow", u"New Item", None));
-        ___qlistwidgetitem28 = self.listWidget_5.item(8)
-        ___qlistwidgetitem28.setText(QCoreApplication.translate("MainWindow", u"New Item", None));
-        ___qlistwidgetitem29 = self.listWidget_5.item(9)
-        ___qlistwidgetitem29.setText(QCoreApplication.translate("MainWindow", u"New Item", None));
-        ___qlistwidgetitem30 = self.listWidget_5.item(10)
-        ___qlistwidgetitem30.setText(QCoreApplication.translate("MainWindow", u"New Item", None));
-        ___qlistwidgetitem31 = self.listWidget_5.item(11)
-        ___qlistwidgetitem31.setText(QCoreApplication.translate("MainWindow", u"New Item", None));
-        self.listWidget_5.setSortingEnabled(__sortingEnabled2)
-
         self.pushButton_6.setText(QCoreApplication.translate("MainWindow", u"+ Add a card", None))
         self.pushButton.setText(QCoreApplication.translate("MainWindow", u"+ Add a list", None))
     # retranslateUi

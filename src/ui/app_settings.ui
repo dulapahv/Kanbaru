@@ -35,6 +35,12 @@
     </property>
     <item>
      <widget class="QLabel" name="label_3">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
       <property name="minimumSize">
        <size>
         <width>0</width>
@@ -141,7 +147,7 @@ border-radius: 5px;</string>
                  </font>
                 </property>
                 <property name="styleSheet">
-                 <string notr="true">QListWidget::item {height: 40px; padding: 0px 0px 0px 8px}
+                 <string notr="true">QListWidget::item {height: 40px; padding: 0px 8px 0px 8px}
 QListWidget::item {background-color: #ffffff; color: #000000; border-radius: 5px}
 QListWidget::item:hover {background-color: #f4f5f7; color: #000000}
 QListWidget::item:selected {background-color: #cccccc; color: #000000}
@@ -161,6 +167,12 @@ QScrollBar:vertical {width: 10px; margin: 0px 0px 0px 0px; background-color: #ac
                 </property>
                 <property name="selectionMode">
                  <enum>QAbstractItemView::ExtendedSelection</enum>
+                </property>
+                <property name="verticalScrollMode">
+                 <enum>QAbstractItemView::ScrollPerPixel</enum>
+                </property>
+                <property name="horizontalScrollMode">
+                 <enum>QAbstractItemView::ScrollPerPixel</enum>
                 </property>
                 <property name="isWrapping" stdset="0">
                  <bool>false</bool>
@@ -270,7 +282,7 @@ QPushButton:hover {background-color: #9e2a2a;}</string>
               <item>
                <widget class="Line" name="line_2">
                 <property name="styleSheet">
-                 <string notr="true">background-color: #505b76;</string>
+                 <string notr="true">background-color: #9096a6;</string>
                 </property>
                 <property name="frameShadow">
                  <enum>QFrame::Plain</enum>
@@ -334,38 +346,6 @@ QPushButton:hover {background-color: #7e828c;}</string>
                   </property>
                   <property name="text">
                    <string>Logout</string>
-                  </property>
-                 </widget>
-                </item>
-                <item>
-                 <widget class="QPushButton" name="pushButton_8">
-                  <property name="sizePolicy">
-                   <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-                    <horstretch>0</horstretch>
-                    <verstretch>0</verstretch>
-                   </sizepolicy>
-                  </property>
-                  <property name="minimumSize">
-                   <size>
-                    <width>180</width>
-                    <height>30</height>
-                   </size>
-                  </property>
-                  <property name="font">
-                   <font>
-                    <family>Torus Pro</family>
-                    <pointsize>12</pointsize>
-                   </font>
-                  </property>
-                  <property name="cursor">
-                   <cursorShape>PointingHandCursor</cursorShape>
-                  </property>
-                  <property name="styleSheet">
-                   <string notr="true">QPushButton {background-color: #acb2bf; color: #ffffff; border-radius: 5px}
-QPushButton:hover {background-color: #7e828c;}</string>
-                  </property>
-                  <property name="text">
-                   <string>Change Username</string>
                   </property>
                  </widget>
                 </item>
@@ -440,7 +420,7 @@ QPushButton:hover {background-color: #7e828c;}</string>
                  <cursorShape>PointingHandCursor</cursorShape>
                 </property>
                 <property name="styleSheet">
-                 <string notr="true">QPushButton {border-color: #d63a3e; border-width: 1.5px; border-style: solid; color: #000000; border-radius: 5px}
+                 <string notr="true">QPushButton {border-color: #d63a3e; border-width: 1.5px; border-style: solid; color: #282c33; border-radius: 5px}
 QPushButton:hover {background-color: #d63a3e; color: #ffffff;}</string>
                 </property>
                 <property name="text">
@@ -451,7 +431,7 @@ QPushButton:hover {background-color: #d63a3e; color: #ffffff;}</string>
               <item>
                <widget class="Line" name="line">
                 <property name="styleSheet">
-                 <string notr="true">background-color: #505b76;</string>
+                 <string notr="true">background-color: #9096a6;</string>
                 </property>
                 <property name="frameShadow">
                  <enum>QFrame::Plain</enum>

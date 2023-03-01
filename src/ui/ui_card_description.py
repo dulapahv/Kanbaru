@@ -15,10 +15,10 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QFont, QFontDatabase, QGradient, QIcon,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
-from PySide6.QtWidgets import (QApplication, QCalendarWidget, QHBoxLayout, QLabel,
-    QLineEdit, QMainWindow, QPushButton, QRadioButton,
-    QSizePolicy, QSpacerItem, QTextEdit, QTimeEdit,
-    QVBoxLayout, QWidget)
+from PySide6.QtWidgets import (QApplication, QCalendarWidget, QFrame, QHBoxLayout,
+    QLabel, QLineEdit, QMainWindow, QPushButton,
+    QRadioButton, QSizePolicy, QSpacerItem, QTextEdit,
+    QTimeEdit, QVBoxLayout, QWidget)
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -34,6 +34,11 @@ class Ui_MainWindow(object):
         self.verticalLayout_3.setContentsMargins(0, 0, 0, 0)
         self.label_3 = QLabel(self.centralwidget)
         self.label_3.setObjectName(u"label_3")
+        sizePolicy = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.label_3.sizePolicy().hasHeightForWidth())
+        self.label_3.setSizePolicy(sizePolicy)
         self.label_3.setMinimumSize(QSize(0, 70))
         font = QFont()
         font.setFamilies([u"Torus Pro"])
@@ -77,7 +82,7 @@ class Ui_MainWindow(object):
         font2.setFamilies([u"Torus Pro"])
         font2.setPointSize(12)
         self.lineEdit.setFont(font2)
-        self.lineEdit.setStyleSheet(u"QLineEdit {background-color: #ffffff; color: #000000; border-radius: 5px}")
+        self.lineEdit.setStyleSheet(u"QLineEdit {background-color: #ffffff; color: #000000; border-radius: 5px; padding: 0px 8px 0px 8px}")
 
         self.verticalLayout.addWidget(self.lineEdit)
 
@@ -246,8 +251,11 @@ class Ui_MainWindow(object):
         font4.setPointSize(12)
         font4.setBold(False)
         self.textEdit.setFont(font4)
-        self.textEdit.setStyleSheet(u"QTextEdit {background-color: #ffffff; color: #282c33; border-radius: 5px}\n"
+        self.textEdit.setStyleSheet(u"QTextEdit {background-color: #ffffff; color: #282c33; border-radius: 5px; padding: 4px 8px 4px 8px}\n"
 "QScrollBar:vertical {width: 10px; margin: 0px 0px 0px 0px; background-color: #acb2bf}")
+        self.textEdit.setFrameShape(QFrame.NoFrame)
+        self.textEdit.setAutoFormatting(QTextEdit.AutoAll)
+        self.textEdit.setTabStopDistance(20.000000000000000)
 
         self.verticalLayout.addWidget(self.textEdit)
 
@@ -255,11 +263,11 @@ class Ui_MainWindow(object):
         self.horizontalLayout.setObjectName(u"horizontalLayout")
         self.pushButton_4 = QPushButton(self.widget1)
         self.pushButton_4.setObjectName(u"pushButton_4")
-        sizePolicy = QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.pushButton_4.sizePolicy().hasHeightForWidth())
-        self.pushButton_4.setSizePolicy(sizePolicy)
+        sizePolicy1 = QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed)
+        sizePolicy1.setHorizontalStretch(0)
+        sizePolicy1.setVerticalStretch(0)
+        sizePolicy1.setHeightForWidth(self.pushButton_4.sizePolicy().hasHeightForWidth())
+        self.pushButton_4.setSizePolicy(sizePolicy1)
         self.pushButton_4.setMinimumSize(QSize(140, 30))
         self.pushButton_4.setFont(font2)
         self.pushButton_4.setCursor(QCursor(Qt.PointingHandCursor))
@@ -274,8 +282,8 @@ class Ui_MainWindow(object):
 
         self.pushButton_2 = QPushButton(self.widget1)
         self.pushButton_2.setObjectName(u"pushButton_2")
-        sizePolicy.setHeightForWidth(self.pushButton_2.sizePolicy().hasHeightForWidth())
-        self.pushButton_2.setSizePolicy(sizePolicy)
+        sizePolicy1.setHeightForWidth(self.pushButton_2.sizePolicy().hasHeightForWidth())
+        self.pushButton_2.setSizePolicy(sizePolicy1)
         self.pushButton_2.setMinimumSize(QSize(100, 30))
         self.pushButton_2.setFont(font2)
         self.pushButton_2.setCursor(QCursor(Qt.PointingHandCursor))
@@ -286,8 +294,8 @@ class Ui_MainWindow(object):
 
         self.pushButton_3 = QPushButton(self.widget1)
         self.pushButton_3.setObjectName(u"pushButton_3")
-        sizePolicy.setHeightForWidth(self.pushButton_3.sizePolicy().hasHeightForWidth())
-        self.pushButton_3.setSizePolicy(sizePolicy)
+        sizePolicy1.setHeightForWidth(self.pushButton_3.sizePolicy().hasHeightForWidth())
+        self.pushButton_3.setSizePolicy(sizePolicy1)
         self.pushButton_3.setMinimumSize(QSize(100, 30))
         self.pushButton_3.setFont(font2)
         self.pushButton_3.setCursor(QCursor(Qt.PointingHandCursor))
