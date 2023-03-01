@@ -49,7 +49,8 @@
       </property>
       <property name="styleSheet">
        <string notr="true">background-color: qlineargradient(spread:pad, x1:0.5, y1:0.5, x2:0.95, y2:0.5, stop:0 rgba(107, 173, 238, 255), stop:1 rgba(69, 76, 90, 255));
-color: #ffffff;</string>
+color: #ffffff;
+padding: 0px 0px 0px 10px;</string>
       </property>
       <property name="text">
        <string>App Settings</string>
@@ -346,7 +347,7 @@ QPushButton:hover {background-color: #7e828c;}</string>
                   </property>
                   <property name="minimumSize">
                    <size>
-                    <width>290</width>
+                    <width>180</width>
                     <height>30</height>
                    </size>
                   </property>
@@ -364,7 +365,39 @@ QPushButton:hover {background-color: #7e828c;}</string>
 QPushButton:hover {background-color: #7e828c;}</string>
                   </property>
                   <property name="text">
-                   <string>Change Username/Password</string>
+                   <string>Change Username</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QPushButton" name="pushButton_9">
+                  <property name="sizePolicy">
+                   <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                    <horstretch>0</horstretch>
+                    <verstretch>0</verstretch>
+                   </sizepolicy>
+                  </property>
+                  <property name="minimumSize">
+                   <size>
+                    <width>180</width>
+                    <height>30</height>
+                   </size>
+                  </property>
+                  <property name="font">
+                   <font>
+                    <family>Torus Pro</family>
+                    <pointsize>12</pointsize>
+                   </font>
+                  </property>
+                  <property name="cursor">
+                   <cursorShape>PointingHandCursor</cursorShape>
+                  </property>
+                  <property name="styleSheet">
+                   <string notr="true">QPushButton {background-color: #acb2bf; color: #ffffff; border-radius: 5px}
+QPushButton:hover {background-color: #7e828c;}</string>
+                  </property>
+                  <property name="text">
+                   <string>Change Password</string>
                   </property>
                  </widget>
                 </item>

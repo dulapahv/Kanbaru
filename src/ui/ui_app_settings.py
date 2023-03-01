@@ -40,7 +40,8 @@ class Ui_MainWindow(object):
         font.setPointSize(28)
         self.label_3.setFont(font)
         self.label_3.setStyleSheet(u"background-color: qlineargradient(spread:pad, x1:0.5, y1:0.5, x2:0.95, y2:0.5, stop:0 rgba(107, 173, 238, 255), stop:1 rgba(69, 76, 90, 255));\n"
-"color: #ffffff;")
+"color: #ffffff;\n"
+"padding: 0px 0px 0px 10px;")
         self.label_3.setMargin(10)
 
         self.verticalLayout_3.addWidget(self.label_3)
@@ -174,13 +175,25 @@ class Ui_MainWindow(object):
         self.pushButton_8.setObjectName(u"pushButton_8")
         sizePolicy.setHeightForWidth(self.pushButton_8.sizePolicy().hasHeightForWidth())
         self.pushButton_8.setSizePolicy(sizePolicy)
-        self.pushButton_8.setMinimumSize(QSize(290, 30))
+        self.pushButton_8.setMinimumSize(QSize(180, 30))
         self.pushButton_8.setFont(font4)
         self.pushButton_8.setCursor(QCursor(Qt.PointingHandCursor))
         self.pushButton_8.setStyleSheet(u"QPushButton {background-color: #acb2bf; color: #ffffff; border-radius: 5px}\n"
 "QPushButton:hover {background-color: #7e828c;}")
 
         self.horizontalLayout_2.addWidget(self.pushButton_8)
+
+        self.pushButton_9 = QPushButton(self.widget1)
+        self.pushButton_9.setObjectName(u"pushButton_9")
+        sizePolicy.setHeightForWidth(self.pushButton_9.sizePolicy().hasHeightForWidth())
+        self.pushButton_9.setSizePolicy(sizePolicy)
+        self.pushButton_9.setMinimumSize(QSize(180, 30))
+        self.pushButton_9.setFont(font4)
+        self.pushButton_9.setCursor(QCursor(Qt.PointingHandCursor))
+        self.pushButton_9.setStyleSheet(u"QPushButton {background-color: #acb2bf; color: #ffffff; border-radius: 5px}\n"
+"QPushButton:hover {background-color: #7e828c;}")
+
+        self.horizontalLayout_2.addWidget(self.pushButton_9)
 
         self.horizontalSpacer_2 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
 
@@ -292,7 +305,8 @@ class Ui_MainWindow(object):
         self.pushButton_4.setText(QCoreApplication.translate("MainWindow", u"Delete Board", None))
         self.label_9.setText(QCoreApplication.translate("MainWindow", u"Manage Account", None))
         self.pushButton_6.setText(QCoreApplication.translate("MainWindow", u"Logout", None))
-        self.pushButton_8.setText(QCoreApplication.translate("MainWindow", u"Change Username/Password", None))
+        self.pushButton_8.setText(QCoreApplication.translate("MainWindow", u"Change Username", None))
+        self.pushButton_9.setText(QCoreApplication.translate("MainWindow", u"Change Password", None))
         self.pushButton_5.setText(QCoreApplication.translate("MainWindow", u"Delete Account", None))
         self.pushButton_2.setText(QCoreApplication.translate("MainWindow", u"Cancel", None))
         self.pushButton_3.setText(QCoreApplication.translate("MainWindow", u"Save", None))
