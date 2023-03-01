@@ -346,7 +346,14 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_11.addWidget(self.listWidget_3)
 
-        self.pushButton_4 = QPushButton(self.widget_11)
+        self.widget_8 = QWidget(self.widget_11)
+        self.widget_8.setObjectName(u"widget_8")
+        sizePolicy2.setHeightForWidth(self.widget_8.sizePolicy().hasHeightForWidth())
+        self.widget_8.setSizePolicy(sizePolicy2)
+        self.verticalLayout_6 = QVBoxLayout(self.widget_8)
+        self.verticalLayout_6.setObjectName(u"verticalLayout_6")
+        self.verticalLayout_6.setContentsMargins(6, 0, 6, 6)
+        self.pushButton_4 = QPushButton(self.widget_8)
         self.pushButton_4.setObjectName(u"pushButton_4")
         self.pushButton_4.setMinimumSize(QSize(0, 25))
         self.pushButton_4.setFont(font1)
@@ -354,11 +361,10 @@ class Ui_MainWindow(object):
         self.pushButton_4.setStyleSheet(u"QPushButton {background-color: #ebecf0; color: #6a758b; border-radius: 5px}\n"
 "QPushButton:hover {background-color: #dadbe2; color: #505b76}")
 
-        self.verticalLayout_11.addWidget(self.pushButton_4)
+        self.verticalLayout_6.addWidget(self.pushButton_4)
 
-        self.verticalSpacer_2 = QSpacerItem(20, 5, QSizePolicy.Minimum, QSizePolicy.Fixed)
 
-        self.verticalLayout_11.addItem(self.verticalSpacer_2)
+        self.verticalLayout_11.addWidget(self.widget_8)
 
 
         self.verticalLayout_3.addWidget(self.widget_11)
@@ -436,7 +442,14 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_12.addWidget(self.listWidget_4)
 
-        self.pushButton_5 = QPushButton(self.widget_12)
+        self.widget_9 = QWidget(self.widget_12)
+        self.widget_9.setObjectName(u"widget_9")
+        sizePolicy2.setHeightForWidth(self.widget_9.sizePolicy().hasHeightForWidth())
+        self.widget_9.setSizePolicy(sizePolicy2)
+        self.verticalLayout_7 = QVBoxLayout(self.widget_9)
+        self.verticalLayout_7.setObjectName(u"verticalLayout_7")
+        self.verticalLayout_7.setContentsMargins(6, 0, 6, 6)
+        self.pushButton_5 = QPushButton(self.widget_9)
         self.pushButton_5.setObjectName(u"pushButton_5")
         self.pushButton_5.setMinimumSize(QSize(0, 25))
         self.pushButton_5.setFont(font1)
@@ -444,11 +457,10 @@ class Ui_MainWindow(object):
         self.pushButton_5.setStyleSheet(u"QPushButton {background-color: #ebecf0; color: #6a758b; border-radius: 5px}\n"
 "QPushButton:hover {background-color: #dadbe2; color: #505b76}")
 
-        self.verticalLayout_12.addWidget(self.pushButton_5)
+        self.verticalLayout_7.addWidget(self.pushButton_5)
 
-        self.verticalSpacer_3 = QSpacerItem(20, 5, QSizePolicy.Minimum, QSizePolicy.Fixed)
 
-        self.verticalLayout_12.addItem(self.verticalSpacer_3)
+        self.verticalLayout_12.addWidget(self.widget_9)
 
 
         self.verticalLayout_5.addWidget(self.widget_12)
@@ -490,6 +502,12 @@ class Ui_MainWindow(object):
         self.verticalLayout_13.addWidget(self.label_4)
 
         self.listWidget_5 = QListWidget(self.widget_13)
+        __qlistwidgetitem15 = QListWidgetItem(self.listWidget_5)
+        __qlistwidgetitem15.setFlags(Qt.ItemIsSelectable|Qt.ItemIsEditable|Qt.ItemIsDragEnabled|Qt.ItemIsUserCheckable|Qt.ItemIsEnabled);
+        __qlistwidgetitem16 = QListWidgetItem(self.listWidget_5)
+        __qlistwidgetitem16.setFlags(Qt.ItemIsSelectable|Qt.ItemIsEditable|Qt.ItemIsDragEnabled|Qt.ItemIsUserCheckable|Qt.ItemIsEnabled);
+        __qlistwidgetitem17 = QListWidgetItem(self.listWidget_5)
+        __qlistwidgetitem17.setFlags(Qt.ItemIsSelectable|Qt.ItemIsEditable|Qt.ItemIsDragEnabled|Qt.ItemIsUserCheckable|Qt.ItemIsEnabled);
         self.listWidget_5.setObjectName(u"listWidget_5")
         sizePolicy4.setHeightForWidth(self.listWidget_5.sizePolicy().hasHeightForWidth())
         self.listWidget_5.setSizePolicy(sizePolicy4)
@@ -520,7 +538,14 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_13.addWidget(self.listWidget_5)
 
-        self.pushButton_6 = QPushButton(self.widget_13)
+        self.widget_10 = QWidget(self.widget_13)
+        self.widget_10.setObjectName(u"widget_10")
+        sizePolicy2.setHeightForWidth(self.widget_10.sizePolicy().hasHeightForWidth())
+        self.widget_10.setSizePolicy(sizePolicy2)
+        self.verticalLayout_10 = QVBoxLayout(self.widget_10)
+        self.verticalLayout_10.setObjectName(u"verticalLayout_10")
+        self.verticalLayout_10.setContentsMargins(6, 0, 6, 6)
+        self.pushButton_6 = QPushButton(self.widget_10)
         self.pushButton_6.setObjectName(u"pushButton_6")
         self.pushButton_6.setMinimumSize(QSize(0, 25))
         self.pushButton_6.setFont(font1)
@@ -528,11 +553,10 @@ class Ui_MainWindow(object):
         self.pushButton_6.setStyleSheet(u"QPushButton {background-color: #ebecf0; color: #6a758b; border-radius: 5px}\n"
 "QPushButton:hover {background-color: #dadbe2; color: #505b76}")
 
-        self.verticalLayout_13.addWidget(self.pushButton_6)
+        self.verticalLayout_10.addWidget(self.pushButton_6)
 
-        self.verticalSpacer_4 = QSpacerItem(20, 5, QSizePolicy.Minimum, QSizePolicy.Fixed)
 
-        self.verticalLayout_13.addItem(self.verticalSpacer_4)
+        self.verticalLayout_13.addWidget(self.widget_10)
 
 
         self.verticalLayout_8.addWidget(self.widget_13)
@@ -656,15 +680,26 @@ class Ui_MainWindow(object):
         __sortingEnabled1 = self.listWidget_4.isSortingEnabled()
         self.listWidget_4.setSortingEnabled(False)
         ___qlistwidgetitem12 = self.listWidget_4.item(0)
-        ___qlistwidgetitem12.setText(QCoreApplication.translate("MainWindow", u"Test11", None));
+        ___qlistwidgetitem12.setText(QCoreApplication.translate("MainWindow", u"Test1", None));
         ___qlistwidgetitem13 = self.listWidget_4.item(1)
-        ___qlistwidgetitem13.setText(QCoreApplication.translate("MainWindow", u"Test22", None));
+        ___qlistwidgetitem13.setText(QCoreApplication.translate("MainWindow", u"Test2", None));
         ___qlistwidgetitem14 = self.listWidget_4.item(2)
-        ___qlistwidgetitem14.setText(QCoreApplication.translate("MainWindow", u"Test33", None));
+        ___qlistwidgetitem14.setText(QCoreApplication.translate("MainWindow", u"Test3", None));
         self.listWidget_4.setSortingEnabled(__sortingEnabled1)
 
         self.pushButton_5.setText(QCoreApplication.translate("MainWindow", u"+ Add a card", None))
         self.label_4.setText(QCoreApplication.translate("MainWindow", u"Done", None))
+
+        __sortingEnabled2 = self.listWidget_5.isSortingEnabled()
+        self.listWidget_5.setSortingEnabled(False)
+        ___qlistwidgetitem15 = self.listWidget_5.item(0)
+        ___qlistwidgetitem15.setText(QCoreApplication.translate("MainWindow", u"Test1", None));
+        ___qlistwidgetitem16 = self.listWidget_5.item(1)
+        ___qlistwidgetitem16.setText(QCoreApplication.translate("MainWindow", u"Test2", None));
+        ___qlistwidgetitem17 = self.listWidget_5.item(2)
+        ___qlistwidgetitem17.setText(QCoreApplication.translate("MainWindow", u"Test3", None));
+        self.listWidget_5.setSortingEnabled(__sortingEnabled2)
+
         self.pushButton_6.setText(QCoreApplication.translate("MainWindow", u"+ Add a card", None))
         self.pushButton.setText(QCoreApplication.translate("MainWindow", u"+ Add a list", None))
     # retranslateUi
