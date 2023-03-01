@@ -23,7 +23,7 @@ class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
-        MainWindow.resize(420, 683)
+        MainWindow.resize(374, 698)
         MainWindow.setStyleSheet(u"background-color: #454c5a;")
         self.centralwidget = QWidget(MainWindow)
         self.centralwidget.setObjectName(u"centralwidget")
@@ -46,6 +46,10 @@ class Ui_MainWindow(object):
         self.verticalLayout.setContentsMargins(10, 10, 10, 10)
         self.horizontalLayout_3 = QHBoxLayout()
         self.horizontalLayout_3.setObjectName(u"horizontalLayout_3")
+        self.horizontalSpacer_3 = QSpacerItem(0, 0, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.horizontalLayout_3.addItem(self.horizontalSpacer_3)
+
         self.verticalLayout_2 = QVBoxLayout()
         self.verticalLayout_2.setSpacing(15)
         self.verticalLayout_2.setObjectName(u"verticalLayout_2")
@@ -226,8 +230,16 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_2.addItem(self.verticalSpacer_2)
 
+        self.horizontalSpacer_5 = QSpacerItem(250, 0, QSizePolicy.Fixed, QSizePolicy.Minimum)
+
+        self.verticalLayout_2.addItem(self.horizontalSpacer_5)
+
 
         self.horizontalLayout_3.addLayout(self.verticalLayout_2)
+
+        self.horizontalSpacer_4 = QSpacerItem(0, 0, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.horizontalLayout_3.addItem(self.horizontalSpacer_4)
 
 
         self.verticalLayout.addLayout(self.horizontalLayout_3)
