@@ -32,24 +32,24 @@ class Ui_MainWindow(object):
         self.verticalLayout_3.setSpacing(0)
         self.verticalLayout_3.setObjectName(u"verticalLayout_3")
         self.verticalLayout_3.setContentsMargins(0, 0, 0, 0)
-        self.label_3 = QLabel(self.centralwidget)
-        self.label_3.setObjectName(u"label_3")
+        self.label_app_settings = QLabel(self.centralwidget)
+        self.label_app_settings.setObjectName(u"label_app_settings")
         sizePolicy = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.label_3.sizePolicy().hasHeightForWidth())
-        self.label_3.setSizePolicy(sizePolicy)
-        self.label_3.setMinimumSize(QSize(0, 70))
+        sizePolicy.setHeightForWidth(self.label_app_settings.sizePolicy().hasHeightForWidth())
+        self.label_app_settings.setSizePolicy(sizePolicy)
+        self.label_app_settings.setMinimumSize(QSize(0, 70))
         font = QFont()
         font.setFamilies([u"Torus Pro"])
         font.setPointSize(28)
-        self.label_3.setFont(font)
-        self.label_3.setStyleSheet(u"background-color: qlineargradient(spread:pad, x1:0.5, y1:0.5, x2:0.95, y2:0.5, stop:0 rgba(107, 173, 238, 255), stop:1 rgba(69, 76, 90, 255));\n"
+        self.label_app_settings.setFont(font)
+        self.label_app_settings.setStyleSheet(u"background-color: qlineargradient(spread:pad, x1:0.5, y1:0.5, x2:0.95, y2:0.5, stop:0 rgba(107, 173, 238, 255), stop:1 rgba(69, 76, 90, 255));\n"
 "color: #ffffff;\n"
 "padding: 0px 0px 0px 10px;")
-        self.label_3.setMargin(10)
+        self.label_app_settings.setMargin(10)
 
-        self.verticalLayout_3.addWidget(self.label_3)
+        self.verticalLayout_3.addWidget(self.label_app_settings)
 
         self.widget = QWidget(self.centralwidget)
         self.widget.setObjectName(u"widget")
@@ -79,14 +79,14 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_2.addWidget(self.label_8)
 
-        self.label_2 = QLabel(self.widget1)
-        self.label_2.setObjectName(u"label_2")
+        self.label_manage_baoard_info = QLabel(self.widget1)
+        self.label_manage_baoard_info.setObjectName(u"label_manage_baoard_info")
         font2 = QFont()
         font2.setFamilies([u"Torus Pro"])
         font2.setPointSize(11)
-        self.label_2.setFont(font2)
+        self.label_manage_baoard_info.setFont(font2)
 
-        self.verticalLayout_2.addWidget(self.label_2)
+        self.verticalLayout_2.addWidget(self.label_manage_baoard_info)
 
         self.listWidget = QListWidget(self.widget1)
         __qlistwidgetitem = QListWidgetItem(self.listWidget)
@@ -129,33 +129,33 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_2.addWidget(self.listWidget)
 
-        self.pushButton_4 = QPushButton(self.widget1)
-        self.pushButton_4.setObjectName(u"pushButton_4")
+        self.btn_delete_board = QPushButton(self.widget1)
+        self.btn_delete_board.setObjectName(u"btn_delete_board")
         sizePolicy1 = QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed)
         sizePolicy1.setHorizontalStretch(0)
         sizePolicy1.setVerticalStretch(0)
-        sizePolicy1.setHeightForWidth(self.pushButton_4.sizePolicy().hasHeightForWidth())
-        self.pushButton_4.setSizePolicy(sizePolicy1)
-        self.pushButton_4.setMinimumSize(QSize(150, 30))
+        sizePolicy1.setHeightForWidth(self.btn_delete_board.sizePolicy().hasHeightForWidth())
+        self.btn_delete_board.setSizePolicy(sizePolicy1)
+        self.btn_delete_board.setMinimumSize(QSize(150, 30))
         font4 = QFont()
         font4.setFamilies([u"Torus Pro"])
         font4.setPointSize(12)
-        self.pushButton_4.setFont(font4)
-        self.pushButton_4.setCursor(QCursor(Qt.PointingHandCursor))
-        self.pushButton_4.setStyleSheet(u"QPushButton {background-color: #d63a3e; color: #ffffff; border-radius: 5px}\n"
+        self.btn_delete_board.setFont(font4)
+        self.btn_delete_board.setCursor(QCursor(Qt.PointingHandCursor))
+        self.btn_delete_board.setStyleSheet(u"QPushButton {background-color: #d63a3e; color: #ffffff; border-radius: 5px}\n"
 "QPushButton:hover {background-color: #9e2a2a;}")
 
-        self.verticalLayout_2.addWidget(self.pushButton_4)
+        self.verticalLayout_2.addWidget(self.btn_delete_board)
 
-        self.line_2 = QFrame(self.widget1)
-        self.line_2.setObjectName(u"line_2")
-        self.line_2.setStyleSheet(u"background-color: #9096a6;")
-        self.line_2.setFrameShadow(QFrame.Plain)
-        self.line_2.setLineWidth(0)
-        self.line_2.setMidLineWidth(0)
-        self.line_2.setFrameShape(QFrame.HLine)
+        self.line_1 = QFrame(self.widget1)
+        self.line_1.setObjectName(u"line_1")
+        self.line_1.setStyleSheet(u"background-color: #9096a6;")
+        self.line_1.setFrameShadow(QFrame.Plain)
+        self.line_1.setLineWidth(0)
+        self.line_1.setMidLineWidth(0)
+        self.line_1.setFrameShape(QFrame.HLine)
 
-        self.verticalLayout_2.addWidget(self.line_2)
+        self.verticalLayout_2.addWidget(self.line_1)
 
         self.label_9 = QLabel(self.widget1)
         self.label_9.setObjectName(u"label_9")
@@ -166,29 +166,29 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_2 = QHBoxLayout()
         self.horizontalLayout_2.setObjectName(u"horizontalLayout_2")
-        self.pushButton_6 = QPushButton(self.widget1)
-        self.pushButton_6.setObjectName(u"pushButton_6")
-        sizePolicy1.setHeightForWidth(self.pushButton_6.sizePolicy().hasHeightForWidth())
-        self.pushButton_6.setSizePolicy(sizePolicy1)
-        self.pushButton_6.setMinimumSize(QSize(100, 30))
-        self.pushButton_6.setFont(font4)
-        self.pushButton_6.setCursor(QCursor(Qt.PointingHandCursor))
-        self.pushButton_6.setStyleSheet(u"QPushButton {background-color: #acb2bf; color: #ffffff; border-radius: 5px}\n"
+        self.btn_logout = QPushButton(self.widget1)
+        self.btn_logout.setObjectName(u"btn_logout")
+        sizePolicy1.setHeightForWidth(self.btn_logout.sizePolicy().hasHeightForWidth())
+        self.btn_logout.setSizePolicy(sizePolicy1)
+        self.btn_logout.setMinimumSize(QSize(100, 30))
+        self.btn_logout.setFont(font4)
+        self.btn_logout.setCursor(QCursor(Qt.PointingHandCursor))
+        self.btn_logout.setStyleSheet(u"QPushButton {background-color: #acb2bf; color: #ffffff; border-radius: 5px}\n"
 "QPushButton:hover {background-color: #7e828c;}")
 
-        self.horizontalLayout_2.addWidget(self.pushButton_6)
+        self.horizontalLayout_2.addWidget(self.btn_logout)
 
-        self.pushButton_9 = QPushButton(self.widget1)
-        self.pushButton_9.setObjectName(u"pushButton_9")
-        sizePolicy1.setHeightForWidth(self.pushButton_9.sizePolicy().hasHeightForWidth())
-        self.pushButton_9.setSizePolicy(sizePolicy1)
-        self.pushButton_9.setMinimumSize(QSize(180, 30))
-        self.pushButton_9.setFont(font4)
-        self.pushButton_9.setCursor(QCursor(Qt.PointingHandCursor))
-        self.pushButton_9.setStyleSheet(u"QPushButton {background-color: #acb2bf; color: #ffffff; border-radius: 5px}\n"
+        self.btn_change_passwd = QPushButton(self.widget1)
+        self.btn_change_passwd.setObjectName(u"btn_change_passwd")
+        sizePolicy1.setHeightForWidth(self.btn_change_passwd.sizePolicy().hasHeightForWidth())
+        self.btn_change_passwd.setSizePolicy(sizePolicy1)
+        self.btn_change_passwd.setMinimumSize(QSize(180, 30))
+        self.btn_change_passwd.setFont(font4)
+        self.btn_change_passwd.setCursor(QCursor(Qt.PointingHandCursor))
+        self.btn_change_passwd.setStyleSheet(u"QPushButton {background-color: #acb2bf; color: #ffffff; border-radius: 5px}\n"
 "QPushButton:hover {background-color: #7e828c;}")
 
-        self.horizontalLayout_2.addWidget(self.pushButton_9)
+        self.horizontalLayout_2.addWidget(self.btn_change_passwd)
 
         self.horizontalSpacer_2 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
 
@@ -197,27 +197,27 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_2.addLayout(self.horizontalLayout_2)
 
-        self.pushButton_5 = QPushButton(self.widget1)
-        self.pushButton_5.setObjectName(u"pushButton_5")
-        sizePolicy1.setHeightForWidth(self.pushButton_5.sizePolicy().hasHeightForWidth())
-        self.pushButton_5.setSizePolicy(sizePolicy1)
-        self.pushButton_5.setMinimumSize(QSize(150, 30))
-        self.pushButton_5.setFont(font4)
-        self.pushButton_5.setCursor(QCursor(Qt.PointingHandCursor))
-        self.pushButton_5.setStyleSheet(u"QPushButton {border-color: #d63a3e; border-width: 1.5px; border-style: solid; color: #282c33; border-radius: 5px}\n"
+        self.btn_delete_account = QPushButton(self.widget1)
+        self.btn_delete_account.setObjectName(u"btn_delete_account")
+        sizePolicy1.setHeightForWidth(self.btn_delete_account.sizePolicy().hasHeightForWidth())
+        self.btn_delete_account.setSizePolicy(sizePolicy1)
+        self.btn_delete_account.setMinimumSize(QSize(150, 30))
+        self.btn_delete_account.setFont(font4)
+        self.btn_delete_account.setCursor(QCursor(Qt.PointingHandCursor))
+        self.btn_delete_account.setStyleSheet(u"QPushButton {border-color: #d63a3e; border-width: 1.5px; border-style: solid; color: #282c33; border-radius: 5px}\n"
 "QPushButton:hover {background-color: #d63a3e; color: #ffffff;}")
 
-        self.verticalLayout_2.addWidget(self.pushButton_5)
+        self.verticalLayout_2.addWidget(self.btn_delete_account)
 
-        self.line = QFrame(self.widget1)
-        self.line.setObjectName(u"line")
-        self.line.setStyleSheet(u"background-color: #9096a6;")
-        self.line.setFrameShadow(QFrame.Plain)
-        self.line.setLineWidth(0)
-        self.line.setMidLineWidth(0)
-        self.line.setFrameShape(QFrame.HLine)
+        self.line_2 = QFrame(self.widget1)
+        self.line_2.setObjectName(u"line_2")
+        self.line_2.setStyleSheet(u"background-color: #9096a6;")
+        self.line_2.setFrameShadow(QFrame.Plain)
+        self.line_2.setLineWidth(0)
+        self.line_2.setMidLineWidth(0)
+        self.line_2.setFrameShape(QFrame.HLine)
 
-        self.verticalLayout_2.addWidget(self.line)
+        self.verticalLayout_2.addWidget(self.line_2)
 
 
         self.horizontalLayout_3.addLayout(self.verticalLayout_2)
@@ -231,29 +231,29 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout.addItem(self.horizontalSpacer)
 
-        self.pushButton_2 = QPushButton(self.widget1)
-        self.pushButton_2.setObjectName(u"pushButton_2")
-        sizePolicy1.setHeightForWidth(self.pushButton_2.sizePolicy().hasHeightForWidth())
-        self.pushButton_2.setSizePolicy(sizePolicy1)
-        self.pushButton_2.setMinimumSize(QSize(100, 30))
-        self.pushButton_2.setFont(font4)
-        self.pushButton_2.setCursor(QCursor(Qt.PointingHandCursor))
-        self.pushButton_2.setStyleSheet(u"QPushButton {background-color: #acb2bf; color: #ffffff; border-radius: 5px}\n"
+        self.btn_cancel = QPushButton(self.widget1)
+        self.btn_cancel.setObjectName(u"btn_cancel")
+        sizePolicy1.setHeightForWidth(self.btn_cancel.sizePolicy().hasHeightForWidth())
+        self.btn_cancel.setSizePolicy(sizePolicy1)
+        self.btn_cancel.setMinimumSize(QSize(100, 30))
+        self.btn_cancel.setFont(font4)
+        self.btn_cancel.setCursor(QCursor(Qt.PointingHandCursor))
+        self.btn_cancel.setStyleSheet(u"QPushButton {background-color: #acb2bf; color: #ffffff; border-radius: 5px}\n"
 "QPushButton:hover {background-color: #7e828c;}")
 
-        self.horizontalLayout.addWidget(self.pushButton_2)
+        self.horizontalLayout.addWidget(self.btn_cancel)
 
-        self.pushButton_3 = QPushButton(self.widget1)
-        self.pushButton_3.setObjectName(u"pushButton_3")
-        sizePolicy1.setHeightForWidth(self.pushButton_3.sizePolicy().hasHeightForWidth())
-        self.pushButton_3.setSizePolicy(sizePolicy1)
-        self.pushButton_3.setMinimumSize(QSize(100, 30))
-        self.pushButton_3.setFont(font4)
-        self.pushButton_3.setCursor(QCursor(Qt.PointingHandCursor))
-        self.pushButton_3.setStyleSheet(u"QPushButton {background-color: #6badee; color: #ffffff; border-radius: 5px}\n"
+        self.btn_save = QPushButton(self.widget1)
+        self.btn_save.setObjectName(u"btn_save")
+        sizePolicy1.setHeightForWidth(self.btn_save.sizePolicy().hasHeightForWidth())
+        self.btn_save.setSizePolicy(sizePolicy1)
+        self.btn_save.setMinimumSize(QSize(100, 30))
+        self.btn_save.setFont(font4)
+        self.btn_save.setCursor(QCursor(Qt.PointingHandCursor))
+        self.btn_save.setStyleSheet(u"QPushButton {background-color: #6badee; color: #ffffff; border-radius: 5px}\n"
 "QPushButton:hover {background-color: #5487bb;}")
 
-        self.horizontalLayout.addWidget(self.pushButton_3)
+        self.horizontalLayout.addWidget(self.btn_save)
 
 
         self.verticalLayout.addLayout(self.horizontalLayout)
@@ -265,8 +265,8 @@ class Ui_MainWindow(object):
         self.verticalLayout_3.addWidget(self.widget)
 
         MainWindow.setCentralWidget(self.centralwidget)
-        QWidget.setTabOrder(self.listWidget, self.pushButton_3)
-        QWidget.setTabOrder(self.pushButton_3, self.pushButton_2)
+        QWidget.setTabOrder(self.listWidget, self.btn_save)
+        QWidget.setTabOrder(self.btn_save, self.btn_cancel)
 
         self.retranslateUi(MainWindow)
 
@@ -275,9 +275,9 @@ class Ui_MainWindow(object):
 
     def retranslateUi(self, MainWindow):
         MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"App Settings", None))
-        self.label_3.setText(QCoreApplication.translate("MainWindow", u"App Settings", None))
+        self.label_app_settings.setText(QCoreApplication.translate("MainWindow", u"App Settings", None))
         self.label_8.setText(QCoreApplication.translate("MainWindow", u"Manage Board", None))
-        self.label_2.setText(QCoreApplication.translate("MainWindow", u"Drag to rearrange. Select and press Delete Board to delete it.", None))
+        self.label_manage_baoard_info.setText(QCoreApplication.translate("MainWindow", u"Drag to rearrange. Select and press Delete Board to delete it.", None))
 
         __sortingEnabled = self.listWidget.isSortingEnabled()
         self.listWidget.setSortingEnabled(False)
@@ -297,12 +297,12 @@ class Ui_MainWindow(object):
         ___qlistwidgetitem6.setText(QCoreApplication.translate("MainWindow", u"Board 5", None));
         self.listWidget.setSortingEnabled(__sortingEnabled)
 
-        self.pushButton_4.setText(QCoreApplication.translate("MainWindow", u"Delete Board", None))
+        self.btn_delete_board.setText(QCoreApplication.translate("MainWindow", u"Delete Board", None))
         self.label_9.setText(QCoreApplication.translate("MainWindow", u"Manage Account", None))
-        self.pushButton_6.setText(QCoreApplication.translate("MainWindow", u"Logout", None))
-        self.pushButton_9.setText(QCoreApplication.translate("MainWindow", u"Change Password", None))
-        self.pushButton_5.setText(QCoreApplication.translate("MainWindow", u"Delete Account", None))
-        self.pushButton_2.setText(QCoreApplication.translate("MainWindow", u"Cancel", None))
-        self.pushButton_3.setText(QCoreApplication.translate("MainWindow", u"Save", None))
+        self.btn_logout.setText(QCoreApplication.translate("MainWindow", u"Logout", None))
+        self.btn_change_passwd.setText(QCoreApplication.translate("MainWindow", u"Change Password", None))
+        self.btn_delete_account.setText(QCoreApplication.translate("MainWindow", u"Delete Account", None))
+        self.btn_cancel.setText(QCoreApplication.translate("MainWindow", u"Cancel", None))
+        self.btn_save.setText(QCoreApplication.translate("MainWindow", u"Save", None))
     # retranslateUi
 

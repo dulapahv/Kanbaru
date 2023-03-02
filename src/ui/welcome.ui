@@ -215,7 +215,7 @@ border-radius: 5px;</string>
                      </widget>
                     </item>
                     <item>
-                     <widget class="QLineEdit" name="lineEdit">
+                     <widget class="QLineEdit" name="lineEdit_login_username">
                       <property name="minimumSize">
                        <size>
                         <width>0</width>
@@ -241,7 +241,7 @@ QLineEdit:focus {border-color: #6badee;}</string>
                      </widget>
                     </item>
                     <item>
-                     <widget class="QLineEdit" name="lineEdit_2">
+                     <widget class="QLineEdit" name="lineEdit_2_login_passwd">
                       <property name="minimumSize">
                        <size>
                         <width>0</width>
@@ -270,7 +270,7 @@ QLineEdit:focus {border-color: #6badee;}</string>
                      </widget>
                     </item>
                     <item>
-                     <widget class="QLabel" name="label_4">
+                     <widget class="QLabel" name="label_login_msg">
                       <property name="font">
                        <font>
                         <family>Torus Pro</family>
@@ -305,7 +305,7 @@ QLineEdit:focus {border-color: #6badee;}</string>
                        </spacer>
                       </item>
                       <item>
-                       <widget class="QPushButton" name="pushButton_4">
+                       <widget class="QPushButton" name="btn_login">
                         <property name="sizePolicy">
                          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
                           <horstretch>0</horstretch>
@@ -395,7 +395,7 @@ QPushButton:focus {border-color: #000000; border-width: 1.5px; border-style: sol
                      </widget>
                     </item>
                     <item>
-                     <widget class="QLineEdit" name="lineEdit_4">
+                     <widget class="QLineEdit" name="lineEdit_sign_up_username">
                       <property name="minimumSize">
                        <size>
                         <width>0</width>
@@ -421,7 +421,7 @@ QLineEdit:focus {border-color: #6badee;}</string>
                      </widget>
                     </item>
                     <item>
-                     <widget class="QLineEdit" name="lineEdit_3">
+                     <widget class="QLineEdit" name="lineEdit_sign_up_passwd">
                       <property name="minimumSize">
                        <size>
                         <width>0</width>
@@ -450,7 +450,7 @@ QLineEdit:focus {border-color: #6badee;}</string>
                      </widget>
                     </item>
                     <item>
-                     <widget class="QLineEdit" name="lineEdit_5">
+                     <widget class="QLineEdit" name="lineEdit_sign_up_con_passwd">
                       <property name="minimumSize">
                        <size>
                         <width>0</width>
@@ -479,7 +479,7 @@ QLineEdit:focus {border-color: #6badee;}</string>
                      </widget>
                     </item>
                     <item>
-                     <widget class="QLabel" name="label_5">
+                     <widget class="QLabel" name="label_sign_up_msg">
                       <property name="font">
                        <font>
                         <family>Torus Pro</family>
@@ -514,7 +514,7 @@ QLineEdit:focus {border-color: #6badee;}</string>
                        </spacer>
                       </item>
                       <item>
-                       <widget class="QPushButton" name="pushButton_5">
+                       <widget class="QPushButton" name="btn_sign_up">
                         <property name="sizePolicy">
                          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
                           <horstretch>0</horstretch>

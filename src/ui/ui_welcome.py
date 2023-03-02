@@ -102,40 +102,40 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_4.addWidget(self.label_2)
 
-        self.lineEdit = QLineEdit(self.widget_2)
-        self.lineEdit.setObjectName(u"lineEdit")
-        self.lineEdit.setMinimumSize(QSize(0, 40))
+        self.lineEdit_login_username = QLineEdit(self.widget_2)
+        self.lineEdit_login_username.setObjectName(u"lineEdit_login_username")
+        self.lineEdit_login_username.setMinimumSize(QSize(0, 40))
         font2 = QFont()
         font2.setFamilies([u"Torus Pro"])
         font2.setPointSize(12)
-        self.lineEdit.setFont(font2)
-        self.lineEdit.setStyleSheet(u"QLineEdit {border-color: #dfe1e6; border-width: 1.5px; border-style: solid; color: #282c33; border-radius: 5px; background-color: #ffffff; padding: 0px 0px 0px 8px}\n"
+        self.lineEdit_login_username.setFont(font2)
+        self.lineEdit_login_username.setStyleSheet(u"QLineEdit {border-color: #dfe1e6; border-width: 1.5px; border-style: solid; color: #282c33; border-radius: 5px; background-color: #ffffff; padding: 0px 0px 0px 8px}\n"
 "QLineEdit:focus {border-color: #6badee;}")
-        self.lineEdit.setClearButtonEnabled(True)
+        self.lineEdit_login_username.setClearButtonEnabled(True)
 
-        self.verticalLayout_4.addWidget(self.lineEdit)
+        self.verticalLayout_4.addWidget(self.lineEdit_login_username)
 
-        self.lineEdit_2 = QLineEdit(self.widget_2)
-        self.lineEdit_2.setObjectName(u"lineEdit_2")
-        self.lineEdit_2.setMinimumSize(QSize(0, 40))
-        self.lineEdit_2.setFont(font2)
-        self.lineEdit_2.setStyleSheet(u"QLineEdit {border-color: #dfe1e6; border-width: 1.5px; border-style: solid; color: #282c33; border-radius: 5px; background-color: #ffffff; padding: 0px 0px 0px 8px}\n"
+        self.lineEdit_2_login_passwd = QLineEdit(self.widget_2)
+        self.lineEdit_2_login_passwd.setObjectName(u"lineEdit_2_login_passwd")
+        self.lineEdit_2_login_passwd.setMinimumSize(QSize(0, 40))
+        self.lineEdit_2_login_passwd.setFont(font2)
+        self.lineEdit_2_login_passwd.setStyleSheet(u"QLineEdit {border-color: #dfe1e6; border-width: 1.5px; border-style: solid; color: #282c33; border-radius: 5px; background-color: #ffffff; padding: 0px 0px 0px 8px}\n"
 "QLineEdit:focus {border-color: #6badee;}")
-        self.lineEdit_2.setEchoMode(QLineEdit.Password)
-        self.lineEdit_2.setClearButtonEnabled(True)
+        self.lineEdit_2_login_passwd.setEchoMode(QLineEdit.Password)
+        self.lineEdit_2_login_passwd.setClearButtonEnabled(True)
 
-        self.verticalLayout_4.addWidget(self.lineEdit_2)
+        self.verticalLayout_4.addWidget(self.lineEdit_2_login_passwd)
 
-        self.label_4 = QLabel(self.widget_2)
-        self.label_4.setObjectName(u"label_4")
+        self.label_login_msg = QLabel(self.widget_2)
+        self.label_login_msg.setObjectName(u"label_login_msg")
         font3 = QFont()
         font3.setFamilies([u"Torus Pro"])
         font3.setPointSize(11)
         font3.setBold(True)
-        self.label_4.setFont(font3)
-        self.label_4.setStyleSheet(u"color: #d63a3e;")
+        self.label_login_msg.setFont(font3)
+        self.label_login_msg.setStyleSheet(u"color: #d63a3e;")
 
-        self.verticalLayout_4.addWidget(self.label_4)
+        self.verticalLayout_4.addWidget(self.label_login_msg)
 
         self.horizontalLayout = QHBoxLayout()
         self.horizontalLayout.setSpacing(0)
@@ -144,25 +144,25 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout.addItem(self.horizontalSpacer)
 
-        self.pushButton_4 = QPushButton(self.widget_2)
-        self.pushButton_4.setObjectName(u"pushButton_4")
+        self.btn_login = QPushButton(self.widget_2)
+        self.btn_login.setObjectName(u"btn_login")
         sizePolicy = QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.pushButton_4.sizePolicy().hasHeightForWidth())
-        self.pushButton_4.setSizePolicy(sizePolicy)
-        self.pushButton_4.setMinimumSize(QSize(120, 30))
+        sizePolicy.setHeightForWidth(self.btn_login.sizePolicy().hasHeightForWidth())
+        self.btn_login.setSizePolicy(sizePolicy)
+        self.btn_login.setMinimumSize(QSize(120, 30))
         font4 = QFont()
         font4.setFamilies([u"Torus Pro"])
         font4.setPointSize(12)
         font4.setBold(True)
-        self.pushButton_4.setFont(font4)
-        self.pushButton_4.setCursor(QCursor(Qt.PointingHandCursor))
-        self.pushButton_4.setStyleSheet(u"QPushButton {background-color: #5dac48; color: #ffffff; border-radius: 5px}\n"
+        self.btn_login.setFont(font4)
+        self.btn_login.setCursor(QCursor(Qt.PointingHandCursor))
+        self.btn_login.setStyleSheet(u"QPushButton {background-color: #5dac48; color: #ffffff; border-radius: 5px}\n"
 "QPushButton:hover {background-color: #64bd53;}\n"
 "QPushButton:focus {border-color: #000000; border-width: 1.5px; border-style: solid;}")
 
-        self.horizontalLayout.addWidget(self.pushButton_4)
+        self.horizontalLayout.addWidget(self.btn_login)
 
 
         self.verticalLayout_4.addLayout(self.horizontalLayout)
@@ -194,44 +194,44 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_5.addWidget(self.label_3)
 
-        self.lineEdit_4 = QLineEdit(self.widget_3)
-        self.lineEdit_4.setObjectName(u"lineEdit_4")
-        self.lineEdit_4.setMinimumSize(QSize(0, 40))
-        self.lineEdit_4.setFont(font2)
-        self.lineEdit_4.setStyleSheet(u"QLineEdit {border-color: #dfe1e6; border-width: 1.5px; border-style: solid; color: #282c33; border-radius: 5px; background-color: #ffffff; padding: 0px 0px 0px 8px}\n"
+        self.lineEdit_sign_up_username = QLineEdit(self.widget_3)
+        self.lineEdit_sign_up_username.setObjectName(u"lineEdit_sign_up_username")
+        self.lineEdit_sign_up_username.setMinimumSize(QSize(0, 40))
+        self.lineEdit_sign_up_username.setFont(font2)
+        self.lineEdit_sign_up_username.setStyleSheet(u"QLineEdit {border-color: #dfe1e6; border-width: 1.5px; border-style: solid; color: #282c33; border-radius: 5px; background-color: #ffffff; padding: 0px 0px 0px 8px}\n"
 "QLineEdit:focus {border-color: #6badee;}")
-        self.lineEdit_4.setClearButtonEnabled(True)
+        self.lineEdit_sign_up_username.setClearButtonEnabled(True)
 
-        self.verticalLayout_5.addWidget(self.lineEdit_4)
+        self.verticalLayout_5.addWidget(self.lineEdit_sign_up_username)
 
-        self.lineEdit_3 = QLineEdit(self.widget_3)
-        self.lineEdit_3.setObjectName(u"lineEdit_3")
-        self.lineEdit_3.setMinimumSize(QSize(0, 40))
-        self.lineEdit_3.setFont(font2)
-        self.lineEdit_3.setStyleSheet(u"QLineEdit {border-color: #dfe1e6; border-width: 1.5px; border-style: solid; color: #282c33; border-radius: 5px; background-color: #ffffff; padding: 0px 0px 0px 8px}\n"
+        self.lineEdit_sign_up_passwd = QLineEdit(self.widget_3)
+        self.lineEdit_sign_up_passwd.setObjectName(u"lineEdit_sign_up_passwd")
+        self.lineEdit_sign_up_passwd.setMinimumSize(QSize(0, 40))
+        self.lineEdit_sign_up_passwd.setFont(font2)
+        self.lineEdit_sign_up_passwd.setStyleSheet(u"QLineEdit {border-color: #dfe1e6; border-width: 1.5px; border-style: solid; color: #282c33; border-radius: 5px; background-color: #ffffff; padding: 0px 0px 0px 8px}\n"
 "QLineEdit:focus {border-color: #6badee;}")
-        self.lineEdit_3.setEchoMode(QLineEdit.Password)
-        self.lineEdit_3.setClearButtonEnabled(True)
+        self.lineEdit_sign_up_passwd.setEchoMode(QLineEdit.Password)
+        self.lineEdit_sign_up_passwd.setClearButtonEnabled(True)
 
-        self.verticalLayout_5.addWidget(self.lineEdit_3)
+        self.verticalLayout_5.addWidget(self.lineEdit_sign_up_passwd)
 
-        self.lineEdit_5 = QLineEdit(self.widget_3)
-        self.lineEdit_5.setObjectName(u"lineEdit_5")
-        self.lineEdit_5.setMinimumSize(QSize(0, 40))
-        self.lineEdit_5.setFont(font2)
-        self.lineEdit_5.setStyleSheet(u"QLineEdit {border-color: #dfe1e6; border-width: 1.5px; border-style: solid; color: #282c33; border-radius: 5px; background-color: #ffffff; padding: 0px 0px 0px 8px}\n"
+        self.lineEdit_sign_up_con_passwd = QLineEdit(self.widget_3)
+        self.lineEdit_sign_up_con_passwd.setObjectName(u"lineEdit_sign_up_con_passwd")
+        self.lineEdit_sign_up_con_passwd.setMinimumSize(QSize(0, 40))
+        self.lineEdit_sign_up_con_passwd.setFont(font2)
+        self.lineEdit_sign_up_con_passwd.setStyleSheet(u"QLineEdit {border-color: #dfe1e6; border-width: 1.5px; border-style: solid; color: #282c33; border-radius: 5px; background-color: #ffffff; padding: 0px 0px 0px 8px}\n"
 "QLineEdit:focus {border-color: #6badee;}")
-        self.lineEdit_5.setEchoMode(QLineEdit.Password)
-        self.lineEdit_5.setClearButtonEnabled(True)
+        self.lineEdit_sign_up_con_passwd.setEchoMode(QLineEdit.Password)
+        self.lineEdit_sign_up_con_passwd.setClearButtonEnabled(True)
 
-        self.verticalLayout_5.addWidget(self.lineEdit_5)
+        self.verticalLayout_5.addWidget(self.lineEdit_sign_up_con_passwd)
 
-        self.label_5 = QLabel(self.widget_3)
-        self.label_5.setObjectName(u"label_5")
-        self.label_5.setFont(font3)
-        self.label_5.setStyleSheet(u"color: #d63a3e;")
+        self.label_sign_up_msg = QLabel(self.widget_3)
+        self.label_sign_up_msg.setObjectName(u"label_sign_up_msg")
+        self.label_sign_up_msg.setFont(font3)
+        self.label_sign_up_msg.setStyleSheet(u"color: #d63a3e;")
 
-        self.verticalLayout_5.addWidget(self.label_5)
+        self.verticalLayout_5.addWidget(self.label_sign_up_msg)
 
         self.horizontalLayout_4 = QHBoxLayout()
         self.horizontalLayout_4.setSpacing(0)
@@ -240,18 +240,18 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_4.addItem(self.horizontalSpacer_2)
 
-        self.pushButton_5 = QPushButton(self.widget_3)
-        self.pushButton_5.setObjectName(u"pushButton_5")
-        sizePolicy.setHeightForWidth(self.pushButton_5.sizePolicy().hasHeightForWidth())
-        self.pushButton_5.setSizePolicy(sizePolicy)
-        self.pushButton_5.setMinimumSize(QSize(120, 30))
-        self.pushButton_5.setFont(font4)
-        self.pushButton_5.setCursor(QCursor(Qt.PointingHandCursor))
-        self.pushButton_5.setStyleSheet(u"QPushButton {background-color: #5dac48; color: #ffffff; border-radius: 5px}\n"
+        self.btn_sign_up = QPushButton(self.widget_3)
+        self.btn_sign_up.setObjectName(u"btn_sign_up")
+        sizePolicy.setHeightForWidth(self.btn_sign_up.sizePolicy().hasHeightForWidth())
+        self.btn_sign_up.setSizePolicy(sizePolicy)
+        self.btn_sign_up.setMinimumSize(QSize(120, 30))
+        self.btn_sign_up.setFont(font4)
+        self.btn_sign_up.setCursor(QCursor(Qt.PointingHandCursor))
+        self.btn_sign_up.setStyleSheet(u"QPushButton {background-color: #5dac48; color: #ffffff; border-radius: 5px}\n"
 "QPushButton:hover {background-color: #64bd53;}\n"
 "QPushButton:focus {border-color: #000000; border-width: 1.5px; border-style: solid;}")
 
-        self.horizontalLayout_4.addWidget(self.pushButton_5)
+        self.horizontalLayout_4.addWidget(self.btn_sign_up)
 
 
         self.verticalLayout_5.addLayout(self.horizontalLayout_4)
@@ -301,15 +301,15 @@ class Ui_MainWindow(object):
         MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"Welcome", None))
         self.label_8.setText(QCoreApplication.translate("MainWindow", u"Kanbaru", None))
         self.label_2.setText(QCoreApplication.translate("MainWindow", u"Log in to Kanbaru", None))
-        self.lineEdit.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Username", None))
-        self.lineEdit_2.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Password", None))
-        self.label_4.setText(QCoreApplication.translate("MainWindow", u"Incorrect username/password", None))
-        self.pushButton_4.setText(QCoreApplication.translate("MainWindow", u"Login", None))
+        self.lineEdit_login_username.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Username", None))
+        self.lineEdit_2_login_passwd.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Password", None))
+        self.label_login_msg.setText(QCoreApplication.translate("MainWindow", u"Incorrect username/password", None))
+        self.btn_login.setText(QCoreApplication.translate("MainWindow", u"Login", None))
         self.label_3.setText(QCoreApplication.translate("MainWindow", u"Sign up for an account", None))
-        self.lineEdit_4.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Username", None))
-        self.lineEdit_3.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Password", None))
-        self.lineEdit_5.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Confirm password", None))
-        self.label_5.setText(QCoreApplication.translate("MainWindow", u"Incorrect username/password", None))
-        self.pushButton_5.setText(QCoreApplication.translate("MainWindow", u"Sign up", None))
+        self.lineEdit_sign_up_username.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Username", None))
+        self.lineEdit_sign_up_passwd.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Password", None))
+        self.lineEdit_sign_up_con_passwd.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Confirm password", None))
+        self.label_sign_up_msg.setText(QCoreApplication.translate("MainWindow", u"Incorrect username/password", None))
+        self.btn_sign_up.setText(QCoreApplication.translate("MainWindow", u"Sign up", None))
     # retranslateUi
 

@@ -34,7 +34,7 @@
      <number>0</number>
     </property>
     <item>
-     <widget class="QLabel" name="label_3">
+     <widget class="QLabel" name="label_card_desc">
       <property name="sizePolicy">
        <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
         <horstretch>0</horstretch>
@@ -104,7 +104,7 @@ border-radius: 5px;</string>
            <number>10</number>
           </property>
           <item>
-           <widget class="QLabel" name="label">
+           <widget class="QLabel" name="label_title">
             <property name="font">
              <font>
               <family>Torus Pro</family>
@@ -121,7 +121,7 @@ border-radius: 5px;</string>
            </widget>
           </item>
           <item>
-           <widget class="QLineEdit" name="lineEdit">
+           <widget class="QLineEdit" name="lineEdit_title">
             <property name="minimumSize">
              <size>
               <width>0</width>
@@ -147,7 +147,7 @@ QLineEdit:focus {background-color: #ffffff; border-color: #6badee; border-width:
            </widget>
           </item>
           <item>
-           <widget class="QLabel" name="label_6">
+           <widget class="QLabel" name="label_card_info">
             <property name="font">
              <font>
               <family>Torus Pro</family>
@@ -161,11 +161,11 @@ QLineEdit:focus {background-color: #ffffff; border-color: #6badee; border-width:
            </widget>
           </item>
           <item>
-           <layout class="QHBoxLayout" name="horizontalLayout_3">
+           <layout class="QHBoxLayout" name="horizontalLayout_2">
             <item>
              <layout class="QVBoxLayout" name="verticalLayout_4">
               <item>
-               <widget class="QLabel" name="label_5">
+               <widget class="QLabel" name="label_date">
                 <property name="font">
                  <font>
                   <family>Torus Pro</family>
@@ -206,7 +206,7 @@ height: 28px;</string>
             <item>
              <layout class="QVBoxLayout" name="verticalLayout_2">
               <item>
-               <widget class="QLabel" name="label_4">
+               <widget class="QLabel" name="label_time">
                 <property name="font">
                  <font>
                   <family>Torus Pro</family>
@@ -265,7 +265,7 @@ height: 28px;</string>
                </widget>
               </item>
               <item>
-               <layout class="QHBoxLayout" name="horizontalLayout_4">
+               <layout class="QHBoxLayout" name="horizontalLayout_3">
                 <property name="spacing">
                  <number>0</number>
                 </property>
@@ -275,7 +275,7 @@ height: 28px;</string>
                    <number>0</number>
                   </property>
                   <item>
-                   <widget class="QRadioButton" name="radioButton_2">
+                   <widget class="QRadioButton" name="btn_color_1">
                     <property name="minimumSize">
                      <size>
                       <width>120</width>
@@ -302,7 +302,7 @@ padding: 0px 5px 0px 5px;</string>
                    </widget>
                   </item>
                   <item>
-                   <widget class="QRadioButton" name="radioButton_3">
+                   <widget class="QRadioButton" name="btn_color_2">
                     <property name="minimumSize">
                      <size>
                       <width>120</width>
@@ -329,7 +329,7 @@ padding: 0px 5px 0px 5px;</string>
                    </widget>
                   </item>
                   <item>
-                   <widget class="QRadioButton" name="radioButton_5">
+                   <widget class="QRadioButton" name="btn_color_3">
                     <property name="minimumSize">
                      <size>
                       <width>120</width>
@@ -363,7 +363,7 @@ padding: 0px 5px 0px 5px;</string>
                    <number>0</number>
                   </property>
                   <item>
-                   <widget class="QRadioButton" name="radioButton">
+                   <widget class="QRadioButton" name="btn_color_4">
                     <property name="minimumSize">
                      <size>
                       <width>120</width>
@@ -390,7 +390,7 @@ padding: 0px 5px 0px 5px;</string>
                    </widget>
                   </item>
                   <item>
-                   <widget class="QRadioButton" name="radioButton_4">
+                   <widget class="QRadioButton" name="btn_color_5">
                     <property name="minimumSize">
                      <size>
                       <width>120</width>
@@ -417,7 +417,7 @@ padding: 0px 5px 0px 5px;</string>
                    </widget>
                   </item>
                   <item>
-                   <widget class="QRadioButton" name="radioButton_6">
+                   <widget class="QRadioButton" name="btn_color_6">
                     <property name="minimumSize">
                      <size>
                       <width>120</width>
@@ -478,7 +478,7 @@ padding: 0px 5px 0px 5px;</string>
            </layout>
           </item>
           <item>
-           <widget class="QLabel" name="label_2">
+           <widget class="QLabel" name="label_description">
             <property name="font">
              <font>
               <family>Torus Pro</family>
@@ -495,7 +495,7 @@ padding: 0px 5px 0px 5px;</string>
            </widget>
           </item>
           <item>
-           <widget class="QTextEdit" name="textEdit">
+           <widget class="QTextEdit" name="textEdit_description">
             <property name="font">
              <font>
               <family>Torus Pro</family>
@@ -535,7 +535,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
           <item>
            <layout class="QHBoxLayout" name="horizontalLayout">
             <item>
-             <widget class="QPushButton" name="pushButton_4">
+             <widget class="QPushButton" name="btn_delete_card">
               <property name="sizePolicy">
                <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
                 <horstretch>0</horstretch>
@@ -580,7 +580,7 @@ QPushButton:hover {background-color: #9e2a2a;}</string>
              </spacer>
             </item>
             <item>
-             <widget class="QPushButton" name="pushButton_2">
+             <widget class="QPushButton" name="btn_cancel">
               <property name="sizePolicy">
                <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
                 <horstretch>0</horstretch>
@@ -612,7 +612,7 @@ QPushButton:hover {background-color: #7e828c;}</string>
              </widget>
             </item>
             <item>
-             <widget class="QPushButton" name="pushButton_3">
+             <widget class="QPushButton" name="btn_save">
               <property name="sizePolicy">
                <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
                 <horstretch>0</horstretch>
@@ -655,19 +655,19 @@ QPushButton:hover {background-color: #5487bb;}</string>
   </widget>
  </widget>
  <tabstops>
-  <tabstop>lineEdit</tabstop>
+  <tabstop>lineEdit_title</tabstop>
   <tabstop>calendarWidget</tabstop>
   <tabstop>timeEdit</tabstop>
-  <tabstop>radioButton_2</tabstop>
-  <tabstop>radioButton_3</tabstop>
-  <tabstop>radioButton_5</tabstop>
-  <tabstop>radioButton</tabstop>
-  <tabstop>radioButton_4</tabstop>
-  <tabstop>radioButton_6</tabstop>
-  <tabstop>textEdit</tabstop>
-  <tabstop>pushButton_3</tabstop>
-  <tabstop>pushButton_2</tabstop>
-  <tabstop>pushButton_4</tabstop>
+  <tabstop>btn_color_1</tabstop>
+  <tabstop>btn_color_2</tabstop>
+  <tabstop>btn_color_3</tabstop>
+  <tabstop>btn_color_4</tabstop>
+  <tabstop>btn_color_5</tabstop>
+  <tabstop>btn_color_6</tabstop>
+  <tabstop>textEdit_description</tabstop>
+  <tabstop>btn_save</tabstop>
+  <tabstop>btn_cancel</tabstop>
+  <tabstop>btn_delete_card</tabstop>
  </tabstops>
  <resources/>
  <connections/>
