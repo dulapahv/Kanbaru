@@ -116,8 +116,7 @@ class Ui_MainWindow(object):
         self.calendarWidget.setFont(font2)
         self.calendarWidget.setCursor(QCursor(Qt.PointingHandCursor))
         self.calendarWidget.setFocusPolicy(Qt.TabFocus)
-        self.calendarWidget.setStyleSheet(u"background-color: rgb(107, 173, 238);\n"
-"height: 28px;")
+        self.calendarWidget.setStyleSheet(u"background-color: rgb(107, 173, 238);")
         self.calendarWidget.setGridVisible(False)
 
         self.verticalLayout_4.addWidget(self.calendarWidget)
