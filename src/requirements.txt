@@ -1,2 +1,1 @@
-cx_Freeze==6.14.4
 PySide6==6.4.2
