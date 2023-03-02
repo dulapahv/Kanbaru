@@ -84,7 +84,7 @@ padding: 0px 0px 0px 10px;</string>
        <item>
         <widget class="QWidget" name="widget" native="true">
          <property name="styleSheet">
-          <string notr="true">background-color: #ebecf0;
+          <string notr="true">background-color: #f4f5f7;
 border-radius: 5px;</string>
          </property>
          <layout class="QVBoxLayout" name="verticalLayout">
@@ -135,10 +135,28 @@ border-radius: 5px;</string>
              </font>
             </property>
             <property name="styleSheet">
-             <string notr="true">QLineEdit {background-color: #ffffff; color: #000000; border-radius: 5px; padding: 0px 8px 0px 8px}</string>
+             <string notr="true">QLineEdit {background-color: #ebecf0; color: #282c33; border-radius: 5px; padding: 0px 8px 0px 8px}
+QLineEdit:focus {background-color: #ffffff; border-color: #6badee; border-width: 1.5px; border-style: solid;; padding: 0px 6px 0px 6px}</string>
             </property>
             <property name="text">
-             <string>Test Title</string>
+             <string/>
+            </property>
+            <property name="placeholderText">
+             <string>Add a card title...</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="label_6">
+            <property name="font">
+             <font>
+              <family>Torus Pro</family>
+              <pointsize>11</pointsize>
+              <underline>true</underline>
+             </font>
+            </property>
+            <property name="text">
+             <string>in list To Do</string>
             </property>
            </widget>
           </item>
@@ -486,7 +504,8 @@ padding: 0px 5px 0px 5px;</string>
              </font>
             </property>
             <property name="styleSheet">
-             <string notr="true">QTextEdit {background-color: #ffffff; color: #282c33; border-radius: 5px; padding: 4px 8px 4px 8px}
+             <string notr="true">QTextEdit {background-color: #ebecf0; color: #282c33; border-radius: 5px; padding: 4px 8px 4px 8px}
+QTextEdit:focus {background-color: #ffffff; border-color: #6badee; border-width: 1.5px; border-style: solid;}
 QScrollBar:vertical {width: 10px; margin: 0px 0px 0px 0px; background-color: #acb2bf}</string>
             </property>
             <property name="frameShape">
@@ -503,10 +522,13 @@ hr { height: 1px; border-width: 0; }
 li.unchecked::marker { content: &quot;\2610&quot;; }
 li.checked::marker { content: &quot;\2612&quot;; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Torus Pro'; font-size:12pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Segoe UI';&quot;&gt;Test Desc&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
             </property>
             <property name="tabStopDistance">
              <double>20.000000000000000</double>
+            </property>
+            <property name="placeholderText">
+             <string>Add a more detailed description...</string>
             </property>
            </widget>
           </item>

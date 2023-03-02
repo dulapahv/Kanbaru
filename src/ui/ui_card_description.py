@@ -58,7 +58,7 @@ class Ui_MainWindow(object):
         self.verticalLayout_7.setContentsMargins(15, 15, 15, 15)
         self.widget1 = QWidget(self.widget)
         self.widget1.setObjectName(u"widget1")
-        self.widget1.setStyleSheet(u"background-color: #ebecf0;\n"
+        self.widget1.setStyleSheet(u"background-color: #f4f5f7;\n"
 "border-radius: 5px;")
         self.verticalLayout = QVBoxLayout(self.widget1)
         self.verticalLayout.setSpacing(12)
@@ -82,9 +82,20 @@ class Ui_MainWindow(object):
         font2.setFamilies([u"Torus Pro"])
         font2.setPointSize(12)
         self.lineEdit.setFont(font2)
-        self.lineEdit.setStyleSheet(u"QLineEdit {background-color: #ffffff; color: #000000; border-radius: 5px; padding: 0px 8px 0px 8px}")
+        self.lineEdit.setStyleSheet(u"QLineEdit {background-color: #ebecf0; color: #282c33; border-radius: 5px; padding: 0px 8px 0px 8px}\n"
+"QLineEdit:focus {background-color: #ffffff; border-color: #6badee; border-width: 1.5px; border-style: solid;; padding: 0px 6px 0px 6px}")
 
         self.verticalLayout.addWidget(self.lineEdit)
+
+        self.label_6 = QLabel(self.widget1)
+        self.label_6.setObjectName(u"label_6")
+        font3 = QFont()
+        font3.setFamilies([u"Torus Pro"])
+        font3.setPointSize(11)
+        font3.setUnderline(True)
+        self.label_6.setFont(font3)
+
+        self.verticalLayout.addWidget(self.label_6)
 
         self.horizontalLayout_3 = QHBoxLayout()
         self.horizontalLayout_3.setObjectName(u"horizontalLayout_3")
@@ -122,10 +133,10 @@ class Ui_MainWindow(object):
         self.timeEdit = QTimeEdit(self.widget1)
         self.timeEdit.setObjectName(u"timeEdit")
         self.timeEdit.setMinimumSize(QSize(0, 40))
-        font3 = QFont()
-        font3.setFamilies([u"Torus Pro"])
-        font3.setPointSize(16)
-        self.timeEdit.setFont(font3)
+        font4 = QFont()
+        font4.setFamilies([u"Torus Pro"])
+        font4.setPointSize(16)
+        self.timeEdit.setFont(font4)
         self.timeEdit.setCursor(QCursor(Qt.PointingHandCursor))
         self.timeEdit.setStyleSheet(u"QTimeEdit {background-color: #6badee; color: #ffffff; border-radius: 5px}")
         self.timeEdit.setTimeSpec(Qt.LocalTime)
@@ -246,12 +257,13 @@ class Ui_MainWindow(object):
 
         self.textEdit = QTextEdit(self.widget1)
         self.textEdit.setObjectName(u"textEdit")
-        font4 = QFont()
-        font4.setFamilies([u"Torus Pro"])
-        font4.setPointSize(12)
-        font4.setBold(False)
-        self.textEdit.setFont(font4)
-        self.textEdit.setStyleSheet(u"QTextEdit {background-color: #ffffff; color: #282c33; border-radius: 5px; padding: 4px 8px 4px 8px}\n"
+        font5 = QFont()
+        font5.setFamilies([u"Torus Pro"])
+        font5.setPointSize(12)
+        font5.setBold(False)
+        self.textEdit.setFont(font5)
+        self.textEdit.setStyleSheet(u"QTextEdit {background-color: #ebecf0; color: #282c33; border-radius: 5px; padding: 4px 8px 4px 8px}\n"
+"QTextEdit:focus {background-color: #ffffff; border-color: #6badee; border-width: 1.5px; border-style: solid;}\n"
 "QScrollBar:vertical {width: 10px; margin: 0px 0px 0px 0px; background-color: #acb2bf}")
         self.textEdit.setFrameShape(QFrame.NoFrame)
         self.textEdit.setAutoFormatting(QTextEdit.AutoAll)
@@ -336,7 +348,9 @@ class Ui_MainWindow(object):
         MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"Card Description", None))
         self.label_3.setText(QCoreApplication.translate("MainWindow", u"Card Description", None))
         self.label.setText(QCoreApplication.translate("MainWindow", u"Title", None))
-        self.lineEdit.setText(QCoreApplication.translate("MainWindow", u"Test Title", None))
+        self.lineEdit.setText("")
+        self.lineEdit.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Add a card title...", None))
+        self.label_6.setText(QCoreApplication.translate("MainWindow", u"in list To Do", None))
         self.label_5.setText(QCoreApplication.translate("MainWindow", u"Date", None))
         self.label_4.setText(QCoreApplication.translate("MainWindow", u"Time", None))
         self.label_7.setText(QCoreApplication.translate("MainWindow", u"Color", None))
@@ -354,7 +368,8 @@ class Ui_MainWindow(object):
 "li.unchecked::marker { content: \"\\2610\"; }\n"
 "li.checked::marker { content: \"\\2612\"; }\n"
 "</style></head><body style=\" font-family:'Torus Pro'; font-size:12pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'Segoe UI';\">Test Desc</span></p></body></html>", None))
+"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>", None))
+        self.textEdit.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Add a more detailed description...", None))
         self.pushButton_4.setText(QCoreApplication.translate("MainWindow", u"Delete Card", None))
         self.pushButton_2.setText(QCoreApplication.translate("MainWindow", u"Cancel", None))
         self.pushButton_3.setText(QCoreApplication.translate("MainWindow", u"Save", None))

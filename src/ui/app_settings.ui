@@ -84,7 +84,7 @@ padding: 0px 0px 0px 10px;</string>
        <item>
         <widget class="QWidget" name="widget" native="true">
          <property name="styleSheet">
-          <string notr="true">background-color: #ebecf0;
+          <string notr="true">background-color: #f4f5f7;
 border-radius: 5px;</string>
          </property>
          <layout class="QVBoxLayout" name="verticalLayout">

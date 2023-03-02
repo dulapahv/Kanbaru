@@ -52,7 +52,7 @@
         <number>0</number>
        </property>
        <item>
-        <widget class="QWidget" name="widget_7" native="true">
+        <widget class="QWidget" name="panel_left" native="true">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
            <horstretch>0</horstretch>
@@ -91,7 +91,7 @@
            <number>8</number>
           </property>
           <item>
-           <widget class="QLabel" name="label_5">
+           <widget class="QLabel" name="label_logo">
             <property name="font">
              <font>
               <family>Torus Pro</family>
@@ -112,7 +112,7 @@ baru</string>
            </widget>
           </item>
           <item>
-           <widget class="QScrollArea" name="scrollArea_2">
+           <widget class="QScrollArea" name="scrollArea_panel_left">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Expanding" vsizetype="MinimumExpanding">
               <horstretch>0</horstretch>
@@ -128,7 +128,7 @@ baru</string>
             <property name="widgetResizable">
              <bool>true</bool>
             </property>
-            <widget class="QWidget" name="scrollAreaWidgetContents_2">
+            <widget class="QWidget" name="scrollAreaContent_panel_left">
              <property name="geometry">
               <rect>
                <x>0</x>
@@ -154,7 +154,7 @@ baru</string>
                <number>0</number>
               </property>
               <item>
-               <widget class="QPushButton" name="pushButton_2">
+               <widget class="QPushButton" name="btn_board_1">
                 <property name="sizePolicy">
                  <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                   <horstretch>0</horstretch>
@@ -186,7 +186,7 @@ QPushButton:hover {background-color: #7e828c;}</string>
                </widget>
               </item>
               <item>
-               <widget class="QPushButton" name="pushButton_3">
+               <widget class="QPushButton" name="btn_board_2">
                 <property name="minimumSize">
                  <size>
                   <width>0</width>
@@ -212,7 +212,7 @@ QPushButton:hover {background-color: #7e828c;}</string>
                </widget>
               </item>
               <item>
-               <widget class="QPushButton" name="pushButton_8">
+               <widget class="QPushButton" name="btn_board_3">
                 <property name="minimumSize">
                  <size>
                   <width>0</width>
@@ -238,7 +238,7 @@ QPushButton:hover {background-color: #7e828c;}</string>
                </widget>
               </item>
               <item>
-               <widget class="QPushButton" name="pushButton_9">
+               <widget class="QPushButton" name="btn_board_4">
                 <property name="minimumSize">
                  <size>
                   <width>0</width>
@@ -264,7 +264,7 @@ QPushButton:hover {background-color: #7e828c;}</string>
                </widget>
               </item>
               <item>
-               <widget class="QPushButton" name="pushButton_10">
+               <widget class="QPushButton" name="btn_board_5">
                 <property name="minimumSize">
                  <size>
                   <width>0</width>
@@ -290,7 +290,7 @@ QPushButton:hover {background-color: #7e828c;}</string>
                </widget>
               </item>
               <item>
-               <widget class="QPushButton" name="pushButton_11">
+               <widget class="QPushButton" name="btn_board_6">
                 <property name="minimumSize">
                  <size>
                   <width>0</width>
@@ -311,12 +311,12 @@ QPushButton:hover {background-color: #7e828c;}</string>
 QPushButton:hover {background-color: #7e828c;}</string>
                 </property>
                 <property name="text">
-                 <string>Board 5</string>
+                 <string>Board 6</string>
                 </property>
                </widget>
               </item>
               <item>
-               <widget class="QPushButton" name="pushButton_12">
+               <widget class="QPushButton" name="btn_board_7">
                 <property name="minimumSize">
                  <size>
                   <width>0</width>
@@ -337,12 +337,12 @@ QPushButton:hover {background-color: #7e828c;}</string>
 QPushButton:hover {background-color: #7e828c;}</string>
                 </property>
                 <property name="text">
-                 <string>Board 5</string>
+                 <string>Board 7</string>
                 </property>
                </widget>
               </item>
               <item>
-               <spacer name="verticalSpacer_11">
+               <spacer name="vertSpacer_scrollAreaContent">
                 <property name="orientation">
                  <enum>Qt::Vertical</enum>
                 </property>
@@ -359,7 +359,7 @@ QPushButton:hover {background-color: #7e828c;}</string>
            </widget>
           </item>
           <item>
-           <widget class="QPushButton" name="pushButton_13">
+           <widget class="QPushButton" name="btn_add_board">
             <property name="minimumSize">
              <size>
               <width>0</width>
@@ -385,7 +385,7 @@ QPushButton:hover {background-color: #7e828c;}</string>
            </widget>
           </item>
           <item>
-           <widget class="QPushButton" name="pushButton_15">
+           <widget class="QPushButton" name="btn_board_settings">
             <property name="minimumSize">
              <size>
               <width>0</width>
@@ -411,7 +411,7 @@ QPushButton:hover {background-color: #576073;}</string>
            </widget>
           </item>
           <item>
-           <widget class="QPushButton" name="pushButton_7">
+           <widget class="QPushButton" name="btn_app_settings">
             <property name="minimumSize">
              <size>
               <width>0</width>
@@ -440,14 +440,14 @@ QPushButton:hover {background-color: #576073;}</string>
         </widget>
        </item>
        <item>
-        <layout class="QVBoxLayout" name="verticalLayout">
+        <layout class="QVBoxLayout" name="panel_right">
          <item>
-          <layout class="QHBoxLayout" name="horizontalLayout_3">
+          <layout class="QHBoxLayout" name="horzLayout_panel_right">
            <property name="spacing">
             <number>0</number>
            </property>
            <item>
-            <widget class="QLabel" name="label">
+            <widget class="QLabel" name="label_board">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                <horstretch>0</horstretch>
@@ -481,7 +481,7 @@ color: #FFFFFF;</string>
           </layout>
          </item>
          <item>
-          <widget class="QWidget" name="widget_2" native="true">
+          <widget class="QWidget" name="widget_panel_right" native="true">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
              <horstretch>0</horstretch>
@@ -511,7 +511,7 @@ color: #FFFFFF;</string>
              <number>0</number>
             </property>
             <item>
-             <widget class="QScrollArea" name="scrollArea">
+             <widget class="QScrollArea" name="scrollArea_panel_right">
               <property name="styleSheet">
                <string notr="true">QScrollBar:vertical {width: 10px; margin: 0px 0px 0px 0px; background-color: #acb2bf}
 QScrollBar:horizontal {height: 10px; margin: 0px 0px 0px 0px; background-color: #acb2bf}</string>
@@ -525,7 +525,7 @@ QScrollBar:horizontal {height: 10px; margin: 0px 0px 0px 0px; background-color: 
               <property name="widgetResizable">
                <bool>true</bool>
               </property>
-              <widget class="QWidget" name="scrollAreaWidgetContents">
+              <widget class="QWidget" name="scrollAreaContent_panel_right">
                <property name="geometry">
                 <rect>
                  <x>0</x>
@@ -548,7 +548,7 @@ QScrollBar:horizontal {height: 10px; margin: 0px 0px 0px 0px; background-color: 
                  <number>8</number>
                 </property>
                 <item>
-                 <widget class="QWidget" name="widget_3" native="true">
+                 <widget class="QWidget" name="list_1" native="true">
                   <property name="sizePolicy">
                    <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
                     <horstretch>0</horstretch>
@@ -581,7 +581,7 @@ QScrollBar:horizontal {height: 10px; margin: 0px 0px 0px 0px; background-color: 
                     <number>0</number>
                    </property>
                    <item>
-                    <widget class="QWidget" name="widget_11" native="true">
+                    <widget class="QWidget" name="widget_list_1" native="true">
                      <property name="sizePolicy">
                       <sizepolicy hsizetype="Preferred" vsizetype="Minimum">
                        <horstretch>0</horstretch>
@@ -606,7 +606,7 @@ border-radius: 10px;</string>
                        <number>0</number>
                       </property>
                       <item>
-                       <widget class="QLabel" name="label_2">
+                       <widget class="QLabel" name="label_list_1">
                         <property name="sizePolicy">
                          <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                           <horstretch>0</horstretch>
@@ -641,7 +641,7 @@ padding: 5px 0px 0px 5px;</string>
                        </widget>
                       </item>
                       <item>
-                       <widget class="QListWidget" name="listWidget_3">
+                       <widget class="QListWidget" name="listWidget_list_1">
                         <property name="sizePolicy">
                          <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
                           <horstretch>0</horstretch>
@@ -812,7 +812,7 @@ QScrollBar:vertical {width: 10px; margin: 0px 0px 0px 0px; background-color: #ac
                        </widget>
                       </item>
                       <item>
-                       <widget class="QWidget" name="widget_8" native="true">
+                       <widget class="QWidget" name="widget_add_card" native="true">
                         <property name="sizePolicy">
                          <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                           <horstretch>0</horstretch>
@@ -833,7 +833,7 @@ QScrollBar:vertical {width: 10px; margin: 0px 0px 0px 0px; background-color: #ac
                           <number>6</number>
                          </property>
                          <item>
-                          <widget class="QPushButton" name="pushButton_4">
+                          <widget class="QPushButton" name="btn_add_card_list_1">
                            <property name="minimumSize">
                             <size>
                              <width>0</width>
@@ -868,7 +868,7 @@ QPushButton:hover {background-color: #dadbe2; color: #505b76}</string>
                  </widget>
                 </item>
                 <item>
-                 <widget class="QWidget" name="widget_4" native="true">
+                 <widget class="QWidget" name="list_2" native="true">
                   <property name="sizePolicy">
                    <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
                     <horstretch>0</horstretch>
@@ -901,7 +901,7 @@ QPushButton:hover {background-color: #dadbe2; color: #505b76}</string>
                     <number>0</number>
                    </property>
                    <item>
-                    <widget class="QWidget" name="widget_12" native="true">
+                    <widget class="QWidget" name="widget_list_2" native="true">
                      <property name="sizePolicy">
                       <sizepolicy hsizetype="Preferred" vsizetype="Minimum">
                        <horstretch>0</horstretch>
@@ -926,7 +926,7 @@ border-radius: 10px;</string>
                        <number>0</number>
                       </property>
                       <item>
-                       <widget class="QLabel" name="label_3">
+                       <widget class="QLabel" name="label_list_2">
                         <property name="sizePolicy">
                          <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                           <horstretch>0</horstretch>
@@ -961,7 +961,7 @@ padding: 5px 0px 0px 5px;</string>
                        </widget>
                       </item>
                       <item>
-                       <widget class="QListWidget" name="listWidget_4">
+                       <widget class="QListWidget" name="listWidget_list_2">
                         <property name="sizePolicy">
                          <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
                           <horstretch>0</horstretch>
@@ -1081,7 +1081,7 @@ QScrollBar:vertical {width: 10px; margin: 0px 0px 0px 0px; background-color: #ac
                           <number>6</number>
                          </property>
                          <item>
-                          <widget class="QPushButton" name="pushButton_5">
+                          <widget class="QPushButton" name="btn_add_card_list_2">
                            <property name="minimumSize">
                             <size>
                              <width>0</width>
@@ -1116,7 +1116,7 @@ QPushButton:hover {background-color: #dadbe2; color: #505b76}</string>
                  </widget>
                 </item>
                 <item>
-                 <widget class="QWidget" name="widget_5" native="true">
+                 <widget class="QWidget" name="list_3" native="true">
                   <property name="sizePolicy">
                    <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
                     <horstretch>0</horstretch>
@@ -1149,7 +1149,7 @@ QPushButton:hover {background-color: #dadbe2; color: #505b76}</string>
                     <number>0</number>
                    </property>
                    <item>
-                    <widget class="QWidget" name="widget_13" native="true">
+                    <widget class="QWidget" name="widget_list_3" native="true">
                      <property name="sizePolicy">
                       <sizepolicy hsizetype="Preferred" vsizetype="Minimum">
                        <horstretch>0</horstretch>
@@ -1174,7 +1174,7 @@ border-radius: 10px;</string>
                        <number>0</number>
                       </property>
                       <item>
-                       <widget class="QLabel" name="label_4">
+                       <widget class="QLabel" name="label_list_3">
                         <property name="sizePolicy">
                          <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                           <horstretch>0</horstretch>
@@ -1209,7 +1209,7 @@ padding: 5px 0px 0px 5px;</string>
                        </widget>
                       </item>
                       <item>
-                       <widget class="QListWidget" name="listWidget_5">
+                       <widget class="QListWidget" name="listWidget_list_3">
                         <property name="sizePolicy">
                          <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
                           <horstretch>0</horstretch>
@@ -1329,7 +1329,7 @@ QScrollBar:vertical {width: 10px; margin: 0px 0px 0px 0px; background-color: #ac
                           <number>6</number>
                          </property>
                          <item>
-                          <widget class="QPushButton" name="pushButton_6">
+                          <widget class="QPushButton" name="btn_add_card_list_3">
                            <property name="minimumSize">
                             <size>
                              <width>0</width>
@@ -1364,7 +1364,7 @@ QPushButton:hover {background-color: #dadbe2; color: #505b76}</string>
                  </widget>
                 </item>
                 <item>
-                 <widget class="QWidget" name="widget_6" native="true">
+                 <widget class="QWidget" name="list_add" native="true">
                   <property name="sizePolicy">
                    <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
                     <horstretch>0</horstretch>
@@ -1394,7 +1394,7 @@ QPushButton:hover {background-color: #dadbe2; color: #505b76}</string>
                     <number>0</number>
                    </property>
                    <item>
-                    <widget class="QPushButton" name="pushButton">
+                    <widget class="QPushButton" name="btn_add_list">
                      <property name="minimumSize">
                       <size>
                        <width>0</width>
@@ -1421,7 +1421,7 @@ QPushButton:hover {background-color: #7e828c;}</string>
                     </widget>
                    </item>
                    <item>
-                    <spacer name="verticalSpacer">
+                    <spacer name="vertSpacer_list_add">
                      <property name="orientation">
                       <enum>Qt::Vertical</enum>
                      </property>
@@ -1437,7 +1437,7 @@ QPushButton:hover {background-color: #7e828c;}</string>
                  </widget>
                 </item>
                 <item>
-                 <spacer name="horizontalSpacer">
+                 <spacer name="horzSpacer_panel_right">
                   <property name="orientation">
                    <enum>Qt::Horizontal</enum>
                   </property>
@@ -1465,18 +1465,18 @@ QPushButton:hover {background-color: #7e828c;}</string>
   </widget>
  </widget>
  <tabstops>
-  <tabstop>pushButton</tabstop>
-  <tabstop>scrollArea</tabstop>
-  <tabstop>pushButton_2</tabstop>
-  <tabstop>scrollArea_2</tabstop>
-  <tabstop>pushButton_3</tabstop>
-  <tabstop>pushButton_8</tabstop>
-  <tabstop>pushButton_9</tabstop>
-  <tabstop>pushButton_10</tabstop>
-  <tabstop>pushButton_11</tabstop>
-  <tabstop>pushButton_12</tabstop>
-  <tabstop>pushButton_13</tabstop>
-  <tabstop>pushButton_7</tabstop>
+  <tabstop>btn_add_list</tabstop>
+  <tabstop>scrollArea_panel_right</tabstop>
+  <tabstop>btn_board_1</tabstop>
+  <tabstop>scrollArea_panel_left</tabstop>
+  <tabstop>btn_board_2</tabstop>
+  <tabstop>btn_board_3</tabstop>
+  <tabstop>btn_board_4</tabstop>
+  <tabstop>btn_board_5</tabstop>
+  <tabstop>btn_board_6</tabstop>
+  <tabstop>btn_board_7</tabstop>
+  <tabstop>btn_add_board</tabstop>
+  <tabstop>btn_app_settings</tabstop>
  </tabstops>
  <resources/>
  <connections/>

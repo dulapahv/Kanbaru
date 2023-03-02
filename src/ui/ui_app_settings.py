@@ -58,7 +58,7 @@ class Ui_MainWindow(object):
         self.verticalLayout_7.setContentsMargins(15, 15, 15, 15)
         self.widget1 = QWidget(self.widget)
         self.widget1.setObjectName(u"widget1")
-        self.widget1.setStyleSheet(u"background-color: #ebecf0;\n"
+        self.widget1.setStyleSheet(u"background-color: #f4f5f7;\n"
 "border-radius: 5px;")
         self.verticalLayout = QVBoxLayout(self.widget1)
         self.verticalLayout.setSpacing(12)

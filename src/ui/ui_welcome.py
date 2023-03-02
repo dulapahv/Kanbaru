@@ -52,7 +52,7 @@ class Ui_MainWindow(object):
 
         self.widget1 = QWidget(self.widget_4)
         self.widget1.setObjectName(u"widget1")
-        self.widget1.setStyleSheet(u"background-color: #ebecf0;\n"
+        self.widget1.setStyleSheet(u"background-color: #f4f5f7;\n"
 "border-radius: 5px;")
         self.verticalLayout = QVBoxLayout(self.widget1)
         self.verticalLayout.setSpacing(12)
@@ -109,7 +109,8 @@ class Ui_MainWindow(object):
         font2.setFamilies([u"Torus Pro"])
         font2.setPointSize(12)
         self.lineEdit.setFont(font2)
-        self.lineEdit.setStyleSheet(u"QLineEdit {border-color: #dfe1e6; border-width: 1.5px; border-style: solid; color: #000000; border-radius: 5px; background-color: #ffffff; padding: 0px 8px 0px 8px}")
+        self.lineEdit.setStyleSheet(u"QLineEdit {border-color: #dfe1e6; border-width: 1.5px; border-style: solid; color: #282c33; border-radius: 5px; background-color: #ffffff; padding: 0px 0px 0px 8px}\n"
+"QLineEdit:focus {border-color: #6badee;}")
         self.lineEdit.setClearButtonEnabled(True)
 
         self.verticalLayout_4.addWidget(self.lineEdit)
@@ -118,7 +119,8 @@ class Ui_MainWindow(object):
         self.lineEdit_2.setObjectName(u"lineEdit_2")
         self.lineEdit_2.setMinimumSize(QSize(0, 40))
         self.lineEdit_2.setFont(font2)
-        self.lineEdit_2.setStyleSheet(u"QLineEdit {border-color: #dfe1e6; border-width: 1.5px; border-style: solid; color: #000000; border-radius: 5px; background-color: #ffffff; padding: 0px 8px 0px 8px}")
+        self.lineEdit_2.setStyleSheet(u"QLineEdit {border-color: #dfe1e6; border-width: 1.5px; border-style: solid; color: #282c33; border-radius: 5px; background-color: #ffffff; padding: 0px 0px 0px 8px}\n"
+"QLineEdit:focus {border-color: #6badee;}")
         self.lineEdit_2.setEchoMode(QLineEdit.Password)
         self.lineEdit_2.setClearButtonEnabled(True)
 
@@ -157,7 +159,8 @@ class Ui_MainWindow(object):
         self.pushButton_4.setFont(font4)
         self.pushButton_4.setCursor(QCursor(Qt.PointingHandCursor))
         self.pushButton_4.setStyleSheet(u"QPushButton {background-color: #5dac48; color: #ffffff; border-radius: 5px}\n"
-"QPushButton:hover {background-color: #64bd53;}")
+"QPushButton:hover {background-color: #64bd53;}\n"
+"QPushButton:focus {border-color: #000000; border-width: 1.5px; border-style: solid;}")
 
         self.horizontalLayout.addWidget(self.pushButton_4)
 
@@ -195,7 +198,8 @@ class Ui_MainWindow(object):
         self.lineEdit_4.setObjectName(u"lineEdit_4")
         self.lineEdit_4.setMinimumSize(QSize(0, 40))
         self.lineEdit_4.setFont(font2)
-        self.lineEdit_4.setStyleSheet(u"QLineEdit {border-color: #dfe1e6; border-width: 1.5px; border-style: solid; color: #000000; border-radius: 5px; background-color: #ffffff; padding: 0px 8px 0px 8px}")
+        self.lineEdit_4.setStyleSheet(u"QLineEdit {border-color: #dfe1e6; border-width: 1.5px; border-style: solid; color: #282c33; border-radius: 5px; background-color: #ffffff; padding: 0px 0px 0px 8px}\n"
+"QLineEdit:focus {border-color: #6badee;}")
         self.lineEdit_4.setClearButtonEnabled(True)
 
         self.verticalLayout_5.addWidget(self.lineEdit_4)
@@ -204,7 +208,8 @@ class Ui_MainWindow(object):
         self.lineEdit_3.setObjectName(u"lineEdit_3")
         self.lineEdit_3.setMinimumSize(QSize(0, 40))
         self.lineEdit_3.setFont(font2)
-        self.lineEdit_3.setStyleSheet(u"QLineEdit {border-color: #dfe1e6; border-width: 1.5px; border-style: solid; color: #000000; border-radius: 5px; background-color: #ffffff; padding: 0px 8px 0px 8px}")
+        self.lineEdit_3.setStyleSheet(u"QLineEdit {border-color: #dfe1e6; border-width: 1.5px; border-style: solid; color: #282c33; border-radius: 5px; background-color: #ffffff; padding: 0px 0px 0px 8px}\n"
+"QLineEdit:focus {border-color: #6badee;}")
         self.lineEdit_3.setEchoMode(QLineEdit.Password)
         self.lineEdit_3.setClearButtonEnabled(True)
 
@@ -214,7 +219,8 @@ class Ui_MainWindow(object):
         self.lineEdit_5.setObjectName(u"lineEdit_5")
         self.lineEdit_5.setMinimumSize(QSize(0, 40))
         self.lineEdit_5.setFont(font2)
-        self.lineEdit_5.setStyleSheet(u"QLineEdit {border-color: #dfe1e6; border-width: 1.5px; border-style: solid; color: #000000; border-radius: 5px; background-color: #ffffff; padding: 0px 8px 0px 8px}")
+        self.lineEdit_5.setStyleSheet(u"QLineEdit {border-color: #dfe1e6; border-width: 1.5px; border-style: solid; color: #282c33; border-radius: 5px; background-color: #ffffff; padding: 0px 0px 0px 8px}\n"
+"QLineEdit:focus {border-color: #6badee;}")
         self.lineEdit_5.setEchoMode(QLineEdit.Password)
         self.lineEdit_5.setClearButtonEnabled(True)
 
@@ -242,7 +248,8 @@ class Ui_MainWindow(object):
         self.pushButton_5.setFont(font4)
         self.pushButton_5.setCursor(QCursor(Qt.PointingHandCursor))
         self.pushButton_5.setStyleSheet(u"QPushButton {background-color: #5dac48; color: #ffffff; border-radius: 5px}\n"
-"QPushButton:hover {background-color: #64bd53;}")
+"QPushButton:hover {background-color: #64bd53;}\n"
+"QPushButton:focus {border-color: #000000; border-width: 1.5px; border-style: solid;}")
 
         self.horizontalLayout_4.addWidget(self.pushButton_5)
 

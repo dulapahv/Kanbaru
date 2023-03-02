@@ -58,7 +58,7 @@ class Ui_MainWindow(object):
         self.verticalLayout_7.setContentsMargins(15, 15, 15, 15)
         self.widget1 = QWidget(self.widget)
         self.widget1.setObjectName(u"widget1")
-        self.widget1.setStyleSheet(u"background-color: #ebecf0;\n"
+        self.widget1.setStyleSheet(u"background-color: #f4f5f7;\n"
 "border-radius: 5px;")
         self.verticalLayout = QVBoxLayout(self.widget1)
         self.verticalLayout.setSpacing(12)
@@ -105,7 +105,8 @@ class Ui_MainWindow(object):
         font2.setFamilies([u"Torus Pro"])
         font2.setPointSize(12)
         self.lineEdit.setFont(font2)
-        self.lineEdit.setStyleSheet(u"QLineEdit {background-color: #ffffff; color: #000000; border-radius: 5px}")
+        self.lineEdit.setStyleSheet(u"QLineEdit {background-color: #ebecf0; color: #282c33; border-radius: 5px; padding: 0px 8px 0px 8px}\n"
+"QLineEdit:focus {background-color: #ffffff; border-color: #6badee; border-width: 1.5px; border-style: solid;; padding: 0px 6px 0px 6px}")
 
         self.verticalLayout_2.addWidget(self.lineEdit)
 
@@ -417,7 +418,8 @@ class Ui_MainWindow(object):
         MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"Board Settings", None))
         self.label_3.setText(QCoreApplication.translate("MainWindow", u"Board Settings", None))
         self.label.setText(QCoreApplication.translate("MainWindow", u"Title", None))
-        self.lineEdit.setText(QCoreApplication.translate("MainWindow", u"Test Title", None))
+        self.lineEdit.setText("")
+        self.lineEdit.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Add a board title...", None))
         self.label_7.setText(QCoreApplication.translate("MainWindow", u"Color", None))
         self.radioButton_2.setText(QCoreApplication.translate("MainWindow", u"Light blue", None))
         self.radioButton_3.setText(QCoreApplication.translate("MainWindow", u"Rose", None))
