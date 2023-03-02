@@ -337,6 +337,9 @@ QLineEdit:focus {border-color: #6badee;}</string>
                         <property name="cursor">
                          <cursorShape>PointingHandCursor</cursorShape>
                         </property>
+                        <property name="focusPolicy">
+                         <enum>Qt::TabFocus</enum>
+                        </property>
                         <property name="styleSheet">
                          <string notr="true">QPushButton {background-color: #5dac48; color: #ffffff; border-radius: 5px}
 QPushButton:hover {background-color: #64bd53;}
@@ -551,6 +554,9 @@ QLineEdit:focus {border-color: #6badee;}</string>
                         </property>
                         <property name="cursor">
                          <cursorShape>PointingHandCursor</cursorShape>
+                        </property>
+                        <property name="focusPolicy">
+                         <enum>Qt::TabFocus</enum>
                         </property>
                         <property name="styleSheet">
                          <string notr="true">QPushButton {background-color: #5dac48; color: #ffffff; border-radius: 5px}

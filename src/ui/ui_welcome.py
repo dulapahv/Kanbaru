@@ -161,6 +161,7 @@ class Ui_MainWindow(object):
         font4.setBold(True)
         self.btn_login.setFont(font4)
         self.btn_login.setCursor(QCursor(Qt.PointingHandCursor))
+        self.btn_login.setFocusPolicy(Qt.TabFocus)
         self.btn_login.setStyleSheet(u"QPushButton {background-color: #5dac48; color: #ffffff; border-radius: 5px}\n"
 "QPushButton:hover {background-color: #64bd53;}\n"
 "QPushButton:focus {border-color: #000000; border-width: 1.5px; border-style: solid;}")
@@ -252,6 +253,7 @@ class Ui_MainWindow(object):
         self.btn_sign_up.setMinimumSize(QSize(120, 30))
         self.btn_sign_up.setFont(font4)
         self.btn_sign_up.setCursor(QCursor(Qt.PointingHandCursor))
+        self.btn_sign_up.setFocusPolicy(Qt.TabFocus)
         self.btn_sign_up.setStyleSheet(u"QPushButton {background-color: #5dac48; color: #ffffff; border-radius: 5px}\n"
 "QPushButton:hover {background-color: #64bd53;}\n"
 "QPushButton:focus {border-color: #000000; border-width: 1.5px; border-style: solid;}")

@@ -58,6 +58,7 @@ class Ui_MainWindow(object):
         self.verticalLayout_7.setContentsMargins(15, 15, 15, 15)
         self.widget1 = QWidget(self.widget)
         self.widget1.setObjectName(u"widget1")
+        self.widget1.setFocusPolicy(Qt.TabFocus)
         self.widget1.setStyleSheet(u"background-color: #f4f5f7;\n"
 "border-radius: 5px;")
         self.verticalLayout = QVBoxLayout(self.widget1)
@@ -111,10 +112,12 @@ class Ui_MainWindow(object):
         font3.setPointSize(12)
         font3.setBold(True)
         self.listWidget.setFont(font3)
+        self.listWidget.setFocusPolicy(Qt.TabFocus)
         self.listWidget.setStyleSheet(u"QListWidget::item {height: 40px; padding: 0px 8px 0px 8px}\n"
 "QListWidget::item {background-color: #ffffff; color: #000000; border-radius: 5px}\n"
 "QListWidget::item:hover {background-color: #e2e4e9; color: #000000}\n"
 "QListWidget::item:selected {background-color: #cccccc; color: #000000}\n"
+"QListWidget::item:focus {background-color: #cccccc; color: #000000}\n"
 "QScrollBar:vertical {width: 10px; margin: 0px 0px 0px 0px; background-color: #acb2bf}")
         self.listWidget.setFrameShape(QFrame.NoFrame)
         self.listWidget.setDragEnabled(True)
@@ -144,6 +147,7 @@ class Ui_MainWindow(object):
         font4.setPointSize(12)
         self.btn_delete_board.setFont(font4)
         self.btn_delete_board.setCursor(QCursor(Qt.PointingHandCursor))
+        self.btn_delete_board.setFocusPolicy(Qt.TabFocus)
         self.btn_delete_board.setStyleSheet(u"QPushButton {background-color: #d63a3e; color: #ffffff; border-radius: 5px}\n"
 "QPushButton:hover {background-color: #9e2a2a;}\n"
 "QPushButton:focus {border-color: #000000; border-width: 1.5px; border-style: solid;}")
@@ -177,6 +181,7 @@ class Ui_MainWindow(object):
         self.btn_logout.setMinimumSize(QSize(100, 30))
         self.btn_logout.setFont(font4)
         self.btn_logout.setCursor(QCursor(Qt.PointingHandCursor))
+        self.btn_logout.setFocusPolicy(Qt.TabFocus)
         self.btn_logout.setStyleSheet(u"QPushButton {background-color: #acb2bf; color: #ffffff; border-radius: 5px}\n"
 "QPushButton:hover {background-color: #7e828c;}\n"
 "QPushButton:focus {border-color: #000000; border-width: 1.5px; border-style: solid;}")
@@ -190,6 +195,7 @@ class Ui_MainWindow(object):
         self.btn_change_passwd.setMinimumSize(QSize(180, 30))
         self.btn_change_passwd.setFont(font4)
         self.btn_change_passwd.setCursor(QCursor(Qt.PointingHandCursor))
+        self.btn_change_passwd.setFocusPolicy(Qt.TabFocus)
         self.btn_change_passwd.setStyleSheet(u"QPushButton {background-color: #acb2bf; color: #ffffff; border-radius: 5px}\n"
 "QPushButton:hover {background-color: #7e828c;}\n"
 "QPushButton:focus {border-color: #000000; border-width: 1.5px; border-style: solid;}")
@@ -210,6 +216,7 @@ class Ui_MainWindow(object):
         self.btn_delete_account.setMinimumSize(QSize(150, 30))
         self.btn_delete_account.setFont(font4)
         self.btn_delete_account.setCursor(QCursor(Qt.PointingHandCursor))
+        self.btn_delete_account.setFocusPolicy(Qt.TabFocus)
         self.btn_delete_account.setStyleSheet(u"QPushButton {border-color: #d63a3e; border-width: 1.5px; border-style: solid; color: #282c33; border-radius: 5px}\n"
 "QPushButton:hover {background-color: #d63a3e; color: #ffffff;}\n"
 "QPushButton:focus {border-color: #000000; border-width: 1.5px; border-style: solid;}")
@@ -245,6 +252,7 @@ class Ui_MainWindow(object):
         self.btn_cancel.setMinimumSize(QSize(100, 30))
         self.btn_cancel.setFont(font4)
         self.btn_cancel.setCursor(QCursor(Qt.PointingHandCursor))
+        self.btn_cancel.setFocusPolicy(Qt.TabFocus)
         self.btn_cancel.setStyleSheet(u"QPushButton {background-color: #acb2bf; color: #ffffff; border-radius: 5px}\n"
 "QPushButton:hover {background-color: #7e828c;}\n"
 "QPushButton:focus {border-color: #000000; border-width: 1.5px; border-style: solid;}")
@@ -258,6 +266,7 @@ class Ui_MainWindow(object):
         self.btn_save.setMinimumSize(QSize(100, 30))
         self.btn_save.setFont(font4)
         self.btn_save.setCursor(QCursor(Qt.PointingHandCursor))
+        self.btn_save.setFocusPolicy(Qt.TabFocus)
         self.btn_save.setStyleSheet(u"QPushButton {background-color: #6badee; color: #ffffff; border-radius: 5px}\n"
 "QPushButton:hover {background-color: #5487bb;}\n"
 "QPushButton:focus {border-color: #000000; border-width: 1.5px; border-style: solid;}")

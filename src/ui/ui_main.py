@@ -94,6 +94,7 @@ class Ui_MainWindow(object):
         font1.setPointSize(12)
         self.btn_board_1.setFont(font1)
         self.btn_board_1.setCursor(QCursor(Qt.PointingHandCursor))
+        self.btn_board_1.setFocusPolicy(Qt.TabFocus)
         self.btn_board_1.setStyleSheet(u"QPushButton {background-color: #6badee; color: #ffffff; border-radius: 5px}\n"
 "QPushButton:hover {background-color: #7e828c;}\n"
 "QPushButton:focus {border-color: #000000; border-width: 1.5px; border-style: solid;}")
@@ -105,6 +106,7 @@ class Ui_MainWindow(object):
         self.btn_board_2.setMinimumSize(QSize(0, 40))
         self.btn_board_2.setFont(font1)
         self.btn_board_2.setCursor(QCursor(Qt.PointingHandCursor))
+        self.btn_board_2.setFocusPolicy(Qt.TabFocus)
         self.btn_board_2.setStyleSheet(u"QPushButton {background-color: #fb568a; color: #ffffff; border-radius: 5px}\n"
 "QPushButton:hover {background-color: #7e828c;}\n"
 "QPushButton:focus {border-color: #000000; border-width: 1.5px; border-style: solid;}")
@@ -116,6 +118,7 @@ class Ui_MainWindow(object):
         self.btn_board_3.setMinimumSize(QSize(0, 40))
         self.btn_board_3.setFont(font1)
         self.btn_board_3.setCursor(QCursor(Qt.PointingHandCursor))
+        self.btn_board_3.setFocusPolicy(Qt.TabFocus)
         self.btn_board_3.setStyleSheet(u"QPushButton {background-color: #fbd945; color: #ffffff; border-radius: 5px}\n"
 "QPushButton:hover {background-color: #7e828c;}\n"
 "QPushButton:focus {border-color: #000000; border-width: 1.5px; border-style: solid;}")
@@ -127,6 +130,7 @@ class Ui_MainWindow(object):
         self.btn_board_4.setMinimumSize(QSize(0, 40))
         self.btn_board_4.setFont(font1)
         self.btn_board_4.setCursor(QCursor(Qt.PointingHandCursor))
+        self.btn_board_4.setFocusPolicy(Qt.TabFocus)
         self.btn_board_4.setStyleSheet(u"QPushButton {background-color: #99c37b; color: #ffffff; border-radius: 5px}\n"
 "QPushButton:hover {background-color: #7e828c;}\n"
 "QPushButton:focus {border-color: #000000; border-width: 1.5px; border-style: solid;}")
@@ -138,6 +142,7 @@ class Ui_MainWindow(object):
         self.btn_board_5.setMinimumSize(QSize(0, 40))
         self.btn_board_5.setFont(font1)
         self.btn_board_5.setCursor(QCursor(Qt.PointingHandCursor))
+        self.btn_board_5.setFocusPolicy(Qt.TabFocus)
         self.btn_board_5.setStyleSheet(u"QPushButton {background-color: #c577dc; color: #ffffff; border-radius: 5px}\n"
 "QPushButton:hover {background-color: #7e828c;}\n"
 "QPushButton:focus {border-color: #000000; border-width: 1.5px; border-style: solid;}")
@@ -149,6 +154,7 @@ class Ui_MainWindow(object):
         self.btn_board_6.setMinimumSize(QSize(0, 40))
         self.btn_board_6.setFont(font1)
         self.btn_board_6.setCursor(QCursor(Qt.PointingHandCursor))
+        self.btn_board_6.setFocusPolicy(Qt.TabFocus)
         self.btn_board_6.setStyleSheet(u"QPushButton {background-color: #5eb5c1; color: #ffffff; border-radius: 5px}\n"
 "QPushButton:hover {background-color: #7e828c;}\n"
 "QPushButton:focus {border-color: #000000; border-width: 1.5px; border-style: solid;}")
@@ -160,6 +166,7 @@ class Ui_MainWindow(object):
         self.btn_board_7.setMinimumSize(QSize(0, 40))
         self.btn_board_7.setFont(font1)
         self.btn_board_7.setCursor(QCursor(Qt.PointingHandCursor))
+        self.btn_board_7.setFocusPolicy(Qt.TabFocus)
         self.btn_board_7.setStyleSheet(u"QPushButton {background-color: #6badee; color: #ffffff; border-radius: 5px}\n"
 "QPushButton:hover {background-color: #7e828c;}\n"
 "QPushButton:focus {border-color: #000000; border-width: 1.5px; border-style: solid;}")
@@ -179,6 +186,7 @@ class Ui_MainWindow(object):
         self.btn_add_board.setMinimumSize(QSize(0, 30))
         self.btn_add_board.setFont(font1)
         self.btn_add_board.setCursor(QCursor(Qt.PointingHandCursor))
+        self.btn_add_board.setFocusPolicy(Qt.TabFocus)
         self.btn_add_board.setStyleSheet(u"QPushButton {background-color: #acb2bf; color: #ffffff; border-radius: 5px}\n"
 "QPushButton:hover {background-color: #7e828c;}\n"
 "QPushButton:focus {border-color: #000000; border-width: 1.5px; border-style: solid;}")
@@ -190,6 +198,7 @@ class Ui_MainWindow(object):
         self.btn_board_settings.setMinimumSize(QSize(0, 30))
         self.btn_board_settings.setFont(font1)
         self.btn_board_settings.setCursor(QCursor(Qt.PointingHandCursor))
+        self.btn_board_settings.setFocusPolicy(Qt.TabFocus)
         self.btn_board_settings.setStyleSheet(u"QPushButton {background-color: #7f8ca6; color: #ffffff; border-radius: 5px}\n"
 "QPushButton:hover {background-color: #576073;}\n"
 "QPushButton:focus {border-color: #000000; border-width: 1.5px; border-style: solid;}")
@@ -201,6 +210,7 @@ class Ui_MainWindow(object):
         self.btn_app_settings.setMinimumSize(QSize(0, 30))
         self.btn_app_settings.setFont(font1)
         self.btn_app_settings.setCursor(QCursor(Qt.PointingHandCursor))
+        self.btn_app_settings.setFocusPolicy(Qt.TabFocus)
         self.btn_app_settings.setStyleSheet(u"QPushButton {background-color: #7f8ca6; color: #ffffff; border-radius: 5px}\n"
 "QPushButton:hover {background-color: #576073;}\n"
 "QPushButton:focus {border-color: #000000; border-width: 1.5px; border-style: solid;}")
@@ -254,7 +264,7 @@ class Ui_MainWindow(object):
         self.scrollArea_panel_right.setWidgetResizable(True)
         self.scrollAreaContent_panel_right = QWidget()
         self.scrollAreaContent_panel_right.setObjectName(u"scrollAreaContent_panel_right")
-        self.scrollAreaContent_panel_right.setGeometry(QRect(0, 0, 1032, 579))
+        self.scrollAreaContent_panel_right.setGeometry(QRect(-120, 0, 1032, 579))
         self.horizontalLayout_5 = QHBoxLayout(self.scrollAreaContent_panel_right)
         self.horizontalLayout_5.setObjectName(u"horizontalLayout_5")
         self.horizontalLayout_5.setContentsMargins(8, 0, 0, 8)
@@ -331,6 +341,7 @@ class Ui_MainWindow(object):
         self.listWidget_list_1.setSizePolicy(sizePolicy4)
         self.listWidget_list_1.setMaximumSize(QSize(250, 16777215))
         self.listWidget_list_1.setFont(font1)
+        self.listWidget_list_1.setFocusPolicy(Qt.TabFocus)
         self.listWidget_list_1.setAcceptDrops(True)
         self.listWidget_list_1.setStyleSheet(u"QListWidget {background-color: #ebecf0; border-radius: 10px;}\n"
 "QListWidget::item {height: 40px; padding: 0px 8px 0px 8px}\n"
@@ -369,6 +380,7 @@ class Ui_MainWindow(object):
         self.btn_add_card_list_1.setMinimumSize(QSize(0, 25))
         self.btn_add_card_list_1.setFont(font1)
         self.btn_add_card_list_1.setCursor(QCursor(Qt.PointingHandCursor))
+        self.btn_add_card_list_1.setFocusPolicy(Qt.TabFocus)
         self.btn_add_card_list_1.setStyleSheet(u"QPushButton {background-color: #ebecf0; color: #6a758b; border-radius: 5px}\n"
 "QPushButton:hover {background-color: #dadbe2; color: #505b76}\n"
 "QPushButton:focus {border-color: #000000; border-width: 1.5px; border-style: solid;}")
@@ -429,6 +441,7 @@ class Ui_MainWindow(object):
         self.listWidget_list_2.setSizePolicy(sizePolicy4)
         self.listWidget_list_2.setMaximumSize(QSize(250, 16777215))
         self.listWidget_list_2.setFont(font1)
+        self.listWidget_list_2.setFocusPolicy(Qt.TabFocus)
         self.listWidget_list_2.setAcceptDrops(True)
         self.listWidget_list_2.setStyleSheet(u"QListWidget {background-color: #ebecf0; border-radius: 10px;}\n"
 "QListWidget::item {height: 40px; padding: 0px 8px 0px 8px}\n"
@@ -467,6 +480,7 @@ class Ui_MainWindow(object):
         self.btn_add_card_list_2.setMinimumSize(QSize(0, 25))
         self.btn_add_card_list_2.setFont(font1)
         self.btn_add_card_list_2.setCursor(QCursor(Qt.PointingHandCursor))
+        self.btn_add_card_list_2.setFocusPolicy(Qt.TabFocus)
         self.btn_add_card_list_2.setStyleSheet(u"QPushButton {background-color: #ebecf0; color: #6a758b; border-radius: 5px}\n"
 "QPushButton:hover {background-color: #dadbe2; color: #505b76}\n"
 "QPushButton:focus {border-color: #000000; border-width: 1.5px; border-style: solid;}")
@@ -527,6 +541,7 @@ class Ui_MainWindow(object):
         self.listWidget_list_3.setSizePolicy(sizePolicy4)
         self.listWidget_list_3.setMaximumSize(QSize(250, 16777215))
         self.listWidget_list_3.setFont(font1)
+        self.listWidget_list_3.setFocusPolicy(Qt.TabFocus)
         self.listWidget_list_3.setAcceptDrops(True)
         self.listWidget_list_3.setStyleSheet(u"QListWidget {background-color: #ebecf0; border-radius: 10px;}\n"
 "QListWidget::item {height: 40px; padding: 0px 8px 0px 8px}\n"
@@ -565,6 +580,7 @@ class Ui_MainWindow(object):
         self.btn_add_card_list_3.setMinimumSize(QSize(0, 25))
         self.btn_add_card_list_3.setFont(font1)
         self.btn_add_card_list_3.setCursor(QCursor(Qt.PointingHandCursor))
+        self.btn_add_card_list_3.setFocusPolicy(Qt.TabFocus)
         self.btn_add_card_list_3.setStyleSheet(u"QPushButton {background-color: #ebecf0; color: #6a758b; border-radius: 5px}\n"
 "QPushButton:hover {background-color: #dadbe2; color: #505b76}\n"
 "QPushButton:focus {border-color: #000000; border-width: 1.5px; border-style: solid;}")
@@ -598,6 +614,7 @@ class Ui_MainWindow(object):
         font4.setBold(False)
         self.btn_add_list.setFont(font4)
         self.btn_add_list.setCursor(QCursor(Qt.PointingHandCursor))
+        self.btn_add_list.setFocusPolicy(Qt.TabFocus)
         self.btn_add_list.setStyleSheet(u"QPushButton {background-color: #acb2bf; color: #ffffff; border-radius: 5px}\n"
 "QPushButton:hover {background-color: #7e828c;}\n"
 "QPushButton:focus {border-color: #000000; border-width: 1.5px; border-style: solid;}")

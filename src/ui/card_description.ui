@@ -201,6 +201,9 @@ QLineEdit:focus {background-color: #ffffff; border-color: #6badee; border-width:
                 <property name="cursor">
                  <cursorShape>PointingHandCursor</cursorShape>
                 </property>
+                <property name="focusPolicy">
+                 <enum>Qt::TabFocus</enum>
+                </property>
                 <property name="styleSheet">
                  <string notr="true">background-color: rgb(107, 173, 238);
 height: 28px;</string>
@@ -307,6 +310,9 @@ QTimeEdit:focus {border-color: #000000; border-width: 1.5px; border-style: solid
                     <property name="cursor">
                      <cursorShape>PointingHandCursor</cursorShape>
                     </property>
+                    <property name="focusPolicy">
+                     <enum>Qt::TabFocus</enum>
+                    </property>
                     <property name="styleSheet">
                      <string notr="true">QRadioButton {background-color: #6badee; color: #ffffff; padding: 0px 5px 0px 5px;}
 QRadioButton:focus {border-color: #000000; border-width: 1.5px; border-style: solid; padding: 0px 3px 0px 3px;}</string>
@@ -333,6 +339,9 @@ QRadioButton:focus {border-color: #000000; border-width: 1.5px; border-style: so
                     <property name="cursor">
                      <cursorShape>PointingHandCursor</cursorShape>
                     </property>
+                    <property name="focusPolicy">
+                     <enum>Qt::TabFocus</enum>
+                    </property>
                     <property name="styleSheet">
                      <string notr="true">QRadioButton {background-color: #fb568a; color: #ffffff; padding: 0px 5px 0px 5px;}
 QRadioButton:focus {border-color: #000000; border-width: 1.5px; border-style: solid; padding: 0px 3px 0px 3px;}</string>
@@ -358,6 +367,9 @@ QRadioButton:focus {border-color: #000000; border-width: 1.5px; border-style: so
                     </property>
                     <property name="cursor">
                      <cursorShape>PointingHandCursor</cursorShape>
+                    </property>
+                    <property name="focusPolicy">
+                     <enum>Qt::TabFocus</enum>
                     </property>
                     <property name="styleSheet">
                      <string notr="true">QRadioButton {background-color: #fbd945; color: #ffffff; padding: 0px 5px 0px 5px;}
@@ -392,6 +404,9 @@ QRadioButton:focus {border-color: #000000; border-width: 1.5px; border-style: so
                     <property name="cursor">
                      <cursorShape>PointingHandCursor</cursorShape>
                     </property>
+                    <property name="focusPolicy">
+                     <enum>Qt::TabFocus</enum>
+                    </property>
                     <property name="styleSheet">
                      <string notr="true">QRadioButton {background-color: #99c37b; color: #ffffff; padding: 0px 5px 0px 5px;}
 QRadioButton:focus {border-color: #000000; border-width: 1.5px; border-style: solid; padding: 0px 3px 0px 3px;}</string>
@@ -418,6 +433,9 @@ QRadioButton:focus {border-color: #000000; border-width: 1.5px; border-style: so
                     <property name="cursor">
                      <cursorShape>PointingHandCursor</cursorShape>
                     </property>
+                    <property name="focusPolicy">
+                     <enum>Qt::TabFocus</enum>
+                    </property>
                     <property name="styleSheet">
                      <string notr="true">QRadioButton {background-color: #c577dc; color: #ffffff; padding: 0px 5px 0px 5px;}
 QRadioButton:focus {border-color: #000000; border-width: 1.5px; border-style: solid; padding: 0px 3px 0px 3px;}</string>
@@ -443,6 +461,9 @@ QRadioButton:focus {border-color: #000000; border-width: 1.5px; border-style: so
                     </property>
                     <property name="cursor">
                      <cursorShape>PointingHandCursor</cursorShape>
+                    </property>
+                    <property name="focusPolicy">
+                     <enum>Qt::TabFocus</enum>
                     </property>
                     <property name="styleSheet">
                      <string notr="true">QRadioButton {background-color: #5eb5c1; color: #ffffff; padding: 0px 5px 0px 5px;}
@@ -573,6 +594,9 @@ li.checked::marker { content: &quot;\2612&quot;; }
               <property name="cursor">
                <cursorShape>PointingHandCursor</cursorShape>
               </property>
+              <property name="focusPolicy">
+               <enum>Qt::TabFocus</enum>
+              </property>
               <property name="styleSheet">
                <string notr="true">QPushButton {background-color: #d63a3e; color: #ffffff; border-radius: 5px}
 QPushButton:hover {background-color: #9e2a2a;}
@@ -619,6 +643,9 @@ QPushButton:focus {border-color: #000000; border-width: 1.5px; border-style: sol
               <property name="cursor">
                <cursorShape>PointingHandCursor</cursorShape>
               </property>
+              <property name="focusPolicy">
+               <enum>Qt::TabFocus</enum>
+              </property>
               <property name="styleSheet">
                <string notr="true">QPushButton {background-color: #acb2bf; color: #ffffff; border-radius: 5px}
 QPushButton:hover {background-color: #7e828c;}
@@ -651,6 +678,9 @@ QPushButton:focus {border-color: #000000; border-width: 1.5px; border-style: sol
               </property>
               <property name="cursor">
                <cursorShape>PointingHandCursor</cursorShape>
+              </property>
+              <property name="focusPolicy">
+               <enum>Qt::TabFocus</enum>
               </property>
               <property name="styleSheet">
                <string notr="true">QPushButton {background-color: #6badee; color: #ffffff; border-radius: 5px}
