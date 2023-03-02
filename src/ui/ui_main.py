@@ -95,7 +95,8 @@ class Ui_MainWindow(object):
         self.btn_board_1.setFont(font1)
         self.btn_board_1.setCursor(QCursor(Qt.PointingHandCursor))
         self.btn_board_1.setStyleSheet(u"QPushButton {background-color: #6badee; color: #ffffff; border-radius: 5px}\n"
-"QPushButton:hover {background-color: #7e828c;}")
+"QPushButton:hover {background-color: #7e828c;}\n"
+"QPushButton:focus {border-color: #000000; border-width: 1.5px; border-style: solid;}")
 
         self.verticalLayout_4.addWidget(self.btn_board_1)
 
@@ -105,7 +106,8 @@ class Ui_MainWindow(object):
         self.btn_board_2.setFont(font1)
         self.btn_board_2.setCursor(QCursor(Qt.PointingHandCursor))
         self.btn_board_2.setStyleSheet(u"QPushButton {background-color: #fb568a; color: #ffffff; border-radius: 5px}\n"
-"QPushButton:hover {background-color: #7e828c;}")
+"QPushButton:hover {background-color: #7e828c;}\n"
+"QPushButton:focus {border-color: #000000; border-width: 1.5px; border-style: solid;}")
 
         self.verticalLayout_4.addWidget(self.btn_board_2)
 
@@ -115,7 +117,8 @@ class Ui_MainWindow(object):
         self.btn_board_3.setFont(font1)
         self.btn_board_3.setCursor(QCursor(Qt.PointingHandCursor))
         self.btn_board_3.setStyleSheet(u"QPushButton {background-color: #fbd945; color: #ffffff; border-radius: 5px}\n"
-"QPushButton:hover {background-color: #7e828c;}")
+"QPushButton:hover {background-color: #7e828c;}\n"
+"QPushButton:focus {border-color: #000000; border-width: 1.5px; border-style: solid;}")
 
         self.verticalLayout_4.addWidget(self.btn_board_3)
 
@@ -125,7 +128,8 @@ class Ui_MainWindow(object):
         self.btn_board_4.setFont(font1)
         self.btn_board_4.setCursor(QCursor(Qt.PointingHandCursor))
         self.btn_board_4.setStyleSheet(u"QPushButton {background-color: #99c37b; color: #ffffff; border-radius: 5px}\n"
-"QPushButton:hover {background-color: #7e828c;}")
+"QPushButton:hover {background-color: #7e828c;}\n"
+"QPushButton:focus {border-color: #000000; border-width: 1.5px; border-style: solid;}")
 
         self.verticalLayout_4.addWidget(self.btn_board_4)
 
@@ -135,7 +139,8 @@ class Ui_MainWindow(object):
         self.btn_board_5.setFont(font1)
         self.btn_board_5.setCursor(QCursor(Qt.PointingHandCursor))
         self.btn_board_5.setStyleSheet(u"QPushButton {background-color: #c577dc; color: #ffffff; border-radius: 5px}\n"
-"QPushButton:hover {background-color: #7e828c;}")
+"QPushButton:hover {background-color: #7e828c;}\n"
+"QPushButton:focus {border-color: #000000; border-width: 1.5px; border-style: solid;}")
 
         self.verticalLayout_4.addWidget(self.btn_board_5)
 
@@ -145,7 +150,8 @@ class Ui_MainWindow(object):
         self.btn_board_6.setFont(font1)
         self.btn_board_6.setCursor(QCursor(Qt.PointingHandCursor))
         self.btn_board_6.setStyleSheet(u"QPushButton {background-color: #5eb5c1; color: #ffffff; border-radius: 5px}\n"
-"QPushButton:hover {background-color: #7e828c;}")
+"QPushButton:hover {background-color: #7e828c;}\n"
+"QPushButton:focus {border-color: #000000; border-width: 1.5px; border-style: solid;}")
 
         self.verticalLayout_4.addWidget(self.btn_board_6)
 
@@ -155,7 +161,8 @@ class Ui_MainWindow(object):
         self.btn_board_7.setFont(font1)
         self.btn_board_7.setCursor(QCursor(Qt.PointingHandCursor))
         self.btn_board_7.setStyleSheet(u"QPushButton {background-color: #6badee; color: #ffffff; border-radius: 5px}\n"
-"QPushButton:hover {background-color: #7e828c;}")
+"QPushButton:hover {background-color: #7e828c;}\n"
+"QPushButton:focus {border-color: #000000; border-width: 1.5px; border-style: solid;}")
 
         self.verticalLayout_4.addWidget(self.btn_board_7)
 
@@ -173,7 +180,8 @@ class Ui_MainWindow(object):
         self.btn_add_board.setFont(font1)
         self.btn_add_board.setCursor(QCursor(Qt.PointingHandCursor))
         self.btn_add_board.setStyleSheet(u"QPushButton {background-color: #acb2bf; color: #ffffff; border-radius: 5px}\n"
-"QPushButton:hover {background-color: #7e828c;}")
+"QPushButton:hover {background-color: #7e828c;}\n"
+"QPushButton:focus {border-color: #000000; border-width: 1.5px; border-style: solid;}")
 
         self.verticalLayout_2.addWidget(self.btn_add_board)
 
@@ -183,7 +191,8 @@ class Ui_MainWindow(object):
         self.btn_board_settings.setFont(font1)
         self.btn_board_settings.setCursor(QCursor(Qt.PointingHandCursor))
         self.btn_board_settings.setStyleSheet(u"QPushButton {background-color: #7f8ca6; color: #ffffff; border-radius: 5px}\n"
-"QPushButton:hover {background-color: #576073;}")
+"QPushButton:hover {background-color: #576073;}\n"
+"QPushButton:focus {border-color: #000000; border-width: 1.5px; border-style: solid;}")
 
         self.verticalLayout_2.addWidget(self.btn_board_settings)
 
@@ -193,7 +202,8 @@ class Ui_MainWindow(object):
         self.btn_app_settings.setFont(font1)
         self.btn_app_settings.setCursor(QCursor(Qt.PointingHandCursor))
         self.btn_app_settings.setStyleSheet(u"QPushButton {background-color: #7f8ca6; color: #ffffff; border-radius: 5px}\n"
-"QPushButton:hover {background-color: #576073;}")
+"QPushButton:hover {background-color: #576073;}\n"
+"QPushButton:focus {border-color: #000000; border-width: 1.5px; border-style: solid;}")
 
         self.verticalLayout_2.addWidget(self.btn_app_settings)
 
@@ -325,10 +335,11 @@ class Ui_MainWindow(object):
         self.listWidget_list_1.setStyleSheet(u"QListWidget {background-color: #ebecf0; border-radius: 10px;}\n"
 "QListWidget::item {height: 40px; padding: 0px 8px 0px 8px}\n"
 "QListWidget::item {background-color: qlineargradient(spread:pad, x1:0, y1:0.5, x2:0.95, y2:0.5, stop:0 rgba(251, 217, 69, 255), stop:0.0338983 rgba(251, 217, 69, 255), stop:0.039548 rgba(255, 255, 255, 255), stop:1 rgba(255, 255, 255, 255)); color: #000000; border-radius: 5px}\n"
-"QListWidget::item:hover {background-color: qlineargradient(spread:pad, x1:0, y1:0.5, x2:0.95, y2:0.5, stop:0 rgba(251, 217, 69, 255), stop:0.0338983 rgba(251, 217, 69, 255), stop:0.039548 rgba(244, 245, 247, 255), stop:1 rgba(244, 245, 247, 255)); color: #000000}\n"
+"QListWidget::item:hover {background-color: qlineargradient(spread:pad, x1:0, y1:0.5, x2:0.95, y2:0.5, stop:0 rgba(251, 217, 69, 255), stop:0.0338983 rgba(251, 217, 69, 255), stop:0.039548 rgba(226, 228, 233, 255), stop:1 rgba(226, 228, 233, 255)); color: #000000}\n"
 "QListWidget::item:selected {background-color: qlineargradient(spread:pad, x1:0, y1:0.5, x2:0.95, y2:0.5, stop:0 rgba(251, 217, 69, 255), stop:0.0338983 rgba(251, 217, 69, 255), stop:0.039548 rgba(204, 204, 204, 255), stop:1 rgba(204, 204, 204, 255)); color: #000000}\n"
-"QScrollBar:vertical {width: 10px; margin: 0px 0px 0px 0px; background-color"
-                        ": #acb2bf}")
+"QListWidget::item:focus {background-color: qlineargradient(spread:pad, x1:0"
+                        ", y1:0.5, x2:0.95, y2:0.5, stop:0 rgba(251, 217, 69, 255), stop:0.0338983 rgba(251, 217, 69, 255), stop:0.039548 rgba(204, 204, 204, 255), stop:1 rgba(204, 204, 204, 255)); color: #000000}\n"
+"QScrollBar:vertical {width: 10px; margin: 0px 0px 0px 0px; background-color: #acb2bf}")
         self.listWidget_list_1.setFrameShape(QFrame.NoFrame)
         self.listWidget_list_1.setSizeAdjustPolicy(QAbstractScrollArea.AdjustIgnored)
         self.listWidget_list_1.setAutoScroll(True)
@@ -359,7 +370,8 @@ class Ui_MainWindow(object):
         self.btn_add_card_list_1.setFont(font1)
         self.btn_add_card_list_1.setCursor(QCursor(Qt.PointingHandCursor))
         self.btn_add_card_list_1.setStyleSheet(u"QPushButton {background-color: #ebecf0; color: #6a758b; border-radius: 5px}\n"
-"QPushButton:hover {background-color: #dadbe2; color: #505b76}")
+"QPushButton:hover {background-color: #dadbe2; color: #505b76}\n"
+"QPushButton:focus {border-color: #000000; border-width: 1.5px; border-style: solid;}")
 
         self.verticalLayout_6.addWidget(self.btn_add_card_list_1)
 
@@ -421,10 +433,11 @@ class Ui_MainWindow(object):
         self.listWidget_list_2.setStyleSheet(u"QListWidget {background-color: #ebecf0; border-radius: 10px;}\n"
 "QListWidget::item {height: 40px; padding: 0px 8px 0px 8px}\n"
 "QListWidget::item {background-color: qlineargradient(spread:pad, x1:0, y1:0.5, x2:0.95, y2:0.5, stop:0 rgba(251, 217, 69, 255), stop:0.0338983 rgba(251, 217, 69, 255), stop:0.039548 rgba(255, 255, 255, 255), stop:1 rgba(255, 255, 255, 255)); color: #000000; border-radius: 5px}\n"
-"QListWidget::item:hover {background-color: qlineargradient(spread:pad, x1:0, y1:0.5, x2:0.95, y2:0.5, stop:0 rgba(251, 217, 69, 255), stop:0.0338983 rgba(251, 217, 69, 255), stop:0.039548 rgba(244, 245, 247, 255), stop:1 rgba(244, 245, 247, 255)); color: #000000}\n"
+"QListWidget::item:hover {background-color: qlineargradient(spread:pad, x1:0, y1:0.5, x2:0.95, y2:0.5, stop:0 rgba(251, 217, 69, 255), stop:0.0338983 rgba(251, 217, 69, 255), stop:0.039548 rgba(226, 228, 233, 255), stop:1 rgba(226, 228, 233, 255)); color: #000000}\n"
 "QListWidget::item:selected {background-color: qlineargradient(spread:pad, x1:0, y1:0.5, x2:0.95, y2:0.5, stop:0 rgba(251, 217, 69, 255), stop:0.0338983 rgba(251, 217, 69, 255), stop:0.039548 rgba(204, 204, 204, 255), stop:1 rgba(204, 204, 204, 255)); color: #000000}\n"
-"QScrollBar:vertical {width: 10px; margin: 0px 0px 0px 0px; background-color"
-                        ": #acb2bf}")
+"QListWidget::item:focus {background-color: qlineargradient(spread:pad, x1:0"
+                        ", y1:0.5, x2:0.95, y2:0.5, stop:0 rgba(251, 217, 69, 255), stop:0.0338983 rgba(251, 217, 69, 255), stop:0.039548 rgba(204, 204, 204, 255), stop:1 rgba(204, 204, 204, 255)); color: #000000}\n"
+"QScrollBar:vertical {width: 10px; margin: 0px 0px 0px 0px; background-color: #acb2bf}")
         self.listWidget_list_2.setFrameShape(QFrame.NoFrame)
         self.listWidget_list_2.setSizeAdjustPolicy(QAbstractScrollArea.AdjustIgnored)
         self.listWidget_list_2.setAutoScroll(True)
@@ -455,7 +468,8 @@ class Ui_MainWindow(object):
         self.btn_add_card_list_2.setFont(font1)
         self.btn_add_card_list_2.setCursor(QCursor(Qt.PointingHandCursor))
         self.btn_add_card_list_2.setStyleSheet(u"QPushButton {background-color: #ebecf0; color: #6a758b; border-radius: 5px}\n"
-"QPushButton:hover {background-color: #dadbe2; color: #505b76}")
+"QPushButton:hover {background-color: #dadbe2; color: #505b76}\n"
+"QPushButton:focus {border-color: #000000; border-width: 1.5px; border-style: solid;}")
 
         self.verticalLayout_7.addWidget(self.btn_add_card_list_2)
 
@@ -517,10 +531,11 @@ class Ui_MainWindow(object):
         self.listWidget_list_3.setStyleSheet(u"QListWidget {background-color: #ebecf0; border-radius: 10px;}\n"
 "QListWidget::item {height: 40px; padding: 0px 8px 0px 8px}\n"
 "QListWidget::item {background-color: qlineargradient(spread:pad, x1:0, y1:0.5, x2:0.95, y2:0.5, stop:0 rgba(251, 217, 69, 255), stop:0.0338983 rgba(251, 217, 69, 255), stop:0.039548 rgba(255, 255, 255, 255), stop:1 rgba(255, 255, 255, 255)); color: #000000; border-radius: 5px}\n"
-"QListWidget::item:hover {background-color: qlineargradient(spread:pad, x1:0, y1:0.5, x2:0.95, y2:0.5, stop:0 rgba(251, 217, 69, 255), stop:0.0338983 rgba(251, 217, 69, 255), stop:0.039548 rgba(244, 245, 247, 255), stop:1 rgba(244, 245, 247, 255)); color: #000000}\n"
+"QListWidget::item:hover {background-color: qlineargradient(spread:pad, x1:0, y1:0.5, x2:0.95, y2:0.5, stop:0 rgba(251, 217, 69, 255), stop:0.0338983 rgba(251, 217, 69, 255), stop:0.039548 rgba(226, 228, 233, 255), stop:1 rgba(226, 228, 233, 255)); color: #000000}\n"
 "QListWidget::item:selected {background-color: qlineargradient(spread:pad, x1:0, y1:0.5, x2:0.95, y2:0.5, stop:0 rgba(251, 217, 69, 255), stop:0.0338983 rgba(251, 217, 69, 255), stop:0.039548 rgba(204, 204, 204, 255), stop:1 rgba(204, 204, 204, 255)); color: #000000}\n"
-"QScrollBar:vertical {width: 10px; margin: 0px 0px 0px 0px; background-color"
-                        ": #acb2bf}")
+"QListWidget::item:focus {background-color: qlineargradient(spread:pad, x1:0"
+                        ", y1:0.5, x2:0.95, y2:0.5, stop:0 rgba(251, 217, 69, 255), stop:0.0338983 rgba(251, 217, 69, 255), stop:0.039548 rgba(204, 204, 204, 255), stop:1 rgba(204, 204, 204, 255)); color: #000000}\n"
+"QScrollBar:vertical {width: 10px; margin: 0px 0px 0px 0px; background-color: #acb2bf}")
         self.listWidget_list_3.setFrameShape(QFrame.NoFrame)
         self.listWidget_list_3.setSizeAdjustPolicy(QAbstractScrollArea.AdjustIgnored)
         self.listWidget_list_3.setAutoScroll(True)
@@ -551,7 +566,8 @@ class Ui_MainWindow(object):
         self.btn_add_card_list_3.setFont(font1)
         self.btn_add_card_list_3.setCursor(QCursor(Qt.PointingHandCursor))
         self.btn_add_card_list_3.setStyleSheet(u"QPushButton {background-color: #ebecf0; color: #6a758b; border-radius: 5px}\n"
-"QPushButton:hover {background-color: #dadbe2; color: #505b76}")
+"QPushButton:hover {background-color: #dadbe2; color: #505b76}\n"
+"QPushButton:focus {border-color: #000000; border-width: 1.5px; border-style: solid;}")
 
         self.verticalLayout_10.addWidget(self.btn_add_card_list_3)
 
@@ -583,7 +599,8 @@ class Ui_MainWindow(object):
         self.btn_add_list.setFont(font4)
         self.btn_add_list.setCursor(QCursor(Qt.PointingHandCursor))
         self.btn_add_list.setStyleSheet(u"QPushButton {background-color: #acb2bf; color: #ffffff; border-radius: 5px}\n"
-"QPushButton:hover {background-color: #7e828c;}")
+"QPushButton:hover {background-color: #7e828c;}\n"
+"QPushButton:focus {border-color: #000000; border-width: 1.5px; border-style: solid;}")
 
         self.verticalLayout_9.addWidget(self.btn_add_list)
 
@@ -612,17 +629,24 @@ class Ui_MainWindow(object):
         self.horizontalLayout.addWidget(self.widget)
 
         MainWindow.setCentralWidget(self.centralwidget)
-        QWidget.setTabOrder(self.btn_add_list, self.scrollArea_panel_right)
-        QWidget.setTabOrder(self.scrollArea_panel_right, self.btn_board_1)
-        QWidget.setTabOrder(self.btn_board_1, self.scrollArea_panel_left)
-        QWidget.setTabOrder(self.scrollArea_panel_left, self.btn_board_2)
+        QWidget.setTabOrder(self.btn_add_list, self.btn_add_board)
+        QWidget.setTabOrder(self.btn_add_board, self.btn_board_settings)
+        QWidget.setTabOrder(self.btn_board_settings, self.btn_app_settings)
+        QWidget.setTabOrder(self.btn_app_settings, self.btn_board_1)
+        QWidget.setTabOrder(self.btn_board_1, self.btn_board_2)
         QWidget.setTabOrder(self.btn_board_2, self.btn_board_3)
         QWidget.setTabOrder(self.btn_board_3, self.btn_board_4)
         QWidget.setTabOrder(self.btn_board_4, self.btn_board_5)
         QWidget.setTabOrder(self.btn_board_5, self.btn_board_6)
         QWidget.setTabOrder(self.btn_board_6, self.btn_board_7)
-        QWidget.setTabOrder(self.btn_board_7, self.btn_add_board)
-        QWidget.setTabOrder(self.btn_add_board, self.btn_app_settings)
+        QWidget.setTabOrder(self.btn_board_7, self.listWidget_list_1)
+        QWidget.setTabOrder(self.listWidget_list_1, self.listWidget_list_2)
+        QWidget.setTabOrder(self.listWidget_list_2, self.listWidget_list_3)
+        QWidget.setTabOrder(self.listWidget_list_3, self.btn_add_card_list_1)
+        QWidget.setTabOrder(self.btn_add_card_list_1, self.btn_add_card_list_2)
+        QWidget.setTabOrder(self.btn_add_card_list_2, self.btn_add_card_list_3)
+        QWidget.setTabOrder(self.btn_add_card_list_3, self.scrollArea_panel_left)
+        QWidget.setTabOrder(self.scrollArea_panel_left, self.scrollArea_panel_right)
 
         self.retranslateUi(MainWindow)
 

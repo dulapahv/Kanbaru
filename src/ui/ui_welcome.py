@@ -77,6 +77,7 @@ class Ui_MainWindow(object):
         self.label_8.setFont(font)
         self.label_8.setStyleSheet(u"color: #282c33;")
         self.label_8.setAlignment(Qt.AlignCenter)
+        self.label_8.setWordWrap(True)
 
         self.verticalLayout_2.addWidget(self.label_8)
 
@@ -99,6 +100,7 @@ class Ui_MainWindow(object):
         self.label_2.setFont(font1)
         self.label_2.setStyleSheet(u"color: #282c33;")
         self.label_2.setAlignment(Qt.AlignCenter)
+        self.label_2.setWordWrap(True)
 
         self.verticalLayout_4.addWidget(self.label_2)
 
@@ -134,6 +136,7 @@ class Ui_MainWindow(object):
         font3.setBold(True)
         self.label_login_msg.setFont(font3)
         self.label_login_msg.setStyleSheet(u"color: #d63a3e;")
+        self.label_login_msg.setWordWrap(True)
 
         self.verticalLayout_4.addWidget(self.label_login_msg)
 
@@ -191,6 +194,7 @@ class Ui_MainWindow(object):
         self.label_3.setFont(font1)
         self.label_3.setStyleSheet(u"color: #282c33;")
         self.label_3.setAlignment(Qt.AlignCenter)
+        self.label_3.setWordWrap(True)
 
         self.verticalLayout_5.addWidget(self.label_3)
 
@@ -230,6 +234,7 @@ class Ui_MainWindow(object):
         self.label_sign_up_msg.setObjectName(u"label_sign_up_msg")
         self.label_sign_up_msg.setFont(font3)
         self.label_sign_up_msg.setStyleSheet(u"color: #d63a3e;")
+        self.label_sign_up_msg.setWordWrap(True)
 
         self.verticalLayout_5.addWidget(self.label_sign_up_msg)
 

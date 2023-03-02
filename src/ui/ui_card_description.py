@@ -72,6 +72,7 @@ class Ui_MainWindow(object):
         font1.setBold(True)
         self.label_title.setFont(font1)
         self.label_title.setStyleSheet(u"color: #282c33;")
+        self.label_title.setWordWrap(True)
 
         self.verticalLayout.addWidget(self.label_title)
 
@@ -94,6 +95,7 @@ class Ui_MainWindow(object):
         font3.setPointSize(11)
         font3.setUnderline(True)
         self.label_card_info.setFont(font3)
+        self.label_card_info.setWordWrap(True)
 
         self.verticalLayout.addWidget(self.label_card_info)
 
@@ -105,6 +107,7 @@ class Ui_MainWindow(object):
         self.label_date.setObjectName(u"label_date")
         self.label_date.setFont(font1)
         self.label_date.setStyleSheet(u"color: #282c33;")
+        self.label_date.setWordWrap(True)
 
         self.verticalLayout_4.addWidget(self.label_date)
 
@@ -127,6 +130,7 @@ class Ui_MainWindow(object):
         self.label_time.setObjectName(u"label_time")
         self.label_time.setFont(font1)
         self.label_time.setStyleSheet(u"color: #282c33;")
+        self.label_time.setWordWrap(True)
 
         self.verticalLayout_2.addWidget(self.label_time)
 
@@ -138,7 +142,8 @@ class Ui_MainWindow(object):
         font4.setPointSize(16)
         self.timeEdit.setFont(font4)
         self.timeEdit.setCursor(QCursor(Qt.PointingHandCursor))
-        self.timeEdit.setStyleSheet(u"QTimeEdit {background-color: #6badee; color: #ffffff; border-radius: 5px}")
+        self.timeEdit.setStyleSheet(u"QTimeEdit {background-color: #6badee; color: #ffffff; border-radius: 5px; padding: 0px 5px 0px 5px;}\n"
+"QTimeEdit:focus {border-color: #000000; border-width: 1.5px; border-style: solid; padding: 0px 3px 0px 3px;}")
         self.timeEdit.setTimeSpec(Qt.LocalTime)
 
         self.verticalLayout_2.addWidget(self.timeEdit)
@@ -147,6 +152,7 @@ class Ui_MainWindow(object):
         self.label_7.setObjectName(u"label_7")
         self.label_7.setFont(font1)
         self.label_7.setStyleSheet(u"color: #282c33;")
+        self.label_7.setWordWrap(True)
 
         self.verticalLayout_2.addWidget(self.label_7)
 
@@ -161,9 +167,8 @@ class Ui_MainWindow(object):
         self.btn_color_1.setMinimumSize(QSize(120, 40))
         self.btn_color_1.setFont(font2)
         self.btn_color_1.setCursor(QCursor(Qt.PointingHandCursor))
-        self.btn_color_1.setStyleSheet(u"background-color: #6badee;\n"
-"color: #ffffff;\n"
-"padding: 0px 5px 0px 5px;")
+        self.btn_color_1.setStyleSheet(u"QRadioButton {background-color: #6badee; color: #ffffff; padding: 0px 5px 0px 5px;}\n"
+"QRadioButton:focus {border-color: #000000; border-width: 1.5px; border-style: solid; padding: 0px 3px 0px 3px;}")
 
         self.verticalLayout_6.addWidget(self.btn_color_1)
 
@@ -172,9 +177,8 @@ class Ui_MainWindow(object):
         self.btn_color_2.setMinimumSize(QSize(120, 40))
         self.btn_color_2.setFont(font2)
         self.btn_color_2.setCursor(QCursor(Qt.PointingHandCursor))
-        self.btn_color_2.setStyleSheet(u"background-color: #fb568a;\n"
-"color: #ffffff;\n"
-"padding: 0px 5px 0px 5px;")
+        self.btn_color_2.setStyleSheet(u"QRadioButton {background-color: #fb568a; color: #ffffff; padding: 0px 5px 0px 5px;}\n"
+"QRadioButton:focus {border-color: #000000; border-width: 1.5px; border-style: solid; padding: 0px 3px 0px 3px;}")
 
         self.verticalLayout_6.addWidget(self.btn_color_2)
 
@@ -183,9 +187,8 @@ class Ui_MainWindow(object):
         self.btn_color_3.setMinimumSize(QSize(120, 40))
         self.btn_color_3.setFont(font2)
         self.btn_color_3.setCursor(QCursor(Qt.PointingHandCursor))
-        self.btn_color_3.setStyleSheet(u"background-color: #fbd945;\n"
-"color: #ffffff;\n"
-"padding: 0px 5px 0px 5px;")
+        self.btn_color_3.setStyleSheet(u"QRadioButton {background-color: #fbd945; color: #ffffff; padding: 0px 5px 0px 5px;}\n"
+"QRadioButton:focus {border-color: #000000; border-width: 1.5px; border-style: solid; padding: 0px 3px 0px 3px;}")
 
         self.verticalLayout_6.addWidget(self.btn_color_3)
 
@@ -200,9 +203,8 @@ class Ui_MainWindow(object):
         self.btn_color_4.setMinimumSize(QSize(120, 40))
         self.btn_color_4.setFont(font2)
         self.btn_color_4.setCursor(QCursor(Qt.PointingHandCursor))
-        self.btn_color_4.setStyleSheet(u"background-color: #99c37b;\n"
-"color: #ffffff;\n"
-"padding: 0px 5px 0px 5px;")
+        self.btn_color_4.setStyleSheet(u"QRadioButton {background-color: #99c37b; color: #ffffff; padding: 0px 5px 0px 5px;}\n"
+"QRadioButton:focus {border-color: #000000; border-width: 1.5px; border-style: solid; padding: 0px 3px 0px 3px;}")
 
         self.verticalLayout_5.addWidget(self.btn_color_4)
 
@@ -211,9 +213,8 @@ class Ui_MainWindow(object):
         self.btn_color_5.setMinimumSize(QSize(120, 40))
         self.btn_color_5.setFont(font2)
         self.btn_color_5.setCursor(QCursor(Qt.PointingHandCursor))
-        self.btn_color_5.setStyleSheet(u"background-color: #c577dc;\n"
-"color: #ffffff;\n"
-"padding: 0px 5px 0px 5px;")
+        self.btn_color_5.setStyleSheet(u"QRadioButton {background-color: #c577dc; color: #ffffff; padding: 0px 5px 0px 5px;}\n"
+"QRadioButton:focus {border-color: #000000; border-width: 1.5px; border-style: solid; padding: 0px 3px 0px 3px;}")
 
         self.verticalLayout_5.addWidget(self.btn_color_5)
 
@@ -222,9 +223,8 @@ class Ui_MainWindow(object):
         self.btn_color_6.setMinimumSize(QSize(120, 40))
         self.btn_color_6.setFont(font2)
         self.btn_color_6.setCursor(QCursor(Qt.PointingHandCursor))
-        self.btn_color_6.setStyleSheet(u"background-color: #5eb5c1;\n"
-"color: #ffffff;\n"
-"padding: 0px 5px 0px 5px;")
+        self.btn_color_6.setStyleSheet(u"QRadioButton {background-color: #5eb5c1; color: #ffffff; padding: 0px 5px 0px 5px;}\n"
+"QRadioButton:focus {border-color: #000000; border-width: 1.5px; border-style: solid; padding: 0px 3px 0px 3px;}")
 
         self.verticalLayout_5.addWidget(self.btn_color_6)
 
@@ -238,7 +238,7 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_2.addItem(self.horizontalSpacer_2)
 
-        self.verticalSpacer = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
+        self.verticalSpacer = QSpacerItem(20, 0, QSizePolicy.Minimum, QSizePolicy.Expanding)
 
         self.verticalLayout_2.addItem(self.verticalSpacer)
 
@@ -252,6 +252,7 @@ class Ui_MainWindow(object):
         self.label_description.setObjectName(u"label_description")
         self.label_description.setFont(font1)
         self.label_description.setStyleSheet(u"color: #282c33;")
+        self.label_description.setWordWrap(True)
 
         self.verticalLayout.addWidget(self.label_description)
 
@@ -267,6 +268,7 @@ class Ui_MainWindow(object):
 "QScrollBar:vertical {width: 10px; margin: 0px 0px 0px 0px; background-color: #acb2bf}")
         self.textEdit_description.setFrameShape(QFrame.NoFrame)
         self.textEdit_description.setAutoFormatting(QTextEdit.AutoAll)
+        self.textEdit_description.setTabChangesFocus(True)
         self.textEdit_description.setTabStopDistance(20.000000000000000)
 
         self.verticalLayout.addWidget(self.textEdit_description)
@@ -284,7 +286,8 @@ class Ui_MainWindow(object):
         self.btn_delete_card.setFont(font2)
         self.btn_delete_card.setCursor(QCursor(Qt.PointingHandCursor))
         self.btn_delete_card.setStyleSheet(u"QPushButton {background-color: #d63a3e; color: #ffffff; border-radius: 5px}\n"
-"QPushButton:hover {background-color: #9e2a2a;}")
+"QPushButton:hover {background-color: #9e2a2a;}\n"
+"QPushButton:focus {border-color: #000000; border-width: 1.5px; border-style: solid;}")
 
         self.horizontalLayout.addWidget(self.btn_delete_card)
 
@@ -300,7 +303,8 @@ class Ui_MainWindow(object):
         self.btn_cancel.setFont(font2)
         self.btn_cancel.setCursor(QCursor(Qt.PointingHandCursor))
         self.btn_cancel.setStyleSheet(u"QPushButton {background-color: #acb2bf; color: #ffffff; border-radius: 5px}\n"
-"QPushButton:hover {background-color: #7e828c;}")
+"QPushButton:hover {background-color: #7e828c;}\n"
+"QPushButton:focus {border-color: #000000; border-width: 1.5px; border-style: solid;}")
 
         self.horizontalLayout.addWidget(self.btn_cancel)
 
@@ -312,7 +316,8 @@ class Ui_MainWindow(object):
         self.btn_save.setFont(font2)
         self.btn_save.setCursor(QCursor(Qt.PointingHandCursor))
         self.btn_save.setStyleSheet(u"QPushButton {background-color: #6badee; color: #ffffff; border-radius: 5px}\n"
-"QPushButton:hover {background-color: #5487bb;}")
+"QPushButton:hover {background-color: #5487bb;}\n"
+"QPushButton:focus {border-color: #000000; border-width: 1.5px; border-style: solid;}")
 
         self.horizontalLayout.addWidget(self.btn_save)
 

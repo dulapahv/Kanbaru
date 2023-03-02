@@ -53,6 +53,7 @@ class Ui_MainWindow(object):
 
         self.widget = QWidget(self.centralwidget)
         self.widget.setObjectName(u"widget")
+        self.widget.setMinimumSize(QSize(390, 0))
         self.verticalLayout_7 = QVBoxLayout(self.widget)
         self.verticalLayout_7.setObjectName(u"verticalLayout_7")
         self.verticalLayout_7.setContentsMargins(15, 15, 15, 15)
@@ -77,7 +78,7 @@ class Ui_MainWindow(object):
         self.scrollArea.setWidgetResizable(True)
         self.scrollAreaWidgetContents = QWidget()
         self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
-        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 526, 514))
+        self.scrollAreaWidgetContents.setGeometry(QRect(0, -355, 516, 869))
         self.verticalLayout_4 = QVBoxLayout(self.scrollAreaWidgetContents)
         self.verticalLayout_4.setSpacing(0)
         self.verticalLayout_4.setObjectName(u"verticalLayout_4")
@@ -95,6 +96,7 @@ class Ui_MainWindow(object):
         font1.setBold(True)
         self.label.setFont(font1)
         self.label.setStyleSheet(u"color: #282c33;")
+        self.label.setWordWrap(True)
 
         self.verticalLayout_2.addWidget(self.label)
 
@@ -110,10 +112,15 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_2.addWidget(self.lineEdit_title)
 
+        self.verticalSpacer_3 = QSpacerItem(20, 15, QSizePolicy.Minimum, QSizePolicy.Fixed)
+
+        self.verticalLayout_2.addItem(self.verticalSpacer_3)
+
         self.label_7 = QLabel(self.scrollAreaWidgetContents)
         self.label_7.setObjectName(u"label_7")
         self.label_7.setFont(font1)
         self.label_7.setStyleSheet(u"color: #282c33;")
+        self.label_7.setWordWrap(True)
 
         self.verticalLayout_2.addWidget(self.label_7)
 
@@ -128,9 +135,8 @@ class Ui_MainWindow(object):
         self.btn_color_1.setMinimumSize(QSize(120, 40))
         self.btn_color_1.setFont(font2)
         self.btn_color_1.setCursor(QCursor(Qt.PointingHandCursor))
-        self.btn_color_1.setStyleSheet(u"background-color: #6badee;\n"
-"color: #ffffff;\n"
-"padding: 0px 5px 0px 5px;")
+        self.btn_color_1.setStyleSheet(u"QRadioButton {background-color: #6badee; color: #ffffff; padding: 0px 5px 0px 5px;}\n"
+"QRadioButton:focus {border-color: #000000; border-width: 1.5px; border-style: solid; padding: 0px 3px 0px 3px;}")
 
         self.verticalLayout_6.addWidget(self.btn_color_1)
 
@@ -139,9 +145,8 @@ class Ui_MainWindow(object):
         self.btn_color_2.setMinimumSize(QSize(120, 40))
         self.btn_color_2.setFont(font2)
         self.btn_color_2.setCursor(QCursor(Qt.PointingHandCursor))
-        self.btn_color_2.setStyleSheet(u"background-color: #fb568a;\n"
-"color: #ffffff;\n"
-"padding: 0px 5px 0px 5px;")
+        self.btn_color_2.setStyleSheet(u"QRadioButton {background-color: #fb568a; color: #ffffff; padding: 0px 5px 0px 5px;}\n"
+"QRadioButton:focus {border-color: #000000; border-width: 1.5px; border-style: solid; padding: 0px 3px 0px 3px;}")
 
         self.verticalLayout_6.addWidget(self.btn_color_2)
 
@@ -150,9 +155,8 @@ class Ui_MainWindow(object):
         self.btn_color_3.setMinimumSize(QSize(120, 40))
         self.btn_color_3.setFont(font2)
         self.btn_color_3.setCursor(QCursor(Qt.PointingHandCursor))
-        self.btn_color_3.setStyleSheet(u"background-color: #fbd945;\n"
-"color: #ffffff;\n"
-"padding: 0px 5px 0px 5px;")
+        self.btn_color_3.setStyleSheet(u"QRadioButton {background-color: #fbd945; color: #ffffff; padding: 0px 5px 0px 5px;}\n"
+"QRadioButton:focus {border-color: #000000; border-width: 1.5px; border-style: solid; padding: 0px 3px 0px 3px;}")
 
         self.verticalLayout_6.addWidget(self.btn_color_3)
 
@@ -167,9 +171,8 @@ class Ui_MainWindow(object):
         self.btn_color_4.setMinimumSize(QSize(120, 40))
         self.btn_color_4.setFont(font2)
         self.btn_color_4.setCursor(QCursor(Qt.PointingHandCursor))
-        self.btn_color_4.setStyleSheet(u"background-color: #99c37b;\n"
-"color: #ffffff;\n"
-"padding: 0px 5px 0px 5px;")
+        self.btn_color_4.setStyleSheet(u"QRadioButton {background-color: #99c37b; color: #ffffff; padding: 0px 5px 0px 5px;}\n"
+"QRadioButton:focus {border-color: #000000; border-width: 1.5px; border-style: solid; padding: 0px 3px 0px 3px;}")
 
         self.verticalLayout_5.addWidget(self.btn_color_4)
 
@@ -178,9 +181,8 @@ class Ui_MainWindow(object):
         self.btn_color_5.setMinimumSize(QSize(120, 40))
         self.btn_color_5.setFont(font2)
         self.btn_color_5.setCursor(QCursor(Qt.PointingHandCursor))
-        self.btn_color_5.setStyleSheet(u"background-color: #c577dc;\n"
-"color: #ffffff;\n"
-"padding: 0px 5px 0px 5px;")
+        self.btn_color_5.setStyleSheet(u"QRadioButton {background-color: #c577dc; color: #ffffff; padding: 0px 5px 0px 5px;}\n"
+"QRadioButton:focus {border-color: #000000; border-width: 1.5px; border-style: solid; padding: 0px 3px 0px 3px;}")
 
         self.verticalLayout_5.addWidget(self.btn_color_5)
 
@@ -189,9 +191,8 @@ class Ui_MainWindow(object):
         self.btn_color_6.setMinimumSize(QSize(120, 40))
         self.btn_color_6.setFont(font2)
         self.btn_color_6.setCursor(QCursor(Qt.PointingHandCursor))
-        self.btn_color_6.setStyleSheet(u"background-color: #5eb5c1;\n"
-"color: #ffffff;\n"
-"padding: 0px 5px 0px 5px;")
+        self.btn_color_6.setStyleSheet(u"QRadioButton {background-color: #5eb5c1; color: #ffffff; padding: 0px 5px 0px 5px;}\n"
+"QRadioButton:focus {border-color: #000000; border-width: 1.5px; border-style: solid; padding: 0px 3px 0px 3px;}")
 
         self.verticalLayout_5.addWidget(self.btn_color_6)
 
@@ -201,10 +202,15 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_2.addLayout(self.horizontalLayout_4)
 
+        self.verticalSpacer_2 = QSpacerItem(20, 15, QSizePolicy.Minimum, QSizePolicy.Fixed)
+
+        self.verticalLayout_2.addItem(self.verticalSpacer_2)
+
         self.label_8 = QLabel(self.scrollAreaWidgetContents)
         self.label_8.setObjectName(u"label_8")
         self.label_8.setFont(font1)
         self.label_8.setStyleSheet(u"color: #282c33;")
+        self.label_8.setWordWrap(True)
 
         self.verticalLayout_2.addWidget(self.label_8)
 
@@ -214,6 +220,7 @@ class Ui_MainWindow(object):
         font3.setFamilies([u"Torus Pro"])
         font3.setPointSize(11)
         self.label_2.setFont(font3)
+        self.label_2.setWordWrap(True)
 
         self.verticalLayout_2.addWidget(self.label_2)
 
@@ -232,7 +239,7 @@ class Ui_MainWindow(object):
         self.listWidget_manage_list.setFont(font4)
         self.listWidget_manage_list.setStyleSheet(u"QListWidget::item {height: 40px; padding: 0px 8px 0px 8px}\n"
 "QListWidget::item {background-color: #ffffff; color: #000000; border-radius: 5px}\n"
-"QListWidget::item:hover {background-color: #f4f5f7; color: #000000}\n"
+"QListWidget::item:hover {background-color: #e2e4e9; color: #000000}\n"
 "QListWidget::item:selected {background-color: #cccccc; color: #000000}\n"
 "QScrollBar:vertical {width: 10px; margin: 0px 0px 0px 0px; background-color: #acb2bf}")
         self.listWidget_manage_list.setFrameShape(QFrame.NoFrame)
@@ -261,26 +268,29 @@ class Ui_MainWindow(object):
         self.btn_delete_list.setFont(font2)
         self.btn_delete_list.setCursor(QCursor(Qt.PointingHandCursor))
         self.btn_delete_list.setStyleSheet(u"QPushButton {background-color: #d63a3e; color: #ffffff; border-radius: 5px}\n"
-"QPushButton:hover {background-color: #9e2a2a;}")
+"QPushButton:hover {background-color: #9e2a2a;}\n"
+"QPushButton:focus {border-color: #000000; border-width: 1.5px; border-style: solid;}")
 
         self.verticalLayout_2.addWidget(self.btn_delete_list)
+
+        self.verticalSpacer = QSpacerItem(20, 15, QSizePolicy.Minimum, QSizePolicy.Fixed)
+
+        self.verticalLayout_2.addItem(self.verticalSpacer)
 
         self.label_9 = QLabel(self.scrollAreaWidgetContents)
         self.label_9.setObjectName(u"label_9")
         self.label_9.setFont(font1)
         self.label_9.setStyleSheet(u"color: #282c33;")
+        self.label_9.setWordWrap(True)
 
         self.verticalLayout_2.addWidget(self.label_9)
 
         self.label_4 = QLabel(self.scrollAreaWidgetContents)
         self.label_4.setObjectName(u"label_4")
         self.label_4.setFont(font3)
+        self.label_4.setWordWrap(True)
 
         self.verticalLayout_2.addWidget(self.label_4)
-
-        self.verticalSpacer = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
-
-        self.verticalLayout_2.addItem(self.verticalSpacer)
 
         self.listWidget_manage_member = QListWidget(self.scrollAreaWidgetContents)
         __qlistwidgetitem3 = QListWidgetItem(self.listWidget_manage_member)
@@ -293,7 +303,7 @@ class Ui_MainWindow(object):
         self.listWidget_manage_member.setFont(font4)
         self.listWidget_manage_member.setStyleSheet(u"QListWidget::item {height: 40px; padding: 0px 8px 0px 8px}\n"
 "QListWidget::item {background-color: #ffffff; color: #000000; border-radius: 5px}\n"
-"QListWidget::item:hover {background-color: #f4f5f7; color: #000000}\n"
+"QListWidget::item:hover {background-color: #e2e4e9; color: #000000}\n"
 "QListWidget::item:selected {background-color: #cccccc; color: #000000}\n"
 "QScrollBar:vertical {width: 10px; margin: 0px 0px 0px 0px; background-color: #acb2bf}")
         self.listWidget_manage_member.setFrameShape(QFrame.NoFrame)
@@ -322,7 +332,8 @@ class Ui_MainWindow(object):
         self.btn_add_member.setFont(font2)
         self.btn_add_member.setCursor(QCursor(Qt.PointingHandCursor))
         self.btn_add_member.setStyleSheet(u"QPushButton {background-color: #6badee; color: #ffffff; border-radius: 5px}\n"
-"QPushButton:hover {background-color: #5487bb;}")
+"QPushButton:hover {background-color: #5487bb;}\n"
+"QPushButton:focus {border-color: #000000; border-width: 1.5px; border-style: solid;}")
 
         self.horizontalLayout_2.addWidget(self.btn_add_member)
 
@@ -334,7 +345,8 @@ class Ui_MainWindow(object):
         self.btn_delete_member.setFont(font2)
         self.btn_delete_member.setCursor(QCursor(Qt.PointingHandCursor))
         self.btn_delete_member.setStyleSheet(u"QPushButton {background-color: #d63a3e; color: #ffffff; border-radius: 5px}\n"
-"QPushButton:hover {background-color: #9e2a2a;}")
+"QPushButton:hover {background-color: #9e2a2a;}\n"
+"QPushButton:focus {border-color: #000000; border-width: 1.5px; border-style: solid;}")
 
         self.horizontalLayout_2.addWidget(self.btn_delete_member)
 
@@ -344,10 +356,6 @@ class Ui_MainWindow(object):
 
 
         self.verticalLayout_2.addLayout(self.horizontalLayout_2)
-
-        self.verticalSpacer_2 = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
-
-        self.verticalLayout_2.addItem(self.verticalSpacer_2)
 
 
         self.verticalLayout_8.addLayout(self.verticalLayout_2)
@@ -374,7 +382,8 @@ class Ui_MainWindow(object):
         self.btn_cancel.setFont(font2)
         self.btn_cancel.setCursor(QCursor(Qt.PointingHandCursor))
         self.btn_cancel.setStyleSheet(u"QPushButton {background-color: #acb2bf; color: #ffffff; border-radius: 5px}\n"
-"QPushButton:hover {background-color: #7e828c;}")
+"QPushButton:hover {background-color: #7e828c;}\n"
+"QPushButton:focus {border-color: #000000; border-width: 1.5px; border-style: solid;}")
 
         self.horizontalLayout.addWidget(self.btn_cancel)
 
@@ -386,7 +395,8 @@ class Ui_MainWindow(object):
         self.btn_save.setFont(font2)
         self.btn_save.setCursor(QCursor(Qt.PointingHandCursor))
         self.btn_save.setStyleSheet(u"QPushButton {background-color: #6badee; color: #ffffff; border-radius: 5px}\n"
-"QPushButton:hover {background-color: #5487bb;}")
+"QPushButton:hover {background-color: #5487bb;}\n"
+"QPushButton:focus {border-color: #000000; border-width: 1.5px; border-style: solid;}")
 
         self.horizontalLayout.addWidget(self.btn_save)
 
@@ -400,14 +410,20 @@ class Ui_MainWindow(object):
         self.verticalLayout_3.addWidget(self.widget)
 
         MainWindow.setCentralWidget(self.centralwidget)
+        QWidget.setTabOrder(self.lineEdit_title, self.btn_color_1)
         QWidget.setTabOrder(self.btn_color_1, self.btn_color_2)
         QWidget.setTabOrder(self.btn_color_2, self.btn_color_3)
         QWidget.setTabOrder(self.btn_color_3, self.btn_color_4)
         QWidget.setTabOrder(self.btn_color_4, self.btn_color_5)
         QWidget.setTabOrder(self.btn_color_5, self.btn_color_6)
         QWidget.setTabOrder(self.btn_color_6, self.listWidget_manage_list)
-        QWidget.setTabOrder(self.listWidget_manage_list, self.btn_save)
+        QWidget.setTabOrder(self.listWidget_manage_list, self.btn_delete_list)
+        QWidget.setTabOrder(self.btn_delete_list, self.listWidget_manage_member)
+        QWidget.setTabOrder(self.listWidget_manage_member, self.btn_add_member)
+        QWidget.setTabOrder(self.btn_add_member, self.btn_delete_member)
+        QWidget.setTabOrder(self.btn_delete_member, self.btn_save)
         QWidget.setTabOrder(self.btn_save, self.btn_cancel)
+        QWidget.setTabOrder(self.btn_cancel, self.scrollArea)
 
         self.retranslateUi(MainWindow)
 
@@ -442,7 +458,7 @@ class Ui_MainWindow(object):
 
         self.btn_delete_list.setText(QCoreApplication.translate("MainWindow", u"Delete List", None))
         self.label_9.setText(QCoreApplication.translate("MainWindow", u"Manage Member", None))
-        self.label_4.setText(QCoreApplication.translate("MainWindow", u"Member can have access to this board.", None))
+        self.label_4.setText(QCoreApplication.translate("MainWindow", u"Member can have access to this board. Select and press Delete Member to remove access.", None))
 
         __sortingEnabled1 = self.listWidget_manage_member.isSortingEnabled()
         self.listWidget_manage_member.setSortingEnabled(False)

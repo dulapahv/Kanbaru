@@ -122,6 +122,9 @@ border-radius: 5px;</string>
                 <property name="text">
                  <string>Manage Board</string>
                 </property>
+                <property name="wordWrap">
+                 <bool>true</bool>
+                </property>
                </widget>
               </item>
               <item>
@@ -134,6 +137,9 @@ border-radius: 5px;</string>
                 </property>
                 <property name="text">
                  <string>Drag to rearrange. Select and press Delete Board to delete it.</string>
+                </property>
+                <property name="wordWrap">
+                 <bool>true</bool>
                 </property>
                </widget>
               </item>
@@ -149,7 +155,7 @@ border-radius: 5px;</string>
                 <property name="styleSheet">
                  <string notr="true">QListWidget::item {height: 40px; padding: 0px 8px 0px 8px}
 QListWidget::item {background-color: #ffffff; color: #000000; border-radius: 5px}
-QListWidget::item:hover {background-color: #f4f5f7; color: #000000}
+QListWidget::item:hover {background-color: #e2e4e9; color: #000000}
 QListWidget::item:selected {background-color: #cccccc; color: #000000}
 QScrollBar:vertical {width: 10px; margin: 0px 0px 0px 0px; background-color: #acb2bf}</string>
                 </property>
@@ -272,7 +278,8 @@ QScrollBar:vertical {width: 10px; margin: 0px 0px 0px 0px; background-color: #ac
                 </property>
                 <property name="styleSheet">
                  <string notr="true">QPushButton {background-color: #d63a3e; color: #ffffff; border-radius: 5px}
-QPushButton:hover {background-color: #9e2a2a;}</string>
+QPushButton:hover {background-color: #9e2a2a;}
+QPushButton:focus {border-color: #000000; border-width: 1.5px; border-style: solid;}</string>
                 </property>
                 <property name="text">
                  <string>Delete Board</string>
@@ -313,6 +320,9 @@ QPushButton:hover {background-color: #9e2a2a;}</string>
                 <property name="text">
                  <string>Manage Account</string>
                 </property>
+                <property name="wordWrap">
+                 <bool>true</bool>
+                </property>
                </widget>
               </item>
               <item>
@@ -342,7 +352,8 @@ QPushButton:hover {background-color: #9e2a2a;}</string>
                   </property>
                   <property name="styleSheet">
                    <string notr="true">QPushButton {background-color: #acb2bf; color: #ffffff; border-radius: 5px}
-QPushButton:hover {background-color: #7e828c;}</string>
+QPushButton:hover {background-color: #7e828c;}
+QPushButton:focus {border-color: #000000; border-width: 1.5px; border-style: solid;}</string>
                   </property>
                   <property name="text">
                    <string>Logout</string>
@@ -374,7 +385,8 @@ QPushButton:hover {background-color: #7e828c;}</string>
                   </property>
                   <property name="styleSheet">
                    <string notr="true">QPushButton {background-color: #acb2bf; color: #ffffff; border-radius: 5px}
-QPushButton:hover {background-color: #7e828c;}</string>
+QPushButton:hover {background-color: #7e828c;}
+QPushButton:focus {border-color: #000000; border-width: 1.5px; border-style: solid;}</string>
                   </property>
                   <property name="text">
                    <string>Change Password</string>
@@ -421,7 +433,8 @@ QPushButton:hover {background-color: #7e828c;}</string>
                 </property>
                 <property name="styleSheet">
                  <string notr="true">QPushButton {border-color: #d63a3e; border-width: 1.5px; border-style: solid; color: #282c33; border-radius: 5px}
-QPushButton:hover {background-color: #d63a3e; color: #ffffff;}</string>
+QPushButton:hover {background-color: #d63a3e; color: #ffffff;}
+QPushButton:focus {border-color: #000000; border-width: 1.5px; border-style: solid;}</string>
                 </property>
                 <property name="text">
                  <string>Delete Account</string>
@@ -491,7 +504,8 @@ QPushButton:hover {background-color: #d63a3e; color: #ffffff;}</string>
               </property>
               <property name="styleSheet">
                <string notr="true">QPushButton {background-color: #acb2bf; color: #ffffff; border-radius: 5px}
-QPushButton:hover {background-color: #7e828c;}</string>
+QPushButton:hover {background-color: #7e828c;}
+QPushButton:focus {border-color: #000000; border-width: 1.5px; border-style: solid;}</string>
               </property>
               <property name="text">
                <string>Cancel</string>
@@ -523,7 +537,8 @@ QPushButton:hover {background-color: #7e828c;}</string>
               </property>
               <property name="styleSheet">
                <string notr="true">QPushButton {background-color: #6badee; color: #ffffff; border-radius: 5px}
-QPushButton:hover {background-color: #5487bb;}</string>
+QPushButton:hover {background-color: #5487bb;}
+QPushButton:focus {border-color: #000000; border-width: 1.5px; border-style: solid;}</string>
               </property>
               <property name="text">
                <string>Save</string>
@@ -543,8 +558,12 @@ QPushButton:hover {background-color: #5487bb;}</string>
  </widget>
  <tabstops>
   <tabstop>listWidget</tabstop>
+  <tabstop>btn_delete_board</tabstop>
   <tabstop>btn_save</tabstop>
   <tabstop>btn_cancel</tabstop>
+  <tabstop>btn_logout</tabstop>
+  <tabstop>btn_change_passwd</tabstop>
+  <tabstop>btn_delete_account</tabstop>
  </tabstops>
  <resources/>
  <connections/>

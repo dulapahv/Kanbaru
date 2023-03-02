@@ -76,6 +76,7 @@ class Ui_MainWindow(object):
         font1.setBold(True)
         self.label_8.setFont(font1)
         self.label_8.setStyleSheet(u"color: #282c33;")
+        self.label_8.setWordWrap(True)
 
         self.verticalLayout_2.addWidget(self.label_8)
 
@@ -85,6 +86,7 @@ class Ui_MainWindow(object):
         font2.setFamilies([u"Torus Pro"])
         font2.setPointSize(11)
         self.label_manage_baoard_info.setFont(font2)
+        self.label_manage_baoard_info.setWordWrap(True)
 
         self.verticalLayout_2.addWidget(self.label_manage_baoard_info)
 
@@ -111,7 +113,7 @@ class Ui_MainWindow(object):
         self.listWidget.setFont(font3)
         self.listWidget.setStyleSheet(u"QListWidget::item {height: 40px; padding: 0px 8px 0px 8px}\n"
 "QListWidget::item {background-color: #ffffff; color: #000000; border-radius: 5px}\n"
-"QListWidget::item:hover {background-color: #f4f5f7; color: #000000}\n"
+"QListWidget::item:hover {background-color: #e2e4e9; color: #000000}\n"
 "QListWidget::item:selected {background-color: #cccccc; color: #000000}\n"
 "QScrollBar:vertical {width: 10px; margin: 0px 0px 0px 0px; background-color: #acb2bf}")
         self.listWidget.setFrameShape(QFrame.NoFrame)
@@ -143,7 +145,8 @@ class Ui_MainWindow(object):
         self.btn_delete_board.setFont(font4)
         self.btn_delete_board.setCursor(QCursor(Qt.PointingHandCursor))
         self.btn_delete_board.setStyleSheet(u"QPushButton {background-color: #d63a3e; color: #ffffff; border-radius: 5px}\n"
-"QPushButton:hover {background-color: #9e2a2a;}")
+"QPushButton:hover {background-color: #9e2a2a;}\n"
+"QPushButton:focus {border-color: #000000; border-width: 1.5px; border-style: solid;}")
 
         self.verticalLayout_2.addWidget(self.btn_delete_board)
 
@@ -161,6 +164,7 @@ class Ui_MainWindow(object):
         self.label_9.setObjectName(u"label_9")
         self.label_9.setFont(font1)
         self.label_9.setStyleSheet(u"color: #282c33;")
+        self.label_9.setWordWrap(True)
 
         self.verticalLayout_2.addWidget(self.label_9)
 
@@ -174,7 +178,8 @@ class Ui_MainWindow(object):
         self.btn_logout.setFont(font4)
         self.btn_logout.setCursor(QCursor(Qt.PointingHandCursor))
         self.btn_logout.setStyleSheet(u"QPushButton {background-color: #acb2bf; color: #ffffff; border-radius: 5px}\n"
-"QPushButton:hover {background-color: #7e828c;}")
+"QPushButton:hover {background-color: #7e828c;}\n"
+"QPushButton:focus {border-color: #000000; border-width: 1.5px; border-style: solid;}")
 
         self.horizontalLayout_2.addWidget(self.btn_logout)
 
@@ -186,7 +191,8 @@ class Ui_MainWindow(object):
         self.btn_change_passwd.setFont(font4)
         self.btn_change_passwd.setCursor(QCursor(Qt.PointingHandCursor))
         self.btn_change_passwd.setStyleSheet(u"QPushButton {background-color: #acb2bf; color: #ffffff; border-radius: 5px}\n"
-"QPushButton:hover {background-color: #7e828c;}")
+"QPushButton:hover {background-color: #7e828c;}\n"
+"QPushButton:focus {border-color: #000000; border-width: 1.5px; border-style: solid;}")
 
         self.horizontalLayout_2.addWidget(self.btn_change_passwd)
 
@@ -205,7 +211,8 @@ class Ui_MainWindow(object):
         self.btn_delete_account.setFont(font4)
         self.btn_delete_account.setCursor(QCursor(Qt.PointingHandCursor))
         self.btn_delete_account.setStyleSheet(u"QPushButton {border-color: #d63a3e; border-width: 1.5px; border-style: solid; color: #282c33; border-radius: 5px}\n"
-"QPushButton:hover {background-color: #d63a3e; color: #ffffff;}")
+"QPushButton:hover {background-color: #d63a3e; color: #ffffff;}\n"
+"QPushButton:focus {border-color: #000000; border-width: 1.5px; border-style: solid;}")
 
         self.verticalLayout_2.addWidget(self.btn_delete_account)
 
@@ -239,7 +246,8 @@ class Ui_MainWindow(object):
         self.btn_cancel.setFont(font4)
         self.btn_cancel.setCursor(QCursor(Qt.PointingHandCursor))
         self.btn_cancel.setStyleSheet(u"QPushButton {background-color: #acb2bf; color: #ffffff; border-radius: 5px}\n"
-"QPushButton:hover {background-color: #7e828c;}")
+"QPushButton:hover {background-color: #7e828c;}\n"
+"QPushButton:focus {border-color: #000000; border-width: 1.5px; border-style: solid;}")
 
         self.horizontalLayout.addWidget(self.btn_cancel)
 
@@ -251,7 +259,8 @@ class Ui_MainWindow(object):
         self.btn_save.setFont(font4)
         self.btn_save.setCursor(QCursor(Qt.PointingHandCursor))
         self.btn_save.setStyleSheet(u"QPushButton {background-color: #6badee; color: #ffffff; border-radius: 5px}\n"
-"QPushButton:hover {background-color: #5487bb;}")
+"QPushButton:hover {background-color: #5487bb;}\n"
+"QPushButton:focus {border-color: #000000; border-width: 1.5px; border-style: solid;}")
 
         self.horizontalLayout.addWidget(self.btn_save)
 
@@ -265,8 +274,12 @@ class Ui_MainWindow(object):
         self.verticalLayout_3.addWidget(self.widget)
 
         MainWindow.setCentralWidget(self.centralwidget)
-        QWidget.setTabOrder(self.listWidget, self.btn_save)
+        QWidget.setTabOrder(self.listWidget, self.btn_delete_board)
+        QWidget.setTabOrder(self.btn_delete_board, self.btn_save)
         QWidget.setTabOrder(self.btn_save, self.btn_cancel)
+        QWidget.setTabOrder(self.btn_cancel, self.btn_logout)
+        QWidget.setTabOrder(self.btn_logout, self.btn_change_passwd)
+        QWidget.setTabOrder(self.btn_change_passwd, self.btn_delete_account)
 
         self.retranslateUi(MainWindow)
 

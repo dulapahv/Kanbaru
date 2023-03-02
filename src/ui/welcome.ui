@@ -167,6 +167,9 @@ border-radius: 5px;</string>
                    <property name="alignment">
                     <set>Qt::AlignCenter</set>
                    </property>
+                   <property name="wordWrap">
+                    <bool>true</bool>
+                   </property>
                   </widget>
                  </item>
                  <item>
@@ -211,6 +214,9 @@ border-radius: 5px;</string>
                       </property>
                       <property name="alignment">
                        <set>Qt::AlignCenter</set>
+                      </property>
+                      <property name="wordWrap">
+                       <bool>true</bool>
                       </property>
                      </widget>
                     </item>
@@ -283,6 +289,9 @@ QLineEdit:focus {border-color: #6badee;}</string>
                       </property>
                       <property name="text">
                        <string>Incorrect username/password</string>
+                      </property>
+                      <property name="wordWrap">
+                       <bool>true</bool>
                       </property>
                      </widget>
                     </item>
@@ -392,6 +401,9 @@ QPushButton:focus {border-color: #000000; border-width: 1.5px; border-style: sol
                       <property name="alignment">
                        <set>Qt::AlignCenter</set>
                       </property>
+                      <property name="wordWrap">
+                       <bool>true</bool>
+                      </property>
                      </widget>
                     </item>
                     <item>
@@ -492,6 +504,9 @@ QLineEdit:focus {border-color: #6badee;}</string>
                       </property>
                       <property name="text">
                        <string>Incorrect username/password</string>
+                      </property>
+                      <property name="wordWrap">
+                       <bool>true</bool>
                       </property>
                      </widget>
                     </item>

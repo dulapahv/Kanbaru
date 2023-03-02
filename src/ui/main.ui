@@ -178,7 +178,8 @@ baru</string>
                 </property>
                 <property name="styleSheet">
                  <string notr="true">QPushButton {background-color: #6badee; color: #ffffff; border-radius: 5px}
-QPushButton:hover {background-color: #7e828c;}</string>
+QPushButton:hover {background-color: #7e828c;}
+QPushButton:focus {border-color: #000000; border-width: 1.5px; border-style: solid;}</string>
                 </property>
                 <property name="text">
                  <string>Board 1</string>
@@ -204,7 +205,8 @@ QPushButton:hover {background-color: #7e828c;}</string>
                 </property>
                 <property name="styleSheet">
                  <string notr="true">QPushButton {background-color: #fb568a; color: #ffffff; border-radius: 5px}
-QPushButton:hover {background-color: #7e828c;}</string>
+QPushButton:hover {background-color: #7e828c;}
+QPushButton:focus {border-color: #000000; border-width: 1.5px; border-style: solid;}</string>
                 </property>
                 <property name="text">
                  <string>Board 2</string>
@@ -230,7 +232,8 @@ QPushButton:hover {background-color: #7e828c;}</string>
                 </property>
                 <property name="styleSheet">
                  <string notr="true">QPushButton {background-color: #fbd945; color: #ffffff; border-radius: 5px}
-QPushButton:hover {background-color: #7e828c;}</string>
+QPushButton:hover {background-color: #7e828c;}
+QPushButton:focus {border-color: #000000; border-width: 1.5px; border-style: solid;}</string>
                 </property>
                 <property name="text">
                  <string>Board 3</string>
@@ -256,7 +259,8 @@ QPushButton:hover {background-color: #7e828c;}</string>
                 </property>
                 <property name="styleSheet">
                  <string notr="true">QPushButton {background-color: #99c37b; color: #ffffff; border-radius: 5px}
-QPushButton:hover {background-color: #7e828c;}</string>
+QPushButton:hover {background-color: #7e828c;}
+QPushButton:focus {border-color: #000000; border-width: 1.5px; border-style: solid;}</string>
                 </property>
                 <property name="text">
                  <string>Board 4</string>
@@ -282,7 +286,8 @@ QPushButton:hover {background-color: #7e828c;}</string>
                 </property>
                 <property name="styleSheet">
                  <string notr="true">QPushButton {background-color: #c577dc; color: #ffffff; border-radius: 5px}
-QPushButton:hover {background-color: #7e828c;}</string>
+QPushButton:hover {background-color: #7e828c;}
+QPushButton:focus {border-color: #000000; border-width: 1.5px; border-style: solid;}</string>
                 </property>
                 <property name="text">
                  <string>Board 5</string>
@@ -308,7 +313,8 @@ QPushButton:hover {background-color: #7e828c;}</string>
                 </property>
                 <property name="styleSheet">
                  <string notr="true">QPushButton {background-color: #5eb5c1; color: #ffffff; border-radius: 5px}
-QPushButton:hover {background-color: #7e828c;}</string>
+QPushButton:hover {background-color: #7e828c;}
+QPushButton:focus {border-color: #000000; border-width: 1.5px; border-style: solid;}</string>
                 </property>
                 <property name="text">
                  <string>Board 6</string>
@@ -334,7 +340,8 @@ QPushButton:hover {background-color: #7e828c;}</string>
                 </property>
                 <property name="styleSheet">
                  <string notr="true">QPushButton {background-color: #6badee; color: #ffffff; border-radius: 5px}
-QPushButton:hover {background-color: #7e828c;}</string>
+QPushButton:hover {background-color: #7e828c;}
+QPushButton:focus {border-color: #000000; border-width: 1.5px; border-style: solid;}</string>
                 </property>
                 <property name="text">
                  <string>Board 7</string>
@@ -377,7 +384,8 @@ QPushButton:hover {background-color: #7e828c;}</string>
             </property>
             <property name="styleSheet">
              <string notr="true">QPushButton {background-color: #acb2bf; color: #ffffff; border-radius: 5px}
-QPushButton:hover {background-color: #7e828c;}</string>
+QPushButton:hover {background-color: #7e828c;}
+QPushButton:focus {border-color: #000000; border-width: 1.5px; border-style: solid;}</string>
             </property>
             <property name="text">
              <string>+ Add a board</string>
@@ -403,7 +411,8 @@ QPushButton:hover {background-color: #7e828c;}</string>
             </property>
             <property name="styleSheet">
              <string notr="true">QPushButton {background-color: #7f8ca6; color: #ffffff; border-radius: 5px}
-QPushButton:hover {background-color: #576073;}</string>
+QPushButton:hover {background-color: #576073;}
+QPushButton:focus {border-color: #000000; border-width: 1.5px; border-style: solid;}</string>
             </property>
             <property name="text">
              <string>Board Settings</string>
@@ -429,7 +438,8 @@ QPushButton:hover {background-color: #576073;}</string>
             </property>
             <property name="styleSheet">
              <string notr="true">QPushButton {background-color: #7f8ca6; color: #ffffff; border-radius: 5px}
-QPushButton:hover {background-color: #576073;}</string>
+QPushButton:hover {background-color: #576073;}
+QPushButton:focus {border-color: #000000; border-width: 1.5px; border-style: solid;}</string>
             </property>
             <property name="text">
              <string>App Settings</string>
@@ -667,8 +677,9 @@ padding: 5px 0px 0px 5px;</string>
                          <string notr="true">QListWidget {background-color: #ebecf0; border-radius: 10px;}
 QListWidget::item {height: 40px; padding: 0px 8px 0px 8px}
 QListWidget::item {background-color: qlineargradient(spread:pad, x1:0, y1:0.5, x2:0.95, y2:0.5, stop:0 rgba(251, 217, 69, 255), stop:0.0338983 rgba(251, 217, 69, 255), stop:0.039548 rgba(255, 255, 255, 255), stop:1 rgba(255, 255, 255, 255)); color: #000000; border-radius: 5px}
-QListWidget::item:hover {background-color: qlineargradient(spread:pad, x1:0, y1:0.5, x2:0.95, y2:0.5, stop:0 rgba(251, 217, 69, 255), stop:0.0338983 rgba(251, 217, 69, 255), stop:0.039548 rgba(244, 245, 247, 255), stop:1 rgba(244, 245, 247, 255)); color: #000000}
+QListWidget::item:hover {background-color: qlineargradient(spread:pad, x1:0, y1:0.5, x2:0.95, y2:0.5, stop:0 rgba(251, 217, 69, 255), stop:0.0338983 rgba(251, 217, 69, 255), stop:0.039548 rgba(226, 228, 233, 255), stop:1 rgba(226, 228, 233, 255)); color: #000000}
 QListWidget::item:selected {background-color: qlineargradient(spread:pad, x1:0, y1:0.5, x2:0.95, y2:0.5, stop:0 rgba(251, 217, 69, 255), stop:0.0338983 rgba(251, 217, 69, 255), stop:0.039548 rgba(204, 204, 204, 255), stop:1 rgba(204, 204, 204, 255)); color: #000000}
+QListWidget::item:focus {background-color: qlineargradient(spread:pad, x1:0, y1:0.5, x2:0.95, y2:0.5, stop:0 rgba(251, 217, 69, 255), stop:0.0338983 rgba(251, 217, 69, 255), stop:0.039548 rgba(204, 204, 204, 255), stop:1 rgba(204, 204, 204, 255)); color: #000000}
 QScrollBar:vertical {width: 10px; margin: 0px 0px 0px 0px; background-color: #acb2bf}</string>
                         </property>
                         <property name="frameShape">
@@ -851,7 +862,8 @@ QScrollBar:vertical {width: 10px; margin: 0px 0px 0px 0px; background-color: #ac
                            </property>
                            <property name="styleSheet">
                             <string notr="true">QPushButton {background-color: #ebecf0; color: #6a758b; border-radius: 5px}
-QPushButton:hover {background-color: #dadbe2; color: #505b76}</string>
+QPushButton:hover {background-color: #dadbe2; color: #505b76}
+QPushButton:focus {border-color: #000000; border-width: 1.5px; border-style: solid;}</string>
                            </property>
                            <property name="text">
                             <string>+ Add a card</string>
@@ -987,8 +999,9 @@ padding: 5px 0px 0px 5px;</string>
                          <string notr="true">QListWidget {background-color: #ebecf0; border-radius: 10px;}
 QListWidget::item {height: 40px; padding: 0px 8px 0px 8px}
 QListWidget::item {background-color: qlineargradient(spread:pad, x1:0, y1:0.5, x2:0.95, y2:0.5, stop:0 rgba(251, 217, 69, 255), stop:0.0338983 rgba(251, 217, 69, 255), stop:0.039548 rgba(255, 255, 255, 255), stop:1 rgba(255, 255, 255, 255)); color: #000000; border-radius: 5px}
-QListWidget::item:hover {background-color: qlineargradient(spread:pad, x1:0, y1:0.5, x2:0.95, y2:0.5, stop:0 rgba(251, 217, 69, 255), stop:0.0338983 rgba(251, 217, 69, 255), stop:0.039548 rgba(244, 245, 247, 255), stop:1 rgba(244, 245, 247, 255)); color: #000000}
+QListWidget::item:hover {background-color: qlineargradient(spread:pad, x1:0, y1:0.5, x2:0.95, y2:0.5, stop:0 rgba(251, 217, 69, 255), stop:0.0338983 rgba(251, 217, 69, 255), stop:0.039548 rgba(226, 228, 233, 255), stop:1 rgba(226, 228, 233, 255)); color: #000000}
 QListWidget::item:selected {background-color: qlineargradient(spread:pad, x1:0, y1:0.5, x2:0.95, y2:0.5, stop:0 rgba(251, 217, 69, 255), stop:0.0338983 rgba(251, 217, 69, 255), stop:0.039548 rgba(204, 204, 204, 255), stop:1 rgba(204, 204, 204, 255)); color: #000000}
+QListWidget::item:focus {background-color: qlineargradient(spread:pad, x1:0, y1:0.5, x2:0.95, y2:0.5, stop:0 rgba(251, 217, 69, 255), stop:0.0338983 rgba(251, 217, 69, 255), stop:0.039548 rgba(204, 204, 204, 255), stop:1 rgba(204, 204, 204, 255)); color: #000000}
 QScrollBar:vertical {width: 10px; margin: 0px 0px 0px 0px; background-color: #acb2bf}</string>
                         </property>
                         <property name="frameShape">
@@ -1099,7 +1112,8 @@ QScrollBar:vertical {width: 10px; margin: 0px 0px 0px 0px; background-color: #ac
                            </property>
                            <property name="styleSheet">
                             <string notr="true">QPushButton {background-color: #ebecf0; color: #6a758b; border-radius: 5px}
-QPushButton:hover {background-color: #dadbe2; color: #505b76}</string>
+QPushButton:hover {background-color: #dadbe2; color: #505b76}
+QPushButton:focus {border-color: #000000; border-width: 1.5px; border-style: solid;}</string>
                            </property>
                            <property name="text">
                             <string>+ Add a card</string>
@@ -1235,8 +1249,9 @@ padding: 5px 0px 0px 5px;</string>
                          <string notr="true">QListWidget {background-color: #ebecf0; border-radius: 10px;}
 QListWidget::item {height: 40px; padding: 0px 8px 0px 8px}
 QListWidget::item {background-color: qlineargradient(spread:pad, x1:0, y1:0.5, x2:0.95, y2:0.5, stop:0 rgba(251, 217, 69, 255), stop:0.0338983 rgba(251, 217, 69, 255), stop:0.039548 rgba(255, 255, 255, 255), stop:1 rgba(255, 255, 255, 255)); color: #000000; border-radius: 5px}
-QListWidget::item:hover {background-color: qlineargradient(spread:pad, x1:0, y1:0.5, x2:0.95, y2:0.5, stop:0 rgba(251, 217, 69, 255), stop:0.0338983 rgba(251, 217, 69, 255), stop:0.039548 rgba(244, 245, 247, 255), stop:1 rgba(244, 245, 247, 255)); color: #000000}
+QListWidget::item:hover {background-color: qlineargradient(spread:pad, x1:0, y1:0.5, x2:0.95, y2:0.5, stop:0 rgba(251, 217, 69, 255), stop:0.0338983 rgba(251, 217, 69, 255), stop:0.039548 rgba(226, 228, 233, 255), stop:1 rgba(226, 228, 233, 255)); color: #000000}
 QListWidget::item:selected {background-color: qlineargradient(spread:pad, x1:0, y1:0.5, x2:0.95, y2:0.5, stop:0 rgba(251, 217, 69, 255), stop:0.0338983 rgba(251, 217, 69, 255), stop:0.039548 rgba(204, 204, 204, 255), stop:1 rgba(204, 204, 204, 255)); color: #000000}
+QListWidget::item:focus {background-color: qlineargradient(spread:pad, x1:0, y1:0.5, x2:0.95, y2:0.5, stop:0 rgba(251, 217, 69, 255), stop:0.0338983 rgba(251, 217, 69, 255), stop:0.039548 rgba(204, 204, 204, 255), stop:1 rgba(204, 204, 204, 255)); color: #000000}
 QScrollBar:vertical {width: 10px; margin: 0px 0px 0px 0px; background-color: #acb2bf}</string>
                         </property>
                         <property name="frameShape">
@@ -1347,7 +1362,8 @@ QScrollBar:vertical {width: 10px; margin: 0px 0px 0px 0px; background-color: #ac
                            </property>
                            <property name="styleSheet">
                             <string notr="true">QPushButton {background-color: #ebecf0; color: #6a758b; border-radius: 5px}
-QPushButton:hover {background-color: #dadbe2; color: #505b76}</string>
+QPushButton:hover {background-color: #dadbe2; color: #505b76}
+QPushButton:focus {border-color: #000000; border-width: 1.5px; border-style: solid;}</string>
                            </property>
                            <property name="text">
                             <string>+ Add a card</string>
@@ -1413,7 +1429,8 @@ QPushButton:hover {background-color: #dadbe2; color: #505b76}</string>
                      </property>
                      <property name="styleSheet">
                       <string notr="true">QPushButton {background-color: #acb2bf; color: #ffffff; border-radius: 5px}
-QPushButton:hover {background-color: #7e828c;}</string>
+QPushButton:hover {background-color: #7e828c;}
+QPushButton:focus {border-color: #000000; border-width: 1.5px; border-style: solid;}</string>
                      </property>
                      <property name="text">
                       <string>+ Add a list</string>
@@ -1466,17 +1483,24 @@ QPushButton:hover {background-color: #7e828c;}</string>
  </widget>
  <tabstops>
   <tabstop>btn_add_list</tabstop>
-  <tabstop>scrollArea_panel_right</tabstop>
+  <tabstop>btn_add_board</tabstop>
+  <tabstop>btn_board_settings</tabstop>
+  <tabstop>btn_app_settings</tabstop>
   <tabstop>btn_board_1</tabstop>
-  <tabstop>scrollArea_panel_left</tabstop>
   <tabstop>btn_board_2</tabstop>
   <tabstop>btn_board_3</tabstop>
   <tabstop>btn_board_4</tabstop>
   <tabstop>btn_board_5</tabstop>
   <tabstop>btn_board_6</tabstop>
   <tabstop>btn_board_7</tabstop>
-  <tabstop>btn_add_board</tabstop>
-  <tabstop>btn_app_settings</tabstop>
+  <tabstop>listWidget_list_1</tabstop>
+  <tabstop>listWidget_list_2</tabstop>
+  <tabstop>listWidget_list_3</tabstop>
+  <tabstop>btn_add_card_list_1</tabstop>
+  <tabstop>btn_add_card_list_2</tabstop>
+  <tabstop>btn_add_card_list_3</tabstop>
+  <tabstop>scrollArea_panel_left</tabstop>
+  <tabstop>scrollArea_panel_right</tabstop>
  </tabstops>
  <resources/>
  <connections/>

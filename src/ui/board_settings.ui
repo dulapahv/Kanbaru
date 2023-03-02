@@ -68,6 +68,12 @@ padding: 0px 0px 0px 10px;</string>
     </item>
     <item>
      <widget class="QWidget" name="widget" native="true">
+      <property name="minimumSize">
+       <size>
+        <width>390</width>
+        <height>0</height>
+       </size>
+      </property>
       <layout class="QVBoxLayout" name="verticalLayout_7">
        <property name="leftMargin">
         <number>15</number>
@@ -125,9 +131,9 @@ QScrollBar:horizontal {height: 10px; margin: 0px 0px 0px 0px; background-color: 
              <property name="geometry">
               <rect>
                <x>0</x>
-               <y>0</y>
-               <width>526</width>
-               <height>514</height>
+               <y>-355</y>
+               <width>516</width>
+               <height>869</height>
               </rect>
              </property>
              <layout class="QVBoxLayout" name="verticalLayout_4">
@@ -168,6 +174,9 @@ QScrollBar:horizontal {height: 10px; margin: 0px 0px 0px 0px; background-color: 
                     <property name="text">
                      <string>Title</string>
                     </property>
+                    <property name="wordWrap">
+                     <bool>true</bool>
+                    </property>
                    </widget>
                   </item>
                   <item>
@@ -197,6 +206,22 @@ QLineEdit:focus {background-color: #ffffff; border-color: #6badee; border-width:
                    </widget>
                   </item>
                   <item>
+                   <spacer name="verticalSpacer_3">
+                    <property name="orientation">
+                     <enum>Qt::Vertical</enum>
+                    </property>
+                    <property name="sizeType">
+                     <enum>QSizePolicy::Fixed</enum>
+                    </property>
+                    <property name="sizeHint" stdset="0">
+                     <size>
+                      <width>20</width>
+                      <height>15</height>
+                     </size>
+                    </property>
+                   </spacer>
+                  </item>
+                  <item>
                    <widget class="QLabel" name="label_7">
                     <property name="font">
                      <font>
@@ -210,6 +235,9 @@ QLineEdit:focus {background-color: #ffffff; border-color: #6badee; border-width:
                     </property>
                     <property name="text">
                      <string>Color</string>
+                    </property>
+                    <property name="wordWrap">
+                     <bool>true</bool>
                     </property>
                    </widget>
                   </item>
@@ -241,9 +269,8 @@ QLineEdit:focus {background-color: #ffffff; border-color: #6badee; border-width:
                          <cursorShape>PointingHandCursor</cursorShape>
                         </property>
                         <property name="styleSheet">
-                         <string notr="true">background-color: #6badee;
-color: #ffffff;
-padding: 0px 5px 0px 5px;</string>
+                         <string notr="true">QRadioButton {background-color: #6badee; color: #ffffff; padding: 0px 5px 0px 5px;}
+QRadioButton:focus {border-color: #000000; border-width: 1.5px; border-style: solid; padding: 0px 3px 0px 3px;}</string>
                         </property>
                         <property name="text">
                          <string>Light blue</string>
@@ -268,9 +295,8 @@ padding: 0px 5px 0px 5px;</string>
                          <cursorShape>PointingHandCursor</cursorShape>
                         </property>
                         <property name="styleSheet">
-                         <string notr="true">background-color: #fb568a;
-color: #ffffff;
-padding: 0px 5px 0px 5px;</string>
+                         <string notr="true">QRadioButton {background-color: #fb568a; color: #ffffff; padding: 0px 5px 0px 5px;}
+QRadioButton:focus {border-color: #000000; border-width: 1.5px; border-style: solid; padding: 0px 3px 0px 3px;}</string>
                         </property>
                         <property name="text">
                          <string>Rose</string>
@@ -295,9 +321,8 @@ padding: 0px 5px 0px 5px;</string>
                          <cursorShape>PointingHandCursor</cursorShape>
                         </property>
                         <property name="styleSheet">
-                         <string notr="true">background-color: #fbd945;
-color: #ffffff;
-padding: 0px 5px 0px 5px;</string>
+                         <string notr="true">QRadioButton {background-color: #fbd945; color: #ffffff; padding: 0px 5px 0px 5px;}
+QRadioButton:focus {border-color: #000000; border-width: 1.5px; border-style: solid; padding: 0px 3px 0px 3px;}</string>
                         </property>
                         <property name="text">
                          <string>Gold</string>
@@ -329,9 +354,8 @@ padding: 0px 5px 0px 5px;</string>
                          <cursorShape>PointingHandCursor</cursorShape>
                         </property>
                         <property name="styleSheet">
-                         <string notr="true">background-color: #99c37b;
-color: #ffffff;
-padding: 0px 5px 0px 5px;</string>
+                         <string notr="true">QRadioButton {background-color: #99c37b; color: #ffffff; padding: 0px 5px 0px 5px;}
+QRadioButton:focus {border-color: #000000; border-width: 1.5px; border-style: solid; padding: 0px 3px 0px 3px;}</string>
                         </property>
                         <property name="text">
                          <string>Green</string>
@@ -356,9 +380,8 @@ padding: 0px 5px 0px 5px;</string>
                          <cursorShape>PointingHandCursor</cursorShape>
                         </property>
                         <property name="styleSheet">
-                         <string notr="true">background-color: #c577dc;
-color: #ffffff;
-padding: 0px 5px 0px 5px;</string>
+                         <string notr="true">QRadioButton {background-color: #c577dc; color: #ffffff; padding: 0px 5px 0px 5px;}
+QRadioButton:focus {border-color: #000000; border-width: 1.5px; border-style: solid; padding: 0px 3px 0px 3px;}</string>
                         </property>
                         <property name="text">
                          <string>Lavender</string>
@@ -383,9 +406,8 @@ padding: 0px 5px 0px 5px;</string>
                          <cursorShape>PointingHandCursor</cursorShape>
                         </property>
                         <property name="styleSheet">
-                         <string notr="true">background-color: #5eb5c1;
-color: #ffffff;
-padding: 0px 5px 0px 5px;</string>
+                         <string notr="true">QRadioButton {background-color: #5eb5c1; color: #ffffff; padding: 0px 5px 0px 5px;}
+QRadioButton:focus {border-color: #000000; border-width: 1.5px; border-style: solid; padding: 0px 3px 0px 3px;}</string>
                         </property>
                         <property name="text">
                          <string>Teal</string>
@@ -395,6 +417,22 @@ padding: 0px 5px 0px 5px;</string>
                      </layout>
                     </item>
                    </layout>
+                  </item>
+                  <item>
+                   <spacer name="verticalSpacer_2">
+                    <property name="orientation">
+                     <enum>Qt::Vertical</enum>
+                    </property>
+                    <property name="sizeType">
+                     <enum>QSizePolicy::Fixed</enum>
+                    </property>
+                    <property name="sizeHint" stdset="0">
+                     <size>
+                      <width>20</width>
+                      <height>15</height>
+                     </size>
+                    </property>
+                   </spacer>
                   </item>
                   <item>
                    <widget class="QLabel" name="label_8">
@@ -411,6 +449,9 @@ padding: 0px 5px 0px 5px;</string>
                     <property name="text">
                      <string>Manage List</string>
                     </property>
+                    <property name="wordWrap">
+                     <bool>true</bool>
+                    </property>
                    </widget>
                   </item>
                   <item>
@@ -423,6 +464,9 @@ padding: 0px 5px 0px 5px;</string>
                     </property>
                     <property name="text">
                      <string>Drag to rearrange. Select and press Delete List to delete it.</string>
+                    </property>
+                    <property name="wordWrap">
+                     <bool>true</bool>
                     </property>
                    </widget>
                   </item>
@@ -438,7 +482,7 @@ padding: 0px 5px 0px 5px;</string>
                     <property name="styleSheet">
                      <string notr="true">QListWidget::item {height: 40px; padding: 0px 8px 0px 8px}
 QListWidget::item {background-color: #ffffff; color: #000000; border-radius: 5px}
-QListWidget::item:hover {background-color: #f4f5f7; color: #000000}
+QListWidget::item:hover {background-color: #e2e4e9; color: #000000}
 QListWidget::item:selected {background-color: #cccccc; color: #000000}
 QScrollBar:vertical {width: 10px; margin: 0px 0px 0px 0px; background-color: #acb2bf}</string>
                     </property>
@@ -529,12 +573,29 @@ QScrollBar:vertical {width: 10px; margin: 0px 0px 0px 0px; background-color: #ac
                     </property>
                     <property name="styleSheet">
                      <string notr="true">QPushButton {background-color: #d63a3e; color: #ffffff; border-radius: 5px}
-QPushButton:hover {background-color: #9e2a2a;}</string>
+QPushButton:hover {background-color: #9e2a2a;}
+QPushButton:focus {border-color: #000000; border-width: 1.5px; border-style: solid;}</string>
                     </property>
                     <property name="text">
                      <string>Delete List</string>
                     </property>
                    </widget>
+                  </item>
+                  <item>
+                   <spacer name="verticalSpacer">
+                    <property name="orientation">
+                     <enum>Qt::Vertical</enum>
+                    </property>
+                    <property name="sizeType">
+                     <enum>QSizePolicy::Fixed</enum>
+                    </property>
+                    <property name="sizeHint" stdset="0">
+                     <size>
+                      <width>20</width>
+                      <height>15</height>
+                     </size>
+                    </property>
+                   </spacer>
                   </item>
                   <item>
                    <widget class="QLabel" name="label_9">
@@ -551,6 +612,9 @@ QPushButton:hover {background-color: #9e2a2a;}</string>
                     <property name="text">
                      <string>Manage Member</string>
                     </property>
+                    <property name="wordWrap">
+                     <bool>true</bool>
+                    </property>
                    </widget>
                   </item>
                   <item>
@@ -562,22 +626,12 @@ QPushButton:hover {background-color: #9e2a2a;}</string>
                      </font>
                     </property>
                     <property name="text">
-                     <string>Member can have access to this board.</string>
+                     <string>Member can have access to this board. Select and press Delete Member to remove access.</string>
+                    </property>
+                    <property name="wordWrap">
+                     <bool>true</bool>
                     </property>
                    </widget>
-                  </item>
-                  <item>
-                   <spacer name="verticalSpacer">
-                    <property name="orientation">
-                     <enum>Qt::Vertical</enum>
-                    </property>
-                    <property name="sizeHint" stdset="0">
-                     <size>
-                      <width>20</width>
-                      <height>40</height>
-                     </size>
-                    </property>
-                   </spacer>
                   </item>
                   <item>
                    <widget class="QListWidget" name="listWidget_manage_member">
@@ -591,7 +645,7 @@ QPushButton:hover {background-color: #9e2a2a;}</string>
                     <property name="styleSheet">
                      <string notr="true">QListWidget::item {height: 40px; padding: 0px 8px 0px 8px}
 QListWidget::item {background-color: #ffffff; color: #000000; border-radius: 5px}
-QListWidget::item:hover {background-color: #f4f5f7; color: #000000}
+QListWidget::item:hover {background-color: #e2e4e9; color: #000000}
 QListWidget::item:selected {background-color: #cccccc; color: #000000}
 QScrollBar:vertical {width: 10px; margin: 0px 0px 0px 0px; background-color: #acb2bf}</string>
                     </property>
@@ -687,7 +741,8 @@ QScrollBar:vertical {width: 10px; margin: 0px 0px 0px 0px; background-color: #ac
                       </property>
                       <property name="styleSheet">
                        <string notr="true">QPushButton {background-color: #6badee; color: #ffffff; border-radius: 5px}
-QPushButton:hover {background-color: #5487bb;}</string>
+QPushButton:hover {background-color: #5487bb;}
+QPushButton:focus {border-color: #000000; border-width: 1.5px; border-style: solid;}</string>
                       </property>
                       <property name="text">
                        <string>Add Member</string>
@@ -719,7 +774,8 @@ QPushButton:hover {background-color: #5487bb;}</string>
                       </property>
                       <property name="styleSheet">
                        <string notr="true">QPushButton {background-color: #d63a3e; color: #ffffff; border-radius: 5px}
-QPushButton:hover {background-color: #9e2a2a;}</string>
+QPushButton:hover {background-color: #9e2a2a;}
+QPushButton:focus {border-color: #000000; border-width: 1.5px; border-style: solid;}</string>
                       </property>
                       <property name="text">
                        <string>Delete Member</string>
@@ -740,19 +796,6 @@ QPushButton:hover {background-color: #9e2a2a;}</string>
                      </spacer>
                     </item>
                    </layout>
-                  </item>
-                  <item>
-                   <spacer name="verticalSpacer_2">
-                    <property name="orientation">
-                     <enum>Qt::Vertical</enum>
-                    </property>
-                    <property name="sizeHint" stdset="0">
-                     <size>
-                      <width>20</width>
-                      <height>40</height>
-                     </size>
-                    </property>
-                   </spacer>
                   </item>
                  </layout>
                 </item>
@@ -805,7 +848,8 @@ QPushButton:hover {background-color: #9e2a2a;}</string>
               </property>
               <property name="styleSheet">
                <string notr="true">QPushButton {background-color: #acb2bf; color: #ffffff; border-radius: 5px}
-QPushButton:hover {background-color: #7e828c;}</string>
+QPushButton:hover {background-color: #7e828c;}
+QPushButton:focus {border-color: #000000; border-width: 1.5px; border-style: solid;}</string>
               </property>
               <property name="text">
                <string>Cancel</string>
@@ -837,7 +881,8 @@ QPushButton:hover {background-color: #7e828c;}</string>
               </property>
               <property name="styleSheet">
                <string notr="true">QPushButton {background-color: #6badee; color: #ffffff; border-radius: 5px}
-QPushButton:hover {background-color: #5487bb;}</string>
+QPushButton:hover {background-color: #5487bb;}
+QPushButton:focus {border-color: #000000; border-width: 1.5px; border-style: solid;}</string>
               </property>
               <property name="text">
                <string>Save</string>
@@ -856,6 +901,7 @@ QPushButton:hover {background-color: #5487bb;}</string>
   </widget>
  </widget>
  <tabstops>
+  <tabstop>lineEdit_title</tabstop>
   <tabstop>btn_color_1</tabstop>
   <tabstop>btn_color_2</tabstop>
   <tabstop>btn_color_3</tabstop>
@@ -863,8 +909,13 @@ QPushButton:hover {background-color: #5487bb;}</string>
   <tabstop>btn_color_5</tabstop>
   <tabstop>btn_color_6</tabstop>
   <tabstop>listWidget_manage_list</tabstop>
+  <tabstop>btn_delete_list</tabstop>
+  <tabstop>listWidget_manage_member</tabstop>
+  <tabstop>btn_add_member</tabstop>
+  <tabstop>btn_delete_member</tabstop>
   <tabstop>btn_save</tabstop>
   <tabstop>btn_cancel</tabstop>
+  <tabstop>scrollArea</tabstop>
  </tabstops>
  <resources/>
  <connections/>
