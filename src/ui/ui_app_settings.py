@@ -219,7 +219,7 @@ class Ui_MainWindow(object):
         self.btn_delete_account.setFocusPolicy(Qt.TabFocus)
         self.btn_delete_account.setStyleSheet(u"QPushButton {border-color: #d63a3e; border-width: 1.5px; border-style: solid; color: #282c33; border-radius: 5px}\n"
 "QPushButton:hover {background-color: #d63a3e; color: #ffffff;}\n"
-"QPushButton:focus {border-color: #000000; border-width: 1.5px; border-style: solid;}")
+"QPushButton:focus {border-color: #000000; border-width: 1.5px; border-style: solid; background-color: #d63a3e; color: #ffffff;}")
 
         self.verticalLayout_2.addWidget(self.btn_delete_account)
 
@@ -284,11 +284,12 @@ class Ui_MainWindow(object):
 
         MainWindow.setCentralWidget(self.centralwidget)
         QWidget.setTabOrder(self.listWidget, self.btn_delete_board)
-        QWidget.setTabOrder(self.btn_delete_board, self.btn_save)
-        QWidget.setTabOrder(self.btn_save, self.btn_cancel)
-        QWidget.setTabOrder(self.btn_cancel, self.btn_logout)
+        QWidget.setTabOrder(self.btn_delete_board, self.btn_logout)
         QWidget.setTabOrder(self.btn_logout, self.btn_change_passwd)
         QWidget.setTabOrder(self.btn_change_passwd, self.btn_delete_account)
+        QWidget.setTabOrder(self.btn_delete_account, self.btn_cancel)
+        QWidget.setTabOrder(self.btn_cancel, self.btn_save)
+        QWidget.setTabOrder(self.btn_save, self.widget)
 
         self.retranslateUi(MainWindow)
 

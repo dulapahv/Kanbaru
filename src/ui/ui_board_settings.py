@@ -436,9 +436,9 @@ class Ui_MainWindow(object):
         QWidget.setTabOrder(self.btn_delete_list, self.listWidget_manage_member)
         QWidget.setTabOrder(self.listWidget_manage_member, self.btn_add_member)
         QWidget.setTabOrder(self.btn_add_member, self.btn_delete_member)
-        QWidget.setTabOrder(self.btn_delete_member, self.btn_save)
-        QWidget.setTabOrder(self.btn_save, self.btn_cancel)
-        QWidget.setTabOrder(self.btn_cancel, self.scrollArea)
+        QWidget.setTabOrder(self.btn_delete_member, self.btn_cancel)
+        QWidget.setTabOrder(self.btn_cancel, self.btn_save)
+        QWidget.setTabOrder(self.btn_save, self.scrollArea)
 
         self.retranslateUi(MainWindow)
 

@@ -954,8 +954,8 @@ QPushButton:focus {border-color: #000000; border-width: 1.5px; border-style: sol
   <tabstop>listWidget_manage_member</tabstop>
   <tabstop>btn_add_member</tabstop>
   <tabstop>btn_delete_member</tabstop>
-  <tabstop>btn_save</tabstop>
   <tabstop>btn_cancel</tabstop>
+  <tabstop>btn_save</tabstop>
   <tabstop>scrollArea</tabstop>
  </tabstops>
  <resources/>

@@ -453,7 +453,7 @@ QPushButton:focus {border-color: #000000; border-width: 1.5px; border-style: sol
                 <property name="styleSheet">
                  <string notr="true">QPushButton {border-color: #d63a3e; border-width: 1.5px; border-style: solid; color: #282c33; border-radius: 5px}
 QPushButton:hover {background-color: #d63a3e; color: #ffffff;}
-QPushButton:focus {border-color: #000000; border-width: 1.5px; border-style: solid;}</string>
+QPushButton:focus {border-color: #000000; border-width: 1.5px; border-style: solid; background-color: #d63a3e; color: #ffffff;}</string>
                 </property>
                 <property name="text">
                  <string>Delete Account</string>
@@ -584,11 +584,12 @@ QPushButton:focus {border-color: #000000; border-width: 1.5px; border-style: sol
  <tabstops>
   <tabstop>listWidget</tabstop>
   <tabstop>btn_delete_board</tabstop>
-  <tabstop>btn_save</tabstop>
-  <tabstop>btn_cancel</tabstop>
   <tabstop>btn_logout</tabstop>
   <tabstop>btn_change_passwd</tabstop>
   <tabstop>btn_delete_account</tabstop>
+  <tabstop>btn_cancel</tabstop>
+  <tabstop>btn_save</tabstop>
+  <tabstop>widget</tabstop>
  </tabstops>
  <resources/>
  <connections/>

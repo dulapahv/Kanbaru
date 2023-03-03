@@ -264,7 +264,7 @@ class Ui_MainWindow(object):
         self.scrollArea_panel_right.setWidgetResizable(True)
         self.scrollAreaContent_panel_right = QWidget()
         self.scrollAreaContent_panel_right.setObjectName(u"scrollAreaContent_panel_right")
-        self.scrollAreaContent_panel_right.setGeometry(QRect(-120, 0, 1032, 579))
+        self.scrollAreaContent_panel_right.setGeometry(QRect(0, 0, 1032, 579))
         self.horizontalLayout_5 = QHBoxLayout(self.scrollAreaContent_panel_right)
         self.horizontalLayout_5.setObjectName(u"horizontalLayout_5")
         self.horizontalLayout_5.setContentsMargins(8, 0, 0, 8)

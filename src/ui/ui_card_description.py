@@ -349,9 +349,9 @@ class Ui_MainWindow(object):
         QWidget.setTabOrder(self.btn_color_4, self.btn_color_5)
         QWidget.setTabOrder(self.btn_color_5, self.btn_color_6)
         QWidget.setTabOrder(self.btn_color_6, self.textEdit_description)
-        QWidget.setTabOrder(self.textEdit_description, self.btn_save)
-        QWidget.setTabOrder(self.btn_save, self.btn_cancel)
-        QWidget.setTabOrder(self.btn_cancel, self.btn_delete_card)
+        QWidget.setTabOrder(self.textEdit_description, self.btn_delete_card)
+        QWidget.setTabOrder(self.btn_delete_card, self.btn_cancel)
+        QWidget.setTabOrder(self.btn_cancel, self.btn_save)
 
         self.retranslateUi(MainWindow)
 

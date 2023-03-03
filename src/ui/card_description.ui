@@ -713,9 +713,9 @@ QPushButton:focus {border-color: #000000; border-width: 1.5px; border-style: sol
   <tabstop>btn_color_5</tabstop>
   <tabstop>btn_color_6</tabstop>
   <tabstop>textEdit_description</tabstop>
-  <tabstop>btn_save</tabstop>
-  <tabstop>btn_cancel</tabstop>
   <tabstop>btn_delete_card</tabstop>
+  <tabstop>btn_cancel</tabstop>
+  <tabstop>btn_save</tabstop>
  </tabstops>
  <resources/>
  <connections/>

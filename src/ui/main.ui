@@ -568,7 +568,7 @@ QScrollBar:horizontal {height: 10px; margin: 0px 0px 0px 0px; background-color: 
               <widget class="QWidget" name="scrollAreaContent_panel_right">
                <property name="geometry">
                 <rect>
-                 <x>-120</x>
+                 <x>0</x>
                  <y>0</y>
                  <width>1032</width>
                  <height>579</height>
