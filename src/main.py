@@ -9,8 +9,38 @@ class MainWindow(QMainWindow):
     def __init__(self):
         QMainWindow.__init__(self)
 
+        fontDatabase = QFontDatabase()
+        fontDatabase.addApplicationFont("./resources/font/TorusPro-Bold.otf")
+        fontDatabase.addApplicationFont(
+            "./resources/font/TorusPro-BoldItalic.otf")
+        fontDatabase.addApplicationFont("./resources/font/TorusPro-Italic.otf")
+        fontDatabase.addApplicationFont("./resources/font/TorusPro-Light.otf")
+        fontDatabase.addApplicationFont(
+            "./resources/font/TorusPro-LightItalic.otf")
+        fontDatabase.addApplicationFont("./resources/font/TorusPro-Medium.otf")
+        fontDatabase.addApplicationFont(
+            "./resources/font/TorusPro-MediumItalic.otf")
+        fontDatabase.addApplicationFont(
+            "./resources/font/TorusPro-Regular.otf")
+        fontDatabase.addApplicationFont(
+            "./resources/font/TorusPro-SemiBold.otf")
+        fontDatabase.addApplicationFont(
+            "./resources/font/TorusPro-SemiBoldItalic.otf")
+        fontDatabase.addApplicationFont("./resources/font/TorusPro-Thin.otf")
+        fontDatabase.addApplicationFont(
+            "./resources/font/TorusPro-ThinItalic.otf")
+
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
+
+        for obj in self.findChildren(QObject):
+            if hasattr(obj, "setFont"):
+                print(obj)
+                obj.setFont(QFont("Torus Pro"))
+        # self.ui.label_list to Torus Pro bold from fontDatabase resources
+        self.ui.label_list_1.setFont(QFont("Torus Pro", 12, QFont.Bold))
+        self.ui.label_list_2.setFont(QFont("Torus Pro", 12, QFont.Bold))
+        self.ui.label_list_3.setFont(QFont("Torus Pro", 12, QFont.Bold))
 
 
 def main():

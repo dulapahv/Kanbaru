@@ -18,6 +18,7 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
 from PySide6.QtWidgets import (QApplication, QFrame, QHBoxLayout, QLabel,
     QLineEdit, QMainWindow, QPushButton, QSizePolicy,
     QSpacerItem, QVBoxLayout, QWidget)
+import resources_rc_rc
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -33,6 +34,8 @@ class Ui_MainWindow(object):
         self.verticalLayout_3.setContentsMargins(0, 0, 0, 0)
         self.widget = QWidget(self.centralwidget)
         self.widget.setObjectName(u"widget")
+        self.widget.setStyleSheet(u"background-image: url(:/img/resources/img/bg.png);\n"
+"background-position: left center;")
         self.horizontalLayout_2 = QHBoxLayout(self.widget)
         self.horizontalLayout_2.setObjectName(u"horizontalLayout_2")
         self.horizontalLayout_2.setContentsMargins(15, 15, 15, 15)
@@ -42,6 +45,7 @@ class Ui_MainWindow(object):
 
         self.widget_4 = QWidget(self.widget)
         self.widget_4.setObjectName(u"widget_4")
+        self.widget_4.setStyleSheet(u"background: none;")
         self.verticalLayout_6 = QVBoxLayout(self.widget_4)
         self.verticalLayout_6.setSpacing(0)
         self.verticalLayout_6.setObjectName(u"verticalLayout_6")
@@ -52,7 +56,8 @@ class Ui_MainWindow(object):
 
         self.widget1 = QWidget(self.widget_4)
         self.widget1.setObjectName(u"widget1")
-        self.widget1.setStyleSheet(u"background-color: #f4f5f7;\n"
+        self.widget1.setStyleSheet(u"background: none;\n"
+"background-color: #f4f5f7;\n"
 "border-radius: 5px;")
         self.verticalLayout = QVBoxLayout(self.widget1)
         self.verticalLayout.setSpacing(12)

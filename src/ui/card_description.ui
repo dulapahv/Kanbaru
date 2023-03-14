@@ -717,6 +717,8 @@ QPushButton:focus {border-color: #000000; border-width: 1.5px; border-style: sol
   <tabstop>btn_cancel</tabstop>
   <tabstop>btn_save</tabstop>
  </tabstops>
- <resources/>
+ <resources>
+  <include location="resources/resources.qrc"/>
+ </resources>
  <connections/>
 </ui>
