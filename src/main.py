@@ -36,11 +36,12 @@ class MainWindow(QMainWindow):
         for obj in self.findChildren(QObject):
             if hasattr(obj, "setFont"):
                 print(obj)
-                obj.setFont(QFont("Torus Pro"))
-        # self.ui.label_list to Torus Pro bold from fontDatabase resources
+                obj.setFont(QFont("Torus Pro", 12))
         self.ui.label_list_1.setFont(QFont("Torus Pro", 12, QFont.Bold))
         self.ui.label_list_2.setFont(QFont("Torus Pro", 12, QFont.Bold))
         self.ui.label_list_3.setFont(QFont("Torus Pro", 12, QFont.Bold))
+        self.ui.label_logo.setFont(QFont("Torus Pro", 36))
+        self.ui.label_board.setFont(QFont("Torus Pro", 28))
 
 
 def main():
