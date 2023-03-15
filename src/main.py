@@ -1,3 +1,4 @@
+import os
 import sys
 from PySide6.QtWidgets import *
 from PySide6.QtCore import *
@@ -9,10 +10,13 @@ class MainWindow(QMainWindow):
     def __init__(self):
         QMainWindow.__init__(self)
 
-        fontDatabase = QFontDatabase.addApplicationFont(
-            "src\\resources\\font\\TorusPro-Regular.ttf")
+        fontPath = "./resources/font/TorusPro-Regular.ttf"
+        if not os.path.exists(fontPath):
+            fontPath = "./src/resources/font/TorusPro-Regular.ttf"
+        fontDatabase = QFontDatabase.addApplicationFont(fontPath)
         if fontDatabase < 0:
-            sys.exit("Font not found")
+            sys.exit(
+                f'Font not found at "{fontPath}"! Exiting...')
         fontFamilies = QFontDatabase.applicationFontFamilies(fontDatabase)
 
         self.ui = Ui_MainWindow()
