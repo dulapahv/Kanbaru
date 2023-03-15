@@ -374,42 +374,6 @@ QPushButton:focus {border-color: #000000; border-width: 1.5px; border-style: sol
                  </widget>
                 </item>
                 <item>
-                 <widget class="QPushButton" name="btn_change_passwd">
-                  <property name="sizePolicy">
-                   <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-                    <horstretch>0</horstretch>
-                    <verstretch>0</verstretch>
-                   </sizepolicy>
-                  </property>
-                  <property name="minimumSize">
-                   <size>
-                    <width>180</width>
-                    <height>30</height>
-                   </size>
-                  </property>
-                  <property name="font">
-                   <font>
-                    <family>Torus Pro</family>
-                    <pointsize>12</pointsize>
-                   </font>
-                  </property>
-                  <property name="cursor">
-                   <cursorShape>PointingHandCursor</cursorShape>
-                  </property>
-                  <property name="focusPolicy">
-                   <enum>Qt::TabFocus</enum>
-                  </property>
-                  <property name="styleSheet">
-                   <string notr="true">QPushButton {background-color: #acb2bf; color: #ffffff; border-radius: 5px}
-QPushButton:hover {background-color: #7e828c;}
-QPushButton:focus {border-color: #000000; border-width: 1.5px; border-style: solid;}</string>
-                  </property>
-                  <property name="text">
-                   <string>Change Password</string>
-                  </property>
-                 </widget>
-                </item>
-                <item>
                  <spacer name="horizontalSpacer_2">
                   <property name="orientation">
                    <enum>Qt::Horizontal</enum>
@@ -585,7 +549,6 @@ QPushButton:focus {border-color: #000000; border-width: 1.5px; border-style: sol
   <tabstop>listWidget</tabstop>
   <tabstop>btn_delete_board</tabstop>
   <tabstop>btn_logout</tabstop>
-  <tabstop>btn_change_passwd</tabstop>
   <tabstop>btn_delete_account</tabstop>
   <tabstop>btn_cancel</tabstop>
   <tabstop>btn_save</tabstop>

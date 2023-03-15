@@ -188,20 +188,6 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_2.addWidget(self.btn_logout)
 
-        self.btn_change_passwd = QPushButton(self.widget1)
-        self.btn_change_passwd.setObjectName(u"btn_change_passwd")
-        sizePolicy1.setHeightForWidth(self.btn_change_passwd.sizePolicy().hasHeightForWidth())
-        self.btn_change_passwd.setSizePolicy(sizePolicy1)
-        self.btn_change_passwd.setMinimumSize(QSize(180, 30))
-        self.btn_change_passwd.setFont(font4)
-        self.btn_change_passwd.setCursor(QCursor(Qt.PointingHandCursor))
-        self.btn_change_passwd.setFocusPolicy(Qt.TabFocus)
-        self.btn_change_passwd.setStyleSheet(u"QPushButton {background-color: #acb2bf; color: #ffffff; border-radius: 5px}\n"
-"QPushButton:hover {background-color: #7e828c;}\n"
-"QPushButton:focus {border-color: #000000; border-width: 1.5px; border-style: solid;}")
-
-        self.horizontalLayout_2.addWidget(self.btn_change_passwd)
-
         self.horizontalSpacer_2 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
 
         self.horizontalLayout_2.addItem(self.horizontalSpacer_2)
@@ -285,11 +271,10 @@ class Ui_MainWindow(object):
         MainWindow.setCentralWidget(self.centralwidget)
         QWidget.setTabOrder(self.listWidget, self.btn_delete_board)
         QWidget.setTabOrder(self.btn_delete_board, self.btn_logout)
-        QWidget.setTabOrder(self.btn_logout, self.btn_change_passwd)
-        QWidget.setTabOrder(self.btn_change_passwd, self.btn_delete_account)
+        QWidget.setTabOrder(self.btn_logout, self.btn_delete_account)
         QWidget.setTabOrder(self.btn_delete_account, self.btn_cancel)
         QWidget.setTabOrder(self.btn_cancel, self.btn_save)
-        QWidget.setTabOrder(self.btn_save, self.widget1)
+        QWidget.setTabOrder(self.btn_save, self.widget)
 
         self.retranslateUi(MainWindow)
 
@@ -323,7 +308,6 @@ class Ui_MainWindow(object):
         self.btn_delete_board.setText(QCoreApplication.translate("MainWindow", u"Delete Board", None))
         self.label_9.setText(QCoreApplication.translate("MainWindow", u"Manage Account", None))
         self.btn_logout.setText(QCoreApplication.translate("MainWindow", u"Logout", None))
-        self.btn_change_passwd.setText(QCoreApplication.translate("MainWindow", u"Change Password", None))
         self.btn_delete_account.setText(QCoreApplication.translate("MainWindow", u"Delete Account", None))
         self.btn_cancel.setText(QCoreApplication.translate("MainWindow", u"Cancel", None))
         self.btn_save.setText(QCoreApplication.translate("MainWindow", u"Save", None))
