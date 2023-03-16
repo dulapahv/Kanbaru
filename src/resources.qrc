@@ -1,0 +1,11 @@
+<RCC>
+  <qresource prefix="img">
+    <file>resources/img/settings_2.png</file>
+    <file>resources/img/add.png</file>
+    <file>resources/img/settings.png</file>
+    <file>resources/img/logout.png</file>
+    <file>resources/img/delete.png</file>
+    <file>resources/img/bg.png</file>
+    <file>resources/img/icon.png</file>
+  </qresource>
+</RCC>

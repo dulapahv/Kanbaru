@@ -19,13 +19,18 @@ from PySide6.QtWidgets import (QAbstractItemView, QAbstractScrollArea, QApplicat
     QHBoxLayout, QLabel, QListWidget, QListWidgetItem,
     QMainWindow, QPushButton, QScrollArea, QSizePolicy,
     QSpacerItem, QVBoxLayout, QWidget)
+import resources_rc
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
         MainWindow.resize(1024, 678)
+        icon = QIcon()
+        icon.addFile(u":/img/resources/img/icon.png", QSize(), QIcon.Normal, QIcon.Off)
+        MainWindow.setWindowIcon(icon)
         MainWindow.setStyleSheet(u"background-color: #454c5a;")
+        MainWindow.setIconSize(QSize(128, 128))
         self.centralwidget = QWidget(MainWindow)
         self.centralwidget.setObjectName(u"centralwidget")
         self.horizontalLayout = QHBoxLayout(self.centralwidget)
@@ -190,6 +195,9 @@ class Ui_MainWindow(object):
         self.btn_add_board.setStyleSheet(u"QPushButton {background-color: #acb2bf; color: #ffffff; border-radius: 5px}\n"
 "QPushButton:hover {background-color: #7e828c;}\n"
 "QPushButton:focus {border-color: #000000; border-width: 1.5px; border-style: solid;}")
+        icon1 = QIcon()
+        icon1.addFile(u":/img/resources/img/add.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.btn_add_board.setIcon(icon1)
 
         self.verticalLayout_2.addWidget(self.btn_add_board)
 
@@ -202,6 +210,9 @@ class Ui_MainWindow(object):
         self.btn_board_settings.setStyleSheet(u"QPushButton {background-color: #7f8ca6; color: #ffffff; border-radius: 5px}\n"
 "QPushButton:hover {background-color: #576073;}\n"
 "QPushButton:focus {border-color: #000000; border-width: 1.5px; border-style: solid;}")
+        icon2 = QIcon()
+        icon2.addFile(u":/img/resources/img/settings_2.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.btn_board_settings.setIcon(icon2)
 
         self.verticalLayout_2.addWidget(self.btn_board_settings)
 
@@ -214,6 +225,9 @@ class Ui_MainWindow(object):
         self.btn_app_settings.setStyleSheet(u"QPushButton {background-color: #7f8ca6; color: #ffffff; border-radius: 5px}\n"
 "QPushButton:hover {background-color: #576073;}\n"
 "QPushButton:focus {border-color: #000000; border-width: 1.5px; border-style: solid;}")
+        icon3 = QIcon()
+        icon3.addFile(u":/img/resources/img/settings.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.btn_app_settings.setIcon(icon3)
 
         self.verticalLayout_2.addWidget(self.btn_app_settings)
 
@@ -684,9 +698,9 @@ class Ui_MainWindow(object):
         self.btn_board_5.setText(QCoreApplication.translate("MainWindow", u"Board 5", None))
         self.btn_board_6.setText(QCoreApplication.translate("MainWindow", u"Board 6", None))
         self.btn_board_7.setText(QCoreApplication.translate("MainWindow", u"Board 7", None))
-        self.btn_add_board.setText(QCoreApplication.translate("MainWindow", u"+ Add a board", None))
-        self.btn_board_settings.setText(QCoreApplication.translate("MainWindow", u"Board Settings", None))
-        self.btn_app_settings.setText(QCoreApplication.translate("MainWindow", u"App Settings", None))
+        self.btn_add_board.setText(QCoreApplication.translate("MainWindow", u" Add a board", None))
+        self.btn_board_settings.setText(QCoreApplication.translate("MainWindow", u"Manage Board", None))
+        self.btn_app_settings.setText(QCoreApplication.translate("MainWindow", u" App Settings", None))
         self.label_board.setText(QCoreApplication.translate("MainWindow", u"Board 1", None))
         self.label_list_1.setText(QCoreApplication.translate("MainWindow", u"To Do", None))
 

@@ -18,15 +18,19 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
 from PySide6.QtWidgets import (QApplication, QFrame, QHBoxLayout, QLabel,
     QLineEdit, QMainWindow, QPushButton, QSizePolicy,
     QSpacerItem, QVBoxLayout, QWidget)
-import resources_rc_rc
+import resources_rc
 
-class Ui_MainWindow(object):
-    def setupUi(self, MainWindow):
-        if not MainWindow.objectName():
-            MainWindow.setObjectName(u"MainWindow")
-        MainWindow.resize(1024, 678)
-        MainWindow.setStyleSheet(u"background-color: #454c5a;")
-        self.centralwidget = QWidget(MainWindow)
+class Ui_WelcomeWindow(object):
+    def setupUi(self, WelcomeWindow):
+        if not WelcomeWindow.objectName():
+            WelcomeWindow.setObjectName(u"WelcomeWindow")
+        WelcomeWindow.resize(1024, 678)
+        icon = QIcon()
+        icon.addFile(u":/img/resources/img/icon.png", QSize(), QIcon.Normal, QIcon.Off)
+        WelcomeWindow.setWindowIcon(icon)
+        WelcomeWindow.setStyleSheet(u"background-color: #454c5a;")
+        WelcomeWindow.setIconSize(QSize(128, 128))
+        self.centralwidget = QWidget(WelcomeWindow)
         self.centralwidget.setObjectName(u"centralwidget")
         self.verticalLayout_3 = QVBoxLayout(self.centralwidget)
         self.verticalLayout_3.setSpacing(0)
@@ -73,6 +77,20 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_2.addItem(self.verticalSpacer)
 
+        self.horizontalLayout_5 = QHBoxLayout()
+        self.horizontalLayout_5.setObjectName(u"horizontalLayout_5")
+        self.horizontalSpacer_6 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.horizontalLayout_5.addItem(self.horizontalSpacer_6)
+
+        self.label = QLabel(self.widget1)
+        self.label.setObjectName(u"label")
+        self.label.setMaximumSize(QSize(52, 52))
+        self.label.setPixmap(QPixmap(u":/img/resources/img/icon.png"))
+        self.label.setScaledContents(True)
+
+        self.horizontalLayout_5.addWidget(self.label)
+
         self.label_8 = QLabel(self.widget1)
         self.label_8.setObjectName(u"label_8")
         font = QFont()
@@ -81,10 +99,17 @@ class Ui_MainWindow(object):
         font.setBold(False)
         self.label_8.setFont(font)
         self.label_8.setStyleSheet(u"color: #282c33;")
-        self.label_8.setAlignment(Qt.AlignCenter)
+        self.label_8.setAlignment(Qt.AlignLeading|Qt.AlignLeft|Qt.AlignVCenter)
         self.label_8.setWordWrap(True)
 
-        self.verticalLayout_2.addWidget(self.label_8)
+        self.horizontalLayout_5.addWidget(self.label_8)
+
+        self.horizontalSpacer_7 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.horizontalLayout_5.addItem(self.horizontalSpacer_7)
+
+
+        self.verticalLayout_2.addLayout(self.horizontalLayout_5)
 
         self.verticalSpacer_5 = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
 
@@ -302,26 +327,27 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_3.addWidget(self.widget)
 
-        MainWindow.setCentralWidget(self.centralwidget)
+        WelcomeWindow.setCentralWidget(self.centralwidget)
 
-        self.retranslateUi(MainWindow)
+        self.retranslateUi(WelcomeWindow)
 
-        QMetaObject.connectSlotsByName(MainWindow)
+        QMetaObject.connectSlotsByName(WelcomeWindow)
     # setupUi
 
-    def retranslateUi(self, MainWindow):
-        MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"Welcome", None))
-        self.label_8.setText(QCoreApplication.translate("MainWindow", u"Kanbaru", None))
-        self.label_2.setText(QCoreApplication.translate("MainWindow", u"Log in to Kanbaru", None))
-        self.lineEdit_login_username.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Username", None))
-        self.lineEdit_2_login_passwd.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Password", None))
-        self.label_login_msg.setText(QCoreApplication.translate("MainWindow", u"Incorrect username/password", None))
-        self.btn_login.setText(QCoreApplication.translate("MainWindow", u"Login", None))
-        self.label_3.setText(QCoreApplication.translate("MainWindow", u"Sign up for an account", None))
-        self.lineEdit_sign_up_username.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Username", None))
-        self.lineEdit_sign_up_passwd.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Password", None))
-        self.lineEdit_sign_up_con_passwd.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Confirm password", None))
-        self.label_sign_up_msg.setText(QCoreApplication.translate("MainWindow", u"Incorrect username/password", None))
-        self.btn_sign_up.setText(QCoreApplication.translate("MainWindow", u"Sign up", None))
+    def retranslateUi(self, WelcomeWindow):
+        WelcomeWindow.setWindowTitle(QCoreApplication.translate("WelcomeWindow", u"Welcome", None))
+        self.label.setText("")
+        self.label_8.setText(QCoreApplication.translate("WelcomeWindow", u"Kanbaru", None))
+        self.label_2.setText(QCoreApplication.translate("WelcomeWindow", u"Log in to Kanbaru", None))
+        self.lineEdit_login_username.setPlaceholderText(QCoreApplication.translate("WelcomeWindow", u"Username", None))
+        self.lineEdit_2_login_passwd.setPlaceholderText(QCoreApplication.translate("WelcomeWindow", u"Password", None))
+        self.label_login_msg.setText(QCoreApplication.translate("WelcomeWindow", u"Incorrect username/password", None))
+        self.btn_login.setText(QCoreApplication.translate("WelcomeWindow", u"Login", None))
+        self.label_3.setText(QCoreApplication.translate("WelcomeWindow", u"Sign up for an account", None))
+        self.lineEdit_sign_up_username.setPlaceholderText(QCoreApplication.translate("WelcomeWindow", u"Username", None))
+        self.lineEdit_sign_up_passwd.setPlaceholderText(QCoreApplication.translate("WelcomeWindow", u"Password", None))
+        self.lineEdit_sign_up_con_passwd.setPlaceholderText(QCoreApplication.translate("WelcomeWindow", u"Confirm password", None))
+        self.label_sign_up_msg.setText(QCoreApplication.translate("WelcomeWindow", u"Incorrect username/password", None))
+        self.btn_sign_up.setText(QCoreApplication.translate("WelcomeWindow", u"Sign up", None))
     # retranslateUi
 

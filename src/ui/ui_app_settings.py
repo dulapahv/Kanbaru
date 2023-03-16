@@ -19,14 +19,19 @@ from PySide6.QtWidgets import (QAbstractItemView, QApplication, QFrame, QHBoxLay
     QLabel, QListWidget, QListWidgetItem, QMainWindow,
     QPushButton, QSizePolicy, QSpacerItem, QVBoxLayout,
     QWidget)
+import resources_rc
 
-class Ui_MainWindow(object):
-    def setupUi(self, MainWindow):
-        if not MainWindow.objectName():
-            MainWindow.setObjectName(u"MainWindow")
-        MainWindow.resize(576, 678)
-        MainWindow.setStyleSheet(u"background-color: #454c5a;")
-        self.centralwidget = QWidget(MainWindow)
+class Ui_SettingsWindow(object):
+    def setupUi(self, SettingsWindow):
+        if not SettingsWindow.objectName():
+            SettingsWindow.setObjectName(u"SettingsWindow")
+        SettingsWindow.resize(576, 678)
+        icon = QIcon()
+        icon.addFile(u":/img/resources/img/icon.png", QSize(), QIcon.Normal, QIcon.Off)
+        SettingsWindow.setWindowIcon(icon)
+        SettingsWindow.setStyleSheet(u"background-color: #454c5a;")
+        SettingsWindow.setIconSize(QSize(128, 128))
+        self.centralwidget = QWidget(SettingsWindow)
         self.centralwidget.setObjectName(u"centralwidget")
         self.verticalLayout_3 = QVBoxLayout(self.centralwidget)
         self.verticalLayout_3.setSpacing(0)
@@ -178,13 +183,16 @@ class Ui_MainWindow(object):
         self.btn_logout.setObjectName(u"btn_logout")
         sizePolicy1.setHeightForWidth(self.btn_logout.sizePolicy().hasHeightForWidth())
         self.btn_logout.setSizePolicy(sizePolicy1)
-        self.btn_logout.setMinimumSize(QSize(100, 30))
+        self.btn_logout.setMinimumSize(QSize(110, 30))
         self.btn_logout.setFont(font4)
         self.btn_logout.setCursor(QCursor(Qt.PointingHandCursor))
         self.btn_logout.setFocusPolicy(Qt.TabFocus)
         self.btn_logout.setStyleSheet(u"QPushButton {background-color: #acb2bf; color: #ffffff; border-radius: 5px}\n"
 "QPushButton:hover {background-color: #7e828c;}\n"
 "QPushButton:focus {border-color: #000000; border-width: 1.5px; border-style: solid;}")
+        icon1 = QIcon()
+        icon1.addFile(u":/img/resources/img/logout.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.btn_logout.setIcon(icon1)
 
         self.horizontalLayout_2.addWidget(self.btn_logout)
 
@@ -199,13 +207,16 @@ class Ui_MainWindow(object):
         self.btn_delete_account.setObjectName(u"btn_delete_account")
         sizePolicy1.setHeightForWidth(self.btn_delete_account.sizePolicy().hasHeightForWidth())
         self.btn_delete_account.setSizePolicy(sizePolicy1)
-        self.btn_delete_account.setMinimumSize(QSize(150, 30))
+        self.btn_delete_account.setMinimumSize(QSize(160, 30))
         self.btn_delete_account.setFont(font4)
         self.btn_delete_account.setCursor(QCursor(Qt.PointingHandCursor))
         self.btn_delete_account.setFocusPolicy(Qt.TabFocus)
         self.btn_delete_account.setStyleSheet(u"QPushButton {border-color: #d63a3e; border-width: 1.5px; border-style: solid; color: #282c33; border-radius: 5px}\n"
 "QPushButton:hover {background-color: #d63a3e; color: #ffffff;}\n"
 "QPushButton:focus {border-color: #000000; border-width: 1.5px; border-style: solid; background-color: #d63a3e; color: #ffffff;}")
+        icon2 = QIcon()
+        icon2.addFile(u":/img/resources/img/delete.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.btn_delete_account.setIcon(icon2)
 
         self.verticalLayout_2.addWidget(self.btn_delete_account)
 
@@ -268,7 +279,7 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_3.addWidget(self.widget)
 
-        MainWindow.setCentralWidget(self.centralwidget)
+        SettingsWindow.setCentralWidget(self.centralwidget)
         QWidget.setTabOrder(self.listWidget, self.btn_delete_board)
         QWidget.setTabOrder(self.btn_delete_board, self.btn_logout)
         QWidget.setTabOrder(self.btn_logout, self.btn_delete_account)
@@ -276,40 +287,40 @@ class Ui_MainWindow(object):
         QWidget.setTabOrder(self.btn_cancel, self.btn_save)
         QWidget.setTabOrder(self.btn_save, self.widget)
 
-        self.retranslateUi(MainWindow)
+        self.retranslateUi(SettingsWindow)
 
-        QMetaObject.connectSlotsByName(MainWindow)
+        QMetaObject.connectSlotsByName(SettingsWindow)
     # setupUi
 
-    def retranslateUi(self, MainWindow):
-        MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"App Settings", None))
-        self.label_app_settings.setText(QCoreApplication.translate("MainWindow", u"App Settings", None))
-        self.label_8.setText(QCoreApplication.translate("MainWindow", u"Manage Board", None))
-        self.label_manage_baoard_info.setText(QCoreApplication.translate("MainWindow", u"Drag to rearrange. Select and press Delete Board to delete it.", None))
+    def retranslateUi(self, SettingsWindow):
+        SettingsWindow.setWindowTitle(QCoreApplication.translate("SettingsWindow", u"App Settings", None))
+        self.label_app_settings.setText(QCoreApplication.translate("SettingsWindow", u"App Settings", None))
+        self.label_8.setText(QCoreApplication.translate("SettingsWindow", u"Manage Board", None))
+        self.label_manage_baoard_info.setText(QCoreApplication.translate("SettingsWindow", u"Drag to rearrange. Select and press Delete Board to delete it.", None))
 
         __sortingEnabled = self.listWidget.isSortingEnabled()
         self.listWidget.setSortingEnabled(False)
         ___qlistwidgetitem = self.listWidget.item(0)
-        ___qlistwidgetitem.setText(QCoreApplication.translate("MainWindow", u"Board 1", None));
+        ___qlistwidgetitem.setText(QCoreApplication.translate("SettingsWindow", u"Board 1", None));
         ___qlistwidgetitem1 = self.listWidget.item(1)
-        ___qlistwidgetitem1.setText(QCoreApplication.translate("MainWindow", u"Board 2", None));
+        ___qlistwidgetitem1.setText(QCoreApplication.translate("SettingsWindow", u"Board 2", None));
         ___qlistwidgetitem2 = self.listWidget.item(2)
-        ___qlistwidgetitem2.setText(QCoreApplication.translate("MainWindow", u"Board 3", None));
+        ___qlistwidgetitem2.setText(QCoreApplication.translate("SettingsWindow", u"Board 3", None));
         ___qlistwidgetitem3 = self.listWidget.item(3)
-        ___qlistwidgetitem3.setText(QCoreApplication.translate("MainWindow", u"Board 4", None));
+        ___qlistwidgetitem3.setText(QCoreApplication.translate("SettingsWindow", u"Board 4", None));
         ___qlistwidgetitem4 = self.listWidget.item(4)
-        ___qlistwidgetitem4.setText(QCoreApplication.translate("MainWindow", u"Board 5", None));
+        ___qlistwidgetitem4.setText(QCoreApplication.translate("SettingsWindow", u"Board 5", None));
         ___qlistwidgetitem5 = self.listWidget.item(5)
-        ___qlistwidgetitem5.setText(QCoreApplication.translate("MainWindow", u"Board 5", None));
+        ___qlistwidgetitem5.setText(QCoreApplication.translate("SettingsWindow", u"Board 5", None));
         ___qlistwidgetitem6 = self.listWidget.item(6)
-        ___qlistwidgetitem6.setText(QCoreApplication.translate("MainWindow", u"Board 5", None));
+        ___qlistwidgetitem6.setText(QCoreApplication.translate("SettingsWindow", u"Board 5", None));
         self.listWidget.setSortingEnabled(__sortingEnabled)
 
-        self.btn_delete_board.setText(QCoreApplication.translate("MainWindow", u"Delete Board", None))
-        self.label_9.setText(QCoreApplication.translate("MainWindow", u"Manage Account", None))
-        self.btn_logout.setText(QCoreApplication.translate("MainWindow", u"Logout", None))
-        self.btn_delete_account.setText(QCoreApplication.translate("MainWindow", u"Delete Account", None))
-        self.btn_cancel.setText(QCoreApplication.translate("MainWindow", u"Cancel", None))
-        self.btn_save.setText(QCoreApplication.translate("MainWindow", u"Save", None))
+        self.btn_delete_board.setText(QCoreApplication.translate("SettingsWindow", u"Delete Board", None))
+        self.label_9.setText(QCoreApplication.translate("SettingsWindow", u"Manage Account", None))
+        self.btn_logout.setText(QCoreApplication.translate("SettingsWindow", u"Logout", None))
+        self.btn_delete_account.setText(QCoreApplication.translate("SettingsWindow", u"Delete Account", None))
+        self.btn_cancel.setText(QCoreApplication.translate("SettingsWindow", u"Cancel", None))
+        self.btn_save.setText(QCoreApplication.translate("SettingsWindow", u"Save", None))
     # retranslateUi
 

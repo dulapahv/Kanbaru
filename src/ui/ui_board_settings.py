@@ -19,14 +19,19 @@ from PySide6.QtWidgets import (QAbstractItemView, QApplication, QFrame, QHBoxLay
     QLabel, QLineEdit, QListWidget, QListWidgetItem,
     QMainWindow, QPushButton, QRadioButton, QScrollArea,
     QSizePolicy, QSpacerItem, QVBoxLayout, QWidget)
+import resources_rc
 
-class Ui_MainWindow(object):
-    def setupUi(self, MainWindow):
-        if not MainWindow.objectName():
-            MainWindow.setObjectName(u"MainWindow")
-        MainWindow.resize(576, 678)
-        MainWindow.setStyleSheet(u"background-color: #454c5a;")
-        self.centralwidget = QWidget(MainWindow)
+class Ui_BoardWindow(object):
+    def setupUi(self, BoardWindow):
+        if not BoardWindow.objectName():
+            BoardWindow.setObjectName(u"BoardWindow")
+        BoardWindow.resize(576, 678)
+        icon = QIcon()
+        icon.addFile(u":/img/resources/img/icon.png", QSize(), QIcon.Normal, QIcon.Off)
+        BoardWindow.setWindowIcon(icon)
+        BoardWindow.setStyleSheet(u"background-color: #454c5a;")
+        BoardWindow.setIconSize(QSize(128, 128))
+        self.centralwidget = QWidget(BoardWindow)
         self.centralwidget.setObjectName(u"centralwidget")
         self.verticalLayout_3 = QVBoxLayout(self.centralwidget)
         self.verticalLayout_3.setSpacing(0)
@@ -424,7 +429,7 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_3.addWidget(self.widget)
 
-        MainWindow.setCentralWidget(self.centralwidget)
+        BoardWindow.setCentralWidget(self.centralwidget)
         QWidget.setTabOrder(self.lineEdit_title, self.btn_color_1)
         QWidget.setTabOrder(self.btn_color_1, self.btn_color_2)
         QWidget.setTabOrder(self.btn_color_2, self.btn_color_3)
@@ -440,54 +445,54 @@ class Ui_MainWindow(object):
         QWidget.setTabOrder(self.btn_cancel, self.btn_save)
         QWidget.setTabOrder(self.btn_save, self.scrollArea)
 
-        self.retranslateUi(MainWindow)
+        self.retranslateUi(BoardWindow)
 
-        QMetaObject.connectSlotsByName(MainWindow)
+        QMetaObject.connectSlotsByName(BoardWindow)
     # setupUi
 
-    def retranslateUi(self, MainWindow):
-        MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"Board Settings", None))
-        self.label_3.setText(QCoreApplication.translate("MainWindow", u"Board Settings", None))
-        self.label.setText(QCoreApplication.translate("MainWindow", u"Title", None))
+    def retranslateUi(self, BoardWindow):
+        BoardWindow.setWindowTitle(QCoreApplication.translate("BoardWindow", u"Board Settings", None))
+        self.label_3.setText(QCoreApplication.translate("BoardWindow", u"Board Settings", None))
+        self.label.setText(QCoreApplication.translate("BoardWindow", u"Title", None))
         self.lineEdit_title.setText("")
-        self.lineEdit_title.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Add a board title...", None))
-        self.label_7.setText(QCoreApplication.translate("MainWindow", u"Color", None))
-        self.btn_color_1.setText(QCoreApplication.translate("MainWindow", u"Light blue", None))
-        self.btn_color_2.setText(QCoreApplication.translate("MainWindow", u"Rose", None))
-        self.btn_color_3.setText(QCoreApplication.translate("MainWindow", u"Gold", None))
-        self.btn_color_4.setText(QCoreApplication.translate("MainWindow", u"Green", None))
-        self.btn_color_5.setText(QCoreApplication.translate("MainWindow", u"Lavender", None))
-        self.btn_color_6.setText(QCoreApplication.translate("MainWindow", u"Teal", None))
-        self.label_8.setText(QCoreApplication.translate("MainWindow", u"Manage List", None))
-        self.label_2.setText(QCoreApplication.translate("MainWindow", u"Drag to rearrange. Select and press Delete List to delete it.", None))
+        self.lineEdit_title.setPlaceholderText(QCoreApplication.translate("BoardWindow", u"Add a board title...", None))
+        self.label_7.setText(QCoreApplication.translate("BoardWindow", u"Color", None))
+        self.btn_color_1.setText(QCoreApplication.translate("BoardWindow", u"Light blue", None))
+        self.btn_color_2.setText(QCoreApplication.translate("BoardWindow", u"Rose", None))
+        self.btn_color_3.setText(QCoreApplication.translate("BoardWindow", u"Gold", None))
+        self.btn_color_4.setText(QCoreApplication.translate("BoardWindow", u"Green", None))
+        self.btn_color_5.setText(QCoreApplication.translate("BoardWindow", u"Lavender", None))
+        self.btn_color_6.setText(QCoreApplication.translate("BoardWindow", u"Teal", None))
+        self.label_8.setText(QCoreApplication.translate("BoardWindow", u"Manage List", None))
+        self.label_2.setText(QCoreApplication.translate("BoardWindow", u"Drag to rearrange. Select and press Delete List to delete it.", None))
 
         __sortingEnabled = self.listWidget_manage_list.isSortingEnabled()
         self.listWidget_manage_list.setSortingEnabled(False)
         ___qlistwidgetitem = self.listWidget_manage_list.item(0)
-        ___qlistwidgetitem.setText(QCoreApplication.translate("MainWindow", u"To Do", None));
+        ___qlistwidgetitem.setText(QCoreApplication.translate("BoardWindow", u"To Do", None));
         ___qlistwidgetitem1 = self.listWidget_manage_list.item(1)
-        ___qlistwidgetitem1.setText(QCoreApplication.translate("MainWindow", u"Doing", None));
+        ___qlistwidgetitem1.setText(QCoreApplication.translate("BoardWindow", u"Doing", None));
         ___qlistwidgetitem2 = self.listWidget_manage_list.item(2)
-        ___qlistwidgetitem2.setText(QCoreApplication.translate("MainWindow", u"Done", None));
+        ___qlistwidgetitem2.setText(QCoreApplication.translate("BoardWindow", u"Done", None));
         self.listWidget_manage_list.setSortingEnabled(__sortingEnabled)
 
-        self.btn_delete_list.setText(QCoreApplication.translate("MainWindow", u"Delete List", None))
-        self.label_9.setText(QCoreApplication.translate("MainWindow", u"Manage Member", None))
-        self.label_4.setText(QCoreApplication.translate("MainWindow", u"Member can have access to this board. Select and press Delete Member to remove access.", None))
+        self.btn_delete_list.setText(QCoreApplication.translate("BoardWindow", u"Delete List", None))
+        self.label_9.setText(QCoreApplication.translate("BoardWindow", u"Manage Member", None))
+        self.label_4.setText(QCoreApplication.translate("BoardWindow", u"Member can have access to this board. Select and press Delete Member to remove access.", None))
 
         __sortingEnabled1 = self.listWidget_manage_member.isSortingEnabled()
         self.listWidget_manage_member.setSortingEnabled(False)
         ___qlistwidgetitem3 = self.listWidget_manage_member.item(0)
-        ___qlistwidgetitem3.setText(QCoreApplication.translate("MainWindow", u"beam", None));
+        ___qlistwidgetitem3.setText(QCoreApplication.translate("BoardWindow", u"beam", None));
         ___qlistwidgetitem4 = self.listWidget_manage_member.item(1)
-        ___qlistwidgetitem4.setText(QCoreApplication.translate("MainWindow", u"illya", None));
+        ___qlistwidgetitem4.setText(QCoreApplication.translate("BoardWindow", u"illya", None));
         ___qlistwidgetitem5 = self.listWidget_manage_member.item(2)
-        ___qlistwidgetitem5.setText(QCoreApplication.translate("MainWindow", u"spiral", None));
+        ___qlistwidgetitem5.setText(QCoreApplication.translate("BoardWindow", u"spiral", None));
         self.listWidget_manage_member.setSortingEnabled(__sortingEnabled1)
 
-        self.btn_add_member.setText(QCoreApplication.translate("MainWindow", u"Add Member", None))
-        self.btn_delete_member.setText(QCoreApplication.translate("MainWindow", u"Delete Member", None))
-        self.btn_cancel.setText(QCoreApplication.translate("MainWindow", u"Cancel", None))
-        self.btn_save.setText(QCoreApplication.translate("MainWindow", u"Save", None))
+        self.btn_add_member.setText(QCoreApplication.translate("BoardWindow", u"Add Member", None))
+        self.btn_delete_member.setText(QCoreApplication.translate("BoardWindow", u"Delete Member", None))
+        self.btn_cancel.setText(QCoreApplication.translate("BoardWindow", u"Cancel", None))
+        self.btn_save.setText(QCoreApplication.translate("BoardWindow", u"Save", None))
     # retranslateUi
 

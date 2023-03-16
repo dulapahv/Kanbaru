@@ -21,13 +21,17 @@ from PySide6.QtWidgets import (QApplication, QCalendarWidget, QFrame, QHBoxLayou
     QTimeEdit, QVBoxLayout, QWidget)
 import resources_rc
 
-class Ui_MainWindow(object):
-    def setupUi(self, MainWindow):
-        if not MainWindow.objectName():
-            MainWindow.setObjectName(u"MainWindow")
-        MainWindow.resize(620, 678)
-        MainWindow.setStyleSheet(u"background-color: #454c5a;")
-        self.centralwidget = QWidget(MainWindow)
+class Ui_CardWindow(object):
+    def setupUi(self, CardWindow):
+        if not CardWindow.objectName():
+            CardWindow.setObjectName(u"CardWindow")
+        CardWindow.resize(620, 678)
+        icon = QIcon()
+        icon.addFile(u":/img/resources/img/icon.png", QSize(), QIcon.Normal, QIcon.Off)
+        CardWindow.setWindowIcon(icon)
+        CardWindow.setStyleSheet(u"background-color: #454c5a;")
+        CardWindow.setIconSize(QSize(128, 128))
+        self.centralwidget = QWidget(CardWindow)
         self.centralwidget.setObjectName(u"centralwidget")
         self.verticalLayout_3 = QVBoxLayout(self.centralwidget)
         self.verticalLayout_3.setSpacing(0)
@@ -340,7 +344,7 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_3.addWidget(self.widget)
 
-        MainWindow.setCentralWidget(self.centralwidget)
+        CardWindow.setCentralWidget(self.centralwidget)
         QWidget.setTabOrder(self.lineEdit_title, self.calendarWidget)
         QWidget.setTabOrder(self.calendarWidget, self.timeEdit)
         QWidget.setTabOrder(self.timeEdit, self.btn_color_1)
@@ -354,29 +358,29 @@ class Ui_MainWindow(object):
         QWidget.setTabOrder(self.btn_delete_card, self.btn_cancel)
         QWidget.setTabOrder(self.btn_cancel, self.btn_save)
 
-        self.retranslateUi(MainWindow)
+        self.retranslateUi(CardWindow)
 
-        QMetaObject.connectSlotsByName(MainWindow)
+        QMetaObject.connectSlotsByName(CardWindow)
     # setupUi
 
-    def retranslateUi(self, MainWindow):
-        MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"Card Description", None))
-        self.label_card_desc.setText(QCoreApplication.translate("MainWindow", u"Card Description", None))
-        self.label_title.setText(QCoreApplication.translate("MainWindow", u"Title", None))
+    def retranslateUi(self, CardWindow):
+        CardWindow.setWindowTitle(QCoreApplication.translate("CardWindow", u"Card Description", None))
+        self.label_card_desc.setText(QCoreApplication.translate("CardWindow", u"Card Description", None))
+        self.label_title.setText(QCoreApplication.translate("CardWindow", u"Title", None))
         self.lineEdit_title.setText("")
-        self.lineEdit_title.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Add a card title...", None))
-        self.label_card_info.setText(QCoreApplication.translate("MainWindow", u"in list To Do", None))
-        self.label_date.setText(QCoreApplication.translate("MainWindow", u"Date", None))
-        self.label_time.setText(QCoreApplication.translate("MainWindow", u"Time", None))
-        self.label_7.setText(QCoreApplication.translate("MainWindow", u"Color", None))
-        self.btn_color_1.setText(QCoreApplication.translate("MainWindow", u"Light blue", None))
-        self.btn_color_2.setText(QCoreApplication.translate("MainWindow", u"Rose", None))
-        self.btn_color_3.setText(QCoreApplication.translate("MainWindow", u"Gold", None))
-        self.btn_color_4.setText(QCoreApplication.translate("MainWindow", u"Green", None))
-        self.btn_color_5.setText(QCoreApplication.translate("MainWindow", u"Lavender", None))
-        self.btn_color_6.setText(QCoreApplication.translate("MainWindow", u"Teal", None))
-        self.label_description.setText(QCoreApplication.translate("MainWindow", u"Description", None))
-        self.textEdit_description.setHtml(QCoreApplication.translate("MainWindow", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+        self.lineEdit_title.setPlaceholderText(QCoreApplication.translate("CardWindow", u"Add a card title...", None))
+        self.label_card_info.setText(QCoreApplication.translate("CardWindow", u"in list To Do", None))
+        self.label_date.setText(QCoreApplication.translate("CardWindow", u"Date", None))
+        self.label_time.setText(QCoreApplication.translate("CardWindow", u"Time", None))
+        self.label_7.setText(QCoreApplication.translate("CardWindow", u"Color", None))
+        self.btn_color_1.setText(QCoreApplication.translate("CardWindow", u"Light blue", None))
+        self.btn_color_2.setText(QCoreApplication.translate("CardWindow", u"Rose", None))
+        self.btn_color_3.setText(QCoreApplication.translate("CardWindow", u"Gold", None))
+        self.btn_color_4.setText(QCoreApplication.translate("CardWindow", u"Green", None))
+        self.btn_color_5.setText(QCoreApplication.translate("CardWindow", u"Lavender", None))
+        self.btn_color_6.setText(QCoreApplication.translate("CardWindow", u"Teal", None))
+        self.label_description.setText(QCoreApplication.translate("CardWindow", u"Description", None))
+        self.textEdit_description.setHtml(QCoreApplication.translate("CardWindow", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><meta charset=\"utf-8\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "hr { height: 1px; border-width: 0; }\n"
@@ -384,9 +388,9 @@ class Ui_MainWindow(object):
 "li.checked::marker { content: \"\\2612\"; }\n"
 "</style></head><body style=\" font-family:'Torus Pro'; font-size:12pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>", None))
-        self.textEdit_description.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Add a more detailed description...", None))
-        self.btn_delete_card.setText(QCoreApplication.translate("MainWindow", u"Delete Card", None))
-        self.btn_cancel.setText(QCoreApplication.translate("MainWindow", u"Cancel", None))
-        self.btn_save.setText(QCoreApplication.translate("MainWindow", u"Save", None))
+        self.textEdit_description.setPlaceholderText(QCoreApplication.translate("CardWindow", u"Add a more detailed description...", None))
+        self.btn_delete_card.setText(QCoreApplication.translate("CardWindow", u"Delete Card", None))
+        self.btn_cancel.setText(QCoreApplication.translate("CardWindow", u"Cancel", None))
+        self.btn_save.setText(QCoreApplication.translate("CardWindow", u"Save", None))
     # retranslateUi
 

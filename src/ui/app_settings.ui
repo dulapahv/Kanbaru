@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>MainWindow</class>
- <widget class="QMainWindow" name="MainWindow">
+ <class>SettingsWindow</class>
+ <widget class="QMainWindow" name="SettingsWindow">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -13,8 +13,18 @@
   <property name="windowTitle">
    <string>App Settings</string>
   </property>
+  <property name="windowIcon">
+   <iconset resource="../resources.qrc">
+    <normaloff>:/img/resources/img/icon.png</normaloff>:/img/resources/img/icon.png</iconset>
+  </property>
   <property name="styleSheet">
    <string notr="true">background-color: #454c5a;</string>
+  </property>
+  <property name="iconSize">
+   <size>
+    <width>128</width>
+    <height>128</height>
+   </size>
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QVBoxLayout" name="verticalLayout_3">
@@ -347,7 +357,7 @@ QPushButton:focus {border-color: #000000; border-width: 1.5px; border-style: sol
                   </property>
                   <property name="minimumSize">
                    <size>
-                    <width>100</width>
+                    <width>110</width>
                     <height>30</height>
                    </size>
                   </property>
@@ -370,6 +380,10 @@ QPushButton:focus {border-color: #000000; border-width: 1.5px; border-style: sol
                   </property>
                   <property name="text">
                    <string>Logout</string>
+                  </property>
+                  <property name="icon">
+                   <iconset resource="../resources.qrc">
+                    <normaloff>:/img/resources/img/logout.png</normaloff>:/img/resources/img/logout.png</iconset>
                   </property>
                  </widget>
                 </item>
@@ -398,7 +412,7 @@ QPushButton:focus {border-color: #000000; border-width: 1.5px; border-style: sol
                 </property>
                 <property name="minimumSize">
                  <size>
-                  <width>150</width>
+                  <width>160</width>
                   <height>30</height>
                  </size>
                 </property>
@@ -421,6 +435,10 @@ QPushButton:focus {border-color: #000000; border-width: 1.5px; border-style: sol
                 </property>
                 <property name="text">
                  <string>Delete Account</string>
+                </property>
+                <property name="icon">
+                 <iconset resource="../resources.qrc">
+                  <normaloff>:/img/resources/img/delete.png</normaloff>:/img/resources/img/delete.png</iconset>
                 </property>
                </widget>
               </item>
@@ -554,6 +572,8 @@ QPushButton:focus {border-color: #000000; border-width: 1.5px; border-style: sol
   <tabstop>btn_save</tabstop>
   <tabstop>widget</tabstop>
  </tabstops>
- <resources/>
+ <resources>
+  <include location="../resources.qrc"/>
+ </resources>
  <connections/>
 </ui>
