@@ -139,6 +139,8 @@ class Ui_SettingsWindow(object):
 
         self.verticalLayout_2.addWidget(self.listWidget)
 
+        self.horizontalLayout_4 = QHBoxLayout()
+        self.horizontalLayout_4.setObjectName(u"horizontalLayout_4")
         self.btn_delete_board = QPushButton(self.widget1)
         self.btn_delete_board.setObjectName(u"btn_delete_board")
         sizePolicy1 = QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed)
@@ -157,7 +159,28 @@ class Ui_SettingsWindow(object):
 "QPushButton:hover {background-color: #9e2a2a;}\n"
 "QPushButton:focus {border-color: #000000; border-width: 1.5px; border-style: solid;}")
 
-        self.verticalLayout_2.addWidget(self.btn_delete_board)
+        self.horizontalLayout_4.addWidget(self.btn_delete_board)
+
+        self.btn_delete_board_2 = QPushButton(self.widget1)
+        self.btn_delete_board_2.setObjectName(u"btn_delete_board_2")
+        sizePolicy1.setHeightForWidth(self.btn_delete_board_2.sizePolicy().hasHeightForWidth())
+        self.btn_delete_board_2.setSizePolicy(sizePolicy1)
+        self.btn_delete_board_2.setMinimumSize(QSize(150, 30))
+        self.btn_delete_board_2.setFont(font4)
+        self.btn_delete_board_2.setCursor(QCursor(Qt.PointingHandCursor))
+        self.btn_delete_board_2.setFocusPolicy(Qt.TabFocus)
+        self.btn_delete_board_2.setStyleSheet(u"QPushButton {background-color: #6badee; color: #ffffff; border-radius: 5px}\n"
+"QPushButton:hover {background-color: #5487bb;}\n"
+"QPushButton:focus {border-color: #000000; border-width: 1.5px; border-style: solid;}")
+
+        self.horizontalLayout_4.addWidget(self.btn_delete_board_2)
+
+        self.horizontalSpacer_3 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.horizontalLayout_4.addItem(self.horizontalSpacer_3)
+
+
+        self.verticalLayout_2.addLayout(self.horizontalLayout_4)
 
         self.line_1 = QFrame(self.widget1)
         self.line_1.setObjectName(u"line_1")
@@ -281,7 +304,8 @@ class Ui_SettingsWindow(object):
 
         SettingsWindow.setCentralWidget(self.centralwidget)
         QWidget.setTabOrder(self.listWidget, self.btn_delete_board)
-        QWidget.setTabOrder(self.btn_delete_board, self.btn_logout)
+        QWidget.setTabOrder(self.btn_delete_board, self.btn_delete_board_2)
+        QWidget.setTabOrder(self.btn_delete_board_2, self.btn_logout)
         QWidget.setTabOrder(self.btn_logout, self.btn_delete_account)
         QWidget.setTabOrder(self.btn_delete_account, self.btn_cancel)
         QWidget.setTabOrder(self.btn_cancel, self.btn_save)
@@ -317,6 +341,7 @@ class Ui_SettingsWindow(object):
         self.listWidget.setSortingEnabled(__sortingEnabled)
 
         self.btn_delete_board.setText(QCoreApplication.translate("SettingsWindow", u"Delete Board", None))
+        self.btn_delete_board_2.setText(QCoreApplication.translate("SettingsWindow", u"Rename Board", None))
         self.label_9.setText(QCoreApplication.translate("SettingsWindow", u"Manage Account", None))
         self.btn_logout.setText(QCoreApplication.translate("SettingsWindow", u"Logout", None))
         self.btn_delete_account.setText(QCoreApplication.translate("SettingsWindow", u"Delete Account", None))

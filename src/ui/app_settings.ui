@@ -271,40 +271,93 @@ QScrollBar:vertical {width: 10px; margin: 0px 0px 0px 0px; background-color: #ac
                </widget>
               </item>
               <item>
-               <widget class="QPushButton" name="btn_delete_board">
-                <property name="sizePolicy">
-                 <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-                  <horstretch>0</horstretch>
-                  <verstretch>0</verstretch>
-                 </sizepolicy>
-                </property>
-                <property name="minimumSize">
-                 <size>
-                  <width>150</width>
-                  <height>30</height>
-                 </size>
-                </property>
-                <property name="font">
-                 <font>
-                  <family>Torus Pro</family>
-                  <pointsize>12</pointsize>
-                 </font>
-                </property>
-                <property name="cursor">
-                 <cursorShape>PointingHandCursor</cursorShape>
-                </property>
-                <property name="focusPolicy">
-                 <enum>Qt::TabFocus</enum>
-                </property>
-                <property name="styleSheet">
-                 <string notr="true">QPushButton {background-color: #d63a3e; color: #ffffff; border-radius: 5px}
+               <layout class="QHBoxLayout" name="horizontalLayout_4">
+                <item>
+                 <widget class="QPushButton" name="btn_delete_board">
+                  <property name="sizePolicy">
+                   <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                    <horstretch>0</horstretch>
+                    <verstretch>0</verstretch>
+                   </sizepolicy>
+                  </property>
+                  <property name="minimumSize">
+                   <size>
+                    <width>150</width>
+                    <height>30</height>
+                   </size>
+                  </property>
+                  <property name="font">
+                   <font>
+                    <family>Torus Pro</family>
+                    <pointsize>12</pointsize>
+                   </font>
+                  </property>
+                  <property name="cursor">
+                   <cursorShape>PointingHandCursor</cursorShape>
+                  </property>
+                  <property name="focusPolicy">
+                   <enum>Qt::TabFocus</enum>
+                  </property>
+                  <property name="styleSheet">
+                   <string notr="true">QPushButton {background-color: #d63a3e; color: #ffffff; border-radius: 5px}
 QPushButton:hover {background-color: #9e2a2a;}
 QPushButton:focus {border-color: #000000; border-width: 1.5px; border-style: solid;}</string>
-                </property>
-                <property name="text">
-                 <string>Delete Board</string>
-                </property>
-               </widget>
+                  </property>
+                  <property name="text">
+                   <string>Delete Board</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QPushButton" name="btn_delete_board_2">
+                  <property name="sizePolicy">
+                   <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                    <horstretch>0</horstretch>
+                    <verstretch>0</verstretch>
+                   </sizepolicy>
+                  </property>
+                  <property name="minimumSize">
+                   <size>
+                    <width>150</width>
+                    <height>30</height>
+                   </size>
+                  </property>
+                  <property name="font">
+                   <font>
+                    <family>Torus Pro</family>
+                    <pointsize>12</pointsize>
+                   </font>
+                  </property>
+                  <property name="cursor">
+                   <cursorShape>PointingHandCursor</cursorShape>
+                  </property>
+                  <property name="focusPolicy">
+                   <enum>Qt::TabFocus</enum>
+                  </property>
+                  <property name="styleSheet">
+                   <string notr="true">QPushButton {background-color: #6badee; color: #ffffff; border-radius: 5px}
+QPushButton:hover {background-color: #5487bb;}
+QPushButton:focus {border-color: #000000; border-width: 1.5px; border-style: solid;}</string>
+                  </property>
+                  <property name="text">
+                   <string>Rename Board</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <spacer name="horizontalSpacer_3">
+                  <property name="orientation">
+                   <enum>Qt::Horizontal</enum>
+                  </property>
+                  <property name="sizeHint" stdset="0">
+                   <size>
+                    <width>40</width>
+                    <height>20</height>
+                   </size>
+                  </property>
+                 </spacer>
+                </item>
+               </layout>
               </item>
               <item>
                <widget class="Line" name="line_1">
@@ -566,6 +619,7 @@ QPushButton:focus {border-color: #000000; border-width: 1.5px; border-style: sol
  <tabstops>
   <tabstop>listWidget</tabstop>
   <tabstop>btn_delete_board</tabstop>
+  <tabstop>btn_delete_board_2</tabstop>
   <tabstop>btn_logout</tabstop>
   <tabstop>btn_delete_account</tabstop>
   <tabstop>btn_cancel</tabstop>

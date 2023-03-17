@@ -83,7 +83,7 @@ class Ui_BoardWindow(object):
         self.scrollArea.setWidgetResizable(True)
         self.scrollAreaWidgetContents = QWidget()
         self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
-        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 516, 869))
+        self.scrollAreaWidgetContents.setGeometry(QRect(0, -240, 516, 871))
         self.verticalLayout_4 = QVBoxLayout(self.scrollAreaWidgetContents)
         self.verticalLayout_4.setSpacing(0)
         self.verticalLayout_4.setObjectName(u"verticalLayout_4")
@@ -270,6 +270,8 @@ class Ui_BoardWindow(object):
 
         self.verticalLayout_2.addWidget(self.listWidget_manage_list)
 
+        self.horizontalLayout_5 = QHBoxLayout()
+        self.horizontalLayout_5.setObjectName(u"horizontalLayout_5")
         self.btn_delete_list = QPushButton(self.scrollAreaWidgetContents)
         self.btn_delete_list.setObjectName(u"btn_delete_list")
         sizePolicy2 = QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed)
@@ -285,7 +287,28 @@ class Ui_BoardWindow(object):
 "QPushButton:hover {background-color: #9e2a2a;}\n"
 "QPushButton:focus {border-color: #000000; border-width: 1.5px; border-style: solid;}")
 
-        self.verticalLayout_2.addWidget(self.btn_delete_list)
+        self.horizontalLayout_5.addWidget(self.btn_delete_list)
+
+        self.btn_delete_list_2 = QPushButton(self.scrollAreaWidgetContents)
+        self.btn_delete_list_2.setObjectName(u"btn_delete_list_2")
+        sizePolicy2.setHeightForWidth(self.btn_delete_list_2.sizePolicy().hasHeightForWidth())
+        self.btn_delete_list_2.setSizePolicy(sizePolicy2)
+        self.btn_delete_list_2.setMinimumSize(QSize(140, 30))
+        self.btn_delete_list_2.setFont(font2)
+        self.btn_delete_list_2.setCursor(QCursor(Qt.PointingHandCursor))
+        self.btn_delete_list_2.setFocusPolicy(Qt.TabFocus)
+        self.btn_delete_list_2.setStyleSheet(u"QPushButton {background-color: #6badee; color: #ffffff; border-radius: 5px}\n"
+"QPushButton:hover {background-color: #5487bb;}\n"
+"QPushButton:focus {border-color: #000000; border-width: 1.5px; border-style: solid;}")
+
+        self.horizontalLayout_5.addWidget(self.btn_delete_list_2)
+
+        self.horizontalSpacer_3 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.horizontalLayout_5.addItem(self.horizontalSpacer_3)
+
+
+        self.verticalLayout_2.addLayout(self.horizontalLayout_5)
 
         self.verticalSpacer = QSpacerItem(20, 15, QSizePolicy.Minimum, QSizePolicy.Fixed)
 
@@ -438,7 +461,8 @@ class Ui_BoardWindow(object):
         QWidget.setTabOrder(self.btn_color_5, self.btn_color_6)
         QWidget.setTabOrder(self.btn_color_6, self.listWidget_manage_list)
         QWidget.setTabOrder(self.listWidget_manage_list, self.btn_delete_list)
-        QWidget.setTabOrder(self.btn_delete_list, self.listWidget_manage_member)
+        QWidget.setTabOrder(self.btn_delete_list, self.btn_delete_list_2)
+        QWidget.setTabOrder(self.btn_delete_list_2, self.listWidget_manage_member)
         QWidget.setTabOrder(self.listWidget_manage_member, self.btn_add_member)
         QWidget.setTabOrder(self.btn_add_member, self.btn_delete_member)
         QWidget.setTabOrder(self.btn_delete_member, self.btn_cancel)
@@ -464,7 +488,7 @@ class Ui_BoardWindow(object):
         self.btn_color_5.setText(QCoreApplication.translate("BoardWindow", u"Lavender", None))
         self.btn_color_6.setText(QCoreApplication.translate("BoardWindow", u"Teal", None))
         self.label_8.setText(QCoreApplication.translate("BoardWindow", u"Manage List", None))
-        self.label_2.setText(QCoreApplication.translate("BoardWindow", u"Drag to rearrange. Select and press Delete List to delete it.", None))
+        self.label_2.setText(QCoreApplication.translate("BoardWindow", u"Drag to rearrange. Select and press Delete/Rename to update.", None))
 
         __sortingEnabled = self.listWidget_manage_list.isSortingEnabled()
         self.listWidget_manage_list.setSortingEnabled(False)
@@ -477,6 +501,7 @@ class Ui_BoardWindow(object):
         self.listWidget_manage_list.setSortingEnabled(__sortingEnabled)
 
         self.btn_delete_list.setText(QCoreApplication.translate("BoardWindow", u"Delete List", None))
+        self.btn_delete_list_2.setText(QCoreApplication.translate("BoardWindow", u"Rename List", None))
         self.label_9.setText(QCoreApplication.translate("BoardWindow", u"Manage Member", None))
         self.label_4.setText(QCoreApplication.translate("BoardWindow", u"Member can have access to this board. Select and press Delete Member to remove access.", None))
 

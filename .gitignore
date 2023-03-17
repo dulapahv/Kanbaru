@@ -136,3 +136,6 @@ dmypy.json
 
 # macOS
 .DS_Store
+
+# Naisho No Hanashi
+/src/resources/kanbaru-credentials.json

@@ -141,9 +141,9 @@ QScrollBar:horizontal {height: 10px; margin: 0px 0px 0px 0px; background-color: 
              <property name="geometry">
               <rect>
                <x>0</x>
-               <y>0</y>
+               <y>-240</y>
                <width>516</width>
-               <height>869</height>
+               <height>871</height>
               </rect>
              </property>
              <layout class="QVBoxLayout" name="verticalLayout_4">
@@ -491,7 +491,7 @@ QRadioButton:focus {border-color: #000000; border-width: 1.5px; border-style: so
                      </font>
                     </property>
                     <property name="text">
-                     <string>Drag to rearrange. Select and press Delete List to delete it.</string>
+                     <string>Drag to rearrange. Select and press Delete/Rename to update.</string>
                     </property>
                     <property name="wordWrap">
                      <bool>true</bool>
@@ -581,40 +581,93 @@ QScrollBar:vertical {width: 10px; margin: 0px 0px 0px 0px; background-color: #ac
                    </widget>
                   </item>
                   <item>
-                   <widget class="QPushButton" name="btn_delete_list">
-                    <property name="sizePolicy">
-                     <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-                      <horstretch>0</horstretch>
-                      <verstretch>0</verstretch>
-                     </sizepolicy>
-                    </property>
-                    <property name="minimumSize">
-                     <size>
-                      <width>140</width>
-                      <height>30</height>
-                     </size>
-                    </property>
-                    <property name="font">
-                     <font>
-                      <family>Torus Pro</family>
-                      <pointsize>12</pointsize>
-                     </font>
-                    </property>
-                    <property name="cursor">
-                     <cursorShape>PointingHandCursor</cursorShape>
-                    </property>
-                    <property name="focusPolicy">
-                     <enum>Qt::TabFocus</enum>
-                    </property>
-                    <property name="styleSheet">
-                     <string notr="true">QPushButton {background-color: #d63a3e; color: #ffffff; border-radius: 5px}
+                   <layout class="QHBoxLayout" name="horizontalLayout_5">
+                    <item>
+                     <widget class="QPushButton" name="btn_delete_list">
+                      <property name="sizePolicy">
+                       <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                        <horstretch>0</horstretch>
+                        <verstretch>0</verstretch>
+                       </sizepolicy>
+                      </property>
+                      <property name="minimumSize">
+                       <size>
+                        <width>140</width>
+                        <height>30</height>
+                       </size>
+                      </property>
+                      <property name="font">
+                       <font>
+                        <family>Torus Pro</family>
+                        <pointsize>12</pointsize>
+                       </font>
+                      </property>
+                      <property name="cursor">
+                       <cursorShape>PointingHandCursor</cursorShape>
+                      </property>
+                      <property name="focusPolicy">
+                       <enum>Qt::TabFocus</enum>
+                      </property>
+                      <property name="styleSheet">
+                       <string notr="true">QPushButton {background-color: #d63a3e; color: #ffffff; border-radius: 5px}
 QPushButton:hover {background-color: #9e2a2a;}
 QPushButton:focus {border-color: #000000; border-width: 1.5px; border-style: solid;}</string>
-                    </property>
-                    <property name="text">
-                     <string>Delete List</string>
-                    </property>
-                   </widget>
+                      </property>
+                      <property name="text">
+                       <string>Delete List</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QPushButton" name="btn_delete_list_2">
+                      <property name="sizePolicy">
+                       <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                        <horstretch>0</horstretch>
+                        <verstretch>0</verstretch>
+                       </sizepolicy>
+                      </property>
+                      <property name="minimumSize">
+                       <size>
+                        <width>140</width>
+                        <height>30</height>
+                       </size>
+                      </property>
+                      <property name="font">
+                       <font>
+                        <family>Torus Pro</family>
+                        <pointsize>12</pointsize>
+                       </font>
+                      </property>
+                      <property name="cursor">
+                       <cursorShape>PointingHandCursor</cursorShape>
+                      </property>
+                      <property name="focusPolicy">
+                       <enum>Qt::TabFocus</enum>
+                      </property>
+                      <property name="styleSheet">
+                       <string notr="true">QPushButton {background-color: #6badee; color: #ffffff; border-radius: 5px}
+QPushButton:hover {background-color: #5487bb;}
+QPushButton:focus {border-color: #000000; border-width: 1.5px; border-style: solid;}</string>
+                      </property>
+                      <property name="text">
+                       <string>Rename List</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <spacer name="horizontalSpacer_3">
+                      <property name="orientation">
+                       <enum>Qt::Horizontal</enum>
+                      </property>
+                      <property name="sizeHint" stdset="0">
+                       <size>
+                        <width>40</width>
+                        <height>20</height>
+                       </size>
+                      </property>
+                     </spacer>
+                    </item>
+                   </layout>
                   </item>
                   <item>
                    <spacer name="verticalSpacer">
@@ -961,6 +1014,7 @@ QPushButton:focus {border-color: #000000; border-width: 1.5px; border-style: sol
   <tabstop>btn_color_6</tabstop>
   <tabstop>listWidget_manage_list</tabstop>
   <tabstop>btn_delete_list</tabstop>
+  <tabstop>btn_delete_list_2</tabstop>
   <tabstop>listWidget_manage_member</tabstop>
   <tabstop>btn_add_member</tabstop>
   <tabstop>btn_delete_member</tabstop>
