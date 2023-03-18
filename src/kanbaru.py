@@ -86,8 +86,8 @@ class Kanbaru(QMainWindow):
                 "~"), "Documents", "Kanbaru", "Database.json")
         else:
             logging.info("Unix OS detected")
-            self.db_path = os.path.expanduser(
-                "~", "Kanbaru", "Database.json")
+            self.db_path = os.path.join(os.path.expanduser(
+                "~"), "Kanbaru", "Database.json")
         db = Database.getInstance()
         db.setPath(self.db_path)
         db.read()
