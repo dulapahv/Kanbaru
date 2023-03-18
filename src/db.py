@@ -5,7 +5,7 @@ import os
 import firebase_admin
 from firebase_admin import credentials, db
 
-from boardsandcards import Board, Card, List
+from kanbaru_objects import Board, Card, List
 
 
 class Database:
@@ -36,8 +36,12 @@ class Database:
     pullFromFirebase(username: str) -> None
         Pulls the database of a user from Firebase then writes it to the
         database file.
-    pushToFirebase() -> None
-        Reads the database file then uploads it to Firebase.
+    pushToFirebase(username: str) -> None
+        Pushes the database of a user to Firebase.
+    getUsername() -> str
+        Returns the username of the user from the database file.
+    getPassword() -> str
+        Returns the password of the user from the database file.
     """
 
     _instance: "Database" = None
@@ -48,7 +52,9 @@ class Database:
         else:
             Database._instance = self
 
-            self.__data: list[str | Board[List[Card]]] = [vars(Board())]
+            self.__username: str = ""
+            self.__password: str = ""
+            self.__data: str | Board[List[Card]] = vars(Board())
 
     @staticmethod
     def getInstance() -> "Database":
@@ -100,13 +106,14 @@ class Database:
             if not os.path.exists(self._db_path):
                 os.makedirs(os.path.dirname(self._db_path), exist_ok=True)
             with open(self._db_path, "w") as f:
-                json.dump(self.getInstance().__dict__, f, indent=4)
+                json.dump(vars(self.getInstance()), f, indent=4)
             logging.info("Database file created")
         except Exception as e:
             logging.warning(
                 "Failed to create database file! The application will now exit.", exc_info=True)
             raise Exception(
                 "Failed to create database file! The application will now exit.")
+        self.getInstance().read()
 
     def write(self: "Database") -> None:
         """Writes data from the database instance to the database file.
@@ -182,16 +189,14 @@ class Database:
             logging.warning(
                 "Failed to initialize Firebase!", exc_info=True)
 
-    def pullFromFirebase(self: "Database", username: str | None = "/") -> None:
+    def pullFromFirebase(self: "Database", username: str) -> None:
         """Pulls the database of a user from Firebase then writes it to the
-        database file. If the username is not specified,
-        the root database will be pulled.
+        database file.
 
         Parameters
         ----------
-        username : str, optional
-            The username of the user whose database is to be pulled,
-            by default "/" (root).
+        username : str
+            The username of the user whose database is to be pulled.
 
         Raises
         ------
@@ -209,15 +214,20 @@ class Database:
             logging.warning(
                 "Failed to pull database from Firebase!", exc_info=True)
 
-    def pushToFirebase(self: "Database") -> None:
-        """Reads the database file then uploads it to Firebase.
+    def pushToFirebase(self: "Database", username: str) -> None:
+        """Pushes the database of a user to Firebase.
+
+        Parameters
+        ----------
+        username : str
+            The username of the user whose database is to be pushed.
 
         Raises
         ------
         Exception
             If the database cannot be uploaded to Firebase, an exception will be raised.
         """
-        ref = db.reference("/")
+        ref = db.reference(username)
         try:
             Database.read(self)
             logging.info("Uploading database to Firebase...")
@@ -236,6 +246,16 @@ class Database:
             The username of the user.
         """
         return self.__data["_Database__username"]
+
+    def getPassword(self: "Database") -> str:
+        """Returns the password of the user.
+
+        Returns
+        -------
+        password : str
+            The password of the user.
+        """
+        return self.__data["_Database__password"]
 
     def __str__(self: "Database") -> str:
         """Returns the database instance as a stringified dictionary.

@@ -11,7 +11,7 @@ from db import Database
 # from PySide6.QtCore import (QObject)
 # from PySide6.QtGui import (QFont, QFontDatabase)
 # from PySide6.QtWidgets import (QApplication, QMainWindow)
-# from ui.ui_main import Ui_MainWindow
+from ui.ui_main import Ui_MainWindow
 from ui.ui_welcome import Ui_WelcomeWindow
 
 
@@ -29,28 +29,19 @@ class Kanbaru(QMainWindow):
         logging.info("Starting Kanbaru...")
         logging.info(f'Current directory: "{self.path}"')
 
-        # # Initialize local database
+        # Initialize local database
         self.initializeLocalDatabase()
-        
-        print(Database.getInstance().getUsername()) # DEBUG
-        if (Database.getInstance().getUsername() == ""):
-            self.showWelcomeScreen()
-        else:
-            self.showMainScreen()
 
         # Initialize Firebase database
-        # self.initializeFirebaseDatabase(Database.getInstance(), os.path.join(
-        #     self.path, "resources", "kanbaru-credentials.json"))
-        # Database.getInstance().pushToFirebase()  # DEBUG
-        # Database.getInstance().pullFromFirebase("username")  # DEBUG
-        # Database.getInstance().read()  # DEBUG
-        # print(Database.getInstance())  # DEBUG
+        self.initializeFirebaseDatabase(Database.getInstance(), os.path.join(
+            self.path, "resources", "kanbaru-credentials.json"))
 
-        # Setup WelcomeWindow
-        self.ui_welcome = Ui_WelcomeWindow()
-        self.ui_welcome.setupUi(self)
-
-        self.ui_welcome.btn_login.clicked.connect(lambda: Auth.login())
+        # Check if user is logged in, if not, prompt login
+        if self.checkCredentials():
+            Database.getInstance().pullFromFirebase(Database.getInstance().getUsername())
+            self.showMainScreen()
+        else:
+            self.showWelcomeScreen()
 
     def initEventLogger(self, path: str, fmt: str, debug: bool = False) -> None:
         """Initializes the event logger.
@@ -108,12 +99,31 @@ class Kanbaru(QMainWindow):
         """
         db_instance.initFirebase(cred_path)
         logging.info("Firebase database initialized and connected")
-    
+
+    def checkCredentials(self) -> bool:
+        """Checks credentials from the database file.
+            - Get username and password from database file
+            - If username or password is empty, return False
+            - If credentials are invalid, return False
+        """
+        username = Database.getInstance().getUsername()
+        password = Database.getInstance().getPassword()
+        if username == "" or password == "":
+            logging.warning("Invalid credentials!")
+            return False
+        if not Auth.verifyCredentials(username, password):
+            return False
+        return True
+
     def showWelcomeScreen(self):
-        pass
+        self.ui_welcome = Ui_WelcomeWindow()
+        self.ui_welcome.setupUi(self)
+
+        self.ui_welcome.btn_login.clicked.connect(lambda: Auth.login())
 
     def showMainScreen(self):
-        pass
+        self.ui_main = Ui_MainWindow()
+        self.ui_main.setupUi(self)
 
         # # Set up font
         # fontPath = "./resources/font/TorusPro-Regular.ttf"
