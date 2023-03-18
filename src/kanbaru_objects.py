@@ -59,7 +59,7 @@ class Card:
         self.__time = time
 
 
-class List:
+class List: # Really? Won't it conflict?
     def __init__(self, title: str = "New List", color=""):
         self.__title = title
         self.__color = color
