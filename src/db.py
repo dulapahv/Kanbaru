@@ -157,6 +157,8 @@ class Database:
         try:
             with open(self._db_path, "r") as f:
                 self.__data = json.load(f)
+                self.__username = self.__data["_Database__username"]
+                self.__password = self.__data["_Database__password"]
                 logging.info("Database read from the database file")
         except FileNotFoundError:
             logging.warning(
@@ -245,7 +247,7 @@ class Database:
         username : str
             The username of the user.
         """
-        return self.__data["_Database__username"]
+        return self.__username
 
     def getPassword(self: "Database") -> str:
         """Returns the password of the user.
@@ -255,7 +257,7 @@ class Database:
         password : str
             The password of the user.
         """
-        return self.__data["_Database__password"]
+        return self.__password
 
     def __str__(self: "Database") -> str:
         """Returns the database instance as a stringified dictionary.
