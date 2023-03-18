@@ -54,7 +54,7 @@ class Database:
 
             self.__username: str = ""
             self.__password: str = ""
-            self.__data: str | Board[List[Card]] = vars(Board())
+            self.__data: str | list[dict] = [vars(Board())]
 
     @staticmethod
     def getInstance() -> "Database":
