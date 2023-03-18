@@ -31,12 +31,18 @@ class Kanbaru(QMainWindow):
 
         # # Initialize local database
         self.initializeLocalDatabase()
+        
+        print(Database.getInstance().getUsername()) # DEBUG
+        if (Database.getInstance().getUsername() == ""):
+            self.showWelcomeScreen()
+        else:
+            self.showMainScreen()
 
         # Initialize Firebase database
-        self.initializeFirebaseDatabase(Database.getInstance(), os.path.join(
-            self.path, "resources", "kanbaru-credentials.json"))
+        # self.initializeFirebaseDatabase(Database.getInstance(), os.path.join(
+        #     self.path, "resources", "kanbaru-credentials.json"))
         # Database.getInstance().pushToFirebase()  # DEBUG
-        Database.getInstance().pullFromFirebase()  # DEBUG
+        # Database.getInstance().pullFromFirebase("username")  # DEBUG
         # Database.getInstance().read()  # DEBUG
         # print(Database.getInstance())  # DEBUG
 
@@ -102,6 +108,12 @@ class Kanbaru(QMainWindow):
         """
         db_instance.initFirebase(cred_path)
         logging.info("Firebase database initialized and connected")
+    
+    def showWelcomeScreen(self):
+        pass
+
+    def showMainScreen(self):
+        pass
 
         # # Set up font
         # fontPath = "./resources/font/TorusPro-Regular.ttf"

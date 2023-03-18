@@ -5,6 +5,8 @@ import os
 import firebase_admin
 from firebase_admin import credentials, db
 
+from boardsandcards import Board, Card, List
+
 
 class Database:
     """
@@ -14,8 +16,6 @@ class Database:
     -------
     _instance : Database
         The instance of the database class.
-    __data : dict
-        The data stored in the database.
 
     Methods
     -------
@@ -33,20 +33,22 @@ class Database:
         Reads data from the database file and stores it in the database instance.
     initFirebase(cred_path: str) -> None
         Initializes the Firebase database instance.
-    pullFromFirebase() -> None
-        Pulls the database from Firebase then writes it to the database file.
+    pullFromFirebase(username: str) -> None
+        Pulls the database of a user from Firebase then writes it to the
+        database file.
     pushToFirebase() -> None
         Reads the database file then uploads it to Firebase.
     """
 
     _instance: "Database" = None
-    __data: dict = {}
 
-    def __init__(self) -> None:
+    def __init__(self: "Database") -> None:
         if Database._instance is not None:
             logging.warning("Database class is a singleton class!")
         else:
             Database._instance = self
+
+            self.__data: list[str | Board[List[Card]]] = [vars(Board())]
 
     @staticmethod
     def getInstance() -> "Database":
@@ -61,7 +63,7 @@ class Database:
             Database()
         return Database._instance
 
-    def getPath(self) -> str:
+    def getPath(self: "Database") -> str:
         """Returns the path of the database file.
 
         Returns
@@ -71,7 +73,7 @@ class Database:
         """
         return self._db_path
 
-    def setPath(self, path: str) -> None:
+    def setPath(self: "Database", path: str) -> None:
         """Sets the path of the database file.
 
         Parameters
@@ -81,7 +83,7 @@ class Database:
         """
         self._db_path = path
 
-    def create(self) -> None:
+    def create(self: "Database") -> None:
         """Creates a new database file at the path specified in self.db_path.
         If the directory does not exist, it will be created.
 
@@ -98,28 +100,7 @@ class Database:
             if not os.path.exists(self._db_path):
                 os.makedirs(os.path.dirname(self._db_path), exist_ok=True)
             with open(self._db_path, "w") as f:
-                json.dump({
-                    "username": {
-                        "password": "",
-                        "boards": {
-                            "title": {
-                                "color": "",
-                                "members": "",
-                                "lists": {
-                                    "title": {
-                                        "cards": {
-                                            "title": "",
-                                            "date": "",
-                                            "time": "",
-                                            "color": "",
-                                            "description": ""
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }, f, indent=4)
+                json.dump(self.getInstance().__dict__, f, indent=4)
             logging.info("Database file created")
         except Exception as e:
             logging.warning(
@@ -127,7 +108,7 @@ class Database:
             raise Exception(
                 "Failed to create database file! The application will now exit.")
 
-    def write(self) -> None:
+    def write(self: "Database") -> None:
         """Writes data from the database instance to the database file.
         If exceptions are raised, a new database file will be created.
 
@@ -153,7 +134,7 @@ class Database:
                 "Failed to write data to database! Creating new database...", exc_info=True)
             self.create()
 
-    def read(self) -> None:
+    def read(self: "Database") -> None:
         """Reads data from the database file and stores it in the database instance.
         If exceptions are raised, a new database file will be created.
 
@@ -179,13 +160,13 @@ class Database:
                 "Failed to read data from database! Creating new database...", exc_info=True)
             self.create()
 
-    def initFirebase(self, cred_path: str) -> None:
+    def initFirebase(self: "Database", cred_path: str) -> None:
         """Initializes Firebase.
 
         Parameters
         ----------
-        cred : credentials.Certificate
-            The Firebase credentials.
+        cred_path : str
+            The path of the Firebase credentials file.
 
         Raises
         ------
@@ -201,15 +182,24 @@ class Database:
             logging.warning(
                 "Failed to initialize Firebase!", exc_info=True)
 
-    def pullFromFirebase(self) -> None:
-        """Pulls the database from Firebase then writes it to the database file.
+    def pullFromFirebase(self: "Database", username: str | None = "/") -> None:
+        """Pulls the database of a user from Firebase then writes it to the
+        database file. If the username is not specified,
+        the root database will be pulled.
+
+        Parameters
+        ----------
+        username : str, optional
+            The username of the user whose database is to be pulled,
+            by default "/" (root).
 
         Raises
         ------
         Exception
-            If the database cannot be pulled from Firebase, an exception will be raised.
+            If the database cannot be pulled from Firebase, an exception will
+            be raised.
         """
-        ref = db.reference('/')
+        ref = db.reference(username)
         try:
             logging.info("Pulling database from Firebase...")
             self.__data = ref.get()
@@ -219,7 +209,7 @@ class Database:
             logging.warning(
                 "Failed to pull database from Firebase!", exc_info=True)
 
-    def pushToFirebase(self) -> None:
+    def pushToFirebase(self: "Database") -> None:
         """Reads the database file then uploads it to Firebase.
 
         Raises
@@ -237,7 +227,17 @@ class Database:
             logging.warning(
                 "Failed to upload database to Firebase!", exc_info=True)
 
-    def __str__(self) -> str:
+    def getUsername(self: "Database") -> str:
+        """Returns the username of the user.
+
+        Returns
+        -------
+        username : str
+            The username of the user.
+        """
+        return self.__data["_Database__username"]
+
+    def __str__(self: "Database") -> str:
         """Returns the database instance as a stringified dictionary.
 
         Returns
