@@ -12,7 +12,7 @@ from db import Database
 # from PySide6.QtGui import (QFont, QFontDatabase)
 # from PySide6.QtWidgets import (QApplication, QMainWindow)
 from ui.ui_main import Ui_MainWindow
-from ui.ui_welcome import Ui_WelcomeWindow
+from ui.welcome import WelcomeScreen
 
 
 class Kanbaru(QMainWindow):
@@ -109,13 +109,12 @@ class Kanbaru(QMainWindow):
         return Auth.verifyCredentials(Database.getInstance().getUsername(), Database.getInstance().getPassword())
 
     def showWelcomeScreen(self):
+        """Shows the welcome screen."""
         logging.info("Going to welcome screen...")
-        self.ui_welcome = Ui_WelcomeWindow()
-        self.ui_welcome.setupUi(self)
-
-        self.ui_welcome.btn_login.clicked.connect(lambda: Auth.login())
+        WelcomeScreen(self)
 
     def showMainScreen(self):
+        """Shows the main screen."""
         logging.info("Going to main screen...")
         self.ui_main = Ui_MainWindow()
         self.ui_main.setupUi(self)

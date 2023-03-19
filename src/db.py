@@ -5,7 +5,7 @@ import os
 import firebase_admin
 from firebase_admin import credentials, db
 
-from kanbaru_objects import Board, Card, List
+from kanbaru_objects import Board
 
 
 class Database:
@@ -103,7 +103,7 @@ class Database:
 
         Notes
         -----
-        The database file is a JSON file with `{}` as the default content.
+        The database file is a JSON file.
         """
         try:
             if not os.path.exists(self._db_path):

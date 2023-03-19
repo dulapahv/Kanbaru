@@ -314,7 +314,7 @@ QLineEdit:focus {border-color: #6badee;}</string>
                      </widget>
                     </item>
                     <item>
-                     <widget class="QLineEdit" name="lineEdit_2_login_passwd">
+                     <widget class="QLineEdit" name="lineEdit_login_password">
                       <property name="minimumSize">
                        <size>
                         <width>0</width>
@@ -477,7 +477,7 @@ QPushButton:focus {border-color: #000000; border-width: 1.5px; border-style: sol
                      </widget>
                     </item>
                     <item>
-                     <widget class="QLineEdit" name="lineEdit_sign_up_username">
+                     <widget class="QLineEdit" name="lineEdit_signup_username">
                       <property name="minimumSize">
                        <size>
                         <width>0</width>
@@ -503,7 +503,7 @@ QLineEdit:focus {border-color: #6badee;}</string>
                      </widget>
                     </item>
                     <item>
-                     <widget class="QLineEdit" name="lineEdit_sign_up_passwd">
+                     <widget class="QLineEdit" name="lineEdit_signup_password">
                       <property name="minimumSize">
                        <size>
                         <width>0</width>
@@ -532,7 +532,7 @@ QLineEdit:focus {border-color: #6badee;}</string>
                      </widget>
                     </item>
                     <item>
-                     <widget class="QLineEdit" name="lineEdit_sign_up_con_passwd">
+                     <widget class="QLineEdit" name="lineEdit_signup_confirm_password">
                       <property name="minimumSize">
                        <size>
                         <width>0</width>
@@ -561,7 +561,7 @@ QLineEdit:focus {border-color: #6badee;}</string>
                      </widget>
                     </item>
                     <item>
-                     <widget class="QLabel" name="label_sign_up_msg">
+                     <widget class="QLabel" name="label_signup_msg">
                       <property name="font">
                        <font>
                         <family>Torus Pro</family>
@@ -599,7 +599,7 @@ QLineEdit:focus {border-color: #6badee;}</string>
                        </spacer>
                       </item>
                       <item>
-                       <widget class="QPushButton" name="btn_sign_up">
+                       <widget class="QPushButton" name="btn_signup">
                         <property name="sizePolicy">
                          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
                           <horstretch>0</horstretch>
