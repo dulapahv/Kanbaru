@@ -1,8 +1,9 @@
 import logging
 
+from firebase_admin import db
+
 import ui.ui_welcome
 from db import Database
-from firebase_admin import db
 
 
 class Auth:
@@ -16,10 +17,24 @@ class Auth:
 
     @staticmethod
     def verifyCredentials(username: str, password: str) -> bool:
-        if username == None:
-            username = Database.getInstance().getUsername()
-        if password == None:
-            password = Database.getInstance().getPassword()
+        """Verifies credentials from the database file.
+
+        Parameters
+        ----------
+        username : str
+            The username of the user.
+        password : str
+            The password of the user.
+
+        Returns
+        -------
+        valid : bool
+            True if the credentials are valid, False otherwise.
+        """
+        logging.info("Verifying credentials...")
+        if not username or not password:
+            logging.warning("Empty credentials!")
+            return False
         ref = db.reference(username).get()
         if ref == None or password != ref["_Database__password"]:
             logging.warning("Invalid credentials!")

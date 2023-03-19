@@ -87,6 +87,9 @@ class Database:
         path : str
             The path of the database file.
         """
+        if not path:
+            logging.warning("Database path is empty!")
+            return None
         self._db_path = path
 
     def create(self: "Database") -> None:
@@ -110,9 +113,9 @@ class Database:
             logging.info("Database file created")
         except Exception as e:
             logging.warning(
-                "Failed to create database file! The application will now exit.", exc_info=True)
+                "Failed to create/access database file! The application will now exit.", exc_info=True)
             raise Exception(
-                "Failed to create database file! The application will now exit.")
+                "Failed to create/access database file! The application will now exit.")
         self.getInstance().read()
 
     def write(self: "Database") -> None:
@@ -182,6 +185,11 @@ class Database:
         Exception
             If Firebase cannot be initialized, an exception will be raised.
         """
+        if not cred_path:
+            logging.warning(
+                "Cannot initialize Firebase: credential path is empty")
+            return None
+        logging.info("Initializing Firebase...")
         cred = credentials.Certificate(cred_path)
         try:
             firebase_admin.initialize_app(
@@ -206,9 +214,13 @@ class Database:
             If the database cannot be pulled from Firebase, an exception will
             be raised.
         """
+        if not username:
+            logging.warning(
+                "Cannot pull database to Firebase: username is empty")
+            return None
+        logging.info("Pulling database from Firebase...")
         ref = db.reference(username)
         try:
-            logging.info("Pulling database from Firebase...")
             self.__data = ref.get()
             logging.info("Database pulled from Firebase")
             Database.write(self)
@@ -229,6 +241,10 @@ class Database:
         Exception
             If the database cannot be uploaded to Firebase, an exception will be raised.
         """
+        if not username:
+            logging.warning(
+                "Cannot push database to Firebase: username is empty")
+            return None
         ref = db.reference(username)
         try:
             Database.read(self)

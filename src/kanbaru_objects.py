@@ -1,5 +1,4 @@
 from enum import Enum
-import random
 
 
 class Color(Enum):
@@ -15,83 +14,87 @@ class Color(Enum):
 
 
 class Card:
-    def __init__(self, title: str = "New Card", date="", time="", color="", description=""):
+    def __init__(self, title: str = "New Card", date="", time="", color="", description: str = "") -> None:
         self.__title = title
-        self.__description = description
-        self.__color = color
         self.__date = date
         self.__time = time
-
-    def get_title(self):
-        return self.__title
-
-    def get_description(self):
-        return self.__description
-
-    def get_color(self):
-        return self.__color
-
-    def get_date(self):
-        return self.__date
-
-    def get_time(self):
-        return self.__time
-
-    def set_title(self, title):
-        self.__title = title
-
-    def set_description(self, description):
+        self.__color = color
         self.__description = description
 
-    def set_color(self, color):
+    @property
+    def title(self) -> str:
+        return self.__title
+
+    @property
+    def description(self) -> str:
+        return self.__description
+
+    @property
+    def color(self) -> str:
+        return self.__color
+
+    # polymorphism to support multiple param types?
+    @property
+    def date(self, date):
+        self.__date = date
+
+    @property
+    def time(self, time):
+        self.__time = time
+
+    @title.setter
+    def title(self, title: str):
+        self.__title = title
+
+    @description.setter
+    def description(self, description: str):
+        self.__description = description
+
+    @color.setter
+    def color(self, color):
         if color in Color:
             self.__color = color
         else:
             raise ValueError(
                 "Invalid color. We only support the following colors: " + str(Color))
 
-    # polymorphism to support multiple param types?
+    @date.setter
+    def date(self):
+        return self.__date
 
-    def set_date(self, date):
-        self.__date = date
+    @time.setter
+    def time(self):
+        return self.__time
 
-    def set_time(self, time):
-        self.__time = time
+    def __str__(self):
+        return self.__title
 
 
 class List:
-    def __init__(self, title: str = "New List", color=""):
+    def __init__(self, title: str = "New List", cards=[]) -> None:
         self.__title = title
-        self.__color = color
-        self.__cards = [vars(Card())]
+        self.__cards = cards
 
-    def get_title(self):
+    @property
+    def title(self) -> str:
         return self.__title
 
-    def get_color(self):
-        return self.__color
-
-    def get_cards(self):
+    @property
+    def cards(self) -> list[Card]:
         return self.__cards
 
-    def set_title(self, title):
+    @title.setter
+    def title(self, title: str) -> None:
         self.__title = title
 
-    def set_color(self, color):
-        if color in Color:
-            self.__color = color
-        else:
-            raise ValueError(
-                "Invalid color. We only support the following colors: " + str(Color))
-
-    def add_card(self, card: Card):
-        if card is not Card:
-            raise ValueError("Card is not a Card.")
+    @cards.setter
+    def cards(self, card: Card) -> None:
         if card in self.__cards:
             raise ValueError("Card already exists in list.")
         self.__cards.append(card)
 
-    def remove_card(self, card: Card):
+    @cards.deleter
+    def cards(self, card: Card) -> None:
         if card not in self.__cards:
             raise ValueError("Card does not exist in list.")
         self.__cards.remove(card)
@@ -101,43 +104,46 @@ class List:
 
 
 class Board:
-    def __init__(self, id: int = random.randint(0, 1000000), color="", title: str = "New Board"):
+    def __init__(self, title: str = "New Board", color="", lists=[]):
         self.__title = title
-        self.__id = id
         self.__color = color
-        self.__lists = [vars(List())]
+        self.__lists = lists
 
-    def get_title(self):
+    @property
+    def title(self) -> str:
         return self.__title
 
-    def get_id(self):
-        return self.__id
-
-    def get_color(self):
+    @property
+    def color(self):
         return self.__color
 
-    def get_lists(self):
+    @property
+    def lists(self) -> list[List]:
         return self.__lists
 
-    def set_title(self, title):
+    @title.setter
+    def title(self, title: str) -> None:
         self.__title = title
 
-    def set_color(self, color):
+    @color.setter
+    def color(self, color) -> None:
         if color in Color:
             self.__color = color
         else:
             raise ValueError(
                 "Invalid color. We only support the following colors: " + str(Color))
 
-    def add_list(self, member: List):
-        if member in self.__lists:
+    @lists.setter
+    def lists(self, list: List) -> None:
+        if list in self.__lists:
             raise ValueError("List already exists in board.")
-        self.__lists.append(member)
+        self.__lists.append(list)
 
-    def remove_list(self, member: List):
-        if member not in self.__lists:
+    @lists.deleter
+    def lists(self, list: List) -> None:
+        if list not in self.__lists:
             raise ValueError("List does not exist in board.")
-        self.__lists.remove(member)
+        self.__lists.remove(list)
 
     def __str__(self):
-        return str(self.__id)
+        return self.__title
