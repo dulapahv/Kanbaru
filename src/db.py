@@ -255,7 +255,8 @@ class Database:
             logging.warning(
                 "Failed to upload database to Firebase!", exc_info=True)
 
-    def getUsername(self: "Database") -> str:
+    @property
+    def username(self: "Database") -> str:
         """Returns the username of the user.
 
         Returns
@@ -265,7 +266,8 @@ class Database:
         """
         return self.__username
 
-    def getPassword(self: "Database") -> str:
+    @property
+    def password(self: "Database") -> str:
         """Returns the password of the user.
 
         Returns
@@ -274,6 +276,30 @@ class Database:
             The password of the user.
         """
         return self.__password
+
+    @username.setter
+    def username(self: "Database", username: str) -> None:
+        """Sets the username of the user.
+
+        Parameters
+        ----------
+        username : str
+            The username of the user.
+        """
+        self.__username = username
+        self.__data["_Database__username"] = username
+
+    @password.setter
+    def password(self: "Database", password: str) -> None:
+        """Sets the password of the user.
+
+        Parameters
+        ----------
+        password : str
+            The password of the user.
+        """
+        self.__password = password
+        self.__data["_Database__password"] = password
 
     def __str__(self: "Database") -> str:
         """Returns the database instance as a stringified dictionary.

@@ -106,7 +106,7 @@ class Kanbaru(QMainWindow):
             - If username or password is empty, return False
             - If credentials are invalid, return False
         """
-        return Auth.verifyCredentials(Database.getInstance().getUsername(), Database.getInstance().getPassword())
+        return Auth.verifyCredentials(Database.getInstance().username, Database.getInstance().password)
 
     def showWelcomeScreen(self):
         """Shows the welcome screen."""

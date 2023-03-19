@@ -15,8 +15,8 @@ class WelcomeScreen(QMainWindow):
         parent.ui = Ui_WelcomeWindow()
         parent.ui.setupUi(parent)
 
-        parent.ui.label_signup_msg.setText("")
         parent.ui.label_login_msg.setText("")
+        parent.ui.label_signup_msg.setText("")
 
         self.login_username: str = ""
         self.login_password: str = ""
@@ -61,8 +61,11 @@ class WelcomeScreen(QMainWindow):
                              self.signup_confirm_password)
         match (status):
             case 0:
-                parent.ui.label_signup_msg.setText(
-                    "Signup successful, please login with your new account.")
+                Database.getInstance().username = self.signup_username
+                Database.getInstance().password = self.signup_password
+                Database.getInstance().write()
+                Database.getInstance().pushToFirebase(self.signup_username)
+                MainScreen(parent)
             case 1:
                 parent.ui.label_signup_msg.setText("Missing credentials!")
             case 2:
@@ -100,17 +103,22 @@ class WelcomeScreen(QMainWindow):
             case 2:
                 parent.ui.label_login_msg.setText("Invalid credentials!")
 
-    def login_username_listener(self, text) -> str:
+    def login_username_listener(self, text: str) -> None:
+        """Listens for changes in the login username field."""
         self.login_username = text
 
-    def login_password_listener(self, text) -> str:
+    def login_password_listener(self, text: str) -> None:
+        """Listens for changes in the login password field."""
         self.login_password = text
 
-    def signup_username_listener(self, text) -> str:
+    def signup_username_listener(self, text: str) -> None:
+        """Listens for changes in the signup username field."""
         self.signup_username = text
 
-    def signup_password_listener(self, text) -> str:
+    def signup_password_listener(self, text: str) -> None:
+        """Listens for changes in the signup password field."""
         self.signup_password = text
 
-    def signup_confirm_password_listener(self, text) -> str:
+    def signup_confirm_password_listener(self, text: str) -> None:
+        """Listens for changes in the signup confirm password field."""
         self.signup_confirm_password = text

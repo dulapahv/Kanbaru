@@ -67,7 +67,6 @@ class Auth:
         if ref is not None:
             logging.warning("Username already exists!")
             return 3
-        db.reference(username).set({"_Database__password": password})
         logging.info(f"New user created: {username}")
         return 0
 
