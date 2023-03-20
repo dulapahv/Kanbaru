@@ -4,8 +4,9 @@ import os
 
 import firebase_admin
 from firebase_admin import credentials, db
+from types import SimpleNamespace
 
-from kanbaru_objects import Board
+from kanbaru_objects import Board, List, Card
 
 
 class Database:
@@ -300,6 +301,29 @@ class Database:
         """
         self.__password = password
         self.__data["_Database__password"] = password
+
+    @property
+    def boards(self: "Database") -> list[Board]:
+        """Returns the list of boards.
+
+        Returns
+        -------
+        boards : list
+            The list of boards.
+        """
+        # Please send help :(
+        # Find a way to serialize
+
+    @boards.setter
+    def boards(self: "Database", boards: list[Board]) -> None:
+        """Sets the list of boards.
+
+        Parameters
+        ----------
+        boards : list
+            The list of boards.
+        """
+        self.__data["_Board__title"] = boards
 
     def __str__(self: "Database") -> str:
         """Returns the database instance as a stringified dictionary.
