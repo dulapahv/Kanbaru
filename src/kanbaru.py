@@ -2,16 +2,13 @@ import logging
 import os
 import sys
 
-from PySide6.QtCore import *
-from PySide6.QtGui import *
-from PySide6.QtWidgets import *
+from PySide6.QtWidgets import QApplication, QMainWindow
+from PySide6.QtGui import QFontDatabase
 
 from auth import Auth
 from db import Database
-# from PySide6.QtCore import (QObject)
-# from PySide6.QtGui import (QFont, QFontDatabase)
-# from PySide6.QtWidgets import (QApplication, QMainWindow)
-from ui.ui_main import Ui_MainWindow
+from utils import getCurrentDirectory
+from ui.main import MainScreen
 from ui.welcome import WelcomeScreen
 
 
@@ -20,7 +17,7 @@ class Kanbaru(QMainWindow):
         QMainWindow.__init__(self)
 
         # Get current directory
-        self.path = self.getCurrentDirectory()
+        self.path = getCurrentDirectory()
 
         # Set up event logger
         self.initEventLogger(os.path.join(
@@ -38,7 +35,7 @@ class Kanbaru(QMainWindow):
 
         # Check if user is logged in, if not, prompt login
         if self.checkCredentials():
-            Database.getInstance().pullFromFirebase(Database.getInstance().getUsername())
+            Database.getInstance().pullFromFirebase(Database.getInstance().username)
             self.showMainScreen()
         else:
             self.showWelcomeScreen()
@@ -55,20 +52,6 @@ class Kanbaru(QMainWindow):
                             format=fmt,
                             datefmt='%d-%b-%y %H:%M:%S',
                             level=logging.DEBUG if debug else logging.INFO)
-
-    def getCurrentDirectory(self) -> str:
-        """Returns the current directory of the application. If the current
-        directory is not the src directory, it will be appended to the path.
-
-        Returns
-        -------
-        path : str
-            The current directory of the application.
-        """
-        self.path = os.path.dirname(os.path.abspath(__file__))
-        if os.path.basename(self.path) != "src":
-            self.path = os.path.join(self.path, "src")
-        return self.path
 
     def initializeLocalDatabase(self) -> None:
         """Initializes the database instance.
@@ -116,33 +99,7 @@ class Kanbaru(QMainWindow):
     def showMainScreen(self):
         """Shows the main screen."""
         logging.info("Going to main screen...")
-        self.ui_main = Ui_MainWindow()
-        self.ui_main.setupUi(self)
-
-        # # Set up font
-        # fontPath = "./resources/font/TorusPro-Regular.ttf"
-        # if not os.path.exists(fontPath):
-        #     fontPath = "./src/resources/font/TorusPro-Regular.ttf"
-        # fontDatabase = QFontDatabase.addApplicationFont(fontPath)
-        # if fontDatabase < 0:
-        #     raise Exception(f'Font not found at path "{fontPath}"! Exiting...')
-
-        # # Add font to font database
-        # fontFamilies = QFontDatabase.applicationFontFamilies(fontDatabase)
-
-        # # Set up UI
-        # self.ui = Ui_MainWindow()
-        # self.ui.setupUi(self)
-
-        # # Set font for all widgets
-        # for obj in self.findChildren(QObject):
-        #     if hasattr(obj, "setFont"):
-        #         obj.setFont(QFont(fontFamilies[0], 12))
-        # self.ui.label_list_1.setFont(QFont(fontFamilies[0], 12, QFont.Bold))
-        # self.ui.label_list_2.setFont(QFont(fontFamilies[0], 12, QFont.Bold))
-        # self.ui.label_list_3.setFont(QFont(fontFamilies[0], 12, QFont.Bold))
-        # self.ui.label_logo.setFont(QFont(fontFamilies[0], 36))
-        # self.ui.label_board.setFont(QFont(fontFamilies[0], 28))
+        MainScreen(self)
 
 
 if __name__ == "__main__":

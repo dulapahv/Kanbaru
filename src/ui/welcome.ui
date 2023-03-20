@@ -202,7 +202,7 @@ border-radius: 5px;</string>
                     </widget>
                    </item>
                    <item>
-                    <widget class="QLabel" name="label_8">
+                    <widget class="QLabel" name="label_logo">
                      <property name="font">
                       <font>
                        <family>Torus Pro</family>
@@ -265,7 +265,7 @@ border-radius: 5px;</string>
                      <number>0</number>
                     </property>
                     <item>
-                     <widget class="QLabel" name="label_2">
+                     <widget class="QLabel" name="label_login">
                       <property name="font">
                        <font>
                         <family>Torus Pro</family>
@@ -454,7 +454,7 @@ QPushButton:focus {border-color: #000000; border-width: 1.5px; border-style: sol
                      <number>0</number>
                     </property>
                     <item>
-                     <widget class="QLabel" name="label_3">
+                     <widget class="QLabel" name="label_signup">
                       <property name="font">
                        <font>
                         <family>Torus Pro</family>

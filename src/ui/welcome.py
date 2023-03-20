@@ -6,14 +6,21 @@ from auth import Auth
 from db import Database
 from ui.main import MainScreen
 from ui.ui_welcome import Ui_WelcomeWindow
+from utils import setupFontDB
+
+# from PySide6.QtCore import (QObject)
+# from PySide6.QtGui import (QFont, QFontDatabase)
+# from PySide6.QtWidgets import (QApplication, QMainWindow)
 
 
 class WelcomeScreen(QMainWindow):
-    def __init__(self, parent: QMainWindow = None) -> None:
+    def __init__(self, parent: QMainWindow) -> None:
         QMainWindow.__init__(self)
 
-        parent.ui = Ui_WelcomeWindow()
+        parent.ui: Ui_WelcomeWindow = Ui_WelcomeWindow()
         parent.ui.setupUi(parent)
+
+        self.setupFont(parent, "TorusPro.ttf")
 
         parent.ui.label_login_msg.setText("")
         parent.ui.label_signup_msg.setText("")
@@ -37,7 +44,7 @@ class WelcomeScreen(QMainWindow):
         parent.ui.btn_login.clicked.connect(lambda: self.login(parent))
         parent.ui.btn_signup.clicked.connect(lambda: self.signup(parent))
 
-    def signup(self, parent) -> None:
+    def signup(self, parent: Ui_WelcomeWindow) -> None:
         """Signs up a user.
         Status codes:
             - 0: Signup successful
@@ -73,7 +80,7 @@ class WelcomeScreen(QMainWindow):
             case 3:
                 parent.ui.label_signup_msg.setText("Username already exists!")
 
-    def login(self, parent) -> None:
+    def login(self, parent: Ui_WelcomeWindow) -> None:
         """Logs in a user.
         Status codes:
             - 0: Login successful
@@ -102,6 +109,22 @@ class WelcomeScreen(QMainWindow):
                 parent.ui.label_login_msg.setText("Missing credentials!")
             case 2:
                 parent.ui.label_login_msg.setText("Invalid credentials!")
+
+    def setupFont(self, parent: Ui_WelcomeWindow, font: str | list[str]) -> None:
+        fontDB = setupFontDB(font)
+        parent.ui.label_logo.setFont(QFont(fontDB[0], 36))
+        parent.ui.label_login.setFont(QFont(fontDB[0], 13, QFont.Bold))
+        parent.ui.label_signup.setFont(QFont(fontDB[0], 13, QFont.Bold))
+        parent.ui.lineEdit_login_username.setFont(QFont(fontDB[0], 12))
+        parent.ui.lineEdit_login_password.setFont(QFont(fontDB[0], 12))
+        parent.ui.lineEdit_signup_username.setFont(QFont(fontDB[0], 12))
+        parent.ui.lineEdit_signup_password.setFont(QFont(fontDB[0], 12))
+        parent.ui.lineEdit_signup_confirm_password.setFont(
+            QFont(fontDB[0], 12))
+        parent.ui.label_login_msg.setFont(QFont(fontDB[0], 11, QFont.Bold))
+        parent.ui.label_signup_msg.setFont(QFont(fontDB[0], 11, QFont.Bold))
+        parent.ui.btn_login.setFont(QFont(fontDB[0], 12, QFont.Bold))
+        parent.ui.btn_signup.setFont(QFont(fontDB[0], 12, QFont.Bold))
 
     def login_username_listener(self, text: str) -> None:
         """Listens for changes in the login username field."""
