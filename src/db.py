@@ -303,16 +303,62 @@ class Database:
         self.__data["_Database__password"] = password
 
     @property
-    def boards(self: "Database") -> list[Board]:
-        """Returns the list of boards.
+    def boards(self: "Database") -> list[Board | list[List | list[Card]]]:
+        """Returns the list of boards containing its attributes and list of
+        Lists containing its attributes and list of Cards containing its
+        attributes.
 
         Returns
         -------
-        boards : list
-            The list of boards.
+        boards : list[Board | list[List | list[Card]]]
+            The list of boards containing its attributes and list of Lists
+            containing its attributes and list of Cards containing its
+            attributes.
+
+        Notes
+        -----
+        I know this is a very ugly function, but this is the only way I can
+        think of. I'm open to suggestions.
         """
-        # Please send help :(
-        # Find a way to serialize
+        try:
+            board_lists = self.__data['_Database__data']
+        except KeyError:
+            board_lists = []
+        boards = []
+        for board_item in board_lists:
+            try:
+                list_data = board_item['_Board__lists']
+            except KeyError:
+                list_data = []
+            lists = []
+
+            for list_item in list_data:
+                try:
+                    card_data = list_item['_List__cards']
+                except KeyError:
+                    card_data = []
+                if len(card_data):
+                    cards = []
+
+                    for card_item in card_data:
+                        card = Card(title=card_item['_Card__title'],
+                                    description=card_item['_Card__description'],
+                                    date=card_item['_Card__date'],
+                                    time=card_item['_Card__time'],
+                                    color=card_item['_Card__color'])
+                        cards.append(card)
+
+                    list_obj = List(
+                        title=list_item['_List__title'],
+                        cards=cards)
+                    lists.append(list_obj)
+
+            board = Board(title=board_item['_Board__title'],
+                          color=board_item['_Board__color'],
+                          lists=lists)
+            boards.append(board)
+
+        return boards
 
     @boards.setter
     def boards(self: "Database", boards: list[Board]) -> None:

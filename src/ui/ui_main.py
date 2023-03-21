@@ -17,7 +17,7 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QPalette, QPixmap, QRadialGradient, QTransform)
 from PySide6.QtWidgets import (QApplication, QFrame, QHBoxLayout, QLabel,
     QMainWindow, QPushButton, QScrollArea, QSizePolicy,
-    QSpacerItem, QVBoxLayout, QWidget)
+    QVBoxLayout, QWidget)
 import resources_rc
 
 class Ui_MainWindow(object):
@@ -85,102 +85,6 @@ class Ui_MainWindow(object):
         self.verticalLayout_4.setSpacing(10)
         self.verticalLayout_4.setObjectName(u"verticalLayout_4")
         self.verticalLayout_4.setContentsMargins(0, 0, 2, 0)
-        self.btn_board_1 = QPushButton(self.scrollAreaContent_panel_left)
-        self.btn_board_1.setObjectName(u"btn_board_1")
-        sizePolicy2 = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Fixed)
-        sizePolicy2.setHorizontalStretch(0)
-        sizePolicy2.setVerticalStretch(0)
-        sizePolicy2.setHeightForWidth(self.btn_board_1.sizePolicy().hasHeightForWidth())
-        self.btn_board_1.setSizePolicy(sizePolicy2)
-        self.btn_board_1.setMinimumSize(QSize(0, 40))
-        font1 = QFont()
-        font1.setFamilies([u"Torus Pro"])
-        font1.setPointSize(12)
-        self.btn_board_1.setFont(font1)
-        self.btn_board_1.setCursor(QCursor(Qt.PointingHandCursor))
-        self.btn_board_1.setFocusPolicy(Qt.TabFocus)
-        self.btn_board_1.setStyleSheet(u"QPushButton {background-color: #6badee; color: #ffffff; border-radius: 5px}\n"
-"QPushButton:hover {background-color: #7e828c;}\n"
-"QPushButton:focus {border-color: #000000; border-width: 1.5px; border-style: solid;}")
-
-        self.verticalLayout_4.addWidget(self.btn_board_1)
-
-        self.btn_board_2 = QPushButton(self.scrollAreaContent_panel_left)
-        self.btn_board_2.setObjectName(u"btn_board_2")
-        self.btn_board_2.setMinimumSize(QSize(0, 40))
-        self.btn_board_2.setFont(font1)
-        self.btn_board_2.setCursor(QCursor(Qt.PointingHandCursor))
-        self.btn_board_2.setFocusPolicy(Qt.TabFocus)
-        self.btn_board_2.setStyleSheet(u"QPushButton {background-color: #fb568a; color: #ffffff; border-radius: 5px}\n"
-"QPushButton:hover {background-color: #7e828c;}\n"
-"QPushButton:focus {border-color: #000000; border-width: 1.5px; border-style: solid;}")
-
-        self.verticalLayout_4.addWidget(self.btn_board_2)
-
-        self.btn_board_3 = QPushButton(self.scrollAreaContent_panel_left)
-        self.btn_board_3.setObjectName(u"btn_board_3")
-        self.btn_board_3.setMinimumSize(QSize(0, 40))
-        self.btn_board_3.setFont(font1)
-        self.btn_board_3.setCursor(QCursor(Qt.PointingHandCursor))
-        self.btn_board_3.setFocusPolicy(Qt.TabFocus)
-        self.btn_board_3.setStyleSheet(u"QPushButton {background-color: #fbd945; color: #ffffff; border-radius: 5px}\n"
-"QPushButton:hover {background-color: #7e828c;}\n"
-"QPushButton:focus {border-color: #000000; border-width: 1.5px; border-style: solid;}")
-
-        self.verticalLayout_4.addWidget(self.btn_board_3)
-
-        self.btn_board_4 = QPushButton(self.scrollAreaContent_panel_left)
-        self.btn_board_4.setObjectName(u"btn_board_4")
-        self.btn_board_4.setMinimumSize(QSize(0, 40))
-        self.btn_board_4.setFont(font1)
-        self.btn_board_4.setCursor(QCursor(Qt.PointingHandCursor))
-        self.btn_board_4.setFocusPolicy(Qt.TabFocus)
-        self.btn_board_4.setStyleSheet(u"QPushButton {background-color: #99c37b; color: #ffffff; border-radius: 5px}\n"
-"QPushButton:hover {background-color: #7e828c;}\n"
-"QPushButton:focus {border-color: #000000; border-width: 1.5px; border-style: solid;}")
-
-        self.verticalLayout_4.addWidget(self.btn_board_4)
-
-        self.btn_board_5 = QPushButton(self.scrollAreaContent_panel_left)
-        self.btn_board_5.setObjectName(u"btn_board_5")
-        self.btn_board_5.setMinimumSize(QSize(0, 40))
-        self.btn_board_5.setFont(font1)
-        self.btn_board_5.setCursor(QCursor(Qt.PointingHandCursor))
-        self.btn_board_5.setFocusPolicy(Qt.TabFocus)
-        self.btn_board_5.setStyleSheet(u"QPushButton {background-color: #c577dc; color: #ffffff; border-radius: 5px}\n"
-"QPushButton:hover {background-color: #7e828c;}\n"
-"QPushButton:focus {border-color: #000000; border-width: 1.5px; border-style: solid;}")
-
-        self.verticalLayout_4.addWidget(self.btn_board_5)
-
-        self.btn_board_6 = QPushButton(self.scrollAreaContent_panel_left)
-        self.btn_board_6.setObjectName(u"btn_board_6")
-        self.btn_board_6.setMinimumSize(QSize(0, 40))
-        self.btn_board_6.setFont(font1)
-        self.btn_board_6.setCursor(QCursor(Qt.PointingHandCursor))
-        self.btn_board_6.setFocusPolicy(Qt.TabFocus)
-        self.btn_board_6.setStyleSheet(u"QPushButton {background-color: #5eb5c1; color: #ffffff; border-radius: 5px}\n"
-"QPushButton:hover {background-color: #7e828c;}\n"
-"QPushButton:focus {border-color: #000000; border-width: 1.5px; border-style: solid;}")
-
-        self.verticalLayout_4.addWidget(self.btn_board_6)
-
-        self.btn_board_7 = QPushButton(self.scrollAreaContent_panel_left)
-        self.btn_board_7.setObjectName(u"btn_board_7")
-        self.btn_board_7.setMinimumSize(QSize(0, 40))
-        self.btn_board_7.setFont(font1)
-        self.btn_board_7.setCursor(QCursor(Qt.PointingHandCursor))
-        self.btn_board_7.setFocusPolicy(Qt.TabFocus)
-        self.btn_board_7.setStyleSheet(u"QPushButton {background-color: #6badee; color: #ffffff; border-radius: 5px}\n"
-"QPushButton:hover {background-color: #7e828c;}\n"
-"QPushButton:focus {border-color: #000000; border-width: 1.5px; border-style: solid;}")
-
-        self.verticalLayout_4.addWidget(self.btn_board_7)
-
-        self.vertSpacer_scrollAreaContent = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
-
-        self.verticalLayout_4.addItem(self.vertSpacer_scrollAreaContent)
-
         self.scrollArea_panel_left.setWidget(self.scrollAreaContent_panel_left)
 
         self.verticalLayout_2.addWidget(self.scrollArea_panel_left)
@@ -188,6 +92,9 @@ class Ui_MainWindow(object):
         self.btn_add_board = QPushButton(self.panel_left)
         self.btn_add_board.setObjectName(u"btn_add_board")
         self.btn_add_board.setMinimumSize(QSize(0, 30))
+        font1 = QFont()
+        font1.setFamilies([u"Torus Pro"])
+        font1.setPointSize(12)
         self.btn_add_board.setFont(font1)
         self.btn_add_board.setCursor(QCursor(Qt.PointingHandCursor))
         self.btn_add_board.setFocusPolicy(Qt.TabFocus)
@@ -240,6 +147,9 @@ class Ui_MainWindow(object):
         self.horzLayout_panel_right.setObjectName(u"horzLayout_panel_right")
         self.label_board = QLabel(self.widget)
         self.label_board.setObjectName(u"label_board")
+        sizePolicy2 = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Fixed)
+        sizePolicy2.setHorizontalStretch(0)
+        sizePolicy2.setVerticalStretch(0)
         sizePolicy2.setHeightForWidth(self.label_board.sizePolicy().hasHeightForWidth())
         self.label_board.setSizePolicy(sizePolicy2)
         self.label_board.setMinimumSize(QSize(0, 70))
@@ -297,14 +207,7 @@ class Ui_MainWindow(object):
         MainWindow.setCentralWidget(self.centralwidget)
         QWidget.setTabOrder(self.btn_add_board, self.btn_board_settings)
         QWidget.setTabOrder(self.btn_board_settings, self.btn_app_settings)
-        QWidget.setTabOrder(self.btn_app_settings, self.btn_board_1)
-        QWidget.setTabOrder(self.btn_board_1, self.btn_board_2)
-        QWidget.setTabOrder(self.btn_board_2, self.btn_board_3)
-        QWidget.setTabOrder(self.btn_board_3, self.btn_board_4)
-        QWidget.setTabOrder(self.btn_board_4, self.btn_board_5)
-        QWidget.setTabOrder(self.btn_board_5, self.btn_board_6)
-        QWidget.setTabOrder(self.btn_board_6, self.btn_board_7)
-        QWidget.setTabOrder(self.btn_board_7, self.scrollArea_panel_left)
+        QWidget.setTabOrder(self.btn_app_settings, self.scrollArea_panel_left)
         QWidget.setTabOrder(self.scrollArea_panel_left, self.scrollArea_panel_right)
 
         self.retranslateUi(MainWindow)
@@ -316,13 +219,6 @@ class Ui_MainWindow(object):
         MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"Kanbaru", None))
         self.label_logo.setText(QCoreApplication.translate("MainWindow", u"Kan\n"
 "baru", None))
-        self.btn_board_1.setText(QCoreApplication.translate("MainWindow", u"Board 1", None))
-        self.btn_board_2.setText(QCoreApplication.translate("MainWindow", u"Board 2", None))
-        self.btn_board_3.setText(QCoreApplication.translate("MainWindow", u"Board 3", None))
-        self.btn_board_4.setText(QCoreApplication.translate("MainWindow", u"Board 4", None))
-        self.btn_board_5.setText(QCoreApplication.translate("MainWindow", u"Board 5", None))
-        self.btn_board_6.setText(QCoreApplication.translate("MainWindow", u"Board 6", None))
-        self.btn_board_7.setText(QCoreApplication.translate("MainWindow", u"Board 7", None))
         self.btn_add_board.setText(QCoreApplication.translate("MainWindow", u" Add a board", None))
         self.btn_board_settings.setText(QCoreApplication.translate("MainWindow", u"Manage Board", None))
         self.btn_app_settings.setText(QCoreApplication.translate("MainWindow", u" App Settings", None))

@@ -40,7 +40,8 @@ class Auth:
             - 0: Signup successful
             - 1: Missing credentials
             - 2: Passwords do not match
-            - 3: Username already exists
+            - 3: Error while checking if username exists
+            - 4: Username already exists
 
         Parameters
         ----------
@@ -63,10 +64,19 @@ class Auth:
         if password != confirm_password:
             logging.warning("Passwords do not match!")
             return 2
-        ref = db.reference(username).get()
+        try:
+            ref = db.reference(username).get()
+        except Exception as e:
+            logging.error(
+                f"Error while checking if username exists! Retrying...", exc_info=True)
+            try:
+                ref = db.reference(username).get()
+            except Exception as e:
+                raise Exception(
+                    f"Could not verify credentials! Please check your internet connection. {e}")
         if ref is not None:
             logging.warning("Username already exists!")
-            return 3
+            return 4
         logging.info(f"New user created: {username}")
         return 0
 
@@ -90,7 +100,18 @@ class Auth:
         if not username or not password:
             logging.warning("Empty credentials!")
             return False
-        ref = db.reference(username).get()
+        try:
+            ref = db.reference(username).get()
+        except:
+            logging.error(
+                f"Error while verifying credentials! Retrying...", exc_info=True)
+            try:
+                ref = db.reference(username).get()
+            except Exception as e:
+                raise Exception(
+                    f"Could not verify credentials! Please check your internet connection. {e}")
+        finally:
+            ref = db.reference(username).get()
         if ref is None or password != ref["_Database__password"]:
             logging.warning("Invalid credentials!")
             return False
