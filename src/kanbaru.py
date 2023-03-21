@@ -2,14 +2,45 @@ import logging
 import os
 import sys
 
-from PySide6.QtWidgets import QApplication, QMainWindow
+try:
+    from PySide6.QtWidgets import QApplication, QMainWindow, QMessageBox
 
-from auth import Auth
-from db import Database
-from utils import getCurrentDirectory
-from ui.main import MainScreen
-from ui.welcome import WelcomeScreen
+    from auth import Auth
+    from db import Database
+    from utils import getCurrentDirectory
+    from ui.main import MainScreen
+    from ui.welcome import WelcomeScreen
+except ModuleNotFoundError:
+    errormsgbox = QMessageBox()
+    errormsgbox.setIcon(QMessageBox.Critical)
+    errormsgbox.setWindowTitle("Error: Module Not Found")
+    errormsgbox.setText("Required modules not found. Would you like to install them now?")
+    errormsgbox.setStandardButtons(QMessageBox.Yes | QMessageBox.No)
+    errormsgbox.setDefaultButton(QMessageBox.Yes)
+    errormsgbox.setEscapeButton(QMessageBox.No)
+    errormsgbox.setDetailedText("Required modules: PySide6, firebase-admin")
 
+    if errormsgbox.exec() == QMessageBox.Yes:
+        try:
+            import pip
+            pip.main(["install", "PySide6"])
+            pip.main(["install", "firebase-admin"])
+        except ModuleNotFoundError:
+            print("pip not found. Installing pip rn. Risky move, but I'll do it for you.\n btw why dont you have pip installed yet?")
+            import ensurepip
+            ensurepip.bootstrap()
+            pip.main(["install", "PySide6"])
+            pip.main(["install", "firebase-admin"])
+        finally:
+            from PySide6.QtWidgets import QApplication, QMainWindow, QMessageBox
+
+            from auth import Auth
+            from db import Database
+            from utils import getCurrentDirectory
+            from ui.main import MainScreen
+            from ui.welcome import WelcomeScreen
+    else:
+        sys.exit(1)
 
 class Kanbaru(QMainWindow):
     def __init__(self) -> None:
