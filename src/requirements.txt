@@ -1,1 +1,2 @@
+firebase_admin==6.1.0
 PySide6==6.4.2
