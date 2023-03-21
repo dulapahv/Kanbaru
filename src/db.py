@@ -344,8 +344,7 @@ class Database:
                         card = Card(title=card_item['_Card__title'],
                                     description=card_item['_Card__description'],
                                     date=card_item['_Card__date'],
-                                    time=card_item['_Card__time'],
-                                    color=card_item['_Card__color'])
+                                    time=card_item['_Card__time'])
                         cards.append(card)
 
                     list_obj = List(

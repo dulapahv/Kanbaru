@@ -282,7 +282,7 @@ QPushButton:focus {border-color: #000000; border-width: 1.5px; border-style: sol
            <item>
             <widget class="QLabel" name="label_board">
              <property name="sizePolicy">
-              <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+              <sizepolicy hsizetype="Ignored" vsizetype="Fixed">
                <horstretch>0</horstretch>
                <verstretch>0</verstretch>
               </sizepolicy>
@@ -304,7 +304,7 @@ QPushButton:focus {border-color: #000000; border-width: 1.5px; border-style: sol
 color: #FFFFFF;</string>
              </property>
              <property name="text">
-              <string>Board 1</string>
+              <string/>
              </property>
              <property name="margin">
               <number>10</number>
@@ -396,11 +396,11 @@ QScrollBar:horizontal {height: 10px; margin: 0px 0px 0px 0px; background-color: 
   </widget>
  </widget>
  <tabstops>
+  <tabstop>scrollArea_panel_right</tabstop>
+  <tabstop>scrollArea_panel_left</tabstop>
   <tabstop>btn_add_board</tabstop>
   <tabstop>btn_board_settings</tabstop>
   <tabstop>btn_app_settings</tabstop>
-  <tabstop>scrollArea_panel_left</tabstop>
-  <tabstop>scrollArea_panel_right</tabstop>
  </tabstops>
  <resources>
   <include location="../resources.qrc"/>

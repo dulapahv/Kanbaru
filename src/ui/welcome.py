@@ -1,16 +1,11 @@
-from PySide6.QtCore import *
-from PySide6.QtGui import *
-from PySide6.QtWidgets import *
+from PySide6.QtGui import QFont
+from PySide6.QtWidgets import QMainWindow
 
 from auth import Auth
 from db import Database
 from ui.main import MainScreen
 from ui.ui_welcome import Ui_WelcomeWindow
 from utils import setupFontDB
-
-# from PySide6.QtCore import (QObject)
-# from PySide6.QtGui import (QFont, QFontDatabase)
-# from PySide6.QtWidgets import (QApplication, QMainWindow)
 
 
 class WelcomeScreen(QMainWindow):

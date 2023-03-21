@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'card_description.ui'
+## Form generated from reading UI file 'card_description_bkp.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.4.2
 ##
@@ -17,8 +17,8 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QPalette, QPixmap, QRadialGradient, QTransform)
 from PySide6.QtWidgets import (QApplication, QCalendarWidget, QFrame, QHBoxLayout,
     QLabel, QLineEdit, QMainWindow, QPushButton,
-    QSizePolicy, QSpacerItem, QTextEdit, QTimeEdit,
-    QVBoxLayout, QWidget)
+    QRadioButton, QSizePolicy, QSpacerItem, QTextEdit,
+    QTimeEdit, QVBoxLayout, QWidget)
 import resources_rc
 
 class Ui_CardWindow(object):
@@ -153,6 +153,98 @@ class Ui_CardWindow(object):
 
         self.verticalLayout_2.addWidget(self.timeEdit)
 
+        self.label_7 = QLabel(self.widget1)
+        self.label_7.setObjectName(u"label_7")
+        self.label_7.setFont(font1)
+        self.label_7.setStyleSheet(u"color: #282c33;")
+        self.label_7.setWordWrap(True)
+
+        self.verticalLayout_2.addWidget(self.label_7)
+
+        self.horizontalLayout_3 = QHBoxLayout()
+        self.horizontalLayout_3.setSpacing(0)
+        self.horizontalLayout_3.setObjectName(u"horizontalLayout_3")
+        self.verticalLayout_6 = QVBoxLayout()
+        self.verticalLayout_6.setSpacing(0)
+        self.verticalLayout_6.setObjectName(u"verticalLayout_6")
+        self.btn_color_1 = QRadioButton(self.widget1)
+        self.btn_color_1.setObjectName(u"btn_color_1")
+        self.btn_color_1.setMinimumSize(QSize(120, 40))
+        self.btn_color_1.setFont(font2)
+        self.btn_color_1.setCursor(QCursor(Qt.PointingHandCursor))
+        self.btn_color_1.setFocusPolicy(Qt.TabFocus)
+        self.btn_color_1.setStyleSheet(u"QRadioButton {background-color: #6badee; color: #ffffff; padding: 0px 5px 0px 5px;}\n"
+"QRadioButton:focus {border-color: #000000; border-width: 1.5px; border-style: solid; padding: 0px 3px 0px 3px;}")
+
+        self.verticalLayout_6.addWidget(self.btn_color_1)
+
+        self.btn_color_2 = QRadioButton(self.widget1)
+        self.btn_color_2.setObjectName(u"btn_color_2")
+        self.btn_color_2.setMinimumSize(QSize(120, 40))
+        self.btn_color_2.setFont(font2)
+        self.btn_color_2.setCursor(QCursor(Qt.PointingHandCursor))
+        self.btn_color_2.setFocusPolicy(Qt.TabFocus)
+        self.btn_color_2.setStyleSheet(u"QRadioButton {background-color: #fb568a; color: #ffffff; padding: 0px 5px 0px 5px;}\n"
+"QRadioButton:focus {border-color: #000000; border-width: 1.5px; border-style: solid; padding: 0px 3px 0px 3px;}")
+
+        self.verticalLayout_6.addWidget(self.btn_color_2)
+
+        self.btn_color_3 = QRadioButton(self.widget1)
+        self.btn_color_3.setObjectName(u"btn_color_3")
+        self.btn_color_3.setMinimumSize(QSize(120, 40))
+        self.btn_color_3.setFont(font2)
+        self.btn_color_3.setCursor(QCursor(Qt.PointingHandCursor))
+        self.btn_color_3.setFocusPolicy(Qt.TabFocus)
+        self.btn_color_3.setStyleSheet(u"QRadioButton {background-color: #fbd945; color: #ffffff; padding: 0px 5px 0px 5px;}\n"
+"QRadioButton:focus {border-color: #000000; border-width: 1.5px; border-style: solid; padding: 0px 3px 0px 3px;}")
+
+        self.verticalLayout_6.addWidget(self.btn_color_3)
+
+
+        self.horizontalLayout_3.addLayout(self.verticalLayout_6)
+
+        self.verticalLayout_5 = QVBoxLayout()
+        self.verticalLayout_5.setSpacing(0)
+        self.verticalLayout_5.setObjectName(u"verticalLayout_5")
+        self.btn_color_4 = QRadioButton(self.widget1)
+        self.btn_color_4.setObjectName(u"btn_color_4")
+        self.btn_color_4.setMinimumSize(QSize(120, 40))
+        self.btn_color_4.setFont(font2)
+        self.btn_color_4.setCursor(QCursor(Qt.PointingHandCursor))
+        self.btn_color_4.setFocusPolicy(Qt.TabFocus)
+        self.btn_color_4.setStyleSheet(u"QRadioButton {background-color: #99c37b; color: #ffffff; padding: 0px 5px 0px 5px;}\n"
+"QRadioButton:focus {border-color: #000000; border-width: 1.5px; border-style: solid; padding: 0px 3px 0px 3px;}")
+
+        self.verticalLayout_5.addWidget(self.btn_color_4)
+
+        self.btn_color_5 = QRadioButton(self.widget1)
+        self.btn_color_5.setObjectName(u"btn_color_5")
+        self.btn_color_5.setMinimumSize(QSize(120, 40))
+        self.btn_color_5.setFont(font2)
+        self.btn_color_5.setCursor(QCursor(Qt.PointingHandCursor))
+        self.btn_color_5.setFocusPolicy(Qt.TabFocus)
+        self.btn_color_5.setStyleSheet(u"QRadioButton {background-color: #c577dc; color: #ffffff; padding: 0px 5px 0px 5px;}\n"
+"QRadioButton:focus {border-color: #000000; border-width: 1.5px; border-style: solid; padding: 0px 3px 0px 3px;}")
+
+        self.verticalLayout_5.addWidget(self.btn_color_5)
+
+        self.btn_color_6 = QRadioButton(self.widget1)
+        self.btn_color_6.setObjectName(u"btn_color_6")
+        self.btn_color_6.setMinimumSize(QSize(120, 40))
+        self.btn_color_6.setFont(font2)
+        self.btn_color_6.setCursor(QCursor(Qt.PointingHandCursor))
+        self.btn_color_6.setFocusPolicy(Qt.TabFocus)
+        self.btn_color_6.setStyleSheet(u"QRadioButton {background-color: #5eb5c1; color: #ffffff; padding: 0px 5px 0px 5px;}\n"
+"QRadioButton:focus {border-color: #000000; border-width: 1.5px; border-style: solid; padding: 0px 3px 0px 3px;}")
+
+        self.verticalLayout_5.addWidget(self.btn_color_6)
+
+
+        self.horizontalLayout_3.addLayout(self.verticalLayout_5)
+
+
+        self.verticalLayout_2.addLayout(self.horizontalLayout_3)
+
         self.horizontalSpacer_2 = QSpacerItem(40, 0, QSizePolicy.Expanding, QSizePolicy.Minimum)
 
         self.verticalLayout_2.addItem(self.horizontalSpacer_2)
@@ -255,7 +347,13 @@ class Ui_CardWindow(object):
         CardWindow.setCentralWidget(self.centralwidget)
         QWidget.setTabOrder(self.lineEdit_title, self.calendarWidget)
         QWidget.setTabOrder(self.calendarWidget, self.timeEdit)
-        QWidget.setTabOrder(self.timeEdit, self.textEdit_description)
+        QWidget.setTabOrder(self.timeEdit, self.btn_color_1)
+        QWidget.setTabOrder(self.btn_color_1, self.btn_color_2)
+        QWidget.setTabOrder(self.btn_color_2, self.btn_color_3)
+        QWidget.setTabOrder(self.btn_color_3, self.btn_color_4)
+        QWidget.setTabOrder(self.btn_color_4, self.btn_color_5)
+        QWidget.setTabOrder(self.btn_color_5, self.btn_color_6)
+        QWidget.setTabOrder(self.btn_color_6, self.textEdit_description)
         QWidget.setTabOrder(self.textEdit_description, self.btn_delete_card)
         QWidget.setTabOrder(self.btn_delete_card, self.btn_cancel)
         QWidget.setTabOrder(self.btn_cancel, self.btn_save)
@@ -274,6 +372,13 @@ class Ui_CardWindow(object):
         self.label_card_info.setText(QCoreApplication.translate("CardWindow", u"in list To Do", None))
         self.label_date.setText(QCoreApplication.translate("CardWindow", u"Date", None))
         self.label_time.setText(QCoreApplication.translate("CardWindow", u"Time", None))
+        self.label_7.setText(QCoreApplication.translate("CardWindow", u"Color", None))
+        self.btn_color_1.setText(QCoreApplication.translate("CardWindow", u"Light blue", None))
+        self.btn_color_2.setText(QCoreApplication.translate("CardWindow", u"Rose", None))
+        self.btn_color_3.setText(QCoreApplication.translate("CardWindow", u"Gold", None))
+        self.btn_color_4.setText(QCoreApplication.translate("CardWindow", u"Green", None))
+        self.btn_color_5.setText(QCoreApplication.translate("CardWindow", u"Lavender", None))
+        self.btn_color_6.setText(QCoreApplication.translate("CardWindow", u"Teal", None))
         self.label_description.setText(QCoreApplication.translate("CardWindow", u"Description", None))
         self.textEdit_description.setHtml(QCoreApplication.translate("CardWindow", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><meta charset=\"utf-8\" /><style type=\"text/css\">\n"

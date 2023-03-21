@@ -147,7 +147,7 @@ class Ui_MainWindow(object):
         self.horzLayout_panel_right.setObjectName(u"horzLayout_panel_right")
         self.label_board = QLabel(self.widget)
         self.label_board.setObjectName(u"label_board")
-        sizePolicy2 = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Fixed)
+        sizePolicy2 = QSizePolicy(QSizePolicy.Ignored, QSizePolicy.Fixed)
         sizePolicy2.setHorizontalStretch(0)
         sizePolicy2.setVerticalStretch(0)
         sizePolicy2.setHeightForWidth(self.label_board.sizePolicy().hasHeightForWidth())
@@ -205,10 +205,10 @@ class Ui_MainWindow(object):
         self.horizontalLayout.addWidget(self.widget)
 
         MainWindow.setCentralWidget(self.centralwidget)
+        QWidget.setTabOrder(self.scrollArea_panel_right, self.scrollArea_panel_left)
+        QWidget.setTabOrder(self.scrollArea_panel_left, self.btn_add_board)
         QWidget.setTabOrder(self.btn_add_board, self.btn_board_settings)
         QWidget.setTabOrder(self.btn_board_settings, self.btn_app_settings)
-        QWidget.setTabOrder(self.btn_app_settings, self.scrollArea_panel_left)
-        QWidget.setTabOrder(self.scrollArea_panel_left, self.scrollArea_panel_right)
 
         self.retranslateUi(MainWindow)
 
@@ -222,6 +222,6 @@ class Ui_MainWindow(object):
         self.btn_add_board.setText(QCoreApplication.translate("MainWindow", u" Add a board", None))
         self.btn_board_settings.setText(QCoreApplication.translate("MainWindow", u"Manage Board", None))
         self.btn_app_settings.setText(QCoreApplication.translate("MainWindow", u" App Settings", None))
-        self.label_board.setText(QCoreApplication.translate("MainWindow", u"Board 1", None))
+        self.label_board.setText("")
     # retranslateUi
 

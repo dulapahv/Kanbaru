@@ -1,15 +1,20 @@
+# from PySide6.QtCore import QCoreApplication, QSize, Qt
+# from PySide6.QtGui import QCursor, QFont
+# from PySide6.QtWidgets import (QAbstractItemView, QAbstractScrollArea, QFrame,
+#                                QLabel, QListWidget, QListWidgetItem,
+#                                QMainWindow, QPushButton, QSizePolicy,
+#                                QSpacerItem, QVBoxLayout, QWidget)
 from PySide6.QtCore import *
 from PySide6.QtGui import *
 from PySide6.QtWidgets import *
 
 from db import Database
-from kanbaru_objects import Board, List, Card
+from kanbaru_objects import Board, Card, List
 from ui.ui_main import Ui_MainWindow
 from utils import setupFontDB
-
-# from PySide6.QtCore import (QObject)
-# from PySide6.QtGui import (QFont, QFontDatabase)
-# from PySide6.QtWidgets import (QApplication, QMainWindow)
+from ui.app_settings import AppSettings
+from ui.board_settings import BoardSettings
+from ui.card_description import CardDescription
 
 
 class MainScreen(QMainWindow):
@@ -18,6 +23,9 @@ class MainScreen(QMainWindow):
 
         parent.ui = Ui_MainWindow()
         parent.ui.setupUi(parent)
+
+        title = "12345678901234567890123456789012345678901234567890"
+        parent.ui.label_board.setText(title[:40] + (title[40:] and '...'))
 
         boards = Database.getInstance().boards
 
@@ -32,6 +40,11 @@ class MainScreen(QMainWindow):
 
         self.addListButton(parent, "TorusPro.ttf")
         self.setupFont(parent, "TorusPro.ttf")
+
+        parent.ui.btn_app_settings.clicked.connect(
+            lambda: self.showAppSettings(parent))
+        parent.ui.btn_board_settings.clicked.connect(
+            lambda: self.showBoardSettings(parent))
 
     def boardFactory(self, parent: Ui_MainWindow, board: Board, font: str) -> QPushButton:
         """Creates a board widget.
@@ -66,7 +79,8 @@ class MainScreen(QMainWindow):
                                           "QPushButton:hover {background-color: #7e828c;}\n"
                                           "QPushButton:focus {border-color: #000000; border-width: 1.5px; border-style: solid;}")
 
-        parent.ui.btn_board.setText(board.title)
+        parent.ui.btn_board.setText(
+            board.title[:12] + (board.title[12:] and '...'))
         fontDB = setupFontDB(font)
         parent.ui.btn_board.setFont(QFont(fontDB[0], 12))
 
@@ -200,7 +214,7 @@ class MainScreen(QMainWindow):
         parent.ui.verticalLayout_1.addWidget(parent.ui.widget)
 
         parent.ui.label_list.setText(
-            QCoreApplication.translate("MainWindow", list.title, None))
+            QCoreApplication.translate("MainWindow", list.title[:25] + (list.title[25:] and '...'), None))
 
         parent.ui.listWidget.setSortingEnabled(False)
 
@@ -214,7 +228,8 @@ class MainScreen(QMainWindow):
         for card in list.cards:
             qlistwidgetitem = self.cardFactory(parent, card, font)
             parent.ui.listWidget.addItem(qlistwidgetitem)
-
+            parent.ui.listWidget.clicked.connect(
+                lambda: self.showCardDescription(parent, card))
         return parent.ui.list
 
     def cardFactory(self, parent: Ui_MainWindow, card: Card, font: str) -> QListWidgetItem:
@@ -239,7 +254,7 @@ class MainScreen(QMainWindow):
             Qt.ItemIsSelectable | Qt.ItemIsDragEnabled | Qt.ItemIsUserCheckable | Qt.ItemIsEnabled)
         qlistwidgetitem = parent.ui.listWidget.item(0)
         qlistwidgetitem.setText(
-            QCoreApplication.translate("MainWindow", card.title[:30] + (card.title[30:] and '...'), None))
+            QCoreApplication.translate("MainWindow", card.title[:24] + (card.title[24:] and '...'), None))
         fontDB = setupFontDB(font)
         qlistwidgetitem.setFont(QFont(fontDB[0], 12))
         return qlistwidgetitem
@@ -293,6 +308,21 @@ class MainScreen(QMainWindow):
 
         fontDB = setupFontDB(font)
         parent.ui.btn_add_list.setFont(QFont(fontDB[0], 12))
+
+    def showAppSettings(self, parent: Ui_MainWindow) -> None:
+        self.appSettings = AppSettings(parent)
+        self.appSettings.setWindowModality(Qt.ApplicationModal)
+        self.appSettings.show()
+
+    def showBoardSettings(self, parent: Ui_MainWindow) -> None:
+        self.boardSettings = BoardSettings(parent)
+        self.boardSettings.setWindowModality(Qt.ApplicationModal)
+        self.boardSettings.show()
+
+    def showCardDescription(self, parent: Ui_MainWindow, card: Card) -> None:
+        self.cardDescription = CardDescription(card)
+        self.cardDescription.setWindowModality(Qt.ApplicationModal)
+        self.cardDescription.show()
 
     def setupFont(self, parent: Ui_MainWindow, font: str | list[str]) -> None:
         fontDB = setupFontDB(font)

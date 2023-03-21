@@ -14,11 +14,10 @@ class Color(Enum):
 
 
 class Card:
-    def __init__(self, title: str = "New Card", date="", time="", color="", description: str = "") -> None:
+    def __init__(self, title: str = "New Card", date="", time="", description: str = "") -> None:
         self.__title = title
         self.__date = date
         self.__time = time
-        self.__color = color
         self.__description = description
 
     @property
@@ -30,17 +29,12 @@ class Card:
         return self.__description
 
     @property
-    def color(self) -> str:
-        return self.__color
-
-    # polymorphism to support multiple param types?
-    @property
-    def date(self, date):
-        self.__date = date
+    def date(self) -> str:
+        return self.__date
 
     @property
-    def time(self, time):
-        self.__time = time
+    def time(self) -> str:
+        return self.__time
 
     @title.setter
     def title(self, title: str):
@@ -50,21 +44,13 @@ class Card:
     def description(self, description: str):
         self.__description = description
 
-    @color.setter
-    def color(self, color):
-        if color in Color:
-            self.__color = color
-        else:
-            raise ValueError(
-                "Invalid color. We only support the following colors: " + str(Color))
-
     @date.setter
-    def date(self):
-        return self.__date
+    def date(self, date: str):
+        self.__date = date
 
     @time.setter
-    def time(self):
-        return self.__time
+    def time(self, time: str):
+        self.__time = time
 
     def __str__(self):
         return self.__title
@@ -114,7 +100,7 @@ class Board:
         return self.__title
 
     @property
-    def color(self):
+    def color(self) -> str:
         return self.__color
 
     @property
@@ -126,12 +112,13 @@ class Board:
         self.__title = title
 
     @color.setter
-    def color(self, color) -> None:
-        if color in Color:
-            self.__color = color
-        else:
-            raise ValueError(
-                "Invalid color. We only support the following colors: " + str(Color))
+    def color(self, color: str) -> None:
+        # if color in Color:
+        #     self.__color = color
+        # else:
+        #     raise ValueError(
+        #         "Invalid color. We only support the following colors: " + str(Color))
+        self.__color = color
 
     @lists.setter
     def lists(self, list: List) -> None:
