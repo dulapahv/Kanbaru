@@ -85,7 +85,7 @@ class Ui_CardWindow(object):
         self.lineEdit_title.setObjectName(u"lineEdit_title")
         self.lineEdit_title.setMinimumSize(QSize(0, 30))
         font2 = QFont()
-        font2.setFamilies([u"Torus Pro"])
+        font2.setFamilies([u"Roboto"])
         font2.setPointSize(12)
         self.lineEdit_title.setFont(font2)
         self.lineEdit_title.setStyleSheet(u"QLineEdit {background-color: #ebecf0; color: #282c33; border-radius: 5px; padding: 0px 8px 0px 8px}\n"
@@ -143,7 +143,7 @@ class Ui_CardWindow(object):
         self.timeEdit.setObjectName(u"timeEdit")
         self.timeEdit.setMinimumSize(QSize(0, 40))
         font4 = QFont()
-        font4.setFamilies([u"Torus Pro"])
+        font4.setFamilies([u"Roboto"])
         font4.setPointSize(16)
         self.timeEdit.setFont(font4)
         self.timeEdit.setCursor(QCursor(Qt.PointingHandCursor))
@@ -178,7 +178,7 @@ class Ui_CardWindow(object):
         self.textEdit_description = QTextEdit(self.widget1)
         self.textEdit_description.setObjectName(u"textEdit_description")
         font5 = QFont()
-        font5.setFamilies([u"Torus Pro"])
+        font5.setFamilies([u"Roboto"])
         font5.setPointSize(12)
         font5.setBold(False)
         self.textEdit_description.setFont(font5)
@@ -202,7 +202,10 @@ class Ui_CardWindow(object):
         sizePolicy1.setHeightForWidth(self.btn_delete_card.sizePolicy().hasHeightForWidth())
         self.btn_delete_card.setSizePolicy(sizePolicy1)
         self.btn_delete_card.setMinimumSize(QSize(140, 30))
-        self.btn_delete_card.setFont(font2)
+        font6 = QFont()
+        font6.setFamilies([u"Torus Pro"])
+        font6.setPointSize(12)
+        self.btn_delete_card.setFont(font6)
         self.btn_delete_card.setCursor(QCursor(Qt.PointingHandCursor))
         self.btn_delete_card.setFocusPolicy(Qt.TabFocus)
         self.btn_delete_card.setStyleSheet(u"QPushButton {background-color: #d63a3e; color: #ffffff; border-radius: 5px}\n"
@@ -220,7 +223,7 @@ class Ui_CardWindow(object):
         sizePolicy1.setHeightForWidth(self.btn_cancel.sizePolicy().hasHeightForWidth())
         self.btn_cancel.setSizePolicy(sizePolicy1)
         self.btn_cancel.setMinimumSize(QSize(100, 30))
-        self.btn_cancel.setFont(font2)
+        self.btn_cancel.setFont(font6)
         self.btn_cancel.setCursor(QCursor(Qt.PointingHandCursor))
         self.btn_cancel.setFocusPolicy(Qt.TabFocus)
         self.btn_cancel.setStyleSheet(u"QPushButton {background-color: #acb2bf; color: #ffffff; border-radius: 5px}\n"
@@ -234,7 +237,7 @@ class Ui_CardWindow(object):
         sizePolicy1.setHeightForWidth(self.btn_save.sizePolicy().hasHeightForWidth())
         self.btn_save.setSizePolicy(sizePolicy1)
         self.btn_save.setMinimumSize(QSize(100, 30))
-        self.btn_save.setFont(font2)
+        self.btn_save.setFont(font6)
         self.btn_save.setCursor(QCursor(Qt.PointingHandCursor))
         self.btn_save.setFocusPolicy(Qt.TabFocus)
         self.btn_save.setStyleSheet(u"QPushButton {background-color: #6badee; color: #ffffff; border-radius: 5px}\n"
@@ -281,8 +284,8 @@ class Ui_CardWindow(object):
 "hr { height: 1px; border-width: 0; }\n"
 "li.unchecked::marker { content: \"\\2610\"; }\n"
 "li.checked::marker { content: \"\\2612\"; }\n"
-"</style></head><body style=\" font-family:'Torus Pro'; font-size:12pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>", None))
+"</style></head><body style=\" font-family:'Roboto'; font-size:12pt; font-weight:400; font-style:normal;\">\n"
+"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Torus Pro';\"><br /></p></body></html>", None))
         self.textEdit_description.setPlaceholderText(QCoreApplication.translate("CardWindow", u"Add a more detailed description...", None))
         self.btn_delete_card.setText(QCoreApplication.translate("CardWindow", u"Delete Card", None))
         self.btn_cancel.setText(QCoreApplication.translate("CardWindow", u"Cancel", None))

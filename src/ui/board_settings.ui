@@ -141,7 +141,7 @@ QScrollBar:horizontal {height: 10px; margin: 0px 0px 0px 0px; background-color: 
              <property name="geometry">
               <rect>
                <x>0</x>
-               <y>-240</y>
+               <y>0</y>
                <width>516</width>
                <height>871</height>
               </rect>
@@ -199,7 +199,7 @@ QScrollBar:horizontal {height: 10px; margin: 0px 0px 0px 0px; background-color: 
                     </property>
                     <property name="font">
                      <font>
-                      <family>Torus Pro</family>
+                      <family>Roboto</family>
                       <pointsize>12</pointsize>
                      </font>
                     </property>

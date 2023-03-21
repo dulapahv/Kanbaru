@@ -24,7 +24,7 @@ class Auth:
         status : int
             Status code of the login process.
         """
-        logging.debug("Logging in...")
+        logging.info("Logging in...")
         if not username or not password:
             logging.warning("Missing credentials!")
             return 1
@@ -56,7 +56,7 @@ class Auth:
         status : int
             Status code of the signup process.
         """
-        logging.debug("Signing up...")
+        logging.info("Signing up...")
         if not username or not password or not confirm_password:
             logging.warning("Missing credentials!")
             return 1

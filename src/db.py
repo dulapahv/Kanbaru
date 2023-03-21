@@ -48,14 +48,12 @@ class Database:
     _instance: "Database" = None
 
     def __init__(self: "Database") -> None:
-        if Database._instance is not None:
-            logging.warning("Database class is a singleton class!")
-        else:
-            Database._instance = self
+        assert Database._instance is None, "Database class is a singleton class!"
+        Database._instance = self
 
-            self.__username: str = ""
-            self.__password: str = ""
-            self.__data: str | list[dict] = [vars(Board())]
+        self.__username: str = ""
+        self.__password: str = ""
+        self.__data: list[dict] = []
 
     @staticmethod
     def getInstance() -> "Database":
@@ -369,6 +367,43 @@ class Database:
             The list of boards.
         """
         self.__data["_Board__title"] = boards
+
+    def logout(self: "Database") -> None:
+        """Logs the user out of the application.
+
+        Raises
+        ------
+        Exception
+            If the database cannot be written to the database file, an exception will be raised.
+        """
+        logging.info("Logging out...")
+        self.username: str = ""
+        self.password: str = ""
+        self.__data: list[dict] = []
+        try:
+            Database.create(self)
+            logging.info("Logged out")
+        except Exception as e:
+            logging.warning("Failed to log out!", exc_info=True)
+
+    def deleteAccount(self: "Database") -> None:
+        """Deletes the user's account.
+
+        Raises
+        ------
+        Exception
+            If the database cannot be deleted from the database file, an exception will be raised.
+        """
+        logging.info("Deleting account...")
+        try:
+            ref = db.reference(self.username)
+            if ref is None:
+                raise Exception("User does not exist!")
+            ref.delete()
+            self.logout()
+            logging.info("Account deleted")
+        except Exception as e:
+            logging.warning("Failed to delete account!", exc_info=True)
 
     def __str__(self: "Database") -> str:
         """Returns the database instance as a stringified dictionary.

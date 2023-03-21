@@ -1,6 +1,8 @@
 import os
+from typing import Callable
 
 from PySide6.QtGui import QFontDatabase
+from PySide6.QtWidgets import QMainWindow, QMessageBox
 
 
 def getCurrentDirectory() -> str:
@@ -18,15 +20,22 @@ def getCurrentDirectory() -> str:
     return path
 
 
-def setupFontDB(font: str | list[str]) -> QFontDatabase:
+def setupFontDB(font: str) -> QFontDatabase:
     path = getCurrentDirectory()
-    if font is not list:
-        font = [font]
-    for f in font:
-        fontPath = os.path.dirname(path)
-        fontPath = os.path.join(path, "resources", "font", f)
-        fontDatabase = QFontDatabase.addApplicationFont(fontPath)
-        if fontDatabase < 0:
-            raise Exception(
-                f'Font not found at path "{fontPath}"! Exiting...')
+    fontPath = os.path.dirname(path)
+    fontPath = os.path.join(path, "resources", "font", font)
+    fontDatabase = QFontDatabase.addApplicationFont(fontPath)
+    if fontDatabase < 0:
+        raise Exception(
+            f'Font not found at path "{fontPath}"! Exiting...')
     return QFontDatabase.applicationFontFamilies(fontDatabase)
+
+
+def dialogFactory(parent: QMainWindow, function: Callable, title: str, msg: str) -> None:
+    dialog = QMessageBox()
+    dialog.setIcon(QMessageBox.Information)
+    dialog.setWindowTitle(title)
+    dialog.setText(msg)
+    dialog.setStandardButtons(QMessageBox.Yes | QMessageBox.No)
+    if dialog.exec() == QMessageBox.Yes:
+        function(parent)

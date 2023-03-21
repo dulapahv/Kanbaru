@@ -7,14 +7,15 @@ try:
 
     from auth import Auth
     from db import Database
-    from utils import getCurrentDirectory
     from ui.main import MainScreen
     from ui.welcome import WelcomeScreen
+    from utils import getCurrentDirectory
 except ModuleNotFoundError:
     errormsgbox = QMessageBox()
     errormsgbox.setIcon(QMessageBox.Critical)
     errormsgbox.setWindowTitle("Error: Module Not Found")
-    errormsgbox.setText("Required modules not found. Would you like to install them now?")
+    errormsgbox.setText(
+        "Required modules not found. Would you like to install them now?")
     errormsgbox.setStandardButtons(QMessageBox.Yes | QMessageBox.No)
     errormsgbox.setDefaultButton(QMessageBox.Yes)
     errormsgbox.setEscapeButton(QMessageBox.No)
@@ -32,15 +33,17 @@ except ModuleNotFoundError:
             pip.main(["install", "PySide6"])
             pip.main(["install", "firebase-admin"])
         finally:
-            from PySide6.QtWidgets import QApplication, QMainWindow, QMessageBox
+            from PySide6.QtWidgets import (QApplication, QMainWindow,
+                                           QMessageBox)
 
             from auth import Auth
             from db import Database
-            from utils import getCurrentDirectory
             from ui.main import MainScreen
             from ui.welcome import WelcomeScreen
+            from utils import getCurrentDirectory
     else:
         sys.exit(1)
+
 
 class Kanbaru(QMainWindow):
     def __init__(self) -> None:

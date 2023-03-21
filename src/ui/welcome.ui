@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Welcome</string>
+   <string>Kanbaru</string>
   </property>
   <property name="windowIcon">
    <iconset resource="../resources.qrc">
@@ -297,7 +297,7 @@ border-radius: 5px;</string>
                       </property>
                       <property name="font">
                        <font>
-                        <family>Torus Pro</family>
+                        <family>Roboto</family>
                         <pointsize>12</pointsize>
                        </font>
                       </property>
@@ -323,7 +323,7 @@ QLineEdit:focus {border-color: #6badee;}</string>
                       </property>
                       <property name="font">
                        <font>
-                        <family>Torus Pro</family>
+                        <family>Roboto</family>
                         <pointsize>12</pointsize>
                        </font>
                       </property>
@@ -486,7 +486,7 @@ QPushButton:focus {border-color: #000000; border-width: 1.5px; border-style: sol
                       </property>
                       <property name="font">
                        <font>
-                        <family>Torus Pro</family>
+                        <family>Roboto</family>
                         <pointsize>12</pointsize>
                        </font>
                       </property>
@@ -512,7 +512,7 @@ QLineEdit:focus {border-color: #6badee;}</string>
                       </property>
                       <property name="font">
                        <font>
-                        <family>Torus Pro</family>
+                        <family>Roboto</family>
                         <pointsize>12</pointsize>
                        </font>
                       </property>
@@ -541,7 +541,7 @@ QLineEdit:focus {border-color: #6badee;}</string>
                       </property>
                       <property name="font">
                        <font>
-                        <family>Torus Pro</family>
+                        <family>Roboto</family>
                         <pointsize>12</pointsize>
                        </font>
                       </property>

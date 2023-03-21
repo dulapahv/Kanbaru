@@ -1,11 +1,18 @@
-from PySide6.QtGui import QFont
+from PySide6.QtCore import Qt
+from PySide6.QtGui import QFont, QKeySequence, QShortcut
 from PySide6.QtWidgets import QMainWindow
+
+from PySide6.QtCore import *
+from PySide6.QtGui import *
+from PySide6.QtWidgets import *
+
 
 from auth import Auth
 from db import Database
 from ui.main import MainScreen
 from ui.ui_welcome import Ui_WelcomeWindow
 from utils import setupFontDB
+from typing import Callable
 
 
 class WelcomeScreen(QMainWindow):
@@ -15,7 +22,7 @@ class WelcomeScreen(QMainWindow):
         parent.ui: Ui_WelcomeWindow = Ui_WelcomeWindow()
         parent.ui.setupUi(parent)
 
-        self.setupFont(parent, "TorusPro.ttf")
+        self.setupFont(parent)
 
         parent.ui.label_login_msg.setText("")
         parent.ui.label_signup_msg.setText("")
@@ -38,6 +45,15 @@ class WelcomeScreen(QMainWindow):
 
         parent.ui.btn_login.clicked.connect(lambda: self.login(parent))
         parent.ui.btn_signup.clicked.connect(lambda: self.signup(parent))
+
+        parent.ui.btn_login.keyPressEvent = lambda event: self.keyPressEvent(
+            parent, event, self.login)
+        parent.ui.btn_signup.keyPressEvent = lambda event: self.keyPressEvent(
+            parent, event, self.signup)
+
+    def keyPressEvent(self, parent: Ui_WelcomeWindow, event: QKeyEvent, function: Callable) -> None:
+        if event.key() == Qt.Key_Return:
+            function(parent)
 
     def signup(self, parent: Ui_WelcomeWindow) -> None:
         """Signs up a user.
@@ -105,21 +121,22 @@ class WelcomeScreen(QMainWindow):
             case 2:
                 parent.ui.label_login_msg.setText("Invalid credentials!")
 
-    def setupFont(self, parent: Ui_WelcomeWindow, font: str | list[str]) -> None:
-        fontDB = setupFontDB(font)
-        parent.ui.label_logo.setFont(QFont(fontDB[0], 36))
-        parent.ui.label_login.setFont(QFont(fontDB[0], 13, QFont.Bold))
-        parent.ui.label_signup.setFont(QFont(fontDB[0], 13, QFont.Bold))
-        parent.ui.lineEdit_login_username.setFont(QFont(fontDB[0], 12))
-        parent.ui.lineEdit_login_password.setFont(QFont(fontDB[0], 12))
-        parent.ui.lineEdit_signup_username.setFont(QFont(fontDB[0], 12))
-        parent.ui.lineEdit_signup_password.setFont(QFont(fontDB[0], 12))
+    def setupFont(self, parent: Ui_WelcomeWindow) -> None:
+        roboto = setupFontDB("Roboto.ttf")[0]
+        torus = setupFontDB("TorusPro.ttf")[0]
+        parent.ui.label_logo.setFont(QFont(torus, 36))
+        parent.ui.label_login.setFont(QFont(torus, 13, QFont.Bold))
+        parent.ui.label_signup.setFont(QFont(torus, 13, QFont.Bold))
+        parent.ui.lineEdit_login_username.setFont(QFont(roboto, 12))
+        parent.ui.lineEdit_login_password.setFont(QFont(roboto, 12))
+        parent.ui.lineEdit_signup_username.setFont(QFont(roboto, 12))
+        parent.ui.lineEdit_signup_password.setFont(QFont(roboto, 12))
         parent.ui.lineEdit_signup_confirm_password.setFont(
-            QFont(fontDB[0], 12))
-        parent.ui.label_login_msg.setFont(QFont(fontDB[0], 11, QFont.Bold))
-        parent.ui.label_signup_msg.setFont(QFont(fontDB[0], 11, QFont.Bold))
-        parent.ui.btn_login.setFont(QFont(fontDB[0], 12, QFont.Bold))
-        parent.ui.btn_signup.setFont(QFont(fontDB[0], 12, QFont.Bold))
+            QFont(roboto, 12))
+        parent.ui.label_login_msg.setFont(QFont(roboto, 11, QFont.Bold))
+        parent.ui.label_signup_msg.setFont(QFont(roboto, 11, QFont.Bold))
+        parent.ui.btn_login.setFont(QFont(torus, 12, QFont.Bold))
+        parent.ui.btn_signup.setFont(QFont(torus, 12, QFont.Bold))
 
     def login_username_listener(self, text: str) -> None:
         """Listens for changes in the login username field."""

@@ -83,7 +83,7 @@ class Ui_BoardWindow(object):
         self.scrollArea.setWidgetResizable(True)
         self.scrollAreaWidgetContents = QWidget()
         self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
-        self.scrollAreaWidgetContents.setGeometry(QRect(0, -240, 516, 871))
+        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 516, 871))
         self.verticalLayout_4 = QVBoxLayout(self.scrollAreaWidgetContents)
         self.verticalLayout_4.setSpacing(0)
         self.verticalLayout_4.setObjectName(u"verticalLayout_4")
@@ -109,7 +109,7 @@ class Ui_BoardWindow(object):
         self.lineEdit_title.setObjectName(u"lineEdit_title")
         self.lineEdit_title.setMinimumSize(QSize(0, 30))
         font2 = QFont()
-        font2.setFamilies([u"Torus Pro"])
+        font2.setFamilies([u"Roboto"])
         font2.setPointSize(12)
         self.lineEdit_title.setFont(font2)
         self.lineEdit_title.setStyleSheet(u"QLineEdit {background-color: #ebecf0; color: #282c33; border-radius: 5px; padding: 0px 8px 0px 8px}\n"
@@ -138,7 +138,10 @@ class Ui_BoardWindow(object):
         self.btn_color_1 = QRadioButton(self.scrollAreaWidgetContents)
         self.btn_color_1.setObjectName(u"btn_color_1")
         self.btn_color_1.setMinimumSize(QSize(120, 40))
-        self.btn_color_1.setFont(font2)
+        font3 = QFont()
+        font3.setFamilies([u"Torus Pro"])
+        font3.setPointSize(12)
+        self.btn_color_1.setFont(font3)
         self.btn_color_1.setCursor(QCursor(Qt.PointingHandCursor))
         self.btn_color_1.setFocusPolicy(Qt.TabFocus)
         self.btn_color_1.setStyleSheet(u"QRadioButton {background-color: #6badee; color: #ffffff; padding: 0px 5px 0px 5px;}\n"
@@ -149,7 +152,7 @@ class Ui_BoardWindow(object):
         self.btn_color_2 = QRadioButton(self.scrollAreaWidgetContents)
         self.btn_color_2.setObjectName(u"btn_color_2")
         self.btn_color_2.setMinimumSize(QSize(120, 40))
-        self.btn_color_2.setFont(font2)
+        self.btn_color_2.setFont(font3)
         self.btn_color_2.setCursor(QCursor(Qt.PointingHandCursor))
         self.btn_color_2.setFocusPolicy(Qt.TabFocus)
         self.btn_color_2.setStyleSheet(u"QRadioButton {background-color: #fb568a; color: #ffffff; padding: 0px 5px 0px 5px;}\n"
@@ -160,7 +163,7 @@ class Ui_BoardWindow(object):
         self.btn_color_3 = QRadioButton(self.scrollAreaWidgetContents)
         self.btn_color_3.setObjectName(u"btn_color_3")
         self.btn_color_3.setMinimumSize(QSize(120, 40))
-        self.btn_color_3.setFont(font2)
+        self.btn_color_3.setFont(font3)
         self.btn_color_3.setCursor(QCursor(Qt.PointingHandCursor))
         self.btn_color_3.setFocusPolicy(Qt.TabFocus)
         self.btn_color_3.setStyleSheet(u"QRadioButton {background-color: #fbd945; color: #ffffff; padding: 0px 5px 0px 5px;}\n"
@@ -177,7 +180,7 @@ class Ui_BoardWindow(object):
         self.btn_color_4 = QRadioButton(self.scrollAreaWidgetContents)
         self.btn_color_4.setObjectName(u"btn_color_4")
         self.btn_color_4.setMinimumSize(QSize(120, 40))
-        self.btn_color_4.setFont(font2)
+        self.btn_color_4.setFont(font3)
         self.btn_color_4.setCursor(QCursor(Qt.PointingHandCursor))
         self.btn_color_4.setFocusPolicy(Qt.TabFocus)
         self.btn_color_4.setStyleSheet(u"QRadioButton {background-color: #99c37b; color: #ffffff; padding: 0px 5px 0px 5px;}\n"
@@ -188,7 +191,7 @@ class Ui_BoardWindow(object):
         self.btn_color_5 = QRadioButton(self.scrollAreaWidgetContents)
         self.btn_color_5.setObjectName(u"btn_color_5")
         self.btn_color_5.setMinimumSize(QSize(120, 40))
-        self.btn_color_5.setFont(font2)
+        self.btn_color_5.setFont(font3)
         self.btn_color_5.setCursor(QCursor(Qt.PointingHandCursor))
         self.btn_color_5.setFocusPolicy(Qt.TabFocus)
         self.btn_color_5.setStyleSheet(u"QRadioButton {background-color: #c577dc; color: #ffffff; padding: 0px 5px 0px 5px;}\n"
@@ -199,7 +202,7 @@ class Ui_BoardWindow(object):
         self.btn_color_6 = QRadioButton(self.scrollAreaWidgetContents)
         self.btn_color_6.setObjectName(u"btn_color_6")
         self.btn_color_6.setMinimumSize(QSize(120, 40))
-        self.btn_color_6.setFont(font2)
+        self.btn_color_6.setFont(font3)
         self.btn_color_6.setCursor(QCursor(Qt.PointingHandCursor))
         self.btn_color_6.setFocusPolicy(Qt.TabFocus)
         self.btn_color_6.setStyleSheet(u"QRadioButton {background-color: #5eb5c1; color: #ffffff; padding: 0px 5px 0px 5px;}\n"
@@ -227,10 +230,10 @@ class Ui_BoardWindow(object):
 
         self.label_2 = QLabel(self.scrollAreaWidgetContents)
         self.label_2.setObjectName(u"label_2")
-        font3 = QFont()
-        font3.setFamilies([u"Torus Pro"])
-        font3.setPointSize(11)
-        self.label_2.setFont(font3)
+        font4 = QFont()
+        font4.setFamilies([u"Torus Pro"])
+        font4.setPointSize(11)
+        self.label_2.setFont(font4)
         self.label_2.setWordWrap(True)
 
         self.verticalLayout_2.addWidget(self.label_2)
@@ -243,11 +246,11 @@ class Ui_BoardWindow(object):
         __qlistwidgetitem2 = QListWidgetItem(self.listWidget_manage_list)
         __qlistwidgetitem2.setFlags(Qt.ItemIsSelectable|Qt.ItemIsEditable|Qt.ItemIsDragEnabled|Qt.ItemIsUserCheckable|Qt.ItemIsEnabled);
         self.listWidget_manage_list.setObjectName(u"listWidget_manage_list")
-        font4 = QFont()
-        font4.setFamilies([u"Torus Pro"])
-        font4.setPointSize(12)
-        font4.setBold(True)
-        self.listWidget_manage_list.setFont(font4)
+        font5 = QFont()
+        font5.setFamilies([u"Torus Pro"])
+        font5.setPointSize(12)
+        font5.setBold(True)
+        self.listWidget_manage_list.setFont(font5)
         self.listWidget_manage_list.setFocusPolicy(Qt.TabFocus)
         self.listWidget_manage_list.setStyleSheet(u"QListWidget::item {height: 40px; padding: 0px 8px 0px 8px}\n"
 "QListWidget::item {background-color: #ffffff; color: #000000; border-radius: 5px}\n"
@@ -280,7 +283,7 @@ class Ui_BoardWindow(object):
         sizePolicy2.setHeightForWidth(self.btn_delete_list.sizePolicy().hasHeightForWidth())
         self.btn_delete_list.setSizePolicy(sizePolicy2)
         self.btn_delete_list.setMinimumSize(QSize(140, 30))
-        self.btn_delete_list.setFont(font2)
+        self.btn_delete_list.setFont(font3)
         self.btn_delete_list.setCursor(QCursor(Qt.PointingHandCursor))
         self.btn_delete_list.setFocusPolicy(Qt.TabFocus)
         self.btn_delete_list.setStyleSheet(u"QPushButton {background-color: #d63a3e; color: #ffffff; border-radius: 5px}\n"
@@ -294,7 +297,7 @@ class Ui_BoardWindow(object):
         sizePolicy2.setHeightForWidth(self.btn_delete_list_2.sizePolicy().hasHeightForWidth())
         self.btn_delete_list_2.setSizePolicy(sizePolicy2)
         self.btn_delete_list_2.setMinimumSize(QSize(140, 30))
-        self.btn_delete_list_2.setFont(font2)
+        self.btn_delete_list_2.setFont(font3)
         self.btn_delete_list_2.setCursor(QCursor(Qt.PointingHandCursor))
         self.btn_delete_list_2.setFocusPolicy(Qt.TabFocus)
         self.btn_delete_list_2.setStyleSheet(u"QPushButton {background-color: #6badee; color: #ffffff; border-radius: 5px}\n"
@@ -324,7 +327,7 @@ class Ui_BoardWindow(object):
 
         self.label_4 = QLabel(self.scrollAreaWidgetContents)
         self.label_4.setObjectName(u"label_4")
-        self.label_4.setFont(font3)
+        self.label_4.setFont(font4)
         self.label_4.setWordWrap(True)
 
         self.verticalLayout_2.addWidget(self.label_4)
@@ -337,7 +340,7 @@ class Ui_BoardWindow(object):
         __qlistwidgetitem5 = QListWidgetItem(self.listWidget_manage_member)
         __qlistwidgetitem5.setFlags(Qt.ItemIsSelectable|Qt.ItemIsEditable|Qt.ItemIsDragEnabled|Qt.ItemIsUserCheckable|Qt.ItemIsEnabled);
         self.listWidget_manage_member.setObjectName(u"listWidget_manage_member")
-        self.listWidget_manage_member.setFont(font4)
+        self.listWidget_manage_member.setFont(font5)
         self.listWidget_manage_member.setFocusPolicy(Qt.TabFocus)
         self.listWidget_manage_member.setStyleSheet(u"QListWidget::item {height: 40px; padding: 0px 8px 0px 8px}\n"
 "QListWidget::item {background-color: #ffffff; color: #000000; border-radius: 5px}\n"
@@ -368,7 +371,7 @@ class Ui_BoardWindow(object):
         sizePolicy2.setHeightForWidth(self.btn_add_member.sizePolicy().hasHeightForWidth())
         self.btn_add_member.setSizePolicy(sizePolicy2)
         self.btn_add_member.setMinimumSize(QSize(150, 30))
-        self.btn_add_member.setFont(font2)
+        self.btn_add_member.setFont(font3)
         self.btn_add_member.setCursor(QCursor(Qt.PointingHandCursor))
         self.btn_add_member.setFocusPolicy(Qt.TabFocus)
         self.btn_add_member.setStyleSheet(u"QPushButton {background-color: #6badee; color: #ffffff; border-radius: 5px}\n"
@@ -382,7 +385,7 @@ class Ui_BoardWindow(object):
         sizePolicy2.setHeightForWidth(self.btn_delete_member.sizePolicy().hasHeightForWidth())
         self.btn_delete_member.setSizePolicy(sizePolicy2)
         self.btn_delete_member.setMinimumSize(QSize(170, 30))
-        self.btn_delete_member.setFont(font2)
+        self.btn_delete_member.setFont(font3)
         self.btn_delete_member.setCursor(QCursor(Qt.PointingHandCursor))
         self.btn_delete_member.setFocusPolicy(Qt.TabFocus)
         self.btn_delete_member.setStyleSheet(u"QPushButton {background-color: #d63a3e; color: #ffffff; border-radius: 5px}\n"
@@ -420,7 +423,7 @@ class Ui_BoardWindow(object):
         sizePolicy2.setHeightForWidth(self.btn_cancel.sizePolicy().hasHeightForWidth())
         self.btn_cancel.setSizePolicy(sizePolicy2)
         self.btn_cancel.setMinimumSize(QSize(100, 30))
-        self.btn_cancel.setFont(font2)
+        self.btn_cancel.setFont(font3)
         self.btn_cancel.setCursor(QCursor(Qt.PointingHandCursor))
         self.btn_cancel.setFocusPolicy(Qt.TabFocus)
         self.btn_cancel.setStyleSheet(u"QPushButton {background-color: #acb2bf; color: #ffffff; border-radius: 5px}\n"
@@ -434,7 +437,7 @@ class Ui_BoardWindow(object):
         sizePolicy2.setHeightForWidth(self.btn_save.sizePolicy().hasHeightForWidth())
         self.btn_save.setSizePolicy(sizePolicy2)
         self.btn_save.setMinimumSize(QSize(100, 30))
-        self.btn_save.setFont(font2)
+        self.btn_save.setFont(font3)
         self.btn_save.setCursor(QCursor(Qt.PointingHandCursor))
         self.btn_save.setFocusPolicy(Qt.TabFocus)
         self.btn_save.setStyleSheet(u"QPushButton {background-color: #6badee; color: #ffffff; border-radius: 5px}\n"
