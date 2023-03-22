@@ -1,5 +1,6 @@
 <RCC>
   <qresource prefix="img">
+    <file>resources/img/kanbaru.png</file>
     <file>resources/img/settings_2.png</file>
     <file>resources/img/add.png</file>
     <file>resources/img/settings.png</file>

@@ -170,72 +170,23 @@ border-radius: 5px;</string>
                  <item>
                   <layout class="QHBoxLayout" name="horizontalLayout_5">
                    <item>
-                    <spacer name="horizontalSpacer_6">
-                     <property name="orientation">
-                      <enum>Qt::Horizontal</enum>
-                     </property>
-                     <property name="sizeHint" stdset="0">
-                      <size>
-                       <width>40</width>
-                       <height>20</height>
-                      </size>
-                     </property>
-                    </spacer>
-                   </item>
-                   <item>
                     <widget class="QLabel" name="label">
                      <property name="maximumSize">
                       <size>
-                       <width>52</width>
-                       <height>52</height>
+                       <width>250</width>
+                       <height>50</height>
                       </size>
                      </property>
                      <property name="text">
                       <string/>
                      </property>
                      <property name="pixmap">
-                      <pixmap resource="../resources.qrc">:/img/resources/img/icon.png</pixmap>
+                      <pixmap resource="../resources.qrc">:/img/resources/img/kanbaru.png</pixmap>
                      </property>
                      <property name="scaledContents">
                       <bool>true</bool>
                      </property>
                     </widget>
-                   </item>
-                   <item>
-                    <widget class="QLabel" name="label_logo">
-                     <property name="font">
-                      <font>
-                       <family>Torus Pro</family>
-                       <pointsize>36</pointsize>
-                       <bold>false</bold>
-                      </font>
-                     </property>
-                     <property name="styleSheet">
-                      <string notr="true">color: #282c33;</string>
-                     </property>
-                     <property name="text">
-                      <string>Kanbaru</string>
-                     </property>
-                     <property name="alignment">
-                      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-                     </property>
-                     <property name="wordWrap">
-                      <bool>true</bool>
-                     </property>
-                    </widget>
-                   </item>
-                   <item>
-                    <spacer name="horizontalSpacer_7">
-                     <property name="orientation">
-                      <enum>Qt::Horizontal</enum>
-                     </property>
-                     <property name="sizeHint" stdset="0">
-                      <size>
-                       <width>40</width>
-                       <height>20</height>
-                      </size>
-                     </property>
-                    </spacer>
                    </item>
                   </layout>
                  </item>

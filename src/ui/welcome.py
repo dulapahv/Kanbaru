@@ -120,7 +120,6 @@ class WelcomeScreen(QMainWindow):
     def setupFont(self, parent: Ui_WelcomeWindow) -> None:
         notosans = setupFontDB("NotoSans.ttf")[0]
         toruspro = setupFontDB("TorusPro.ttf")[0]
-        parent.ui.label_logo.setFont(QFont(toruspro, 36))
         parent.ui.label_login.setFont(QFont(toruspro, 13, QFont.Bold))
         parent.ui.label_signup.setFont(QFont(toruspro, 13, QFont.Bold))
         parent.ui.lineEdit_login_username.setFont(QFont(notosans, 12))
