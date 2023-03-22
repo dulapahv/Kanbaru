@@ -42,6 +42,55 @@ class BoardSettings(QMainWindow):
     def save(self) -> None:
         ...
 
+    @property
+    def title(self) -> str:
+        return self.title_txt
+
+    @property
+    def color(self) -> str:
+        if self.ui.btn_color_1.isChecked():
+            return "Light blue"
+        if self.ui.btn_color_2.isChecked():
+            return "Rose"
+        if self.ui.btn_color_3.isChecked():
+            return "Gold"
+        if self.ui.btn_color_4.isChecked():
+            return "Green"
+        if self.ui.btn_color_5.isChecked():
+            return "Lavender"
+        if self.ui.btn_color_6.isChecked():
+            return "Teal"
+
+    @property
+    def list_all(self) -> list[List]:
+        ...
+
+    @title.setter
+    def title(self, text: str) -> None:
+        self.ui.lineEdit_title.setText(text)
+
+    @color.setter
+    def color(self, color: str) -> None:
+        if color == "Light blue":
+            self.ui.btn_color_1.setChecked(True)
+        elif color == "Rose":
+            self.ui.btn_color_2.setChecked(True)
+        elif color == "Gold":
+            self.ui.btn_color_3.setChecked(True)
+        elif color == "Green":
+            self.ui.btn_color_4.setChecked(True)
+        elif color == "Lavender":
+            self.ui.btn_color_5.setChecked(True)
+        elif color == "Teal":
+            self.ui.btn_color_6.setChecked(True)
+
+    @list_all.setter
+    def list_all(self, lists: list[List]) -> None:
+        ...
+
+    def title_listener(self, text: str) -> None:
+        self.title_txt = text
+
     def setupFont(self) -> None:
         notosans = setupFontDB("NotoSans.ttf")[0]
         toruspro = setupFontDB("TorusPro.ttf")[0]
@@ -63,7 +112,7 @@ class BoardSettings(QMainWindow):
         self.ui.btn_cancel.setFont(QFont(toruspro, 12))
         self.ui.btn_save.setFont(QFont(toruspro, 12))
 
-    def keyPressEvent(self, event: QKeyEvent, function: Callable = None) -> None:
+    def keyPressEvent(self, event: QKeyEvent, function: Callable = None) -> None | Callable:
         """This function is used to call a function when the enter key is pressed
 
         Parameters
@@ -74,4 +123,6 @@ class BoardSettings(QMainWindow):
             The function to call
         """
         if event.key() == Qt.Key_Enter or event.key() == Qt.Key_Return:
-            function()
+            if not function:
+                return function
+            return function()

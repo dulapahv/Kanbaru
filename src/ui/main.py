@@ -4,17 +4,19 @@
 #                                QLabel, QListWidget, QListWidgetItem,
 #                                QMainWindow, QPushButton, QSizePolicy,
 #                                QSpacerItem, QVBoxLayout, QWidget)
+from typing import Callable
+
 from PySide6.QtCore import *
 from PySide6.QtGui import *
 from PySide6.QtWidgets import *
 
 from db import Database
 from kanbaru_objects import Board, Card, List
-from ui.ui_main import Ui_MainWindow
-from utils import setupFontDB
 from ui.app_settings import AppSettings
 from ui.board_settings import BoardSettings
 from ui.card_description import CardDescription
+from ui.ui_main import Ui_MainWindow
+from utils import setupFontDB
 
 
 class MainScreen(QMainWindow):
@@ -38,13 +40,26 @@ class MainScreen(QMainWindow):
         parent.ui.verticalLayout_4.addItem(
             parent.ui.vertSpacer_scrollAreaContent)
 
+        self.addListButton(parent, "TorusPro.ttf")
+
         parent.ui.btn_app_settings.clicked.connect(
             lambda: self.showAppSettings(parent))
         parent.ui.btn_board_settings.clicked.connect(
             lambda: self.showBoardSettings(parent))
+        parent.ui.btn_add_board.clicked.connect(
+            lambda: self.addBoard(parent))
 
-        self.addListButton(parent, "TorusPro.ttf")
+        parent.ui.btn_app_settings.keyPressEvent = lambda event: self.keyPressEvent(
+            event, parent, self.showAppSettings(parent))
+        parent.ui.btn_board_settings.keyPressEvent = lambda event: self.keyPressEvent(
+            event, parent, self.showBoardSettings(parent))
+        parent.ui.btn_add_board.keyPressEvent = lambda event: self.keyPressEvent(
+            event, parent, self.addBoard(parent))
+
         self.setupFont(parent, "TorusPro.ttf")
+
+    # connect drag and drop to move card between List
+    
 
     def boardFactory(self, parent: Ui_MainWindow, board: Board, font: str) -> QPushButton:
         """Creates a board widget.
@@ -324,6 +339,9 @@ class MainScreen(QMainWindow):
         self.cardDescription.setWindowModality(Qt.ApplicationModal)
         self.cardDescription.show()
 
+    def addBoard(self, parent: Ui_MainWindow) -> None:
+        ...
+
     def setupFont(self, parent: Ui_MainWindow, font: str | list[str]) -> None:
         toruspro = setupFontDB(font)[0]
         parent.ui.label_logo.setFont(QFont(toruspro, 36))
@@ -331,3 +349,22 @@ class MainScreen(QMainWindow):
         parent.ui.btn_add_board.setFont(QFont(toruspro, 12))
         parent.ui.btn_board_settings.setFont(QFont(toruspro, 12))
         parent.ui.btn_app_settings.setFont(QFont(toruspro, 12))
+
+    def keyPressEvent(self, event: QKeyEvent, parent: Ui_MainWindow = None, function: Callable = None) -> None | Callable:
+        """This function is used to call a function when the enter key is pressed
+
+        Parameters
+        ----------
+        event : QKeyEvent
+            The key event
+        function : Callable
+            The function to call
+        parent : Ui_MainWindow, optional
+            The parent window, by default None
+        """
+        if event.key() == Qt.Key_Enter or event.key() == Qt.Key_Return:
+            if not function:
+                return None
+            if not parent:
+                return function()
+            return function(parent)

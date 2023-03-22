@@ -16,6 +16,8 @@ class CardDescription(QMainWindow):
         self.ui: Ui_CardWindow = Ui_CardWindow()
         self.ui.setupUi(self)
 
+        self.ui.lineEdit_title.textChanged.connect(self.title_listener)
+
         self.ui.btn_delete.clicked.connect(
             lambda: dialogFactory(None, self.delete, "Delete Card Confirmation", "Are you sure you want to delete this card?\nThis action cannot be undone."))
         self.ui.btn_cancel.clicked.connect(self.close)
@@ -28,11 +30,10 @@ class CardDescription(QMainWindow):
         self.ui.btn_save.keyPressEvent = lambda event: self.keyPressEvent(
             event, self.save)
 
-        self.ui.lineEdit_title.setText(card.title)
-        self.ui.calendarWidget.setSelectedDate(
-            QDate.fromString("06-03-2023", "dd-MM-yyyy"))
-        self.ui.timeEdit.setTime(QTime.fromString(card.time, "hh:mm"))
-        self.ui.textEdit_description.setText(card.description)
+        self.title = card.title
+        self.date = card.date
+        self.time = card.time
+        self.description = card.description
 
         self.setupFont()
 
@@ -41,6 +42,42 @@ class CardDescription(QMainWindow):
 
     def delete(self) -> None:
         ...
+
+    @property
+    def title(self) -> str:
+        return self.title_txt
+
+    @property
+    def date(self) -> str:
+        return self.ui.calendarWidget.selectedDate().toString("dd-MM-yyyy")
+
+    @property
+    def time(self) -> str:
+        return self.ui.timeEdit.time().toString("hh:mm")
+
+    @property
+    def description(self) -> str:
+        return self.ui.textEdit_description.toPlainText()
+
+    @title.setter
+    def title(self, title: str) -> None:
+        self.ui.lineEdit_title.setText(title)
+
+    @date.setter
+    def date(self, date: str) -> None:
+        self.ui.calendarWidget.setSelectedDate(
+            QDate.fromString(date, "dd-MM-yyyy"))
+
+    @time.setter
+    def time(self, time: str) -> None:
+        self.ui.timeEdit.setTime(QTime.fromString(time, "hh:mm"))
+
+    @description.setter
+    def description(self, description: str) -> None:
+        self.ui.textEdit_description.setText(description)
+
+    def title_listener(self, text: str) -> None:
+        self.title_txt = text
 
     def setupFont(self) -> None:
         notosans = setupFontDB("NotoSans.ttf")[0]
@@ -59,7 +96,7 @@ class CardDescription(QMainWindow):
         self.ui.btn_cancel.setFont(QFont(toruspro, 12))
         self.ui.btn_save.setFont(QFont(toruspro, 12))
 
-    def keyPressEvent(self, event: QKeyEvent, function: Callable = None) -> None:
+    def keyPressEvent(self, event: QKeyEvent, function: Callable = None) -> None | Callable:
         """This function is used to call a function when the enter key is pressed
 
         Parameters
@@ -70,4 +107,6 @@ class CardDescription(QMainWindow):
             The function to call
         """
         if event.key() == Qt.Key_Enter or event.key() == Qt.Key_Return:
-            function()
+            if not function:
+                return function
+            return function()

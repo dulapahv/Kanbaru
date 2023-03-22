@@ -133,7 +133,7 @@ class WelcomeScreen(QMainWindow):
         parent.ui.btn_login.setFont(QFont(toruspro, 12, QFont.Bold))
         parent.ui.btn_signup.setFont(QFont(toruspro, 12, QFont.Bold))
 
-    def keyPressEvent(self, event: QKeyEvent, parent: Ui_WelcomeWindow = None, function: Callable = None) -> None:
+    def keyPressEvent(self, event: QKeyEvent, parent: Ui_WelcomeWindow = None, function: Callable = None) -> None | Callable:
         """This function is used to call a function when the enter key is pressed
 
         Parameters
@@ -146,7 +146,11 @@ class WelcomeScreen(QMainWindow):
             The parent window, by default None
         """
         if event.key() == Qt.Key_Enter or event.key() == Qt.Key_Return:
-            function(parent)
+            if not function:
+                return None
+            if not parent:
+                return function()
+            return function(parent)
 
     def login_username_listener(self, text: str, parent: Ui_WelcomeWindow) -> None:
         """Listens for changes in the login username field."""

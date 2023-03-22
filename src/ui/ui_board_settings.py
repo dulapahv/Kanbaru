@@ -128,6 +128,7 @@ class Ui_BoardWindow(object):
         self.btn_color_1.setFocusPolicy(Qt.TabFocus)
         self.btn_color_1.setStyleSheet(u"QRadioButton {background-color: #6badee; color: #ffffff; padding: 0px 5px 0px 5px;}\n"
 "QRadioButton:focus {border-color: #000000; border-width: 1.5px; border-style: solid; padding: 0px 3px 0px 3px;}")
+        self.btn_color_1.setChecked(True)
 
         self.verticalLayout_6.addWidget(self.btn_color_1)
 

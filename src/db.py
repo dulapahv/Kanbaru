@@ -39,10 +39,6 @@ class Database:
         database file.
     pushToFirebase(username: str) -> None
         Pushes the database of a user to Firebase.
-    getUsername() -> str
-        Returns the username of the user from the database file.
-    getPassword() -> str
-        Returns the password of the user from the database file.
     """
 
     _instance: "Database" = None

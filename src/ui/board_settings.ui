@@ -245,6 +245,9 @@ QRadioButton:focus {border-color: #000000; border-width: 1.5px; border-style: so
                     <property name="text">
                      <string>Light blue</string>
                     </property>
+                    <property name="checked">
+                     <bool>true</bool>
+                    </property>
                    </widget>
                   </item>
                   <item>

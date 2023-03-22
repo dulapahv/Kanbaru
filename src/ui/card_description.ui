@@ -358,6 +358,9 @@ li.checked::marker { content: &quot;\2612&quot;; }
             <property name="tabStopDistance">
              <double>20.000000000000000</double>
             </property>
+            <property name="acceptRichText">
+             <bool>false</bool>
+            </property>
             <property name="placeholderText">
              <string>Add a more detailed description...</string>
             </property>

@@ -189,6 +189,7 @@ class Ui_CardWindow(object):
         self.textEdit_description.setAutoFormatting(QTextEdit.AutoAll)
         self.textEdit_description.setTabChangesFocus(True)
         self.textEdit_description.setTabStopDistance(20.000000000000000)
+        self.textEdit_description.setAcceptRichText(False)
 
         self.verticalLayout.addWidget(self.textEdit_description)
 
