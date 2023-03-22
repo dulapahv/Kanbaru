@@ -205,10 +205,10 @@ class Ui_MainWindow(object):
         self.horizontalLayout.addWidget(self.widget)
 
         MainWindow.setCentralWidget(self.centralwidget)
-        QWidget.setTabOrder(self.scrollArea_panel_right, self.scrollArea_panel_left)
         QWidget.setTabOrder(self.scrollArea_panel_left, self.btn_add_board)
         QWidget.setTabOrder(self.btn_add_board, self.btn_board_settings)
         QWidget.setTabOrder(self.btn_board_settings, self.btn_app_settings)
+        QWidget.setTabOrder(self.btn_app_settings, self.scrollArea_panel_right)
 
         self.retranslateUi(MainWindow)
 

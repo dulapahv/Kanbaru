@@ -33,27 +33,23 @@ class WelcomeScreen(QMainWindow):
         self.signup_password: str = ""
         self.signup_confirm_password: str = ""
         parent.ui.lineEdit_login_username.textChanged.connect(
-            self.login_username_listener)
+            lambda text: self.login_username_listener(text, parent))
         parent.ui.lineEdit_login_password.textChanged.connect(
-            self.login_password_listener)
+            lambda text: self.login_password_listener(text, parent))
         parent.ui.lineEdit_signup_username.textChanged.connect(
-            self.signup_username_listener)
+            lambda text: self.signup_username_listener(text, parent))
         parent.ui.lineEdit_signup_password.textChanged.connect(
-            self.signup_password_listener)
+            lambda text: self.signup_password_listener(text, parent))
         parent.ui.lineEdit_signup_confirm_password.textChanged.connect(
-            self.signup_confirm_password_listener)
+            lambda text: self.signup_confirm_password_listener(text, parent))
 
         parent.ui.btn_login.clicked.connect(lambda: self.login(parent))
         parent.ui.btn_signup.clicked.connect(lambda: self.signup(parent))
 
         parent.ui.btn_login.keyPressEvent = lambda event: self.keyPressEvent(
-            parent, event, self.login)
+            event, parent, self.login)
         parent.ui.btn_signup.keyPressEvent = lambda event: self.keyPressEvent(
-            parent, event, self.signup)
-
-    def keyPressEvent(self, parent: Ui_WelcomeWindow, event: QKeyEvent, function: Callable) -> None:
-        if event.key() == Qt.Key_Return:
-            function(parent)
+            event, parent, self.signup)
 
     def signup(self, parent: Ui_WelcomeWindow) -> None:
         """Signs up a user.
@@ -122,38 +118,63 @@ class WelcomeScreen(QMainWindow):
                 parent.ui.label_login_msg.setText("Invalid credentials!")
 
     def setupFont(self, parent: Ui_WelcomeWindow) -> None:
-        roboto = setupFontDB("Roboto.ttf")[0]
-        torus = setupFontDB("TorusPro.ttf")[0]
-        parent.ui.label_logo.setFont(QFont(torus, 36))
-        parent.ui.label_login.setFont(QFont(torus, 13, QFont.Bold))
-        parent.ui.label_signup.setFont(QFont(torus, 13, QFont.Bold))
-        parent.ui.lineEdit_login_username.setFont(QFont(roboto, 12))
-        parent.ui.lineEdit_login_password.setFont(QFont(roboto, 12))
-        parent.ui.lineEdit_signup_username.setFont(QFont(roboto, 12))
-        parent.ui.lineEdit_signup_password.setFont(QFont(roboto, 12))
+        notosans = setupFontDB("NotoSans.ttf")[0]
+        toruspro = setupFontDB("TorusPro.ttf")[0]
+        parent.ui.label_logo.setFont(QFont(toruspro, 36))
+        parent.ui.label_login.setFont(QFont(toruspro, 13, QFont.Bold))
+        parent.ui.label_signup.setFont(QFont(toruspro, 13, QFont.Bold))
+        parent.ui.lineEdit_login_username.setFont(QFont(notosans, 12))
+        parent.ui.lineEdit_login_password.setFont(QFont(notosans, 12))
+        parent.ui.lineEdit_signup_username.setFont(QFont(notosans, 12))
+        parent.ui.lineEdit_signup_password.setFont(QFont(notosans, 12))
         parent.ui.lineEdit_signup_confirm_password.setFont(
-            QFont(roboto, 12))
-        parent.ui.label_login_msg.setFont(QFont(roboto, 11, QFont.Bold))
-        parent.ui.label_signup_msg.setFont(QFont(roboto, 11, QFont.Bold))
-        parent.ui.btn_login.setFont(QFont(torus, 12, QFont.Bold))
-        parent.ui.btn_signup.setFont(QFont(torus, 12, QFont.Bold))
+            QFont(notosans, 12))
+        parent.ui.label_login_msg.setFont(QFont(notosans, 11, QFont.Bold))
+        parent.ui.label_signup_msg.setFont(QFont(notosans, 11, QFont.Bold))
+        parent.ui.btn_login.setFont(QFont(toruspro, 12, QFont.Bold))
+        parent.ui.btn_signup.setFont(QFont(toruspro, 12, QFont.Bold))
 
-    def login_username_listener(self, text: str) -> None:
+    def keyPressEvent(self, event: QKeyEvent, parent: Ui_WelcomeWindow = None, function: Callable = None) -> None:
+        """This function is used to call a function when the enter key is pressed
+
+        Parameters
+        ----------
+        event : QKeyEvent
+            The key event
+        function : Callable
+            The function to call
+        parent : Ui_WelcomeWindow, optional
+            The parent window, by default None
+        """
+        if event.key() == Qt.Key_Enter or event.key() == Qt.Key_Return:
+            function(parent)
+
+    def login_username_listener(self, text: str, parent: Ui_WelcomeWindow) -> None:
         """Listens for changes in the login username field."""
         self.login_username = text
+        if not parent.ui.label_login_msg.text() == "":
+            parent.ui.label_login_msg.setText("")
 
-    def login_password_listener(self, text: str) -> None:
+    def login_password_listener(self, text: str, parent: Ui_WelcomeWindow) -> None:
         """Listens for changes in the login password field."""
         self.login_password = text
+        if not parent.ui.label_login_msg.text() == "":
+            parent.ui.label_login_msg.setText("")
 
-    def signup_username_listener(self, text: str) -> None:
+    def signup_username_listener(self, text: str, parent: Ui_WelcomeWindow) -> None:
         """Listens for changes in the signup username field."""
         self.signup_username = text
+        if not parent.ui.label_signup_msg.text() == "":
+            parent.ui.label_signup_msg.setText("")
 
-    def signup_password_listener(self, text: str) -> None:
+    def signup_password_listener(self, text: str, parent: Ui_WelcomeWindow) -> None:
         """Listens for changes in the signup password field."""
         self.signup_password = text
+        if not parent.ui.label_signup_msg.text() == "":
+            parent.ui.label_signup_msg.setText("")
 
-    def signup_confirm_password_listener(self, text: str) -> None:
+    def signup_confirm_password_listener(self, text: str, parent: Ui_WelcomeWindow) -> None:
         """Listens for changes in the signup confirm password field."""
         self.signup_confirm_password = text
+        if not parent.ui.label_signup_msg.text() == "":
+            parent.ui.label_signup_msg.setText("")

@@ -85,7 +85,7 @@ class Ui_CardWindow(object):
         self.lineEdit_title.setObjectName(u"lineEdit_title")
         self.lineEdit_title.setMinimumSize(QSize(0, 30))
         font2 = QFont()
-        font2.setFamilies([u"Roboto"])
+        font2.setFamilies([u"Noto Sans"])
         font2.setPointSize(12)
         self.lineEdit_title.setFont(font2)
         self.lineEdit_title.setStyleSheet(u"QLineEdit {background-color: #ebecf0; color: #282c33; border-radius: 5px; padding: 0px 8px 0px 8px}\n"
@@ -143,7 +143,7 @@ class Ui_CardWindow(object):
         self.timeEdit.setObjectName(u"timeEdit")
         self.timeEdit.setMinimumSize(QSize(0, 40))
         font4 = QFont()
-        font4.setFamilies([u"Roboto"])
+        font4.setFamilies([u"Noto Sans"])
         font4.setPointSize(16)
         self.timeEdit.setFont(font4)
         self.timeEdit.setCursor(QCursor(Qt.PointingHandCursor))
@@ -178,7 +178,7 @@ class Ui_CardWindow(object):
         self.textEdit_description = QTextEdit(self.widget1)
         self.textEdit_description.setObjectName(u"textEdit_description")
         font5 = QFont()
-        font5.setFamilies([u"Roboto"])
+        font5.setFamilies([u"Noto Sans"])
         font5.setPointSize(12)
         font5.setBold(False)
         self.textEdit_description.setFont(font5)
@@ -194,25 +194,25 @@ class Ui_CardWindow(object):
 
         self.horizontalLayout = QHBoxLayout()
         self.horizontalLayout.setObjectName(u"horizontalLayout")
-        self.btn_delete_card = QPushButton(self.widget1)
-        self.btn_delete_card.setObjectName(u"btn_delete_card")
+        self.btn_delete = QPushButton(self.widget1)
+        self.btn_delete.setObjectName(u"btn_delete")
         sizePolicy1 = QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed)
         sizePolicy1.setHorizontalStretch(0)
         sizePolicy1.setVerticalStretch(0)
-        sizePolicy1.setHeightForWidth(self.btn_delete_card.sizePolicy().hasHeightForWidth())
-        self.btn_delete_card.setSizePolicy(sizePolicy1)
-        self.btn_delete_card.setMinimumSize(QSize(140, 30))
+        sizePolicy1.setHeightForWidth(self.btn_delete.sizePolicy().hasHeightForWidth())
+        self.btn_delete.setSizePolicy(sizePolicy1)
+        self.btn_delete.setMinimumSize(QSize(140, 30))
         font6 = QFont()
         font6.setFamilies([u"Torus Pro"])
         font6.setPointSize(12)
-        self.btn_delete_card.setFont(font6)
-        self.btn_delete_card.setCursor(QCursor(Qt.PointingHandCursor))
-        self.btn_delete_card.setFocusPolicy(Qt.TabFocus)
-        self.btn_delete_card.setStyleSheet(u"QPushButton {background-color: #d63a3e; color: #ffffff; border-radius: 5px}\n"
+        self.btn_delete.setFont(font6)
+        self.btn_delete.setCursor(QCursor(Qt.PointingHandCursor))
+        self.btn_delete.setFocusPolicy(Qt.TabFocus)
+        self.btn_delete.setStyleSheet(u"QPushButton {background-color: #d63a3e; color: #ffffff; border-radius: 5px}\n"
 "QPushButton:hover {background-color: #9e2a2a;}\n"
 "QPushButton:focus {border-color: #000000; border-width: 1.5px; border-style: solid;}")
 
-        self.horizontalLayout.addWidget(self.btn_delete_card)
+        self.horizontalLayout.addWidget(self.btn_delete)
 
         self.horizontalSpacer = QSpacerItem(0, 0, QSizePolicy.Expanding, QSizePolicy.Minimum)
 
@@ -259,8 +259,8 @@ class Ui_CardWindow(object):
         QWidget.setTabOrder(self.lineEdit_title, self.calendarWidget)
         QWidget.setTabOrder(self.calendarWidget, self.timeEdit)
         QWidget.setTabOrder(self.timeEdit, self.textEdit_description)
-        QWidget.setTabOrder(self.textEdit_description, self.btn_delete_card)
-        QWidget.setTabOrder(self.btn_delete_card, self.btn_cancel)
+        QWidget.setTabOrder(self.textEdit_description, self.btn_delete)
+        QWidget.setTabOrder(self.btn_delete, self.btn_cancel)
         QWidget.setTabOrder(self.btn_cancel, self.btn_save)
 
         self.retranslateUi(CardWindow)
@@ -284,10 +284,10 @@ class Ui_CardWindow(object):
 "hr { height: 1px; border-width: 0; }\n"
 "li.unchecked::marker { content: \"\\2610\"; }\n"
 "li.checked::marker { content: \"\\2612\"; }\n"
-"</style></head><body style=\" font-family:'Roboto'; font-size:12pt; font-weight:400; font-style:normal;\">\n"
+"</style></head><body style=\" font-family:'Noto Sans'; font-size:12pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Torus Pro';\"><br /></p></body></html>", None))
         self.textEdit_description.setPlaceholderText(QCoreApplication.translate("CardWindow", u"Add a more detailed description...", None))
-        self.btn_delete_card.setText(QCoreApplication.translate("CardWindow", u"Delete Card", None))
+        self.btn_delete.setText(QCoreApplication.translate("CardWindow", u"Delete Card", None))
         self.btn_cancel.setText(QCoreApplication.translate("CardWindow", u"Cancel", None))
         self.btn_save.setText(QCoreApplication.translate("CardWindow", u"Save", None))
     # retranslateUi

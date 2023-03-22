@@ -138,7 +138,7 @@ class Ui_WelcomeWindow(object):
         self.lineEdit_login_username.setObjectName(u"lineEdit_login_username")
         self.lineEdit_login_username.setMinimumSize(QSize(0, 40))
         font2 = QFont()
-        font2.setFamilies([u"Roboto"])
+        font2.setFamilies([u"Manrope Medium"])
         font2.setPointSize(12)
         self.lineEdit_login_username.setFont(font2)
         self.lineEdit_login_username.setStyleSheet(u"QLineEdit {border-color: #dfe1e6; border-width: 1.5px; border-style: solid; color: #282c33; border-radius: 5px; background-color: #ffffff; padding: 0px 0px 0px 8px}\n"

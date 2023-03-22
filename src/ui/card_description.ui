@@ -143,7 +143,7 @@ border-radius: 5px;</string>
             </property>
             <property name="font">
              <font>
-              <family>Roboto</family>
+              <family>Noto Sans</family>
               <pointsize>12</pointsize>
              </font>
             </property>
@@ -204,7 +204,7 @@ QLineEdit:focus {background-color: #ffffff; border-color: #6badee; border-width:
                <widget class="QCalendarWidget" name="calendarWidget">
                 <property name="font">
                  <font>
-                  <family>Roboto</family>
+                  <family>Noto Sans</family>
                   <pointsize>12</pointsize>
                  </font>
                 </property>
@@ -256,7 +256,7 @@ QLineEdit:focus {background-color: #ffffff; border-color: #6badee; border-width:
                 </property>
                 <property name="font">
                  <font>
-                  <family>Roboto</family>
+                  <family>Noto Sans</family>
                   <pointsize>16</pointsize>
                  </font>
                 </property>
@@ -326,7 +326,7 @@ QTimeEdit:focus {border-color: #000000; border-width: 1.5px; border-style: solid
            <widget class="QTextEdit" name="textEdit_description">
             <property name="font">
              <font>
-              <family>Roboto</family>
+              <family>Noto Sans</family>
               <pointsize>12</pointsize>
               <bold>false</bold>
              </font>
@@ -352,7 +352,7 @@ p, li { white-space: pre-wrap; }
 hr { height: 1px; border-width: 0; }
 li.unchecked::marker { content: &quot;\2610&quot;; }
 li.checked::marker { content: &quot;\2612&quot;; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Roboto'; font-size:12pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Noto Sans'; font-size:12pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Torus Pro';&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
             </property>
             <property name="tabStopDistance">
@@ -366,7 +366,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
           <item>
            <layout class="QHBoxLayout" name="horizontalLayout">
             <item>
-             <widget class="QPushButton" name="btn_delete_card">
+             <widget class="QPushButton" name="btn_delete">
               <property name="sizePolicy">
                <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
                 <horstretch>0</horstretch>
@@ -502,7 +502,7 @@ QPushButton:focus {border-color: #000000; border-width: 1.5px; border-style: sol
   <tabstop>calendarWidget</tabstop>
   <tabstop>timeEdit</tabstop>
   <tabstop>textEdit_description</tabstop>
-  <tabstop>btn_delete_card</tabstop>
+  <tabstop>btn_delete</tabstop>
   <tabstop>btn_cancel</tabstop>
   <tabstop>btn_save</tabstop>
  </tabstops>

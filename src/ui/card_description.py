@@ -1,10 +1,12 @@
+from typing import Callable
+
 from PySide6.QtCore import *
 from PySide6.QtGui import *
 from PySide6.QtWidgets import *
 
-from kanbaru_objects import Card, Board, List
+from kanbaru_objects import Board, Card, List
 from ui.ui_card_description import Ui_CardWindow
-from utils import dialogFactory
+from utils import dialogFactory, setupFontDB
 
 
 class CardDescription(QMainWindow):
@@ -14,10 +16,17 @@ class CardDescription(QMainWindow):
         self.ui: Ui_CardWindow = Ui_CardWindow()
         self.ui.setupUi(self)
 
+        self.ui.btn_delete.clicked.connect(
+            lambda: dialogFactory(None, self.delete, "Delete Card Confirmation", "Are you sure you want to delete this card?\nThis action cannot be undone."))
         self.ui.btn_cancel.clicked.connect(self.close)
+        self.ui.btn_save.clicked.connect(self.save)
 
-        self.ui.btn_delete_card.clicked.connect(
-            lambda: dialogFactory(None, self.deleteCard, "Delete Card Confirmation", "Are you sure you want to delete this card?\nThis action cannot be undone."))
+        self.ui.btn_delete.keyPressEvent = lambda event: self.keyPressEvent(
+            event, self.delete)
+        self.ui.btn_cancel.keyPressEvent = lambda event: self.keyPressEvent(
+            event, self.close)
+        self.ui.btn_save.keyPressEvent = lambda event: self.keyPressEvent(
+            event, self.save)
 
         self.ui.lineEdit_title.setText(card.title)
         self.ui.calendarWidget.setSelectedDate(
@@ -25,5 +34,40 @@ class CardDescription(QMainWindow):
         self.ui.timeEdit.setTime(QTime.fromString(card.time, "hh:mm"))
         self.ui.textEdit_description.setText(card.description)
 
-    def deleteCard(self):
+        self.setupFont()
+
+    def save(self) -> None:
         ...
+
+    def delete(self) -> None:
+        ...
+
+    def setupFont(self) -> None:
+        notosans = setupFontDB("NotoSans.ttf")[0]
+        toruspro = setupFontDB("TorusPro.ttf")[0]
+        self.ui.label_card_desc.setFont(QFont(toruspro, 28))
+        self.ui.label_title.setFont(QFont(toruspro, 14, QFont.Bold))
+        self.ui.label_date.setFont(QFont(toruspro, 14, QFont.Bold))
+        self.ui.label_time.setFont(QFont(toruspro, 14, QFont.Bold))
+        self.ui.label_description.setFont(QFont(toruspro, 14, QFont.Bold))
+        self.ui.label_card_info.setFont(QFont(toruspro, 11))
+        self.ui.lineEdit_title.setFont(QFont(notosans, 12))
+        self.ui.calendarWidget.setFont(QFont(notosans, 12))
+        self.ui.timeEdit.setFont(QFont(notosans, 12))
+        self.ui.textEdit_description.setFont(QFont(notosans, 12))
+        self.ui.btn_delete.setFont(QFont(toruspro, 12))
+        self.ui.btn_cancel.setFont(QFont(toruspro, 12))
+        self.ui.btn_save.setFont(QFont(toruspro, 12))
+
+    def keyPressEvent(self, event: QKeyEvent, function: Callable = None) -> None:
+        """This function is used to call a function when the enter key is pressed
+
+        Parameters
+        ----------
+        event : QKeyEvent
+            The key event
+        function : Callable
+            The function to call
+        """
+        if event.key() == Qt.Key_Enter or event.key() == Qt.Key_Return:
+            function()

@@ -121,7 +121,7 @@ border-radius: 5px;</string>
             <item>
              <layout class="QVBoxLayout" name="verticalLayout_2">
               <item>
-               <widget class="QLabel" name="label_8">
+               <widget class="QLabel" name="label_manage_board">
                 <property name="font">
                  <font>
                   <family>Torus Pro</family>
@@ -141,7 +141,7 @@ border-radius: 5px;</string>
                </widget>
               </item>
               <item>
-               <widget class="QLabel" name="label_manage_baoard_info">
+               <widget class="QLabel" name="label_manage_board_desc">
                 <property name="font">
                  <font>
                   <family>Torus Pro</family>
@@ -157,7 +157,7 @@ border-radius: 5px;</string>
                </widget>
               </item>
               <item>
-               <widget class="QListWidget" name="listWidget">
+               <widget class="QListWidget" name="listWidget_manage_board">
                 <property name="font">
                  <font>
                   <family>Torus Pro</family>
@@ -273,7 +273,7 @@ QScrollBar:vertical {width: 10px; margin: 0px 0px 0px 0px; background-color: #ac
               <item>
                <layout class="QHBoxLayout" name="horizontalLayout_4">
                 <item>
-                 <widget class="QPushButton" name="btn_delete_board">
+                 <widget class="QPushButton" name="btn_delete">
                   <property name="sizePolicy">
                    <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
                     <horstretch>0</horstretch>
@@ -309,7 +309,7 @@ QPushButton:focus {border-color: #000000; border-width: 1.5px; border-style: sol
                  </widget>
                 </item>
                 <item>
-                 <widget class="QPushButton" name="btn_delete_board_2">
+                 <widget class="QPushButton" name="btn_rename">
                   <property name="sizePolicy">
                    <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
                     <horstretch>0</horstretch>
@@ -379,7 +379,7 @@ QPushButton:focus {border-color: #000000; border-width: 1.5px; border-style: sol
                </widget>
               </item>
               <item>
-               <widget class="QLabel" name="label_9">
+               <widget class="QLabel" name="label_manage_account">
                 <property name="font">
                  <font>
                   <family>Torus Pro</family>
@@ -617,9 +617,9 @@ QPushButton:focus {border-color: #000000; border-width: 1.5px; border-style: sol
   </widget>
  </widget>
  <tabstops>
-  <tabstop>listWidget</tabstop>
-  <tabstop>btn_delete_board</tabstop>
-  <tabstop>btn_delete_board_2</tabstop>
+  <tabstop>listWidget_manage_board</tabstop>
+  <tabstop>btn_delete</tabstop>
+  <tabstop>btn_rename</tabstop>
   <tabstop>btn_logout</tabstop>
   <tabstop>btn_delete_account</tabstop>
   <tabstop>btn_cancel</tabstop>

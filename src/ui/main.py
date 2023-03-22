@@ -38,13 +38,13 @@ class MainScreen(QMainWindow):
         parent.ui.verticalLayout_4.addItem(
             parent.ui.vertSpacer_scrollAreaContent)
 
-        self.addListButton(parent, "TorusPro.ttf")
-        self.setupFont(parent, "TorusPro.ttf")
-
         parent.ui.btn_app_settings.clicked.connect(
             lambda: self.showAppSettings(parent))
         parent.ui.btn_board_settings.clicked.connect(
             lambda: self.showBoardSettings(parent))
+
+        self.addListButton(parent, "TorusPro.ttf")
+        self.setupFont(parent, "TorusPro.ttf")
 
     def boardFactory(self, parent: Ui_MainWindow, board: Board, font: str) -> QPushButton:
         """Creates a board widget.
@@ -81,8 +81,8 @@ class MainScreen(QMainWindow):
 
         parent.ui.btn_board.setText(
             board.title[:12] + (board.title[12:] and '...'))
-        fontDB = setupFontDB(font)
-        parent.ui.btn_board.setFont(QFont(fontDB[0], 12))
+        fontDB = setupFontDB(font)[0]
+        parent.ui.btn_board.setFont(QFont(fontDB, 12))
 
         for list in board.lists:
             qwidget = self.listFactory(parent, list, font)
@@ -255,8 +255,8 @@ class MainScreen(QMainWindow):
         qlistwidgetitem = parent.ui.listWidget.item(0)
         qlistwidgetitem.setText(
             QCoreApplication.translate("MainWindow", card.title[:24] + (card.title[24:] and '...'), None))
-        fontDB = setupFontDB(font)
-        qlistwidgetitem.setFont(QFont(fontDB[0], 12))
+        fontDB = setupFontDB(font)[0]
+        qlistwidgetitem.setFont(QFont(fontDB, 12))
         return qlistwidgetitem
 
     def addListButton(self, parent: Ui_MainWindow, font: str) -> None:
@@ -306,8 +306,8 @@ class MainScreen(QMainWindow):
 
         parent.ui.horizontalLayout_5.addItem(parent.ui.horzSpacer_panel_right)
 
-        fontDB = setupFontDB(font)
-        parent.ui.btn_add_list.setFont(QFont(fontDB[0], 12))
+        fontDB = setupFontDB(font)[0]
+        parent.ui.btn_add_list.setFont(QFont(fontDB, 12))
 
     def showAppSettings(self, parent: Ui_MainWindow) -> None:
         self.appSettings = AppSettings(parent)
@@ -315,7 +315,7 @@ class MainScreen(QMainWindow):
         self.appSettings.show()
 
     def showBoardSettings(self, parent: Ui_MainWindow) -> None:
-        self.boardSettings = BoardSettings(parent)
+        self.boardSettings = BoardSettings()
         self.boardSettings.setWindowModality(Qt.ApplicationModal)
         self.boardSettings.show()
 
@@ -325,6 +325,9 @@ class MainScreen(QMainWindow):
         self.cardDescription.show()
 
     def setupFont(self, parent: Ui_MainWindow, font: str | list[str]) -> None:
-        fontDB = setupFontDB(font)
-        parent.ui.label_logo.setFont(QFont(fontDB[0], 36))
-        parent.ui.label_board.setFont(QFont(fontDB[0], 28))
+        toruspro = setupFontDB(font)[0]
+        parent.ui.label_logo.setFont(QFont(toruspro, 36))
+        parent.ui.label_board.setFont(QFont(toruspro, 28))
+        parent.ui.btn_add_board.setFont(QFont(toruspro, 12))
+        parent.ui.btn_board_settings.setFont(QFont(toruspro, 12))
+        parent.ui.btn_app_settings.setFont(QFont(toruspro, 12))

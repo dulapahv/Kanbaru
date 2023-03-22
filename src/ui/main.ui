@@ -396,11 +396,11 @@ QScrollBar:horizontal {height: 10px; margin: 0px 0px 0px 0px; background-color: 
   </widget>
  </widget>
  <tabstops>
-  <tabstop>scrollArea_panel_right</tabstop>
   <tabstop>scrollArea_panel_left</tabstop>
   <tabstop>btn_add_board</tabstop>
   <tabstop>btn_board_settings</tabstop>
   <tabstop>btn_app_settings</tabstop>
+  <tabstop>scrollArea_panel_right</tabstop>
  </tabstops>
  <resources>
   <include location="../resources.qrc"/>

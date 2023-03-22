@@ -74,106 +74,106 @@ class Ui_SettingsWindow(object):
         self.horizontalLayout_3.setObjectName(u"horizontalLayout_3")
         self.verticalLayout_2 = QVBoxLayout()
         self.verticalLayout_2.setObjectName(u"verticalLayout_2")
-        self.label_8 = QLabel(self.widget1)
-        self.label_8.setObjectName(u"label_8")
+        self.label_manage_board = QLabel(self.widget1)
+        self.label_manage_board.setObjectName(u"label_manage_board")
         font1 = QFont()
         font1.setFamilies([u"Torus Pro"])
         font1.setPointSize(14)
         font1.setBold(True)
-        self.label_8.setFont(font1)
-        self.label_8.setStyleSheet(u"color: #282c33;")
-        self.label_8.setWordWrap(True)
+        self.label_manage_board.setFont(font1)
+        self.label_manage_board.setStyleSheet(u"color: #282c33;")
+        self.label_manage_board.setWordWrap(True)
 
-        self.verticalLayout_2.addWidget(self.label_8)
+        self.verticalLayout_2.addWidget(self.label_manage_board)
 
-        self.label_manage_baoard_info = QLabel(self.widget1)
-        self.label_manage_baoard_info.setObjectName(u"label_manage_baoard_info")
+        self.label_manage_board_desc = QLabel(self.widget1)
+        self.label_manage_board_desc.setObjectName(u"label_manage_board_desc")
         font2 = QFont()
         font2.setFamilies([u"Torus Pro"])
         font2.setPointSize(11)
-        self.label_manage_baoard_info.setFont(font2)
-        self.label_manage_baoard_info.setWordWrap(True)
+        self.label_manage_board_desc.setFont(font2)
+        self.label_manage_board_desc.setWordWrap(True)
 
-        self.verticalLayout_2.addWidget(self.label_manage_baoard_info)
+        self.verticalLayout_2.addWidget(self.label_manage_board_desc)
 
-        self.listWidget = QListWidget(self.widget1)
-        __qlistwidgetitem = QListWidgetItem(self.listWidget)
+        self.listWidget_manage_board = QListWidget(self.widget1)
+        __qlistwidgetitem = QListWidgetItem(self.listWidget_manage_board)
         __qlistwidgetitem.setFlags(Qt.ItemIsSelectable|Qt.ItemIsEditable|Qt.ItemIsDragEnabled|Qt.ItemIsUserCheckable|Qt.ItemIsEnabled);
-        __qlistwidgetitem1 = QListWidgetItem(self.listWidget)
+        __qlistwidgetitem1 = QListWidgetItem(self.listWidget_manage_board)
         __qlistwidgetitem1.setFlags(Qt.ItemIsSelectable|Qt.ItemIsEditable|Qt.ItemIsDragEnabled|Qt.ItemIsUserCheckable|Qt.ItemIsEnabled);
-        __qlistwidgetitem2 = QListWidgetItem(self.listWidget)
+        __qlistwidgetitem2 = QListWidgetItem(self.listWidget_manage_board)
         __qlistwidgetitem2.setFlags(Qt.ItemIsSelectable|Qt.ItemIsEditable|Qt.ItemIsDragEnabled|Qt.ItemIsUserCheckable|Qt.ItemIsEnabled);
-        __qlistwidgetitem3 = QListWidgetItem(self.listWidget)
+        __qlistwidgetitem3 = QListWidgetItem(self.listWidget_manage_board)
         __qlistwidgetitem3.setFlags(Qt.ItemIsSelectable|Qt.ItemIsEditable|Qt.ItemIsDragEnabled|Qt.ItemIsUserCheckable|Qt.ItemIsEnabled);
-        __qlistwidgetitem4 = QListWidgetItem(self.listWidget)
+        __qlistwidgetitem4 = QListWidgetItem(self.listWidget_manage_board)
         __qlistwidgetitem4.setFlags(Qt.ItemIsSelectable|Qt.ItemIsEditable|Qt.ItemIsDragEnabled|Qt.ItemIsUserCheckable|Qt.ItemIsEnabled);
-        __qlistwidgetitem5 = QListWidgetItem(self.listWidget)
+        __qlistwidgetitem5 = QListWidgetItem(self.listWidget_manage_board)
         __qlistwidgetitem5.setFlags(Qt.ItemIsSelectable|Qt.ItemIsEditable|Qt.ItemIsDragEnabled|Qt.ItemIsUserCheckable|Qt.ItemIsEnabled);
-        __qlistwidgetitem6 = QListWidgetItem(self.listWidget)
+        __qlistwidgetitem6 = QListWidgetItem(self.listWidget_manage_board)
         __qlistwidgetitem6.setFlags(Qt.ItemIsSelectable|Qt.ItemIsEditable|Qt.ItemIsDragEnabled|Qt.ItemIsUserCheckable|Qt.ItemIsEnabled);
-        self.listWidget.setObjectName(u"listWidget")
+        self.listWidget_manage_board.setObjectName(u"listWidget_manage_board")
         font3 = QFont()
         font3.setFamilies([u"Torus Pro"])
         font3.setPointSize(12)
         font3.setBold(True)
-        self.listWidget.setFont(font3)
-        self.listWidget.setFocusPolicy(Qt.TabFocus)
-        self.listWidget.setStyleSheet(u"QListWidget::item {height: 40px; padding: 0px 8px 0px 8px}\n"
+        self.listWidget_manage_board.setFont(font3)
+        self.listWidget_manage_board.setFocusPolicy(Qt.TabFocus)
+        self.listWidget_manage_board.setStyleSheet(u"QListWidget::item {height: 40px; padding: 0px 8px 0px 8px}\n"
 "QListWidget::item {background-color: #ffffff; color: #000000; border-radius: 5px}\n"
 "QListWidget::item:hover {background-color: #e2e4e9; color: #000000}\n"
 "QListWidget::item:selected {background-color: #cccccc; color: #000000}\n"
 "QListWidget::item:focus {background-color: #cccccc; color: #000000}\n"
 "QScrollBar:vertical {width: 10px; margin: 0px 0px 0px 0px; background-color: #acb2bf}")
-        self.listWidget.setFrameShape(QFrame.NoFrame)
-        self.listWidget.setDragEnabled(True)
-        self.listWidget.setDragDropMode(QAbstractItemView.InternalMove)
-        self.listWidget.setDefaultDropAction(Qt.MoveAction)
-        self.listWidget.setSelectionMode(QAbstractItemView.ExtendedSelection)
-        self.listWidget.setVerticalScrollMode(QAbstractItemView.ScrollPerPixel)
-        self.listWidget.setHorizontalScrollMode(QAbstractItemView.ScrollPerPixel)
-        self.listWidget.setProperty("isWrapping", False)
-        self.listWidget.setSpacing(5)
-        self.listWidget.setUniformItemSizes(True)
-        self.listWidget.setWordWrap(True)
-        self.listWidget.setSelectionRectVisible(True)
+        self.listWidget_manage_board.setFrameShape(QFrame.NoFrame)
+        self.listWidget_manage_board.setDragEnabled(True)
+        self.listWidget_manage_board.setDragDropMode(QAbstractItemView.InternalMove)
+        self.listWidget_manage_board.setDefaultDropAction(Qt.MoveAction)
+        self.listWidget_manage_board.setSelectionMode(QAbstractItemView.ExtendedSelection)
+        self.listWidget_manage_board.setVerticalScrollMode(QAbstractItemView.ScrollPerPixel)
+        self.listWidget_manage_board.setHorizontalScrollMode(QAbstractItemView.ScrollPerPixel)
+        self.listWidget_manage_board.setProperty("isWrapping", False)
+        self.listWidget_manage_board.setSpacing(5)
+        self.listWidget_manage_board.setUniformItemSizes(True)
+        self.listWidget_manage_board.setWordWrap(True)
+        self.listWidget_manage_board.setSelectionRectVisible(True)
 
-        self.verticalLayout_2.addWidget(self.listWidget)
+        self.verticalLayout_2.addWidget(self.listWidget_manage_board)
 
         self.horizontalLayout_4 = QHBoxLayout()
         self.horizontalLayout_4.setObjectName(u"horizontalLayout_4")
-        self.btn_delete_board = QPushButton(self.widget1)
-        self.btn_delete_board.setObjectName(u"btn_delete_board")
+        self.btn_delete = QPushButton(self.widget1)
+        self.btn_delete.setObjectName(u"btn_delete")
         sizePolicy1 = QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed)
         sizePolicy1.setHorizontalStretch(0)
         sizePolicy1.setVerticalStretch(0)
-        sizePolicy1.setHeightForWidth(self.btn_delete_board.sizePolicy().hasHeightForWidth())
-        self.btn_delete_board.setSizePolicy(sizePolicy1)
-        self.btn_delete_board.setMinimumSize(QSize(150, 30))
+        sizePolicy1.setHeightForWidth(self.btn_delete.sizePolicy().hasHeightForWidth())
+        self.btn_delete.setSizePolicy(sizePolicy1)
+        self.btn_delete.setMinimumSize(QSize(150, 30))
         font4 = QFont()
         font4.setFamilies([u"Torus Pro"])
         font4.setPointSize(12)
-        self.btn_delete_board.setFont(font4)
-        self.btn_delete_board.setCursor(QCursor(Qt.PointingHandCursor))
-        self.btn_delete_board.setFocusPolicy(Qt.TabFocus)
-        self.btn_delete_board.setStyleSheet(u"QPushButton {background-color: #d63a3e; color: #ffffff; border-radius: 5px}\n"
+        self.btn_delete.setFont(font4)
+        self.btn_delete.setCursor(QCursor(Qt.PointingHandCursor))
+        self.btn_delete.setFocusPolicy(Qt.TabFocus)
+        self.btn_delete.setStyleSheet(u"QPushButton {background-color: #d63a3e; color: #ffffff; border-radius: 5px}\n"
 "QPushButton:hover {background-color: #9e2a2a;}\n"
 "QPushButton:focus {border-color: #000000; border-width: 1.5px; border-style: solid;}")
 
-        self.horizontalLayout_4.addWidget(self.btn_delete_board)
+        self.horizontalLayout_4.addWidget(self.btn_delete)
 
-        self.btn_delete_board_2 = QPushButton(self.widget1)
-        self.btn_delete_board_2.setObjectName(u"btn_delete_board_2")
-        sizePolicy1.setHeightForWidth(self.btn_delete_board_2.sizePolicy().hasHeightForWidth())
-        self.btn_delete_board_2.setSizePolicy(sizePolicy1)
-        self.btn_delete_board_2.setMinimumSize(QSize(150, 30))
-        self.btn_delete_board_2.setFont(font4)
-        self.btn_delete_board_2.setCursor(QCursor(Qt.PointingHandCursor))
-        self.btn_delete_board_2.setFocusPolicy(Qt.TabFocus)
-        self.btn_delete_board_2.setStyleSheet(u"QPushButton {background-color: #6badee; color: #ffffff; border-radius: 5px}\n"
+        self.btn_rename = QPushButton(self.widget1)
+        self.btn_rename.setObjectName(u"btn_rename")
+        sizePolicy1.setHeightForWidth(self.btn_rename.sizePolicy().hasHeightForWidth())
+        self.btn_rename.setSizePolicy(sizePolicy1)
+        self.btn_rename.setMinimumSize(QSize(150, 30))
+        self.btn_rename.setFont(font4)
+        self.btn_rename.setCursor(QCursor(Qt.PointingHandCursor))
+        self.btn_rename.setFocusPolicy(Qt.TabFocus)
+        self.btn_rename.setStyleSheet(u"QPushButton {background-color: #6badee; color: #ffffff; border-radius: 5px}\n"
 "QPushButton:hover {background-color: #5487bb;}\n"
 "QPushButton:focus {border-color: #000000; border-width: 1.5px; border-style: solid;}")
 
-        self.horizontalLayout_4.addWidget(self.btn_delete_board_2)
+        self.horizontalLayout_4.addWidget(self.btn_rename)
 
         self.horizontalSpacer_3 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
 
@@ -192,13 +192,13 @@ class Ui_SettingsWindow(object):
 
         self.verticalLayout_2.addWidget(self.line_1)
 
-        self.label_9 = QLabel(self.widget1)
-        self.label_9.setObjectName(u"label_9")
-        self.label_9.setFont(font1)
-        self.label_9.setStyleSheet(u"color: #282c33;")
-        self.label_9.setWordWrap(True)
+        self.label_manage_account = QLabel(self.widget1)
+        self.label_manage_account.setObjectName(u"label_manage_account")
+        self.label_manage_account.setFont(font1)
+        self.label_manage_account.setStyleSheet(u"color: #282c33;")
+        self.label_manage_account.setWordWrap(True)
 
-        self.verticalLayout_2.addWidget(self.label_9)
+        self.verticalLayout_2.addWidget(self.label_manage_account)
 
         self.horizontalLayout_2 = QHBoxLayout()
         self.horizontalLayout_2.setObjectName(u"horizontalLayout_2")
@@ -303,13 +303,13 @@ class Ui_SettingsWindow(object):
         self.verticalLayout_3.addWidget(self.widget)
 
         SettingsWindow.setCentralWidget(self.centralwidget)
-        QWidget.setTabOrder(self.listWidget, self.btn_delete_board)
-        QWidget.setTabOrder(self.btn_delete_board, self.btn_delete_board_2)
-        QWidget.setTabOrder(self.btn_delete_board_2, self.btn_logout)
+        QWidget.setTabOrder(self.listWidget_manage_board, self.btn_delete)
+        QWidget.setTabOrder(self.btn_delete, self.btn_rename)
+        QWidget.setTabOrder(self.btn_rename, self.btn_logout)
         QWidget.setTabOrder(self.btn_logout, self.btn_delete_account)
         QWidget.setTabOrder(self.btn_delete_account, self.btn_cancel)
         QWidget.setTabOrder(self.btn_cancel, self.btn_save)
-        QWidget.setTabOrder(self.btn_save, self.widget)
+        QWidget.setTabOrder(self.btn_save, self.widget1)
 
         self.retranslateUi(SettingsWindow)
 
@@ -319,30 +319,30 @@ class Ui_SettingsWindow(object):
     def retranslateUi(self, SettingsWindow):
         SettingsWindow.setWindowTitle(QCoreApplication.translate("SettingsWindow", u"App Settings", None))
         self.label_app_settings.setText(QCoreApplication.translate("SettingsWindow", u"App Settings", None))
-        self.label_8.setText(QCoreApplication.translate("SettingsWindow", u"Manage Board", None))
-        self.label_manage_baoard_info.setText(QCoreApplication.translate("SettingsWindow", u"Drag to rearrange. Select and press Delete Board to delete it.", None))
+        self.label_manage_board.setText(QCoreApplication.translate("SettingsWindow", u"Manage Board", None))
+        self.label_manage_board_desc.setText(QCoreApplication.translate("SettingsWindow", u"Drag to rearrange. Select and press Delete Board to delete it.", None))
 
-        __sortingEnabled = self.listWidget.isSortingEnabled()
-        self.listWidget.setSortingEnabled(False)
-        ___qlistwidgetitem = self.listWidget.item(0)
+        __sortingEnabled = self.listWidget_manage_board.isSortingEnabled()
+        self.listWidget_manage_board.setSortingEnabled(False)
+        ___qlistwidgetitem = self.listWidget_manage_board.item(0)
         ___qlistwidgetitem.setText(QCoreApplication.translate("SettingsWindow", u"Board 1", None));
-        ___qlistwidgetitem1 = self.listWidget.item(1)
+        ___qlistwidgetitem1 = self.listWidget_manage_board.item(1)
         ___qlistwidgetitem1.setText(QCoreApplication.translate("SettingsWindow", u"Board 2", None));
-        ___qlistwidgetitem2 = self.listWidget.item(2)
+        ___qlistwidgetitem2 = self.listWidget_manage_board.item(2)
         ___qlistwidgetitem2.setText(QCoreApplication.translate("SettingsWindow", u"Board 3", None));
-        ___qlistwidgetitem3 = self.listWidget.item(3)
+        ___qlistwidgetitem3 = self.listWidget_manage_board.item(3)
         ___qlistwidgetitem3.setText(QCoreApplication.translate("SettingsWindow", u"Board 4", None));
-        ___qlistwidgetitem4 = self.listWidget.item(4)
+        ___qlistwidgetitem4 = self.listWidget_manage_board.item(4)
         ___qlistwidgetitem4.setText(QCoreApplication.translate("SettingsWindow", u"Board 5", None));
-        ___qlistwidgetitem5 = self.listWidget.item(5)
+        ___qlistwidgetitem5 = self.listWidget_manage_board.item(5)
         ___qlistwidgetitem5.setText(QCoreApplication.translate("SettingsWindow", u"Board 5", None));
-        ___qlistwidgetitem6 = self.listWidget.item(6)
+        ___qlistwidgetitem6 = self.listWidget_manage_board.item(6)
         ___qlistwidgetitem6.setText(QCoreApplication.translate("SettingsWindow", u"Board 5", None));
-        self.listWidget.setSortingEnabled(__sortingEnabled)
+        self.listWidget_manage_board.setSortingEnabled(__sortingEnabled)
 
-        self.btn_delete_board.setText(QCoreApplication.translate("SettingsWindow", u"Delete Board", None))
-        self.btn_delete_board_2.setText(QCoreApplication.translate("SettingsWindow", u"Rename Board", None))
-        self.label_9.setText(QCoreApplication.translate("SettingsWindow", u"Manage Account", None))
+        self.btn_delete.setText(QCoreApplication.translate("SettingsWindow", u"Delete Board", None))
+        self.btn_rename.setText(QCoreApplication.translate("SettingsWindow", u"Rename Board", None))
+        self.label_manage_account.setText(QCoreApplication.translate("SettingsWindow", u"Manage Account", None))
         self.btn_logout.setText(QCoreApplication.translate("SettingsWindow", u"Logout", None))
         self.btn_delete_account.setText(QCoreApplication.translate("SettingsWindow", u"Delete Account", None))
         self.btn_cancel.setText(QCoreApplication.translate("SettingsWindow", u"Cancel", None))
