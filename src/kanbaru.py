@@ -65,13 +65,13 @@ class Kanbaru(QMainWindow):
         # Initialize Firebase database
         self.initializeFirebaseDatabase(Database.getInstance(), os.path.join(
             self.path, "resources", "kanbaru-credentials.json"))
-        self.showMainScreen()
+
         # Check if user is logged in, if not, prompt login
-        # if self.checkCredentials():
-        #     Database.getInstance().pullFromFirebase(Database.getInstance().username)
-        #     self.showMainScreen()
-        # else:
-        #     self.showWelcomeScreen()
+        if self.checkCredentials():
+            Database.getInstance().pullFromFirebase(Database.getInstance().username)
+            self.showMainScreen()
+        else:
+            self.showWelcomeScreen()
 
     def initEventLogger(self, path: str, fmt: str, debug: bool = False) -> None:
         """Initializes the event logger.
