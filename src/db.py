@@ -325,27 +325,21 @@ class Database:
             except KeyError:
                 list_data = []
             lists = []
-
             for list_item in list_data:
                 try:
                     card_data = list_item['_List__cards']
                 except KeyError:
                     card_data = []
-                if len(card_data):
-                    cards = []
-
-                    for card_item in card_data:
-                        card = Card(title=card_item['_Card__title'],
-                                    description=card_item['_Card__description'],
-                                    date=card_item['_Card__date'],
-                                    time=card_item['_Card__time'])
-                        cards.append(card)
-
-                    list_obj = List(
-                        title=list_item['_List__title'],
-                        cards=cards)
-                    lists.append(list_obj)
-
+                cards = []
+                for card_item in card_data:
+                    card = Card(title=card_item['_Card__title'],
+                                description=card_item['_Card__description'],
+                                date=card_item['_Card__date'],
+                                time=card_item['_Card__time'])
+                    cards.append(card)
+                list_obj = List(title=list_item['_List__title'],
+                                cards=cards)
+                lists.append(list_obj)
             board = Board(title=board_item['_Board__title'],
                           color=board_item['_Board__color'],
                           lists=lists)
@@ -363,6 +357,28 @@ class Database:
             The list of boards.
         """
         self.__data["_Board__title"] = boards
+
+    @property
+    def data(self: "Database") -> list[dict]:
+        """Returns the data of the database.
+
+        Returns
+        -------
+        data : list[dict]
+            The data of the database.
+        """
+        return self.__data
+
+    @data.setter
+    def data(self: "Database", data: list[dict]) -> None:
+        """Sets the data of the database.
+
+        Parameters
+        ----------
+        data : list[dict]
+            The data of the database.
+        """
+        self.__data = data
 
     def logout(self: "Database") -> None:
         """Logs the user out of the application.

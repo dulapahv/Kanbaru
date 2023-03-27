@@ -54,7 +54,7 @@ class Kanbaru(QMainWindow):
 
         # Set up event logger
         self.initEventLogger(os.path.join(
-            self.path, "event.log"), "%(asctime)s - %(levelname)s - %(message)s", debug=True)
+            self.path, "event.log"), "%(asctime)s - %(levelname)s - %(message)s", debug=True, stdout=True)
 
         logging.info("Starting Kanbaru...")
         logging.info(f'Current directory: "{self.path}"')
@@ -65,15 +65,15 @@ class Kanbaru(QMainWindow):
         # Initialize Firebase database
         self.initializeFirebaseDatabase(Database.getInstance(), os.path.join(
             self.path, "resources", "kanbaru-credentials.json"))
-
+        self.showMainScreen()
         # Check if user is logged in, if not, prompt login
-        if self.checkCredentials():
-            Database.getInstance().pullFromFirebase(Database.getInstance().username)
-            self.showMainScreen()
-        else:
-            self.showWelcomeScreen()
+        # if self.checkCredentials():
+        #     Database.getInstance().pullFromFirebase(Database.getInstance().username)
+        #     self.showMainScreen()
+        # else:
+        #     self.showWelcomeScreen()
 
-    def initEventLogger(self, path: str, fmt: str, debug: bool = False) -> None:
+    def initEventLogger(self, path: str, fmt: str, debug: bool = False, stdout: bool = False) -> None:
         """Initializes the event logger.
           - Set the path of the event log file
           - Set the format of the event log file
@@ -85,6 +85,8 @@ class Kanbaru(QMainWindow):
                             format=fmt,
                             datefmt='%d-%b-%y %H:%M:%S',
                             level=logging.DEBUG if debug else logging.INFO)
+        if stdout:
+            logging.getLogger().addHandler(logging.StreamHandler(sys.stdout))
 
     def initializeLocalDatabase(self) -> None:
         """Initializes the database instance.

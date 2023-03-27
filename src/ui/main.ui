@@ -18,7 +18,11 @@
     <normaloff>:/img/resources/img/icon.png</normaloff>:/img/resources/img/icon.png</iconset>
   </property>
   <property name="styleSheet">
-   <string notr="true">background-color: #454c5a;</string>
+   <string notr="true">background-color: #454c5a;
+color: rgb(255, 255, 255);
+QPushButton {background-color: #6badee; color: #ffffff; border-radius: 5px}
+QPushButton:hover {background-color: #5487bb;}
+QPushButton:focus {border-color: #000000; border-width: 1.5px; border-style: solid;}</string>
   </property>
   <property name="iconSize">
    <size>

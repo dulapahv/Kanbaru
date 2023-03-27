@@ -1,17 +1,13 @@
-from enum import Enum
+# from enum import Enum
 
 
-class Color(Enum):
-    LIGHTBLUE = "#6badee"
-    ROSE = "#fb568a"
-    GOLD = "#fbd945"
-    GREEN = "#99c37b"
-    LAVENDER = "#c577dc"
-    TEAL = "#5eb5c1"
-
-# access card through board?
-# TODO: figure out the datetime system for Qt
-
+# class Color(Enum):
+#     LIGHTBLUE = "#6badee"
+#     ROSE = "#fb568a"
+#     GOLD = "#fbd945"
+#     GREEN = "#99c37b"
+#     LAVENDER = "#c577dc"
+#     TEAL = "#5eb5c1"
 
 class Card:
     def __init__(self, title: str = "New Card", date="", time="", description: str = "") -> None:

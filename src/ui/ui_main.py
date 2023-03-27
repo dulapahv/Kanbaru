@@ -28,7 +28,11 @@ class Ui_MainWindow(object):
         icon = QIcon()
         icon.addFile(u":/img/resources/img/icon.png", QSize(), QIcon.Normal, QIcon.Off)
         MainWindow.setWindowIcon(icon)
-        MainWindow.setStyleSheet(u"background-color: #454c5a;")
+        MainWindow.setStyleSheet(u"background-color: #454c5a;\n"
+"color: rgb(255, 255, 255);\n"
+"QPushButton {background-color: #6badee; color: #ffffff; border-radius: 5px}\n"
+"QPushButton:hover {background-color: #5487bb;}\n"
+"QPushButton:focus {border-color: #000000; border-width: 1.5px; border-style: solid;}")
         MainWindow.setIconSize(QSize(128, 128))
         self.centralwidget = QWidget(MainWindow)
         self.centralwidget.setObjectName(u"centralwidget")
