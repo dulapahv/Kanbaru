@@ -1,5 +1,18 @@
+import datetime
 import logging
 from typing import Callable
+
+from PySide6.QtCore import *
+from PySide6.QtGui import *
+from PySide6.QtWidgets import *
+
+from db import Database
+from kanbaru_objects import Board, Card, List
+from ui.app_settings import AppSettings
+from ui.board_settings import BoardSettings
+from ui.card_description import CardDescription
+from ui.ui_main import Ui_MainWindow
+from utils import setupFontDB
 
 # from PySide6.QtCore import QCoreApplication, QSize, Qt, Slot
 # from PySide6.QtGui import (QCursor, QDragEnterEvent, QDragMoveEvent,
@@ -9,18 +22,7 @@ from typing import Callable
 #                                QListWidgetItem, QMainWindow, QPushButton,
 #                                QSizePolicy, QSpacerItem, QVBoxLayout, QWidget)
 
-from db import Database
-from kanbaru_objects import Board, Card, List
-from ui.app_settings import AppSettings
-from ui.board_settings import BoardSettings
-from ui.card_description import CardDescription
-from ui.ui_main import Ui_MainWindow
-from utils import setupFontDB
-import datetime
 
-from PySide6.QtCore import *
-from PySide6.QtGui import *
-from PySide6.QtWidgets import *
 
 
 class MainScreen(QMainWindow):
@@ -68,13 +70,13 @@ class MainScreen(QMainWindow):
         parent.ui.verticalLayout_4.addWidget(pushButton)
         for index, board in enumerate(Database.getInstance().boards[1:]):
             parent.ui.qpushbutton = QPushButton()
+            parent.ui.qpushbutton = self.boardFactory(
+                parent, board, "TorusPro.ttf", False)
             new_name = f"{parent.ui.qpushbutton.__class__.__name__}_{id(parent.ui.qpushbutton)}"
             setattr(parent.ui, new_name, parent.ui.qpushbutton)
             pushButton = getattr(parent.ui, new_name)
             pushButton.setObjectName(new_name)
             delattr(parent.ui, "qpushbutton")
-            pushButton = self.boardFactory(
-                parent, board, "TorusPro.ttf", False)
             pushButton.clicked.connect(lambda: self.changeBoard(
                 parent, Database.getInstance().boards[index + 1]))
             parent.ui.verticalLayout_4.addWidget(pushButton)
@@ -462,10 +464,16 @@ class MainScreen(QMainWindow):
             Database.getInstance().write()
 
             new_board = Board(text)
-            qpushbutton = self.boardFactory(parent, new_board, "TorusPro.ttf")
-            qpushbutton.clicked.connect(
-                lambda: self.changeBoard(parent, new_board))
-            parent.ui.verticalLayout_4.addWidget(qpushbutton)
+            # parent.ui.qpushbutton = QPushButton()
+            # new_name = f"{parent.ui.qpushbutton.__class__.__name__}_{id(parent.ui.qpushbutton)}"
+            # setattr(parent.ui, new_name, parent.ui.qpushbutton)
+            # qpushButton = getattr(parent.ui, new_name)
+            # qpushButton.setObjectName(new_name)
+            # delattr(parent.ui, "qpushbutton")
+            # qpushButton = self.boardFactory(parent, new_board, "TorusPro.ttf")
+            # qpushButton.clicked.connect(
+            #     lambda: self.changeBoard(parent, Database.getInstance().boards[len(Database.getInstance().boards) - 1]))
+            # parent.ui.verticalLayout_4.addWidget(qpushButton)
             self.changeBoard(parent, new_board)
             parent.ui.verticalLayout_4.removeItem(
                 parent.ui.vertSpacer_scrollAreaContent)
