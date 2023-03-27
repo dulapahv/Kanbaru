@@ -11,17 +11,13 @@ try:
     from ui.welcome import WelcomeScreen
     from utils import getCurrentDirectory
 except ModuleNotFoundError:
-    errormsgbox = QMessageBox()
-    errormsgbox.setIcon(QMessageBox.Critical)
-    errormsgbox.setWindowTitle("Error: Module Not Found")
-    errormsgbox.setText(
-        "Required modules not found. Would you like to install them now?")
-    errormsgbox.setStandardButtons(QMessageBox.Yes | QMessageBox.No)
-    errormsgbox.setDefaultButton(QMessageBox.Yes)
-    errormsgbox.setEscapeButton(QMessageBox.No)
-    errormsgbox.setDetailedText("Required modules: PySide6, firebase-admin")
+    from tkinter import messagebox, Tk
+    root = Tk()
+    root.withdraw()
+    response = messagebox.askyesno("Error: Module Not Found",
+        "Required modules not found. Would you like to install them now?\n\nRequired modules: PySide6, firebase-admin")
 
-    if errormsgbox.exec() == QMessageBox.Yes:
+    if response:
         try:
             import pip
             pip.main(["install", "PySide6"])
