@@ -20,14 +20,12 @@ except ModuleNotFoundError:
     if response:
         try:
             import pip
-            pip.main(["install", "PySide6"])
-            pip.main(["install", "firebase-admin"])
+            pip.main(["install", "-r", "requirements.txt"])
         except ModuleNotFoundError:
             print("pip not found. Installing pip rn. Risky move, but I'll do it for you.\n btw why dont you have pip installed yet?")
             import ensurepip
             ensurepip.bootstrap()
-            pip.main(["install", "PySide6"])
-            pip.main(["install", "firebase-admin"])
+            pip.main(["install", "-r", "requirements.txt"])
         finally:
             from PySide6.QtWidgets import (QApplication, QMainWindow,
                                            QMessageBox)
