@@ -66,7 +66,7 @@ class MainScreen(QMainWindow):
         pushButton.clicked.connect(lambda: self.changeBoard(
             parent, Database.getInstance().boards[0]))
         parent.ui.verticalLayout_4.addWidget(pushButton)
-        for board in Database.getInstance().boards[1:]:
+        for index, board in enumerate(Database.getInstance().boards[1:]):
             parent.ui.qpushbutton = QPushButton()
             new_name = f"{parent.ui.qpushbutton.__class__.__name__}_{id(parent.ui.qpushbutton)}"
             setattr(parent.ui, new_name, parent.ui.qpushbutton)
@@ -75,7 +75,8 @@ class MainScreen(QMainWindow):
             delattr(parent.ui, "qpushbutton")
             pushButton = self.boardFactory(
                 parent, board, "TorusPro.ttf", False)
-            pushButton.clicked.connect(lambda: self.changeBoard(parent, board))
+            pushButton.clicked.connect(lambda: self.changeBoard(
+                parent, Database.getInstance().boards[index + 1]))
             parent.ui.verticalLayout_4.addWidget(pushButton)
 
         parent.ui.vertSpacer_scrollAreaContent = QSpacerItem(
@@ -281,8 +282,9 @@ class MainScreen(QMainWindow):
         fontDB = setupFontDB(font)
         parent.ui.label_list.setFont(QFont(fontDB[0], 12, QFont.Bold))
         parent.ui.btn_add_card.setFont(QFont(fontDB[0], 12))
-        
-        parent.ui.btn_add_card.clicked.connect(lambda: self.addCard(parent, list))
+
+        parent.ui.btn_add_card.clicked.connect(
+            lambda: self.addCard(parent, list))
 
         new_name = f"{parent.ui.listWidget.__class__.__name__}_{id(parent.ui.listWidget)}"
         setattr(parent.ui, new_name, parent.ui.listWidget)
@@ -472,7 +474,7 @@ class MainScreen(QMainWindow):
 
     def addCard(self, parent: Ui_MainWindow, list: List) -> None:
         """Add a new card
-        
+
         Parameters
         ----------
         parent : Ui_MainWindow
@@ -491,7 +493,8 @@ class MainScreen(QMainWindow):
                             {"_Card__title": text, "_Card__description": "", "_Card__date": datetime.date.today().strftime("%d-%m-%Y"), "_Card__time": datetime.datetime.now().strftime("%H:%M")})
                         Database.getInstance().data = data
                         Database.getInstance().write()
-                        self.changeBoard(parent, Database.getInstance().boards[i])
+                        self.changeBoard(
+                            parent, Database.getInstance().boards[i])
 
     @Slot()
     def dragEnterEvent(self, event: QDragEnterEvent) -> None:
