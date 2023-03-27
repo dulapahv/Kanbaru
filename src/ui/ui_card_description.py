@@ -90,19 +90,9 @@ class Ui_CardWindow(object):
         self.lineEdit_title.setFont(font2)
         self.lineEdit_title.setStyleSheet(u"QLineEdit {background-color: #ebecf0; color: #282c33; border-radius: 5px; padding: 0px 8px 0px 8px}\n"
 "QLineEdit:focus {background-color: #ffffff; border-color: #6badee; border-width: 1.5px; border-style: solid;; padding: 0px 6px 0px 6px}")
+        self.lineEdit_title.setReadOnly(True)
 
         self.verticalLayout.addWidget(self.lineEdit_title)
-
-        self.label_card_info = QLabel(self.widget1)
-        self.label_card_info.setObjectName(u"label_card_info")
-        font3 = QFont()
-        font3.setFamilies([u"Torus Pro"])
-        font3.setPointSize(11)
-        font3.setUnderline(True)
-        self.label_card_info.setFont(font3)
-        self.label_card_info.setWordWrap(True)
-
-        self.verticalLayout.addWidget(self.label_card_info)
 
         self.horizontalLayout_2 = QHBoxLayout()
         self.horizontalLayout_2.setObjectName(u"horizontalLayout_2")
@@ -142,10 +132,10 @@ class Ui_CardWindow(object):
         self.timeEdit = QTimeEdit(self.widget1)
         self.timeEdit.setObjectName(u"timeEdit")
         self.timeEdit.setMinimumSize(QSize(0, 40))
-        font4 = QFont()
-        font4.setFamilies([u"Noto Sans"])
-        font4.setPointSize(16)
-        self.timeEdit.setFont(font4)
+        font3 = QFont()
+        font3.setFamilies([u"Noto Sans"])
+        font3.setPointSize(16)
+        self.timeEdit.setFont(font3)
         self.timeEdit.setCursor(QCursor(Qt.PointingHandCursor))
         self.timeEdit.setStyleSheet(u"QTimeEdit {background-color: #6badee; color: #ffffff; border-radius: 5px; padding: 0px 5px 0px 5px;}\n"
 "QTimeEdit:focus {border-color: #000000; border-width: 1.5px; border-style: solid; padding: 0px 3px 0px 3px;}")
@@ -177,11 +167,11 @@ class Ui_CardWindow(object):
 
         self.textEdit_description = QTextEdit(self.widget1)
         self.textEdit_description.setObjectName(u"textEdit_description")
-        font5 = QFont()
-        font5.setFamilies([u"Noto Sans"])
-        font5.setPointSize(12)
-        font5.setBold(False)
-        self.textEdit_description.setFont(font5)
+        font4 = QFont()
+        font4.setFamilies([u"Noto Sans"])
+        font4.setPointSize(12)
+        font4.setBold(False)
+        self.textEdit_description.setFont(font4)
         self.textEdit_description.setStyleSheet(u"QTextEdit {background-color: #ebecf0; color: #282c33; border-radius: 5px; padding: 4px 8px 4px 8px}\n"
 "QTextEdit:focus {background-color: #ffffff; border-color: #6badee; border-width: 1.5px; border-style: solid;}\n"
 "QScrollBar:vertical {width: 10px; margin: 0px 0px 0px 0px; background-color: #acb2bf}")
@@ -203,10 +193,10 @@ class Ui_CardWindow(object):
         sizePolicy1.setHeightForWidth(self.btn_delete.sizePolicy().hasHeightForWidth())
         self.btn_delete.setSizePolicy(sizePolicy1)
         self.btn_delete.setMinimumSize(QSize(140, 30))
-        font6 = QFont()
-        font6.setFamilies([u"Torus Pro"])
-        font6.setPointSize(12)
-        self.btn_delete.setFont(font6)
+        font5 = QFont()
+        font5.setFamilies([u"Torus Pro"])
+        font5.setPointSize(12)
+        self.btn_delete.setFont(font5)
         self.btn_delete.setCursor(QCursor(Qt.PointingHandCursor))
         self.btn_delete.setFocusPolicy(Qt.TabFocus)
         self.btn_delete.setStyleSheet(u"QPushButton {background-color: #d63a3e; color: #ffffff; border-radius: 5px}\n"
@@ -224,7 +214,7 @@ class Ui_CardWindow(object):
         sizePolicy1.setHeightForWidth(self.btn_cancel.sizePolicy().hasHeightForWidth())
         self.btn_cancel.setSizePolicy(sizePolicy1)
         self.btn_cancel.setMinimumSize(QSize(100, 30))
-        self.btn_cancel.setFont(font6)
+        self.btn_cancel.setFont(font5)
         self.btn_cancel.setCursor(QCursor(Qt.PointingHandCursor))
         self.btn_cancel.setFocusPolicy(Qt.TabFocus)
         self.btn_cancel.setStyleSheet(u"QPushButton {background-color: #acb2bf; color: #ffffff; border-radius: 5px}\n"
@@ -238,7 +228,7 @@ class Ui_CardWindow(object):
         sizePolicy1.setHeightForWidth(self.btn_save.sizePolicy().hasHeightForWidth())
         self.btn_save.setSizePolicy(sizePolicy1)
         self.btn_save.setMinimumSize(QSize(100, 30))
-        self.btn_save.setFont(font6)
+        self.btn_save.setFont(font5)
         self.btn_save.setCursor(QCursor(Qt.PointingHandCursor))
         self.btn_save.setFocusPolicy(Qt.TabFocus)
         self.btn_save.setStyleSheet(u"QPushButton {background-color: #6badee; color: #ffffff; border-radius: 5px}\n"
@@ -275,7 +265,6 @@ class Ui_CardWindow(object):
         self.label_title.setText(QCoreApplication.translate("CardWindow", u"Title", None))
         self.lineEdit_title.setText("")
         self.lineEdit_title.setPlaceholderText(QCoreApplication.translate("CardWindow", u"Add a card title...", None))
-        self.label_card_info.setText(QCoreApplication.translate("CardWindow", u"in list To Do", None))
         self.label_date.setText(QCoreApplication.translate("CardWindow", u"Date", None))
         self.label_time.setText(QCoreApplication.translate("CardWindow", u"Time", None))
         self.label_description.setText(QCoreApplication.translate("CardWindow", u"Description", None))

@@ -154,25 +154,11 @@ QLineEdit:focus {background-color: #ffffff; border-color: #6badee; border-width:
             <property name="text">
              <string/>
             </property>
+            <property name="readOnly">
+             <bool>true</bool>
+            </property>
             <property name="placeholderText">
              <string>Add a card title...</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QLabel" name="label_card_info">
-            <property name="font">
-             <font>
-              <family>Torus Pro</family>
-              <pointsize>11</pointsize>
-              <underline>true</underline>
-             </font>
-            </property>
-            <property name="text">
-             <string>in list To Do</string>
-            </property>
-            <property name="wordWrap">
-             <bool>true</bool>
             </property>
            </widget>
           </item>

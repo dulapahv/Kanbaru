@@ -70,16 +70,17 @@ class MainScreen(QMainWindow):
         parent.ui.verticalLayout_4.addWidget(pushButton)
         for index, board in enumerate(Database.getInstance().boards[1:]):
             parent.ui.qpushbutton = QPushButton()
-            parent.ui.qpushbutton = self.boardFactory(
-                parent, board, "TorusPro.ttf", False)
             new_name = f"{parent.ui.qpushbutton.__class__.__name__}_{id(parent.ui.qpushbutton)}"
             setattr(parent.ui, new_name, parent.ui.qpushbutton)
             pushButton = getattr(parent.ui, new_name)
             pushButton.setObjectName(new_name)
             delattr(parent.ui, "qpushbutton")
+            pushButton = self.boardFactory(
+                parent, Database.getInstance().boards[index + 1], "TorusPro.ttf", isConstructed=False)
             pushButton.clicked.connect(lambda: self.changeBoard(
                 parent, Database.getInstance().boards[index + 1]))
             parent.ui.verticalLayout_4.addWidget(pushButton)
+            # TODO: Fix changing board connections
 
         parent.ui.vertSpacer_scrollAreaContent = QSpacerItem(
             20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)

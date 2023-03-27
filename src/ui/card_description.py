@@ -8,6 +8,8 @@ from kanbaru_objects import Board, Card, List
 from ui.ui_card_description import Ui_CardWindow
 from utils import dialogFactory, setupFontDB
 
+from db import Database
+
 
 class CardDescription(QMainWindow):
     def __init__(self, card: Card) -> None:
@@ -30,6 +32,7 @@ class CardDescription(QMainWindow):
         self.ui.btn_save.keyPressEvent = lambda event: self.keyPressEvent(
             event, self.save)
 
+        self.card = card
         self.title = card.title
         self.date = card.date
         self.time = card.time
@@ -38,7 +41,11 @@ class CardDescription(QMainWindow):
         self.setupFont()
 
     def save(self) -> None:
-        ...
+        self.card.title = self.title
+        self.card.date = self.date
+        self.card.time = self.time
+        self.card.description = self.description
+        Database.getInstance().update_card(self.card)
 
     def delete(self) -> None:
         ...
@@ -87,7 +94,6 @@ class CardDescription(QMainWindow):
         self.ui.label_date.setFont(QFont(toruspro, 14, QFont.Bold))
         self.ui.label_time.setFont(QFont(toruspro, 14, QFont.Bold))
         self.ui.label_description.setFont(QFont(toruspro, 14, QFont.Bold))
-        self.ui.label_card_info.setFont(QFont(toruspro, 11))
         self.ui.lineEdit_title.setFont(QFont(notosans, 12))
         self.ui.calendarWidget.setFont(QFont(notosans, 12))
         self.ui.timeEdit.setFont(QFont(notosans, 12))

@@ -357,6 +357,28 @@ class Database:
             The list of boards.
         """
         self.__data["_Board__title"] = boards
+        
+
+    def update_card(self: "Database", card_new: Card) -> None:
+        """Update card info in database.
+        
+        Parameters
+        ----------
+        card : Card
+            The card to be updated.
+        parent_list : List
+            The list that the card is in.
+        """
+        for indexb, board in enumerate(self.boards):
+            for indexl, list in enumerate(board.lists):
+                for indexc, card in enumerate(list.cards):
+                    if card.title == card_new.title:
+                        self.data["_Database__data"][indexb]["_Board__lists"][indexl]["_List__cards"][indexc]["_Card__description"] = card_new.description
+                        self.data["_Database__data"][indexb]["_Board__lists"][indexl]["_List__cards"][indexc]["_Card__date"] = card_new.date
+                        self.data["_Database__data"][indexb]["_Board__lists"][indexl]["_List__cards"][indexc]["_Card__time"] = card_new.time
+                        self.write()
+                    break
+            break
 
     @property
     def data(self: "Database") -> list[dict]:
