@@ -445,8 +445,32 @@ class MainScreen(QMainWindow):
         self.cardDescription.show()
 
     def addBoard(self, parent: Ui_MainWindow) -> None:
-        """Add a new board"""
-        ...
+        """Add a new board
+
+        Parameters
+        ----------
+        parent : Ui_MainWindow
+            The main window
+        """
+        text, ok = QInputDialog().getText(
+            parent, "New board", "Enter a title for the board")
+        if ok and text != "":
+            data = Database.getInstance().data
+            data["_Database__data"].append(
+                {"_Board__title": text, "_Board__lists": [], "_Board__color": ""})
+            Database.getInstance().data = data
+            Database.getInstance().write()
+
+            new_board = Board(text)
+            qpushbutton = self.boardFactory(parent, new_board, "TorusPro.ttf")
+            qpushbutton.clicked.connect(
+                lambda: self.changeBoard(parent, new_board))
+            parent.ui.verticalLayout_4.addWidget(qpushbutton)
+            self.changeBoard(parent, new_board)
+            parent.ui.verticalLayout_4.removeItem(
+                parent.ui.vertSpacer_scrollAreaContent)
+            parent.ui.verticalLayout_4.addItem(
+                parent.ui.vertSpacer_scrollAreaContent)
 
     def addList(self, parent: Ui_MainWindow, board: Board) -> None:
         """Add a new list
