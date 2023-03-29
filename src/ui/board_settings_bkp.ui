@@ -141,7 +141,7 @@ QScrollBar:horizontal {height: 10px; margin: 0px 0px 0px 0px; background-color: 
              <property name="geometry">
               <rect>
                <x>0</x>
-               <y>0</y>
+               <y>-240</y>
                <width>516</width>
                <height>871</height>
               </rect>
@@ -475,7 +475,7 @@ QRadioButton:focus {border-color: #000000; border-width: 1.5px; border-style: so
                      <string notr="true">color: #282c33;</string>
                     </property>
                     <property name="text">
-                     <string>Manage Panel</string>
+                     <string>Manage List</string>
                     </property>
                     <property name="wordWrap">
                      <bool>true</bool>

@@ -423,7 +423,7 @@ QRadioButton:focus {border-color: #000000; border-width: 1.5px; border-style: so
                </spacer>
               </item>
               <item>
-               <widget class="QLabel" name="label_manage_panel">
+               <widget class="QLabel" name="label_manage_list">
                 <property name="font">
                  <font>
                   <family>Torus Pro</family>
@@ -435,7 +435,7 @@ QRadioButton:focus {border-color: #000000; border-width: 1.5px; border-style: so
                  <string notr="true">color: #282c33;</string>
                 </property>
                 <property name="text">
-                 <string>Manage Panel</string>
+                 <string>Manage List</string>
                 </property>
                 <property name="wordWrap">
                  <bool>true</bool>
@@ -443,7 +443,7 @@ QRadioButton:focus {border-color: #000000; border-width: 1.5px; border-style: so
                </widget>
               </item>
               <item>
-               <widget class="QLabel" name="label_manage_panel_desc">
+               <widget class="QLabel" name="label_manage_list_desc">
                 <property name="font">
                  <font>
                   <family>Torus Pro</family>
@@ -574,7 +574,7 @@ QPushButton:hover {background-color: #9e2a2a;}
 QPushButton:focus {border-color: #000000; border-width: 1.5px; border-style: solid;}</string>
                   </property>
                   <property name="text">
-                   <string>Delete Panel</string>
+                   <string>Delete List</string>
                   </property>
                  </widget>
                 </item>
@@ -610,7 +610,7 @@ QPushButton:hover {background-color: #5487bb;}
 QPushButton:focus {border-color: #000000; border-width: 1.5px; border-style: solid;}</string>
                   </property>
                   <property name="text">
-                   <string>Rename Panel</string>
+                   <string>Rename List</string>
                   </property>
                  </widget>
                 </item>

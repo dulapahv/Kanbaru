@@ -1,5 +1,3 @@
-from typing import List
-
 class Card:
     def __init__(self, title: str = "New Card", date="", time="", description: str = "") -> None:
         self.__title = title
@@ -46,8 +44,8 @@ class Card:
         return self.__title
 
 
-class Panel:
-    def __init__(self, title: str = "New Panel", cards=[]) -> None:
+class List:
+    def __init__(self, title: str = "New List", cards=[]) -> None:
         self.__title = title
         self.__cards = cards
 
@@ -56,7 +54,7 @@ class Panel:
         return self.__title
 
     @property
-    def cards(self) -> List[Card]:
+    def cards(self) -> list[Card]:
         return self.__cards
 
     @title.setter
@@ -66,21 +64,21 @@ class Panel:
     @cards.setter
     def cards(self, card: Card) -> None:
         if card in self.__cards:
-            raise ValueError("Card already exists in panel.")
+            raise ValueError("Card already exists in list.")
         self.__cards.append(card)
 
-    def __eq__(self, panel):
-        return self.__title == panel.title and self.__cards == panel.cards
+    def __eq__(self, list):
+        return self.__title == list.title and self.__cards == list.cards
 
     def __str__(self):
         return self.__title
 
 
 class Board:
-    def __init__(self, title: str = "New Board", color="", panels=[]):
+    def __init__(self, title: str = "New Board", color="", lists=[]):
         self.__title = title
         self.__color = color
-        self.__panels = panels
+        self.__lists = lists
 
     @property
     def title(self) -> str:
@@ -91,8 +89,8 @@ class Board:
         return self.__color
 
     @property
-    def panels(self) -> List[Panel]:
-        return self.__panels
+    def lists(self) -> list[List]:
+        return self.__lists
 
     @title.setter
     def title(self, title: str) -> None:
@@ -102,14 +100,14 @@ class Board:
     def color(self, color: str) -> None:
         self.__color = color
 
-    @panels.setter
-    def panels(self, panel: Panel) -> None:
-        if panel in self.__panels:
-            raise ValueError("Panel already exists in board.")
-        self.__panels.append(panel)
+    @lists.setter
+    def lists(self, list: List) -> None:
+        if list in self.__lists:
+            raise ValueError("List already exists in board.")
+        self.__lists.append(list)
 
     def __eq__(self, board):
-        return self.__title == board.title and self.__color == board.color and self.__panels == board.panels
+        return self.__title == board.title and self.__color == board.color and self.__lists == board.lists
 
     def __str__(self):
         return self.__title

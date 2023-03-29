@@ -1,10 +1,9 @@
 import logging
-from typing import Callable, List
+from typing import Callable
 
 from PySide6.QtCore import *
 from PySide6.QtGui import *
 from PySide6.QtWidgets import *
-
 from db import Database
 from kanbaru_objects import Board
 from ui.ui_app_settings import Ui_SettingsWindow
@@ -19,20 +18,19 @@ class AppSettings(QMainWindow):
         self.ui.setupUi(self)
 
         self.ui.btn_delete.clicked.connect(
-            lambda: dialog_factory(None, self.delete, "Delete Board",
+            lambda: dialog_factory(None, self.delete, "Delete Board Confirmation",
                                    "Are you sure you want to delete selected board?\nThis action cannot be undone."))
         self.ui.btn_rename.clicked.connect(self.rename)
         self.ui.btn_cancel.clicked.connect(self.close)
         self.ui.btn_save.clicked.connect(self.save)
         self.ui.btn_logout.clicked.connect(
-            lambda: dialog_factory(parent, self.logout, "Logout", "Are you sure you want to logout?"))
+            lambda: dialog_factory(parent, self.logout, "Logout Confirmation", "Are you sure you want to logout?"))
         self.ui.btn_delete_account.clicked.connect(
-            lambda: dialog_factory(parent, self.delete_account, "Delete Account",
+            lambda: dialog_factory(parent, self.delete_account, "Delete Account Confirmation",
                                    "Are you sure you want to delete your account?\nThis action cannot be undone."))
 
         self.ui.btn_delete.keyPressEvent = lambda event: self.keyPressEvent(
-            event, dialog_factory(None, self.delete, "Delete Board",
-                                  "Are you sure you want to delete selected board?\nThis action cannot be undone."))
+            event, function=self.delete)
         self.ui.btn_rename.keyPressEvent = lambda event: self.keyPressEvent(
             event, function=self.rename)
         self.ui.btn_cancel.keyPressEvent = lambda event: self.keyPressEvent(
@@ -41,9 +39,9 @@ class AppSettings(QMainWindow):
             event, function=self.save)
         self.ui.btn_logout.keyPressEvent = lambda event: self.keyPressEvent(
             event, parent,
-            dialog_factory(parent, self.logout, "Logout", "Are you sure you want to logout?"))
+            dialog_factory(parent, self.logout, "Logout Confirmation", "Are you sure you want to logout?"))
         self.ui.btn_delete_account.keyPressEvent = lambda event: self.keyPressEvent(
-            event, parent, dialog_factory(parent, self.delete_account, "Delete Account",
+            event, parent, dialog_factory(parent, self.delete_account, "Delete Account Confirmation",
                                           "Are you sure you want to delete your account?\nThis action cannot be undone."))
 
         self.setup_font()
@@ -68,11 +66,11 @@ class AppSettings(QMainWindow):
         ...
 
     @property
-    def board_all(self) -> List[Board]:
+    def board_all(self) -> list[Board]:
         ...
 
     @board_all.setter
-    def board_all(self, board: Board | List[Board]) -> None:
+    def board_all(self, board: Board | list[Board]) -> None:
         ...
 
     def logout(self, parent: QMainWindow):

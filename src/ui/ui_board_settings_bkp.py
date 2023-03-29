@@ -83,7 +83,7 @@ class Ui_BoardWindow(object):
         self.scrollArea.setWidgetResizable(True)
         self.scrollAreaWidgetContents = QWidget()
         self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
-        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 516, 871))
+        self.scrollAreaWidgetContents.setGeometry(QRect(0, -240, 516, 871))
         self.verticalLayout_4 = QVBoxLayout(self.scrollAreaWidgetContents)
         self.verticalLayout_4.setSpacing(0)
         self.verticalLayout_4.setObjectName(u"verticalLayout_4")
@@ -490,7 +490,7 @@ class Ui_BoardWindow(object):
         self.btn_color_4.setText(QCoreApplication.translate("BoardWindow", u"Green", None))
         self.btn_color_5.setText(QCoreApplication.translate("BoardWindow", u"Lavender", None))
         self.btn_color_6.setText(QCoreApplication.translate("BoardWindow", u"Teal", None))
-        self.label_8.setText(QCoreApplication.translate("BoardWindow", u"Manage Panel", None))
+        self.label_8.setText(QCoreApplication.translate("BoardWindow", u"Manage List", None))
         self.label_2.setText(QCoreApplication.translate("BoardWindow", u"Drag to rearrange. Select and press Delete/Rename to update.", None))
 
         __sortingEnabled = self.listWidget_manage_list.isSortingEnabled()

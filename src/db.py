@@ -1,12 +1,11 @@
 import json
 import logging
 import os
-from typing import Dict, List
 
 import firebase_admin
 from firebase_admin import credentials, db
 
-from kanbaru_objects import Board, Card, Panel
+from kanbaru_objects import Board, List, Card
 
 
 class Database:
@@ -26,7 +25,7 @@ class Database:
 
         self.__username: str = ""
         self.__password: str = ""
-        self.__data: List[Dict] = [vars(Board())]
+        self.__data: list[dict] = [vars(Board())]
 
     @staticmethod
     def get_instance() -> "Database":
@@ -277,15 +276,15 @@ class Database:
         self.__data["_Database__password"] = password
 
     @property
-    def boards(self: "Database") -> List[Board | List[Panel | List[Card]]]:
+    def boards(self: "Database") -> list[Board | list[List | list[Card]]]:
         """Returns the list of boards containing its attributes and list of
-        Panels containing its attributes and list of Cards containing its
+        Lists containing its attributes and list of Cards containing its
         attributes.
 
         Returns
         -------
-        boards : List[Board | List[Panel | List[Card]]]
-            The list of boards containing its attributes and list of Panels
+        boards : list[Board | list[List | list[Card]]]
+            The list of boards containing its attributes and list of Lists
             containing its attributes and list of Cards containing its
             attributes.
 
@@ -301,13 +300,13 @@ class Database:
         boards = []
         for board_item in board_lists:
             try:
-                panel_data = board_item['_Board__lists']
+                list_data = board_item['_Board__lists']
             except KeyError:
-                panel_data = []
-            panels = []
-            for panel_item in panel_data:
+                list_data = []
+            lists = []
+            for list_item in list_data:
                 try:
-                    card_data = panel_item['_Board__panels']
+                    card_data = list_item['_List__cards']
                 except KeyError:
                     card_data = []
                 cards = []
@@ -317,22 +316,23 @@ class Database:
                                 date=card_item['_Card__date'],
                                 time=card_item['_Card__time'])
                     cards.append(card)
-                panel_obj = Panel(title=panel_item['_Panel__title'],
-                                 cards=cards)
-                panels.append(panel_obj)
+                list_obj = List(title=list_item['_List__title'],
+                                cards=cards)
+                lists.append(list_obj)
             board = Board(title=board_item['_Board__title'],
                           color=board_item['_Board__color'],
-                          panels=panels)
+                          lists=lists)
             boards.append(board)
+
         return boards
 
     @boards.setter
-    def boards(self: "Database", boards: List[Board]) -> None:
+    def boards(self: "Database", boards: list[Board]) -> None:
         """Sets the list of boards.
 
         Parameters
         ----------
-        boards : List[Board]
+        boards : list[Board]
             The list of boards.
         """
         self.__data["_Board__title"] = boards
@@ -348,38 +348,38 @@ class Database:
             The new card to be updated to.
         """
         for index_b, board in enumerate(self.boards):
-            for index_l, panel in enumerate(board.panels):
-                for index_c, card in enumerate(panel.cards):
+            for index_l, list in enumerate(board.lists):
+                for index_c, card in enumerate(list.cards):
                     if card == card_old:
-                        self.data["_Database__data"][index_b]["_Board__panels"][index_l]["_List__cards"][index_c][
+                        self.data["_Database__data"][index_b]["_Board__lists"][index_l]["_List__cards"][index_c][
                             "_Card__title"] = card_new.title
-                        self.data["_Database__data"][index_b]["_Board__panels"][index_l][
+                        self.data["_Database__data"][index_b]["_Board__lists"][index_l][
                             "_List__cards"][index_c]["_Card__description"] = card_new.description
-                        self.data["_Database__data"][index_b]["_Board__panels"][index_l]["_List__cards"][index_c][
+                        self.data["_Database__data"][index_b]["_Board__lists"][index_l]["_List__cards"][index_c][
                             "_Card__date"] = card_new.date
-                        self.data["_Database__data"][index_b]["_Board__panels"][index_l]["_List__cards"][index_c][
+                        self.data["_Database__data"][index_b]["_Board__lists"][index_l]["_List__cards"][index_c][
                             "_Card__time"] = card_new.time
                         Database.write(self)
                         return None
 
     @property
-    def data(self: "Database") -> List[Dict]:
+    def data(self: "Database") -> list[dict]:
         """Returns the data of the database.
 
         Returns
         -------
-        data : List[Dict]
+        data : list[dict]
             The data of the database.
         """
         return self.__data
 
     @data.setter
-    def data(self: "Database", data: List[Dict]) -> None:
+    def data(self: "Database", data: list[dict]) -> None:
         """Sets the data of the database.
 
         Parameters
         ----------
-        data : List[Dict]
+        data : list[dict]
             The data of the database.
         """
         self.__data = data
@@ -395,7 +395,7 @@ class Database:
         logging.info("Logging out...")
         self.username: str = ""
         self.password: str = ""
-        self.__data: List[Dict] = [vars(Board())]
+        self.__data: list[dict] = [vars(Board())]
         try:
             Database.create(self)
             logging.info("Logged out")

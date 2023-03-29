@@ -12,7 +12,7 @@ from utils import setup_font_db
 
 
 class WelcomeScreen(QMainWindow):
-    def __init__(self, parent: QMainWindow) -> None:
+    def __init__(self, parent: QMainWindow, *args, **kwargs) -> None:
         QMainWindow.__init__(self)
 
         parent.ui: Ui_WelcomeWindow = Ui_WelcomeWindow()

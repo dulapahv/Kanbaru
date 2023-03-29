@@ -203,23 +203,23 @@ class Ui_BoardWindow(object):
 
         self.verticalLayout_2.addItem(self.verticalSpacer_2)
 
-        self.label_manage_panel = QLabel(self.widget1)
-        self.label_manage_panel.setObjectName(u"label_manage_panel")
-        self.label_manage_panel.setFont(font1)
-        self.label_manage_panel.setStyleSheet(u"color: #282c33;")
-        self.label_manage_panel.setWordWrap(True)
+        self.label_manage_list = QLabel(self.widget1)
+        self.label_manage_list.setObjectName(u"label_manage_list")
+        self.label_manage_list.setFont(font1)
+        self.label_manage_list.setStyleSheet(u"color: #282c33;")
+        self.label_manage_list.setWordWrap(True)
 
-        self.verticalLayout_2.addWidget(self.label_manage_panel)
+        self.verticalLayout_2.addWidget(self.label_manage_list)
 
-        self.label_manage_panel_desc = QLabel(self.widget1)
-        self.label_manage_panel_desc.setObjectName(u"label_manage_panel_desc")
+        self.label_manage_list_desc = QLabel(self.widget1)
+        self.label_manage_list_desc.setObjectName(u"label_manage_list_desc")
         font4 = QFont()
         font4.setFamilies([u"Torus Pro"])
         font4.setPointSize(11)
-        self.label_manage_panel_desc.setFont(font4)
-        self.label_manage_panel_desc.setWordWrap(True)
+        self.label_manage_list_desc.setFont(font4)
+        self.label_manage_list_desc.setWordWrap(True)
 
-        self.verticalLayout_2.addWidget(self.label_manage_panel_desc)
+        self.verticalLayout_2.addWidget(self.label_manage_list_desc)
 
         self.listWidget_manage_list = QListWidget(self.widget1)
         __qlistwidgetitem = QListWidgetItem(self.listWidget_manage_list)
@@ -377,8 +377,8 @@ class Ui_BoardWindow(object):
         self.btn_color_4.setText(QCoreApplication.translate("BoardWindow", u"Green", None))
         self.btn_color_5.setText(QCoreApplication.translate("BoardWindow", u"Lavender", None))
         self.btn_color_6.setText(QCoreApplication.translate("BoardWindow", u"Teal", None))
-        self.label_manage_panel.setText(QCoreApplication.translate("BoardWindow", u"Manage Panel", None))
-        self.label_manage_panel_desc.setText(QCoreApplication.translate("BoardWindow", u"Drag to rearrange. Select and press Delete/Rename to update.", None))
+        self.label_manage_list.setText(QCoreApplication.translate("BoardWindow", u"Manage List", None))
+        self.label_manage_list_desc.setText(QCoreApplication.translate("BoardWindow", u"Drag to rearrange. Select and press Delete/Rename to update.", None))
 
         __sortingEnabled = self.listWidget_manage_list.isSortingEnabled()
         self.listWidget_manage_list.setSortingEnabled(False)
@@ -390,8 +390,8 @@ class Ui_BoardWindow(object):
         ___qlistwidgetitem2.setText(QCoreApplication.translate("BoardWindow", u"Done", None));
         self.listWidget_manage_list.setSortingEnabled(__sortingEnabled)
 
-        self.btn_delete.setText(QCoreApplication.translate("BoardWindow", u"Delete Panel", None))
-        self.btn_rename.setText(QCoreApplication.translate("BoardWindow", u"Rename Panel", None))
+        self.btn_delete.setText(QCoreApplication.translate("BoardWindow", u"Delete List", None))
+        self.btn_rename.setText(QCoreApplication.translate("BoardWindow", u"Rename List", None))
         self.btn_cancel.setText(QCoreApplication.translate("BoardWindow", u"Cancel", None))
         self.btn_save.setText(QCoreApplication.translate("BoardWindow", u"Save", None))
     # retranslateUi
