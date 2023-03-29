@@ -1,6 +1,9 @@
 # VSCode
 .vscode
 
+# PyCharm
+.idea
+
 # Log files
 src/*.log
 

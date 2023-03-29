@@ -5,7 +5,7 @@ from PySide6.QtGui import QFontDatabase
 from PySide6.QtWidgets import QMainWindow, QMessageBox
 
 
-def getCurrentDirectory() -> str:
+def get_current_directory() -> str:
     """Returns the current directory of the application. If the current
     directory is not the src directory, it will be appended to the path.
 
@@ -20,18 +20,18 @@ def getCurrentDirectory() -> str:
     return path
 
 
-def setupFontDB(font: str) -> QFontDatabase:
-    path = getCurrentDirectory()
-    fontPath = os.path.dirname(path)
-    fontPath = os.path.join(path, "resources", "font", font)
-    fontDatabase = QFontDatabase.addApplicationFont(fontPath)
-    if fontDatabase < 0:
+def setup_font_db(font: str) -> QFontDatabase:
+    path = get_current_directory()
+    font_path = os.path.dirname(path)
+    font_path = os.path.join(path, "resources", "font", font)
+    font_database = QFontDatabase.addApplicationFont(font_path)
+    if font_database < 0:
         raise Exception(
-            f'Font not found at path "{fontPath}"! Exiting...')
-    return QFontDatabase.applicationFontFamilies(fontDatabase)
+            f'Font not found at path "{font_path}"! Exiting...')
+    return QFontDatabase.applicationFontFamilies(font_database)
 
 
-def dialogFactory(parent: QMainWindow, function: Callable, title: str, msg: str) -> None:
+def dialog_factory(parent: QMainWindow, function: Callable, title: str, msg: str) -> None:
     dialog = QMessageBox()
     dialog.setIcon(QMessageBox.Information)
     dialog.setWindowTitle(title)

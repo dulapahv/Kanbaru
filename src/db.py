@@ -4,7 +4,6 @@ import os
 
 import firebase_admin
 from firebase_admin import credentials, db
-from types import SimpleNamespace
 
 from kanbaru_objects import Board, List, Card
 
@@ -44,6 +43,7 @@ class Database:
     _instance: "Database" = None
 
     def __init__(self: "Database") -> None:
+        self._db_path = None
         assert Database._instance is None, "Database class is a singleton class!"
         Database._instance = self
 
@@ -52,7 +52,7 @@ class Database:
         self.__data: list[dict] = []
 
     @staticmethod
-    def getInstance() -> "Database":
+    def get_instance() -> "Database":
         """Static method to return the instance of the database class.
 
         Returns
@@ -64,7 +64,7 @@ class Database:
             Database()
         return Database._instance
 
-    def getPath(self: "Database") -> str:
+    def get_path(self: "Database") -> str:
         """Returns the path of the database file.
 
         Returns
@@ -74,7 +74,7 @@ class Database:
         """
         return self._db_path
 
-    def setPath(self: "Database", path: str) -> None:
+    def set_path(self: "Database", path: str) -> None:
         """Sets the path of the database file.
 
         Parameters
@@ -104,14 +104,14 @@ class Database:
             if not os.path.exists(self._db_path):
                 os.makedirs(os.path.dirname(self._db_path), exist_ok=True)
             with open(self._db_path, "w") as f:
-                json.dump(vars(self.getInstance()), f, indent=4)
+                json.dump(vars(self.get_instance()), f, indent=4)
             logging.info("Database file created")
         except Exception as e:
             logging.warning(
                 "Failed to create/access database file! The application will now exit.", exc_info=True)
             raise Exception(
                 "Failed to create/access database file! The application will now exit.")
-        self.getInstance().read()
+        self.get_instance().read()
 
     def write(self: "Database") -> None:
         """Writes data from the database instance to the database file.
@@ -167,7 +167,8 @@ class Database:
                 "Failed to read data from database! Creating new database...", exc_info=True)
             self.create()
 
-    def initFirebase(self: "Database", cred_path: str) -> None:
+    @staticmethod
+    def init_firebase(cred_path: str) -> None:
         """Initializes Firebase.
 
         Parameters
@@ -194,7 +195,7 @@ class Database:
             logging.warning(
                 "Failed to initialize Firebase!", exc_info=True)
 
-    def pullFromFirebase(self: "Database", username: str) -> None:
+    def pull_from_firebase(self: "Database", username: str) -> None:
         """Pulls the database of a user from Firebase then writes it to the
         database file.
 
@@ -223,7 +224,7 @@ class Database:
             logging.warning(
                 "Failed to pull database from Firebase!", exc_info=True)
 
-    def pushToFirebase(self: "Database", username: str) -> None:
+    def push_to_firebase(self: "Database", username: str) -> None:
         """Pushes the database of a user to Firebase.
 
         Parameters
@@ -357,28 +358,31 @@ class Database:
             The list of boards.
         """
         self.__data["_Board__title"] = boards
-        
 
-    def update_card(self: "Database", card_new: Card) -> None:
+    def update_card(self: "Database", card_old: Card, card_new: Card) -> None:
         """Update card info in database.
-        
+
         Parameters
         ----------
-        card : Card
-            The card to be updated.
-        parent_list : List
-            The list that the card is in.
+        card_old : Card
+            The old card to be updated.
+        card_new : Card
+            The new card to be updated to.
         """
-        for indexb, board in enumerate(self.boards):
-            for indexl, list in enumerate(board.lists):
-                for indexc, card in enumerate(list.cards):
-                    if card.title == card_new.title:
-                        self.data["_Database__data"][indexb]["_Board__lists"][indexl]["_List__cards"][indexc]["_Card__description"] = card_new.description
-                        self.data["_Database__data"][indexb]["_Board__lists"][indexl]["_List__cards"][indexc]["_Card__date"] = card_new.date
-                        self.data["_Database__data"][indexb]["_Board__lists"][indexl]["_List__cards"][indexc]["_Card__time"] = card_new.time
-                        self.write()
-                    break
-            break
+        for index_b, board in enumerate(self.boards):
+            for index_l, list in enumerate(board.lists):
+                for index_c, card in enumerate(list.cards):
+                    if card == card_old:
+                        self.data["_Database__data"][index_b]["_Board__lists"][index_l]["_List__cards"][index_c][
+                            "_Card__title"] = card_new.title
+                        self.data["_Database__data"][index_b]["_Board__lists"][index_l][
+                            "_List__cards"][index_c]["_Card__description"] = card_new.description
+                        self.data["_Database__data"][index_b]["_Board__lists"][index_l]["_List__cards"][index_c][
+                            "_Card__date"] = card_new.date
+                        self.data["_Database__data"][index_b]["_Board__lists"][index_l]["_List__cards"][index_c][
+                            "_Card__time"] = card_new.time
+                        Database.write(self)
+                        return None
 
     @property
     def data(self: "Database") -> list[dict]:
@@ -420,7 +424,7 @@ class Database:
         except Exception as e:
             logging.warning("Failed to log out!", exc_info=True)
 
-    def deleteAccount(self: "Database") -> None:
+    def delete_account(self: "Database") -> None:
         """Deletes the user's account.
 
         Raises

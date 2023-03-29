@@ -28,7 +28,7 @@ class Auth:
         if not username or not password:
             logging.warning("Missing credentials!")
             return 1
-        if not Auth.verifyCredentials(username, password):
+        if not Auth.verify_credentials(username, password):
             return 2
         logging.info(f"Logged in: {username}")
         return 0
@@ -80,7 +80,7 @@ class Auth:
         return 0
 
     @staticmethod
-    def verifyCredentials(username: str, password: str) -> bool:
+    def verify_credentials(username: str, password: str) -> bool:
         """Verifies credentials from the database file.
 
         Parameters

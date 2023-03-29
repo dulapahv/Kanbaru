@@ -11,18 +11,19 @@ from auth import Auth
 from db import Database
 from ui.main import MainScreen
 from ui.ui_welcome import Ui_WelcomeWindow
-from utils import setupFontDB
+from utils import setup_font_db
 from typing import Callable
 
 
 class WelcomeScreen(QMainWindow):
-    def __init__(self, parent: QMainWindow) -> None:
+    def __init__(self, parent: QMainWindow, *args, **kwargs) -> None:
         QMainWindow.__init__(self)
 
+        super().__init__(parent, *args, **kwargs)
         parent.ui: Ui_WelcomeWindow = Ui_WelcomeWindow()
         parent.ui.setupUi(parent)
 
-        self.setupFont(parent)
+        self.setup_font(parent)
 
         parent.ui.label_login_msg.setText("")
         parent.ui.label_signup_msg.setText("")
@@ -73,12 +74,12 @@ class WelcomeScreen(QMainWindow):
                 "Password must not exceed 128 characters!")
         status = Auth.signup(self.signup_username, self.signup_password,
                              self.signup_confirm_password)
-        match (status):
+        match status:
             case 0:
-                Database.getInstance().username = self.signup_username
-                Database.getInstance().password = self.signup_password
-                Database.getInstance().write()
-                Database.getInstance().pushToFirebase(self.signup_username)
+                Database.get_instance().username = self.signup_username
+                Database.get_instance().password = self.signup_password
+                Database.get_instance().write()
+                Database.get_instance().push_to_firebase(self.signup_username)
                 MainScreen(parent)
             case 1:
                 parent.ui.label_signup_msg.setText("Missing credentials!")
@@ -108,18 +109,19 @@ class WelcomeScreen(QMainWindow):
                 "Password must not exceed 128 characters!")
         status = Auth.login(self.login_username, self.login_password)
 
-        match (status):
+        match status:
             case 0:
-                Database.getInstance().pullFromFirebase(self.login_username)
+                Database.get_instance().pull_from_firebase(self.login_username)
                 MainScreen(parent)
             case 1:
                 parent.ui.label_login_msg.setText("Missing credentials!")
             case 2:
                 parent.ui.label_login_msg.setText("Invalid credentials!")
 
-    def setupFont(self, parent: Ui_WelcomeWindow) -> None:
-        notosans = setupFontDB("NotoSans.ttf")[0]
-        toruspro = setupFontDB("TorusPro.ttf")[0]
+    @staticmethod
+    def setup_font(parent: Ui_WelcomeWindow) -> None:
+        notosans = setup_font_db("NotoSans.ttf")[0]
+        toruspro = setup_font_db("TorusPro.ttf")[0]
         parent.ui.label_login.setFont(QFont(toruspro, 13, QFont.Bold))
         parent.ui.label_signup.setFont(QFont(toruspro, 13, QFont.Bold))
         parent.ui.lineEdit_login_username.setFont(QFont(notosans, 12))

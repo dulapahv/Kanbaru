@@ -5,14 +5,14 @@ from typing import Callable
 from PySide6.QtCore import *
 from PySide6.QtGui import *
 from PySide6.QtWidgets import *
-
 from db import Database
 from kanbaru_objects import Board, Card, List
 from ui.app_settings import AppSettings
 from ui.board_settings import BoardSettings
 from ui.card_description import CardDescription
 from ui.ui_main import Ui_MainWindow
-from utils import setupFontDB
+from utils import setup_font_db
+
 
 # from PySide6.QtCore import QCoreApplication, QSize, Qt, Slot
 # from PySide6.QtGui import (QCursor, QDragEnterEvent, QDragMoveEvent,
@@ -23,8 +23,6 @@ from utils import setupFontDB
 #                                QSizePolicy, QSpacerItem, QVBoxLayout, QWidget)
 
 
-
-
 class MainScreen(QMainWindow):
     def __init__(self, parent: QMainWindow) -> None:
         QMainWindow.__init__(self)
@@ -33,21 +31,24 @@ class MainScreen(QMainWindow):
         parent.ui.setupUi(parent)
 
         parent.ui.btn_app_settings.clicked.connect(
-            lambda: self.showAppSettings(parent))
+            lambda: self.show_app_settings(parent))
         parent.ui.btn_board_settings.clicked.connect(
-            lambda: self.showBoardSettings(parent))
+            lambda: self.show_board_settings(parent))
         parent.ui.btn_add_board.clicked.connect(
-            lambda: self.addBoard(parent))
+            lambda: self.add_board(parent))
 
         parent.ui.btn_app_settings.keyPressEvent = lambda event: self.keyPressEvent(
-            event, parent, self.showAppSettings(parent))
+            event, parent, self.show_app_settings(parent))
         parent.ui.btn_board_settings.keyPressEvent = lambda event: self.keyPressEvent(
-            event, parent, self.showBoardSettings(parent))
+            event, parent, self.show_board_settings(parent))
         parent.ui.btn_add_board.keyPressEvent = lambda event: self.keyPressEvent(
-            event, parent, self.addBoard(parent))
+            event, parent, self.add_board(parent))
 
         logging.info(
-            f"Loaded {len(Database.getInstance().boards)} board(s) from database")
+            f"Loaded {len(Database.get_instance().boards)} board(s) from database")
+
+        self.all_boards: list[Board] = lambda: Database.get_instance().boards
+        self.current_board: Board = self.all_boards()[0]
 
         # Create a new name for the listWidget
         # Set the new name as an attribute of the parent UI
@@ -60,26 +61,26 @@ class MainScreen(QMainWindow):
         parent.ui.qpushbutton = QPushButton()
         new_name = f"{parent.ui.qpushbutton.__class__.__name__}_{id(parent.ui.qpushbutton)}"
         setattr(parent.ui, new_name, parent.ui.qpushbutton)
-        pushButton = getattr(parent.ui, new_name)
-        pushButton.setObjectName(new_name)
+        push_button = getattr(parent.ui, new_name)
+        push_button.setObjectName(new_name)
         delattr(parent.ui, "qpushbutton")
-        pushButton = self.boardFactory(
-            parent, Database.getInstance().boards[0], "TorusPro.ttf")
-        pushButton.clicked.connect(lambda: self.changeBoard(
-            parent, Database.getInstance().boards[0]))
-        parent.ui.verticalLayout_4.addWidget(pushButton)
-        for index, board in enumerate(Database.getInstance().boards[1:]):
+        push_button = self.board_factory(
+            parent, Database.get_instance().boards[0], "TorusPro.ttf")
+        push_button.clicked.connect(lambda: self.change_board(
+            parent, Database.get_instance().boards[0]))
+        parent.ui.verticalLayout_4.addWidget(push_button)
+        for index, board in enumerate(Database.get_instance().boards[1:]):
             parent.ui.qpushbutton = QPushButton()
             new_name = f"{parent.ui.qpushbutton.__class__.__name__}_{id(parent.ui.qpushbutton)}"
             setattr(parent.ui, new_name, parent.ui.qpushbutton)
-            pushButton = getattr(parent.ui, new_name)
-            pushButton.setObjectName(new_name)
+            push_button = getattr(parent.ui, new_name)
+            push_button.setObjectName(new_name)
             delattr(parent.ui, "qpushbutton")
-            pushButton = self.boardFactory(
-                parent, Database.getInstance().boards[index + 1], "TorusPro.ttf", isConstructed=False)
-            pushButton.clicked.connect(lambda: self.changeBoard(
-                parent, Database.getInstance().boards[index + 1]))
-            parent.ui.verticalLayout_4.addWidget(pushButton)
+            push_button = self.board_factory(
+                parent, Database.get_instance().boards[index + 1], "TorusPro.ttf", is_constructed=False)
+            push_button.clicked.connect(lambda: self.change_board(
+                parent, Database.get_instance().boards[index + 1]))
+            parent.ui.verticalLayout_4.addWidget(push_button)
             # TODO: Fix changing board connections
 
         parent.ui.vertSpacer_scrollAreaContent = QSpacerItem(
@@ -87,15 +88,15 @@ class MainScreen(QMainWindow):
         parent.ui.verticalLayout_4.addItem(
             parent.ui.vertSpacer_scrollAreaContent)
 
-        self.addListButton(
-            parent, Database.getInstance().boards[0], "TorusPro.ttf")
+        self.add_list_button(
+            parent, Database.get_instance().boards[0], "TorusPro.ttf")
 
         parent.ui.label_board.setText(
-            Database.getInstance().boards[0].title[:40] + (Database.getInstance().boards[0].title[40:] and '...'))
+            Database.get_instance().boards[0].title[:40] + (Database.get_instance().boards[0].title[40:] and '...'))
 
-        self.setupFont(parent, "TorusPro.ttf")
+        self.setup_font(parent, "TorusPro.ttf")
 
-    def boardFactory(self, parent: Ui_MainWindow, board: Board, font: str, isConstructed: bool = True) -> QPushButton:
+    def board_factory(self, parent: Ui_MainWindow, board: Board, font: str, is_constructed: bool = True) -> QPushButton:
         """Creates a board widget
         - Add a push button widget to the parent UI with specified style
         - If the board is displayed, construct the list widgets and card widgets
@@ -108,7 +109,7 @@ class MainScreen(QMainWindow):
             The board object
         font : str
             The font to use
-        isLoaded : bool, optional
+        is_constructed : bool, optional
             Load the board if True, by default True
         Returns
         -------
@@ -116,7 +117,7 @@ class MainScreen(QMainWindow):
             The board widget
         """
         logging.info(
-            f'Loaded {len(board.lists)} list(s) from board "{board.title}" [{isConstructed = }]')
+            f'Loaded {len(board.lists)} list(s) from board "{board.title}" [{is_constructed = }]')
 
         parent.ui.label_board.setText(
             board.title[:40] + (board.title[40:] and '...'))
@@ -124,31 +125,32 @@ class MainScreen(QMainWindow):
         parent.ui.btn_board = QPushButton(
             parent.ui.scrollAreaContent_panel_left)
         parent.ui.btn_board.setObjectName(u"btn_board")
-        sizePolicy = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Fixed)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(
+        size_policy = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Fixed)
+        size_policy.setHorizontalStretch(0)
+        size_policy.setVerticalStretch(0)
+        size_policy.setHeightForWidth(
             parent.ui.btn_board.sizePolicy().hasHeightForWidth())
-        parent.ui.btn_board.setSizePolicy(sizePolicy)
+        parent.ui.btn_board.setSizePolicy(size_policy)
         parent.ui.btn_board.setMinimumSize(QSize(0, 40))
         parent.ui.btn_board.setCursor(QCursor(Qt.PointingHandCursor))
         parent.ui.btn_board.setFocusPolicy(Qt.TabFocus)
-        parent.ui.btn_board.setStyleSheet(u"QPushButton {background-color: #6badee; color: #ffffff; border-radius: 5px}\n"
-                                          "QPushButton:hover {background-color: #7e828c;}\n"
-                                          "QPushButton:focus {border-color: #000000; border-width: 1.5px; border-style: solid;}")
+        parent.ui.btn_board.setStyleSheet(
+            u"QPushButton {background-color: #6badee; color: #ffffff; border-radius: 5px}\n"
+            "QPushButton:hover {background-color: #7e828c;}\n"
+            "QPushButton:focus {border-color: #000000; border-width: 1.5px; border-style: solid;}")
 
         parent.ui.btn_board.setText(
             board.title[:12] + (board.title[12:] and '...'))
-        fontDB = setupFontDB(font)[0]
-        parent.ui.btn_board.setFont(QFont(fontDB, 12))
+        font_db = setup_font_db(font)[0]
+        parent.ui.btn_board.setFont(QFont(font_db, 12))
 
-        if isConstructed:
+        if is_constructed:
             for list in board.lists:
-                qwidget = self.listFactory(parent, list, font)
+                qwidget = self.list_factory(parent, list, font)
                 parent.ui.horizontalLayout_5.addWidget(qwidget)
         return parent.ui.btn_board
 
-    def listFactory(self, parent: Ui_MainWindow, list: List, font: str) -> QWidget:
+    def list_factory(self, parent: Ui_MainWindow, list: List, font: str) -> QWidget:
         """Creates a list widget
         - Add a list widget to the parent UI with specified style
         - Create a new name for the list with its class name and id
@@ -174,17 +176,17 @@ class MainScreen(QMainWindow):
         logging.info(
             f'Loaded {len(list.cards)} card(s) from list "{list.title}"')
 
-        sizePolicy1 = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Fixed)
-        sizePolicy1.setHorizontalStretch(0)
-        sizePolicy1.setVerticalStretch(0)
+        size_policy1 = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Fixed)
+        size_policy1.setHorizontalStretch(0)
+        size_policy1.setVerticalStretch(0)
         parent.ui.list = QWidget(parent.ui.scrollAreaContent_panel_right)
         parent.ui.list.setObjectName(u"list")
-        sizePolicy2 = QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Minimum)
-        sizePolicy2.setHorizontalStretch(0)
-        sizePolicy2.setVerticalStretch(0)
-        sizePolicy2.setHeightForWidth(
+        size_policy2 = QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Minimum)
+        size_policy2.setHorizontalStretch(0)
+        size_policy2.setVerticalStretch(0)
+        size_policy2.setHeightForWidth(
             parent.ui.list.sizePolicy().hasHeightForWidth())
-        parent.ui.list.setSizePolicy(sizePolicy2)
+        parent.ui.list.setSizePolicy(size_policy2)
         parent.ui.list.setMinimumSize(QSize(250, 0))
         parent.ui.list.setStyleSheet(u"")
         parent.ui.verticalLayout_1 = QVBoxLayout(parent.ui.list)
@@ -193,12 +195,12 @@ class MainScreen(QMainWindow):
         parent.ui.verticalLayout_1.setContentsMargins(0, 0, 0, 0)
         parent.ui.widget = QWidget(parent.ui.list)
         parent.ui.widget.setObjectName(u"widget_list_1")
-        sizePolicy3 = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Minimum)
-        sizePolicy3.setHorizontalStretch(0)
-        sizePolicy3.setVerticalStretch(0)
-        sizePolicy3.setHeightForWidth(
+        size_policy3 = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Minimum)
+        size_policy3.setHorizontalStretch(0)
+        size_policy3.setVerticalStretch(0)
+        size_policy3.setHeightForWidth(
             parent.ui.widget.sizePolicy().hasHeightForWidth())
-        parent.ui.widget.setSizePolicy(sizePolicy3)
+        parent.ui.widget.setSizePolicy(size_policy3)
         parent.ui.widget.setStyleSheet(u"background-color: #ebecf0;\n"
                                        "border-radius: 10px;")
         parent.ui.verticalLayout_2 = QVBoxLayout(parent.ui.widget)
@@ -206,9 +208,9 @@ class MainScreen(QMainWindow):
         parent.ui.verticalLayout_2.setContentsMargins(0, 0, 0, 0)
         parent.ui.label_list = QLabel(parent.ui.widget)
         parent.ui.label_list.setObjectName(u"label_list")
-        sizePolicy1.setHeightForWidth(
+        size_policy1.setHeightForWidth(
             parent.ui.label_list.sizePolicy().hasHeightForWidth())
-        parent.ui.label_list.setSizePolicy(sizePolicy1)
+        parent.ui.label_list.setSizePolicy(size_policy1)
         parent.ui.label_list.setMinimumSize(QSize(0, 30))
         parent.ui.label_list.setStyleSheet(u"color: #282c33;\n"
                                            "background-color: #ebecf0;\n"
@@ -221,9 +223,9 @@ class MainScreen(QMainWindow):
         parent.ui.listWidget = QListWidget(parent.ui.widget)
 
         parent.ui.listWidget.setObjectName(u"listWidget")
-        sizePolicy2.setHeightForWidth(
+        size_policy2.setHeightForWidth(
             parent.ui.listWidget.sizePolicy().hasHeightForWidth())
-        parent.ui.listWidget.setSizePolicy(sizePolicy2)
+        parent.ui.listWidget.setSizePolicy(size_policy2)
         parent.ui.listWidget.setMaximumSize(QSize(250, 16777215))
         parent.ui.listWidget.setFocusPolicy(Qt.TabFocus)
         parent.ui.listWidget.setAcceptDrops(True)
@@ -259,9 +261,9 @@ class MainScreen(QMainWindow):
 
         parent.ui.widget_add_card = QWidget(parent.ui.widget)
         parent.ui.widget_add_card.setObjectName(u"widget_add_card")
-        sizePolicy1.setHeightForWidth(
+        size_policy1.setHeightForWidth(
             parent.ui.widget_add_card.sizePolicy().hasHeightForWidth())
-        parent.ui.widget_add_card.setSizePolicy(sizePolicy1)
+        parent.ui.widget_add_card.setSizePolicy(size_policy1)
         parent.ui.verticalLayout_3 = QVBoxLayout(parent.ui.widget_add_card)
         parent.ui.verticalLayout_3.setObjectName(u"verticalLayout_6")
         parent.ui.verticalLayout_3.setContentsMargins(6, 0, 6, 6)
@@ -270,9 +272,10 @@ class MainScreen(QMainWindow):
         parent.ui.btn_add_card.setMinimumSize(QSize(0, 25))
         parent.ui.btn_add_card.setCursor(QCursor(Qt.PointingHandCursor))
         parent.ui.btn_add_card.setFocusPolicy(Qt.TabFocus)
-        parent.ui.btn_add_card.setStyleSheet(u"QPushButton {background-color: #ebecf0; color: #6a758b; border-radius: 5px}\n"
-                                             "QPushButton:hover {background-color: #dadbe2; color: #505b76}\n"
-                                             "QPushButton:focus {border-color: #000000; border-width: 1.5px; border-style: solid;}")
+        parent.ui.btn_add_card.setStyleSheet(
+            u"QPushButton {background-color: #ebecf0; color: #6a758b; border-radius: 5px}\n"
+            "QPushButton:hover {background-color: #dadbe2; color: #505b76}\n"
+            "QPushButton:focus {border-color: #000000; border-width: 1.5px; border-style: solid;}")
 
         parent.ui.verticalLayout_3.addWidget(parent.ui.btn_add_card)
 
@@ -282,12 +285,12 @@ class MainScreen(QMainWindow):
 
         parent.ui.listWidget.setSortingEnabled(False)
 
-        fontDB = setupFontDB(font)
-        parent.ui.label_list.setFont(QFont(fontDB[0], 12, QFont.Bold))
-        parent.ui.btn_add_card.setFont(QFont(fontDB[0], 12))
+        font_db = setup_font_db(font)
+        parent.ui.label_list.setFont(QFont(font_db[0], 12, QFont.Bold))
+        parent.ui.btn_add_card.setFont(QFont(font_db[0], 12))
 
         parent.ui.btn_add_card.clicked.connect(
-            lambda: self.addCard(parent, list))
+            lambda: self.add_card(parent, list))
 
         new_name = f"{parent.ui.listWidget.__class__.__name__}_{id(parent.ui.listWidget)}"
         setattr(parent.ui, new_name, parent.ui.listWidget)
@@ -299,11 +302,11 @@ class MainScreen(QMainWindow):
         listWidget.dragMoveEvent = self.dragMoveEvent
         listWidget.dropEvent = self.dropEvent
         for index, card in enumerate(list.cards):
-            qlistwidgetitem = self.cardFactory(
+            qlistwidgetitem = self.card_factory(
                 listWidget, parent, card, font, index)
             listWidget.addItem(qlistwidgetitem)
         listWidget.clicked.connect(
-            lambda event: self.showCardDescription(event, listWidget))
+            lambda event: self.show_card_description(event, listWidget))
 
         parent.ui.label_list.setText(
             QCoreApplication.translate("MainWindow", list.title[:25] + (list.title[25:] and '...'), None))
@@ -312,7 +315,9 @@ class MainScreen(QMainWindow):
 
         return parent.ui.list
 
-    def cardFactory(self, qlistwidget: QListWidget, parent: Ui_MainWindow, card: Card, font: str, index: int) -> QListWidgetItem:
+    @staticmethod
+    def card_factory(qlistwidget: QListWidget, parent: Ui_MainWindow, card: Card, font: str,
+                     index: int) -> QListWidgetItem:
         """Create a card item at the given QListWidget index
         - Create a new name for the card with its class name and id
         - Set the new name as an attribute of the parent UI and as the
@@ -342,20 +347,20 @@ class MainScreen(QMainWindow):
         parent.ui.qlistwidgetitem = QListWidgetItem(qlistwidget)
         new_name = f"{parent.ui.qlistwidgetitem.__class__.__name__}_{id(parent.ui.qlistwidgetitem)}"
         setattr(parent.ui, new_name, parent.ui.qlistwidgetitem)
-        listWidgetItem = getattr(parent.ui, new_name)
+        list_widget_item = getattr(parent.ui, new_name)
         delattr(parent.ui, "qlistwidgetitem")
-        listWidgetItem.setFlags(
+        list_widget_item.setFlags(
             Qt.ItemIsSelectable | Qt.ItemIsDragEnabled | Qt.ItemIsUserCheckable | Qt.ItemIsEnabled)
-        listWidgetItem = qlistwidget.item(index)
-        listWidgetItem.setData(Qt.UserRole, card)
-        listWidgetItem.setText(
+        list_widget_item = qlistwidget.item(index)
+        list_widget_item.setData(Qt.UserRole, card)
+        list_widget_item.setText(
             QCoreApplication.translate("MainWindow", card.title[:24] + (card.title[24:] and '...'), None))
-        fontDB = setupFontDB(font)[0]
-        listWidgetItem.setFont(QFont(fontDB, 12))
+        font_db = setup_font_db(font)[0]
+        list_widget_item.setFont(QFont(font_db, 12))
 
-        return listWidgetItem
+        return list_widget_item
 
-    def addListButton(self, parent: Ui_MainWindow, board: Board, font: str) -> None:
+    def add_list_button(self, parent: Ui_MainWindow, board: Board, font: str) -> None:
         """Add a button to add a new list
 
         Parameters
@@ -365,14 +370,14 @@ class MainScreen(QMainWindow):
         font : str
             The font to use
         """
-        sizePolicy = QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Preferred)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
+        size_policy = QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Preferred)
+        size_policy.setHorizontalStretch(0)
+        size_policy.setVerticalStretch(0)
         parent.ui.list_add = QWidget(parent.ui.scrollAreaContent_panel_right)
         parent.ui.list_add.setObjectName(u"list_add")
-        sizePolicy.setHeightForWidth(
+        size_policy.setHeightForWidth(
             parent.ui.list_add.sizePolicy().hasHeightForWidth())
-        parent.ui.list_add.setSizePolicy(sizePolicy)
+        parent.ui.list_add.setSizePolicy(size_policy)
         parent.ui.list_add.setMinimumSize(QSize(250, 0))
         parent.ui.verticalLayout_9 = QVBoxLayout(parent.ui.list_add)
         parent.ui.verticalLayout_9.setSpacing(0)
@@ -383,9 +388,10 @@ class MainScreen(QMainWindow):
         parent.ui.btn_add_list.setMinimumSize(QSize(0, 30))
         parent.ui.btn_add_list.setCursor(QCursor(Qt.PointingHandCursor))
         parent.ui.btn_add_list.setFocusPolicy(Qt.TabFocus)
-        parent.ui.btn_add_list.setStyleSheet(u"QPushButton {background-color: #acb2bf; color: #ffffff; border-radius: 5px}\n"
-                                             "QPushButton:hover {background-color: #7e828c;}\n"
-                                             "QPushButton:focus {border-color: #000000; border-width: 1.5px; border-style: solid;}")
+        parent.ui.btn_add_list.setStyleSheet(
+            u"QPushButton {background-color: #acb2bf; color: #ffffff; border-radius: 5px}\n"
+            "QPushButton:hover {background-color: #7e828c;}\n"
+            "QPushButton:focus {border-color: #000000; border-width: 1.5px; border-style: solid;}")
 
         parent.ui.verticalLayout_9.addWidget(parent.ui.btn_add_list)
 
@@ -403,12 +409,13 @@ class MainScreen(QMainWindow):
         parent.ui.horizontalLayout_5.addItem(parent.ui.horzSpacer_panel_right)
 
         parent.ui.btn_add_list.clicked.connect(
-            lambda: self.addList(parent, board))
+            lambda: self.add_list(parent, board))
 
-        fontDB = setupFontDB(font)[0]
-        parent.ui.btn_add_list.setFont(QFont(fontDB, 12))
+        font_db = setup_font_db(font)[0]
+        parent.ui.btn_add_list.setFont(QFont(font_db, 12))
 
-    def showAppSettings(self, parent: Ui_MainWindow) -> None:
+    @staticmethod
+    def show_app_settings(parent: Ui_MainWindow) -> None:
         """Show the application settings window
 
         Parameters
@@ -416,11 +423,11 @@ class MainScreen(QMainWindow):
         parent : Ui_MainWindow
             The main window
         """
-        self.appSettings = AppSettings(parent)
-        self.appSettings.setWindowModality(Qt.ApplicationModal)
-        self.appSettings.show()
+        app_settings = AppSettings(parent)
+        app_settings.setWindowModality(Qt.ApplicationModal)
+        app_settings.show()
 
-    def showBoardSettings(self, parent: Ui_MainWindow) -> None:
+    def show_board_settings(self, parent: Ui_MainWindow) -> None:
         """Show the board settings window
 
         Parameters
@@ -432,7 +439,7 @@ class MainScreen(QMainWindow):
         self.boardSettings.setWindowModality(Qt.ApplicationModal)
         self.boardSettings.show()
 
-    def showCardDescription(self, event, parent: QListWidget) -> None:
+    def show_card_description(self, event, parent: QListWidget) -> None:
         """Show the card description window
 
         Parameters
@@ -447,7 +454,7 @@ class MainScreen(QMainWindow):
         self.cardDescription.setWindowModality(Qt.ApplicationModal)
         self.cardDescription.show()
 
-    def addBoard(self, parent: Ui_MainWindow) -> None:
+    def add_board(self, parent: Ui_MainWindow) -> None:
         """Add a new board
 
         Parameters
@@ -458,11 +465,11 @@ class MainScreen(QMainWindow):
         text, ok = QInputDialog().getText(
             parent, "New board", "Enter a title for the board")
         if ok and text != "":
-            data = Database.getInstance().data
+            data = Database.get_instance().data
             data["_Database__data"].append(
                 {"_Board__title": text, "_Board__lists": [], "_Board__color": ""})
-            Database.getInstance().data = data
-            Database.getInstance().write()
+            Database.get_instance().data = data
+            Database.get_instance().write()
 
             new_board = Board(text)
             # parent.ui.qpushbutton = QPushButton()
@@ -475,13 +482,13 @@ class MainScreen(QMainWindow):
             # qpushButton.clicked.connect(
             #     lambda: self.changeBoard(parent, Database.getInstance().boards[len(Database.getInstance().boards) - 1]))
             # parent.ui.verticalLayout_4.addWidget(qpushButton)
-            self.changeBoard(parent, new_board)
+            self.change_board(parent, new_board)
             parent.ui.verticalLayout_4.removeItem(
                 parent.ui.vertSpacer_scrollAreaContent)
             parent.ui.verticalLayout_4.addItem(
                 parent.ui.vertSpacer_scrollAreaContent)
 
-    def addList(self, parent: Ui_MainWindow, board: Board) -> None:
+    def add_list(self, parent: Ui_MainWindow, board: Board) -> None:
         """Add a new list
 
         Parameters
@@ -494,18 +501,18 @@ class MainScreen(QMainWindow):
         text, ok = QInputDialog().getText(
             parent, "New list", "Enter a title for the list")
         if ok and text != "":
-            data = Database.getInstance().data
-            for i in range(len(Database.getInstance().boards)):
-                if Database.getInstance().boards[i].title == board.title:
+            data = Database.get_instance().data
+            for i in range(len(Database.get_instance().boards)):
+                if Database.get_instance().boards[i].title == board.title:
                     data["_Database__data"][i]["_Board__lists"].append(
                         {"_List__title": text, "_List__cards": []})
-                    Database.getInstance().data = data
-                    Database.getInstance().write()
-                    self.changeBoard(parent, Database.getInstance().boards[i])
+                    Database.get_instance().data = data
+                    Database.get_instance().write()
+                    self.change_board(parent, Database.get_instance().boards[i])
             parent.ui.scrollArea_panel_right.horizontalScrollBar().setValue(
                 parent.ui.scrollArea_panel_right.horizontalScrollBar().maximum())
 
-    def addCard(self, parent: Ui_MainWindow, list: List) -> None:
+    def add_card(self, parent: Ui_MainWindow, list: List) -> None:
         """Add a new card
 
         Parameters
@@ -518,16 +525,18 @@ class MainScreen(QMainWindow):
         text, ok = QInputDialog().getText(
             parent, "New card", "Enter a title for the card")
         if ok and text != "":
-            data = Database.getInstance().data
-            for i in range(len(Database.getInstance().boards)):
-                for j in range(len(Database.getInstance().boards[i].lists)):
-                    if Database.getInstance().boards[i].lists[j].title == list.title:
+            data = Database.get_instance().data
+            for i in range(len(Database.get_instance().boards)):
+                for j in range(len(Database.get_instance().boards[i].lists)):
+                    if Database.get_instance().boards[i].lists[j].title == list.title:
                         data["_Database__data"][i]["_Board__lists"][j]["_List__cards"].append(
-                            {"_Card__title": text, "_Card__description": "", "_Card__date": datetime.date.today().strftime("%d-%m-%Y"), "_Card__time": datetime.datetime.now().strftime("%H:%M")})
-                        Database.getInstance().data = data
-                        Database.getInstance().write()
-                        self.changeBoard(
-                            parent, Database.getInstance().boards[i])
+                            {"_Card__title": text, "_Card__description": "",
+                             "_Card__date": datetime.date.today().strftime("%d-%m-%Y"),
+                             "_Card__time": datetime.datetime.now().strftime("%H:%M")})
+                        Database.get_instance().data = data
+                        Database.get_instance().write()
+                        self.change_board(
+                            parent, Database.get_instance().boards[i])
 
     @Slot()
     def dragEnterEvent(self, event: QDragEnterEvent) -> None:
@@ -590,16 +599,16 @@ class MainScreen(QMainWindow):
                     source_widget.takeItem(source_widget.row(item))
                     dest_widget.addItem(item)
                     dest_widget.setCurrentItem(item)
-                    self.changeCard(source_widget, dest_widget,
-                                    item.data(Qt.UserRole))
+                    self.change_card(source_widget, dest_widget,
+                                     item.data(Qt.UserRole))
             logging.info(
                 f'Moved {len(items)} Card(s) ({list(map(lambda item: getattr(item, "data")(Qt.UserRole).title, items))}) from list "{getattr(source_widget, "data").title}" to list "{getattr(dest_widget, "data").title}"')
-            Database.getInstance().write()
+            Database.get_instance().write()
             event.accept()
         else:
             event.ignore()
 
-    def changeBoard(self, parent: Ui_MainWindow, board: Board) -> None:
+    def change_board(self, parent: Ui_MainWindow, board: Board) -> None:
         """Change the board to the specified board
         - Remove all widgets from the layout
         - Create the new board
@@ -612,6 +621,7 @@ class MainScreen(QMainWindow):
         board : Board
             The board to change to
         """
+        self.current_board = board
         layout = parent.ui.scrollAreaContent_panel_right.layout()
         for i in reversed(range(layout.count())):
             item = layout.itemAt(i)
@@ -619,13 +629,14 @@ class MainScreen(QMainWindow):
                 widget = item.widget()
                 if widget is not None:
                     widget.setParent(None)
-        self.boardFactory(parent, board, "TorusPro.ttf")
+        self.board_factory(parent, board, "TorusPro.ttf")
         parent.ui.list_add.setParent(None)
         parent.ui.horizontalLayout_5.removeItem(
             parent.ui.horzSpacer_panel_right)
-        self.addListButton(parent, board, "TorusPro.ttf")
+        self.add_list_button(parent, board, "TorusPro.ttf")
 
-    def changeCard(self, source: List, destination: List, card: Card) -> None:
+    @staticmethod
+    def change_card(source: List, destination: List, card: Card) -> None:
         """Change the card in a list to another list
         - Get the data from the database
         - Find the source list and the specified card
@@ -642,7 +653,7 @@ class MainScreen(QMainWindow):
         card : Card
             The card to move
         """
-        data = Database.getInstance().data
+        data = Database.get_instance().data
         for i in range(len(data["_Database__data"][0]["_Board__lists"])):
             if data["_Database__data"][0]["_Board__lists"][i]["_List__title"] == getattr(source, "data").title:
                 source_list = data["_Database__data"][0]["_Board__lists"][i]
@@ -655,17 +666,19 @@ class MainScreen(QMainWindow):
                 dest_list = data["_Database__data"][0]["_Board__lists"][i]
                 dest_list["_List__cards"].append(card_to_move)
                 break
-        Database.getInstance().data = data
+        Database.get_instance().data = data
 
-    def setupFont(self, parent: Ui_MainWindow, font: str | list[str]) -> None:
-        toruspro = setupFontDB(font)[0]
+    @staticmethod
+    def setup_font(parent: Ui_MainWindow, font: str | list[str]) -> None:
+        toruspro = setup_font_db(font)[0]
         parent.ui.label_logo.setFont(QFont(toruspro, 36))
         parent.ui.label_board.setFont(QFont(toruspro, 28))
         parent.ui.btn_add_board.setFont(QFont(toruspro, 12))
         parent.ui.btn_board_settings.setFont(QFont(toruspro, 12))
         parent.ui.btn_app_settings.setFont(QFont(toruspro, 12))
 
-    def keyPressEvent(self, event: QKeyEvent, parent: Ui_MainWindow = None, function: Callable = None) -> None | Callable:
+    def keyPressEvent(self, event: QKeyEvent, parent: Ui_MainWindow = None,
+                      function: Callable = None) -> None | Callable:
         """This function is used to call a function when the enter key is pressed
 
         Parameters

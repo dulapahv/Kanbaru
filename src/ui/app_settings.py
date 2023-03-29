@@ -4,11 +4,10 @@ from typing import Callable
 from PySide6.QtCore import *
 from PySide6.QtGui import *
 from PySide6.QtWidgets import *
-
 from db import Database
-from kanbaru_objects import Board, Card, List
+from kanbaru_objects import Board
 from ui.ui_app_settings import Ui_SettingsWindow
-from utils import dialogFactory, setupFontDB
+from utils import dialog_factory, setup_font_db
 
 
 class AppSettings(QMainWindow):
@@ -19,14 +18,16 @@ class AppSettings(QMainWindow):
         self.ui.setupUi(self)
 
         self.ui.btn_delete.clicked.connect(
-            lambda: dialogFactory(None, self.delete, "Delete Board Confirmation", "Are you sure you want to delete selected board?\nThis action cannot be undone."))
+            lambda: dialog_factory(None, self.delete, "Delete Board Confirmation",
+                                  "Are you sure you want to delete selected board?\nThis action cannot be undone."))
         self.ui.btn_rename.clicked.connect(self.rename)
         self.ui.btn_cancel.clicked.connect(self.close)
         self.ui.btn_save.clicked.connect(self.save)
         self.ui.btn_logout.clicked.connect(
-            lambda: dialogFactory(parent, self.logout, "Logout Confirmation", "Are you sure you want to logout?"))
+            lambda: dialog_factory(parent, self.logout, "Logout Confirmation", "Are you sure you want to logout?"))
         self.ui.btn_delete_account.clicked.connect(
-            lambda: dialogFactory(parent, self.deleteAccount, "Delete Account Confirmation", "Are you sure you want to delete your account?\nThis action cannot be undone."))
+            lambda: dialog_factory(parent, self.delete_account, "Delete Account Confirmation",
+                                  "Are you sure you want to delete your account?\nThis action cannot be undone."))
 
         self.ui.btn_delete.keyPressEvent = lambda event: self.keyPressEvent(
             event, function=self.delete)
@@ -37,13 +38,16 @@ class AppSettings(QMainWindow):
         self.ui.btn_save.keyPressEvent = lambda event: self.keyPressEvent(
             event, function=self.save)
         self.ui.btn_logout.keyPressEvent = lambda event: self.keyPressEvent(
-            event, parent, dialogFactory(parent, self.logout, "Logout Confirmation", "Are you sure you want to logout?"))
+            event, parent,
+            dialog_factory(parent, self.logout, "Logout Confirmation", "Are you sure you want to logout?"))
         self.ui.btn_delete_account.keyPressEvent = lambda event: self.keyPressEvent(
-            event, parent, dialogFactory(parent, self.deleteAccount, "Delete Account Confirmation", "Are you sure you want to delete your account?\nThis action cannot be undone."))
+            event, parent, dialog_factory(parent, self.delete_account, "Delete Account Confirmation",
+                                         "Are you sure you want to delete your account?\nThis action cannot be undone."))
 
-        self.setupFont()
+        self.setup_font()
 
-    def dialogFactory(self, parent: QMainWindow, function: Callable, title: str, msg: str) -> None:
+    @staticmethod
+    def dialog_factory(parent: QMainWindow, function: Callable, title: str, msg: str) -> None:
         dialog = QMessageBox()
         dialog.setIcon(QMessageBox.Information)
         dialog.setWindowTitle(title)
@@ -70,21 +74,21 @@ class AppSettings(QMainWindow):
         ...
 
     def logout(self, parent: QMainWindow):
-        Database.getInstance().logout()
+        Database.get_instance().logout()
         logging.info("Going to welcome screen...")
         self.close()
         from ui.welcome import WelcomeScreen
         WelcomeScreen(parent)
 
-    def deleteAccount(self, parent: QMainWindow):
-        Database.getInstance().deleteAccount()
+    def delete_account(self, parent: QMainWindow):
+        Database.get_instance().delete_account()
         logging.info("Going to welcome screen...")
         self.close()
         from ui.welcome import WelcomeScreen
         WelcomeScreen(parent)
 
-    def setupFont(self) -> None:
-        toruspro = setupFontDB("TorusPro.ttf")[0]
+    def setup_font(self) -> None:
+        toruspro = setup_font_db("TorusPro.ttf")[0]
         self.ui.label_app_settings.setFont(QFont(toruspro, 28))
         self.ui.label_manage_board.setFont(QFont(toruspro, 14, QFont.Bold))
         self.ui.label_manage_account.setFont(QFont(toruspro, 14, QFont.Bold))
@@ -96,7 +100,8 @@ class AppSettings(QMainWindow):
         self.ui.btn_cancel.setFont(QFont(toruspro, 12))
         self.ui.btn_save.setFont(QFont(toruspro, 12))
 
-    def keyPressEvent(self, event: QKeyEvent, parent: Ui_SettingsWindow = None, function: Callable = None) -> None | Callable:
+    def keyPressEvent(self, event: QKeyEvent, parent: Ui_SettingsWindow = None,
+                      function: Callable = None) -> None | Callable:
         """This function is used to call a function when the enter key is pressed
 
         Parameters

@@ -37,6 +37,9 @@ class Card:
     def time(self, time: str):
         self.__time = time
 
+    def __eq__(self, card):
+        return self.__title == card.title and self.__date == card.date and self.__time == card.time and self.__description == card.description
+
     def __str__(self):
         return self.__title
 
@@ -70,6 +73,9 @@ class List:
             raise ValueError("Card does not exist in list.")
         self.__cards.remove(card)
 
+    def __eq__(self, list):
+        return self.__title == list.title and self.__cards == list.cards
+
     def __str__(self):
         return self.__title
 
@@ -98,11 +104,6 @@ class Board:
 
     @color.setter
     def color(self, color: str) -> None:
-        # if color in Color:
-        #     self.__color = color
-        # else:
-        #     raise ValueError(
-        #         "Invalid color. We only support the following colors: " + str(Color))
         self.__color = color
 
     @lists.setter
@@ -116,6 +117,9 @@ class Board:
         if list not in self.__lists:
             raise ValueError("List does not exist in board.")
         self.__lists.remove(list)
+
+    def __eq__(self, board):
+        return self.__title == board.title and self.__color == board.color and self.__lists == board.lists
 
     def __str__(self):
         return self.__title

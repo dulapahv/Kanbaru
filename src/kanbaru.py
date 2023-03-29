@@ -9,21 +9,27 @@ try:
     from db import Database
     from ui.main import MainScreen
     from ui.welcome import WelcomeScreen
-    from utils import getCurrentDirectory
+    from utils import get_current_directory
 except ModuleNotFoundError:
     from tkinter import messagebox, Tk
+
     root = Tk()
     root.withdraw()
     response = messagebox.askyesno("Error: Module Not Found",
-        "Required modules not found. Would you like to install them now?\n\nRequired modules: PySide6, firebase-admin")
+                                   "Required modules not found. Would you like to install them now?\n\nRequired "
+                                   "modules: PySide6, firebase-admin")
 
     if response:
         try:
             import pip
+
             pip.main(["install", "-r", "requirements.txt"])
         except ModuleNotFoundError:
-            print("pip not found. Installing pip rn. Risky move, but I'll do it for you.\n btw why dont you have pip installed yet?")
+            print(
+                "pip not found. Installing pip rn. Risky move, but I'll do it for you.\n btw why dont you have pip "
+                "installed yet?")
             import ensurepip
+
             ensurepip.bootstrap()
             pip.main(["install", "-r", "requirements.txt"])
         finally:
@@ -34,7 +40,7 @@ except ModuleNotFoundError:
             from db import Database
             from ui.main import MainScreen
             from ui.welcome import WelcomeScreen
-            from utils import getCurrentDirectory
+            from utils import get_current_directory
     else:
         sys.exit(1)
 
@@ -44,22 +50,23 @@ class Kanbaru(QMainWindow):
         QMainWindow.__init__(self)
 
         # Get current directory
-        self.path = getCurrentDirectory()
+        self.db_path = None
+        self.path = get_current_directory()
 
         # Set up event logger
-        self.initEventLogger(os.path.join(
+        self.init_event_logger(os.path.join(
             self.path, "event.log"), "%(asctime)s - %(levelname)s - %(message)s", debug=True, stdout=True)
 
         logging.info("Starting Kanbaru...")
         logging.info(f'Current directory: "{self.path}"')
 
         # Initialize local database
-        self.initializeLocalDatabase()
+        self.initialize_local_database()
 
         # Initialize Firebase database
-        self.initializeFirebaseDatabase(Database.getInstance(), os.path.join(
+        self.initialize_firebase_database(Database.get_instance(), os.path.join(
             self.path, "resources", "kanbaru-credentials.json"))
-        self.showMainScreen()
+        self.show_main_screen()
         # Check if user is logged in, if not, prompt login
         # if self.checkCredentials():
         #     Database.getInstance().pullFromFirebase(Database.getInstance().username)
@@ -67,7 +74,8 @@ class Kanbaru(QMainWindow):
         # else:
         #     self.showWelcomeScreen()
 
-    def initEventLogger(self, path: str, fmt: str, debug: bool = False, stdout: bool = False) -> None:
+    @staticmethod
+    def init_event_logger(path: str, fmt: str, debug: bool = False, stdout: bool = False) -> None:
         """Initializes the event logger.
           - Set the path of the event log file
           - Set the format of the event log file
@@ -82,7 +90,7 @@ class Kanbaru(QMainWindow):
         if stdout:
             logging.getLogger().addHandler(logging.StreamHandler(sys.stdout))
 
-    def initializeLocalDatabase(self) -> None:
+    def initialize_local_database(self) -> None:
         """Initializes the database instance.
           - Determine database path
           - Create database instance
@@ -97,35 +105,37 @@ class Kanbaru(QMainWindow):
             logging.info("Unix OS detected")
             self.db_path = os.path.join(os.path.expanduser(
                 "~"), "Kanbaru", "Database.json")
-        db = Database.getInstance()
-        db.setPath(self.db_path)
+        db = Database.get_instance()
+        db.set_path(self.db_path)
         db.read()
-        logging.info(f'Database path: "{db.getPath()}"')
+        logging.info(f'Database path: "{db.get_path()}"')
         logging.info("Database instance initialized and read successfully")
 
-    def initializeFirebaseDatabase(self, db_instance: Database, cred_path: str) -> None:
+    @staticmethod
+    def initialize_firebase_database(db_instance: Database, cred_path: str) -> None:
         """Initializes the Firebase database instance.
           - Set database instance
           - Set credential path
           - Set up Firebase database
         """
-        db_instance.initFirebase(cred_path)
+        db_instance.init_firebase(cred_path)
         logging.info("Firebase database initialized and connected")
 
-    def checkCredentials(self) -> bool:
+    @staticmethod
+    def check_credentials() -> bool:
         """Checks credentials from the database file.
             - Get username and password from database file
             - If username or password is empty, return False
             - If credentials are invalid, return False
         """
-        return Auth.verifyCredentials(Database.getInstance().username, Database.getInstance().password)
+        return Auth.verify_credentials(Database.get_instance().username, Database.get_instance().password)
 
-    def showWelcomeScreen(self):
+    def show_welcome_screen(self):
         """Shows the welcome screen."""
         logging.info("Going to welcome screen...")
         WelcomeScreen(self)
 
-    def showMainScreen(self):
+    def show_main_screen(self):
         """Shows the main screen."""
         logging.info("Going to main screen...")
         MainScreen(self)

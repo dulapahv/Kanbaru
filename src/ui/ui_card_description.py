@@ -90,7 +90,7 @@ class Ui_CardWindow(object):
         self.lineEdit_title.setFont(font2)
         self.lineEdit_title.setStyleSheet(u"QLineEdit {background-color: #ebecf0; color: #282c33; border-radius: 5px; padding: 0px 8px 0px 8px}\n"
 "QLineEdit:focus {background-color: #ffffff; border-color: #6badee; border-width: 1.5px; border-style: solid;; padding: 0px 6px 0px 6px}")
-        self.lineEdit_title.setReadOnly(True)
+        self.lineEdit_title.setReadOnly(False)
 
         self.verticalLayout.addWidget(self.lineEdit_title)
 

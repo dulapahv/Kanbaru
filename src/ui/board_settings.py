@@ -3,10 +3,9 @@ from typing import Callable
 from PySide6.QtCore import *
 from PySide6.QtGui import *
 from PySide6.QtWidgets import *
-
-from kanbaru_objects import Board, Card, List
+from kanbaru_objects import List
 from ui.ui_board_settings import Ui_BoardWindow
-from utils import dialogFactory, setupFontDB
+from utils import dialog_factory, setup_font_db
 
 
 class BoardSettings(QMainWindow):
@@ -17,7 +16,8 @@ class BoardSettings(QMainWindow):
         self.ui.setupUi(self)
 
         self.ui.btn_delete.clicked.connect(
-            lambda: dialogFactory(None, self.delete, "Delete List Confirmation", "Are you sure you want to delete selected list?\nThis action cannot be undone."))
+            lambda: dialog_factory(None, self.delete, "Delete List Confirmation",
+                                   "Are you sure you want to delete selected list?\nThis action cannot be undone."))
         self.ui.btn_rename.clicked.connect(self.rename)
         self.ui.btn_save.clicked.connect(self.save)
         self.ui.btn_cancel.clicked.connect(self.close)
@@ -31,7 +31,7 @@ class BoardSettings(QMainWindow):
         self.ui.btn_cancel.keyPressEvent = lambda event: self.keyPressEvent(
             event, self.close)
 
-        self.setupFont()
+        self.setup_font()
 
     def delete(self) -> None:
         ...
@@ -91,9 +91,9 @@ class BoardSettings(QMainWindow):
     def title_listener(self, text: str) -> None:
         self.title_txt = text
 
-    def setupFont(self) -> None:
-        notosans = setupFontDB("NotoSans.ttf")[0]
-        toruspro = setupFontDB("TorusPro.ttf")[0]
+    def setup_font(self) -> None:
+        notosans = setup_font_db("NotoSans.ttf")[0]
+        toruspro = setup_font_db("TorusPro.ttf")[0]
         self.ui.label_board_desc.setFont(QFont(toruspro, 28))
         self.ui.label_title.setFont(QFont(toruspro, 14, QFont.Bold))
         self.ui.label_color.setFont(QFont(toruspro, 14, QFont.Bold))
