@@ -18,9 +18,10 @@ from utils import setup_font_db
 # from PySide6.QtGui import (QCursor, QDragEnterEvent, QDragMoveEvent,
 #                            QDropEvent, QFont, QKeyEvent)
 # from PySide6.QtWidgets import (QAbstractItemView, QAbstractScrollArea,
-#                                QApplication, QFrame, QLabel, QListWidget,
-#                                QListWidgetItem, QMainWindow, QPushButton,
-#                                QSizePolicy, QSpacerItem, QVBoxLayout, QWidget)
+#                                QApplication, QFrame, QInputDialog, QLabel,
+#                                QListWidget, QListWidgetItem, QMainWindow,
+#                                QPushButton, QSizePolicy, QSpacerItem,
+#                                QVBoxLayout, QWidget)
 
 
 class MainScreen(QMainWindow):

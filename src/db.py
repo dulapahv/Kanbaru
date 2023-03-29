@@ -10,34 +10,10 @@ from kanbaru_objects import Board, List, Card
 
 class Database:
     """
-    Singleton class for database.
+    Singleton class for database. This class is used to store, retrieve, and
+    manipulate data from the local database and the Firebase.
 
-    Attributes
-    -------
-    _instance : Database
-        The instance of the database class.
-
-    Methods
-    -------
-    getInstance() -> Database
-        Returns the instance of the database class.
-    getPath() -> str
-        Returns the path of the database file.
-    setPath(path: str) -> None
-        Sets the path of the database file.
-    create() -> None
-        Creates a new database file. If the directory does not exist, it will be created.
-    write() -> None
-        Writes data from the database instance to the database file.
-    read() -> None
-        Reads data from the database file and stores it in the database instance.
-    initFirebase(cred_path: str) -> None
-        Initializes the Firebase database instance.
-    pullFromFirebase(username: str) -> None
-        Pulls the database of a user from Firebase then writes it to the
-        database file.
-    pushToFirebase(username: str) -> None
-        Pushes the database of a user to Firebase.
+    Use Database.get_instance() to get the instance of the database class.
     """
 
     _instance: "Database" = None
@@ -356,7 +332,7 @@ class Database:
 
         Parameters
         ----------
-        boards : list
+        boards : list[Board]
             The list of boards.
         """
         self.__data["_Board__title"] = boards

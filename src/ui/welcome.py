@@ -1,18 +1,14 @@
+from typing import Callable
+
 from PySide6.QtCore import Qt
-from PySide6.QtGui import QFont, QKeySequence, QShortcut
+from PySide6.QtGui import QFont, QKeyEvent
 from PySide6.QtWidgets import QMainWindow
-
-from PySide6.QtCore import *
-from PySide6.QtGui import *
-from PySide6.QtWidgets import *
-
 
 from auth import Auth
 from db import Database
 from ui.main import MainScreen
 from ui.ui_welcome import Ui_WelcomeWindow
 from utils import setup_font_db
-from typing import Callable
 
 
 class WelcomeScreen(QMainWindow):
@@ -134,7 +130,8 @@ class WelcomeScreen(QMainWindow):
         parent.ui.btn_login.setFont(QFont(toruspro, 12, QFont.Bold))
         parent.ui.btn_signup.setFont(QFont(toruspro, 12, QFont.Bold))
 
-    def keyPressEvent(self, event: QKeyEvent, parent: Ui_WelcomeWindow = None, function: Callable = None) -> None | Callable:
+    def keyPressEvent(self, event: QKeyEvent, parent: Ui_WelcomeWindow = None,
+                      function: Callable = None) -> None | Callable:
         """This function is used to call a function when the enter key is pressed
 
         Parameters

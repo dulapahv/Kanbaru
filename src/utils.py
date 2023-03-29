@@ -21,6 +21,18 @@ def get_current_directory() -> str:
 
 
 def setup_font_db(font: str) -> QFontDatabase:
+    """Sets up the font database for the application.
+
+    Parameters
+    ----------
+    font : str
+        The name of the font to be added to the database.
+
+    Returns
+    -------
+    font_database : QFontDatabase
+        The font database for the application.
+    """
     path = get_current_directory()
     font_path = os.path.dirname(path)
     font_path = os.path.join(path, "resources", "font", font)
@@ -32,6 +44,19 @@ def setup_font_db(font: str) -> QFontDatabase:
 
 
 def dialog_factory(parent: QMainWindow, function: Callable, title: str, msg: str) -> None:
+    """Creates a dialog box with a title, message, and two buttons.
+
+    Parameters
+    ----------
+    parent : QMainWindow
+        The parent window of the dialog box.
+    function : Callable
+        The function to be called when the user clicks the "Yes" button.
+    title : str
+        The title of the dialog box.
+    msg : str
+        The message of the dialog box.
+    """
     dialog = QMessageBox()
     dialog.setIcon(QMessageBox.Information)
     dialog.setWindowTitle(title)
