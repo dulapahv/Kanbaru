@@ -12,6 +12,7 @@ class BoardSettings(QMainWindow):
     def __init__(self) -> None:
         QMainWindow.__init__(self)
 
+        self.title_txt = None
         self.ui: Ui_BoardWindow = Ui_BoardWindow()
         self.ui.setupUi(self)
 

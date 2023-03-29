@@ -49,7 +49,7 @@ class Database:
 
         self.__username: str = ""
         self.__password: str = ""
-        self.__data: list[dict] = []
+        self.__data: list[dict] = [vars(Board())]
 
     @staticmethod
     def get_instance() -> "Database":
@@ -218,6 +218,8 @@ class Database:
         ref = db.reference(username)
         try:
             self.__data = ref.get()
+            self.username = self.__data["_Database__username"]
+            self.password = self.__data["_Database__password"]
             logging.info("Database pulled from Firebase")
             Database.write(self)
         except Exception as e:
@@ -417,7 +419,7 @@ class Database:
         logging.info("Logging out...")
         self.username: str = ""
         self.password: str = ""
-        self.__data: list[dict] = []
+        self.__data: list[dict] = [vars(Board())]
         try:
             Database.create(self)
             logging.info("Logged out")
@@ -434,6 +436,8 @@ class Database:
         """
         logging.info("Deleting account...")
         try:
+            if self.username == "":
+                raise Exception("Illegal attempt to delete account!")
             ref = db.reference(self.username)
             if ref is None:
                 raise Exception("User does not exist!")

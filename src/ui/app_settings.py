@@ -19,7 +19,7 @@ class AppSettings(QMainWindow):
 
         self.ui.btn_delete.clicked.connect(
             lambda: dialog_factory(None, self.delete, "Delete Board Confirmation",
-                                  "Are you sure you want to delete selected board?\nThis action cannot be undone."))
+                                   "Are you sure you want to delete selected board?\nThis action cannot be undone."))
         self.ui.btn_rename.clicked.connect(self.rename)
         self.ui.btn_cancel.clicked.connect(self.close)
         self.ui.btn_save.clicked.connect(self.save)
@@ -27,7 +27,7 @@ class AppSettings(QMainWindow):
             lambda: dialog_factory(parent, self.logout, "Logout Confirmation", "Are you sure you want to logout?"))
         self.ui.btn_delete_account.clicked.connect(
             lambda: dialog_factory(parent, self.delete_account, "Delete Account Confirmation",
-                                  "Are you sure you want to delete your account?\nThis action cannot be undone."))
+                                   "Are you sure you want to delete your account?\nThis action cannot be undone."))
 
         self.ui.btn_delete.keyPressEvent = lambda event: self.keyPressEvent(
             event, function=self.delete)
@@ -42,7 +42,7 @@ class AppSettings(QMainWindow):
             dialog_factory(parent, self.logout, "Logout Confirmation", "Are you sure you want to logout?"))
         self.ui.btn_delete_account.keyPressEvent = lambda event: self.keyPressEvent(
             event, parent, dialog_factory(parent, self.delete_account, "Delete Account Confirmation",
-                                         "Are you sure you want to delete your account?\nThis action cannot be undone."))
+                                          "Are you sure you want to delete your account?\nThis action cannot be undone."))
 
         self.setup_font()
 

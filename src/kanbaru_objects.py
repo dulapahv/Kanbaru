@@ -67,12 +67,6 @@ class List:
             raise ValueError("Card already exists in list.")
         self.__cards.append(card)
 
-    @cards.deleter
-    def cards(self, card: Card) -> None:
-        if card not in self.__cards:
-            raise ValueError("Card does not exist in list.")
-        self.__cards.remove(card)
-
     def __eq__(self, list):
         return self.__title == list.title and self.__cards == list.cards
 
@@ -111,12 +105,6 @@ class Board:
         if list in self.__lists:
             raise ValueError("List already exists in board.")
         self.__lists.append(list)
-
-    @lists.deleter
-    def lists(self, list: List) -> None:
-        if list not in self.__lists:
-            raise ValueError("List does not exist in board.")
-        self.__lists.remove(list)
 
     def __eq__(self, board):
         return self.__title == board.title and self.__color == board.color and self.__lists == board.lists

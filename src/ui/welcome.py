@@ -19,7 +19,6 @@ class WelcomeScreen(QMainWindow):
     def __init__(self, parent: QMainWindow, *args, **kwargs) -> None:
         QMainWindow.__init__(self)
 
-        super().__init__(parent, *args, **kwargs)
         parent.ui: Ui_WelcomeWindow = Ui_WelcomeWindow()
         parent.ui.setupUi(parent)
 

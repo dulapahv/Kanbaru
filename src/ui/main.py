@@ -231,13 +231,26 @@ class MainScreen(QMainWindow):
         parent.ui.listWidget.setAcceptDrops(True)
         parent.ui.listWidget.setStyleSheet(u"QListWidget {background-color: #ebecf0; border-radius: 10px;}\n"
                                            "QListWidget::item {height: 40px; padding: 0px 8px 0px 8px}\n"
-                                           "QListWidget::item {background-color: qlineargradient(spread:pad, x1:0, y1:0.5, x2:0.95, y2:0.5, stop:0 rgba(251, 217, 69, 255), stop:0.0338983 rgba(251, 217, 69, 255), stop:0.039548 rgba(255, 255, 255, 255), stop:1 rgba(255, 255, 255, 255)); color: #000000; border-radius: 5px}\n"
-                                           "QListWidget::item:hover {background-color: qlineargradient(spread:pad, x1:0, y1:0.5, x2:0.95, y2:0.5, stop:0 rgba(251, 217, 69, 255), stop:0.0338983 rgba(251, 217, 69, 255), stop:0.039548 rgba(226, 228, 233, 255), stop:1 rgba(226, 228, 233, 255)); color: #000000}\n"
-                                           "QListWidget::item:selected {background-color: qlineargradient(spread:pad, x1:0, y1:0.5, x2:0.95, y2:0.5, stop:0 rgba(251, 217, 69, 255), stop:0.0338983 rgba(251, 217, 69, 255), stop:0.039548 rgba(204, 204, 204, 255), stop:1 rgba(204, 204, 204, 255)); color: #000000}\n"
+                                           "QListWidget::item {background-color: qlineargradient(spread:pad, x1:0, "
+                                           "y1:0.5, x2:0.95, y2:0.5, stop:0 rgba(251, 217, 69, 255), stop:0.0338983 "
+                                           "rgba(251, 217, 69, 255), stop:0.039548 rgba(255, 255, 255, 255), "
+                                           "stop:1 rgba(255, 255, 255, 255)); color: #000000; border-radius: 5px}\n"
+                                           "QListWidget::item:hover {background-color: qlineargradient(spread:pad, "
+                                           "x1:0, y1:0.5, x2:0.95, y2:0.5, stop:0 rgba(251, 217, 69, 255), "
+                                           "stop:0.0338983 rgba(251, 217, 69, 255), stop:0.039548 rgba(226, 228, 233, "
+                                           "255), stop:1 rgba(226, 228, 233, 255)); color: #000000}\n"
+                                           "QListWidget::item:selected {background-color: qlineargradient(spread:pad, "
+                                           "x1:0, y1:0.5, x2:0.95, y2:0.5, stop:0 rgba(251, 217, 69, 255), "
+                                           "stop:0.0338983 rgba(251, 217, 69, 255), stop:0.039548 rgba(204, 204, 204, "
+                                           "255), stop:1 rgba(204, 204, 204, 255)); color: #000000}\n"
                                            "QListWidget::item:focus {background-color: qlineargradient(spread:pad, x1:0"
-                                           ", y1:0.5, x2:0.95, y2:0.5, stop:0 rgba(251, 217, 69, 255), stop:0.0338983 rgba(251, 217, 69, 255), stop:0.039548 rgba(204, 204, 204, 255), stop:1 rgba(204, 204, 204, 255)); color: #000000}\n"
-                                           "QScrollBar:vertical {width: 10px; margin: 0px 0px 0px 0px; background-color: #acb2bf}\n"
-                                           "QScrollBar:horizontal {height: 10px; margin: 0px 0px 0px 0px; background-color: #acb2bf}")
+                                           ", y1:0.5, x2:0.95, y2:0.5, stop:0 rgba(251, 217, 69, 255), stop:0.0338983 "
+                                           "rgba(251, 217, 69, 255), stop:0.039548 rgba(204, 204, 204, 255), "
+                                           "stop:1 rgba(204, 204, 204, 255)); color: #000000}\n"
+                                           "QScrollBar:vertical {width: 10px; margin: 0px 0px 0px 0px; "
+                                           "background-color: #acb2bf}\n"
+                                           "QScrollBar:horizontal {height: 10px; margin: 0px 0px 0px 0px; "
+                                           "background-color: #acb2bf}")
         parent.ui.listWidget.setFrameShape(QFrame.NoFrame)
         parent.ui.listWidget.setSizeAdjustPolicy(
             QAbstractScrollArea.AdjustIgnored)
@@ -367,6 +380,8 @@ class MainScreen(QMainWindow):
         ----------
         parent : Ui_MainWindow
             The main window
+        board : Board
+            The board to add the list to
         font : str
             The font to use
         """
@@ -427,7 +442,8 @@ class MainScreen(QMainWindow):
         app_settings.setWindowModality(Qt.ApplicationModal)
         app_settings.show()
 
-    def show_board_settings(self, parent: Ui_MainWindow) -> None:
+    @staticmethod
+    def show_board_settings(parent: Ui_MainWindow) -> None:
         """Show the board settings window
 
         Parameters
@@ -435,11 +451,12 @@ class MainScreen(QMainWindow):
         parent : Ui_MainWindow
             The main window
         """
-        self.boardSettings = BoardSettings()
-        self.boardSettings.setWindowModality(Qt.ApplicationModal)
-        self.boardSettings.show()
+        board_settings = BoardSettings()
+        board_settings.setWindowModality(Qt.ApplicationModal)
+        board_settings.show()
 
-    def show_card_description(self, event, parent: QListWidget) -> None:
+    @staticmethod
+    def show_card_description(event, parent: QListWidget) -> None:
         """Show the card description window
 
         Parameters
@@ -450,9 +467,9 @@ class MainScreen(QMainWindow):
             The parent QListWidget
         """
         card = parent.item(event.row()).data(Qt.UserRole)
-        self.cardDescription = CardDescription(card)
-        self.cardDescription.setWindowModality(Qt.ApplicationModal)
-        self.cardDescription.show()
+        card_description = CardDescription(card)
+        card_description.setWindowModality(Qt.ApplicationModal)
+        card_description.show()
 
     def add_board(self, parent: Ui_MainWindow) -> None:
         """Add a new board
