@@ -1,12 +1,12 @@
 import datetime
 import logging
-from typing import Callable
+from typing import Callable, List, Dict
 
 from PySide6.QtCore import *
 from PySide6.QtGui import *
 from PySide6.QtWidgets import *
 from db import Database
-from kanbaru_objects import Board, Card, List
+from kanbaru_objects import Board, Card, Panel
 from ui.app_settings import AppSettings
 from ui.board_settings import BoardSettings
 from ui.card_description import CardDescription
@@ -48,7 +48,7 @@ class MainScreen(QMainWindow):
         logging.info(
             f"Loaded {len(Database.get_instance().boards)} board(s) from database")
 
-        self.all_boards: list[Board] = lambda: Database.get_instance().boards
+        self.all_boards: List[Board] = lambda: Database.get_instance().boards
         self.current_board: Board = self.all_boards()[0]
 
         # Create a new name for the listWidget
@@ -89,7 +89,7 @@ class MainScreen(QMainWindow):
         parent.ui.verticalLayout_4.addItem(
             parent.ui.vertSpacer_scrollAreaContent)
 
-        self.add_list_button(
+        self.add_panel_button(
             parent, Database.get_instance().boards[0], "TorusPro.ttf")
 
         parent.ui.label_board.setText(
@@ -118,7 +118,7 @@ class MainScreen(QMainWindow):
             The board widget
         """
         logging.info(
-            f'Loaded {len(board.lists)} list(s) from board "{board.title}" [{is_constructed = }]')
+            f'Loaded {len(board.panels)} panel(s) from board "{board.title}" [{is_constructed = }]')
 
         parent.ui.label_board.setText(
             board.title[:40] + (board.title[40:] and '...'))
@@ -146,55 +146,55 @@ class MainScreen(QMainWindow):
         parent.ui.btn_board.setFont(QFont(font_db, 12))
 
         if is_constructed:
-            for list in board.lists:
-                qwidget = self.list_factory(parent, list, font)
+            for list in board.panels:
+                qwidget = self.panel_factory(parent, list, font)
                 parent.ui.horizontalLayout_5.addWidget(qwidget)
         return parent.ui.btn_board
 
-    def list_factory(self, parent: Ui_MainWindow, list: List, font: str) -> QWidget:
-        """Creates a list widget
-        - Add a list widget to the parent UI with specified style
-        - Create a new name for the list with its class name and id
+    def panel_factory(self, parent: Ui_MainWindow, panel: Panel, font: str) -> QWidget:
+        """Creates a panel widget
+        - Add a panel widget to the parent UI with specified style
+        - Create a new name for the panel with its class name and id
         - Set the new name as an attribute of the parent UI and as the
-          object name of the list
+          object name of the panel
         - Delete the old name attribute from the parent UI
-        - Set the list data attribute as the List class object
+        - Set the panel data attribute as the Panel class object
 
         Parameters
         ----------
         parent : QMainWindow
             The parent window
-        list : List
-            The list object
+        panel : Panel
+            The panel object
         font : str
             The font to use
 
         Returns
         -------
         QWidget
-            The list widget
+            The panel widget
         """
         logging.info(
-            f'Loaded {len(list.cards)} card(s) from list "{list.title}"')
+            f'Loaded {len(panel.cards)} card(s) from panel "{panel.title}"')
 
         size_policy1 = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Fixed)
         size_policy1.setHorizontalStretch(0)
         size_policy1.setVerticalStretch(0)
-        parent.ui.list = QWidget(parent.ui.scrollAreaContent_panel_right)
-        parent.ui.list.setObjectName(u"list")
+        parent.ui.panel = QWidget(parent.ui.scrollAreaContent_panel_right)
+        parent.ui.panel.setObjectName(u"panel")
         size_policy2 = QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Minimum)
         size_policy2.setHorizontalStretch(0)
         size_policy2.setVerticalStretch(0)
         size_policy2.setHeightForWidth(
-            parent.ui.list.sizePolicy().hasHeightForWidth())
-        parent.ui.list.setSizePolicy(size_policy2)
-        parent.ui.list.setMinimumSize(QSize(250, 0))
-        parent.ui.list.setStyleSheet(u"")
-        parent.ui.verticalLayout_1 = QVBoxLayout(parent.ui.list)
+            parent.ui.panel.sizePolicy().hasHeightForWidth())
+        parent.ui.panel.setSizePolicy(size_policy2)
+        parent.ui.panel.setMinimumSize(QSize(250, 0))
+        parent.ui.panel.setStyleSheet(u"")
+        parent.ui.verticalLayout_1 = QVBoxLayout(parent.ui.panel)
         parent.ui.verticalLayout_1.setSpacing(0)
         parent.ui.verticalLayout_1.setObjectName(u"verticalLayout_1")
         parent.ui.verticalLayout_1.setContentsMargins(0, 0, 0, 0)
-        parent.ui.widget = QWidget(parent.ui.list)
+        parent.ui.widget = QWidget(parent.ui.panel)
         parent.ui.widget.setObjectName(u"widget_list_1")
         size_policy3 = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Minimum)
         size_policy3.setHorizontalStretch(0)
@@ -304,18 +304,18 @@ class MainScreen(QMainWindow):
         parent.ui.btn_add_card.setFont(QFont(font_db[0], 12))
 
         parent.ui.btn_add_card.clicked.connect(
-            lambda: self.add_card(parent, list))
+            lambda: self.add_card(parent, panel))
 
         new_name = f"{parent.ui.listWidget.__class__.__name__}_{id(parent.ui.listWidget)}"
         setattr(parent.ui, new_name, parent.ui.listWidget)
         listWidget = getattr(parent.ui, new_name)
         listWidget.setObjectName(new_name)
         delattr(parent.ui, "listWidget")
-        setattr(listWidget, "data", list)
+        setattr(listWidget, "data", panel)
         listWidget.dragEnterEvent = self.dragEnterEvent
         listWidget.dragMoveEvent = self.dragMoveEvent
         listWidget.dropEvent = self.dropEvent
-        for index, card in enumerate(list.cards):
+        for index, card in enumerate(panel.cards):
             qlistwidgetitem = self.card_factory(
                 listWidget, parent, card, font, index)
             listWidget.addItem(qlistwidgetitem)
@@ -323,11 +323,11 @@ class MainScreen(QMainWindow):
             lambda event: self.show_card_description(event, listWidget))
 
         parent.ui.label_list.setText(
-            QCoreApplication.translate("MainWindow", list.title[:25] + (list.title[25:] and '...'), None))
+            QCoreApplication.translate("MainWindow", panel.title[:25] + (panel.title[25:] and '...'), None))
         parent.ui.btn_add_card.setText(
             QCoreApplication.translate("MainWindow", u"+ Add a card", None))
 
-        return parent.ui.list
+        return parent.ui.panel
 
     @staticmethod
     def card_factory(qlistwidget: QListWidget, parent: Ui_MainWindow, card: Card, font: str,
@@ -347,7 +347,7 @@ class MainScreen(QMainWindow):
         parent : Ui_MainWindow
             The parent UI
         card : Card
-            The card to add to the list
+            The card to add to the panel
         font : str
             The font to use
         index : int
@@ -374,15 +374,15 @@ class MainScreen(QMainWindow):
 
         return list_widget_item
 
-    def add_list_button(self, parent: Ui_MainWindow, board: Board, font: str) -> None:
-        """Add a button to add a new list
+    def add_panel_button(self, parent: Ui_MainWindow, board: Board, font: str) -> None:
+        """Add a button to add a new panel
 
         Parameters
         ----------
         parent : Ui_MainWindow
             The main window
         board : Board
-            The board to add the list to
+            The board to add the panel to
         font : str
             The font to use
         """
@@ -416,7 +416,7 @@ class MainScreen(QMainWindow):
 
         parent.ui.verticalLayout_9.addItem(parent.ui.vertSpacer_list_add)
         parent.ui.btn_add_list.setText(
-            QCoreApplication.translate("MainWindow", u"+ Add a list", None))
+            QCoreApplication.translate("MainWindow", u"+ Add a panel", None))
 
         parent.ui.scrollAreaContent_panel_right.layout().addWidget(parent.ui.list_add)
         parent.ui.horzSpacer_panel_right = QSpacerItem(
@@ -425,7 +425,7 @@ class MainScreen(QMainWindow):
         parent.ui.horizontalLayout_5.addItem(parent.ui.horzSpacer_panel_right)
 
         parent.ui.btn_add_list.clicked.connect(
-            lambda: self.add_list(parent, board))
+            lambda: self.add_panel(parent, board))
 
         font_db = setup_font_db(font)[0]
         parent.ui.btn_add_list.setFont(QFont(font_db, 12))
@@ -485,7 +485,7 @@ class MainScreen(QMainWindow):
         if ok and text != "":
             data = Database.get_instance().data
             data["_Database__data"].append(
-                {"_Board__title": text, "_Board__lists": [], "_Board__color": ""})
+                {"_Board__title": text, "_Board__panels": [], "_Board__color": ""})
             Database.get_instance().data = data
             Database.get_instance().write()
 
@@ -506,48 +506,48 @@ class MainScreen(QMainWindow):
             parent.ui.verticalLayout_4.addItem(
                 parent.ui.vertSpacer_scrollAreaContent)
 
-    def add_list(self, parent: Ui_MainWindow, board: Board) -> None:
-        """Add a new list
+    def add_panel(self, parent: Ui_MainWindow, board: Board) -> None:
+        """Add a new panel
 
         Parameters
         ----------
         parent : Ui_MainWindow
             The main window
         board : Board
-            The board to add the list to
+            The board to add the panel to
         """
         text, ok = QInputDialog().getText(
-            parent, "New list", "Enter a title for the list")
+            parent, "New Panel", "Enter a title for the panel")
         if ok and text != "":
             data = Database.get_instance().data
             for i in range(len(Database.get_instance().boards)):
                 if Database.get_instance().boards[i].title == board.title:
                     data["_Database__data"][i]["_Board__lists"].append(
-                        {"_List__title": text, "_List__cards": []})
+                        {"_Panel__title": text, "_Board__panels": []})
                     Database.get_instance().data = data
                     Database.get_instance().write()
                     self.change_board(parent, Database.get_instance().boards[i])
             parent.ui.scrollArea_panel_right.horizontalScrollBar().setValue(
                 parent.ui.scrollArea_panel_right.horizontalScrollBar().maximum())
 
-    def add_card(self, parent: Ui_MainWindow, list: List) -> None:
+    def add_card(self, parent: Ui_MainWindow, panel: Panel) -> None:
         """Add a new card
 
         Parameters
         ----------
         parent : Ui_MainWindow
             The main window
-        list : List
-            The list to add the card to
+        panel : Panel
+            The panel to add the card to
         """
         text, ok = QInputDialog().getText(
             parent, "New card", "Enter a title for the card")
         if ok and text != "":
             data = Database.get_instance().data
             for i in range(len(Database.get_instance().boards)):
-                for j in range(len(Database.get_instance().boards[i].lists)):
-                    if Database.get_instance().boards[i].lists[j].title == list.title:
-                        data["_Database__data"][i]["_Board__lists"][j]["_List__cards"].append(
+                for j in range(len(Database.get_instance().boards[i].panels)):
+                    if Database.get_instance().boards[i].panels[j].title == panel.title:
+                        data["_Database__data"][i]["_Board__lists"][j]["_Board__panels"].append(
                             {"_Card__title": text, "_Card__description": "",
                              "_Card__date": datetime.date.today().strftime("%d-%m-%Y"),
                              "_Card__time": datetime.datetime.now().strftime("%H:%M")})
@@ -611,7 +611,7 @@ class MainScreen(QMainWindow):
             items = source_widget.selectedItems()
             if source_widget == dest_widget:
                 return None
-                # TODO: Implement rearranging items within the same list (and other lists)
+                # TODO: Implement rearranging items within the same panel (and other lists)
             else:
                 for item in items:
                     source_widget.takeItem(source_widget.row(item))
@@ -620,7 +620,7 @@ class MainScreen(QMainWindow):
                     self.change_card(source_widget, dest_widget,
                                      item.data(Qt.UserRole))
             logging.info(
-                f'Moved {len(items)} Card(s) ({list(map(lambda item: getattr(item, "data")(Qt.UserRole).title, items))}) from list "{getattr(source_widget, "data").title}" to list "{getattr(dest_widget, "data").title}"')
+                f'Moved {len(items)} Card(s) ({list(map(lambda item: getattr(item, "data")(Qt.UserRole).title, items))}) from panel "{getattr(source_widget, "data").title}" to panel "{getattr(dest_widget, "data").title}"')
             Database.get_instance().write()
             event.accept()
         else:
@@ -630,7 +630,7 @@ class MainScreen(QMainWindow):
         """Change the board to the specified board
         - Remove all widgets from the layout
         - Create the new board
-        - Remove the add list button and horizontal spacer then add list button again
+        - Remove the add panel button and horizontal spacer then add panel button again
 
         Parameters
         ----------
@@ -651,43 +651,43 @@ class MainScreen(QMainWindow):
         parent.ui.list_add.setParent(None)
         parent.ui.horizontalLayout_5.removeItem(
             parent.ui.horzSpacer_panel_right)
-        self.add_list_button(parent, board, "TorusPro.ttf")
+        self.add_panel_button(parent, board, "TorusPro.ttf")
 
     @staticmethod
-    def change_card(source: List, destination: List, card: Card) -> None:
-        """Change the card in a list to another list
+    def change_card(source: Panel, destination: Panel, card: Card) -> None:
+        """Change the card in a panel to another panel
         - Get the data from the database
-        - Find the source list and the specified card
-        - Find the destination list and add the card
-        - Remove the card from the source list
+        - Find the source panel and the specified card
+        - Find the destination panel and add the card
+        - Remove the card from the source panel
         - Update the database
 
         Parameters
         ----------
-        source : List
-            The source list
-        destination : List
-            The destination list
+        source : Panel
+            The source panel
+        destination : Panel
+            The destination panel
         card : Card
             The card to move
         """
         data = Database.get_instance().data
         for i in range(len(data["_Database__data"][0]["_Board__lists"])):
-            if data["_Database__data"][0]["_Board__lists"][i]["_List__title"] == getattr(source, "data").title:
+            if data["_Database__data"][0]["_Board__lists"][i]["_Panel__title"] == getattr(source, "data").title:
                 source_list = data["_Database__data"][0]["_Board__lists"][i]
-                for j in range(len(source_list["_List__cards"])):
-                    if source_list["_List__cards"][j]["_Card__title"] == card.title:
-                        card_to_move = source_list["_List__cards"].pop(j)
+                for j in range(len(source_list["_Board__panels"])):
+                    if source_list["_Board__panels"][j]["_Card__title"] == card.title:
+                        card_to_move = source_list["_Board__panels"].pop(j)
                         break
         for i in range(len(data["_Database__data"][0]["_Board__lists"])):
-            if data["_Database__data"][0]["_Board__lists"][i]["_List__title"] == getattr(destination, "data").title:
+            if data["_Database__data"][0]["_Board__lists"][i]["_Panel__title"] == getattr(destination, "data").title:
                 dest_list = data["_Database__data"][0]["_Board__lists"][i]
-                dest_list["_List__cards"].append(card_to_move)
+                dest_list["_Board__panels"].append(card_to_move)
                 break
         Database.get_instance().data = data
 
     @staticmethod
-    def setup_font(parent: Ui_MainWindow, font: str | list[str]) -> None:
+    def setup_font(parent: Ui_MainWindow, font: str | List[str]) -> None:
         toruspro = setup_font_db(font)[0]
         parent.ui.label_logo.setFont(QFont(toruspro, 36))
         parent.ui.label_board.setFont(QFont(toruspro, 28))

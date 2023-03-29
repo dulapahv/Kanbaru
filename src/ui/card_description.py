@@ -4,7 +4,7 @@ from PySide6.QtCore import *
 from PySide6.QtGui import *
 from PySide6.QtWidgets import *
 
-from kanbaru_objects import Board, Card, List
+from kanbaru_objects import Board, Card, Panel
 from ui.ui_card_description import Ui_CardWindow
 from utils import dialog_factory, setup_font_db
 
@@ -22,12 +22,12 @@ class CardDescription(QMainWindow):
         self.ui.lineEdit_title.textChanged.connect(self.title_listener)
 
         self.ui.btn_delete.clicked.connect(
-            lambda: dialog_factory(None, self.delete, "Delete Card Confirmation", "Are you sure you want to delete this card?\nThis action cannot be undone."))
+            lambda: dialog_factory(None, self.delete, "Delete Card", "Are you sure you want to delete this card?\nThis action cannot be undone."))
         self.ui.btn_cancel.clicked.connect(self.close)
         self.ui.btn_save.clicked.connect(self.save)
 
         self.ui.btn_delete.keyPressEvent = lambda event: self.keyPressEvent(
-            event, self.delete)
+            event, dialog_factory(None, self.delete, "Delete Card", "Are you sure you want to delete this card?\nThis action cannot be undone."))
         self.ui.btn_cancel.keyPressEvent = lambda event: self.keyPressEvent(
             event, self.close)
         self.ui.btn_save.keyPressEvent = lambda event: self.keyPressEvent(
