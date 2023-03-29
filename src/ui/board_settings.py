@@ -1,9 +1,10 @@
-from typing import Callable
+from typing import Callable, List
 
 from PySide6.QtCore import *
 from PySide6.QtGui import *
 from PySide6.QtWidgets import *
-from kanbaru_objects import List
+
+from kanbaru_objects import Panel
 from ui.ui_board_settings import Ui_BoardWindow
 from utils import dialog_factory, setup_font_db
 
@@ -17,14 +18,15 @@ class BoardSettings(QMainWindow):
         self.ui.setupUi(self)
 
         self.ui.btn_delete.clicked.connect(
-            lambda: dialog_factory(None, self.delete, "Delete List Confirmation",
-                                   "Are you sure you want to delete selected list?\nThis action cannot be undone."))
+            lambda: dialog_factory(None, self.delete, "Delete Panel",
+                                   "Are you sure you want to delete selected panel?\nThis action cannot be undone."))
         self.ui.btn_rename.clicked.connect(self.rename)
         self.ui.btn_save.clicked.connect(self.save)
         self.ui.btn_cancel.clicked.connect(self.close)
 
         self.ui.btn_delete.keyPressEvent = lambda event: self.keyPressEvent(
-            event, self.delete)
+            event, dialog_factory(None, self.delete, "Delete Panel",
+                                          "Are you sure you want to delete selected panel?\nThis action cannot be undone."))
         self.ui.btn_rename.keyPressEvent = lambda event: self.keyPressEvent(
             event, self.rename)
         self.ui.btn_save.keyPressEvent = lambda event: self.keyPressEvent(
@@ -63,7 +65,7 @@ class BoardSettings(QMainWindow):
             return "Teal"
 
     @property
-    def list_all(self) -> list[List]:
+    def panel_all(self) -> List[Panel]:
         ...
 
     @title.setter
@@ -85,8 +87,8 @@ class BoardSettings(QMainWindow):
         elif color == "Teal":
             self.ui.btn_color_6.setChecked(True)
 
-    @list_all.setter
-    def list_all(self, lists: list[List]) -> None:
+    @panel_all.setter
+    def panel_all(self, panels: List[Panel]) -> None:
         ...
 
     def title_listener(self, text: str) -> None:
@@ -98,8 +100,8 @@ class BoardSettings(QMainWindow):
         self.ui.label_board_desc.setFont(QFont(toruspro, 28))
         self.ui.label_title.setFont(QFont(toruspro, 14, QFont.Bold))
         self.ui.label_color.setFont(QFont(toruspro, 14, QFont.Bold))
-        self.ui.label_manage_list.setFont(QFont(toruspro, 14, QFont.Bold))
-        self.ui.label_manage_list_desc.setFont(QFont(toruspro, 11))
+        self.ui.label_manage_panel.setFont(QFont(toruspro, 14, QFont.Bold))
+        self.ui.label_manage_panel_desc.setFont(QFont(toruspro, 11))
         self.ui.lineEdit_title.setFont(QFont(notosans, 12))
         self.ui.btn_color_1.setFont(QFont(toruspro, 12))
         self.ui.btn_color_2.setFont(QFont(toruspro, 12))
