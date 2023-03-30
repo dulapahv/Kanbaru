@@ -475,10 +475,23 @@ class MainScreen(QMainWindow):
         card_description.show()
         while card_description.isVisible():
             QCoreApplication.processEvents()
+        layout = parent.ui.scrollAreaContent_panel_right.layout()
+        for i in reversed(range(layout.count())):
+            widget = layout.itemAt(i).widget()
+            if widget is not None:
+                layout.removeWidget(widget)
+                widget.deleteLater()
+        layout = parent.ui.scrollAreaContent_panel_left.layout()
+        for i in reversed(range(layout.count())):
+            widget = layout.itemAt(i).widget()
+            if widget is not None:
+                layout.removeWidget(widget)
+                widget.deleteLater()
+        parent.ui.verticalLayout_4.removeItem(
+            parent.ui.vertSpacer_scrollAreaContent)
+        parent.ui.horzSpacer_panel_right.changeSize(
+            0, 0, QSizePolicy.Fixed, QSizePolicy.Minimum)
 
-        for i in reversed(range(parent.ui.scrollAreaContent_panel_right.layout().count())):
-            if parent.ui.scrollAreaContent_panel_right.layout().itemAt(i).widget() is not None:
-                parent.ui.scrollAreaContent_panel_right.layout().itemAt(i).widget().setParent(None)
         self.update_whole_page(parent)
 
     def add_board(self, parent: Ui_MainWindow) -> None:
@@ -652,11 +665,10 @@ class MainScreen(QMainWindow):
         self.current_board = board
         layout = parent.ui.scrollAreaContent_panel_right.layout()
         for i in reversed(range(layout.count())):
-            item = layout.itemAt(i)
-            if item is not None:
-                widget = item.widget()
-                if widget is not None:
-                    widget.setParent(None)
+            widget = layout.itemAt(i).widget()
+            if widget is not None:
+                layout.removeWidget(widget)
+                widget.deleteLater()
         self.board_factory(parent, board, "TorusPro.ttf")
         parent.ui.list_add.setParent(None)
         parent.ui.horizontalLayout_5.removeItem(
