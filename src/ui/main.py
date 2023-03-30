@@ -45,6 +45,9 @@ class MainScreen(QMainWindow):
         parent.ui.btn_add_board.keyPressEvent = lambda event: self.keyPressEvent(
             event, parent, self.add_board(parent))
 
+        self.update_whole_page(parent)
+
+    def update_whole_page(self, parent: QMainWindow) -> None:
         logging.info(
             f"Loaded {len(Database.get_instance().boards)} board(s) from database")
 
@@ -320,7 +323,7 @@ class MainScreen(QMainWindow):
                 listWidget, parent, card, font, index)
             listWidget.addItem(qlistwidgetitem)
         listWidget.clicked.connect(
-            lambda event: self.show_card_description(event, listWidget))
+            lambda event: self.show_card_description(event, listWidget, parent))
 
         parent.ui.label_list.setText(
             QCoreApplication.translate("MainWindow", panel.title[:25] + (panel.title[25:] and '...'), None))
@@ -456,8 +459,7 @@ class MainScreen(QMainWindow):
         board_settings.setWindowModality(Qt.ApplicationModal)
         board_settings.show()
 
-    @staticmethod
-    def show_card_description(event, parent: QListWidget) -> None:
+    def show_card_description(self, event, list_widget: QListWidget, parent: QMainWindow) -> None:
         """Show the card description window
 
         Parameters
@@ -467,10 +469,17 @@ class MainScreen(QMainWindow):
         parent : QListWidget
             The parent QListWidget
         """
-        card = parent.item(event.row()).data(Qt.UserRole)
+        card = list_widget.item(event.row()).data(Qt.UserRole)
         card_description = CardDescription(card)
         card_description.setWindowModality(Qt.ApplicationModal)
         card_description.show()
+        while card_description.isVisible():
+            QCoreApplication.processEvents()
+
+        for i in reversed(range(parent.ui.scrollAreaContent_panel_right.layout().count())):
+            if parent.ui.scrollAreaContent_panel_right.layout().itemAt(i).widget() is not None:
+                parent.ui.scrollAreaContent_panel_right.layout().itemAt(i).widget().setParent(None)
+        self.update_whole_page(parent)
 
     def add_board(self, parent: Ui_MainWindow) -> None:
         """Add a new board
@@ -526,7 +535,8 @@ class MainScreen(QMainWindow):
                         {"_Panel__title": text, "_Board__panels": []})
                     Database.get_instance().data = data
                     Database.get_instance().write()
-                    self.change_board(parent, Database.get_instance().boards[i])
+                    self.change_board(
+                        parent, Database.get_instance().boards[i])
             parent.ui.scrollArea_panel_right.horizontalScrollBar().setValue(
                 parent.ui.scrollArea_panel_right.horizontalScrollBar().maximum())
 

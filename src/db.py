@@ -351,13 +351,13 @@ class Database:
             for index_l, panel in enumerate(board.panels):
                 for index_c, card in enumerate(panel.cards):
                     if card == card_old:
-                        self.data["_Database__data"][index_b]["_Board__panels"][index_l]["_List__cards"][index_c][
+                        self.data["_Database__data"][index_b]["_Board__lists"][index_l]["_Board__panels"][index_c][
                             "_Card__title"] = card_new.title
-                        self.data["_Database__data"][index_b]["_Board__panels"][index_l][
-                            "_List__cards"][index_c]["_Card__description"] = card_new.description
-                        self.data["_Database__data"][index_b]["_Board__panels"][index_l]["_List__cards"][index_c][
+                        self.data["_Database__data"][index_b]["_Board__lists"][index_l]["_Board__panels"][index_c][
+                            "_Card__description"] = card_new.description
+                        self.data["_Database__data"][index_b]["_Board__lists"][index_l]["_Board__panels"][index_c][
                             "_Card__date"] = card_new.date
-                        self.data["_Database__data"][index_b]["_Board__panels"][index_l]["_List__cards"][index_c][
+                        self.data["_Database__data"][index_b]["_Board__lists"][index_l]["_Board__panels"][index_c][
                             "_Card__time"] = card_new.time
                         Database.write(self)
                         return None
