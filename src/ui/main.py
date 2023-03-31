@@ -689,7 +689,10 @@ class MainScreen(QMainWindow):
         for i in range(len(data["_Database__data"][0]["_Board__panels_lists"])):
             if data["_Database__data"][0]["_Board__panels_lists"][i]["_Panel__title"] == getattr(destination, "data").title:
                 dest_list = data["_Database__data"][0]["_Board__panels_lists"][i]
-                dest_list["_Board__panels"].append(card_to_move)
+                try:
+                    dest_list["_Board__panels"].append(card_to_move)
+                except KeyError:
+                    dest_list["_Board__panels"] = [card_to_move]
                 break
         Database.get_instance().data = data
 
