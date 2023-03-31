@@ -72,7 +72,7 @@ class AppSettings(QMainWindow):
         ...
 
     @board_all.setter
-    def board_all(self, board: Board | List[Board]) -> None:
+    def board_all(self, board: List[Board]) -> None:
         ...
 
     def logout(self, parent: QMainWindow):
@@ -103,7 +103,7 @@ class AppSettings(QMainWindow):
         self.ui.btn_save.setFont(QFont(toruspro, 12))
 
     def keyPressEvent(self, event: QKeyEvent, parent: Ui_SettingsWindow = None,
-                      function: Callable = None) -> None | Callable:
+                      function: Callable = None) -> Callable:
         """This function is used to call a function when the enter key is pressed
 
         Parameters

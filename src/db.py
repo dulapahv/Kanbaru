@@ -277,14 +277,14 @@ class Database:
         self.__data["_Database__password"] = password
 
     @property
-    def boards(self: "Database") -> List[Board | List[Panel | List[Card]]]:
+    def boards(self: "Database") -> List[Board]:
         """Returns the list of boards containing its attributes and list of
         Panels containing its attributes and list of Cards containing its
         attributes.
 
         Returns
         -------
-        boards : List[Board | List[Panel | List[Card]]]
+        boards : List[Board]
             The list of boards containing its attributes and list of Panels
             containing its attributes and list of Cards containing its
             attributes.

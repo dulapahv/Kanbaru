@@ -102,7 +102,7 @@ class CardDescription(QMainWindow):
         self.ui.btn_cancel.setFont(QFont(toruspro, 12))
         self.ui.btn_save.setFont(QFont(toruspro, 12))
 
-    def keyPressEvent(self, event: QKeyEvent, function: Callable = None) -> None | Callable:
+    def keyPressEvent(self, event: QKeyEvent, function: Callable = None) -> Callable:
         """This function is used to call a function when the enter key is pressed
 
         Parameters

@@ -709,7 +709,7 @@ class MainScreen(QMainWindow):
         Database.get_instance().data = data
 
     @staticmethod
-    def setup_font(parent: Ui_MainWindow, font: str | List[str]) -> None:
+    def setup_font(parent: Ui_MainWindow, font: str) -> None:
         toruspro = setup_font_db(font)[0]
         parent.ui.label_logo.setFont(QFont(toruspro, 36))
         parent.ui.label_board.setFont(QFont(toruspro, 28))
@@ -718,7 +718,7 @@ class MainScreen(QMainWindow):
         parent.ui.btn_app_settings.setFont(QFont(toruspro, 12))
 
     def keyPressEvent(self, event: QKeyEvent, parent: Ui_MainWindow = None,
-                      function: Callable = None) -> None | Callable:
+                      function: Callable = None) -> Callable:
         """This function is used to call a function when the enter key is pressed
 
         Parameters
