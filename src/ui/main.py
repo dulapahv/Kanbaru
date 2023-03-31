@@ -627,8 +627,6 @@ class MainScreen(QMainWindow):
             The drag move event
         """
         if event.mimeData().hasFormat("application/x-qabstractitemmodeldatalist"):
-            print(QCursor().pos().x(), parent.width() -
-                  (parent.width() - parent.x()) + 300)
             if QCursor().pos().x() > parent.width() + parent.x() - 160:
                 parent.ui.scrollArea_panel_right.horizontalScrollBar().setValue(
                     parent.ui.scrollArea_panel_right.horizontalScrollBar().value() + 10)
