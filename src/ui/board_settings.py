@@ -4,13 +4,13 @@ from PySide6.QtCore import *
 from PySide6.QtGui import *
 from PySide6.QtWidgets import *
 
-from kanbaru_objects import Panel
+from kanbaru_objects import Board, Card, Panel
 from ui.ui_board_settings import Ui_BoardWindow
 from utils import dialog_factory, setup_font_db
 
 
 class BoardSettings(QMainWindow):
-    def __init__(self) -> None:
+    def __init__(self, board: Board) -> None:
         QMainWindow.__init__(self)
 
         self.title_txt = None
@@ -26,13 +26,17 @@ class BoardSettings(QMainWindow):
 
         self.ui.btn_delete.keyPressEvent = lambda event: self.keyPressEvent(
             event, dialog_factory(None, self.delete, "Delete Panel",
-                                          "Are you sure you want to delete selected panel?\nThis action cannot be undone."))
+                                  "Are you sure you want to delete selected panel?\nThis action cannot be undone."))
         self.ui.btn_rename.keyPressEvent = lambda event: self.keyPressEvent(
             event, self.rename)
         self.ui.btn_save.keyPressEvent = lambda event: self.keyPressEvent(
             event, self.save)
         self.ui.btn_cancel.keyPressEvent = lambda event: self.keyPressEvent(
             event, self.close)
+
+        self.board = board
+        self.title = board.title
+        self.color = board.color
 
         self.setup_font()
 

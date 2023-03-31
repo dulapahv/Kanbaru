@@ -77,7 +77,7 @@ class Panel:
 
 
 class Board:
-    def __init__(self, title: str = "New Board", color="", panels_lists=[]):
+    def __init__(self, title: str = "New Board", color="Light blue", panels_lists=[]):
         self.__title = title
         self.__color = color
         self.__panels_lists = panels_lists

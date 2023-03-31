@@ -34,14 +34,14 @@ class MainScreen(QMainWindow):
         parent.ui.btn_app_settings.clicked.connect(
             lambda: self.show_app_settings(parent))
         parent.ui.btn_board_settings.clicked.connect(
-            lambda: self.show_board_settings(parent))
+            lambda event: self.show_board_settings(self, event, parent))
         parent.ui.btn_add_board.clicked.connect(
             lambda: self.add_board(parent))
 
         parent.ui.btn_app_settings.keyPressEvent = lambda event: self.keyPressEvent(
             event, parent, self.show_app_settings(parent))
         parent.ui.btn_board_settings.keyPressEvent = lambda event: self.keyPressEvent(
-            event, parent, self.show_board_settings(parent))
+            event, parent, self.show_board_settings(event, parent))
         parent.ui.btn_add_board.keyPressEvent = lambda event: self.keyPressEvent(
             event, parent, self.add_board(parent))
 
@@ -446,7 +446,7 @@ class MainScreen(QMainWindow):
         app_settings.show()
 
     @staticmethod
-    def show_board_settings(parent: Ui_MainWindow) -> None:
+    def show_board_settings(self, event, parent: QMainWindow) -> None:
         """Show the board settings window
 
         Parameters
@@ -454,7 +454,12 @@ class MainScreen(QMainWindow):
         parent : Ui_MainWindow
             The main window
         """
-        board_settings = BoardSettings()
+        boards = Database.get_instance().boards
+        for board in boards:
+            if board.title == parent.ui.label_board.text():
+                current_board = board
+                break
+        board_settings = BoardSettings(current_board)
         board_settings.setWindowModality(Qt.ApplicationModal)
         board_settings.show()
 
@@ -496,6 +501,7 @@ class MainScreen(QMainWindow):
 
             self.clear_page(parent)
             self.update_whole_page(parent)
+            self.change_board(parent, Database.get_instance().boards[-1])
 
     def add_panel(self, parent: Ui_MainWindow, board: Board) -> None:
         """Add a new panel
