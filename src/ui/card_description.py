@@ -42,6 +42,17 @@ class CardDescription(QMainWindow):
         self.setup_font()
 
     def save(self) -> None:
+        if self.title_txt == "":
+            dialog_factory(None, None, "Invalid Title",
+                           "Card title cannot be empty!", yes_no=False)
+            return None
+        for board in Database.get_instance().boards:
+            for panel in board.panels:
+                for card in panel.cards:
+                    if card.title == self.title_txt:
+                        dialog_factory(None, None, "Invalid Title",
+                                       "Card already exists!", yes_no=False)
+                        return None
         card_old = Card(self.card.title, self.card.date,
                         self.card.time, self.card.description)
         Database.get_instance().update_card(card_old, self)

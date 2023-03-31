@@ -43,7 +43,7 @@ def setup_font_db(font: str) -> QFontDatabase:
     return QFontDatabase.applicationFontFamilies(font_database)
 
 
-def dialog_factory(parent: QMainWindow, function: Callable, title: str, msg: str) -> None:
+def dialog_factory(parent: QMainWindow, function: Callable, title: str, msg: str, yes_no: bool = True) -> None:
     """Creates a dialog box with a title, message, and two buttons.
 
     Parameters
@@ -61,6 +61,9 @@ def dialog_factory(parent: QMainWindow, function: Callable, title: str, msg: str
     dialog.setIcon(QMessageBox.Information)
     dialog.setWindowTitle(title)
     dialog.setText(msg)
-    dialog.setStandardButtons(QMessageBox.Yes | QMessageBox.No)
+    if yes_no:
+        dialog.setStandardButtons(QMessageBox.Yes | QMessageBox.No)
+    else:
+        dialog.setStandardButtons(QMessageBox.Ok)
     if dialog.exec() == QMessageBox.Yes:
         function(parent)

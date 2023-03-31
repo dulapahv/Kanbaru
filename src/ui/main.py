@@ -11,7 +11,7 @@ from ui.app_settings import AppSettings
 from ui.board_settings import BoardSettings
 from ui.card_description import CardDescription
 from ui.ui_main import Ui_MainWindow
-from utils import setup_font_db
+from utils import setup_font_db, dialog_factory
 
 
 # from PySide6.QtCore import QCoreApplication, QSize, Qt, Slot
@@ -315,7 +315,8 @@ class MainScreen(QMainWindow):
         delattr(parent.ui, "listWidget")
         setattr(listWidget, "data", panel)
         listWidget.dragEnterEvent = self.dragEnterEvent
-        listWidget.dragMoveEvent = self.dragMoveEvent
+        listWidget.dragMoveEvent = lambda event: self.dragMoveEvent(
+            event, parent)
         listWidget.dropEvent = self.dropEvent
         for index, card in enumerate(panel.cards):
             qlistwidgetitem = self.card_factory(
@@ -492,7 +493,16 @@ class MainScreen(QMainWindow):
         """
         text, ok = QInputDialog().getText(
             parent, "New board", "Enter a title for the board")
-        if ok and text != "":
+        if ok:
+            if text == "":
+                dialog_factory(None, None, "Invalid Title",
+                               "Board title cannot be empty!", yes_no=False)
+                return
+            for board in Database.get_instance().boards:
+                if board.title == text:
+                    dialog_factory(None, None, "Invalid Title",
+                                   "Board already exists!", yes_no=False)
+                    return
             data = Database.get_instance().data
             data["_Database__data"].append(
                 {"_Board__title": text, "_Board__panels": [], "_Board__color": ""})
@@ -515,7 +525,19 @@ class MainScreen(QMainWindow):
         """
         text, ok = QInputDialog().getText(
             parent, "New Panel", "Enter a title for the panel")
-        if ok and text != "":
+        if ok:
+            if text == "":
+                dialog_factory(None, None, "Invalid Title",
+                               "Panel title cannot be empty!", yes_no=False)
+                self.add_card(parent, board)
+                return None
+            for board in Database.get_instance().boards:
+                for panel in board.panels:
+                    if panel.title == text:
+                        dialog_factory(None, None, "Invalid Title",
+                                       "Panel already exists!", yes_no=False)
+                        self.add_card(parent, board)
+                        return None
             data = Database.get_instance().data
             for i in range(len(Database.get_instance().boards)):
                 if Database.get_instance().boards[i].title == board.title:
@@ -544,7 +566,20 @@ class MainScreen(QMainWindow):
         """
         text, ok = QInputDialog().getText(
             parent, "New card", "Enter a title for the card")
-        if ok and text != "":
+        if ok:
+            if text == "":
+                dialog_factory(None, None, "Invalid Title",
+                               "Card title cannot be empty!", yes_no=False)
+                self.add_card(parent, panel)
+                return None
+            for board in Database.get_instance().boards:
+                for panel_ in board.panels:
+                    for card in panel_.cards:
+                        if card.title == text:
+                            dialog_factory(None, None, "Invalid Title",
+                                           "Card already exists!", yes_no=False)
+                            self.add_card(parent, panel)
+                            return None
             data = Database.get_instance().data
             for i in range(len(Database.get_instance().boards)):
                 for j in range(len(Database.get_instance().boards[i].panels)):
@@ -581,7 +616,7 @@ class MainScreen(QMainWindow):
             event.ignore()
 
     @Slot()
-    def dragMoveEvent(self, event: QDragMoveEvent) -> None:
+    def dragMoveEvent(self, event: QDragMoveEvent, parent: QMainWindow) -> None:
         """Override the dragMoveEvent method to customize the drag move event
         - Check if the dragged item has the qabstractitemmodeldatalist format
         - If it is, accept the event. If not, ignore the event
@@ -592,7 +627,23 @@ class MainScreen(QMainWindow):
             The drag move event
         """
         if event.mimeData().hasFormat("application/x-qabstractitemmodeldatalist"):
+            print(QCursor().pos().x(), parent.width() -
+                  (parent.width() - parent.x()) + 300)
+            if QCursor().pos().x() > parent.width() + parent.x() - 160:
+                parent.ui.scrollArea_panel_right.horizontalScrollBar().setValue(
+                    parent.ui.scrollArea_panel_right.horizontalScrollBar().value() + 10)
+            elif QCursor().pos().x() < parent.width() - (parent.width() - parent.x()) + 300:
+                parent.ui.scrollArea_panel_right.horizontalScrollBar().setValue(
+                    parent.ui.scrollArea_panel_right.horizontalScrollBar().value() - 10)
             event.accept()
+            panel = QApplication.widgetAt(QCursor().pos()).parent()
+            if isinstance(panel, QListWidget):
+                if QCursor().pos().y() > panel.y() + panel.height() + 150:
+                    panel.verticalScrollBar().setValue(
+                        panel.verticalScrollBar().value() + 3)
+                elif QCursor().pos().y() < panel.y() + 300:
+                    panel.verticalScrollBar().setValue(
+                        panel.verticalScrollBar().value() - 3)
         else:
             event.ignore()
 
@@ -601,8 +652,7 @@ class MainScreen(QMainWindow):
         """Override the dropEvent method to customize the drop event
         - Check if the item to be dropped has the qabstractitemmodeldatalist format
         - Get the source widget
-        - Get the current mouse position
-        - Get the widget at the mouse position
+        - Get the widget at the current mouse position
         - Get the items that is being dragged
         - Remove those items from the source widget
         - Add those items to the destination widget
@@ -614,8 +664,7 @@ class MainScreen(QMainWindow):
         """
         if event.mimeData().hasFormat('application/x-qabstractitemmodeldatalist'):
             source_widget = event.source()
-            mouse_position = QCursor().pos()
-            dest_widget = QApplication.widgetAt(mouse_position).parent()
+            dest_widget = QApplication.widgetAt(QCursor().pos()).parent()
             items = source_widget.selectedItems()
             if source_widget == dest_widget:
                 return None
