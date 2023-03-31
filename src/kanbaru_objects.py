@@ -47,9 +47,9 @@ class Card:
 
 
 class Panel:
-    def __init__(self, title: str = "New Panel", cards=[]) -> None:
+    def __init__(self, title: str = "New Panel", card_lists=[]) -> None:
         self.__title = title
-        self.__cards = cards
+        self.__card_lists = card_lists
 
     @property
     def title(self) -> str:
@@ -57,7 +57,7 @@ class Panel:
 
     @property
     def cards(self) -> List[Card]:
-        return self.__cards
+        return self.__card_lists
 
     @title.setter
     def title(self, title: str) -> None:
@@ -77,10 +77,10 @@ class Panel:
 
 
 class Board:
-    def __init__(self, title: str = "New Board", color="", panels=[]):
+    def __init__(self, title: str = "New Board", color="", panels_lists=[]):
         self.__title = title
         self.__color = color
-        self.__panels = panels
+        self.__panels_lists = panels_lists
 
     @property
     def title(self) -> str:
@@ -92,7 +92,7 @@ class Board:
 
     @property
     def panels(self) -> List[Panel]:
-        return self.__panels
+        return self.__panels_lists
 
     @title.setter
     def title(self, title: str) -> None:

@@ -48,12 +48,10 @@ class MainScreen(QMainWindow):
         self.update_whole_page(parent)
 
     def update_whole_page(self, parent: QMainWindow) -> None:
-        logging.info(
-            f"Loaded {len(Database.get_instance().boards)} board(s) from database")
-
         self.all_boards: List[Board] = lambda: Database.get_instance().boards
-        self.current_board: Board = self.all_boards()[0]
 
+        logging.info(
+            f"Loaded {len(self.all_boards())} board(s) from database")
         # Create a new name for the listWidget
         # Set the new name as an attribute of the parent UI
         # Set the new name as the object name of the listWidget
@@ -69,11 +67,11 @@ class MainScreen(QMainWindow):
         push_button.setObjectName(new_name)
         delattr(parent.ui, "qpushbutton")
         push_button = self.board_factory(
-            parent, Database.get_instance().boards[0], "TorusPro.ttf")
+            parent, self.all_boards()[0], "TorusPro.ttf")
         push_button.clicked.connect(lambda: self.change_board(
-            parent, Database.get_instance().boards[0]))
+            parent, self.all_boards()[0]))
         parent.ui.verticalLayout_4.addWidget(push_button)
-        for index, board in enumerate(Database.get_instance().boards[1:]):
+        for index, board in enumerate(self.all_boards()[1:]):
             parent.ui.qpushbutton = QPushButton()
             new_name = f"{parent.ui.qpushbutton.__class__.__name__}_{id(parent.ui.qpushbutton)}"
             setattr(parent.ui, new_name, parent.ui.qpushbutton)
@@ -81,9 +79,10 @@ class MainScreen(QMainWindow):
             push_button.setObjectName(new_name)
             delattr(parent.ui, "qpushbutton")
             push_button = self.board_factory(
-                parent, Database.get_instance().boards[index + 1], "TorusPro.ttf", is_constructed=False)
+                parent, self.all_boards()[index + 1], "TorusPro.ttf", is_constructed=False)
+            setattr(push_button, "board", self.all_boards()[index + 1])
             push_button.clicked.connect(lambda: self.change_board(
-                parent, Database.get_instance().boards[index + 1]))
+                parent, self.all_boards()[index + 1]))
             parent.ui.verticalLayout_4.addWidget(push_button)
             # TODO: Fix changing board connections
 
@@ -475,23 +474,7 @@ class MainScreen(QMainWindow):
         card_description.show()
         while card_description.isVisible():
             QCoreApplication.processEvents()
-        layout = parent.ui.scrollAreaContent_panel_right.layout()
-        for i in reversed(range(layout.count())):
-            widget = layout.itemAt(i).widget()
-            if widget is not None:
-                layout.removeWidget(widget)
-                widget.deleteLater()
-        layout = parent.ui.scrollAreaContent_panel_left.layout()
-        for i in reversed(range(layout.count())):
-            widget = layout.itemAt(i).widget()
-            if widget is not None:
-                layout.removeWidget(widget)
-                widget.deleteLater()
-        parent.ui.verticalLayout_4.removeItem(
-            parent.ui.vertSpacer_scrollAreaContent)
-        parent.ui.horzSpacer_panel_right.changeSize(
-            0, 0, QSizePolicy.Fixed, QSizePolicy.Minimum)
-
+        self.clear_page(parent)
         self.update_whole_page(parent)
 
     def add_board(self, parent: Ui_MainWindow) -> None:
@@ -511,22 +494,8 @@ class MainScreen(QMainWindow):
             Database.get_instance().data = data
             Database.get_instance().write()
 
-            new_board = Board(text)
-            # parent.ui.qpushbutton = QPushButton()
-            # new_name = f"{parent.ui.qpushbutton.__class__.__name__}_{id(parent.ui.qpushbutton)}"
-            # setattr(parent.ui, new_name, parent.ui.qpushbutton)
-            # qpushButton = getattr(parent.ui, new_name)
-            # qpushButton.setObjectName(new_name)
-            # delattr(parent.ui, "qpushbutton")
-            # qpushButton = self.boardFactory(parent, new_board, "TorusPro.ttf")
-            # qpushButton.clicked.connect(
-            #     lambda: self.changeBoard(parent, Database.getInstance().boards[len(Database.getInstance().boards) - 1]))
-            # parent.ui.verticalLayout_4.addWidget(qpushButton)
-            self.change_board(parent, new_board)
-            parent.ui.verticalLayout_4.removeItem(
-                parent.ui.vertSpacer_scrollAreaContent)
-            parent.ui.verticalLayout_4.addItem(
-                parent.ui.vertSpacer_scrollAreaContent)
+            self.clear_page(parent)
+            self.update_whole_page(parent)
 
     def add_panel(self, parent: Ui_MainWindow, board: Board) -> None:
         """Add a new panel
@@ -544,8 +513,12 @@ class MainScreen(QMainWindow):
             data = Database.get_instance().data
             for i in range(len(Database.get_instance().boards)):
                 if Database.get_instance().boards[i].title == board.title:
-                    data["_Database__data"][i]["_Board__lists"].append(
-                        {"_Panel__title": text, "_Board__panels": []})
+                    try:
+                        data["_Database__data"][i]["_Board__panels_lists"].append(
+                            {"_Panel__title": text, "_Panel__cards": []})
+                    except KeyError:
+                        data["_Database__data"][i]["_Board__panels_lists"] = [
+                            {"_Panel__title": text, "_Panel__cards": []}]
                     Database.get_instance().data = data
                     Database.get_instance().write()
                     self.change_board(
@@ -570,10 +543,16 @@ class MainScreen(QMainWindow):
             for i in range(len(Database.get_instance().boards)):
                 for j in range(len(Database.get_instance().boards[i].panels)):
                     if Database.get_instance().boards[i].panels[j].title == panel.title:
-                        data["_Database__data"][i]["_Board__lists"][j]["_Board__panels"].append(
-                            {"_Card__title": text, "_Card__description": "",
-                             "_Card__date": datetime.date.today().strftime("%d-%m-%Y"),
-                             "_Card__time": datetime.datetime.now().strftime("%H:%M")})
+                        try:
+                            data["_Database__data"][i]["_Board__panels_lists"][j]["_Board__panels"].append(
+                                {"_Card__title": text, "_Card__description": "",
+                                 "_Card__date": datetime.date.today().strftime("%d-%m-%Y"),
+                                 "_Card__time": datetime.datetime.now().strftime("%H:%M")})
+                        except KeyError:
+                            data["_Database__data"][i]["_Board__panels_lists"][j]["_Board__panels"] = [
+                                {"_Card__title": text, "_Card__description": "",
+                                 "_Card__date": datetime.date.today().strftime("%d-%m-%Y"),
+                                 "_Card__time": datetime.datetime.now().strftime("%H:%M")}]
                         Database.get_instance().data = data
                         Database.get_instance().write()
                         self.change_board(
@@ -694,19 +673,45 @@ class MainScreen(QMainWindow):
             The card to move
         """
         data = Database.get_instance().data
-        for i in range(len(data["_Database__data"][0]["_Board__lists"])):
-            if data["_Database__data"][0]["_Board__lists"][i]["_Panel__title"] == getattr(source, "data").title:
-                source_list = data["_Database__data"][0]["_Board__lists"][i]
+        for i in range(len(data["_Database__data"][0]["_Board__panels_lists"])):
+            if data["_Database__data"][0]["_Board__panels_lists"][i]["_Panel__title"] == getattr(source, "data").title:
+                source_list = data["_Database__data"][0]["_Board__panels_lists"][i]
                 for j in range(len(source_list["_Board__panels"])):
                     if source_list["_Board__panels"][j]["_Card__title"] == card.title:
                         card_to_move = source_list["_Board__panels"].pop(j)
                         break
-        for i in range(len(data["_Database__data"][0]["_Board__lists"])):
-            if data["_Database__data"][0]["_Board__lists"][i]["_Panel__title"] == getattr(destination, "data").title:
-                dest_list = data["_Database__data"][0]["_Board__lists"][i]
+        for i in range(len(data["_Database__data"][0]["_Board__panels_lists"])):
+            if data["_Database__data"][0]["_Board__panels_lists"][i]["_Panel__title"] == getattr(destination, "data").title:
+                dest_list = data["_Database__data"][0]["_Board__panels_lists"][i]
                 dest_list["_Board__panels"].append(card_to_move)
                 break
         Database.get_instance().data = data
+
+    def clear_page(self, parent: Ui_MainWindow) -> None:
+        """Clear the page
+        - Remove all widgets from the layout
+
+        Parameters
+        ----------
+        parent : Ui_MainWindow
+            The parent widget
+        """
+        layout = parent.ui.scrollAreaContent_panel_right.layout()
+        for i in reversed(range(layout.count())):
+            widget = layout.itemAt(i).widget()
+            if widget is not None:
+                layout.removeWidget(widget)
+                widget.deleteLater()
+        layout = parent.ui.scrollAreaContent_panel_left.layout()
+        for i in reversed(range(layout.count())):
+            widget = layout.itemAt(i).widget()
+            if widget is not None:
+                layout.removeWidget(widget)
+                widget.deleteLater()
+        parent.ui.verticalLayout_4.removeItem(
+            parent.ui.vertSpacer_scrollAreaContent)
+        parent.ui.horzSpacer_panel_right.changeSize(
+            0, 0, QSizePolicy.Fixed, QSizePolicy.Minimum)
 
     @staticmethod
     def setup_font(parent: Ui_MainWindow, font: str) -> None:

@@ -301,7 +301,7 @@ class Database:
         boards = []
         for board_item in board_lists:
             try:
-                panel_data = board_item['_Board__lists']
+                panel_data = board_item['_Board__panels_lists']
             except KeyError:
                 panel_data = []
             panels = []
@@ -318,11 +318,11 @@ class Database:
                                 time=card_item['_Card__time'])
                     cards.append(card)
                 panel_obj = Panel(title=panel_item['_Panel__title'],
-                                 cards=cards)
+                                  card_lists=cards)
                 panels.append(panel_obj)
             board = Board(title=board_item['_Board__title'],
                           color=board_item['_Board__color'],
-                          panels=panels)
+                          panels_lists=panels)
             boards.append(board)
         return boards
 
@@ -351,14 +351,30 @@ class Database:
             for index_l, panel in enumerate(board.panels):
                 for index_c, card in enumerate(panel.cards):
                     if card == card_old:
-                        self.data["_Database__data"][index_b]["_Board__lists"][index_l]["_Board__panels"][index_c][
+                        self.data["_Database__data"][index_b]["_Board__panels_lists"][index_l]["_Board__panels"][index_c][
                             "_Card__title"] = card_new.title
-                        self.data["_Database__data"][index_b]["_Board__lists"][index_l]["_Board__panels"][index_c][
+                        self.data["_Database__data"][index_b]["_Board__panels_lists"][index_l]["_Board__panels"][index_c][
                             "_Card__description"] = card_new.description
-                        self.data["_Database__data"][index_b]["_Board__lists"][index_l]["_Board__panels"][index_c][
+                        self.data["_Database__data"][index_b]["_Board__panels_lists"][index_l]["_Board__panels"][index_c][
                             "_Card__date"] = card_new.date
-                        self.data["_Database__data"][index_b]["_Board__lists"][index_l]["_Board__panels"][index_c][
+                        self.data["_Database__data"][index_b]["_Board__panels_lists"][index_l]["_Board__panels"][index_c][
                             "_Card__time"] = card_new.time
+                        Database.write(self)
+                        return None
+
+    def delete_card(self: "Database", card_delete: Card) -> None:
+        """Delete card from database.
+
+        Parameters
+        ----------
+        card : Card
+            The card to be deleted.
+        """
+        for index_b, board in enumerate(self.boards):
+            for index_l, panel in enumerate(board.panels):
+                for index_c, card in enumerate(panel.cards):
+                    if card == card_delete:
+                        del self.data["_Database__data"][index_b]["_Board__panels_lists"][index_l]["_Board__panels"][index_c]
                         Database.write(self)
                         return None
 

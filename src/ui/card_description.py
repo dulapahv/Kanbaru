@@ -47,8 +47,9 @@ class CardDescription(QMainWindow):
         Database.get_instance().update_card(card_old, self)
         self.close()
 
-    def delete(self) -> None:
-        ...
+    def delete(self, event) -> None:
+        Database.get_instance().delete_card(self)
+        self.close()
 
     @property
     def title(self) -> str:
