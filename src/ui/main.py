@@ -497,12 +497,13 @@ class MainScreen(QMainWindow):
             if text == "":
                 dialog_factory(None, None, "Invalid Title",
                                "Board title cannot be empty!", yes_no=False)
-                return
+                return None
             for board in Database.get_instance().boards:
                 if board.title == text:
                     dialog_factory(None, None, "Invalid Title",
                                    "Board already exists!", yes_no=False)
-                    return
+                    self.add_board(parent)
+                    return None
             data = Database.get_instance().data
             data["_Database__data"].append(
                 {"_Board__title": text, "_Board__panels": [], "_Board__color": ""})
