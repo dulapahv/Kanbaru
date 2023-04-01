@@ -120,7 +120,7 @@ class MainScreen(QMainWindow):
             The board widget
         """
         logging.info(
-            f'Loaded {len(board.panels)} panel(s) from board "{board.title}" [{is_constructed = }]')
+            f'Loaded {len(board.panels)} panel(s) from board "{board.title}" [{board.color = }] [{is_constructed = }]')
 
         parent.ui.label_board.setText(
             board.title[:40] + (board.title[40:] and '...'))
