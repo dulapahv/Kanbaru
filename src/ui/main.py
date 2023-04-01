@@ -599,6 +599,10 @@ class MainScreen(QMainWindow):
                         Database.get_instance().write()
                         self.change_board(
                             parent, Database.get_instance().boards[i])
+            # TODO: Scroll to the bottom after adding a card
+            current_panel = QApplication.widgetAt(QCursor().pos()).parent()
+            current_panel.verticalScrollBar().setValue(
+                current_panel.verticalScrollBar().maximum())
 
     @Slot()
     def dragEnterEvent(self, event: QDragEnterEvent) -> None:
@@ -628,8 +632,8 @@ class MainScreen(QMainWindow):
             The drag move event
         """
         if QCursor().pos().x() > parent.width() + parent.x() - 160:
-                parent.ui.scrollArea_panel_right.horizontalScrollBar().setValue(
-                    parent.ui.scrollArea_panel_right.horizontalScrollBar().value() + 8)
+            parent.ui.scrollArea_panel_right.horizontalScrollBar().setValue(
+                parent.ui.scrollArea_panel_right.horizontalScrollBar().value() + 8)
         elif QCursor().pos().x() < parent.width() - (parent.width() - parent.x()) + 300:
             parent.ui.scrollArea_panel_right.horizontalScrollBar().setValue(
                 parent.ui.scrollArea_panel_right.horizontalScrollBar().value() - 8)
