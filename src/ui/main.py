@@ -626,22 +626,22 @@ class MainScreen(QMainWindow):
         event : QDragMoveEvent
             The drag move event
         """
+        if QCursor().pos().x() > parent.width() + parent.x() - 160:
+                parent.ui.scrollArea_panel_right.horizontalScrollBar().setValue(
+                    parent.ui.scrollArea_panel_right.horizontalScrollBar().value() + 8)
+        elif QCursor().pos().x() < parent.width() - (parent.width() - parent.x()) + 300:
+            parent.ui.scrollArea_panel_right.horizontalScrollBar().setValue(
+                parent.ui.scrollArea_panel_right.horizontalScrollBar().value() - 8)
         if event.mimeData().hasFormat("application/x-qabstractitemmodeldatalist"):
-            if QCursor().pos().x() > parent.width() + parent.x() - 160:
-                parent.ui.scrollArea_panel_right.horizontalScrollBar().setValue(
-                    parent.ui.scrollArea_panel_right.horizontalScrollBar().value() + 10)
-            elif QCursor().pos().x() < parent.width() - (parent.width() - parent.x()) + 300:
-                parent.ui.scrollArea_panel_right.horizontalScrollBar().setValue(
-                    parent.ui.scrollArea_panel_right.horizontalScrollBar().value() - 10)
-            event.accept()
             panel = QApplication.widgetAt(QCursor().pos()).parent()
             if isinstance(panel, QListWidget):
-                if QCursor().pos().y() > panel.y() + panel.height() + 150:
+                if QCursor.pos().y() > parent.height() + parent.y() - 140:
                     panel.verticalScrollBar().setValue(
                         panel.verticalScrollBar().value() + 3)
-                elif QCursor().pos().y() < panel.y() + 300:
+                elif QCursor.pos().y() < parent.height() - (parent.height() - parent.y()) + 250:
                     panel.verticalScrollBar().setValue(
                         panel.verticalScrollBar().value() - 3)
+            event.accept()
         else:
             event.ignore()
 
