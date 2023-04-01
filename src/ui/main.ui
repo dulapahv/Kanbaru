@@ -304,7 +304,7 @@ QPushButton:focus {border-color: #000000; border-width: 1.5px; border-style: sol
               </font>
              </property>
              <property name="styleSheet">
-              <string notr="true">background-color: qlineargradient(spread:pad, x1:0.5, y1:0.5, x2:0.95, y2:0.5, stop:0 rgba(107, 173, 238, 255), stop:1 rgba(69, 76, 90, 255));
+              <string notr="true">background-color: #6badee;
 color: #FFFFFF;</string>
              </property>
              <property name="text">

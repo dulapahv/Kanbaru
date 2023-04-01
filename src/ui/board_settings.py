@@ -78,17 +78,17 @@ class BoardSettings(QMainWindow):
 
     @color.setter
     def color(self, color: str) -> None:
-        if color == "Light blue":
+        if color == "LIGHTBLUE":
             self.ui.btn_color_1.setChecked(True)
-        elif color == "Rose":
+        elif color == "ROSE":
             self.ui.btn_color_2.setChecked(True)
-        elif color == "Gold":
+        elif color == "GOLD":
             self.ui.btn_color_3.setChecked(True)
-        elif color == "Green":
+        elif color == "GREEN":
             self.ui.btn_color_4.setChecked(True)
-        elif color == "Lavender":
+        elif color == "LAVENDER":
             self.ui.btn_color_5.setChecked(True)
-        elif color == "Teal":
+        elif color == "TEAL":
             self.ui.btn_color_6.setChecked(True)
 
     @panel_all.setter

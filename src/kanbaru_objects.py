@@ -128,7 +128,7 @@ class Panel(KanbaruObject):
 
 
 class Board(KanbaruObject):
-    def __init__(self, title: str = "New Board", color="Light blue", panels_lists=[]):
+    def __init__(self, title: str = "New Board", color="LIGHTBLUE", panels_lists=[]):
         self.__title = title
         self.__color = color
         self.__panels_lists = panels_lists
@@ -139,7 +139,7 @@ class Board(KanbaruObject):
 
     @property
     def color(self) -> str:
-        return self.__color
+        return Color[self.__color]._value_
 
     @property
     def panels(self) -> List[Panel]:
@@ -156,7 +156,8 @@ class Board(KanbaruObject):
         if color is None:
             raise ValueError("Board color cannot be None.")
         if color not in [c.value for c in Color]:
-            raise ValueError("Board color must be one of the following: Light blue, Rose, Gold, Green, Lavender, Teal.")
+            raise ValueError(
+                "Board color must be one of the following: LIGHTBLUE, ROSE, GOLD, GREEN, LAVENDER, TEAL.")
         self.__color = color
 
     @panels.setter

@@ -6,7 +6,7 @@ from PySide6.QtCore import *
 from PySide6.QtGui import *
 from PySide6.QtWidgets import *
 from db import Database
-from kanbaru_objects import Board, Card, Panel
+from kanbaru_objects import Board, Card, Panel, Color
 from ui.app_settings import AppSettings
 from ui.board_settings import BoardSettings
 from ui.card_description import CardDescription
@@ -138,7 +138,8 @@ class MainScreen(QMainWindow):
         parent.ui.btn_board.setCursor(QCursor(Qt.PointingHandCursor))
         parent.ui.btn_board.setFocusPolicy(Qt.TabFocus)
         parent.ui.btn_board.setStyleSheet(
-            u"QPushButton {background-color: #6badee; color: #ffffff; border-radius: 5px}\n"
+            u"QPushButton {background-color:" + f"{board.color}" +
+            "; color: #ffffff; border-radius: 5px}\n"
             "QPushButton:hover {background-color: #7e828c;}\n"
             "QPushButton:focus {border-color: #000000; border-width: 1.5px; border-style: solid;}")
 
@@ -148,12 +149,14 @@ class MainScreen(QMainWindow):
         parent.ui.btn_board.setFont(QFont(font_db, 12))
 
         if is_constructed:
+            parent.ui.label_board.setStyleSheet(u"background-color: " + f"{board.color}" + ";\n"
+                                                "color: #FFFFFF;")
             for list in board.panels:
-                qwidget = self.panel_factory(parent, list, font)
+                qwidget = self.panel_factory(parent, list, font, board.color)
                 parent.ui.horizontalLayout_5.addWidget(qwidget)
         return parent.ui.btn_board
 
-    def panel_factory(self, parent: Ui_MainWindow, panel: Panel, font: str) -> QWidget:
+    def panel_factory(self, parent: Ui_MainWindow, panel: Panel, font: str, color: str) -> QWidget:
         """Creates a panel widget
         - Add a panel widget to the parent UI with specified style
         - Create a new name for the panel with its class name and id
@@ -232,23 +235,34 @@ class MainScreen(QMainWindow):
         parent.ui.listWidget.setMaximumSize(QSize(250, 16777215))
         parent.ui.listWidget.setFocusPolicy(Qt.TabFocus)
         parent.ui.listWidget.setAcceptDrops(True)
+        color = color.replace('rgb', 'rgba').replace(')', ', 255)')
         parent.ui.listWidget.setStyleSheet(u"QListWidget {background-color: #ebecf0; border-radius: 10px;}\n"
                                            "QListWidget::item {height: 40px; padding: 0px 8px 0px 8px}\n"
                                            "QListWidget::item {background-color: qlineargradient(spread:pad, x1:0, "
-                                           "y1:0.5, x2:0.95, y2:0.5, stop:0 rgba(251, 217, 69, 255), stop:0.0338983 "
-                                           "rgba(251, 217, 69, 255), stop:0.039548 rgba(255, 255, 255, 255), "
+                                           "y1:0.5, x2:0.95, y2:0.5, stop:0 " +
+                                           f"{color}" + ", stop:0.0338983 " + f"{color}" +
+                                           ", stop:0.039548 rgba(255, 255, 255, 255), "
                                            "stop:1 rgba(255, 255, 255, 255)); color: #000000; border-radius: 5px}\n"
                                            "QListWidget::item:hover {background-color: qlineargradient(spread:pad, "
-                                           "x1:0, y1:0.5, x2:0.95, y2:0.5, stop:0 rgba(251, 217, 69, 255), "
-                                           "stop:0.0338983 rgba(251, 217, 69, 255), stop:0.039548 rgba(226, 228, 233, "
+                                           "x1:0, y1:0.5, x2:0.95, y2:0.5, stop:0 " +
+                                           f"{color}" + ", "
+                                           "stop:0.0338983 " +
+                                           f"{color}" +
+                                           ", stop:0.039548 rgba(226, 228, 233, "
                                            "255), stop:1 rgba(226, 228, 233, 255)); color: #000000}\n"
                                            "QListWidget::item:selected {background-color: qlineargradient(spread:pad, "
-                                           "x1:0, y1:0.5, x2:0.95, y2:0.5, stop:0 rgba(251, 217, 69, 255), "
-                                           "stop:0.0338983 rgba(251, 217, 69, 255), stop:0.039548 rgba(204, 204, 204, "
+                                           "x1:0, y1:0.5, x2:0.95, y2:0.5, stop:0 " +
+                                           f"{color}" + ", "
+                                           "stop:0.0338983 " +
+                                           f"{color}" +
+                                           ", stop:0.039548 rgba(204, 204, 204, "
                                            "255), stop:1 rgba(204, 204, 204, 255)); color: #000000}\n"
                                            "QListWidget::item:focus {background-color: qlineargradient(spread:pad, x1:0"
-                                           ", y1:0.5, x2:0.95, y2:0.5, stop:0 rgba(251, 217, 69, 255), stop:0.0338983 "
-                                           "rgba(251, 217, 69, 255), stop:0.039548 rgba(204, 204, 204, 255), "
+                                           ", y1:0.5, x2:0.95, y2:0.5, stop:0 " +
+                                           f"{color}" + ", stop:0.0338983 "
+                                           "" +
+                                           f"{color}" +
+                                           ", stop:0.039548 rgba(204, 204, 204, 255), "
                                            "stop:1 rgba(204, 204, 204, 255)); color: #000000}\n"
                                            "QScrollBar:vertical {width: 10px; margin: 0px 0px 0px 0px; "
                                            "background-color: #acb2bf}\n"
