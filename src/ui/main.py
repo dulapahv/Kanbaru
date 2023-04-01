@@ -520,7 +520,7 @@ class MainScreen(QMainWindow):
                     return None
             data = Database.get_instance().data
             data["_Database__data"].append(
-                {"_Board__title": text, "_Board__panels": [], "_Board__color": ""})
+                {"_Board__title": text, "_Board__panels": [], "_Board__color": "LIGHTBLUE"})
             Database.get_instance().data = data
             Database.get_instance().write()
 
