@@ -130,8 +130,13 @@ class Panel(KanbaruObject):
 class Board(KanbaruObject):
     def __init__(self, title: str = "New Board", color="LIGHTBLUE", panels_lists=[]):
         self.__title = title
-        self.__color = color
         self.__panels_lists = panels_lists
+        try:
+            self.__color = color
+            Color[self.__color]._value_
+        except:
+            raise ValueError(
+                "Board color must be one of the following: LIGHTBLUE, ROSE, GOLD, GREEN, LAVENDER, TEAL.")
 
     @property
     def title(self) -> str:
@@ -153,12 +158,12 @@ class Board(KanbaruObject):
 
     @color.setter
     def color(self, color: str) -> None:
-        if color is None:
-            raise ValueError("Board color cannot be None.")
-        if color not in [c.value for c in Color]:
+        try:
+            self.__color = color
+            Color[self.__color]._value_
+        except:
             raise ValueError(
                 "Board color must be one of the following: LIGHTBLUE, ROSE, GOLD, GREEN, LAVENDER, TEAL.")
-        self.__color = color
 
     @panels.setter
     def panels(self, panel: Panel) -> None:
