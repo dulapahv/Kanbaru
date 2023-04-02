@@ -4,15 +4,14 @@ from PySide6.QtCore import *
 from PySide6.QtGui import *
 from PySide6.QtWidgets import *
 
+from db import Database
 from kanbaru_objects import Board, Card, Panel
 from ui.ui_card_description import Ui_CardWindow
-from utils import dialog_factory, setup_font_db
-
-from db import Database
+from utils import dialog_factory, hex_to_rgba, modify_hex_color, setup_font_db
 
 
 class CardDescription(QMainWindow):
-    def __init__(self, card: Card) -> None:
+    def __init__(self, card: Card, color: str) -> None:
         QMainWindow.__init__(self)
 
         self.title_txt = None
@@ -22,36 +21,46 @@ class CardDescription(QMainWindow):
         self.ui.lineEdit_title.textChanged.connect(self.title_listener)
 
         self.ui.btn_delete.clicked.connect(
-            lambda: dialog_factory(None, self.delete, "Delete Card", "Are you sure you want to delete this card?\nThis action cannot be undone."))
+            lambda: dialog_factory(None, self.delete, "Delete Card", "Are you sure you want to delete this card?\nThis action cannot be undone.", btn_color=color))
         self.ui.btn_cancel.clicked.connect(self.close)
         self.ui.btn_save.clicked.connect(self.save)
 
         self.ui.btn_delete.keyPressEvent = lambda event: self.keyPressEvent(
-            event, dialog_factory(None, self.delete, "Delete Card", "Are you sure you want to delete this card?\nThis action cannot be undone."))
+            event, dialog_factory(None, self.delete, "Delete Card", "Are you sure you want to delete this card?\nThis action cannot be undone.", btn_color=color))
         self.ui.btn_cancel.keyPressEvent = lambda event: self.keyPressEvent(
             event, self.close)
         self.ui.btn_save.keyPressEvent = lambda event: self.keyPressEvent(
             event, self.save)
 
         self.card = card
+        self.color = color
         self.title = card.title
         self.date = card.date
         self.time = card.time
         self.description = card.description
+
+        color = hex_to_rgba(color)
+        self.ui.label_card_desc.setStyleSheet(u"background-color: qlineargradient(spread:pad, x1:0.5, y1:0.5, x2:0.95, y2:0.5, stop:0 " + f"{color}" + ", stop:1 rgba(69, 76, 90, 255));\n"
+                                              "color: #ffffff;\n"
+                                              "padding: 0px 0px 0px 10px;")
+        self.ui.calendarWidget.setStyleSheet(
+            u"background-color: " + f"{modify_hex_color(color)}" + ";")
+        self.ui.timeEdit.setStyleSheet(u"QTimeEdit {background-color: " + f"{modify_hex_color(color)}" + "; color: #ffffff; border-radius: 5px; padding: 0px 5px 0px 5px;}\n"
+                                       "QTimeEdit:focus {border-color: #000000; border-width: 1.5px; border-style: solid; padding: 0px 3px 0px 3px;}")
 
         self.setup_font()
 
     def save(self) -> None:
         if self.title_txt == "":
             dialog_factory(None, None, "Invalid Title",
-                           "Card title cannot be empty!", yes_no=False)
+                           "Card title cannot be empty!", yes_no=False, btn_color=self.color)
             return None
         for board in Database.get_instance().boards:
             for panel in board.panels:
                 for card in panel.cards:
                     if card.title == self.title_txt:
                         dialog_factory(None, None, "Invalid Title",
-                                       "Card already exists!", yes_no=False)
+                                       "Card already exists!", yes_no=False, btn_color=self.color)
                         return None
         card_old = Card(self.card.title, self.card.date,
                         self.card.time, self.card.description)

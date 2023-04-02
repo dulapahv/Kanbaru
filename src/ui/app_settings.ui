@@ -149,7 +149,8 @@ border-radius: 5px;</string>
                  </font>
                 </property>
                 <property name="text">
-                 <string>Drag to rearrange. Select and press Delete Board to delete it.</string>
+                 <string>Drag to rearrange. Select and press Delete/Rename to update.
+You can select multiple boards at the same time.</string>
                 </property>
                 <property name="wordWrap">
                  <bool>true</bool>

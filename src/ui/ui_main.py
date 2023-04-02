@@ -161,7 +161,7 @@ class Ui_MainWindow(object):
         font2.setFamilies([u"Torus Pro"])
         font2.setPointSize(28)
         self.label_board.setFont(font2)
-        self.label_board.setStyleSheet(u"background-color: #6badee;\n"
+        self.label_board.setStyleSheet(u"background-color: qlineargradient(spread:pad, x1:0.5, y1:0.5, x2:0.95, y2:0.5, stop:0 rgba(107, 173, 238, 255), stop:1 rgba(69, 76, 90, 255));\n"
 "color: #FFFFFF;")
         self.label_board.setMargin(10)
 

@@ -121,7 +121,7 @@ class Panel(KanbaruObject):
         self.__card_lists.append(card)
 
     def __eq__(self, panel):
-        return self.__title == panel.title and self.__cards == panel.cards
+        return self.__title == panel.title and self.__card_lists == panel.cards
 
     def __str__(self):
         return self.__title
@@ -174,7 +174,7 @@ class Board(KanbaruObject):
         self.__panels_lists.append(panel)
 
     def __eq__(self, board):
-        return self.__title == board.title and self.__color == board.color and self.__panels == board.panels
+        return self.__title == board.title and self.__color == board.color and self.__panels_lists == board.panels
 
     def __str__(self):
         return self.__title

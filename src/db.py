@@ -378,6 +378,35 @@ class Database:
                         Database.write(self)
                         return None
 
+    def delete_panel(self: "Database", panel_delete: Panel) -> None:
+        """Delete panel from database.
+
+        Parameters
+        ----------
+        panel : Panel
+            The panel to be deleted.
+        """
+        for index_b, board in enumerate(self.boards):
+            for index_l, panel in enumerate(board.panels):
+                if panel == panel_delete:
+                    del self.data["_Database__data"][index_b]["_Board__panels_lists"][index_l]
+                    Database.write(self)
+                    return None
+    
+    def delete_board(self: "Database", board_delete: Board) -> None:
+        """Delete board from database.
+
+        Parameters
+        ----------
+        board : Board
+            The board to be deleted.
+        """
+        for index_b, board in enumerate(self.boards):
+            if board == board_delete:
+                del self.data["_Database__data"][index_b]
+                Database.write(self)
+                return None
+
     @property
     def data(self: "Database") -> List[Dict]:
         """Returns the data of the database.

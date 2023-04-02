@@ -221,40 +221,34 @@ class Ui_BoardWindow(object):
 
         self.verticalLayout_2.addWidget(self.label_manage_panel_desc)
 
-        self.listWidget_manage_list = QListWidget(self.widget1)
-        __qlistwidgetitem = QListWidgetItem(self.listWidget_manage_list)
-        __qlistwidgetitem.setFlags(Qt.ItemIsSelectable|Qt.ItemIsEditable|Qt.ItemIsDragEnabled|Qt.ItemIsUserCheckable|Qt.ItemIsEnabled);
-        __qlistwidgetitem1 = QListWidgetItem(self.listWidget_manage_list)
-        __qlistwidgetitem1.setFlags(Qt.ItemIsSelectable|Qt.ItemIsEditable|Qt.ItemIsDragEnabled|Qt.ItemIsUserCheckable|Qt.ItemIsEnabled);
-        __qlistwidgetitem2 = QListWidgetItem(self.listWidget_manage_list)
-        __qlistwidgetitem2.setFlags(Qt.ItemIsSelectable|Qt.ItemIsEditable|Qt.ItemIsDragEnabled|Qt.ItemIsUserCheckable|Qt.ItemIsEnabled);
-        self.listWidget_manage_list.setObjectName(u"listWidget_manage_list")
+        self.listWidget_manage_panel = QListWidget(self.widget1)
+        self.listWidget_manage_panel.setObjectName(u"listWidget_manage_panel")
         font5 = QFont()
         font5.setFamilies([u"Torus Pro"])
         font5.setPointSize(12)
         font5.setBold(True)
-        self.listWidget_manage_list.setFont(font5)
-        self.listWidget_manage_list.setFocusPolicy(Qt.TabFocus)
-        self.listWidget_manage_list.setStyleSheet(u"QListWidget::item {height: 40px; padding: 0px 8px 0px 8px}\n"
+        self.listWidget_manage_panel.setFont(font5)
+        self.listWidget_manage_panel.setFocusPolicy(Qt.TabFocus)
+        self.listWidget_manage_panel.setStyleSheet(u"QListWidget::item {height: 40px; padding: 0px 8px 0px 8px}\n"
 "QListWidget::item {background-color: #ffffff; color: #000000; border-radius: 5px}\n"
 "QListWidget::item:hover {background-color: #e2e4e9; color: #000000}\n"
 "QListWidget::item:selected {background-color: #cccccc; color: #000000}\n"
 "QListWidget::item:focus {background-color: #cccccc; color: #000000}\n"
 "QScrollBar:vertical {width: 10px; margin: 0px 0px 0px 0px; background-color: #acb2bf}")
-        self.listWidget_manage_list.setFrameShape(QFrame.NoFrame)
-        self.listWidget_manage_list.setDragEnabled(True)
-        self.listWidget_manage_list.setDragDropMode(QAbstractItemView.InternalMove)
-        self.listWidget_manage_list.setDefaultDropAction(Qt.MoveAction)
-        self.listWidget_manage_list.setSelectionMode(QAbstractItemView.ExtendedSelection)
-        self.listWidget_manage_list.setVerticalScrollMode(QAbstractItemView.ScrollPerPixel)
-        self.listWidget_manage_list.setHorizontalScrollMode(QAbstractItemView.ScrollPerPixel)
-        self.listWidget_manage_list.setProperty("isWrapping", False)
-        self.listWidget_manage_list.setSpacing(5)
-        self.listWidget_manage_list.setUniformItemSizes(True)
-        self.listWidget_manage_list.setWordWrap(True)
-        self.listWidget_manage_list.setSelectionRectVisible(True)
+        self.listWidget_manage_panel.setFrameShape(QFrame.NoFrame)
+        self.listWidget_manage_panel.setDragEnabled(True)
+        self.listWidget_manage_panel.setDragDropMode(QAbstractItemView.InternalMove)
+        self.listWidget_manage_panel.setDefaultDropAction(Qt.MoveAction)
+        self.listWidget_manage_panel.setSelectionMode(QAbstractItemView.ExtendedSelection)
+        self.listWidget_manage_panel.setVerticalScrollMode(QAbstractItemView.ScrollPerPixel)
+        self.listWidget_manage_panel.setHorizontalScrollMode(QAbstractItemView.ScrollPerPixel)
+        self.listWidget_manage_panel.setProperty("isWrapping", False)
+        self.listWidget_manage_panel.setSpacing(5)
+        self.listWidget_manage_panel.setUniformItemSizes(True)
+        self.listWidget_manage_panel.setWordWrap(True)
+        self.listWidget_manage_panel.setSelectionRectVisible(True)
 
-        self.verticalLayout_2.addWidget(self.listWidget_manage_list)
+        self.verticalLayout_2.addWidget(self.listWidget_manage_panel)
 
         self.horizontalLayout_5 = QHBoxLayout()
         self.horizontalLayout_5.setObjectName(u"horizontalLayout_5")
@@ -353,8 +347,8 @@ class Ui_BoardWindow(object):
         QWidget.setTabOrder(self.btn_color_3, self.btn_color_4)
         QWidget.setTabOrder(self.btn_color_4, self.btn_color_5)
         QWidget.setTabOrder(self.btn_color_5, self.btn_color_6)
-        QWidget.setTabOrder(self.btn_color_6, self.listWidget_manage_list)
-        QWidget.setTabOrder(self.listWidget_manage_list, self.btn_delete)
+        QWidget.setTabOrder(self.btn_color_6, self.listWidget_manage_panel)
+        QWidget.setTabOrder(self.listWidget_manage_panel, self.btn_delete)
         QWidget.setTabOrder(self.btn_delete, self.btn_rename)
         QWidget.setTabOrder(self.btn_rename, self.btn_cancel)
         QWidget.setTabOrder(self.btn_cancel, self.btn_save)
@@ -378,18 +372,8 @@ class Ui_BoardWindow(object):
         self.btn_color_5.setText(QCoreApplication.translate("BoardWindow", u"Lavender", None))
         self.btn_color_6.setText(QCoreApplication.translate("BoardWindow", u"Teal", None))
         self.label_manage_panel.setText(QCoreApplication.translate("BoardWindow", u"Manage Panel", None))
-        self.label_manage_panel_desc.setText(QCoreApplication.translate("BoardWindow", u"Drag to rearrange. Select and press Delete/Rename to update.", None))
-
-        __sortingEnabled = self.listWidget_manage_list.isSortingEnabled()
-        self.listWidget_manage_list.setSortingEnabled(False)
-        ___qlistwidgetitem = self.listWidget_manage_list.item(0)
-        ___qlistwidgetitem.setText(QCoreApplication.translate("BoardWindow", u"To Do", None));
-        ___qlistwidgetitem1 = self.listWidget_manage_list.item(1)
-        ___qlistwidgetitem1.setText(QCoreApplication.translate("BoardWindow", u"Doing", None));
-        ___qlistwidgetitem2 = self.listWidget_manage_list.item(2)
-        ___qlistwidgetitem2.setText(QCoreApplication.translate("BoardWindow", u"Done", None));
-        self.listWidget_manage_list.setSortingEnabled(__sortingEnabled)
-
+        self.label_manage_panel_desc.setText(QCoreApplication.translate("BoardWindow", u"Drag to rearrange. Select and press Delete/Rename to update.\n"
+"You can select multiple panels at the same time.", None))
         self.btn_delete.setText(QCoreApplication.translate("BoardWindow", u"Delete Panel", None))
         self.btn_rename.setText(QCoreApplication.translate("BoardWindow", u"Rename Panel", None))
         self.btn_cancel.setText(QCoreApplication.translate("BoardWindow", u"Cancel", None))

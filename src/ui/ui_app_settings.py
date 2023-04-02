@@ -320,7 +320,8 @@ class Ui_SettingsWindow(object):
         SettingsWindow.setWindowTitle(QCoreApplication.translate("SettingsWindow", u"App Settings", None))
         self.label_app_settings.setText(QCoreApplication.translate("SettingsWindow", u"App Settings", None))
         self.label_manage_board.setText(QCoreApplication.translate("SettingsWindow", u"Manage Board", None))
-        self.label_manage_board_desc.setText(QCoreApplication.translate("SettingsWindow", u"Drag to rearrange. Select and press Delete Board to delete it.", None))
+        self.label_manage_board_desc.setText(QCoreApplication.translate("SettingsWindow", u"Drag to rearrange. Select and press Delete/Rename to update.\n"
+"You can select multiple boards at the same time.", None))
 
         __sortingEnabled = self.listWidget_manage_board.isSortingEnabled()
         self.listWidget_manage_board.setSortingEnabled(False)

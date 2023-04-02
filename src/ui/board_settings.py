@@ -4,9 +4,10 @@ from PySide6.QtCore import *
 from PySide6.QtGui import *
 from PySide6.QtWidgets import *
 
-from kanbaru_objects import Board, Card, Panel
+from db import Database
+from kanbaru_objects import Board, Card, Color, Panel
 from ui.ui_board_settings import Ui_BoardWindow
-from utils import dialog_factory, setup_font_db
+from utils import dialog_factory, input_dialog_factory, setup_font_db
 
 
 class BoardSettings(QMainWindow):
@@ -17,16 +18,14 @@ class BoardSettings(QMainWindow):
         self.ui: Ui_BoardWindow = Ui_BoardWindow()
         self.ui.setupUi(self)
 
-        self.ui.btn_delete.clicked.connect(
-            lambda: dialog_factory(None, self.delete, "Delete Panel",
-                                   "Are you sure you want to delete selected panel?\nThis action cannot be undone."))
+        self.ui.btn_delete.clicked.connect(self.delete)
         self.ui.btn_rename.clicked.connect(self.rename)
         self.ui.btn_save.clicked.connect(self.save)
         self.ui.btn_cancel.clicked.connect(self.close)
 
         self.ui.btn_delete.keyPressEvent = lambda event: self.keyPressEvent(
             event, dialog_factory(None, self.delete, "Delete Panel",
-                                  "Are you sure you want to delete selected panel?\nThis action cannot be undone."))
+                                  "Are you sure you want to delete selected panel?\nThis action cannot be undone.", btn_color=self.color))
         self.ui.btn_rename.keyPressEvent = lambda event: self.keyPressEvent(
             event, self.rename)
         self.ui.btn_save.keyPressEvent = lambda event: self.keyPressEvent(
@@ -38,13 +37,44 @@ class BoardSettings(QMainWindow):
         self.title = board.title
         self.color = board.color
 
+        self.ui.listWidget_manage_panel.addItems(
+            [panel.title for panel in self.board.panels])
+
         self.setup_font()
 
-    def delete(self) -> None:
-        ...
+        self.ui.label_board_desc.setStyleSheet(u"background-color: qlineargradient(spread:pad, x1:0.5, y1:0.5, x2:0.95, y2:0.5, stop:0 " + f"{self.color}" + ", stop:1 rgba(69, 76, 90, 255));\n"
+                                               "color: #ffffff;\n"
+                                               "padding: 0px 0px 0px 10px;")
+
+    def delete(self, event) -> None:
+        selected_all = self.ui.listWidget_manage_panel.selectedItems()
+        if len(selected_all) == 0:
+            dialog_factory(None, None, "Invalid Selection",
+                           "Please select a panel to delete.", yes_no=False, btn_color=self.color)
+            return None
+        msg_list = '\n'.join(
+            ["  - " + item for item in list(map(lambda x: x.text(), selected_all))])
+        if dialog_factory(None, None, "Delete Panel",
+                          f"Are you sure you want to delete {'these panels' if len(selected_all) > 1 else 'this panel'}?\n{msg_list}\nThis action cannot be undone.", btn_color=self.color):
+            for selected_board in selected_all:
+                panel_obj = next(
+                    (panel for panel in self.board.panels if panel.title == selected_board.text()), None)
+                Database.get_instance().delete_panel(panel_obj)
+                self.ui.listWidget_manage_panel.takeItem(
+                    self.ui.listWidget_manage_panel.row(selected_board))
 
     def rename(self) -> None:
-        ...
+        selected_all = self.ui.listWidget_manage_panel.selectedItems()
+        if len(selected_all) == 0:
+            dialog_factory(None, None, "Invalid Selection",
+                           "Please select a panel to rename.", yes_no=False, btn_color=self.color)
+            return None
+        if len(selected_all) > 1:
+            dialog_factory(None, None, "Invalid Selection",
+                           "Please select only one panel to rename.", yes_no=False, btn_color=self.color)
+            return None
+        text = input_dialog_factory("Rename Panel", "Enter new panel name:", selected_all[0].text(), btn_color=self.color)
+        print(text)
 
     def save(self) -> None:
         ...
@@ -55,18 +85,23 @@ class BoardSettings(QMainWindow):
 
     @property
     def color(self) -> str:
-        if self.ui.btn_color_1.isChecked():
-            return "Light blue"
-        if self.ui.btn_color_2.isChecked():
-            return "Rose"
-        if self.ui.btn_color_3.isChecked():
-            return "Gold"
-        if self.ui.btn_color_4.isChecked():
-            return "Green"
-        if self.ui.btn_color_5.isChecked():
-            return "Lavender"
-        if self.ui.btn_color_6.isChecked():
-            return "Teal"
+        button = next((btn for btn in (self.ui.btn_color_1, self.ui.btn_color_2, self.ui.btn_color_3,
+                                       self.ui.btn_color_4, self.ui.btn_color_5, self.ui.btn_color_6) if btn.isChecked()), None)
+        match button:
+            case self.ui.btn_color_1:
+                return Color.LIGHTBLUE._value_
+            case self.ui.btn_color_2:
+                return Color.ROSE._value_
+            case self.ui.btn_color_3:
+                return Color.GOLD._value_
+            case self.ui.btn_color_4:
+                return Color.GREEN._value_
+            case self.ui.btn_color_5:
+                return Color.LAVENDER._value_
+            case self.ui.btn_color_6:
+                return Color.TEAL._value_
+            case _:
+                return Color.LIGHTBLUE._value_
 
     @property
     def panel_all(self) -> List[Panel]:
@@ -78,18 +113,21 @@ class BoardSettings(QMainWindow):
 
     @color.setter
     def color(self, color: str) -> None:
-        if color == "LIGHTBLUE":
-            self.ui.btn_color_1.setChecked(True)
-        elif color == "ROSE":
-            self.ui.btn_color_2.setChecked(True)
-        elif color == "GOLD":
-            self.ui.btn_color_3.setChecked(True)
-        elif color == "GREEN":
-            self.ui.btn_color_4.setChecked(True)
-        elif color == "LAVENDER":
-            self.ui.btn_color_5.setChecked(True)
-        elif color == "TEAL":
-            self.ui.btn_color_6.setChecked(True)
+        match color:
+            case Color.LIGHTBLUE._value_:
+                self.ui.btn_color_1.setChecked(True)
+            case Color.ROSE._value_:
+                self.ui.btn_color_2.setChecked(True)
+            case Color.GOLD._value_:
+                self.ui.btn_color_3.setChecked(True)
+            case Color.GREEN._value_:
+                self.ui.btn_color_4.setChecked(True)
+            case Color.LAVENDER._value_:
+                self.ui.btn_color_5.setChecked(True)
+            case Color.TEAL._value_:
+                self.ui.btn_color_6.setChecked(True)
+            case _:
+                self.ui.btn_color_1.setChecked(True)
 
     @panel_all.setter
     def panel_all(self, panels: List[Panel]) -> None:
@@ -113,7 +151,7 @@ class BoardSettings(QMainWindow):
         self.ui.btn_color_4.setFont(QFont(toruspro, 12))
         self.ui.btn_color_5.setFont(QFont(toruspro, 12))
         self.ui.btn_color_6.setFont(QFont(toruspro, 12))
-        self.ui.listWidget_manage_list.setFont(QFont(toruspro, 12))
+        self.ui.listWidget_manage_panel.setFont(QFont(toruspro, 12))
         self.ui.btn_delete.setFont(QFont(toruspro, 12))
         self.ui.btn_rename.setFont(QFont(toruspro, 12))
         self.ui.btn_cancel.setFont(QFont(toruspro, 12))
