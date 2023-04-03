@@ -2,9 +2,10 @@ import os
 from typing import Callable
 
 from PySide6.QtCore import Qt
-from PySide6.QtGui import QFontDatabase, QKeyEvent
-from PySide6.QtWidgets import (QInputDialog, QLineEdit, QMainWindow,
-                               QMessageBox, QPushButton)
+from PySide6.QtGui import QFont, QFontDatabase, QKeyEvent
+from PySide6.QtWidgets import (QDialog, QDialogButtonBox, QLabel, QLineEdit,
+                               QMainWindow, QMessageBox, QPushButton,
+                               QVBoxLayout)
 
 
 def hex_to_rgba(hex_color: str) -> str:
@@ -210,29 +211,71 @@ def input_dialog_factory(title: str, msg: str, default: str = "", btn_color: str
     str
         The text in the input field.
     """
-    dialog = QInputDialog()
+    dialog = QDialog()
+    dialog.setWindowTitle(title)
+    dialog.setFixedSize(dialog.size())
+    dialog.setFixedSize(300, 100)
+    layout = QVBoxLayout()
+    label = QLabel(msg)
+    line_edit = QLineEdit()
+    line_edit.setText(default)
+    buttons = QDialogButtonBox(
+        QDialogButtonBox.Ok | QDialogButtonBox.Cancel, Qt.Horizontal, dialog)
+    buttons.accepted.connect(dialog.accept)
+    buttons.rejected.connect(dialog.reject)
+    layout.addWidget(label)
+    layout.addWidget(line_edit)
+    layout.addWidget(buttons)
+    dialog.setLayout(layout)
     font = setup_font_db("TorusPro.ttf")
     dialog.setFont(font[0])
+    label.setFont(font[0])
+    line_edit.setFont(QFont(font[0], 12))
+    buttons.button(QDialogButtonBox.Ok).setObjectName("okButton")
+    buttons.button(QDialogButtonBox.Cancel).setObjectName("cancelButton")
+    for button in buttons.buttons():
+        button.setFont(QFont(font[0], 10))
     dialog.setStyleSheet(
-        """
-        QLabel {
+        f"""
+        QLabel {{
             color: #ffffff;
-            font-size: 14px;
-        }
-        QLineEdit {
+            font-size: 15px;
+        }}
+        QPushButton {{
             color: #ffffff;
-            font-size: 14px;
-            background-color: #454c5a;
-            border: 1px solid #ffffff;
             border-radius: 5px;
-        }
-        QLineEdit:focus {
-            border: 1px solid #000000;
-        }
+            width: 80%; height: 25%
+        }}
+        QPushButton#okButton {{
+            background-color: {btn_color};
+        }}
+        QPushButton#cancelButton {{
+            background-color: #7f8ca6;
+        }}
+        QPushButton#okButton:hover {{
+            background-color: {modify_hex_color(btn_color, -30)};
+        }}
+        QPushButton#cancelButton:hover {{
+            background-color: {modify_hex_color("#7f8ca6", -30)};
+        }}
+        QPushButton:focus {{
+            border-color: #000000;
+            border-width: 1px;
+            border-style: solid;
+        }}
+        QDialog {{
+            background-color: #454c5a;
+        }}
+        QLineEdit {{
+            border-radius: 5px;
+            height: 25%
+        }}
         """
     )
-    text, ok = dialog.getText(None, title, msg, QLineEdit.Normal, default)
-    if ok:
+    line_edit.setFocus()
+    result = dialog.exec()
+    text = line_edit.text()
+    if result == QDialog.Accepted:
         return text
     return None
 
