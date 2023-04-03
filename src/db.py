@@ -374,6 +374,7 @@ class Database:
             for index_l, panel in enumerate(board.panels):
                 for index_c, card in enumerate(panel.cards):
                     if card == card_delete:
+                        logging.info(f'Card "{card.title}" deleted.')
                         del self.data["_Database__data"][index_b]["_Board__panels_lists"][index_l]["_Board__panels"][index_c]
                         Database.write(self)
                         return None
@@ -389,10 +390,11 @@ class Database:
         for index_b, board in enumerate(self.boards):
             for index_l, panel in enumerate(board.panels):
                 if panel == panel_delete:
+                    logging.info(f'Panel "{panel.title}" deleted.')
                     del self.data["_Database__data"][index_b]["_Board__panels_lists"][index_l]
                     Database.write(self)
                     return None
-    
+
     def delete_board(self: "Database", board_delete: Board) -> None:
         """Delete board from database.
 
@@ -403,6 +405,7 @@ class Database:
         """
         for index_b, board in enumerate(self.boards):
             if board == board_delete:
+                logging.info(f'Board "{board.title}" deleted.')
                 del self.data["_Database__data"][index_b]
                 Database.write(self)
                 return None

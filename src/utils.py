@@ -185,6 +185,9 @@ def dialog_factory(parent: QMainWindow, function: Callable, title: str, msg: str
             }}
             """
         )
+        buttons = dialog.findChildren(QPushButton)
+        for button in buttons:
+            button.setFont(QFont(font[0], 10))
     if dialog.exec() == QMessageBox.Yes:
         if function is not None:
             function(parent)

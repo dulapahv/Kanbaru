@@ -25,10 +25,9 @@ class BoardSettings(QMainWindow):
         self.ui.btn_cancel.clicked.connect(self.close)
 
         self.ui.btn_delete.keyPressEvent = lambda event: keyPressEvent(
-            event, dialog_factory(None, self.delete, "Delete Panel",
-                                  "Are you sure you want to delete selected panel?\nThis action cannot be undone.", btn_color=self.color))
+            event, function=self.delete(event))
         self.ui.btn_rename.keyPressEvent = lambda event: keyPressEvent(
-            event, function=self.rename)
+            event, function=self.rename(event))
         self.ui.btn_save.keyPressEvent = lambda event: keyPressEvent(
             event, function=self.save)
         self.ui.btn_cancel.keyPressEvent = lambda event: keyPressEvent(
@@ -58,20 +57,20 @@ class BoardSettings(QMainWindow):
         selected_all = self.ui.listWidget_manage_panel.selectedItems()
         if len(selected_all) == 0:
             dialog_factory(None, None, "Invalid Selection",
-                           "Please select a panel to delete.", yes_no=False, btn_color=self.color)
+                           "Please select a panel to delete. You can also select multiple panels to delete at the same time.", yes_no=False, btn_color=self.color)
             return None
         msg_list = '\n'.join(
             ["  - " + item for item in list(map(lambda x: x.text(), selected_all))])
         if dialog_factory(None, None, "Delete Panel",
                           f"Are you sure you want to delete {'these panels' if len(selected_all) > 1 else 'this panel'}?\n{msg_list}\nThis action cannot be undone.", btn_color=self.color):
-            for selected_board in selected_all:
+            for selected_panel in selected_all:
                 panel_obj = next(
-                    (panel for panel in self.board.panels if panel.title == selected_board.text()), None)
+                    (panel for panel in self.board.panels if panel.title == selected_panel.text()), None)
                 Database.get_instance().delete_panel(panel_obj)
                 self.ui.listWidget_manage_panel.takeItem(
-                    self.ui.listWidget_manage_panel.row(selected_board))
+                    self.ui.listWidget_manage_panel.row(selected_panel))
 
-    def rename(self) -> None:
+    def rename(self, event) -> None:
         selected_all = self.ui.listWidget_manage_panel.selectedItems()
         if len(selected_all) == 0:
             dialog_factory(None, None, "Invalid Selection",

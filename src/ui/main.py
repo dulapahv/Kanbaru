@@ -120,6 +120,10 @@ class MainScreen(QMainWindow):
         QPushButton
             The board widget
         """
+        if board is None:
+            self.current_board = Database.get_instance().boards[-1]
+            board = self.current_board
+
         logging.info(
             f'Loaded {len(board.panels)} panel(s) from board "{board.title}" [{board.color = }] [{is_constructed = }]')
 
@@ -278,8 +282,8 @@ class MainScreen(QMainWindow):
                 padding: 0px 8px 0px 8px;
                 background-color: qlineargradient(
                     spread:pad, x1:0, y1:0.5, x2:0.95, y2:0.5,
-                    stop:0 {modify_hex_color(color)},
-                    stop:0.0338983 {modify_hex_color(color)},
+                    stop:0 {color_item},
+                    stop:0.0338983 {color_item},
                     stop:0.039548 rgba(255, 255, 255, 255),
                     stop:1 rgba(255, 255, 255, 255)
                 );
@@ -289,8 +293,8 @@ class MainScreen(QMainWindow):
             QListWidget::item:hover {{
                 background-color: qlineargradient(
                     spread:pad, x1:0, y1:0.5, x2:0.95, y2:0.5,
-                    stop:0 {modify_hex_color(color)},
-                    stop:0.0338983 {modify_hex_color(color)},
+                    stop:0 {color_item},
+                    stop:0.0338983 {color_item},
                     stop:0.039548 rgba(226, 228, 233, 255),
                     stop:1 rgba(226, 228, 233, 255)
                 );
@@ -299,8 +303,8 @@ class MainScreen(QMainWindow):
             QListWidget::item:selected {{
                 background-color: qlineargradient(
                     spread:pad, x1:0, y1:0.5, x2:0.95, y2:0.5,
-                    stop:0 {modify_hex_color(color)},
-                    stop:0.0338983 {modify_hex_color(color)},
+                    stop:0 {color_item},
+                    stop:0.0338983 {color_item},
                     stop:0.039548 rgba(204, 204, 204, 255),
                     stop:1 rgba(204, 204, 204, 255)
                 );
@@ -309,8 +313,8 @@ class MainScreen(QMainWindow):
             QListWidget::item:focus {{
                 background-color: qlineargradient(
                     spread:pad, x1:0, y1:0.5, x2:0.95, y2:0.5,
-                    stop:0 {modify_hex_color(color)},
-                    stop:0.0338983 {modify_hex_color(color)},
+                    stop:0 {color_item},
+                    stop:0.0338983 {color_item},
                     stop:0.039548 rgba(204, 204, 204, 255),
                     stop:1 rgba(204, 204, 204, 255)
                 );
@@ -619,8 +623,7 @@ class MainScreen(QMainWindow):
         font_db = setup_font_db(font)[0]
         parent.ui.btn_add_list.setFont(QFont(font_db, 12))
 
-    @staticmethod
-    def show_app_settings(parent: Ui_MainWindow) -> None:
+    def show_app_settings(self, parent: Ui_MainWindow) -> None:
         """Show the application settings window
 
         Parameters
@@ -628,9 +631,14 @@ class MainScreen(QMainWindow):
         parent : Ui_MainWindow
             The main window
         """
-        app_settings = AppSettings(parent)
+        app_settings = AppSettings(parent, self.current_board)
         app_settings.setWindowModality(Qt.ApplicationModal)
         app_settings.show()
+        while app_settings.isVisible():
+            QCoreApplication.processEvents()
+        self.clear_page(parent)
+        self.update_whole_page(parent)
+        self.change_board(parent, self.get_updated_board(self.current_board))
 
     def show_board_settings(self, event, parent: QMainWindow) -> None:
         """Show the board settings window
@@ -640,12 +648,7 @@ class MainScreen(QMainWindow):
         parent : Ui_MainWindow
             The main window
         """
-        boards = Database.get_instance().boards
-        for board in boards:
-            if board.title == parent.ui.label_board.text():
-                current_board = board
-                break
-        board_settings = BoardSettings(current_board)
+        board_settings = BoardSettings(self.current_board)
         board_settings.setWindowModality(Qt.ApplicationModal)
         board_settings.show()
         while board_settings.isVisible():
@@ -771,7 +774,8 @@ class MainScreen(QMainWindow):
         panel : Panel
             The panel to add the card to
         """
-        text = input_dialog_factory("New card", "Enter a title for the card", btn_color=self.current_board.color)
+        text = input_dialog_factory(
+            "New card", "Enter a title for the card", btn_color=self.current_board.color)
         if text is not None:
             if not text:
                 dialog_factory(None, None, "Invalid Title",

@@ -94,7 +94,7 @@ class Card(KanbaruObject):
 
 
 class Panel(KanbaruObject):
-    def __init__(self, title: str = "New Panel", card_lists=[]) -> None:
+    def __init__(self, title: str = "New Panel", card_lists: List[Card] = []) -> None:
         self.__title = title
         self.__card_lists = card_lists
 
@@ -128,7 +128,7 @@ class Panel(KanbaruObject):
 
 
 class Board(KanbaruObject):
-    def __init__(self, title: str = "New Board", color="LIGHTBLUE", panels_lists=[]):
+    def __init__(self, title: str = "New Board", color="LIGHTBLUE", panels_lists: List[Panel] = []):
         self.__title = title
         self.__panels_lists = panels_lists
         try:
@@ -174,7 +174,7 @@ class Board(KanbaruObject):
         self.__panels_lists.append(panel)
 
     def __eq__(self, board):
-        return self.__title == board.title and self.__color == board.color and self.__panels_lists == board.panels
+        return self.title == board.title and self.color == board.color and self.panels == board.panels
 
     def __str__(self):
-        return self.__title
+        return self.title

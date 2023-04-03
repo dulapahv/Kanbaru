@@ -97,20 +97,6 @@ class Ui_SettingsWindow(object):
         self.verticalLayout_2.addWidget(self.label_manage_board_desc)
 
         self.listWidget_manage_board = QListWidget(self.widget1)
-        __qlistwidgetitem = QListWidgetItem(self.listWidget_manage_board)
-        __qlistwidgetitem.setFlags(Qt.ItemIsSelectable|Qt.ItemIsEditable|Qt.ItemIsDragEnabled|Qt.ItemIsUserCheckable|Qt.ItemIsEnabled);
-        __qlistwidgetitem1 = QListWidgetItem(self.listWidget_manage_board)
-        __qlistwidgetitem1.setFlags(Qt.ItemIsSelectable|Qt.ItemIsEditable|Qt.ItemIsDragEnabled|Qt.ItemIsUserCheckable|Qt.ItemIsEnabled);
-        __qlistwidgetitem2 = QListWidgetItem(self.listWidget_manage_board)
-        __qlistwidgetitem2.setFlags(Qt.ItemIsSelectable|Qt.ItemIsEditable|Qt.ItemIsDragEnabled|Qt.ItemIsUserCheckable|Qt.ItemIsEnabled);
-        __qlistwidgetitem3 = QListWidgetItem(self.listWidget_manage_board)
-        __qlistwidgetitem3.setFlags(Qt.ItemIsSelectable|Qt.ItemIsEditable|Qt.ItemIsDragEnabled|Qt.ItemIsUserCheckable|Qt.ItemIsEnabled);
-        __qlistwidgetitem4 = QListWidgetItem(self.listWidget_manage_board)
-        __qlistwidgetitem4.setFlags(Qt.ItemIsSelectable|Qt.ItemIsEditable|Qt.ItemIsDragEnabled|Qt.ItemIsUserCheckable|Qt.ItemIsEnabled);
-        __qlistwidgetitem5 = QListWidgetItem(self.listWidget_manage_board)
-        __qlistwidgetitem5.setFlags(Qt.ItemIsSelectable|Qt.ItemIsEditable|Qt.ItemIsDragEnabled|Qt.ItemIsUserCheckable|Qt.ItemIsEnabled);
-        __qlistwidgetitem6 = QListWidgetItem(self.listWidget_manage_board)
-        __qlistwidgetitem6.setFlags(Qt.ItemIsSelectable|Qt.ItemIsEditable|Qt.ItemIsDragEnabled|Qt.ItemIsUserCheckable|Qt.ItemIsEnabled);
         self.listWidget_manage_board.setObjectName(u"listWidget_manage_board")
         font3 = QFont()
         font3.setFamilies([u"Torus Pro"])
@@ -309,7 +295,7 @@ class Ui_SettingsWindow(object):
         QWidget.setTabOrder(self.btn_logout, self.btn_delete_account)
         QWidget.setTabOrder(self.btn_delete_account, self.btn_cancel)
         QWidget.setTabOrder(self.btn_cancel, self.btn_save)
-        QWidget.setTabOrder(self.btn_save, self.widget1)
+        QWidget.setTabOrder(self.btn_save, self.widget)
 
         self.retranslateUi(SettingsWindow)
 
@@ -322,25 +308,6 @@ class Ui_SettingsWindow(object):
         self.label_manage_board.setText(QCoreApplication.translate("SettingsWindow", u"Manage Board", None))
         self.label_manage_board_desc.setText(QCoreApplication.translate("SettingsWindow", u"Drag to rearrange. Select and press Delete/Rename to update.\n"
 "You can select multiple boards at the same time.", None))
-
-        __sortingEnabled = self.listWidget_manage_board.isSortingEnabled()
-        self.listWidget_manage_board.setSortingEnabled(False)
-        ___qlistwidgetitem = self.listWidget_manage_board.item(0)
-        ___qlistwidgetitem.setText(QCoreApplication.translate("SettingsWindow", u"Board 1", None));
-        ___qlistwidgetitem1 = self.listWidget_manage_board.item(1)
-        ___qlistwidgetitem1.setText(QCoreApplication.translate("SettingsWindow", u"Board 2", None));
-        ___qlistwidgetitem2 = self.listWidget_manage_board.item(2)
-        ___qlistwidgetitem2.setText(QCoreApplication.translate("SettingsWindow", u"Board 3", None));
-        ___qlistwidgetitem3 = self.listWidget_manage_board.item(3)
-        ___qlistwidgetitem3.setText(QCoreApplication.translate("SettingsWindow", u"Board 4", None));
-        ___qlistwidgetitem4 = self.listWidget_manage_board.item(4)
-        ___qlistwidgetitem4.setText(QCoreApplication.translate("SettingsWindow", u"Board 5", None));
-        ___qlistwidgetitem5 = self.listWidget_manage_board.item(5)
-        ___qlistwidgetitem5.setText(QCoreApplication.translate("SettingsWindow", u"Board 5", None));
-        ___qlistwidgetitem6 = self.listWidget_manage_board.item(6)
-        ___qlistwidgetitem6.setText(QCoreApplication.translate("SettingsWindow", u"Board 5", None));
-        self.listWidget_manage_board.setSortingEnabled(__sortingEnabled)
-
         self.btn_delete.setText(QCoreApplication.translate("SettingsWindow", u"Delete Board", None))
         self.btn_rename.setText(QCoreApplication.translate("SettingsWindow", u"Rename Board", None))
         self.label_manage_account.setText(QCoreApplication.translate("SettingsWindow", u"Manage Account", None))

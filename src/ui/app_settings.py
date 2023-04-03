@@ -8,33 +8,34 @@ from PySide6.QtWidgets import *
 from db import Database
 from kanbaru_objects import Board
 from ui.ui_app_settings import Ui_SettingsWindow
-from utils import dialog_factory, keyPressEvent, setup_font_db
+from utils import dialog_factory, keyPressEvent, setup_font_db, input_dialog_factory
 
 
 class AppSettings(QMainWindow):
-    def __init__(self, parent: QMainWindow) -> None:
+    def __init__(self, parent: QMainWindow, board: Board) -> None:
         QMainWindow.__init__(self)
 
         self.ui: Ui_SettingsWindow = Ui_SettingsWindow()
         self.ui.setupUi(self)
 
-        self.ui.btn_delete.clicked.connect(
-            lambda: dialog_factory(None, self.delete, "Delete Board",
-                                   "Are you sure you want to delete selected board?\nThis action cannot be undone."))
+        self.board = board
+        self.title = board.title
+        self.color = board.color
+
+        self.ui.btn_delete.clicked.connect(self.delete)
         self.ui.btn_rename.clicked.connect(self.rename)
         self.ui.btn_cancel.clicked.connect(self.close)
         self.ui.btn_save.clicked.connect(self.save)
         self.ui.btn_logout.clicked.connect(
-            lambda: dialog_factory(parent, self.logout, "Logout", "Are you sure you want to logout?"))
+            lambda: dialog_factory(parent, self.logout, "Logout", "Are you sure you want to logout?", btn_color=self.color))
         self.ui.btn_delete_account.clicked.connect(
             lambda: dialog_factory(parent, self.delete_account, "Delete Account",
-                                   "Are you sure you want to delete your account?\nThis action cannot be undone."))
+                                   "Are you sure you want to delete your account?\nThis action cannot be undone.", btn_color=self.color))
 
         self.ui.btn_delete.keyPressEvent = lambda event: keyPressEvent(
-            event, dialog_factory(None, self.delete, "Delete Board",
-                                        "Are you sure you want to delete selected board?\nThis action cannot be undone."))
+            event, function=self.delete(event))
         self.ui.btn_rename.keyPressEvent = lambda event: keyPressEvent(
-            event, function=self.rename)
+            event, function=self.rename(event))
         self.ui.btn_cancel.keyPressEvent = lambda event: keyPressEvent(
             event, function=self.close)
         self.ui.btn_save.keyPressEvent = lambda event: keyPressEvent(
@@ -44,9 +45,28 @@ class AppSettings(QMainWindow):
             dialog_factory(parent, self.logout, "Logout", "Are you sure you want to logout?"))
         self.ui.btn_delete_account.keyPressEvent = lambda event: keyPressEvent(
             event, parent, dialog_factory(parent, self.delete_account, "Delete Account",
-                                                "Are you sure you want to delete your account?\nThis action cannot be undone."))
+                                          "Are you sure you want to delete your account?\nThis action cannot be undone."))
 
         self.setup_font()
+
+        self.ui.listWidget_manage_board.addItems(
+            [board.title for board in Database.get_instance().boards])
+
+        self.ui.label_app_settings.setStyleSheet(
+            f"""
+            background-color: qlineargradient(
+                spread: pad,
+                x1: 0.5,
+                y1: 0.5,
+                x2: 0.95,
+                y2: 0.5,
+                stop: 0 {self.color},
+                stop: 1 rgba(69, 76, 90, 255)
+            );
+            color: #ffffff;
+            padding: 0px 0px 0px 10px;
+            """
+        )
 
     @staticmethod
     def dialog_factory(parent: QMainWindow, function: Callable, title: str, msg: str) -> None:
@@ -58,11 +78,36 @@ class AppSettings(QMainWindow):
         if dialog.exec() == QMessageBox.Yes:
             function(parent)
 
-    def delete(self) -> None:
-        ...
+    def delete(self, event) -> None:
+        selected_all = self.ui.listWidget_manage_board.selectedItems()
+        if len(selected_all) == 0:
+            dialog_factory(None, None, "Invalid Selection",
+                           "Please select a board to delete. You can also select multiple boards to delete at the same time.", yes_no=False, btn_color=self.color)
+            return None
+        msg_list = '\n'.join(
+            ["  - " + item for item in list(map(lambda x: x.text(), selected_all))])
+        if dialog_factory(None, None, "Delete Board",
+                          f"Are you sure you want to delete {'these boards' if len(selected_all) > 1 else 'this board'}?\n{msg_list}\nThis action cannot be undone.", btn_color=self.color):
+            for selected_board in selected_all:
+                board_obj = next(
+                    (board for board in Database.get_instance().boards if board.title == selected_board.text()), None)
+                Database.get_instance().delete_board(board_obj)
+                self.ui.listWidget_manage_board.takeItem(
+                    self.ui.listWidget_manage_board.row(selected_board))
 
-    def rename(self) -> None:
-        ...
+    def rename(self, event) -> None:
+        selected_all = self.ui.listWidget_manage_board.selectedItems()
+        if len(selected_all) == 0:
+            dialog_factory(None, None, "Invalid Selection",
+                           "Please select a board to rename.", yes_no=False, btn_color=self.color)
+            return None
+        if len(selected_all) > 1:
+            dialog_factory(None, None, "Invalid Selection",
+                           "Please select only one board to rename.", yes_no=False, btn_color=self.color)
+            return None
+        text = input_dialog_factory(
+            "Rename Board", "Enter new board name:", selected_all[0].text(), btn_color=self.color)
+        print(text)
 
     def save(self) -> None:
         ...
