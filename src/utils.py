@@ -100,6 +100,8 @@ def dialog_factory(parent: QMainWindow, function: Callable, title: str, msg: str
 
     Parameters
     ----------
+    yes_no
+    btn_color
     parent : QMainWindow
         The parent window of the dialog box.
     function : Callable
@@ -200,8 +202,7 @@ def input_dialog_factory(title: str, msg: str, default: str = "", btn_color: str
 
     Parameters
     ----------
-    parent : QMainWindow
-        The parent window of the dialog box.
+    btn_color
     title : str
         The title of the dialog box.
     msg : str
@@ -288,6 +289,7 @@ def keyPressEvent(event: QKeyEvent, parent: QMainWindow = None, function: Callab
 
     Parameters
     ----------
+    parent
     event : QKeyEvent
         The key event
     function : Callable

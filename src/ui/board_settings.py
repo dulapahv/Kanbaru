@@ -83,6 +83,8 @@ class BoardSettings(QMainWindow):
             return None
         text = input_dialog_factory(
             "Rename Panel", "Enter new panel name:", selected_all[0].text(), btn_color=self.color)
+        if text is None:
+            return None
         panel_obj = next(
             (panel for panel in self.board.panels if panel.title == selected_all[0].text()), None)
         self.title = text
@@ -99,7 +101,7 @@ class BoardSettings(QMainWindow):
         self.close()
 
     @property
-    def title_lineEdit(self) -> str:
+    def title_line_edit(self) -> str:
         return self.title_txt
 
     @property
@@ -122,12 +124,8 @@ class BoardSettings(QMainWindow):
             case _:
                 return Color.LIGHTBLUE._value_
 
-    @property
-    def panel_all(self) -> List[Panel]:
-        ...
-
-    @title_lineEdit.setter
-    def title_lineEdit(self, text: str) -> None:
+    @title_line_edit.setter
+    def title_line_edit(self, text: str) -> None:
         self.ui.lineEdit_title.setText(text)
 
     @color.setter
@@ -147,10 +145,6 @@ class BoardSettings(QMainWindow):
                 self.ui.btn_color_6.setChecked(True)
             case _:
                 self.ui.btn_color_1.setChecked(True)
-
-    @panel_all.setter
-    def panel_all(self, panels: List[Panel]) -> None:
-        ...
 
     def title_listener(self, text: str) -> None:
         self.title_txt = text

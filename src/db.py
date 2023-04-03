@@ -402,7 +402,7 @@ class Database:
 
         Parameters
         ----------
-        card : Card
+        card_delete : Card
             The card to be deleted.
         """
         for index_b, board in enumerate(self.boards):
@@ -419,7 +419,7 @@ class Database:
 
         Parameters
         ----------
-        panel : Panel
+        panel_delete : Panel
             The panel to be deleted.
         """
         for index_b, board in enumerate(self.boards):
@@ -435,7 +435,7 @@ class Database:
 
         Parameters
         ----------
-        board : Board
+        board_delete : Board
             The board to be deleted.
         """
         for index_b, board in enumerate(self.boards):

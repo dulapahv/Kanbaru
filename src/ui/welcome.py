@@ -12,7 +12,7 @@ class WelcomeScreen(QMainWindow):
     def __init__(self, parent: QMainWindow) -> None:
         QMainWindow.__init__(self)
 
-        parent.ui: Ui_WelcomeWindow = Ui_WelcomeWindow()
+        parent.ui = Ui_WelcomeWindow()
         parent.ui.setupUi(parent)
 
         self.setup_font(parent)
