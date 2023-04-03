@@ -1,18 +1,18 @@
 import datetime
 import logging
-from typing import Callable, Dict, List
 
 from PySide6.QtCore import *
 from PySide6.QtGui import *
 from PySide6.QtWidgets import *
 
 from db import Database
-from kanbaru_objects import Board, Card, Color, Panel
+from kanbaru_objects import Board, Card, Panel
 from ui.app_settings import AppSettings
 from ui.board_settings import BoardSettings
 from ui.card_description import CardDescription
 from ui.ui_main import Ui_MainWindow
-from utils import dialog_factory, hex_to_rgba, modify_hex_color, setup_font_db, input_dialog_factory
+from utils import (dialog_factory, hex_to_rgba, input_dialog_factory,
+                   keyPressEvent, modify_hex_color, setup_font_db)
 
 # from PySide6.QtCore import QCoreApplication, QSize, Qt, Slot
 # from PySide6.QtGui import (QCursor, QDragEnterEvent, QDragMoveEvent,
@@ -40,11 +40,11 @@ class MainScreen(QMainWindow):
         parent.ui.btn_add_board.clicked.connect(
             lambda: self.add_board(parent))
 
-        parent.ui.btn_app_settings.keyPressEvent = lambda event: self.keyPressEvent(
+        parent.ui.btn_app_settings.keyPressEvent = lambda event: keyPressEvent(
             event, parent, self.show_app_settings(parent))
-        parent.ui.btn_board_settings.keyPressEvent = lambda event: self.keyPressEvent(
+        parent.ui.btn_board_settings.keyPressEvent = lambda event: keyPressEvent(
             event, parent, self.show_board_settings(event, parent))
-        parent.ui.btn_add_board.keyPressEvent = lambda event: self.keyPressEvent(
+        parent.ui.btn_add_board.keyPressEvent = lambda event: keyPressEvent(
             event, parent, self.add_board(parent))
 
         self.update_whole_page(parent)
@@ -163,16 +163,16 @@ class MainScreen(QMainWindow):
         if is_constructed:
             color = hex_to_rgba(board.color)
             parent.ui.label_board.setStyleSheet(
-                """
+                f"""
                 background-color: qlineargradient(
                     spread:pad,
                     x1:0.5, y1:0.5,
                     x2:0.95, y2:0.5,
-                    stop:0 %s,
+                    stop:0 {color},
                     stop:1 rgba(69, 76, 90, 255)
                 );
                 color: #FFFFFF;
-                """ % color
+                """
             )
             for panel in board.panels:
                 qwidget = self.panel_factory(parent, panel, font, board.color)
@@ -268,67 +268,65 @@ class MainScreen(QMainWindow):
         color = hex_to_rgba(color)
         color_item = modify_hex_color(color)
         parent.ui.listWidget.setStyleSheet(
-            """
-            QListWidget {
+            f"""
+            QListWidget {{
                 background-color: #ebecf0;
                 border-radius: 10px;
-            }
-            QListWidget::item {
+            }}
+            QListWidget::item {{
                 height: 40px;
                 padding: 0px 8px 0px 8px;
                 background-color: qlineargradient(
                     spread:pad, x1:0, y1:0.5, x2:0.95, y2:0.5,
-                    stop:0 %s, stop:0.0338983 %s, stop:0.039548 rgba(255, 255, 255, 255),
+                    stop:0 {modify_hex_color(color)},
+                    stop:0.0338983 {modify_hex_color(color)},
+                    stop:0.039548 rgba(255, 255, 255, 255),
                     stop:1 rgba(255, 255, 255, 255)
                 );
                 color: #000000;
                 border-radius: 5px;
-            }
-            QListWidget::item:hover {
+            }}
+            QListWidget::item:hover {{
                 background-color: qlineargradient(
                     spread:pad, x1:0, y1:0.5, x2:0.95, y2:0.5,
-                    stop:0 %s, stop:0.0338983 %s, stop:0.039548 rgba(226, 228, 233, 255),
+                    stop:0 {modify_hex_color(color)},
+                    stop:0.0338983 {modify_hex_color(color)},
+                    stop:0.039548 rgba(226, 228, 233, 255),
                     stop:1 rgba(226, 228, 233, 255)
                 );
                 color: #000000;
-            }
-            QListWidget::item:selected {
+            }}
+            QListWidget::item:selected {{
                 background-color: qlineargradient(
                     spread:pad, x1:0, y1:0.5, x2:0.95, y2:0.5,
-                    stop:0 %s, stop:0.0338983 %s, stop:0.039548 rgba(204, 204, 204, 255),
+                    stop:0 {modify_hex_color(color)},
+                    stop:0.0338983 {modify_hex_color(color)},
+                    stop:0.039548 rgba(204, 204, 204, 255),
                     stop:1 rgba(204, 204, 204, 255)
                 );
                 color: #000000;
-            }
-            QListWidget::item:focus {
+            }}
+            QListWidget::item:focus {{
                 background-color: qlineargradient(
                     spread:pad, x1:0, y1:0.5, x2:0.95, y2:0.5,
-                    stop:0 %s, stop:0.0338983 %s, stop:0.039548 rgba(204, 204, 204, 255),
+                    stop:0 {modify_hex_color(color)},
+                    stop:0.0338983 {modify_hex_color(color)},
+                    stop:0.039548 rgba(204, 204, 204, 255),
                     stop:1 rgba(204, 204, 204, 255)
                 );
                 color: #000000;
-            }
-            QScrollBar:vertical {
+            }}
+            QScrollBar:vertical {{
                 width: 10px;
                 margin: 0px 0px 0px 0px;
                 background-color: #acb2bf;
-            }
-            QScrollBar:horizontal {
+            }}
+            QScrollBar:horizontal {{
                 height: 10px;
                 margin: 0px 0px 0px 0px;
                 background-color: #acb2bf;
-            }
+            }}
             """
-            % (
-                modify_hex_color(color),
-                modify_hex_color(color),
-                modify_hex_color(color),
-                modify_hex_color(color),
-                modify_hex_color(color),
-                modify_hex_color(color),
-                modify_hex_color(color),
-                modify_hex_color(color),
-            )
         )
         parent.ui.listWidget.setFrameShape(QFrame.NoFrame)
         parent.ui.listWidget.setSizeAdjustPolicy(
@@ -583,16 +581,15 @@ class MainScreen(QMainWindow):
         parent.ui.btn_add_list.setMinimumSize(QSize(0, 30))
         parent.ui.btn_add_list.setCursor(QCursor(Qt.PointingHandCursor))
         parent.ui.btn_add_list.setFocusPolicy(Qt.TabFocus)
-        parent.ui.btn_add_card.setStyleSheet(
+        parent.ui.btn_add_list.setStyleSheet(
             """
             QPushButton {
-                background-color: #ebecf0;
-                color: #6a758b;
+                background-color: #acb2bf;
+                color: #ffffff;
                 border-radius: 5px;
             }
             QPushButton:hover {
-                background-color: #dadbe2;
-                color: #505b76;
+                background-color: #7e828c;
             }
             QPushButton:focus {
                 border-color: #000000;
@@ -906,23 +903,3 @@ class MainScreen(QMainWindow):
         parent.ui.btn_add_board.setFont(QFont(toruspro, 12))
         parent.ui.btn_board_settings.setFont(QFont(toruspro, 12))
         parent.ui.btn_app_settings.setFont(QFont(toruspro, 12))
-
-    def keyPressEvent(self, event: QKeyEvent, parent: Ui_MainWindow = None,
-                      function: Callable = None) -> Callable:
-        """This function is used to call a function when the enter key is pressed
-
-        Parameters
-        ----------
-        event : QKeyEvent
-            The key event
-        function : Callable
-            The function to call
-        parent : Ui_MainWindow, optional
-            The parent window, by default None
-        """
-        if event.key() == Qt.Key_Enter or event.key() == Qt.Key_Return:
-            if not function:
-                return None
-            if not parent:
-                return function()
-            return function(parent)

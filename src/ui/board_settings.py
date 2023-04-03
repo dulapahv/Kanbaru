@@ -1,13 +1,14 @@
-from typing import Callable, List
+from typing import List
 
 from PySide6.QtCore import *
 from PySide6.QtGui import *
 from PySide6.QtWidgets import *
 
 from db import Database
-from kanbaru_objects import Board, Card, Color, Panel
+from kanbaru_objects import Board, Color, Panel
 from ui.ui_board_settings import Ui_BoardWindow
-from utils import dialog_factory, input_dialog_factory, setup_font_db
+from utils import (dialog_factory, input_dialog_factory, keyPressEvent,
+                   setup_font_db)
 
 
 class BoardSettings(QMainWindow):
@@ -23,15 +24,15 @@ class BoardSettings(QMainWindow):
         self.ui.btn_save.clicked.connect(self.save)
         self.ui.btn_cancel.clicked.connect(self.close)
 
-        self.ui.btn_delete.keyPressEvent = lambda event: self.keyPressEvent(
+        self.ui.btn_delete.keyPressEvent = lambda event: keyPressEvent(
             event, dialog_factory(None, self.delete, "Delete Panel",
                                   "Are you sure you want to delete selected panel?\nThis action cannot be undone.", btn_color=self.color))
-        self.ui.btn_rename.keyPressEvent = lambda event: self.keyPressEvent(
-            event, self.rename)
-        self.ui.btn_save.keyPressEvent = lambda event: self.keyPressEvent(
-            event, self.save)
-        self.ui.btn_cancel.keyPressEvent = lambda event: self.keyPressEvent(
-            event, self.close)
+        self.ui.btn_rename.keyPressEvent = lambda event: keyPressEvent(
+            event, function=self.rename)
+        self.ui.btn_save.keyPressEvent = lambda event: keyPressEvent(
+            event, function=self.save)
+        self.ui.btn_cancel.keyPressEvent = lambda event: keyPressEvent(
+            event, function=self.close)
 
         self.board = board
         self.title = board.title
@@ -43,13 +44,14 @@ class BoardSettings(QMainWindow):
         self.setup_font()
 
         self.ui.label_board_desc.setStyleSheet(
-            """
+            f"""
             background-color: qlineargradient(spread:pad, x1:0.5, y1:0.5, 
-                x2:0.95, y2:0.5, stop:0 %s, stop:1 rgba(69, 76, 90, 255)
+                x2:0.95, y2:0.5, stop:0 {self.color},
+                stop:1 rgba(69, 76, 90, 255)
             );
             color: #ffffff;
             padding: 0px 0px 0px 10px;
-            """ % self.color
+            """
         )
 
     def delete(self, event) -> None:
@@ -164,18 +166,3 @@ class BoardSettings(QMainWindow):
         self.ui.btn_rename.setFont(QFont(toruspro, 12))
         self.ui.btn_cancel.setFont(QFont(toruspro, 12))
         self.ui.btn_save.setFont(QFont(toruspro, 12))
-
-    def keyPressEvent(self, event: QKeyEvent, function: Callable = None) -> Callable:
-        """This function is used to call a function when the enter key is pressed
-
-        Parameters
-        ----------
-        event : QKeyEvent
-            The key event
-        function : Callable
-            The function to call
-        """
-        if event.key() == Qt.Key_Enter or event.key() == Qt.Key_Return:
-            if not function:
-                return function
-            return function()

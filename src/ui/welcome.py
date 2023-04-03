@@ -1,14 +1,11 @@
-from typing import Callable
-
-from PySide6.QtCore import Qt
-from PySide6.QtGui import QFont, QKeyEvent
+from PySide6.QtGui import QFont
 from PySide6.QtWidgets import QMainWindow
 
 from auth import Auth
 from db import Database
 from ui.main import MainScreen
 from ui.ui_welcome import Ui_WelcomeWindow
-from utils import setup_font_db
+from utils import keyPressEvent, setup_font_db
 
 
 class WelcomeScreen(QMainWindow):
@@ -42,9 +39,9 @@ class WelcomeScreen(QMainWindow):
         parent.ui.btn_login.clicked.connect(lambda: self.login(parent))
         parent.ui.btn_signup.clicked.connect(lambda: self.signup(parent))
 
-        parent.ui.btn_login.keyPressEvent = lambda event: self.keyPressEvent(
+        parent.ui.btn_login.keyPressEvent = lambda event: keyPressEvent(
             event, parent, self.login)
-        parent.ui.btn_signup.keyPressEvent = lambda event: self.keyPressEvent(
+        parent.ui.btn_signup.keyPressEvent = lambda event: keyPressEvent(
             event, parent, self.signup)
 
     def signup(self, parent: Ui_WelcomeWindow) -> None:
@@ -129,26 +126,6 @@ class WelcomeScreen(QMainWindow):
         parent.ui.label_signup_msg.setFont(QFont(notosans, 11, QFont.Bold))
         parent.ui.btn_login.setFont(QFont(toruspro, 12, QFont.Bold))
         parent.ui.btn_signup.setFont(QFont(toruspro, 12, QFont.Bold))
-
-    def keyPressEvent(self, event: QKeyEvent, parent: Ui_WelcomeWindow = None,
-                      function: Callable = None) -> None | Callable:
-        """This function is used to call a function when the enter key is pressed
-
-        Parameters
-        ----------
-        event : QKeyEvent
-            The key event
-        function : Callable
-            The function to call
-        parent : Ui_WelcomeWindow, optional
-            The parent window, by default None
-        """
-        if event.key() == Qt.Key_Enter or event.key() == Qt.Key_Return:
-            if not function:
-                return None
-            if not parent:
-                return function()
-            return function(parent)
 
     def login_username_listener(self, text: str, parent: Ui_WelcomeWindow) -> None:
         """Listens for changes in the login username field."""

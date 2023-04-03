@@ -1,7 +1,8 @@
 import os
-from typing import Callable, List
+from typing import Callable
 
-from PySide6.QtGui import QFontDatabase
+from PySide6.QtCore import Qt
+from PySide6.QtGui import QFontDatabase, QKeyEvent
 from PySide6.QtWidgets import (QInputDialog, QLineEdit, QMainWindow,
                                QMessageBox, QPushButton)
 
@@ -127,66 +128,61 @@ def dialog_factory(parent: QMainWindow, function: Callable, title: str, msg: str
                 button.setObjectName("noButton")
             button.setFont(font[0])
         dialog.setStyleSheet(
-            """
-            QLabel {
+            f"""
+            QLabel {{
                 color: #ffffff;
                 font-size: 15px;
                 padding: 10px 18px 5px 0px;
-            }
-            QPushButton {
+            }}
+            QPushButton {{
                 color: #ffffff;
                 font-size: 15px;
                 width: 80%;
                 height: 25%;
                 border-radius: 5px;
-            }
-            QPushButton#yesButton {
-                background-color: %s;
-            }
-            QPushButton#noButton {
-                background-color: %s;
-            }
-            QPushButton#yesButton:hover {
-                background-color: %s;
-            }
-            QPushButton#noButton:hover {
-                background-color: %s;
-            }
-            QPushButton:focus {
+            }}
+            QPushButton#yesButton {{
+                background-color: {btn_color};
+            }}
+            QPushButton#noButton {{
+                background-color: #7f8ca6;
+            }}
+            QPushButton#yesButton:hover {{
+                background-color: {modify_hex_color(btn_color, -30)};
+            }}
+            QPushButton#noButton:hover {{
+                background-color: {modify_hex_color("#7f8ca6", -30)};
+            }}
+            QPushButton:focus {{
                 border-color: #000000;
                 border-width: 1px;
                 border-style: solid;
-            }
-            QMessageBox {
+            }}
+            QMessageBox {{
                 background-color: #454c5a;
-            }
-            """ % (
-                btn_color,
-                "#7f8ca6",
-                modify_hex_color(btn_color, -30),
-                modify_hex_color("#7f8ca6", -30),
-            )
+            }}
+            """
         )
         buttons[1].setFocus()
     else:
         dialog.setStandardButtons(QMessageBox.Ok)
         dialog.setStyleSheet(
-            """
-            QLabel {
+            f"""
+            QLabel {{
                 color: #ffffff;
                 font-size: 15px;
                 padding: 10px 18px 5px 0px;
-            }
-            QPushButton {
-                background-color: %s;
+            }}
+            QPushButton {{
+                background-color: {btn_color};
                 color: #ffffff;
                 border-radius: 5px;
                 width: 80%; height: 25%
-            }
-            QMessageBox {
+            }}
+            QMessageBox {{
                 background-color: #454c5a;
-            }
-            """ % btn_color
+            }}
+            """
         )
     if dialog.exec() == QMessageBox.Yes:
         if function is not None:
@@ -239,3 +235,21 @@ def input_dialog_factory(title: str, msg: str, default: str = "", btn_color: str
     if ok:
         return text
     return ""
+
+
+def keyPressEvent(event: QKeyEvent, parent: QMainWindow = None, function: Callable = None) -> Callable:
+    """This function is used to call a function when the enter key is pressed
+
+    Parameters
+    ----------
+    event : QKeyEvent
+        The key event
+    function : Callable
+        The function to call
+    """
+    if event.key() == Qt.Key_Enter or event.key() == Qt.Key_Return:
+        if not function:
+            return None
+        if not parent:
+            return function()
+        return function(parent)
