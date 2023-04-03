@@ -695,10 +695,13 @@ class MainScreen(QMainWindow):
         parent : Ui_MainWindow
             The main window
         """
-        if text := input_dialog_factory("Add a board", "Enter the board title: ", btn_color=self.current_board.color):
-            if text == "":
+        text = input_dialog_factory(
+            "Add a board", "Enter the board title: ", btn_color=self.current_board.color)
+        if text is not None:
+            if not text:
                 dialog_factory(None, None, "Invalid Title",
                                "Board title cannot be empty!", yes_no=False, btn_color=self.current_board.color)
+                self.add_board(parent)
                 return None
             for board in Database.get_instance().boards:
                 if board.title == text:
@@ -726,13 +729,14 @@ class MainScreen(QMainWindow):
         board : Board
             The board to add the panel to
         """
-        if text := input_dialog_factory("New panel", "Enter a title for the panel", btn_color=self.current_board.color):
-            if text == "":
+        text = input_dialog_factory(
+            "New panel", "Enter a title for the panel", btn_color=self.current_board.color)
+        if text is not None:
+            if not text:
                 dialog_factory(None, None, "Invalid Title",
                                "Panel title cannot be empty!", yes_no=False, btn_color=self.current_board.color)
                 self.add_panel(parent, board)
                 return None
-                # TODO: Fix adding existing board again won't prompt error
             for board_ in Database.get_instance().boards:
                 for panel in board_.panels:
                     if panel.title == text:
@@ -767,8 +771,9 @@ class MainScreen(QMainWindow):
         panel : Panel
             The panel to add the card to
         """
-        if text := input_dialog_factory("New card", "Enter a title for the card", btn_color=self.current_board.color):
-            if text == "":
+        text = input_dialog_factory("New card", "Enter a title for the card", btn_color=self.current_board.color)
+        if text is not None:
+            if not text:
                 dialog_factory(None, None, "Invalid Title",
                                "Card title cannot be empty!", yes_no=False, btn_color=self.current_board.color)
                 self.add_card(parent, panel)

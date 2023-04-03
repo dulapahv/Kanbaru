@@ -234,7 +234,7 @@ def input_dialog_factory(title: str, msg: str, default: str = "", btn_color: str
     text, ok = dialog.getText(None, title, msg, QLineEdit.Normal, default)
     if ok:
         return text
-    return ""
+    return None
 
 
 def keyPressEvent(event: QKeyEvent, parent: QMainWindow = None, function: Callable = None) -> Callable:
