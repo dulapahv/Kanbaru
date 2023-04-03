@@ -362,6 +362,41 @@ class Database:
                         Database.write(self)
                         return None
 
+    def update_panel(self: "Database", panel_old: Panel, panel_new: Panel) -> None:
+        """Update panel info in dataabase
+
+        Parameters
+        ----------
+        panel_old : Panel
+            The old panel to be updated.
+        panel_new : Panel
+            The new panel to be updated to.
+        """
+        for index_b, board in enumerate(self.boards):
+            for index_l, panel in enumerate(board.panels):
+                if panel == panel_old:
+                    self.data["_Database__data"][index_b]["_Board__panels_lists"][index_l][
+                        "_Panel__title"] = panel_new.title
+                    Database.write(self)
+                    return None
+
+    def update_board(self: "Database", board_old: Board, board_new: Board) -> None:
+        """Update board info in database.
+
+        Parameters
+        ----------
+        board_old : Board
+            The old board to be updated.
+        board_new : Board
+            The new board to be updated to.
+        """
+        for index_b, board in enumerate(self.boards):
+            if board == board_old:
+                self.data["_Database__data"][index_b]["_Board__title"] = board_new.title
+                self.data["_Database__data"][index_b]["_Board__color"] = board_new.color
+                Database.write(self)
+                return None
+
     def delete_card(self: "Database", card_delete: Card) -> None:
         """Delete card from database.
 

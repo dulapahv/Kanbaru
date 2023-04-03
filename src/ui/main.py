@@ -699,7 +699,7 @@ class MainScreen(QMainWindow):
             The main window
         """
         text = input_dialog_factory(
-            "Add a board", "Enter the board title: ", btn_color=self.current_board.color)
+            "Add a board", "Enter a new board title: ", btn_color=self.current_board.color)
         if text is not None:
             if not text:
                 dialog_factory(None, None, "Invalid Title",
@@ -733,7 +733,7 @@ class MainScreen(QMainWindow):
             The board to add the panel to
         """
         text = input_dialog_factory(
-            "New panel", "Enter a title for the panel", btn_color=self.current_board.color)
+            "New panel", "Enter a new panel title:", btn_color=self.current_board.color)
         if text is not None:
             if not text:
                 dialog_factory(None, None, "Invalid Title",
@@ -775,7 +775,7 @@ class MainScreen(QMainWindow):
             The panel to add the card to
         """
         text = input_dialog_factory(
-            "New card", "Enter a title for the card", btn_color=self.current_board.color)
+            "New card", "Enter a new card title:", btn_color=self.current_board.color)
         if text is not None:
             if not text:
                 dialog_factory(None, None, "Invalid Title",

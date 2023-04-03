@@ -21,6 +21,7 @@ class AppSettings(QMainWindow):
         self.board = board
         self.title = board.title
         self.color = board.color
+        self.boards_to_delete: List[Board] = []
 
         self.ui.btn_delete.clicked.connect(self.delete)
         self.ui.btn_rename.clicked.connect(self.rename)
@@ -87,11 +88,11 @@ class AppSettings(QMainWindow):
         msg_list = '\n'.join(
             ["  - " + item for item in list(map(lambda x: x.text(), selected_all))])
         if dialog_factory(None, None, "Delete Board",
-                          f"Are you sure you want to delete {'these boards' if len(selected_all) > 1 else 'this board'}?\n{msg_list}\nThis action cannot be undone.", btn_color=self.color):
+                          f"Are you sure you want to delete {'these boards' if len(selected_all) > 1 else 'this board'}?\n{msg_list}\n\nYou can still undo by pressing the Cancel button.", btn_color=self.color):
             for selected_board in selected_all:
                 board_obj = next(
                     (board for board in Database.get_instance().boards if board.title == selected_board.text()), None)
-                Database.get_instance().delete_board(board_obj)
+                self.boards_to_delete.append(board_obj)
                 self.ui.listWidget_manage_board.takeItem(
                     self.ui.listWidget_manage_board.row(selected_board))
 
@@ -110,15 +111,9 @@ class AppSettings(QMainWindow):
         print(text)
 
     def save(self) -> None:
-        ...
-
-    @property
-    def board_all(self) -> List[Board]:
-        ...
-
-    @board_all.setter
-    def board_all(self, board: List[Board]) -> None:
-        ...
+        for board in self.boards_to_delete:
+            Database.get_instance().delete_board(board)
+        self.close()
 
     def logout(self, parent: QMainWindow):
         Database.get_instance().logout()

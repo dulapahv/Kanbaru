@@ -36,6 +36,7 @@ class BoardSettings(QMainWindow):
         self.board = board
         self.title = board.title
         self.color = board.color
+        self.panels_to_delete: List[Board] = []
 
         self.ui.listWidget_manage_panel.addItems(
             [panel.title for panel in self.board.panels])
@@ -62,11 +63,11 @@ class BoardSettings(QMainWindow):
         msg_list = '\n'.join(
             ["  - " + item for item in list(map(lambda x: x.text(), selected_all))])
         if dialog_factory(None, None, "Delete Panel",
-                          f"Are you sure you want to delete {'these panels' if len(selected_all) > 1 else 'this panel'}?\n{msg_list}\nThis action cannot be undone.", btn_color=self.color):
+                          f"Are you sure you want to delete {'these panels' if len(selected_all) > 1 else 'this panel'}?\n{msg_list}\n\nYou can still undo by pressing the Cancel button.", btn_color=self.color):
             for selected_panel in selected_all:
                 panel_obj = next(
                     (panel for panel in self.board.panels if panel.title == selected_panel.text()), None)
-                Database.get_instance().delete_panel(panel_obj)
+                self.panels_to_delete.append(panel_obj)
                 self.ui.listWidget_manage_panel.takeItem(
                     self.ui.listWidget_manage_panel.row(selected_panel))
 
@@ -82,14 +83,23 @@ class BoardSettings(QMainWindow):
             return None
         text = input_dialog_factory(
             "Rename Panel", "Enter new panel name:", selected_all[0].text(), btn_color=self.color)
-        print(text)
+        panel_obj = next(
+            (panel for panel in self.board.panels if panel.title == selected_all[0].text()), None)
+        self.title = text
+        Database.get_instance().update_panel(panel_obj, self)
+        self.ui.listWidget_manage_panel.takeItem(
+            self.ui.listWidget_manage_panel.row(selected_all[0]))
+        panel_obj.title = text
+        self.ui.listWidget_manage_panel.insertItem(
+            self.ui.listWidget_manage_panel.currentRow() + 1, panel_obj.title)
 
     def save(self) -> None:
-        # TODO: Save board settings temporary first before saving to db
-        ...
+        for panel in self.panels_to_delete:
+            Database.get_instance().delete_panel(panel)
+        self.close()
 
     @property
-    def title(self) -> str:
+    def title_lineEdit(self) -> str:
         return self.title_txt
 
     @property
@@ -116,8 +126,8 @@ class BoardSettings(QMainWindow):
     def panel_all(self) -> List[Panel]:
         ...
 
-    @title.setter
-    def title(self, text: str) -> None:
+    @title_lineEdit.setter
+    def title_lineEdit(self, text: str) -> None:
         self.ui.lineEdit_title.setText(text)
 
     @color.setter
