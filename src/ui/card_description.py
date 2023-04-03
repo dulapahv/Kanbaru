@@ -40,14 +40,37 @@ class CardDescription(QMainWindow):
         self.description = card.description
 
         color = hex_to_rgba(color)
-        self.ui.label_card_desc.setStyleSheet(u"background-color: qlineargradient(spread:pad, x1:0.5, y1:0.5, x2:0.95, y2:0.5, stop:0 " + f"{color}" + ", stop:1 rgba(69, 76, 90, 255));\n"
-                                              "color: #ffffff;\n"
-                                              "padding: 0px 0px 0px 10px;")
+        self.ui.label_card_desc.setStyleSheet(
+            """
+            background-color: qlineargradient(
+                spread:pad, x1:0.5, y1:0.5, x2:0.95, y2:0.5, stop:0 %s,
+                stop:1 rgba(69, 76, 90, 255)
+            );
+            color: #ffffff;
+            padding: 0px 0px 0px 10px;
+            """ % color
+        )
         self.ui.calendarWidget.setStyleSheet(
-            u"background-color: " + f"{modify_hex_color(color)}" + ";")
-        self.ui.timeEdit.setStyleSheet(u"QTimeEdit {background-color: " + f"{modify_hex_color(color)}" + "; color: #ffffff; border-radius: 5px; padding: 0px 5px 0px 5px;}\n"
-                                       "QTimeEdit:focus {border-color: #000000; border-width: 1.5px; border-style: solid; padding: 0px 3px 0px 3px;}")
-
+            """
+            background-color: %s;
+            """ % modify_hex_color(color)
+        )
+        self.ui.timeEdit.setStyleSheet(
+            """
+            QTimeEdit {
+                background-color: %s;
+                color: #ffffff;
+                border-radius: 5px;
+                padding: 0px 5px 0px 5px;
+            }
+            QTimeEdit:focus {
+                border-color: #000000;
+                border-width: 1.5px;
+                border-style: solid;
+                padding: 0px 3px 0px 3px;
+            }
+            """ % modify_hex_color(color)
+        )
         self.setup_font()
 
     def save(self) -> None:

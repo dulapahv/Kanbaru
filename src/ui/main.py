@@ -139,11 +139,22 @@ class MainScreen(QMainWindow):
         parent.ui.btn_board.setCursor(QCursor(Qt.PointingHandCursor))
         parent.ui.btn_board.setFocusPolicy(Qt.TabFocus)
         parent.ui.btn_board.setStyleSheet(
-            u"QPushButton {background-color:" + f"{board.color}" +
-            "; color: #ffffff; border-radius: 5px}\n"
-            "QPushButton:hover {background-color: #7e828c;}\n"
-            "QPushButton:focus {border-color: #000000; border-width: 1.5px; border-style: solid;}")
-
+            """
+            QPushButton {
+                background-color: """ + f"{board.color}" + """;
+                color: #ffffff;
+                border-radius: 5px;
+            }
+            QPushButton:hover {
+                background-color: #7e828c;
+            }
+            QPushButton:focus {
+                border-color: #000000;
+                border-width: 1.5px;
+                border-style: solid;
+            }
+            """
+        )
         parent.ui.btn_board.setText(
             board.title[:12] + (board.title[12:] and '...'))
         font_db = setup_font_db(font)[0]
@@ -151,10 +162,20 @@ class MainScreen(QMainWindow):
 
         if is_constructed:
             color = hex_to_rgba(board.color)
-            parent.ui.label_board.setStyleSheet(u"background-color: qlineargradient(spread:pad, x1:0.5, y1:0.5, x2:0.95, y2:0.5, stop:0 " + f"{color}" + ", stop:1 rgba(69, 76, 90, 255));\n"
-                                                "color: #FFFFFF;")
-            for list in board.panels:
-                qwidget = self.panel_factory(parent, list, font, board.color)
+            parent.ui.label_board.setStyleSheet(
+                """
+                background-color: qlineargradient(
+                    spread:pad,
+                    x1:0.5, y1:0.5,
+                    x2:0.95, y2:0.5,
+                    stop:0 %s,
+                    stop:1 rgba(69, 76, 90, 255)
+                );
+                color: #FFFFFF;
+                """ % color
+            )
+            for panel in board.panels:
+                qwidget = self.panel_factory(parent, panel, font, board.color)
                 parent.ui.horizontalLayout_5.addWidget(qwidget)
         return parent.ui.btn_board
 
@@ -196,7 +217,6 @@ class MainScreen(QMainWindow):
             parent.ui.panel.sizePolicy().hasHeightForWidth())
         parent.ui.panel.setSizePolicy(size_policy2)
         parent.ui.panel.setMinimumSize(QSize(250, 0))
-        parent.ui.panel.setStyleSheet(u"")
         parent.ui.verticalLayout_1 = QVBoxLayout(parent.ui.panel)
         parent.ui.verticalLayout_1.setSpacing(0)
         parent.ui.verticalLayout_1.setObjectName(u"verticalLayout_1")
@@ -209,8 +229,12 @@ class MainScreen(QMainWindow):
         size_policy3.setHeightForWidth(
             parent.ui.widget.sizePolicy().hasHeightForWidth())
         parent.ui.widget.setSizePolicy(size_policy3)
-        parent.ui.widget.setStyleSheet(u"background-color: #ebecf0;\n"
-                                       "border-radius: 10px;")
+        parent.ui.widget.setStyleSheet(
+            """
+            background-color: #ebecf0;
+            border-radius: 10px;
+            """
+        )
         parent.ui.verticalLayout_2 = QVBoxLayout(parent.ui.widget)
         parent.ui.verticalLayout_2.setObjectName(u"verticalLayout_11")
         parent.ui.verticalLayout_2.setContentsMargins(0, 0, 0, 0)
@@ -220,10 +244,14 @@ class MainScreen(QMainWindow):
             parent.ui.label_list.sizePolicy().hasHeightForWidth())
         parent.ui.label_list.setSizePolicy(size_policy1)
         parent.ui.label_list.setMinimumSize(QSize(0, 30))
-        parent.ui.label_list.setStyleSheet(u"color: #282c33;\n"
-                                           "background-color: #ebecf0;\n"
-                                           "border-radius: 5px;\n"
-                                           "padding: 5px 0px 0px 5px;")
+        parent.ui.label_list.setStyleSheet(
+            """
+            color: #282c33;
+            background-color: #ebecf0;
+            border-radius: 5px;
+            padding: 5px 0px 0px 5px;
+            """
+        )
         parent.ui.label_list.setMargin(0)
 
         parent.ui.verticalLayout_2.addWidget(parent.ui.label_list)
@@ -238,39 +266,70 @@ class MainScreen(QMainWindow):
         parent.ui.listWidget.setFocusPolicy(Qt.TabFocus)
         parent.ui.listWidget.setAcceptDrops(True)
         color = hex_to_rgba(color)
-        parent.ui.listWidget.setStyleSheet(u"QListWidget {background-color: #ebecf0; border-radius: 10px;}\n"
-                                           "QListWidget::item {height: 40px; padding: 0px 8px 0px 8px}\n"
-                                           "QListWidget::item {background-color: qlineargradient(spread:pad, x1:0, "
-                                           "y1:0.5, x2:0.95, y2:0.5, stop:0 " +
-                                           f"{modify_hex_color(color)}" + ", stop:0.0338983 " + f"{modify_hex_color(color)}" +
-                                           ", stop:0.039548 rgba(255, 255, 255, 255), "
-                                           "stop:1 rgba(255, 255, 255, 255)); color: #000000; border-radius: 5px}\n"
-                                           "QListWidget::item:hover {background-color: qlineargradient(spread:pad, "
-                                           "x1:0, y1:0.5, x2:0.95, y2:0.5, stop:0 " +
-                                           f"{modify_hex_color(color)}" + ", "
-                                           "stop:0.0338983 " +
-                                           f"{modify_hex_color(color)}" +
-                                           ", stop:0.039548 rgba(226, 228, 233, "
-                                           "255), stop:1 rgba(226, 228, 233, 255)); color: #000000}\n"
-                                           "QListWidget::item:selected {background-color: qlineargradient(spread:pad, "
-                                           "x1:0, y1:0.5, x2:0.95, y2:0.5, stop:0 " +
-                                           f"{modify_hex_color(color)}" + ", "
-                                           "stop:0.0338983 " +
-                                           f"{modify_hex_color(color)}" +
-                                           ", stop:0.039548 rgba(204, 204, 204, "
-                                           "255), stop:1 rgba(204, 204, 204, 255)); color: #000000}\n"
-                                           "QListWidget::item:focus {background-color: qlineargradient(spread:pad, x1:0"
-                                           ", y1:0.5, x2:0.95, y2:0.5, stop:0 " +
-                                           f"{modify_hex_color(color)}" +
-                                           ", stop:0.0338983 "
-                                           "" +
-                                           f"{modify_hex_color(color)}" +
-                                           ", stop:0.039548 rgba(204, 204, 204, 255), "
-                                           "stop:1 rgba(204, 204, 204, 255)); color: #000000}\n"
-                                           "QScrollBar:vertical {width: 10px; margin: 0px 0px 0px 0px; "
-                                           "background-color: #acb2bf}\n"
-                                           "QScrollBar:horizontal {height: 10px; margin: 0px 0px 0px 0px; "
-                                           "background-color: #acb2bf}")
+        color_item = modify_hex_color(color)
+        parent.ui.listWidget.setStyleSheet(
+            """
+            QListWidget {
+                background-color: #ebecf0;
+                border-radius: 10px;
+            }
+            QListWidget::item {
+                height: 40px;
+                padding: 0px 8px 0px 8px;
+                background-color: qlineargradient(
+                    spread:pad, x1:0, y1:0.5, x2:0.95, y2:0.5,
+                    stop:0 %s, stop:0.0338983 %s, stop:0.039548 rgba(255, 255, 255, 255),
+                    stop:1 rgba(255, 255, 255, 255)
+                );
+                color: #000000;
+                border-radius: 5px;
+            }
+            QListWidget::item:hover {
+                background-color: qlineargradient(
+                    spread:pad, x1:0, y1:0.5, x2:0.95, y2:0.5,
+                    stop:0 %s, stop:0.0338983 %s, stop:0.039548 rgba(226, 228, 233, 255),
+                    stop:1 rgba(226, 228, 233, 255)
+                );
+                color: #000000;
+            }
+            QListWidget::item:selected {
+                background-color: qlineargradient(
+                    spread:pad, x1:0, y1:0.5, x2:0.95, y2:0.5,
+                    stop:0 %s, stop:0.0338983 %s, stop:0.039548 rgba(204, 204, 204, 255),
+                    stop:1 rgba(204, 204, 204, 255)
+                );
+                color: #000000;
+            }
+            QListWidget::item:focus {
+                background-color: qlineargradient(
+                    spread:pad, x1:0, y1:0.5, x2:0.95, y2:0.5,
+                    stop:0 %s, stop:0.0338983 %s, stop:0.039548 rgba(204, 204, 204, 255),
+                    stop:1 rgba(204, 204, 204, 255)
+                );
+                color: #000000;
+            }
+            QScrollBar:vertical {
+                width: 10px;
+                margin: 0px 0px 0px 0px;
+                background-color: #acb2bf;
+            }
+            QScrollBar:horizontal {
+                height: 10px;
+                margin: 0px 0px 0px 0px;
+                background-color: #acb2bf;
+            }
+            """
+            % (
+                modify_hex_color(color),
+                modify_hex_color(color),
+                modify_hex_color(color),
+                modify_hex_color(color),
+                modify_hex_color(color),
+                modify_hex_color(color),
+                modify_hex_color(color),
+                modify_hex_color(color),
+            )
+        )
         parent.ui.listWidget.setFrameShape(QFrame.NoFrame)
         parent.ui.listWidget.setSizeAdjustPolicy(
             QAbstractScrollArea.AdjustIgnored)
@@ -308,10 +367,23 @@ class MainScreen(QMainWindow):
         parent.ui.btn_add_card.setCursor(QCursor(Qt.PointingHandCursor))
         parent.ui.btn_add_card.setFocusPolicy(Qt.TabFocus)
         parent.ui.btn_add_card.setStyleSheet(
-            u"QPushButton {background-color: #ebecf0; color: #6a758b; border-radius: 5px}\n"
-            "QPushButton:hover {background-color: #dadbe2; color: #505b76}\n"
-            "QPushButton:focus {border-color: #000000; border-width: 1.5px; border-style: solid;}")
-
+            """
+            QPushButton {
+                background-color: #ebecf0;
+                color: #6a758b;
+                border-radius: 5px;
+            }
+            QPushButton:hover {
+                background-color: #dadbe2;
+                color: #505b76;
+            }
+            QPushButton:focus {
+                border-color: #000000;
+                border-width: 1.5px;
+                border-style: solid;
+            }
+            """
+        )
         parent.ui.verticalLayout_3.addWidget(parent.ui.btn_add_card)
 
         parent.ui.verticalLayout_2.addWidget(parent.ui.widget_add_card)
@@ -511,11 +583,24 @@ class MainScreen(QMainWindow):
         parent.ui.btn_add_list.setMinimumSize(QSize(0, 30))
         parent.ui.btn_add_list.setCursor(QCursor(Qt.PointingHandCursor))
         parent.ui.btn_add_list.setFocusPolicy(Qt.TabFocus)
-        parent.ui.btn_add_list.setStyleSheet(
-            u"QPushButton {background-color: #acb2bf; color: #ffffff; border-radius: 5px}\n"
-            "QPushButton:hover {background-color: #7e828c;}\n"
-            "QPushButton:focus {border-color: #000000; border-width: 1.5px; border-style: solid;}")
-
+        parent.ui.btn_add_card.setStyleSheet(
+            """
+            QPushButton {
+                background-color: #ebecf0;
+                color: #6a758b;
+                border-radius: 5px;
+            }
+            QPushButton:hover {
+                background-color: #dadbe2;
+                color: #505b76;
+            }
+            QPushButton:focus {
+                border-color: #000000;
+                border-width: 1.5px;
+                border-style: solid;
+            }
+            """
+        )
         parent.ui.verticalLayout_9.addWidget(parent.ui.btn_add_list)
 
         parent.ui.vertSpacer_list_add = QSpacerItem(
@@ -591,6 +676,7 @@ class MainScreen(QMainWindow):
         self.clear_page(parent)
         self.update_whole_page(parent)
         self.change_board(parent, self.get_updated_board(self.current_board))
+        # TODO: Save scrollbar position
 
     def get_updated_board(self, current_board: Board) -> Board:
         """Get the current board
@@ -625,7 +711,7 @@ class MainScreen(QMainWindow):
                     return None
             data = Database.get_instance().data
             data["_Database__data"].append(
-                {"_Board__title": text, "_Board__panels": [], "_Board__color": "LIGHTBLUE"})
+                {"_Board__title": text, "_Board__panels_lists": [], "_Board__color": "LIGHTBLUE"})
             Database.get_instance().data = data
             Database.get_instance().write()
 
@@ -649,6 +735,7 @@ class MainScreen(QMainWindow):
                                "Panel title cannot be empty!", yes_no=False, btn_color=self.current_board.color)
                 self.add_panel(parent, board)
                 return None
+                # TODO: Fix adding existing board again won't prompt error
             for board_ in Database.get_instance().boards:
                 for panel in board_.panels:
                     if panel.title == text:
@@ -662,10 +749,10 @@ class MainScreen(QMainWindow):
                     print(Database.get_instance().boards[i].title, board.title)
                     try:
                         data["_Database__data"][i]["_Board__panels_lists"].append(
-                            {"_Panel__title": text, "_Panel__cards": []})
+                            {"_Panel__title": text, "_Board__panels": []})
                     except KeyError:
                         data["_Database__data"][i]["_Board__panels_lists"] = [
-                            {"_Panel__title": text, "_Panel__cards": []}]
+                            {"_Panel__title": text, "_Board__panels": []}]
                     Database.get_instance().data = data
                     Database.get_instance().write()
                     self.change_board(
@@ -716,8 +803,8 @@ class MainScreen(QMainWindow):
                         self.change_board(
                             parent, Database.get_instance().boards[i])
             # TODO: Scroll to the bottom after adding a card
-            current_panel = QApplication.widgetAt(QCursor().pos()).parent()
             try:
+                current_panel = QApplication.widgetAt(QCursor().pos()).parent()
                 current_panel.verticalScrollBar().setValue(
                     current_panel.verticalScrollBar().maximum())
             except AttributeError:

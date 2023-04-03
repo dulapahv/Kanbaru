@@ -7,7 +7,7 @@ from PySide6.QtWidgets import (QInputDialog, QLineEdit, QMainWindow,
 
 
 def hex_to_rgba(hex_color: str) -> str:
-    """Converts a hex color to an rgba color.
+    """Converts a hex color to a rgba color.
 
     Parameters
     ----------
@@ -126,59 +126,68 @@ def dialog_factory(parent: QMainWindow, function: Callable, title: str, msg: str
             elif dialog.buttonRole(button) == QMessageBox.NoRole:
                 button.setObjectName("noButton")
             button.setFont(font[0])
-        dialog.setStyleSheet("""
-                            QLabel {
-                                color: #ffffff;
-                                font-size: 15px;
-                                padding: 10px 18px 5px 0px;
-                            }
-                            QPushButton {
-                                color: #ffffff;
-                                font-size: 15px;
-                                width: 80%;
-                                height: 25%;
-                                border-radius: 5px;
-                            }
-                            QPushButton#yesButton {
-                                background-color: """ + f"{btn_color}" + """;
-                            }
-                            QPushButton#noButton {
-                                background-color: """ + f"{'#7f8ca6'}" + """;
-                            }
-                            QPushButton#yesButton:hover {
-                                background-color: """ + f"{modify_hex_color(btn_color, -30)}" + """;
-                            }
-                            QPushButton#noButton:hover {
-                                background-color: """ + f"{modify_hex_color('#7f8ca6', -30)}" + """;
-                            }
-                            QPushButton:focus {
-                                border-color: #000000;
-                                border-width: 1px;
-                                border-style: solid;
-                            }
-                            QMessageBox {
-                                background-color: #454c5a;
-                            }
-                        """)
+        dialog.setStyleSheet(
+            """
+            QLabel {
+                color: #ffffff;
+                font-size: 15px;
+                padding: 10px 18px 5px 0px;
+            }
+            QPushButton {
+                color: #ffffff;
+                font-size: 15px;
+                width: 80%;
+                height: 25%;
+                border-radius: 5px;
+            }
+            QPushButton#yesButton {
+                background-color: %s;
+            }
+            QPushButton#noButton {
+                background-color: %s;
+            }
+            QPushButton#yesButton:hover {
+                background-color: %s;
+            }
+            QPushButton#noButton:hover {
+                background-color: %s;
+            }
+            QPushButton:focus {
+                border-color: #000000;
+                border-width: 1px;
+                border-style: solid;
+            }
+            QMessageBox {
+                background-color: #454c5a;
+            }
+            """ % (
+                btn_color,
+                "#7f8ca6",
+                modify_hex_color(btn_color, -30),
+                modify_hex_color("#7f8ca6", -30),
+            )
+        )
         buttons[1].setFocus()
     else:
         dialog.setStandardButtons(QMessageBox.Ok)
-        dialog.setStyleSheet("""
-                            QLabel {
-                                color: #ffffff;
-                                font-size: 15px;
-                                padding: 10px 18px 5px 0px;
-                            }
-                            QPushButton {
-                                background-color: """ + f"{btn_color}" + """;
-                                color: #ffffff;
-                                border-radius: 5px;
-                                width: 80%; height: 25%
-                            }
-                            QMessageBox {
-                                background-color: #454c5a;
-                            }
-                        """)
+        dialog.setStyleSheet(
+            """
+            QLabel {
+                color: #ffffff;
+                font-size: 15px;
+                padding: 10px 18px 5px 0px;
+            }
+            QPushButton {
+                background-color: %s;
+                color: #ffffff;
+                border-radius: 5px;
+                width: 80%; height: 25%
+            }
+            QMessageBox {
+                background-color: #454c5a;
+            }
+            """ % btn_color
+        )
     if dialog.exec() == QMessageBox.Yes:
         if function is not None:
             function(parent)
@@ -208,22 +217,24 @@ def input_dialog_factory(title: str, msg: str, default: str = "", btn_color: str
     dialog = QInputDialog()
     font = setup_font_db("TorusPro.ttf")
     dialog.setFont(font[0])
-    dialog.setStyleSheet("""
-                        QLabel {
-                            color: #ffffff;
-                            font-size: 14px;
-                        }
-                        QLineEdit {
-                            color: #ffffff;
-                            font-size: 14px;
-                            background-color: #454c5a;
-                            border: 1px solid #ffffff;
-                            border-radius: 5px;
-                        }
-                        QLineEdit:focus {
-                            border: 1px solid #000000;
-                        }
-                    """)
+    dialog.setStyleSheet(
+        """
+        QLabel {
+            color: #ffffff;
+            font-size: 14px;
+        }
+        QLineEdit {
+            color: #ffffff;
+            font-size: 14px;
+            background-color: #454c5a;
+            border: 1px solid #ffffff;
+            border-radius: 5px;
+        }
+        QLineEdit:focus {
+            border: 1px solid #000000;
+        }
+        """
+    )
     text, ok = dialog.getText(None, title, msg, QLineEdit.Normal, default)
     if ok:
         return text

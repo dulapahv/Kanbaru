@@ -42,9 +42,15 @@ class BoardSettings(QMainWindow):
 
         self.setup_font()
 
-        self.ui.label_board_desc.setStyleSheet(u"background-color: qlineargradient(spread:pad, x1:0.5, y1:0.5, x2:0.95, y2:0.5, stop:0 " + f"{self.color}" + ", stop:1 rgba(69, 76, 90, 255));\n"
-                                               "color: #ffffff;\n"
-                                               "padding: 0px 0px 0px 10px;")
+        self.ui.label_board_desc.setStyleSheet(
+            """
+            background-color: qlineargradient(spread:pad, x1:0.5, y1:0.5, 
+                x2:0.95, y2:0.5, stop:0 %s, stop:1 rgba(69, 76, 90, 255)
+            );
+            color: #ffffff;
+            padding: 0px 0px 0px 10px;
+            """ % self.color
+        )
 
     def delete(self, event) -> None:
         selected_all = self.ui.listWidget_manage_panel.selectedItems()
@@ -73,10 +79,12 @@ class BoardSettings(QMainWindow):
             dialog_factory(None, None, "Invalid Selection",
                            "Please select only one panel to rename.", yes_no=False, btn_color=self.color)
             return None
-        text = input_dialog_factory("Rename Panel", "Enter new panel name:", selected_all[0].text(), btn_color=self.color)
+        text = input_dialog_factory(
+            "Rename Panel", "Enter new panel name:", selected_all[0].text(), btn_color=self.color)
         print(text)
 
     def save(self) -> None:
+        # TODO: Save board settings temporary first before saving to db
         ...
 
     @property
