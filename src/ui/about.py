@@ -18,14 +18,21 @@ class About(QMainWindow):
         self.ui.label_logo_bottom.mousePressEvent = lambda event: self.easter_egg()
         self.setWindowModality(Qt.ApplicationModal)
 
+        self.ui.label_description_2.setText(QCoreApplication.translate(
+            "About", f"<html><head/><body><p>1. Dulapah Vibulsanti (<a href=\"https://github.com/dulapahv\"><span "
+                     f"style=\" text-decoration: underline; color:{color};\">github/dulapahv</span></a>)</p><p>2. "
+                     f"Anucha Cheewachanon (<a href=\"https://github.com/SpiralNuggets\"><span style=\" "
+                     f"text-decoration: underline; color:{color};\">github/SpiralNuggets</span></a>)</p><p>3. "
+                     f"Annopdanai Pamarapa (<a href=\"https://github.com/beam2546\"><span style=\" text-decoration: "
+                     f"underline; color:{color};\">github/beam2546</span></a>)</p></body></html>", None))
         self.ui.label_license.setText(QCoreApplication.translate(
             "About", f"<html><head/><body><p>Kanbaru is released under the MIT license. See <a "
                      f"href=\"https://github.com/dulapahv/Kanbaru/blob/main/LICENSE\"><span style=\" text-decoration: "
                      f"underline; color:{color};\">LICENSE</span></a> for more information.</p></body></html>", None))
 
     def deleteLater(self) -> None:
-        if self.ui.label_license.underMouse():
-            return
+        if self.ui.label_license.underMouse() or self.ui.label_description_2.underMouse():
+            return None
         super().deleteLater()
 
     def easter_egg(self) -> None:
