@@ -192,6 +192,7 @@ class Database:
                 "Cannot pull database to Firebase: username is empty")
             return None
         logging.info("Pulling database from Firebase...")
+        username = username.replace(".", ",").replace("@", "_")
         ref = db.reference(username)
         try:
             self.__data = ref.get()
