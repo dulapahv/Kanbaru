@@ -69,13 +69,13 @@ class WelcomeScreen(QMainWindow):
         else:
             status = Auth.signup(self.signup_username, self.signup_password)
         match status:
-            case 1:
+            case 0:
                 Database.get_instance().username = self.signup_username
                 Database.get_instance().password = self.signup_password
                 Database.get_instance().write()
                 Database.get_instance().push_to_firebase(self.signup_username)
                 MainScreen(parent)
-            case 0:
+            case 1:
                 parent.ui.label_signup_msg.setText("Missing credentials!")
             case 2:
                 parent.ui.label_signup_msg.setText("Passwords do not match!")
