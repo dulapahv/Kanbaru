@@ -247,6 +247,20 @@ class Ui_SettingsWindow(object):
 
         self.horizontalLayout = QHBoxLayout()
         self.horizontalLayout.setObjectName(u"horizontalLayout")
+        self.btn_about = QPushButton(self.widget1)
+        self.btn_about.setObjectName(u"btn_about")
+        sizePolicy1.setHeightForWidth(self.btn_about.sizePolicy().hasHeightForWidth())
+        self.btn_about.setSizePolicy(sizePolicy1)
+        self.btn_about.setMinimumSize(QSize(100, 30))
+        self.btn_about.setFont(font4)
+        self.btn_about.setCursor(QCursor(Qt.PointingHandCursor))
+        self.btn_about.setFocusPolicy(Qt.TabFocus)
+        self.btn_about.setStyleSheet(u"QPushButton {background-color: #6badee; color: #ffffff; border-radius: 5px}\n"
+"QPushButton:hover {background-color: #5487bb;}\n"
+"QPushButton:focus {border-color: #000000; border-width: 1.5px; border-style: solid;}")
+
+        self.horizontalLayout.addWidget(self.btn_about)
+
         self.horizontalSpacer = QSpacerItem(0, 0, QSizePolicy.Expanding, QSizePolicy.Minimum)
 
         self.horizontalLayout.addItem(self.horizontalSpacer)
@@ -313,6 +327,7 @@ class Ui_SettingsWindow(object):
         self.label_manage_account.setText(QCoreApplication.translate("SettingsWindow", u"Manage Account", None))
         self.btn_logout.setText(QCoreApplication.translate("SettingsWindow", u"Logout", None))
         self.btn_delete_account.setText(QCoreApplication.translate("SettingsWindow", u"Delete Account", None))
+        self.btn_about.setText(QCoreApplication.translate("SettingsWindow", u"About", None))
         self.btn_cancel.setText(QCoreApplication.translate("SettingsWindow", u"Cancel", None))
         self.btn_save.setText(QCoreApplication.translate("SettingsWindow", u"Save", None))
     # retranslateUi

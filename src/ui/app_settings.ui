@@ -466,6 +466,42 @@ QPushButton:focus {border-color: #000000; border-width: 1.5px; border-style: sol
           <item>
            <layout class="QHBoxLayout" name="horizontalLayout">
             <item>
+             <widget class="QPushButton" name="btn_about">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="minimumSize">
+               <size>
+                <width>100</width>
+                <height>30</height>
+               </size>
+              </property>
+              <property name="font">
+               <font>
+                <family>Torus Pro</family>
+                <pointsize>12</pointsize>
+               </font>
+              </property>
+              <property name="cursor">
+               <cursorShape>PointingHandCursor</cursorShape>
+              </property>
+              <property name="focusPolicy">
+               <enum>Qt::TabFocus</enum>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">QPushButton {background-color: #6badee; color: #ffffff; border-radius: 5px}
+QPushButton:hover {background-color: #5487bb;}
+QPushButton:focus {border-color: #000000; border-width: 1.5px; border-style: solid;}</string>
+              </property>
+              <property name="text">
+               <string>About</string>
+              </property>
+             </widget>
+            </item>
+            <item>
              <spacer name="horizontalSpacer">
               <property name="orientation">
                <enum>Qt::Horizontal</enum>

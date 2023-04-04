@@ -7,8 +7,10 @@ from PySide6.QtWidgets import *
 
 from db import Database
 from kanbaru_objects import Board
+from ui.about import About
 from ui.ui_app_settings import Ui_SettingsWindow
-from utils import dialog_factory, keyPressEvent, setup_font_db, input_dialog_factory
+from utils import (dialog_factory, input_dialog_factory, keyPressEvent,
+                   setup_font_db)
 
 
 class AppSettings(QMainWindow):
@@ -68,6 +70,14 @@ class AppSettings(QMainWindow):
             padding: 0px 0px 0px 10px;
             """
         )
+        
+        self.ui.btn_about.clicked.connect(lambda event: self.show_about(event, board.color))
+    
+    def show_about(self, event, color: str) -> None:
+        """Shows the about dialog"""
+        self.about = About(color)
+        self.about.show()
+
 
     @staticmethod
     def dialog_factory(parent: QMainWindow, function: Callable, title: str, msg: str) -> None:
