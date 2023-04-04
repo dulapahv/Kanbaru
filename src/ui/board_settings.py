@@ -8,7 +8,7 @@ from db import Database
 from kanbaru_objects import Board, Color, Panel
 from ui.ui_board_settings import Ui_BoardWindow
 from utils import (dialog_factory, input_dialog_factory, keyPressEvent,
-                   setup_font_db)
+                   modify_hex_color, setup_font_db)
 
 
 class BoardSettings(QMainWindow):
@@ -37,6 +37,41 @@ class BoardSettings(QMainWindow):
         self.title = board.title
         self.color = board.color
         self.panels_to_delete: List[Board] = []
+
+        stylesheet = \
+            f"""
+            QPushButton {{
+                background-color: {self.color};
+                color: #ffffff;
+            }}
+            QPushButton:hover {{
+                background-color: {modify_hex_color(self.color, -30)};
+            }}
+            QPushButton:focus {{
+                border-color: #000000;
+                border-width: 1.5px;
+                border-style: solid;
+            }}
+            """
+        self.ui.lineEdit_title.setStyleSheet(
+            f"""
+            QLineEdit {{
+                background-color: #ebecf0;
+                color: #282c33;
+                border-radius: 5px;
+                padding: 0px 8px 0px 8px
+            }}
+            QLineEdit:focus {{
+                background-color: #ffffff;
+                border-color: {self.color};
+                border-width: 1.5px;
+                border-style: solid;
+                padding: 0px 6px 0px 6px
+            }}
+            """
+        )
+        self.ui.btn_rename.setStyleSheet(stylesheet)
+        self.ui.btn_save.setStyleSheet(stylesheet)
 
         self.ui.listWidget_manage_panel.addItems(
             [panel.title for panel in self.board.panels])

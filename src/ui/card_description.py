@@ -39,25 +39,57 @@ class CardDescription(QMainWindow):
         self.description = card.description
 
         color = hex_to_rgba(color)
+        stylesheet = \
+            f"""
+            QPushButton {{
+                background-color: {self.color};
+                color: #ffffff;
+            }}
+            QPushButton:hover {{
+                background-color: {modify_hex_color(self.color, -30)};
+            }}
+            QPushButton:focus {{
+                border-color: #000000;
+                border-width: 1.5px;
+                border-style: solid;
+            }}
+            """
         self.ui.label_card_desc.setStyleSheet(
             f"""
             background-color: qlineargradient(
-                spread:pad, x1:0.5, y1:0.5, x2:0.95, y2:0.5, stop:0 {color},
+                spread:pad, x1:0.5, y1:0.5, x2:0.95, y2:0.5, stop:0 {self.color},
                 stop:1 rgba(69, 76, 90, 255)
             );
             color: #ffffff;
             padding: 0px 0px 0px 10px;
             """
         )
+        self.ui.lineEdit_title.setStyleSheet(
+            f"""
+            QLineEdit {{
+                background-color: #ebecf0;
+                color: #282c33;
+                border-radius: 5px;
+                padding: 0px 8px 0px 8px
+            }}
+            QLineEdit:focus {{
+                background-color: #ffffff;
+                border-color: {self.color};
+                border-width: 1.5px;
+                border-style: solid;
+                padding: 0px 6px 0px 6px
+            }}
+            """
+        )
         self.ui.calendarWidget.setStyleSheet(
             f"""
-            background-color: {modify_hex_color(color)};
+            background-color: {modify_hex_color(self.color)};
             """
         )
         self.ui.timeEdit.setStyleSheet(
             f"""
             QTimeEdit {{
-                background-color: {modify_hex_color(color)};
+                background-color: {modify_hex_color(self.color)};
                 color: #ffffff;
                 border-radius: 5px;
                 padding: 0px 5px 0px 5px;
@@ -70,6 +102,28 @@ class CardDescription(QMainWindow):
             }}
             """
         )
+        self.ui.textEdit_description.setStyleSheet(
+            f"""QTextEdit {{
+                background-color: #ebecf0;
+                color: #282c33;
+                border-radius:5px;
+                padding: 4px 8px 4px 8px
+            }}
+            QTextEdit:focus {{
+                background-color: #ffffff;
+                border-color: {self.color};
+                border-width: 1.5px;
+                border-style: solid;
+            }}
+            QScrollBar:vertical {{
+                width: 10px;
+                margin: 0px 0px 0px 0px;
+                background-color: #acb2bf
+            }}
+            """
+        )
+        self.ui.btn_save.setStyleSheet(stylesheet)
+
         self.setup_font()
 
     def save(self) -> None:
