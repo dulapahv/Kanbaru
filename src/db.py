@@ -217,18 +217,17 @@ class Database:
             If the database cannot be uploaded to Firebase, an exception will be raised.
         """
         if not username:
-            logging.warning(
-                "Cannot push database to Firebase: username is empty")
+            logging.warning("Cannot push database to Firebase: username is empty")
             return None
-        ref = db.reference(username)
+        encoded_username = username.replace(".", ",").replace("@", "_")
+        ref = db.reference(encoded_username)
         try:
             Database.read(self)
             logging.info("Uploading database to Firebase...")
             ref.set(self.__data)
             logging.info("Database uploaded to Firebase")
         except Exception as e:
-            logging.warning(
-                "Failed to upload database to Firebase!", exc_info=True)
+            logging.warning("Failed to upload database to Firebase!", exc_info=True)
 
     @property
     def username(self: "Database") -> str:

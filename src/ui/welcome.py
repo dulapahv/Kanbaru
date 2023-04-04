@@ -64,16 +64,18 @@ class WelcomeScreen(QMainWindow):
         if len(self.signup_password) >= 128:
             parent.ui.label_signup_msg.setText(
                 "Password must not exceed 128 characters!")
-        status = Auth.signup(self.signup_username, self.signup_password,
-                             self.signup_confirm_password)
+        if self.signup_password != self.signup_confirm_password:
+            parent.ui.label_signup_msg.setText("Passwords do not match!")
+        else:
+            status = Auth.signup(self.signup_username, self.signup_password)
         match status:
-            case 0:
+            case 1:
                 Database.get_instance().username = self.signup_username
                 Database.get_instance().password = self.signup_password
                 Database.get_instance().write()
                 Database.get_instance().push_to_firebase(self.signup_username)
                 MainScreen(parent)
-            case 1:
+            case 0:
                 parent.ui.label_signup_msg.setText("Missing credentials!")
             case 2:
                 parent.ui.label_signup_msg.setText("Passwords do not match!")
