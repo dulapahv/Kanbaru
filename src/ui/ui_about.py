@@ -23,7 +23,7 @@ class Ui_About(object):
     def setupUi(self, About):
         if not About.objectName():
             About.setObjectName(u"About")
-        About.resize(628, 353)
+        About.resize(628, 396)
         About.setStyleSheet(u"background-color: #454c5a;")
         self.centralwidget = QWidget(About)
         self.centralwidget.setObjectName(u"centralwidget")
@@ -88,9 +88,23 @@ class Ui_About(object):
         self.label_description.setFont(font1)
         self.label_description.setStyleSheet(u"color: #ffffff")
         self.label_description.setWordWrap(True)
-        self.label_description.setOpenExternalLinks(True)
+        self.label_description.setOpenExternalLinks(False)
 
         self.verticalLayout_2.addWidget(self.label_description)
+
+        self.verticalSpacer_3 = QSpacerItem(20, 10, QSizePolicy.Minimum, QSizePolicy.Fixed)
+
+        self.verticalLayout_2.addItem(self.verticalSpacer_3)
+
+        self.label_description_2 = QLabel(self.centralwidget)
+        self.label_description_2.setObjectName(u"label_description_2")
+        self.label_description_2.setMaximumSize(QSize(370, 16777215))
+        self.label_description_2.setFont(font1)
+        self.label_description_2.setStyleSheet(u"color: #ffffff")
+        self.label_description_2.setWordWrap(True)
+        self.label_description_2.setOpenExternalLinks(True)
+
+        self.verticalLayout_2.addWidget(self.label_description_2)
 
         self.verticalSpacer = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
 
@@ -136,7 +150,8 @@ class Ui_About(object):
         self.label_logo_top.setText("")
         self.label_title.setText(QCoreApplication.translate("About", u"Kanbaru", None))
         self.label_sub_title.setText(QCoreApplication.translate("About", u"Kanban Project Manager", None))
-        self.label_description.setText(QCoreApplication.translate("About", u"<html><head/><body><p>Dulapah Vibulsanti</p><p>Anucha Cheewachanon</p><p>Annopdanai Pamarapa</p></body></html>", None))
+        self.label_description.setText(QCoreApplication.translate("About", u"<html><head/><body><p>Kanbaru is a group project for Software Engineering Principle course, KMITL Software Engineering, year 2, semester 2.</p><p>Developed by:</p></body></html>", None))
+        self.label_description_2.setText(QCoreApplication.translate("About", u"<html><head/><body><p>1. Dulapah Vibulsanti (<a href=\"https://github.com/dulapahv\"><span style=\" text-decoration: underline; color:#fb568a;\">github/dulapahv</span></a>)</p><p>2. Anucha Cheewachanon (<a href=\"https://github.com/SpiralNuggets\"><span style=\" text-decoration: underline; color:#fb568a;\">github/SpiralNuggets</span></a>)</p><p>3. Annopdanai Pamarapa (<a href=\"https://github.com/beam2546\"><span style=\" text-decoration: underline; color:#fb568a;\">github/beam2546</span></a>)</p></body></html>", None))
         self.label_license.setText(QCoreApplication.translate("About", u"<html><head/><body><p>Kanbaru is released under the MIT license. See <a href=\"https://github.com/dulapahv/Kanbaru/blob/main/LICENSE\"><span style=\" text-decoration: underline; color:#fb568a;\">LICENSE</span></a> for more information.</p></body></html>", None))
         self.label_logo_bottom.setText("")
     # retranslateUi
