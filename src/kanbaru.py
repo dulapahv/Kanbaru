@@ -23,7 +23,7 @@ except ModuleNotFoundError:
         try:
             import pip
 
-            pip.main(["install", "-r", "requirements.txt"])
+            pip.main(["install", "-r", "src/requirements.txt"])
         except ModuleNotFoundError:
             print(
                 "pip not found. Installing pip rn. Risky move, but I'll do it for you.\n btw why dont you have pip "
@@ -31,7 +31,7 @@ except ModuleNotFoundError:
             import ensurepip
 
             ensurepip.bootstrap()
-            pip.main(["install", "-r", "requirements.txt"])
+            pip.main(["install", "-r", "src/requirements.txt"])
         finally:
             from PySide6.QtWidgets import (QApplication, QMainWindow,
                                            QMessageBox)
