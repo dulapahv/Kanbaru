@@ -169,6 +169,9 @@ def dialog_factory(parent: QMainWindow, function: Callable, title: str, msg: str
         buttons[1].setFocus()
     else:
         dialog.setStandardButtons(QMessageBox.Ok)
+        buttons = dialog.findChildren(QPushButton)
+        for button in buttons:
+            button.setFont(QFont(font[0], 10))
         dialog.setStyleSheet(
             f"""
             QLabel {{
@@ -182,14 +185,19 @@ def dialog_factory(parent: QMainWindow, function: Callable, title: str, msg: str
                 border-radius: 5px;
                 width: 80%; height: 25%
             }}
+            QPushButton:hover {{
+                background-color: {modify_hex_color(btn_color, -30)};
+            }}
+            QPushButton:focus {{
+                border-color: #000000;
+                border-width: 1px;
+                border-style: solid;
+            }}
             QMessageBox {{
                 background-color: #454c5a;
             }}
             """
         )
-        buttons = dialog.findChildren(QPushButton)
-        for button in buttons:
-            button.setFont(QFont(font[0], 10))
     if dialog.exec() == QMessageBox.Yes:
         if function is not None:
             function(parent)
