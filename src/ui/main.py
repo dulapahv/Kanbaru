@@ -11,6 +11,7 @@ from ui.app_settings import AppSettings
 from ui.board_settings import BoardSettings
 from ui.card_description import CardDescription
 from ui.ui_main import Ui_MainWindow
+from ui.about import About
 from utils import (dialog_factory, hex_to_rgba, input_dialog_factory,
                    keyPressEvent, modify_hex_color, setup_font_db)
 
@@ -96,8 +97,15 @@ class MainScreen(QMainWindow):
 
         self.setup_font(parent, "TorusPro.ttf")
 
+        parent.ui.label_logo.mousePressEvent = lambda event: self.show_about(event)
+
+    def show_about(self, event) -> None:
+        """Shows the about dialog"""
+        self.about = About(self.current_board.color)
+        self.about.show()
+
     def board_factory(self, parent: Ui_MainWindow, board: Board, font: str, is_constructed: bool = True) -> QPushButton:
-        """Creates a board widget
+        """Credsfates a board widget
         - Add a push button widget to the parent UI with specified style
         - If the board is displayed, construct the list widgets and card widgets
 
