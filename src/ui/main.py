@@ -153,7 +153,7 @@ class MainScreen(QMainWindow):
                 border-radius: 5px;
             }
             QPushButton:hover {
-                background-color: #7e828c;
+                background-color: """ + f"{modify_hex_color(board.color, -30)}" + """;
             }
             QPushButton:focus {
                 border-color: #000000;
