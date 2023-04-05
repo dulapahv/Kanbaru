@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>628</width>
-    <height>396</height>
+    <height>398</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -128,7 +128,7 @@
       <property name="sizeHint" stdset="0">
        <size>
         <width>20</width>
-        <height>25</height>
+        <height>40</height>
        </size>
       </property>
      </spacer>
@@ -145,7 +145,7 @@
        <string notr="true">color: #ffffff</string>
       </property>
       <property name="text">
-       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Kanbaru is a group project for Software Engineering Principle course, KMITL Software Engineering, year 2, semester 2.&lt;/p&gt;&lt;p&gt;Developed by:&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Kanbaru is a group project for Software Engineering Principle course, KMITL Software Engineering, year 2, semester 2.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Developed by:&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
       </property>
       <property name="wordWrap">
        <bool>true</bool>
@@ -189,7 +189,7 @@
        <string notr="true">color: #ffffff</string>
       </property>
       <property name="text">
-       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;1. Dulapah Vibulsanti (&lt;a href=&quot;https://github.com/dulapahv&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#fb568a;&quot;&gt;github/dulapahv&lt;/span&gt;&lt;/a&gt;)&lt;/p&gt;&lt;p&gt;2. Anucha Cheewachanon (&lt;a href=&quot;https://github.com/SpiralNuggets&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#fb568a;&quot;&gt;github/SpiralNuggets&lt;/span&gt;&lt;/a&gt;)&lt;/p&gt;&lt;p&gt;3. Annopdanai Pamarapa (&lt;a href=&quot;https://github.com/beam2546&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#fb568a;&quot;&gt;github/beam2546&lt;/span&gt;&lt;/a&gt;)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;1. Dulapah Vibulsanti (&lt;a href=&quot;https://github.com/dulapahv&quot;&gt;&lt;span style=&quot; font-weight:700; text-decoration: underline; color:#fb568a;&quot;&gt;github/dulapahv&lt;/span&gt;&lt;/a&gt;)&lt;/p&gt;&lt;p&gt;2. Anucha Cheewachanon (&lt;a href=&quot;https://github.com/SpiralNuggets&quot;&gt;&lt;span style=&quot; font-weight:700; text-decoration: underline; color:#fb568a;&quot;&gt;github/SpiralNuggets&lt;/span&gt;&lt;/a&gt;)&lt;/p&gt;&lt;p&gt;3. Annopdanai Pamarapa (&lt;a href=&quot;https://github.com/beam2546&quot;&gt;&lt;span style=&quot; font-weight:700; text-decoration: underline; color:#fb568a;&quot;&gt;github/beam2546&lt;/span&gt;&lt;/a&gt;)&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;View Kanbaru on &lt;/span&gt;&lt;a href=&quot;https://github.com/dulapahv/Kanbaru&quot;&gt;&lt;span style=&quot; font-weight:700; text-decoration: underline; color:#fb568a;&quot;&gt;Github&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
       </property>
       <property name="wordWrap">
        <bool>true</bool>
@@ -226,7 +226,7 @@
          <string notr="true">color: #ffffff</string>
         </property>
         <property name="text">
-         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Kanbaru is released under the MIT license. See &lt;a href=&quot;https://github.com/dulapahv/Kanbaru/blob/main/LICENSE&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#fb568a;&quot;&gt;LICENSE&lt;/span&gt;&lt;/a&gt; for more information.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Kanbaru is released under the MIT license. See &lt;a href=&quot;https://github.com/dulapahv/Kanbaru/blob/main/LICENSE&quot;&gt;&lt;span style=&quot; font-weight:700; text-decoration: underline; color:#fb568a;&quot;&gt;LICENSE&lt;/span&gt;&lt;/a&gt; for more information.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
         </property>
         <property name="wordWrap">
          <bool>true</bool>
