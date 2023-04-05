@@ -813,8 +813,8 @@ class CustomListWidget(QListWidget):
                     spread:pad, x1:0, y1:0.5, x2:0.95, y2:0.5,
                     stop:0 {color},
                     stop:0.0338983 {color},
-                    stop:0.039548 rgba(226, 228, 233, 255),
-                    stop:1 rgba(226, 228, 233, 255)
+                    stop:0.039548 rgba(204, 204, 204, 255),
+                    stop:1 rgba(204, 204, 204, 255)
                 );
                 color: #000000;
             }}
