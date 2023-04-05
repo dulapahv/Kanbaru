@@ -281,6 +281,7 @@ class MainScreen(QMainWindow):
             QListWidget {{
                 background-color: #ebecf0;
                 border-radius: 10px;
+                color: #000000;
             }}
             QListWidget::item {{
                 height: 40px;
@@ -412,9 +413,8 @@ class MainScreen(QMainWindow):
         listWidget.setObjectName(new_name)
         delattr(parent.ui, "listWidget")
         setattr(listWidget, "data", panel)
-        listWidget.dragEnterEvent = lambda event: self.dragEnterEvent(event)
-        listWidget.dragMoveEvent = lambda event: self.dragMoveEvent(
-            event, parent)
+        # listWidget.dragMoveEvent = lambda event: self.dragMoveEvent(
+        #     event, parent)
         listWidget.dropEvent = lambda event: self.dropEvent(event)
         for index, card in enumerate(panel.cards):
             qlistwidgetitem = self.card_factory(
@@ -432,24 +432,7 @@ class MainScreen(QMainWindow):
 
         return parent.ui.panel
 
-    @Slot(QDragEnterEvent)
-    def dragEnterEvent(self, event: QDragEnterEvent) -> None:
-        """Override the dragEnterEvent method to customize the drag enter event
-        - Check if the clicked item has the qabstractitemmodeldatalist format
-        - If it is, accept the event. If not, ignore the event
-
-        Parameters
-        ----------
-        event : QDragEnterEvent
-            The drag enter event
-        """
-        if event.mimeData().hasFormat("application/x-qabstractitemmodeldatalist"):
-            event.accept()
-        else:
-            event.ignore()
-        super().dragEnterEvent(event)
-
-    @Slot(QDragMoveEvent)
+    @Slot()
     def dragMoveEvent(self, event: QDragMoveEvent, parent: QMainWindow) -> None:
         """Override the dragMoveEvent method to customize the drag move event
         - Check if the dragged item has the qabstractitemmodeldatalist format
@@ -481,7 +464,7 @@ class MainScreen(QMainWindow):
             event.ignore()
         super().dragMoveEvent(event)
 
-    @Slot(QDropEvent)
+    @Slot()
     def dropEvent(self, event: QDropEvent) -> None:
         """Override the dropEvent method to customize the drop event
         - Check if the item to be dropped has the qabstractitemmodeldatalist format
@@ -489,7 +472,7 @@ class MainScreen(QMainWindow):
         - Get the widget at the current mouse position
         - Get the items that is being dragged
         - Remove those items from the source widget
-        - Add those items to the destination widget
+        - Add those items to the destination widget at the mouse position
 
         Parameters
         ----------
@@ -500,21 +483,20 @@ class MainScreen(QMainWindow):
             source_widget = event.source()
             dest_widget = QApplication.widgetAt(QCursor().pos()).parent()
             items = source_widget.selectedItems()
-            if source_widget == dest_widget:
-                # TODO: Implement rearranging items within the same panel
-                return None
-            else:
-                for item in items:
-                    source_widget.takeItem(source_widget.row(item))
+            for item in items:
+                source_widget.takeItem(source_widget.row(item))
+                dest_index = dest_widget.indexAt(event.pos())
+                if dest_index.isValid():
+                    dest_widget.insertItem(dest_index.row(), item)
+                else:
                     dest_widget.addItem(item)
-                    dest_widget.setCurrentItem(item)
-                    self.change_card(source_widget, dest_widget,
-                                     item.data(Qt.UserRole))
-            logging.info(
-                f'Moved {len(items)} Card(s) ({list(map(lambda x: getattr(x, "data")(Qt.UserRole).title, items))}) '
-                f'from panel "{getattr(source_widget, "data").title}" to panel "{getattr(dest_widget, "data").title}"')
-            Database.get_instance().write()
-            event.accept()
+                logging.info(
+                    f'Moved {len(items)} Card(s) ({list(map(lambda x: getattr(x, "data")(Qt.UserRole).title, items))}) '
+                    f'from panel "{getattr(source_widget, "data").title}" to panel "{getattr(dest_widget, "data").title}"')
+                self.change_card(source_widget, dest_widget,
+                                 item.data(Qt.UserRole), dest_widget.count() - 1 if dest_index.row() == -1 else dest_index.row())
+                Database.get_instance().write()
+                event.accept()
         else:
             event.ignore()
         super().dropEvent(event)
@@ -850,11 +832,11 @@ class MainScreen(QMainWindow):
         self.add_panel_button(parent, board, "TorusPro.ttf")
 
     @staticmethod
-    def change_card(source: Panel, destination: Panel, card: Card) -> None:
+    def change_card(source: Panel, destination: Panel, card: Card, index: int = None) -> None:
         """Change the card in a panel to another panel
         - Get the data from the database
         - Find the source panel and the specified card
-        - Find the destination panel and add the card
+        - Find the destination panel and add the card at a specified index
         - Remove the card from the source panel
         - Update the database
 
@@ -866,6 +848,8 @@ class MainScreen(QMainWindow):
             The destination panel
         card : Card
             The card to move
+        index : int, optional
+            The index position to add the card in the destination panel, by default None (adds at the end)
         """
         data = Database.get_instance().data
         source_list = next((lst for lst in data.get("_Database__data", [{}])[0].get("_Board__panels_lists", [])
@@ -877,7 +861,10 @@ class MainScreen(QMainWindow):
             dest_list = next((lst for lst in data.get("_Database__data", [{}])[0].get("_Board__panels_lists", [])
                               if lst.get("_Panel__title") == getattr(destination, "data").title), {})
             try:
-                dest_list["_Board__panels"].append(card_to_move)
+                if index is None or index >= len(dest_list["_Board__panels"]):
+                    dest_list["_Board__panels"].append(card_to_move)
+                else:
+                    dest_list["_Board__panels"].insert(index, card_to_move)
             except KeyError:
                 dest_list["_Board__panels"] = [card_to_move]
             Database.get_instance().data = data
