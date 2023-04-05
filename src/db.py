@@ -278,52 +278,48 @@ class Database:
 
     @property
     def boards(self: "Database") -> List[Board]:
-        """Returns the list of boards containing its attributes and list of
-        Panels containing its attributes and list of Cards containing its
-        attributes.
+        """Returns a list of boards containing their attributes and a list of panels 
+        containing their attributes and a list of cards containing their attributes.
 
         Returns
         -------
         boards : List[Board]
-            The list of boards containing its attributes and list of Panels
-            containing its attributes and list of Cards containing its
-            attributes.
-
-        Notes
-        -----
-        I know this is a very ugly function, but this is the only way I can
-        think of. I'm open to suggestions.
+            A list of boards containing their attributes and a list of panels containing 
+            their attributes and a list of cards containing their attributes.
         """
-        try:
-            board_lists = self.__data['_Database__data']
-        except KeyError:
-            board_lists = []
         boards = []
+        board_lists = self.__data.get('_Database__data', [])
+
         for board_item in board_lists:
-            try:
-                panel_data = board_item['_Board__panels_lists']
-            except KeyError:
-                panel_data = []
+            panel_data = board_item.get('_Board__panels_lists', [])
             panels = []
+
             for panel_item in panel_data:
-                try:
-                    card_data = panel_item['_Board__panels']
-                except KeyError:
-                    card_data = []
+                card_data = panel_item.get('_Board__panels', [])
                 cards = []
+
                 for card_item in card_data:
-                    card = Card(title=card_item['_Card__title'],
-                                description=card_item['_Card__description'],
-                                date=card_item['_Card__date'],
-                                time=card_item['_Card__time'])
+                    card = Card(
+                        title=card_item.get('_Card__title', ''),
+                        description=card_item.get('_Card__description', ''),
+                        date=card_item.get('_Card__date', ''),
+                        time=card_item.get('_Card__time', '')
+                    )
                     cards.append(card)
-                panel_obj = Panel(title=panel_item['_Panel__title'],
-                                  card_lists=cards)
+
+                panel_obj = Panel(
+                    title=panel_item.get('_Panel__title', ''),
+                    card_lists=cards
+                )
                 panels.append(panel_obj)
-            board = Board(title=board_item['_Board__title'],
-                          color=board_item['_Board__color'],
-                          panels_lists=panels)
+
+            board = Board(
+                title=board_item.get('_Board__title', ''),
+                color=board_item.get('_Board__color', ''),
+                panels_lists=panels
+            )
             boards.append(board)
+
         return boards
 
     @boards.setter
