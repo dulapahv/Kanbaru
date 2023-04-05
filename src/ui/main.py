@@ -217,8 +217,10 @@ class MainScreen(QMainWindow):
         size_policy1 = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Fixed)
         size_policy1.setHorizontalStretch(0)
         size_policy1.setVerticalStretch(0)
+
         parent.ui.panel = QWidget(parent.ui.scrollAreaContent_panel_right)
         parent.ui.panel.setObjectName(u"panel")
+
         size_policy2 = QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Minimum)
         size_policy2.setHorizontalStretch(0)
         size_policy2.setVerticalStretch(0)
@@ -230,8 +232,10 @@ class MainScreen(QMainWindow):
         parent.ui.verticalLayout_1.setSpacing(0)
         parent.ui.verticalLayout_1.setObjectName(u"verticalLayout_1")
         parent.ui.verticalLayout_1.setContentsMargins(0, 0, 0, 0)
+
         parent.ui.widget = QWidget(parent.ui.panel)
         parent.ui.widget.setObjectName(u"widget_list_1")
+
         size_policy3 = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Minimum)
         size_policy3.setHorizontalStretch(0)
         size_policy3.setVerticalStretch(0)
@@ -247,6 +251,7 @@ class MainScreen(QMainWindow):
         parent.ui.verticalLayout_2 = QVBoxLayout(parent.ui.widget)
         parent.ui.verticalLayout_2.setObjectName(u"verticalLayout_11")
         parent.ui.verticalLayout_2.setContentsMargins(0, 0, 0, 0)
+
         parent.ui.label_list = QLabel(parent.ui.widget)
         parent.ui.label_list.setObjectName(u"label_list")
         size_policy1.setHeightForWidth(
@@ -262,103 +267,10 @@ class MainScreen(QMainWindow):
             """
         )
         parent.ui.label_list.setMargin(0)
-
         parent.ui.verticalLayout_2.addWidget(parent.ui.label_list)
 
-        parent.ui.listWidget = QListWidget(parent.ui.widget)
-
-        parent.ui.listWidget.setObjectName(u"listWidget")
-        size_policy2.setHeightForWidth(
-            parent.ui.listWidget.sizePolicy().hasHeightForWidth())
-        parent.ui.listWidget.setSizePolicy(size_policy2)
-        parent.ui.listWidget.setMaximumSize(QSize(250, 16777215))
-        parent.ui.listWidget.setFocusPolicy(Qt.TabFocus)
-        parent.ui.listWidget.setAcceptDrops(True)
-        color = hex_to_rgba(color)
-        color_item = modify_hex_color(color)
-        parent.ui.listWidget.setStyleSheet(
-            f"""
-            QListWidget {{
-                background-color: #ebecf0;
-                border-radius: 10px;
-                color: #000000;
-            }}
-            QListWidget::item {{
-                height: 40px;
-                padding: 0px 8px 0px 8px;
-                background-color: qlineargradient(
-                    spread:pad, x1:0, y1:0.5, x2:0.95, y2:0.5,
-                    stop:0 {color_item},
-                    stop:0.0338983 {color_item},
-                    stop:0.039548 rgba(255, 255, 255, 255),
-                    stop:1 rgba(255, 255, 255, 255)
-                );
-                color: #000000;
-                border-radius: 5px;
-            }}
-            QListWidget::item:hover {{
-                background-color: qlineargradient(
-                    spread:pad, x1:0, y1:0.5, x2:0.95, y2:0.5,
-                    stop:0 {color_item},
-                    stop:0.0338983 {color_item},
-                    stop:0.039548 rgba(226, 228, 233, 255),
-                    stop:1 rgba(226, 228, 233, 255)
-                );
-                color: #000000;
-            }}
-            QListWidget::item:selected {{
-                background-color: qlineargradient(
-                    spread:pad, x1:0, y1:0.5, x2:0.95, y2:0.5,
-                    stop:0 {color_item},
-                    stop:0.0338983 {color_item},
-                    stop:0.039548 rgba(204, 204, 204, 255),
-                    stop:1 rgba(204, 204, 204, 255)
-                );
-                color: #000000;
-            }}
-            QListWidget::item:focus {{
-                background-color: qlineargradient(
-                    spread:pad, x1:0, y1:0.5, x2:0.95, y2:0.5,
-                    stop:0 {color_item},
-                    stop:0.0338983 {color_item},
-                    stop:0.039548 rgba(204, 204, 204, 255),
-                    stop:1 rgba(204, 204, 204, 255)
-                );
-                color: #000000;
-            }}
-            QScrollBar:vertical {{
-                width: 10px;
-                margin: 0px 0px 0px 0px;
-                background-color: #acb2bf;
-            }}
-            QScrollBar:horizontal {{
-                height: 10px;
-                margin: 0px 0px 0px 0px;
-                background-color: #acb2bf;
-            }}
-            """
-        )
-        parent.ui.listWidget.setFrameShape(QFrame.NoFrame)
-        parent.ui.listWidget.setSizeAdjustPolicy(
-            QAbstractScrollArea.AdjustIgnored)
-        parent.ui.listWidget.setAutoScroll(True)
-        parent.ui.listWidget.setDragEnabled(True)
-        parent.ui.listWidget.setDragDropMode(QAbstractItemView.DragDrop)
-        parent.ui.listWidget.setDefaultDropAction(Qt.MoveAction)
-        parent.ui.listWidget.setSelectionMode(
-            QAbstractItemView.ExtendedSelection)
-        parent.ui.listWidget.setVerticalScrollMode(
-            QAbstractItemView.ScrollPerPixel)
-        parent.ui.listWidget.setHorizontalScrollMode(
-            QAbstractItemView.ScrollPerPixel)
-        parent.ui.listWidget.setProperty("isWrapping", False)
-        parent.ui.listWidget.setSpacing(5)
-        parent.ui.listWidget.setUniformItemSizes(True)
-        parent.ui.listWidget.setWordWrap(True)
-        parent.ui.listWidget.setSelectionRectVisible(True)
-        # showDropIndicator for parent.ui.listWidget
-        parent.ui.listWidget.setProperty("showDropIndicator", True)
-
+        parent.ui.listWidget = CustomListWidget(
+            parent.ui.scrollArea_panel_right, modify_hex_color(color))
         parent.ui.verticalLayout_2.addWidget(parent.ui.listWidget)
 
         parent.ui.widget_add_card = QWidget(parent.ui.widget)
@@ -366,9 +278,11 @@ class MainScreen(QMainWindow):
         size_policy1.setHeightForWidth(
             parent.ui.widget_add_card.sizePolicy().hasHeightForWidth())
         parent.ui.widget_add_card.setSizePolicy(size_policy1)
+
         parent.ui.verticalLayout_3 = QVBoxLayout(parent.ui.widget_add_card)
         parent.ui.verticalLayout_3.setObjectName(u"verticalLayout_6")
         parent.ui.verticalLayout_3.setContentsMargins(6, 0, 6, 6)
+
         parent.ui.btn_add_card = QPushButton(parent.ui.widget_add_card)
         parent.ui.btn_add_card.setObjectName(u"btn_add_card_list_1")
         parent.ui.btn_add_card.setMinimumSize(QSize(0, 25))
@@ -393,11 +307,8 @@ class MainScreen(QMainWindow):
             """
         )
         parent.ui.verticalLayout_3.addWidget(parent.ui.btn_add_card)
-
         parent.ui.verticalLayout_2.addWidget(parent.ui.widget_add_card)
-
         parent.ui.verticalLayout_1.addWidget(parent.ui.widget)
-
         parent.ui.listWidget.setSortingEnabled(False)
 
         font_db = setup_font_db(font)
@@ -413,17 +324,14 @@ class MainScreen(QMainWindow):
         listWidget.setObjectName(new_name)
         delattr(parent.ui, "listWidget")
         setattr(listWidget, "data", panel)
-        # listWidget.dragMoveEvent = lambda event: self.dragMoveEvent(
-        #     event, parent)
-        listWidget.dropEvent = lambda event: self.dropEvent(event)
+
         for index, card in enumerate(panel.cards):
             qlistwidgetitem = self.card_factory(
                 listWidget, parent, card, font, index)
             listWidget.addItem(qlistwidgetitem)
+
         listWidget.clicked.connect(
             lambda event: self.show_card_description(event, listWidget, parent, color))
-
-        listWidget.verticalScrollBar().setSingleStep(10)
 
         parent.ui.label_list.setText(
             QCoreApplication.translate("MainWindow", panel.title[:25] + (panel.title[25:] and '...'), None))
@@ -431,75 +339,6 @@ class MainScreen(QMainWindow):
             QCoreApplication.translate("MainWindow", u"+ Add a card", None))
 
         return parent.ui.panel
-
-    @Slot()
-    def dragMoveEvent(self, event: QDragMoveEvent, parent: QMainWindow) -> None:
-        """Override the dragMoveEvent method to customize the drag move event
-        - Check if the dragged item has the qabstractitemmodeldatalist format
-        - If it is, accept the event. If not, ignore the event
-
-        Parameters
-        ----------
-        parent
-        event : QDragMoveEvent
-            The drag move event
-        """
-        if QCursor().pos().x() > parent.width() + parent.x() - 160:
-            parent.ui.scrollArea_panel_right.horizontalScrollBar().setValue(
-                parent.ui.scrollArea_panel_right.horizontalScrollBar().value() + 8)
-        elif QCursor().pos().x() < parent.width() - (parent.width() - parent.x()) + 300:
-            parent.ui.scrollArea_panel_right.horizontalScrollBar().setValue(
-                parent.ui.scrollArea_panel_right.horizontalScrollBar().value() - 8)
-        if event.mimeData().hasFormat("application/x-qabstractitemmodeldatalist"):
-            panel = QApplication.widgetAt(QCursor().pos()).parent()
-            if isinstance(panel, QListWidget):
-                if QCursor.pos().y() > parent.height() + parent.y() - 140:
-                    panel.verticalScrollBar().setValue(
-                        panel.verticalScrollBar().value() + 3)
-                elif QCursor.pos().y() < parent.height() - (parent.height() - parent.y()) + 250:
-                    panel.verticalScrollBar().setValue(
-                        panel.verticalScrollBar().value() - 3)
-            event.accept()
-        else:
-            event.ignore()
-        super().dragMoveEvent(event)
-
-    @Slot()
-    def dropEvent(self, event: QDropEvent) -> None:
-        """Override the dropEvent method to customize the drop event
-        - Check if the item to be dropped has the qabstractitemmodeldatalist format
-        - Get the source widget
-        - Get the widget at the current mouse position
-        - Get the items that is being dragged
-        - Remove those items from the source widget
-        - Add those items to the destination widget at the mouse position
-
-        Parameters
-        ----------
-        event : QDropEvent
-            The drop event
-        """
-        if event.mimeData().hasFormat('application/x-qabstractitemmodeldatalist'):
-            source_widget = event.source()
-            dest_widget = QApplication.widgetAt(QCursor().pos()).parent()
-            items = source_widget.selectedItems()
-            for item in items:
-                source_widget.takeItem(source_widget.row(item))
-                dest_index = dest_widget.indexAt(event.pos())
-                if dest_index.isValid():
-                    dest_widget.insertItem(dest_index.row(), item)
-                else:
-                    dest_widget.addItem(item)
-                logging.info(
-                    f'Moved {len(items)} Card(s) ({list(map(lambda x: getattr(x, "data")(Qt.UserRole).title, items))}) '
-                    f'from panel "{getattr(source_widget, "data").title}" to panel "{getattr(dest_widget, "data").title}"')
-                self.change_card(source_widget, dest_widget,
-                                 item.data(Qt.UserRole), dest_widget.count() - 1 if dest_index.row() == -1 else dest_index.row())
-                Database.get_instance().write()
-                event.accept()
-        else:
-            event.ignore()
-        super().dropEvent(event)
 
     @staticmethod
     def card_factory(qlistwidget: QListWidget, parent: Ui_MainWindow, card: Card, font: str,
@@ -904,3 +743,158 @@ class MainScreen(QMainWindow):
         parent.ui.btn_add_board.setFont(QFont(toruspro, 12))
         parent.ui.btn_board_settings.setFont(QFont(toruspro, 12))
         parent.ui.btn_app_settings.setFont(QFont(toruspro, 12))
+
+
+class CustomListWidget(QListWidget):
+    """Custom QListWidget class"""
+
+    def __init__(self: QListWidget, parent: QMainWindow, color: str):
+        super().__init__()
+        self.parent_ = parent
+        self.setObjectName(u"listWidget")
+        size_policy2 = QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Minimum)
+        size_policy2.setHorizontalStretch(0)
+        size_policy2.setVerticalStretch(0)
+        size_policy2.setHeightForWidth(self.sizePolicy().hasHeightForWidth())
+        self.setSizePolicy(size_policy2)
+        self.setMaximumSize(QSize(250, 16777215))
+        self.setFocusPolicy(Qt.TabFocus)
+        self.setAcceptDrops(True)
+        self.setFrameShape(QFrame.NoFrame)
+        self.setSizeAdjustPolicy(
+            QAbstractScrollArea.AdjustIgnored)
+        self.setAutoScroll(True)
+        self.setDragEnabled(True)
+        self.setDragDropMode(QAbstractItemView.DragDrop)
+        self.setDefaultDropAction(Qt.MoveAction)
+        self.setSelectionMode(
+            QAbstractItemView.ExtendedSelection)
+        self.setVerticalScrollMode(
+            QAbstractItemView.ScrollPerPixel)
+        self.setHorizontalScrollMode(
+            QAbstractItemView.ScrollPerPixel)
+        self.setProperty("isWrapping", False)
+        self.setSpacing(5)
+        self.setUniformItemSizes(True)
+        self.setWordWrap(True)
+        self.verticalScrollBar().setSingleStep(10)
+        self.setStyleSheet(
+            f"""
+            QListWidget {{
+                background-color: #ebecf0;
+                border-radius: 10px;
+                color: #000000;
+            }}
+            QListWidget::item {{
+                height: 40px;
+                padding: 0px 8px 0px 8px;
+                background-color: qlineargradient(
+                    spread:pad, x1:0, y1:0.5, x2:0.95, y2:0.5,
+                    stop:0 {color},
+                    stop:0.0338983 {color},
+                    stop:0.039548 rgba(255, 255, 255, 255),
+                    stop:1 rgba(255, 255, 255, 255)
+                );
+                color: #000000;
+                border-radius: 5px;
+            }}
+            QListWidget::item:hover {{
+                background-color: qlineargradient(
+                    spread:pad, x1:0, y1:0.5, x2:0.95, y2:0.5,
+                    stop:0 {color},
+                    stop:0.0338983 {color},
+                    stop:0.039548 rgba(226, 228, 233, 255),
+                    stop:1 rgba(226, 228, 233, 255)
+                );
+                color: #000000;
+            }}
+            QListWidget::item:selected {{
+                background-color: qlineargradient(
+                    spread:pad, x1:0, y1:0.5, x2:0.95, y2:0.5,
+                    stop:0 {color},
+                    stop:0.0338983 {color},
+                    stop:0.039548 rgba(226, 228, 233, 255),
+                    stop:1 rgba(226, 228, 233, 255)
+                );
+                color: #000000;
+            }}
+            QListWidget::item:focus {{
+                background-color: qlineargradient(
+                    spread:pad, x1:0, y1:0.5, x2:0.95, y2:0.5,
+                    stop:0 {color},
+                    stop:0.0338983 {color},
+                    stop:0.039548 rgba(204, 204, 204, 255),
+                    stop:1 rgba(204, 204, 204, 255));
+                    color: #000000
+            }}
+            QScrollBar:vertical {{
+                width: 10px;
+                margin: 0px 0px 0px 0px;
+                background-color: #acb2bf
+            }}
+            QScrollBar:horizontal {{
+                height: 10px;
+                margin: 0px 0px 0px 0px;
+                background-color: #acb2bf
+            }}
+            """
+        )
+
+    @Slot()
+    def dragMoveEvent(self, event):
+        if QCursor().pos().x() > self.parent_.width() + self.parent_.x() + 340:
+            self.parent_.horizontalScrollBar().setValue(
+                self.parent_.horizontalScrollBar().value() + 8)
+        elif QCursor().pos().x() < self.parent_.width() - self.parent_.x() - 240:
+            self.parent_.horizontalScrollBar().setValue(
+                self.parent_.horizontalScrollBar().value() - 8)
+        if event.mimeData().hasFormat("application/x-qabstractitemmodeldatalist"):
+            panel = QApplication.widgetAt(QCursor().pos()).parent()
+            if isinstance(panel, QListWidget):
+                if QCursor.pos().y() > self.parent_.height() + self.parent_.y() + 100:
+                    panel.verticalScrollBar().setValue(
+                        panel.verticalScrollBar().value() + 3)
+                elif QCursor.pos().y() < self.parent_.height() - self.parent_.y() - 200:
+                    panel.verticalScrollBar().setValue(
+                        panel.verticalScrollBar().value() - 3)
+            event.accept()
+        else:
+            event.ignore()
+        super().dragMoveEvent(event)
+
+    @Slot()
+    def dropEvent(self, event: QDropEvent) -> None:
+        """Override the dropEvent method to customize the drop event
+        - Check if the item to be dropped has the qabstractitemmodeldatalist format
+        - Get the source widget
+        - Get the widget at the current mouse position
+        - Get the items that is being dragged
+        - Remove those items from the source widget
+        - Add those items to the destination widget at the mouse position
+
+        Parameters
+        ----------
+        event : QDropEvent
+            The drop event
+        """
+        if event.mimeData().hasFormat('application/x-qabstractitemmodeldatalist'):
+            source_widget = event.source()
+            dest_widget = QApplication.widgetAt(QCursor().pos()).parent()
+            items = source_widget.selectedItems()
+            for item in items:
+                source_widget.takeItem(source_widget.row(item))
+                dest_row = dest_widget.row(dest_widget.itemAt(event.pos()))
+                if dest_row == -1:
+                    dest_row = dest_widget.count()
+                if source_widget == dest_widget:
+                    dest_widget.insertItem(dest_row, item)
+                logging.info(
+                    f'Moved {len(items)} Card(s) ({list(map(lambda x: getattr(x, "data")(Qt.UserRole).title, items))}) '
+                    f'from panel "{getattr(source_widget, "data").title}" to panel "{getattr(dest_widget, "data").title}"')
+                MainScreen.change_card(source_widget, dest_widget,
+                                       item.data(Qt.UserRole), dest_row)
+                Database.get_instance().write()
+                event.accept()
+        else:
+            event.ignore()
+        super().dropEvent(event)
