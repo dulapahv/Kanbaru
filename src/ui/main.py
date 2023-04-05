@@ -748,7 +748,7 @@ class MainScreen(QMainWindow):
 class CustomListWidget(QListWidget):
     """Custom QListWidget class"""
 
-    def __init__(self: QListWidget, parent: QMainWindow, color: str):
+    def __init__(self: QListWidget, parent: QMainWindow, color: str) -> None:
         super().__init__()
         self.parent_ = parent
         self.setObjectName(u"listWidget")
@@ -837,7 +837,7 @@ class CustomListWidget(QListWidget):
         )
 
     @Slot()
-    def dragMoveEvent(self, event):
+    def dragMoveEvent(self, event) -> None:
         if QCursor().pos().x() > self.parent_.width() + self.parent_.x() + 340:
             self.parent_.horizontalScrollBar().setValue(
                 self.parent_.horizontalScrollBar().value() + 8)
