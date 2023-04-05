@@ -761,18 +761,14 @@ class CustomListWidget(QListWidget):
         self.setFocusPolicy(Qt.TabFocus)
         self.setAcceptDrops(True)
         self.setFrameShape(QFrame.NoFrame)
-        self.setSizeAdjustPolicy(
-            QAbstractScrollArea.AdjustIgnored)
+        self.setSizeAdjustPolicy(QAbstractScrollArea.AdjustIgnored)
         self.setAutoScroll(True)
         self.setDragEnabled(True)
         self.setDragDropMode(QAbstractItemView.DragDrop)
         self.setDefaultDropAction(Qt.MoveAction)
-        self.setSelectionMode(
-            QAbstractItemView.ExtendedSelection)
-        self.setVerticalScrollMode(
-            QAbstractItemView.ScrollPerPixel)
-        self.setHorizontalScrollMode(
-            QAbstractItemView.ScrollPerPixel)
+        self.setSelectionMode(QAbstractItemView.ExtendedSelection)
+        self.setVerticalScrollMode(QAbstractItemView.ScrollPerPixel)
+        self.setHorizontalScrollMode(QAbstractItemView.ScrollPerPixel)
         self.setProperty("isWrapping", False)
         self.setSpacing(5)
         self.setUniformItemSizes(True)
