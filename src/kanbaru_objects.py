@@ -87,7 +87,8 @@ class Card(KanbaruObject):
         self.__time = time
 
     def __eq__(self, card):
-        return self.__title == card.title and self.__date == card.date and self.__time == card.time and self.__description == card.description
+        return self.__title == card.title and self.__date == card.date and self.__time == card.time and \
+            self.__description == card.description
 
     def __str__(self):
         return self.__title

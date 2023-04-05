@@ -709,30 +709,28 @@ class MainScreen(QMainWindow):
         parent : Ui_MainWindow
             The main window
         """
-        text = input_dialog_factory(
-            "Add a board", "Enter a new board title: ", btn_color=self.current_board.color)
-        if text is None:
-            return None
-        if not text:
+        while True:
+            text = input_dialog_factory(
+                "Add a board", "Enter a new board title: ", btn_color=self.current_board.color)
+            if text is None:
+                return None
+            elif text:
+                break
             dialog_factory(None, None, "Invalid Title",
                            "Board title cannot be empty!", yes_no=False, btn_color=self.current_board.color)
-            self.add_board(parent)
+        if any(board.title == text for board in Database.get_instance().boards):
+            dialog_factory(None, None, "Invalid Title",
+                           "Board already exists!", yes_no=False, btn_color=self.current_board.color)
+        else:
+            data = Database.get_instance().data
+            data["_Database__data"].append(
+                {"_Board__title": text, "_Board__panels_lists": [], "_Board__color": "LIGHTBLUE"})
+            Database.get_instance().data = data
+            Database.get_instance().write()
+            self.clear_page(parent)
+            self.update_whole_page(parent)
+            self.change_board(parent, Database.get_instance().boards[-1])
             return None
-        for board in Database.get_instance().boards:
-            if board.title == text:
-                dialog_factory(None, None, "Invalid Title",
-                               "Board already exists!", yes_no=False, btn_color=self.current_board.color)
-                self.add_board(parent)
-                return None
-        data = Database.get_instance().data
-        data["_Database__data"].append(
-            {"_Board__title": text, "_Board__panels_lists": [], "_Board__color": "LIGHTBLUE"})
-        Database.get_instance().data = data
-        Database.get_instance().write()
-
-        self.clear_page(parent)
-        self.update_whole_page(parent)
-        self.change_board(parent, Database.get_instance().boards[-1])
 
     def add_panel(self, parent: Ui_MainWindow, board: Board) -> None:
         """Add a new panel
@@ -744,38 +742,38 @@ class MainScreen(QMainWindow):
         board : Board
             The board to add the panel to
         """
-        text = input_dialog_factory(
-            "New panel", "Enter a new panel title:", btn_color=self.current_board.color)
-        if text is None:
-            return None
-        if not text:
+        while True:
+            text = input_dialog_factory(
+                "New panel", "Enter a new panel title:", btn_color=self.current_board.color)
+            if text is None:
+                return None
+            if text:
+                break
             dialog_factory(None, None, "Invalid Title",
                            "Panel title cannot be empty!", yes_no=False, btn_color=self.current_board.color)
-            self.add_panel(parent, board)
-            return None
-        for board_ in Database.get_instance().boards:
-            for panel in board_.panels:
-                if panel.title == text:
-                    dialog_factory(None, None, "Invalid Title",
-                                   "Panel already exists!", yes_no=False, btn_color=self.current_board.color)
-                    self.add_card(parent, board_)
+        if any(panel.title == text for other_board in Database.get_instance().boards for panel in other_board.panels):
+            dialog_factory(None, None, "Invalid Title",
+                           "Panel already exists!", yes_no=False, btn_color=self.current_board.color)
+        else:
+            data = Database.get_instance().data
+            for i, db_board in enumerate(Database.get_instance().boards):
+                if db_board.title == board.title:
+                    panels_list = data["_Database__data"][i]["_Board__panels_lists"]
+                    try:
+                        panel = {"_Panel__title": text,
+                                 "_Board__panels": []}
+                        panels_list.append(panel)
+                    except KeyError:
+                        panels_list = [
+                            {"_Panel__title": text, "_Board__panels": []}]
+                        data["_Database__data"][i]["_Board__panels_lists"] = panels_list
+                    Database.get_instance().data = data
+                    Database.get_instance().write()
+                    self.change_board(
+                        parent, Database.get_instance().boards[i])
+                    parent.ui.scrollArea_panel_right.horizontalScrollBar().setValue(
+                        parent.ui.scrollArea_panel_right.horizontalScrollBar().maximum())
                     return None
-        data = Database.get_instance().data
-        for i in range(len(Database.get_instance().boards)):
-            if Database.get_instance().boards[i].title == board.title:
-                print(Database.get_instance().boards[i].title, board.title)
-                try:
-                    data["_Database__data"][i]["_Board__panels_lists"].append(
-                        {"_Panel__title": text, "_Board__panels": []})
-                except KeyError:
-                    data["_Database__data"][i]["_Board__panels_lists"] = [
-                        {"_Panel__title": text, "_Board__panels": []}]
-                Database.get_instance().data = data
-                Database.get_instance().write()
-                self.change_board(
-                    parent, Database.get_instance().boards[i])
-        parent.ui.scrollArea_panel_right.horizontalScrollBar().setValue(
-            parent.ui.scrollArea_panel_right.horizontalScrollBar().maximum())
 
     def add_card(self, parent: Ui_MainWindow, panel: Panel) -> None:
         """Add a new card
@@ -787,27 +785,24 @@ class MainScreen(QMainWindow):
         panel : Panel
             The panel to add the card to
         """
-        text = input_dialog_factory(
-            "New card", "Enter a new card title:", btn_color=self.current_board.color)
-        if text is None:
-            return None
-        if not text:
+        while True:
+            text = input_dialog_factory(
+                "New card", "Enter a new card title:", btn_color=self.current_board.color)
+            if text is None:
+                return None
+            if text:
+                break
             dialog_factory(None, None, "Invalid Title",
                            "Card title cannot be empty!", yes_no=False, btn_color=self.current_board.color)
-            self.add_card(parent, panel)
-            return None
-        for board in Database.get_instance().boards:
-            for panel_ in board.panels:
-                for card in panel_.cards:
-                    if card.title == text:
+        data = Database.get_instance().data
+        for i, board in enumerate(Database.get_instance().boards):
+            for j, panel_ in enumerate(board.panels):
+                if panel_.title == panel.title:
+                    if any(card.title == text for card in panel_.cards):
                         dialog_factory(None, None, "Invalid Title",
                                        "Card already exists!", yes_no=False, btn_color=self.current_board.color)
                         self.add_card(parent, panel)
                         return None
-        data = Database.get_instance().data
-        for i in range(len(Database.get_instance().boards)):
-            for j in range(len(Database.get_instance().boards[i].panels)):
-                if Database.get_instance().boards[i].panels[j].title == panel.title:
                     try:
                         data["_Database__data"][i]["_Board__panels_lists"][j]["_Board__panels"].append(
                             {"_Card__title": text, "_Card__description": "",
@@ -822,7 +817,7 @@ class MainScreen(QMainWindow):
                     Database.get_instance().write()
                     self.change_board(
                         parent, Database.get_instance().boards[i])
-        # TODO: Scroll to the bottom after adding a card
+        # Scroll to the bottom after adding a card
         try:
             current_panel = QApplication.widgetAt(QCursor().pos()).parent()
             current_panel.verticalScrollBar().setValue(
@@ -875,23 +870,19 @@ class MainScreen(QMainWindow):
             The card to move
         """
         data = Database.get_instance().data
-        for i in range(len(data["_Database__data"][0]["_Board__panels_lists"])):
-            if data["_Database__data"][0]["_Board__panels_lists"][i]["_Panel__title"] == getattr(source, "data").title:
-                source_list = data["_Database__data"][0]["_Board__panels_lists"][i]
-                for j in range(len(source_list["_Board__panels"])):
-                    if source_list["_Board__panels"][j]["_Card__title"] == card.title:
-                        card_to_move = source_list["_Board__panels"].pop(j)
-                        break
-        for i in range(len(data["_Database__data"][0]["_Board__panels_lists"])):
-            if data["_Database__data"][0]["_Board__panels_lists"][i]["_Panel__title"] == getattr(destination,
-                                                                                                 "data").title:
-                dest_list = data["_Database__data"][0]["_Board__panels_lists"][i]
-                try:
-                    dest_list["_Board__panels"].append(card_to_move)
-                except KeyError:
-                    dest_list["_Board__panels"] = [card_to_move]
-                break
-        Database.get_instance().data = data
+        source_list = next((lst for lst in data.get("_Database__data", [{}])[0].get("_Board__panels_lists", [])
+                            if lst.get("_Panel__title") == getattr(source, "data").title), {})
+        card_to_move = next((card_ for card_ in source_list.get("_Board__panels", [])
+                            if card_.get("_Card__title") == card.title), {})
+        if card_to_move:
+            source_list["_Board__panels"].remove(card_to_move)
+            dest_list = next((lst for lst in data.get("_Database__data", [{}])[0].get("_Board__panels_lists", [])
+                              if lst.get("_Panel__title") == getattr(destination, "data").title), {})
+            try:
+                dest_list["_Board__panels"].append(card_to_move)
+            except KeyError:
+                dest_list["_Board__panels"] = [card_to_move]
+            Database.get_instance().data = data
 
     @staticmethod
     def clear_page(parent: Ui_MainWindow) -> None:

@@ -131,8 +131,8 @@ class Database:
         try:
             with open(self._db_path, "r") as f:
                 self.__data = json.load(f)
-                self.__username = self.__data["_Database__username"]
-                self.__password = self.__data["_Database__password"]
+                self.__username = self.__data.get("_Database__username", "")
+                self.__password = self.__data.get("_Database__password", "")
                 logging.info("Database read from the database file")
         except FileNotFoundError:
             logging.warning(
@@ -194,8 +194,8 @@ class Database:
         ref = db.reference(username)
         try:
             self.__data = ref.get()
-            self.username = self.__data["_Database__username"]
-            self.password = self.__data["_Database__password"]
+            self.username = self.__data.get("_Database__username")
+            self.password = self.__data.get("_Database__password")
             logging.info("Database pulled from Firebase")
             Database.write(self)
         except Exception as e:
@@ -346,19 +346,17 @@ class Database:
             for index_l, panel in enumerate(board.panels):
                 for index_c, card in enumerate(panel.cards):
                     if card == card_old:
-                        self.data["_Database__data"][index_b]["_Board__panels_lists"][index_l]["_Board__panels"][index_c][
-                            "_Card__title"] = card_new.title
-                        self.data["_Database__data"][index_b]["_Board__panels_lists"][index_l]["_Board__panels"][index_c][
-                            "_Card__description"] = card_new.description
-                        self.data["_Database__data"][index_b]["_Board__panels_lists"][index_l]["_Board__panels"][index_c][
-                            "_Card__date"] = card_new.date
-                        self.data["_Database__data"][index_b]["_Board__panels_lists"][index_l]["_Board__panels"][index_c][
-                            "_Card__time"] = card_new.time
+                        card_dict = self.data.get("_Database__data")[index_b].get(
+                            "_Board__panels_lists")[index_l].get("_Board__panels")[index_c]
+                        card_dict["_Card__title"] = card_new.title
+                        card_dict["_Card__description"] = card_new.description
+                        card_dict["_Card__date"] = card_new.date
+                        card_dict["_Card__time"] = card_new.time
                         Database.write(self)
                         return None
 
     def update_panel(self: "Database", panel_old: Panel, panel_new: Panel) -> None:
-        """Update panel info in dataabase
+        """Update panel info in database
 
         Parameters
         ----------
@@ -370,8 +368,9 @@ class Database:
         for index_b, board in enumerate(self.boards):
             for index_l, panel in enumerate(board.panels):
                 if panel == panel_old:
-                    self.data["_Database__data"][index_b]["_Board__panels_lists"][index_l][
-                        "_Panel__title"] = panel_new.title
+                    panel_dict = self.data.get("_Database__data")[index_b].get(
+                        "_Board__panels_lists")[index_l]
+                    panel_dict["_Panel__title"] = panel_new.title
                     Database.write(self)
                     return None
 
@@ -387,8 +386,9 @@ class Database:
         """
         for index_b, board in enumerate(self.boards):
             if board == board_old:
-                self.data["_Database__data"][index_b]["_Board__title"] = board_new.title
-                self.data["_Database__data"][index_b]["_Board__color"] = board_new.color
+                board_dict = self.data.get("_Database__data")[index_b]
+                board_dict["_Board__title"] = board_new.title
+                board_dict["_Board__color"] = board_new.color
                 Database.write(self)
                 return None
 
