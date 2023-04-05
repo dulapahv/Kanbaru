@@ -78,8 +78,7 @@ class Database:
         The database file is a JSON file.
         """
         try:
-            if not os.path.exists(self._db_path):
-                os.makedirs(os.path.dirname(self._db_path), exist_ok=True)
+            os.makedirs(os.path.dirname(self._db_path), exist_ok=True)
             with open(self._db_path, "w") as f:
                 json.dump(vars(self.get_instance()), f, indent=4)
             logging.info("Database file created")
