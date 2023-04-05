@@ -142,3 +142,6 @@ dmypy.json
 
 # Naisho No Hanashi
 /src/resources/kanbaru-credentials.json
+
+# Easter egg generated file
+/src/resources/img/rainydevil.png

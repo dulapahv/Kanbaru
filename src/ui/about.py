@@ -3,7 +3,7 @@ from PySide6.QtGui import *
 from PySide6.QtWidgets import *
 
 from ui.ui_about import Ui_About
-
+from base64 import b64decode
 
 class About(QMainWindow):
     def __init__(self, color: str) -> None:
@@ -35,11 +35,20 @@ class About(QMainWindow):
             return None
         super().deleteLater()
 
+# TODO: Make Suruga Kanbaru not stretched out
     def easter_egg(self) -> None:
         self.count += 1
         if self.count == 5:
             print("Easter egg found!")
-        ...
+            with open("src/resources/img/rainydevil.txt", "r") as f:
+                b64data = f.read()
+                data = b64decode(b64data)
+                rainydevilpic = QPixmap()
+                rainydevilpic.loadFromData(data, "PNG")
+                rainydevilpic = rainydevilpic.scaled(100, 100, Qt.KeepAspectRatio)
+                self.ui.label_logo_bottom.setPixmap(rainydevilpic)
+                self.ui.label_logo_bottom.setScaledContents(True)
+                
 
     def paintEvent(self, event):
         painter = QPainter(self)
