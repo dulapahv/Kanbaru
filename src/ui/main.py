@@ -423,6 +423,8 @@ class MainScreen(QMainWindow):
         listWidget.clicked.connect(
             lambda event: self.show_card_description(event, listWidget, parent, color))
 
+        listWidget.verticalScrollBar().setSingleStep(10)
+
         parent.ui.label_list.setText(
             QCoreApplication.translate("MainWindow", panel.title[:25] + (panel.title[25:] and '...'), None))
         parent.ui.btn_add_card.setText(
@@ -683,10 +685,13 @@ class MainScreen(QMainWindow):
         card_description.show()
         while card_description.isVisible():
             QCoreApplication.processEvents()
+        # TODO: Save scrollbar position
+        pos = list_widget.verticalScrollBar().sliderPosition()
+        print(pos)
         self.clear_page(parent)
         self.update_whole_page(parent)
         self.change_board(parent, self.get_updated_board(self.current_board))
-        # TODO: Save scrollbar position
+        list_widget.verticalScrollBar().setSliderPosition(pos)
 
     @staticmethod
     def get_updated_board(current_board: Board) -> Board:
@@ -817,13 +822,6 @@ class MainScreen(QMainWindow):
                     Database.get_instance().write()
                     self.change_board(
                         parent, Database.get_instance().boards[i])
-        # Scroll to the bottom after adding a card
-        try:
-            current_panel = QApplication.widgetAt(QCursor().pos()).parent()
-            current_panel.verticalScrollBar().setValue(
-                current_panel.verticalScrollBar().maximum())
-        except AttributeError:
-            pass
 
     def change_board(self, parent: Ui_MainWindow, board: Board) -> None:
         """Change the board to the specified board

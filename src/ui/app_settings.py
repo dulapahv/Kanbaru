@@ -50,6 +50,8 @@ class AppSettings(QMainWindow):
             event, parent, dialog_factory(parent, self.delete_account, "Delete Account",
                                           "Are you sure you want to delete your account?\nThis action cannot be undone."))
 
+        self.ui.listWidget_manage_board.verticalScrollBar().setSingleStep(10)
+
         self.setup_font()
 
         self.ui.listWidget_manage_board.addItems(

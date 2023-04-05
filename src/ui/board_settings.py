@@ -33,6 +33,8 @@ class BoardSettings(QMainWindow):
         self.ui.btn_cancel.keyPressEvent = lambda event: keyPressEvent(
             event, function=self.close)
 
+        self.ui.listWidget_manage_panel.verticalScrollBar().setSingleStep(10)
+
         self.board = board
         self.title = board.title
         self.color = board.color
