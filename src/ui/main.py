@@ -96,7 +96,8 @@ class MainScreen(QMainWindow):
 
         self.setup_font(parent, "TorusPro.ttf")
 
-        parent.ui.label_logo.mousePressEvent = lambda event: self.show_about(event)
+        parent.ui.label_logo.mousePressEvent = lambda event: self.show_about(
+            event)
 
     def show_about(self, event) -> None:
         """Shows the about dialog"""

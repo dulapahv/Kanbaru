@@ -23,7 +23,7 @@ class Ui_About(object):
     def setupUi(self, About):
         if not About.objectName():
             About.setObjectName(u"About")
-        About.resize(628, 396)
+        About.resize(628, 398)
         About.setStyleSheet(u"background-color: #454c5a;")
         self.centralwidget = QWidget(About)
         self.centralwidget.setObjectName(u"centralwidget")
@@ -79,7 +79,7 @@ class Ui_About(object):
 
         self.verticalLayout_2.addLayout(self.horizontalLayout)
 
-        self.verticalSpacer_2 = QSpacerItem(20, 25, QSizePolicy.Minimum, QSizePolicy.Preferred)
+        self.verticalSpacer_2 = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Preferred)
 
         self.verticalLayout_2.addItem(self.verticalSpacer_2)
 
@@ -150,9 +150,9 @@ class Ui_About(object):
         self.label_logo_top.setText("")
         self.label_title.setText(QCoreApplication.translate("About", u"Kanbaru", None))
         self.label_sub_title.setText(QCoreApplication.translate("About", u"Kanban Project Manager", None))
-        self.label_description.setText(QCoreApplication.translate("About", u"<html><head/><body><p>Kanbaru is a group project for Software Engineering Principle course, KMITL Software Engineering, year 2, semester 2.</p><p>Developed by:</p></body></html>", None))
-        self.label_description_2.setText(QCoreApplication.translate("About", u"<html><head/><body><p>1. Dulapah Vibulsanti (<a href=\"https://github.com/dulapahv\"><span style=\" text-decoration: underline; color:#fb568a;\">github/dulapahv</span></a>)</p><p>2. Anucha Cheewachanon (<a href=\"https://github.com/SpiralNuggets\"><span style=\" text-decoration: underline; color:#fb568a;\">github/SpiralNuggets</span></a>)</p><p>3. Annopdanai Pamarapa (<a href=\"https://github.com/beam2546\"><span style=\" text-decoration: underline; color:#fb568a;\">github/beam2546</span></a>)</p></body></html>", None))
-        self.label_license.setText(QCoreApplication.translate("About", u"<html><head/><body><p>Kanbaru is released under the MIT license. See <a href=\"https://github.com/dulapahv/Kanbaru/blob/main/LICENSE\"><span style=\" text-decoration: underline; color:#fb568a;\">LICENSE</span></a> for more information.</p></body></html>", None))
+        self.label_description.setText(QCoreApplication.translate("About", u"<html><head/><body><p>Kanbaru is a group project for Software Engineering Principle course, KMITL Software Engineering, year 2, semester 2.</p><p><span style=\" font-weight:700;\">Developed by:</span></p></body></html>", None))
+        self.label_description_2.setText(QCoreApplication.translate("About", u"<html><head/><body><p>1. Dulapah Vibulsanti (<a href=\"https://github.com/dulapahv\"><span style=\" font-weight:700; text-decoration: underline; color:#fb568a;\">github/dulapahv</span></a>)</p><p>2. Anucha Cheewachanon (<a href=\"https://github.com/SpiralNuggets\"><span style=\" font-weight:700; text-decoration: underline; color:#fb568a;\">github/SpiralNuggets</span></a>)</p><p>3. Annopdanai Pamarapa (<a href=\"https://github.com/beam2546\"><span style=\" font-weight:700; text-decoration: underline; color:#fb568a;\">github/beam2546</span></a>)</p><p><span style=\" font-weight:700;\">View Kanbaru on </span><a href=\"https://github.com/dulapahv/Kanbaru\"><span style=\" font-weight:700; text-decoration: underline; color:#fb568a;\">Github</span></a></p></body></html>", None))
+        self.label_license.setText(QCoreApplication.translate("About", u"<html><head/><body><p>Kanbaru is released under the MIT license. See <a href=\"https://github.com/dulapahv/Kanbaru/blob/main/LICENSE\"><span style=\" font-weight:700; text-decoration: underline; color:#fb568a;\">LICENSE</span></a> for more information.</p></body></html>", None))
         self.label_logo_bottom.setText("")
     # retranslateUi
 

@@ -93,12 +93,14 @@ class BoardSettings(QMainWindow):
         selected_all = self.ui.listWidget_manage_panel.selectedItems()
         if len(selected_all) == 0:
             dialog_factory(None, None, "Invalid Selection",
-                           "Please select a panel to delete. You can also select multiple panels to delete at the same time.", yes_no=False, btn_color=self.color)
+                           "Please select a panel to delete. You can also select multiple panels to delete at the "
+                           "same time.", yes_no=False, btn_color=self.color)
             return None
         msg_list = '\n'.join(
             ["  - " + item for item in list(map(lambda x: x.text(), selected_all))])
         if dialog_factory(None, None, "Delete Panel",
-                          f"Are you sure you want to delete {'these panels' if len(selected_all) > 1 else 'this panel'}?\n{msg_list}\n\nYou can still undo by pressing the Cancel button.", btn_color=self.color):
+                          f"Are you sure you want to delete {'these panels' if len(selected_all) > 1 else 'this panel'}"
+                          f"?\n{msg_list}\n\nYou can still undo by pressing the Cancel button.", btn_color=self.color):
             for selected_panel in selected_all:
                 panel_obj = next(
                     (panel for panel in self.board.panels if panel.title == selected_panel.text()), None)
@@ -142,7 +144,8 @@ class BoardSettings(QMainWindow):
     @property
     def color(self) -> str:
         button = next((btn for btn in (self.ui.btn_color_1, self.ui.btn_color_2, self.ui.btn_color_3,
-                                       self.ui.btn_color_4, self.ui.btn_color_5, self.ui.btn_color_6) if btn.isChecked()), None)
+                                       self.ui.btn_color_4, self.ui.btn_color_5, self.ui.btn_color_6)
+                       if btn.isChecked()), None)
         match button:
             case self.ui.btn_color_1:
                 return Color.LIGHTBLUE._value_

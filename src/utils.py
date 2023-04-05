@@ -95,7 +95,8 @@ def setup_font_db(font: str) -> QFontDatabase:
     return QFontDatabase.applicationFontFamilies(font_database)
 
 
-def dialog_factory(parent: QMainWindow, function: Callable, title: str, msg: str, yes_no: bool = True, btn_color: str = "#6badee") -> bool:
+def dialog_factory(parent: QMainWindow, function: Callable, title: str, msg: str, yes_no: bool = True, btn_color:
+                   str = "#6badee") -> bool:
     """Creates a dialog box with a title, message, and two buttons.
 
     Parameters
