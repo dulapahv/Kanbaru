@@ -20,7 +20,7 @@ class Database:
     _instance: "Database" = None
 
     def __init__(self: "Database") -> None:
-        self._db_path = None
+        self._db_path: str = None
         assert Database._instance is None, "Database class is a singleton class!"
         Database._instance = self
 

@@ -19,9 +19,9 @@ class AppSettings(QMainWindow):
         self.ui: Ui_SettingsWindow = Ui_SettingsWindow()
         self.ui.setupUi(self)
 
-        self.board = board
-        self.title = board.title
-        self.color = board.color
+        self.board: Board = board
+        self.title: str = board.title
+        self.color: str = board.color
         self.boards_to_delete: List[Board] = []
 
         self.ui.btn_delete.clicked.connect(self.delete)
@@ -95,7 +95,7 @@ class AppSettings(QMainWindow):
 
     def show_about(self, event, color: str) -> None:
         """Shows the about dialog"""
-        self.about = About(color)
+        self.about: About = About(color)
         self.about.show()
 
     def delete(self, event) -> None:

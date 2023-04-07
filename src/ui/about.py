@@ -11,10 +11,10 @@ class About(QMainWindow):
     def __init__(self, color: str) -> None:
         QMainWindow.__init__(self)
 
-        self.ui = Ui_About()
+        self.ui: Ui_About = Ui_About()
         self.ui.setupUi(self)
 
-        self.count = 0
+        self.count: int = 0
 
         self.ui.centralwidget.mousePressEvent = lambda event: self.deleteLater()
         self.ui.label_logo_bottom.mousePressEvent = lambda event: self.easter_egg()
