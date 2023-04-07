@@ -138,7 +138,17 @@ class AppSettings(QMainWindow):
             return None
         text = input_dialog_factory(
             "Rename Board", "Enter new board name:", selected_all[0].text(), btn_color=self.color)
-        print(text)
+        if text is None:
+            return None
+        board_obj = next(
+            (board for board in Database.get_instance().boards if board.title == selected_all[0].text()), None)
+        self.title = text
+        Database.get_instance().update_board(board_obj, self)
+        self.ui.listWidget_manage_board.takeItem(
+            self.ui.listWidget_manage_board.row(selected_all[0]))
+        board_obj.title = text
+        self.ui.listWidget_manage_board.insertItem(
+            self.ui.listWidget_manage_board.currentRow() + 1, board_obj.title)
 
     def save(self) -> None:
         for board in self.boards_to_delete:
@@ -158,6 +168,9 @@ class AppSettings(QMainWindow):
         self.close()
         from ui.welcome import WelcomeScreen
         WelcomeScreen(parent)
+
+    def get_board_index(self) -> int:
+        return self.ui.listWidget_manage_board.currentRow()
 
     def setup_font(self) -> None:
         toruspro = setup_font_db("TorusPro.ttf")[0]

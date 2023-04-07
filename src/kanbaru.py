@@ -11,7 +11,7 @@ try:
     from ui.welcome import WelcomeScreen
     from utils import get_current_directory
 except ModuleNotFoundError:
-    from tkinter import messagebox, Tk
+    from tkinter import Tk, messagebox
 
     root = Tk()
     root.withdraw()

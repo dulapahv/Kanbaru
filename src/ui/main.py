@@ -433,20 +433,15 @@ class MainScreen(QMainWindow):
             """
         )
         parent.ui.verticalLayout_9.addWidget(parent.ui.btn_add_list)
-
         parent.ui.vertSpacer_list_add = QSpacerItem(
             20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
-
         parent.ui.verticalLayout_9.addItem(parent.ui.vertSpacer_list_add)
         parent.ui.btn_add_list.setText(
             QCoreApplication.translate("MainWindow", u"+ Add a panel", None))
-
         parent.ui.scrollAreaContent_panel_right.layout().addWidget(parent.ui.list_add)
         parent.ui.horzSpacer_panel_right = QSpacerItem(
             40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
-
         parent.ui.horizontalLayout_5.addItem(parent.ui.horzSpacer_panel_right)
-
         parent.ui.btn_add_list.clicked.connect(
             lambda: self.add_panel(parent, board))
 
@@ -468,7 +463,9 @@ class MainScreen(QMainWindow):
             QCoreApplication.processEvents()
         self.clear_page(parent)
         self.update_whole_page(parent)
-        self.change_board(parent, self.get_updated_board(self.current_board))
+        index = app_settings.get_board_index()
+        if index != -1:
+            self.change_board(parent, Database.get_instance().boards[index])
 
     def show_board_settings(self, event, parent: QMainWindow) -> None:
         """Show the board settings window
@@ -506,13 +503,9 @@ class MainScreen(QMainWindow):
         card_description.show()
         while card_description.isVisible():
             QCoreApplication.processEvents()
-        # TODO: Save scrollbar position
-        pos = list_widget.verticalScrollBar().sliderPosition()
-        print(pos)
         self.clear_page(parent)
         self.update_whole_page(parent)
         self.change_board(parent, self.get_updated_board(self.current_board))
-        list_widget.verticalScrollBar().setSliderPosition(pos)
 
     @staticmethod
     def get_updated_board(current_board: Board) -> Board:

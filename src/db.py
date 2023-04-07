@@ -6,7 +6,7 @@ from typing import Dict, List
 import firebase_admin
 from firebase_admin import credentials, db
 
-from kanbaru_objects import Board, Card, Panel
+from kanbaru_objects import Board, Card, Color, Panel
 
 
 class Database:
@@ -388,7 +388,7 @@ class Database:
             if board == board_old:
                 board_dict = self.data.get("_Database__data")[index_b]
                 board_dict["_Board__title"] = board_new.title
-                board_dict["_Board__color"] = board_new.color
+                board_dict["_Board__color"] = Color(board_new.color).name
                 Database.write(self)
                 return None
 
