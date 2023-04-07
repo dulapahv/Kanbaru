@@ -309,7 +309,7 @@ class Ui_SettingsWindow(object):
         QWidget.setTabOrder(self.btn_logout, self.btn_delete_account)
         QWidget.setTabOrder(self.btn_delete_account, self.btn_cancel)
         QWidget.setTabOrder(self.btn_cancel, self.btn_save)
-        QWidget.setTabOrder(self.btn_save, self.widget)
+        QWidget.setTabOrder(self.btn_save, self.widget1)
 
         self.retranslateUi(SettingsWindow)
 

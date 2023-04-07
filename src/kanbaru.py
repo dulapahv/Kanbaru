@@ -3,7 +3,7 @@ import os
 import sys
 
 try:
-    from PySide6.QtWidgets import QApplication, QMainWindow, QMessageBox
+    from PySide6.QtWidgets import QApplication, QMainWindow
 
     from auth import Auth
     from db import Database

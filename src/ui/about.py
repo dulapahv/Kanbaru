@@ -1,9 +1,10 @@
-from PySide6.QtCore import *
-from PySide6.QtGui import *
-from PySide6.QtWidgets import *
+from base64 import b64decode
+
+from PySide6.QtCore import QCoreApplication, Qt
+from PySide6.QtGui import QPainter, QPainterPath, QPixmap, QRegion
+from PySide6.QtWidgets import QMainWindow
 
 from ui.ui_about import Ui_About
-from base64 import b64decode
 
 
 class About(QMainWindow):

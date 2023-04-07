@@ -1,9 +1,8 @@
 import logging
-from typing import Callable, List
+from typing import List
 
-from PySide6.QtCore import *
-from PySide6.QtGui import *
-from PySide6.QtWidgets import *
+from PySide6.QtGui import QFont
+from PySide6.QtWidgets import QMainWindow
 
 from db import Database
 from kanbaru_objects import Board
@@ -98,16 +97,6 @@ class AppSettings(QMainWindow):
         """Shows the about dialog"""
         self.about = About(color)
         self.about.show()
-
-    @staticmethod
-    def dialog_factory(parent: QMainWindow, function: Callable, title: str, msg: str) -> None:
-        dialog = QMessageBox()
-        dialog.setIcon(QMessageBox.Information)
-        dialog.setWindowTitle(title)
-        dialog.setText(msg)
-        dialog.setStandardButtons(QMessageBox.Yes | QMessageBox.No)
-        if dialog.exec() == QMessageBox.Yes:
-            function(parent)
 
     def delete(self, event) -> None:
         selected_all = self.ui.listWidget_manage_board.selectedItems()

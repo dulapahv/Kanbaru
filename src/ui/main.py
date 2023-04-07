@@ -1,9 +1,12 @@
 import datetime
 import logging
 
-from PySide6.QtCore import *
-from PySide6.QtGui import *
-from PySide6.QtWidgets import *
+from PySide6.QtCore import QCoreApplication, QSize, Qt, Slot
+from PySide6.QtGui import QCursor, QDropEvent, QFont
+from PySide6.QtWidgets import (QAbstractItemView, QAbstractScrollArea,
+                               QApplication, QFrame, QLabel, QListWidget,
+                               QListWidgetItem, QMainWindow, QPushButton,
+                               QSizePolicy, QSpacerItem, QVBoxLayout, QWidget)
 
 from db import Database
 from kanbaru_objects import Board, Card, Panel
@@ -14,15 +17,6 @@ from ui.card_description import CardDescription
 from ui.ui_main import Ui_MainWindow
 from utils import (dialog_factory, hex_to_rgba, input_dialog_factory,
                    keyPressEvent, modify_hex_color, setup_font_db)
-
-# from PySide6.QtCore import QCoreApplication, QSize, Qt, Slot
-# from PySide6.QtGui import (QCursor, QDragEnterEvent, QDragMoveEvent,
-#                            QDropEvent, QFont)
-# from PySide6.QtWidgets import (QAbstractItemView, QAbstractScrollArea,
-#                                QApplication, QFrame, QLabel,
-#                                QListWidget, QListWidgetItem, QMainWindow,
-#                                QPushButton, QSizePolicy, QSpacerItem,
-#                                QVBoxLayout, QWidget)
 
 
 class MainScreen(QMainWindow):

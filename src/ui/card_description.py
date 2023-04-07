@@ -1,6 +1,6 @@
-from PySide6.QtCore import *
-from PySide6.QtGui import *
-from PySide6.QtWidgets import *
+from PySide6.QtCore import QDate, QTime
+from PySide6.QtGui import QFont
+from PySide6.QtWidgets import QMainWindow
 
 from db import Database
 from kanbaru_objects import Card

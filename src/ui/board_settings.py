@@ -1,11 +1,10 @@
 from typing import List
 
-from PySide6.QtCore import *
-from PySide6.QtGui import *
-from PySide6.QtWidgets import *
+from PySide6.QtGui import QFont
+from PySide6.QtWidgets import QMainWindow
 
 from db import Database
-from kanbaru_objects import Board, Color, Panel
+from kanbaru_objects import Board, Color
 from ui.ui_board_settings import Ui_BoardWindow
 from utils import (dialog_factory, input_dialog_factory, keyPressEvent,
                    modify_hex_color, setup_font_db)
