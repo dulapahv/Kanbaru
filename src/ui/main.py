@@ -835,26 +835,23 @@ class CustomListWidget(QListWidget):
         event : QDragMoveEvent
             The drag and drop event
         """
-        cursor_pos = QCursor().pos()
-        if cursor_pos.x() > self.parent_.width() + self.parent_.x() + 340:
+        cursor_pos = self.parent_.mapFromGlobal(QCursor.pos())
+        if cursor_pos.x() > self.parent_.width() + self.parent_.x() - 100:
             self.parent_.horizontalScrollBar().setValue(
                 self.parent_.horizontalScrollBar().value() + 8)
-        elif cursor_pos.x() < self.parent_.width() - self.parent_.x() - 240:
+        elif cursor_pos.x() < self.parent_.x() + 100:
             self.parent_.horizontalScrollBar().setValue(
                 self.parent_.horizontalScrollBar().value() - 8)
 
-        panel = QApplication.widgetAt(cursor_pos).parent()
-        if isinstance(panel, QListWidget) and event.mimeData().hasFormat("application/x-qabstractitemmodeldatalist"):
-            if cursor_pos.y() > self.parent_.height() + self.parent_.y() + 100:
-                panel.verticalScrollBar().setValue(
-                    panel.verticalScrollBar().value() + 3)
-            elif cursor_pos.y() < self.parent_.height() - self.parent_.y() - 200:
-                panel.verticalScrollBar().setValue(
-                    panel.verticalScrollBar().value() - 3)
-            event.accept()
+        panel = QApplication.widgetAt(cursor_pos)
+        if panel is not None:
+            panel = panel.parent()
+            if isinstance(panel, QListWidget) and event.mimeData().hasFormat("application/x-qabstractitemmodeldatalist"):
+                event.accept()
+            else:
+                event.ignore()
         else:
             event.ignore()
-
         super().dragMoveEvent(event)
 
     @Slot()
@@ -882,9 +879,10 @@ class CustomListWidget(QListWidget):
                 source_widget.takeItem(source_widget.row(item))
 
                 dest_row = dest_widget.row(dest_widget.itemAt(event.pos()))
+                if isinstance(dest_row, QListWidget):
+                    event.ignore()
                 if dest_row == -1:
                     dest_row = dest_widget.count()
-
                 if source_widget == dest_widget:
                     dest_widget.insertItem(dest_row, item)
 
