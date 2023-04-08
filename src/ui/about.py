@@ -55,7 +55,6 @@ class About(QMainWindow):
             return None
         super().deleteLater()
 
-# TODO: Make Suruga Kanbaru not stretched out
     def easter_egg(self) -> None:
         self.count += 1
         if self.count == 5:
@@ -69,6 +68,10 @@ class About(QMainWindow):
                     100, 100, Qt.KeepAspectRatio)
                 self.ui.label_logo_bottom.setPixmap(rainydevilpic)
                 self.ui.label_logo_bottom.setScaledContents(True)
+                self.ui.label_logo_bottom.setContentsMargins(0, 0, 0, 0)
+                self.ui.label_logo_bottom.setFixedSize(100, 100)
+                # set new window size to fit new image
+                self.setFixedSize(628, 458)
 
     @overrides(QMainWindow)
     def paintEvent(self, event):
