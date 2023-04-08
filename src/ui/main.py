@@ -9,14 +9,15 @@ from PySide6.QtWidgets import (QAbstractItemView, QAbstractScrollArea,
                                QSizePolicy, QSpacerItem, QVBoxLayout, QWidget)
 
 from db import Database
+from dialog import dialog_factory, input_dialog_factory
 from kanbaru_objects import Board, Card, Panel
 from ui.about import About
 from ui.app_settings import AppSettings
 from ui.board_settings import BoardSettings
 from ui.card_description import CardDescription
 from ui.ui_main import Ui_MainWindow
-from utils import (dialog_factory, hex_to_rgba, input_dialog_factory,
-                   keyPressEvent, modify_hex_color, setup_font_db)
+from utils import (hex_to_rgba, keyPressEvent, modify_hex_color, overrides,
+                   setup_font_db)
 
 
 class MainScreen(QMainWindow):
@@ -823,36 +824,49 @@ class CustomListWidget(QListWidget):
         )
 
     @Slot()
+    @overrides(QListWidget)
     def dragMoveEvent(self, event) -> None:
-        if QCursor().pos().x() > self.parent_.width() + self.parent_.x() + 340:
+        """Override the dragMoveEvent method to customize the drag and drop event
+        - Scroll the list widget when the cursor is near the top or bottom of the list widget
+        - Scroll the main window when the cursor is near the left or right of the main window
+
+        Parameters
+        ----------
+        event : QDragMoveEvent
+            The drag and drop event
+        """
+        cursor_pos = QCursor().pos()
+        if cursor_pos.x() > self.parent_.width() + self.parent_.x() + 340:
             self.parent_.horizontalScrollBar().setValue(
                 self.parent_.horizontalScrollBar().value() + 8)
-        elif QCursor().pos().x() < self.parent_.width() - self.parent_.x() - 240:
+        elif cursor_pos.x() < self.parent_.width() - self.parent_.x() - 240:
             self.parent_.horizontalScrollBar().setValue(
                 self.parent_.horizontalScrollBar().value() - 8)
-        if event.mimeData().hasFormat("application/x-qabstractitemmodeldatalist"):
-            panel = QApplication.widgetAt(QCursor().pos()).parent()
-            if isinstance(panel, QListWidget):
-                if QCursor.pos().y() > self.parent_.height() + self.parent_.y() + 100:
-                    panel.verticalScrollBar().setValue(
-                        panel.verticalScrollBar().value() + 3)
-                elif QCursor.pos().y() < self.parent_.height() - self.parent_.y() - 200:
-                    panel.verticalScrollBar().setValue(
-                        panel.verticalScrollBar().value() - 3)
+
+        panel = QApplication.widgetAt(cursor_pos).parent()
+        if isinstance(panel, QListWidget) and event.mimeData().hasFormat("application/x-qabstractitemmodeldatalist"):
+            if cursor_pos.y() > self.parent_.height() + self.parent_.y() + 100:
+                panel.verticalScrollBar().setValue(
+                    panel.verticalScrollBar().value() + 3)
+            elif cursor_pos.y() < self.parent_.height() - self.parent_.y() - 200:
+                panel.verticalScrollBar().setValue(
+                    panel.verticalScrollBar().value() - 3)
             event.accept()
         else:
             event.ignore()
+
         super().dragMoveEvent(event)
 
     @Slot()
+    @overrides(QListWidget)
     def dropEvent(self, event: QDropEvent) -> None:
         """Override the dropEvent method to customize the drop event
         - Check if the item to be dropped has the qabstractitemmodeldatalist format
-        - Get the source widget
-        - Get the widget at the current mouse position
-        - Get the items that is being dragged
+        - Get the source widget and the destination widget at the current mouse position
+        - Get the items that are being dragged
         - Remove those items from the source widget
         - Add those items to the destination widget at the mouse position
+        - Log the move and update the database
 
         Parameters
         ----------
@@ -863,20 +877,26 @@ class CustomListWidget(QListWidget):
             source_widget = event.source()
             dest_widget = QApplication.widgetAt(QCursor().pos()).parent()
             items = source_widget.selectedItems()
+
             for item in items:
                 source_widget.takeItem(source_widget.row(item))
+
                 dest_row = dest_widget.row(dest_widget.itemAt(event.pos()))
                 if dest_row == -1:
                     dest_row = dest_widget.count()
+
                 if source_widget == dest_widget:
                     dest_widget.insertItem(dest_row, item)
+
                 logging.info(
-                    f'Moved {len(items)} Card(s) ({list(map(lambda x: getattr(x, "data")(Qt.UserRole).title, items))}) '
-                    f'from panel "{getattr(source_widget, "data").title}" to panel "{getattr(dest_widget, "data").title}"')
-                MainScreen.change_card(source_widget, dest_widget,
-                                       item.data(Qt.UserRole), dest_row)
+                    f'Moved {len(items)} Card(s) ({[item.data(Qt.UserRole).title for item in items]}) '
+                    f'from panel "{source_widget.data.title}" to panel "{dest_widget.data.title}"')
+
+                MainScreen.change_card(
+                    source_widget, dest_widget, item.data(Qt.UserRole), dest_row)
                 Database.get_instance().write()
-                event.accept()
+            event.accept()
         else:
             event.ignore()
+
         super().dropEvent(event)

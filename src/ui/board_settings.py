@@ -4,10 +4,10 @@ from PySide6.QtGui import QFont
 from PySide6.QtWidgets import QMainWindow
 
 from db import Database
+from dialog import dialog_factory, input_dialog_factory
 from kanbaru_objects import Board, Color
 from ui.ui_board_settings import Ui_BoardWindow
-from utils import (dialog_factory, input_dialog_factory, keyPressEvent,
-                   modify_hex_color, setup_font_db)
+from utils import keyPressEvent, modify_hex_color, setup_font_db
 
 
 class BoardSettings(QMainWindow):

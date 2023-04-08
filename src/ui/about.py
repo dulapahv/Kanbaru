@@ -5,6 +5,7 @@ from PySide6.QtGui import QPainter, QPainterPath, QPixmap, QRegion
 from PySide6.QtWidgets import QMainWindow
 
 from ui.ui_about import Ui_About
+from utils import overrides
 
 
 class About(QMainWindow):
@@ -48,6 +49,7 @@ class About(QMainWindow):
             f"</body></html>",
             None))
 
+    @overrides(QMainWindow)
     def deleteLater(self) -> None:
         if self.ui.label_license.underMouse() or self.ui.label_description_2.underMouse():
             return None
@@ -68,6 +70,7 @@ class About(QMainWindow):
                 self.ui.label_logo_bottom.setPixmap(rainydevilpic)
                 self.ui.label_logo_bottom.setScaledContents(True)
 
+    @overrides(QMainWindow)
     def paintEvent(self, event):
         painter = QPainter(self)
         painter.setRenderHint(QPainter.Antialiasing)
