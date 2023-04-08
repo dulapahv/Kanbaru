@@ -7,7 +7,6 @@ import firebase_admin
 from firebase_admin import credentials, db
 
 from kanbaru_objects import Board, Card, Color, Panel
-from utils import overrides
 
 
 class Database:
