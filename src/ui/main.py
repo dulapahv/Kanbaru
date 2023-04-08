@@ -761,6 +761,7 @@ class CustomListWidget(QListWidget):
         self.setUniformItemSizes(True)
         self.setWordWrap(True)
         self.verticalScrollBar().setSingleStep(10)
+        self.setSelectionRectVisible(True)
         self.setStyleSheet(
             f"""
             QListWidget {{
@@ -852,6 +853,7 @@ class CustomListWidget(QListWidget):
                 event.ignore()
         else:
             event.ignore()
+
         super().dragMoveEvent(event)
 
     @Slot()
