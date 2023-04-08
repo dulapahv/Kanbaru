@@ -408,7 +408,7 @@ class Database:
                 board_dict["_Board__color"] = Color(board_new.color).name
                 logging.info("Board updated:")
                 logging.info(
-                    f"title='{board_old.title}' -> title='{board_new.title}'")
+                    f"{board_old} -> title='{board_new.title}', color='{board_new.color}'")
                 Database.write(self)
                 return None
 
