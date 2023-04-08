@@ -1,12 +1,12 @@
 from typing import Callable
 
 from PySide6.QtCore import Qt
-from PySide6.QtGui import QFont
+from PySide6.QtGui import QFont, QIcon
 from PySide6.QtWidgets import (QDialog, QDialogButtonBox, QLabel, QLineEdit,
                                QMainWindow, QMessageBox, QPushButton,
                                QVBoxLayout)
 
-from utils import modify_hex_color, setup_font_db
+from utils import get_current_directory, modify_hex_color, setup_font_db
 
 
 def dialog_factory(parent: QMainWindow, function: Callable, title: str, msg: str, yes_no: bool = True, btn_color:
@@ -32,6 +32,8 @@ def dialog_factory(parent: QMainWindow, function: Callable, title: str, msg: str
         True if the user clicks the "Yes" button, False otherwise.
     """
     dialog = QMessageBox()
+    icon = QIcon(f"{get_current_directory()}/resources/img/icon.png")
+    dialog.setWindowIcon(icon)
     dialog.setWindowTitle(title)
     dialog.setText(msg)
     font = setup_font_db("TorusPro.ttf")
@@ -139,6 +141,8 @@ def input_dialog_factory(title: str, msg: str, default: str = "", btn_color: str
         The text in the input field.
     """
     dialog = QDialog()
+    icon = QIcon(f"{get_current_directory()}/resources/img/icon.png")
+    dialog.setWindowIcon(icon)
     dialog.setWindowTitle(title)
     dialog.setFixedSize(dialog.size())
     dialog.setFixedSize(300, 100)
