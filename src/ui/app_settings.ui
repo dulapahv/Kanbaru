@@ -598,14 +598,15 @@ QPushButton:focus {border-color: #000000; border-width: 1.5px; border-style: sol
   </widget>
  </widget>
  <tabstops>
+  <tabstop>widget</tabstop>
   <tabstop>listWidget_manage_board</tabstop>
   <tabstop>btn_delete</tabstop>
   <tabstop>btn_rename</tabstop>
   <tabstop>btn_logout</tabstop>
   <tabstop>btn_delete_account</tabstop>
+  <tabstop>btn_about</tabstop>
   <tabstop>btn_cancel</tabstop>
   <tabstop>btn_save</tabstop>
-  <tabstop>widget</tabstop>
  </tabstops>
  <resources>
   <include location="../resources.qrc"/>

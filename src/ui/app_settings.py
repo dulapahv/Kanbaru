@@ -137,7 +137,7 @@ class AppSettings(QMainWindow):
             self.ui.listWidget_manage_board.row(selected_all[0]))
         board_obj.title = text
         self.ui.listWidget_manage_board.insertItem(
-            self.ui.listWidget_manage_board.currentRow() + 1, board_obj.title)
+            self.ui.listWidget_manage_board.currentRow(), board_obj.title)
 
     def save(self) -> None:
         for board in self.boards_to_delete:

@@ -458,7 +458,7 @@ class MainScreen(QMainWindow):
             QCoreApplication.processEvents()
         self.clear_page(parent)
         self.update_whole_page(parent)
-        index = app_settings.get_board_index()
+        index = app_settings.get_board_index() - 1
         if index != -1:
             self.change_board(parent, Database.get_instance().boards[index])
 
