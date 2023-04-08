@@ -70,7 +70,6 @@ class About(QMainWindow):
                 self.ui.label_logo_bottom.setScaledContents(True)
                 self.ui.label_logo_bottom.setContentsMargins(0, 0, 0, 0)
                 self.ui.label_logo_bottom.setFixedSize(100, 100)
-                # set new window size to fit new image
                 self.setFixedSize(628, 458)
 
     @overrides(QMainWindow)
