@@ -134,7 +134,7 @@ class Board(KanbaruObject):
         self.__panels_lists = panels_lists
         try:
             self.__color = color
-            Color[self.__color]._value_
+            Color[self.__color].value
         except:
             raise ValueError(
                 "Board color must be one of the following: LIGHTBLUE, ROSE, GOLD, GREEN, LAVENDER, TEAL.")
@@ -145,7 +145,7 @@ class Board(KanbaruObject):
 
     @property
     def color(self) -> str:
-        return Color[self.__color]._value_
+        return Color[self.__color].value
 
     @property
     def panels(self) -> List[Panel]:
@@ -159,10 +159,9 @@ class Board(KanbaruObject):
 
     @color.setter
     def color(self, color: str) -> None:
-        try:
+        if color in Color._value2member_map_:
             self.__color = color
-            Color[self.__color]._value_
-        except:
+        else:
             raise ValueError(
                 "Board color must be one of the following: LIGHTBLUE, ROSE, GOLD, GREEN, LAVENDER, TEAL.")
 

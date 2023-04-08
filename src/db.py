@@ -441,6 +441,22 @@ class Database:
                 Database.write(self)
                 return None
 
+    def change_board_color(self: "Database", board: Board, color: Color) -> None:
+        """Change the color of a board.
+
+        Parameters
+        ----------
+        board : Board
+            The board to change the color of.
+        color : Color
+            The new color of the board.
+        """
+        for index_b, board in enumerate(self.boards):
+            if board == board:
+                self.data["_Database__data"][index_b]["_Board__color"] = Color(color).name
+                Database.write(self)
+                return None
+
     @property
     def data(self: "Database") -> List[Dict]:
         """Returns the data of the database.

@@ -38,6 +38,7 @@ class BoardSettings(QMainWindow):
         self.title = board.title
         self.color = board.color
         self.panels_to_delete: List[Board] = []
+        self.colors_to_change: Color.name = None
 
         stylesheet = \
             f"""
@@ -136,6 +137,7 @@ class BoardSettings(QMainWindow):
     def save(self) -> None:
         for panel in self.panels_to_delete:
             Database.get_instance().delete_panel(panel)
+        Database.get_instance().change_board_color(self.board, self.color)
         self.close()
 
     @property
@@ -149,19 +151,19 @@ class BoardSettings(QMainWindow):
                        if btn.isChecked()), None)
         match button:
             case self.ui.btn_color_1:
-                return Color.LIGHTBLUE._value_
+                return Color.LIGHTBLUE.value
             case self.ui.btn_color_2:
-                return Color.ROSE._value_
+                return Color.ROSE.value
             case self.ui.btn_color_3:
-                return Color.GOLD._value_
+                return Color.GOLD.value
             case self.ui.btn_color_4:
-                return Color.GREEN._value_
+                return Color.GREEN.value
             case self.ui.btn_color_5:
-                return Color.LAVENDER._value_
+                return Color.LAVENDER.value
             case self.ui.btn_color_6:
-                return Color.TEAL._value_
+                return Color.TEAL.value
             case _:
-                return Color.LIGHTBLUE._value_
+                return Color.LIGHTBLUE.value
 
     @title.setter
     def title(self, text: str) -> None:
