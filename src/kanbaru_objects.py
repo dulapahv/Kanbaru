@@ -7,7 +7,7 @@ from typing import List
 class Color(Enum):
     LIGHTBLUE = "#6badee"
     ROSE = "#fb568a"
-    GOLD = "#fbcc00"
+    GOLD = "#f7c600"
     GREEN = "#99c37b"
     LAVENDER = "#c577dc"
     TEAL = "#5eb5c1"
