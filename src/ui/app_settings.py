@@ -158,9 +158,6 @@ class AppSettings(QMainWindow):
         from ui.welcome import WelcomeScreen
         WelcomeScreen(parent)
 
-    def get_board_index(self) -> int:
-        return self.ui.listWidget_manage_board.currentRow()
-
     def setup_font(self) -> None:
         toruspro = setup_font_db("TorusPro.ttf")[0]
         self.ui.label_app_settings.setFont(QFont(toruspro, 28))

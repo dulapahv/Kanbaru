@@ -442,9 +442,9 @@ class MainScreen(QMainWindow):
             QCoreApplication.processEvents()
         self.clear_page(parent)
         self.update_whole_page(parent)
-        index = app_settings.get_board_index() - 1
-        if index != -1:
-            self.change_board(parent, Database.get_instance().boards[index])
+        if self.current_board not in Database.get_instance().boards:
+            self.current_board = Database.get_instance().boards[-1]
+        self.change_board(parent, self.current_board)
 
     def show_board_settings(self, event, parent: QMainWindow) -> None:
         """Show the board settings window
