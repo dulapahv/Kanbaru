@@ -91,7 +91,7 @@ class Card(KanbaruObject):
             self.__description == card.description
 
     def __str__(self):
-        return self.__title
+        return f"{self.title=}, {self.date=}, {self.time=}, {self.description=}".replace("self.", "")
 
 
 class Panel(KanbaruObject):
@@ -125,7 +125,7 @@ class Panel(KanbaruObject):
         return self.__title == panel.title and self.__card_lists == panel.cards
 
     def __str__(self):
-        return self.__title
+        return f"{self.title=}, cards={[card.title for card in self.cards]}".replace("self.", "")
 
 
 class Board(KanbaruObject):
@@ -177,4 +177,4 @@ class Board(KanbaruObject):
         return self.title == board.title and self.color == board.color and self.panels == board.panels
 
     def __str__(self):
-        return self.title
+        return f"{self.title=}, color={Color(self.color).name}, panels={[panel.title for panel in self.panels]}".replace("self.", "")

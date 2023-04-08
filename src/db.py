@@ -128,12 +128,14 @@ class Database:
             If the database file cannot be read from, an exception will be raised.
             and a new database file will be created.
         """
+        logging.info("Reading database file...")
         try:
             with open(self._db_path, "r") as f:
                 self.__data = json.load(f)
                 self.__username = self.__data.get("_Database__username", "")
                 self.__password = self.__data.get("_Database__password", "")
-                logging.info("Database read from the database file")
+                logging.info(f"Loaded username: {self.__username}")
+                logging.info(f"Loaded boards: {len(self.__data)}")
         except FileNotFoundError:
             logging.warning(
                 "Database file not found! Creating new database...", exc_info=True)
@@ -142,6 +144,15 @@ class Database:
             logging.warning(
                 "Failed to read data from database! Creating new database...", exc_info=True)
             self.create()
+        logging.info(f"Username: {self.username}")
+        logging.info(f"Loaded {len(self.boards)} board(s)")
+        for board in self.boards:
+            logging.info(
+                f'Loaded {len(board.panels)} panel(s) from board "{board.title}"')
+            for panel in board.panels:
+                logging.info(
+                    f'Loaded {len(panel.cards)} card(s) from panel "{panel.title}"')
+        logging.info("Database read from the database file")
 
     @staticmethod
     def init_firebase(cred_path: str) -> None:
@@ -353,6 +364,9 @@ class Database:
                         card_dict["_Card__date"] = card_new.date
                         card_dict["_Card__time"] = card_new.time
                         Database.write(self)
+                        logging.info("Card updated:")
+                        logging.info(
+                            f"{card_old} -> title='{card_new.title}', date='{card_new.date}', time='{card_new.time}', description='{card_new.description}'")
                         return None
 
     def update_panel(self: "Database", panel_old: Panel, panel_new: Panel) -> None:
@@ -372,6 +386,9 @@ class Database:
                         "_Board__panels_lists")[index_l]
                     panel_dict["_Panel__title"] = panel_new.title
                     Database.write(self)
+                    logging.info("Panel updated:")
+                    logging.info(
+                        f"{panel_old} -> title='{panel_new.title}', cards={[card.title for card in panel_new.cards]}")
                     return None
 
     def update_board(self: "Database", board_old: Board, board_new: Board) -> None:
@@ -389,6 +406,9 @@ class Database:
                 board_dict = self.data.get("_Database__data")[index_b]
                 board_dict["_Board__title"] = board_new.title
                 board_dict["_Board__color"] = Color(board_new.color).name
+                logging.info("Board updated:")
+                logging.info(
+                    f"title='{board_old.title}' -> title='{board_new.title}'")
                 Database.write(self)
                 return None
 
@@ -407,6 +427,7 @@ class Database:
                         logging.info(f'Card "{card.title}" deleted.')
                         del self.data["_Database__data"][index_b]["_Board__panels_lists"][index_l]["_Board__panels"][index_c]
                         Database.write(self)
+                        logging.info(f'Card "{card_delete.title}" deleted')
                         return None
 
     def delete_panel(self: "Database", panel_delete: Panel) -> None:
@@ -423,6 +444,7 @@ class Database:
                     logging.info(f'Panel "{panel.title}" deleted.')
                     del self.data["_Database__data"][index_b]["_Board__panels_lists"][index_l]
                     Database.write(self)
+                    logging.info(f'Panel "{panel.title}" deleted')
                     return None
 
     def delete_board(self: "Database", board_delete: Board) -> None:
@@ -438,6 +460,7 @@ class Database:
                 logging.info(f'Board "{board.title}" deleted.')
                 del self.data["_Database__data"][index_b]
                 Database.write(self)
+                logging.info(f'Board "{board.title}" deleted')
                 return None
 
     def change_board_color(self: "Database", board: Board, color: Color) -> None:
@@ -452,7 +475,8 @@ class Database:
         """
         for index_b, board in enumerate(self.boards):
             if board == board:
-                self.data["_Database__data"][index_b]["_Board__color"] = Color(color).name
+                self.data["_Database__data"][index_b]["_Board__color"] = Color(
+                    color).name
                 Database.write(self)
                 return None
 

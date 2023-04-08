@@ -32,7 +32,6 @@ class CardDescription(QMainWindow):
             event, function=self.save)
 
         self.card = card
-        self.card_old = card
         self.color = color
         self.title = card.title
         self.date = card.date
@@ -132,7 +131,9 @@ class CardDescription(QMainWindow):
             dialog_factory(None, None, "Invalid Title",
                            "Card title cannot be empty!", yes_no=False, btn_color=self.color)
             return None
-        if self.card_old.title != self.title_txt:
+        card_old = Card(self.card.title, self.card.date,
+                        self.card.time, self.card.description)
+        if card_old.title != self.title_txt:
             for board in Database.get_instance().boards:
                 for panel in board.panels:
                     for card in panel.cards:
@@ -140,9 +141,8 @@ class CardDescription(QMainWindow):
                             dialog_factory(None, None, "Invalid Title",
                                            "Card already exists!", yes_no=False, btn_color=self.color)
                             return None
-        card_old = Card(self.card.title, self.card.date,
-                        self.card.time, self.card.description)
-        Database.get_instance().update_card(card_old, self)
+        if card_old != self:
+            Database.get_instance().update_card(card_old, self)
         self.close()
 
     def delete(self, event) -> None:

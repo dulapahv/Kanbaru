@@ -40,6 +40,7 @@ class BoardSettings(QMainWindow):
         self.old_board: Board = board
         self.title = board.title
         self.color = board.color
+        self.panels = board.panels
         self.panels_to_delete: List[Board] = []
         self.colors_to_change: Color.name = None
 
@@ -140,7 +141,8 @@ class BoardSettings(QMainWindow):
     def save(self) -> None:
         for panel in self.panels_to_delete:
             Database.get_instance().delete_panel(panel)
-        Database.get_instance().update_board(self.old_board, self)
+        if self.old_board != self:
+            Database.get_instance().update_board(self.old_board, self)
         self.close()
 
     @property

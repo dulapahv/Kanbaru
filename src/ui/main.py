@@ -47,7 +47,6 @@ class MainScreen(QMainWindow):
 
     def update_whole_page(self, parent: QMainWindow) -> None:
         db_boards = Database.get_instance().boards
-        logging.info(f"Loaded {len(db_boards)} board(s) from database")
         push_buttons = []
 
         def on_button_click(board):
@@ -113,9 +112,6 @@ class MainScreen(QMainWindow):
         if board is None:
             self.current_board = Database.get_instance().boards[-1]
             board = self.current_board
-
-        logging.info(
-            f'Loaded {len(board.panels)} panel(s) from board "{board.title}" [{board.color = }] [{is_constructed = }]')
 
         parent.ui.label_board.setText(
             board.title[:40] + (board.title[40:] and '...'))
@@ -197,9 +193,6 @@ class MainScreen(QMainWindow):
         QWidget
             The panel widget
         """
-        logging.info(
-            f'Loaded {len(panel.cards)} card(s) from panel "{panel.title}"')
-
         size_policy1 = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Fixed)
         size_policy1.setHorizontalStretch(0)
         size_policy1.setVerticalStretch(0)
