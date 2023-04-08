@@ -193,7 +193,7 @@ class CardDescription(QMainWindow):
         self.ui.label_description.setFont(QFont(toruspro, 14, QFont.Bold))
         self.ui.lineEdit_title.setFont(QFont(notosans, 12))
         self.ui.calendarWidget.setFont(QFont(notosans, 12))
-        self.ui.timeEdit.setFont(QFont(notosans, 12))
+        self.ui.timeEdit.setFont(QFont(notosans, 16, QFont.Bold))
         self.ui.textEdit_description.setFont(QFont(notosans, 12))
         self.ui.btn_delete.setFont(QFont(toruspro, 12))
         self.ui.btn_cancel.setFont(QFont(toruspro, 12))

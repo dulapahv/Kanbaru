@@ -244,6 +244,7 @@ QLineEdit:focus {background-color: #ffffff; border-color: #6badee; border-width:
                  <font>
                   <family>Noto Sans</family>
                   <pointsize>16</pointsize>
+                  <bold>true</bold>
                  </font>
                 </property>
                 <property name="cursor">
