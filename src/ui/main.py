@@ -472,13 +472,14 @@ class MainScreen(QMainWindow):
             The main window
         """
         board_settings = BoardSettings(self.current_board)
+        index = Database.get_instance().boards.index(self.current_board)
         board_settings.setWindowModality(Qt.ApplicationModal)
         board_settings.show()
         while board_settings.isVisible():
             QCoreApplication.processEvents()
         self.clear_page(parent)
         self.update_whole_page(parent)
-        self.change_board(parent, self.get_updated_board(self.current_board))
+        self.change_board(parent, Database.get_instance().boards[index])
 
     def show_card_description(self, event, list_widget: QListWidget, parent: QMainWindow, color: str) -> None:
         """Show the card description window

@@ -23,6 +23,8 @@ class BoardSettings(QMainWindow):
         self.ui.btn_save.clicked.connect(self.save)
         self.ui.btn_cancel.clicked.connect(self.close)
 
+        self.ui.lineEdit_title.textChanged.connect(self.title_listener)
+
         self.ui.btn_delete.keyPressEvent = lambda event: keyPressEvent(
             event, function=self.delete(event))
         self.ui.btn_rename.keyPressEvent = lambda event: keyPressEvent(
@@ -35,6 +37,7 @@ class BoardSettings(QMainWindow):
         self.ui.listWidget_manage_panel.verticalScrollBar().setSingleStep(10)
 
         self.board = board
+        self.old_board: Board = board
         self.title = board.title
         self.color = board.color
         self.panels_to_delete: List[Board] = []
@@ -137,7 +140,7 @@ class BoardSettings(QMainWindow):
     def save(self) -> None:
         for panel in self.panels_to_delete:
             Database.get_instance().delete_panel(panel)
-        Database.get_instance().change_board_color(self.board, self.color)
+        Database.get_instance().update_board(self.old_board, self)
         self.close()
 
     @property
@@ -168,6 +171,7 @@ class BoardSettings(QMainWindow):
     @title.setter
     def title(self, text: str) -> None:
         self.ui.lineEdit_title.setText(text)
+        self.title_txt = text
 
     @color.setter
     def color(self, color: str) -> None:
