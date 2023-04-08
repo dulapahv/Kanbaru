@@ -176,17 +176,17 @@ class BoardSettings(QMainWindow):
     @color.setter
     def color(self, color: str) -> None:
         match color:
-            case Color.LIGHTBLUE._value_:
+            case Color.LIGHTBLUE.value:
                 self.ui.btn_color_1.setChecked(True)
-            case Color.ROSE._value_:
+            case Color.ROSE.value:
                 self.ui.btn_color_2.setChecked(True)
-            case Color.GOLD._value_:
+            case Color.GOLD.value:
                 self.ui.btn_color_3.setChecked(True)
-            case Color.GREEN._value_:
+            case Color.GREEN.value:
                 self.ui.btn_color_4.setChecked(True)
-            case Color.LAVENDER._value_:
+            case Color.LAVENDER.value:
                 self.ui.btn_color_5.setChecked(True)
-            case Color.TEAL._value_:
+            case Color.TEAL.value:
                 self.ui.btn_color_6.setChecked(True)
             case _:
                 self.ui.btn_color_1.setChecked(True)
