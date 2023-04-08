@@ -5,7 +5,7 @@ from PySide6.QtGui import QPainter, QPainterPath, QPixmap, QRegion
 from PySide6.QtWidgets import QMainWindow
 
 from ui.ui_about import Ui_About
-from utils import overrides
+from utils import get_current_directory, overrides
 
 
 class About(QMainWindow):
@@ -59,7 +59,7 @@ class About(QMainWindow):
         self.count += 1
         if self.count == 5:
             print("Easter egg found!")
-            with open("src/resources/img/rainydevil.txt", "r") as f:
+            with open(get_current_directory() + "\\resources\\img\\rainydevil.txt", "rb") as f:
                 b64data = f.read()
                 data = b64decode(b64data)
                 rainydevilpic = QPixmap()
