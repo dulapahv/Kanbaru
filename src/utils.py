@@ -63,9 +63,9 @@ def modify_hex_color(hex_color: str, modifier: int = 30) -> str:
     green = int(hex_color[3:5], 16)
     blue = int(hex_color[5:], 16)
 
-    light_red = min(int(red + modifier), 255)
-    light_green = min(int(green + modifier), 255)
-    light_blue = min(int(blue + modifier), 255)
+    light_red = max(min(red + modifier, 255), 0)
+    light_green = max(min(green + modifier, 255), 0)
+    light_blue = max(min(blue + modifier, 255), 0)
 
     light_hex_color = '#' + \
         format(light_red, '02x') + format(light_green,
