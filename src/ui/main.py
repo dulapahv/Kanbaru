@@ -828,8 +828,8 @@ class CustomListWidget(QListWidget):
     @overrides(QListWidget)
     def dragMoveEvent(self, event) -> None:
         """Override the dragMoveEvent method to customize the drag and drop event
-        - Scroll the list widget when the cursor is near the top or bottom of the list widget
         - Scroll the main window when the cursor is near the left or right of the main window
+        - Accept the drag and drop event if the cursor is over a list widget
 
         Parameters
         ----------
