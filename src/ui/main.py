@@ -46,37 +46,28 @@ class MainScreen(QMainWindow):
         self.update_whole_page(parent)
 
     def update_whole_page(self, parent: QMainWindow) -> None:
-        logging.info(
-            f"Loaded {len(Database.get_instance().boards)} board(s) from database")
+        db_boards = Database.get_instance().boards
+        logging.info(f"Loaded {len(db_boards)} board(s) from database")
+        push_buttons = []
 
-        parent.ui.qpushbutton = QPushButton()
-        new_name = f"{parent.ui.qpushbutton.__class__.__name__}_{id(parent.ui.qpushbutton)}"
-        setattr(parent.ui, new_name, parent.ui.qpushbutton)
-        push_button = getattr(parent.ui, new_name)
-        push_button.setObjectName(new_name)
-        delattr(parent.ui, "qpushbutton")
-        push_button = self.board_factory(
-            parent, Database.get_instance().boards[0], "TorusPro.ttf")
-        push_button.clicked.connect(lambda: self.change_board(
-            parent, Database.get_instance().boards[0]))
-        parent.ui.verticalLayout_4.addWidget(push_button)
-        for index, board in enumerate(Database.get_instance().boards[1:]):
-            parent.ui.qpushbutton = QPushButton()
-            new_name = f"{parent.ui.qpushbutton.__class__.__name__}_{id(parent.ui.qpushbutton)}"
-            setattr(parent.ui, new_name, parent.ui.qpushbutton)
-            push_button = getattr(parent.ui, new_name)
-            push_button.setObjectName(new_name)
-            delattr(parent.ui, "qpushbutton")
-            push_button = self.board_factory(
-                parent, self.get_updated_board(
-                    Database.get_instance().boards[index + 1]), "TorusPro.ttf",
-                is_constructed=False)
-            setattr(push_button, "board",
-                    Database.get_instance().boards[index + 1])
-            push_button.clicked.connect(lambda: self.change_board(
-                parent, self.get_updated_board(Database.get_instance().boards[index + 1])))
-            parent.ui.verticalLayout_4.addWidget(push_button)
-            # TODO: Fix changing board connections
+        def on_button_click(board):
+            def callback():
+                updated_board = self.get_updated_board(board)
+                self.change_board(parent, updated_board)
+            return callback
+
+        for index, board in enumerate(db_boards):
+            new_button = self.board_factory(
+                parent, self.get_updated_board(board), "TorusPro.ttf",
+                is_constructed=index == 0)
+            new_button.board = board
+            new_name = f"{new_button.__class__.__name__}_{id(new_button)}"
+            setattr(parent.ui, new_name, new_button)
+            push_buttons.append(getattr(parent.ui, new_name))
+            push_buttons[index].setObjectName(new_name)
+            parent.ui.verticalLayout_4.addWidget(push_buttons[index])
+            push_buttons[index].clicked.connect(
+                on_button_click(board))
 
         parent.ui.vertSpacer_scrollAreaContent = QSpacerItem(
             20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
