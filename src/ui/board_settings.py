@@ -139,7 +139,7 @@ class BoardSettings(QMainWindow):
         self.close()
 
     @property
-    def title_line_edit(self) -> str:
+    def title(self) -> str:
         return self.title_txt
 
     @property
@@ -163,8 +163,8 @@ class BoardSettings(QMainWindow):
             case _:
                 return Color.LIGHTBLUE._value_
 
-    @title_line_edit.setter
-    def title_line_edit(self, text: str) -> None:
+    @title.setter
+    def title(self, text: str) -> None:
         self.ui.lineEdit_title.setText(text)
 
     @color.setter
