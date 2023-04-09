@@ -858,18 +858,18 @@ class CustomListWidget(QListWidget):
         for item in items:
             source_widget.takeItem(source_widget.row(item))
 
-            dest_row = dest_widget.row(dest_widget.itemAt(event.pos()))
-            if dest_row == -1:
-                dest_row = dest_widget.count()
+            index = dest_widget.row(dest_widget.itemAt(event.pos()))
+            if index == -1:
+                index = dest_widget.count()
             if source_widget == dest_widget:
-                dest_widget.insertItem(dest_row, item)
+                dest_widget.insertItem(index, item)
 
             logging.info(
                 f'Moved {len(items)} Card(s) ({[item.data(Qt.UserRole).title for item in items]}) '
-                f'from panel "{source_widget.data.title}" to panel "{dest_widget.data.title}"')
+                f'from panel "{source_widget.data.title}" to panel "{dest_widget.data.title} at {index=}"')
 
             MainScreen.change_card(
-                source_widget, dest_widget, item.data(Qt.UserRole), dest_row)
+                source_widget, dest_widget, item.data(Qt.UserRole), index)
             Database.get_instance().write()
         event.accept()
 
