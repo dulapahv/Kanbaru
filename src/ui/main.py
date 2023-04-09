@@ -857,31 +857,32 @@ class CustomListWidget(QListWidget):
         event : QDropEvent
             The drop event
         """
-        if event.mimeData().hasFormat('application/x-qabstractitemmodeldatalist'):
-            source_widget = event.source()
-            dest_widget = QApplication.widgetAt(QCursor().pos()).parent()
-            items = source_widget.selectedItems()
+        if event.keyboardModifiers() == Qt.ControlModifier:
+            return event.ignore()
+        if not event.mimeData().hasFormat('application/x-qabstractitemmodeldatalist'):
+            return event.ignore()
+        source_widget = event.source()
+        dest_widget = QApplication.widgetAt(QCursor().pos()).parent()
+        items = source_widget.selectedItems()
 
-            for item in items:
-                source_widget.takeItem(source_widget.row(item))
+        for item in items:
+            source_widget.takeItem(source_widget.row(item))
 
-                dest_row = dest_widget.row(dest_widget.itemAt(event.pos()))
-                if isinstance(dest_row, QListWidget):
-                    event.ignore()
-                if dest_row == -1:
-                    dest_row = dest_widget.count()
-                if source_widget == dest_widget:
-                    dest_widget.insertItem(dest_row, item)
+            dest_row = dest_widget.row(dest_widget.itemAt(event.pos()))
+            if isinstance(dest_row, QListWidget):
+                event.ignore()
+            if dest_row == -1:
+                dest_row = dest_widget.count()
+            if source_widget == dest_widget:
+                dest_widget.insertItem(dest_row, item)
 
-                logging.info(
-                    f'Moved {len(items)} Card(s) ({[item.data(Qt.UserRole).title for item in items]}) '
-                    f'from panel "{source_widget.data.title}" to panel "{dest_widget.data.title}"')
+            logging.info(
+                f'Moved {len(items)} Card(s) ({[item.data(Qt.UserRole).title for item in items]}) '
+                f'from panel "{source_widget.data.title}" to panel "{dest_widget.data.title}"')
 
-                MainScreen.change_card(
-                    source_widget, dest_widget, item.data(Qt.UserRole), dest_row)
-                Database.get_instance().write()
-            event.accept()
-        else:
-            event.ignore()
+            MainScreen.change_card(
+                source_widget, dest_widget, item.data(Qt.UserRole), dest_row)
+            Database.get_instance().write()
+        event.accept()
 
         super().dropEvent(event)
