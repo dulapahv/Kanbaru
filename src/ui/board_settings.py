@@ -7,7 +7,7 @@ from PySide6.QtWidgets import QMainWindow
 from db import Database
 from dialog import dialog_factory, input_dialog_factory
 from kanbaru_objects import Board, Color
-from ui.ui_board_settings import Ui_BoardWindow
+from ui.board_settings_ui import Ui_BoardWindow
 from utils import keyPressEvent, modify_hex_color, setup_font_db
 
 

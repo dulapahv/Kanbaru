@@ -9,7 +9,7 @@ from db import Database
 from dialog import dialog_factory, input_dialog_factory
 from kanbaru_objects import Board
 from ui.about import About
-from ui.ui_app_settings import Ui_SettingsWindow
+from ui.app_settings_ui import Ui_SettingsWindow
 from utils import keyPressEvent, modify_hex_color, setup_font_db
 
 

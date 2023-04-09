@@ -5,7 +5,7 @@ from PySide6.QtWidgets import QMainWindow
 from db import Database
 from dialog import dialog_factory
 from kanbaru_objects import Card
-from ui.ui_card_description import Ui_CardWindow
+from ui.card_description_ui import Ui_CardWindow
 from utils import hex_to_rgba, keyPressEvent, modify_hex_color, setup_font_db
 
 

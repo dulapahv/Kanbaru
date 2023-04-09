@@ -4,7 +4,7 @@ from PySide6.QtCore import QCoreApplication, Qt
 from PySide6.QtGui import QPainter, QPainterPath, QPixmap, QRegion
 from PySide6.QtWidgets import QMainWindow
 
-from ui.ui_about import Ui_About
+from ui.about_ui import Ui_About
 from utils import get_current_directory, overrides
 
 

@@ -4,7 +4,7 @@ from PySide6.QtWidgets import QMainWindow
 from auth import Auth
 from db import Database
 from ui.main import MainScreen
-from ui.ui_welcome import Ui_WelcomeWindow
+from ui.welcome_ui import Ui_WelcomeWindow
 from utils import keyPressEvent, setup_font_db
 
 

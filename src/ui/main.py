@@ -15,7 +15,7 @@ from ui.about import About
 from ui.app_settings import AppSettings
 from ui.board_settings import BoardSettings
 from ui.card_description import CardDescription
-from ui.ui_main import Ui_MainWindow
+from ui.main_ui import Ui_MainWindow
 from utils import (hex_to_rgba, keyPressEvent, modify_hex_color, overrides,
                    setup_font_db)
 

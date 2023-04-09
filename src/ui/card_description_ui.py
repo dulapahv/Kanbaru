@@ -135,7 +135,6 @@ class Ui_CardWindow(object):
         font3 = QFont()
         font3.setFamilies([u"Noto Sans"])
         font3.setPointSize(16)
-        font3.setBold(True)
         self.timeEdit.setFont(font3)
         self.timeEdit.setCursor(QCursor(Qt.PointingHandCursor))
         self.timeEdit.setStyleSheet(u"QTimeEdit {background-color: #6badee; color: #ffffff; border-radius: 5px; padding: 0px 5px 0px 5px;}\n"
