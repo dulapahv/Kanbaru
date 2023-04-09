@@ -134,8 +134,6 @@ class Database:
                 self.__data = json.load(f)
                 self.__username = self.__data.get("_Database__username", "")
                 self.__password = self.__data.get("_Database__password", "")
-                logging.info(f"Loaded username: {self.__username}")
-                logging.info(f"Loaded boards: {len(self.__data)}")
         except FileNotFoundError:
             logging.warning(
                 "Database file not found! Creating new database...", exc_info=True)
