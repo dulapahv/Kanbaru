@@ -112,6 +112,12 @@ class Ui_About(object):
 
         self.horizontalLayout_2 = QHBoxLayout()
         self.horizontalLayout_2.setObjectName(u"horizontalLayout_2")
+        self.verticalLayout_3 = QVBoxLayout()
+        self.verticalLayout_3.setObjectName(u"verticalLayout_3")
+        self.verticalSpacer_4 = QSpacerItem(20, 0, QSizePolicy.Minimum, QSizePolicy.Expanding)
+
+        self.verticalLayout_3.addItem(self.verticalSpacer_4)
+
         self.label_license = QLabel(self.centralwidget)
         self.label_license.setObjectName(u"label_license")
         self.label_license.setFont(font1)
@@ -119,7 +125,10 @@ class Ui_About(object):
         self.label_license.setWordWrap(True)
         self.label_license.setOpenExternalLinks(True)
 
-        self.horizontalLayout_2.addWidget(self.label_license)
+        self.verticalLayout_3.addWidget(self.label_license)
+
+
+        self.horizontalLayout_2.addLayout(self.verticalLayout_3)
 
         self.horizontalSpacer_2 = QSpacerItem(40, 20, QSizePolicy.Fixed, QSizePolicy.Minimum)
 
