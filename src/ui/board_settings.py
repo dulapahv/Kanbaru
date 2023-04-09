@@ -147,7 +147,8 @@ class BoardSettings(QMainWindow):
             Database.get_instance().delete_panel(panel)
         if self.old_board != self:
             Database.get_instance().update_board(self.old_board, self)
-        Database.get_instance().update_panel_order(self.board, self.new_panel_order)
+        if len(self.new_panel_order) != 0:
+            Database.get_instance().update_panel_order(self.board, self.new_panel_order)
         self.close()
 
     @property

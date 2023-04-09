@@ -177,4 +177,4 @@ class Board(KanbaruObject):
         return self.title == board.title and self.color == board.color and self.panels == board.panels
 
     def __str__(self):
-        return f"{self.title=}, color={Color(self.color).name}".replace("self.", "")
+        return f"{self.title=}, color='{Color(self.color).name}'".replace("self.", "")

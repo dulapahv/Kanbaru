@@ -27,7 +27,6 @@ class AppSettings(QMainWindow):
         self.new_board_order: List[Board] = []
 
         self.ui.btn_delete.clicked.connect(self.delete)
-        self.ui.btn_rename.clicked.connect(self.rename)
         self.ui.btn_cancel.clicked.connect(self.close)
         self.ui.btn_save.clicked.connect(self.save)
         self.ui.btn_logout.clicked.connect(
@@ -38,8 +37,6 @@ class AppSettings(QMainWindow):
 
         self.ui.btn_delete.keyPressEvent = lambda event: keyPressEvent(
             event, function=self.delete(event))
-        self.ui.btn_rename.keyPressEvent = lambda event: keyPressEvent(
-            event, function=self.rename(event))
         self.ui.btn_cancel.keyPressEvent = lambda event: keyPressEvent(
             event, function=self.close)
         self.ui.btn_save.keyPressEvent = lambda event: keyPressEvent(
@@ -90,7 +87,6 @@ class AppSettings(QMainWindow):
             padding: 0px 0px 0px 10px;
             """
         )
-        self.ui.btn_rename.setStyleSheet(stylesheet)
         self.ui.btn_about.setStyleSheet(stylesheet)
         self.ui.btn_save.setStyleSheet(stylesheet)
 
@@ -119,34 +115,11 @@ class AppSettings(QMainWindow):
                 self.ui.listWidget_manage_board.takeItem(
                     self.ui.listWidget_manage_board.row(selected_board))
 
-    def rename(self, event) -> None:
-        selected_all = self.ui.listWidget_manage_board.selectedItems()
-        if len(selected_all) == 0:
-            dialog_factory(None, None, "Invalid Selection",
-                           "Please select a board to rename.", yes_no=False, btn_color=self.color)
-            return None
-        if len(selected_all) > 1:
-            dialog_factory(None, None, "Invalid Selection",
-                           "Please select only one board to rename.", yes_no=False, btn_color=self.color)
-            return None
-        text = input_dialog_factory(
-            "Rename Board", "Enter new board name:", selected_all[0].text(), btn_color=self.color)
-        if text is None:
-            return None
-        board_obj = next(
-            (board for board in Database.get_instance().boards if board.title == selected_all[0].text()), None)
-        self.title = text
-        Database.get_instance().update_board(board_obj, self)
-        self.ui.listWidget_manage_board.takeItem(
-            self.ui.listWidget_manage_board.row(selected_all[0]))
-        board_obj.title = text
-        self.ui.listWidget_manage_board.insertItem(
-            self.ui.listWidget_manage_board.currentRow(), board_obj.title)
-
     def save(self) -> None:
         for board in self.boards_to_delete:
             Database.get_instance().delete_board(board)
-        Database.get_instance().update_board_order(self.new_board_order)
+        if len(self.new_board_order) != 0:
+            Database.get_instance().update_board_order(self.new_board_order)
         self.close()
 
     def logout(self, parent: QMainWindow):
@@ -176,7 +149,6 @@ class AppSettings(QMainWindow):
         self.ui.label_manage_account.setFont(QFont(toruspro, 14, QFont.Bold))
         self.ui.label_manage_board_desc.setFont(QFont(toruspro, 11))
         self.ui.btn_delete.setFont(QFont(toruspro, 12))
-        self.ui.btn_rename.setFont(QFont(toruspro, 12))
         self.ui.btn_logout.setFont(QFont(toruspro, 12))
         self.ui.btn_delete_account.setFont(QFont(toruspro, 12))
         self.ui.btn_cancel.setFont(QFont(toruspro, 12))
