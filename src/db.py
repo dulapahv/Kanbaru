@@ -143,13 +143,16 @@ class Database:
                 "Failed to read data from database! Creating new database...", exc_info=True)
             self.create()
         logging.info(f"Username: {self.username}")
-        logging.info(f"Loaded {len(self.boards)} board(s)")
+        logging.info(
+            f"Loaded {len(self.boards)} board{'s' if len(self.boards) > 1 else ''}")
         for board in self.boards:
             logging.info(
-                f'Loaded {len(board.panels)} panel(s) from board "{board.title}"')
+                f'+--"{board.title}" [{len(board.panels)} panel{"s" if len(board.panels) > 1 else ""}]')
             for panel in board.panels:
                 logging.info(
-                    f'Loaded {len(panel.cards)} card(s) from panel "{panel.title}"')
+                    f'|   +--"{panel.title}" [{len(panel.cards)} card{"s" if len(panel.cards) > 1 else ""}]')
+                for card in panel.cards:
+                    logging.info(f'|   |   +--"{card.title}"')
         logging.info("Database read from the database file")
 
     @staticmethod
