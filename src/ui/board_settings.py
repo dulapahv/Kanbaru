@@ -1,4 +1,4 @@
-from typing import List, Dict
+from typing import List
 
 from PySide6.QtCore import QModelIndex
 from PySide6.QtGui import QFont
