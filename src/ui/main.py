@@ -829,16 +829,6 @@ class CustomListWidget(QListWidget):
             self.parent_.horizontalScrollBar().setValue(
                 self.parent_.horizontalScrollBar().value() - 8)
 
-        panel = QApplication.widgetAt(cursor_pos)
-        if panel is not None:
-            panel = panel.parent()
-            if isinstance(panel, QListWidget) and event.mimeData().hasFormat("application/x-qabstractitemmodeldatalist"):
-                event.accept()
-            else:
-                event.ignore()
-        else:
-            event.ignore()
-
         super().dragMoveEvent(event)
 
     @Slot()
@@ -869,8 +859,6 @@ class CustomListWidget(QListWidget):
             source_widget.takeItem(source_widget.row(item))
 
             dest_row = dest_widget.row(dest_widget.itemAt(event.pos()))
-            if isinstance(dest_row, QListWidget):
-                event.ignore()
             if dest_row == -1:
                 dest_row = dest_widget.count()
             if source_widget == dest_widget:
