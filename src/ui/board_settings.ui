@@ -140,7 +140,7 @@ QScrollBar:horizontal {height: 10px; margin: 0px 0px 0px 0px; background-color: 
                <x>0</x>
                <y>-51</y>
                <width>516</width>
-               <height>773</height>
+               <height>673</height>
               </rect>
              </property>
              <layout class="QVBoxLayout" name="verticalLayout_4">
@@ -504,7 +504,7 @@ You can select multiple panels at the same time.</string>
                     <property name="minimumSize">
                      <size>
                       <width>0</width>
-                      <height>400</height>
+                      <height>300</height>
                      </size>
                     </property>
                     <property name="font">

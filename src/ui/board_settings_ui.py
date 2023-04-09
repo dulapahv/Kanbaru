@@ -78,7 +78,7 @@ class Ui_BoardWindow(object):
         self.scrollArea.setWidgetResizable(True)
         self.scrollAreaWidgetContents = QWidget()
         self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
-        self.scrollAreaWidgetContents.setGeometry(QRect(0, -51, 516, 773))
+        self.scrollAreaWidgetContents.setGeometry(QRect(0, -51, 516, 673))
         self.verticalLayout_4 = QVBoxLayout(self.scrollAreaWidgetContents)
         self.verticalLayout_4.setSpacing(0)
         self.verticalLayout_4.setObjectName(u"verticalLayout_4")
@@ -236,7 +236,7 @@ class Ui_BoardWindow(object):
 
         self.listWidget_manage_panel = QListWidget(self.scrollAreaWidgetContents)
         self.listWidget_manage_panel.setObjectName(u"listWidget_manage_panel")
-        self.listWidget_manage_panel.setMinimumSize(QSize(0, 400))
+        self.listWidget_manage_panel.setMinimumSize(QSize(0, 300))
         font5 = QFont()
         font5.setFamilies([u"Torus Pro"])
         font5.setPointSize(12)
