@@ -457,7 +457,6 @@ class Database:
         """
         for index_b, board in enumerate(self.boards):
             if board == board_delete:
-                logging.info(f'Board "{board.title}" deleted.')
                 del self.data["_Database__data"][index_b]
                 Database.write(self)
                 logging.info(f'Board "{board.title}" deleted')
