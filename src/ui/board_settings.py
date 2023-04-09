@@ -1,5 +1,6 @@
-from typing import List
+from typing import List, Dict
 
+from PySide6.QtCore import QModelIndex
 from PySide6.QtGui import QFont
 from PySide6.QtWidgets import QMainWindow
 
@@ -35,6 +36,8 @@ class BoardSettings(QMainWindow):
             event, function=self.close)
 
         self.ui.listWidget_manage_panel.verticalScrollBar().setSingleStep(10)
+        self.ui.listWidget_manage_panel.model().rowsMoved.connect(
+            self.rowsMoved)
 
         self.board = board
         self.old_board: Board = board
@@ -42,6 +45,7 @@ class BoardSettings(QMainWindow):
         self.color = board.color
         self.panels = board.panels
         self.panels_to_delete: List[Board] = []
+        self.new_panel_order: List[Board] = []
         self.colors_to_change: Color.name = None
 
         stylesheet = \
@@ -143,6 +147,7 @@ class BoardSettings(QMainWindow):
             Database.get_instance().delete_panel(panel)
         if self.old_board != self:
             Database.get_instance().update_board(self.old_board, self)
+        Database.get_instance().update_panel_order(self.board, self.new_panel_order)
         self.close()
 
     @property
@@ -192,6 +197,12 @@ class BoardSettings(QMainWindow):
                 self.ui.btn_color_6.setChecked(True)
             case _:
                 self.ui.btn_color_1.setChecked(True)
+
+    def rowsMoved(self, source_parent: QModelIndex, source_start: int, source_end: int, dest_parent: QModelIndex, dest_row: int) -> None:
+        self.new_panel_order = [self.ui.listWidget_manage_panel.item(
+            i).text() for i in range(self.ui.listWidget_manage_panel.count())]
+        self.new_panel_order = [next(
+            (panel for panel in self.board.panels if panel.title == panel_title), None) for panel_title in self.new_panel_order]
 
     def title_listener(self, text: str) -> None:
         self.title_txt = text

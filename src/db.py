@@ -413,23 +413,77 @@ class Database:
                 Database.write(self)
                 return None
 
-    def delete_card(self: "Database", card_delete: Card) -> None:
-        """Delete card from database.
+    def update_panel_order(self: "Database", board: Board, new_panel_list: List[Panel]) -> None:
+        """Update the order of panels in a board.
 
         Parameters
         ----------
-        card_delete : Card
-            The card to be deleted.
+        board : Board
+            The board to be updated.
+        new_panel_list : List[Panel]
+            The new list of panels to be updated to.
         """
+        old_panel_list = board.panels
         for index_b, board in enumerate(self.boards):
-            for index_l, panel in enumerate(board.panels):
-                for index_c, card in enumerate(panel.cards):
-                    if card == card_delete:
-                        logging.info(f'Card "{card.title}" deleted.')
-                        del self.data["_Database__data"][index_b]["_Board__panels_lists"][index_l]["_Board__panels"][index_c]
-                        Database.write(self)
-                        logging.info(f'Card "{card_delete.title}" deleted')
-                        return None
+            if board == board:
+                board_dict = self.data.get("_Database__data")[index_b]
+                board_dict["_Board__panels_lists"] = [
+                    {
+                        "_Panel__title": panel.title,
+                        "_Board__panels": [
+                            {
+                                "_Card__title": card.title,
+                                "_Card__description": card.description,
+                                "_Card__date": card.date,
+                                "_Card__time": card.time
+                            }
+                            for card in panel.cards
+                        ]
+                    }
+                    for panel in new_panel_list
+                ]
+                logging.info("Panel order updated:")
+                logging.info(
+                    f"{[panel.title for panel in old_panel_list]} -> {[panel.title for panel in new_panel_list]}")
+                Database.write(self)
+                return None
+
+    def update_board_order(self: "Database", new_board_list: List[Board]) -> None:
+        """Update the order of boards.
+
+        Parameters
+        ----------
+        new_board_list : List[Board]
+            The new list of boards to be updated to.
+        """
+        old_board_list = self.boards
+        self.data["_Database__data"] = [
+            {
+                "_Board__title": board.title,
+                "_Board__color": Color(board.color).name,
+                "_Board__panels_lists": [
+                    {
+                        "_Panel__title": panel.title,
+                        "_Board__panels": [
+                            {
+                                "_Card__title": card.title,
+                                "_Card__description": card.description,
+                                "_Card__date": card.date,
+                                "_Card__time": card.time
+                            }
+                            for card in panel.cards
+                        ]
+                    }
+                    for panel in board.panels
+                ]
+            }
+            for board in new_board_list
+        ]
+        logging.info("Board order updated:")
+        logging.info(
+            f"{[board.title for board in old_board_list]} -> {[board.title for board in new_board_list]}")
+        Database.write(self)
+        return None
 
     def delete_panel(self: "Database", panel_delete: Panel) -> None:
         """Delete panel from database.
