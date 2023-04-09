@@ -1,6 +1,7 @@
 import logging
 from typing import List
 
+from PySide6.QtCore import QModelIndex
 from PySide6.QtGui import QFont
 from PySide6.QtWidgets import QMainWindow
 
@@ -23,6 +24,7 @@ class AppSettings(QMainWindow):
         self.title: str = board.title
         self.color: str = board.color
         self.boards_to_delete: List[Board] = []
+        self.new_board_order: List[Board] = []
 
         self.ui.btn_delete.clicked.connect(self.delete)
         self.ui.btn_rename.clicked.connect(self.rename)
@@ -50,6 +52,8 @@ class AppSettings(QMainWindow):
                                           "Are you sure you want to delete your account?\nThis action cannot be undone."))
 
         self.ui.listWidget_manage_board.verticalScrollBar().setSingleStep(10)
+        self.ui.listWidget_manage_board.model().rowsMoved.connect(
+            self.rowsMoved)
 
         self.setup_font()
 
@@ -142,6 +146,7 @@ class AppSettings(QMainWindow):
     def save(self) -> None:
         for board in self.boards_to_delete:
             Database.get_instance().delete_board(board)
+        Database.get_instance().update_board_order(self.new_board_order)
         self.close()
 
     def logout(self, parent: QMainWindow):
@@ -157,6 +162,12 @@ class AppSettings(QMainWindow):
         self.close()
         from ui.welcome import WelcomeScreen
         WelcomeScreen(parent)
+
+    def rowsMoved(self, source_parent: QModelIndex, source_start: int, source_end: int, dest_parent: QModelIndex, dest_row: int) -> None:
+        self.new_board_order = [self.ui.listWidget_manage_board.item(
+            i).text() for i in range(self.ui.listWidget_manage_board.count())]
+        self.new_board_order = [next(
+            (board for board in Database.get_instance().boards if board.title == board_title), None) for board_title in self.new_board_order]
 
     def setup_font(self) -> None:
         toruspro = setup_font_db("TorusPro.ttf")[0]
