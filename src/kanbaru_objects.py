@@ -24,10 +24,10 @@ class KanbaruObject(ABC):
     def title(self, title: str) -> None:
         pass
 
-    def __eq__(self, other):
+    def __eq__(self, other) -> bool:
         pass
 
-    def __str__(self):
+    def __str__(self) -> str:
         pass
 
 
