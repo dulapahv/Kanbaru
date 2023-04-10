@@ -38,8 +38,9 @@ class MainScreen(QMainWindow):
 
         parent.ui.btn_app_settings.keyPressEvent = lambda event: keyPressEvent(
             event, parent, self.show_app_settings(parent))
-        parent.ui.btn_board_settings.keyPressEvent = lambda event: keyPressEvent(
-            event, parent, self.show_board_settings(event, parent))
+        parent.ui.btn_board_settings.keyPressEvent = lambda event: \
+            keyPressEvent(
+                event, parent, self.show_board_settings(event, parent))
         parent.ui.btn_add_board.keyPressEvent = lambda event: keyPressEvent(
             event, parent, self.add_board(parent))
 
@@ -77,7 +78,8 @@ class MainScreen(QMainWindow):
             parent, Database.get_instance().boards[0], "TorusPro.ttf")
 
         parent.ui.label_board.setText(
-            Database.get_instance().boards[0].title[:40] + (Database.get_instance().boards[0].title[40:] and '...'))
+            f"{Database.get_instance().boards[0].title[:40]}"
+            f"{(Database.get_instance().boards[0].title[40:] and '...')}")
 
         self.setup_font(parent, "TorusPro.ttf")
 
@@ -89,10 +91,12 @@ class MainScreen(QMainWindow):
         self.about = About(self.current_board.color)
         self.about.show()
 
-    def board_factory(self, parent: Ui_MainWindow, board: Board, font: str, is_constructed: bool = True) -> QPushButton:
+    def board_factory(self, parent: Ui_MainWindow, board: Board, font: str,
+                      is_constructed: bool = True) -> QPushButton:
         """Credsfates a board widget
         - Add a push button widget to the parent UI with specified style
-        - If the board is displayed, construct the list widgets and card widgets
+        - If the board is displayed, construct the list widgets and card
+        widgets
 
         Parameters
         ----------
@@ -136,7 +140,8 @@ class MainScreen(QMainWindow):
                 border-radius: 5px;
             }
             QPushButton:hover {
-                background-color: """ + f"{modify_hex_color(board.color, -30)}" + """;
+                background-color:
+                 """ + f"{modify_hex_color(board.color, -30)}" + """;
             }
             QPushButton:focus {
                 border-color: #000000;
@@ -169,7 +174,8 @@ class MainScreen(QMainWindow):
                 parent.ui.horizontalLayout_5.addWidget(qwidget)
         return parent.ui.btn_board
 
-    def panel_factory(self, parent: Ui_MainWindow, panel: Panel, font: str, color: str) -> QWidget:
+    def panel_factory(self, parent: Ui_MainWindow, panel: Panel, font: str,
+                      color: str) -> QWidget:
         """Creates a panel widget
         - Add a panel widget to the parent UI with specified style
         - Create a new name for the panel with its class name and id
@@ -297,7 +303,8 @@ class MainScreen(QMainWindow):
         parent.ui.btn_add_card.clicked.connect(
             lambda: self.add_card(parent, panel))
 
-        new_name = f"{parent.ui.listWidget.__class__.__name__}_{id(parent.ui.listWidget)}"
+        new_name = f"{parent.ui.listWidget.__class__.__name__}_"
+        f"{id(parent.ui.listWidget)}"
         setattr(parent.ui, new_name, parent.ui.listWidget)
         listWidget = getattr(parent.ui, new_name)
         listWidget.setObjectName(new_name)
@@ -310,18 +317,31 @@ class MainScreen(QMainWindow):
             listWidget.addItem(qlistwidgetitem)
 
         listWidget.clicked.connect(
-            lambda event: self.show_card_description(event, listWidget, parent, color))
+            lambda event: self.show_card_description(
+                event,
+                listWidget,
+                parent,
+                color
+            )
+        )
 
         parent.ui.label_list.setText(
-            QCoreApplication.translate("MainWindow", panel.title[:25] + (panel.title[25:] and '...'), None))
+            QCoreApplication.translate(
+                "MainWindow",
+                panel.title[:25] + (panel.title[25:] and '...'), None
+            )
+        )
         parent.ui.btn_add_card.setText(
-            QCoreApplication.translate("MainWindow", u"+ Add a card", None))
+            QCoreApplication.translate(
+                "MainWindow", u"+ Add a card", None
+            )
+        )
 
         return parent.ui.panel
 
     @staticmethod
-    def card_factory(qlistwidget: QListWidget, parent: Ui_MainWindow, card: Card, font: str,
-                     index: int) -> QListWidgetItem:
+    def card_factory(qlistwidget: QListWidget, parent: Ui_MainWindow,
+                     card: Card, font: str, index: int) -> QListWidgetItem:
         """Create a card item at the given QListWidget index
         - Create a new name for the card with its class name and id
         - Set the new name as an attribute of the parent UI and as the
@@ -349,22 +369,29 @@ class MainScreen(QMainWindow):
             The card item
         """
         parent.ui.qlistwidgetitem = QListWidgetItem(qlistwidget)
-        new_name = f"{parent.ui.qlistwidgetitem.__class__.__name__}_{id(parent.ui.qlistwidgetitem)}"
+        new_name = f"{parent.ui.qlistwidgetitem.__class__.__name__}_"
+        f"{id(parent.ui.qlistwidgetitem)}"
         setattr(parent.ui, new_name, parent.ui.qlistwidgetitem)
         list_widget_item = getattr(parent.ui, new_name)
         delattr(parent.ui, "qlistwidgetitem")
         list_widget_item.setFlags(
-            Qt.ItemIsSelectable | Qt.ItemIsDragEnabled | Qt.ItemIsUserCheckable | Qt.ItemIsEnabled)
+            Qt.ItemIsSelectable | Qt.ItemIsDragEnabled | Qt.ItemIsUserCheckable
+            | Qt.ItemIsEnabled)
         list_widget_item = qlistwidget.item(index)
         list_widget_item.setData(Qt.UserRole, card)
         list_widget_item.setText(
-            QCoreApplication.translate("MainWindow", card.title[:24] + (card.title[24:] and '...'), None))
+            QCoreApplication.translate(
+                "MainWindow",
+                card.title[:24] + (card.title[24:] and '...'), None
+            )
+        )
         font_db = setup_font_db(font)[0]
         list_widget_item.setFont(QFont(font_db, 12))
 
         return list_widget_item
 
-    def add_panel_button(self, parent: Ui_MainWindow, board: Board, font: str) -> None:
+    def add_panel_button(self, parent: Ui_MainWindow, board: Board,
+                         font: str) -> None:
         """Add a button to add a new panel
 
         Parameters
@@ -417,7 +444,8 @@ class MainScreen(QMainWindow):
         parent.ui.verticalLayout_9.addItem(parent.ui.vertSpacer_list_add)
         parent.ui.btn_add_list.setText(
             QCoreApplication.translate("MainWindow", u"+ Add a panel", None))
-        parent.ui.scrollAreaContent_panel_right.layout().addWidget(parent.ui.list_add)
+        parent.ui.scrollAreaContent_panel_right.layout().addWidget(
+            parent.ui.list_add)
         parent.ui.horzSpacer_panel_right = QSpacerItem(
             40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
         parent.ui.horizontalLayout_5.addItem(parent.ui.horzSpacer_panel_right)
@@ -465,7 +493,8 @@ class MainScreen(QMainWindow):
         self.update_whole_page(parent)
         self.change_board(parent, Database.get_instance().boards[index])
 
-    def show_card_description(self, event, list_widget: QListWidget, parent: QMainWindow, color: str) -> None:
+    def show_card_description(self, event, list_widget: QListWidget,
+                              parent: QMainWindow, color: str) -> None:
         """Show the card description window
 
         Parameters
@@ -510,20 +539,37 @@ class MainScreen(QMainWindow):
         """
         while True:
             text = input_dialog_factory(
-                "Add a board", "Enter a new board title: ", btn_color=self.current_board.color)
+                title="Add a board",
+                msg="Enter a new board title: ",
+                btn_color=self.current_board.color
+            )
             if text is None:
                 return None
-            if any(board.title == text for board in Database.get_instance().boards):
-                dialog_factory(None, None, "Invalid Title",
-                               f'Board "{text}" already exists!', yes_no=False, btn_color=self.current_board.color)
+            if any(board.title == text for
+                   board in Database.get_instance().boards):
+                dialog_factory(
+                    title="Invalid Title",
+                    msg=f'Board "{text}" already exists!',
+                    yes_no=False,
+                    btn_color=self.current_board.color
+                )
                 continue
             elif text:
                 break
-            dialog_factory(None, None, "Invalid Title",
-                           "Board title cannot be empty!", yes_no=False, btn_color=self.current_board.color)
+            dialog_factory(
+                title="Invalid Title",
+                msg="Board title cannot be empty!",
+                yes_no=False,
+                btn_color=self.current_board.color
+            )
         data = Database.get_instance().data
         data["_Database__data"].append(
-            {"_Board__title": text, "_Board__panels_lists": [], "_Board__color": "LIGHTBLUE"})
+            {
+                "_Board__title": text,
+                "_Board__panels_lists": [],
+                "_Board__color": "LIGHTBLUE"
+            }
+        )
         Database.get_instance().data = data
         Database.get_instance().write()
         self.clear_page(parent)
@@ -542,35 +588,55 @@ class MainScreen(QMainWindow):
         """
         while True:
             text = input_dialog_factory(
-                "New panel", "Enter a new panel title:", btn_color=self.current_board.color)
+                title="New panel",
+                msg="Enter a new panel title:",
+                btn_color=self.current_board.color
+            )
             if text is None:
                 return None
-            if any(panel.title == text for other_board in Database.get_instance().boards for panel in other_board.panels):
-                dialog_factory(None, None, "Invalid Title",
-                               f'Panel "{text}" already exists!', yes_no=False, btn_color=self.current_board.color)
+            if any(panel.title == text for
+                   other_board in Database.get_instance().boards for
+                   panel in other_board.panels):
+                dialog_factory(
+                    title="Invalid Title",
+                    msg=f'Panel "{text}" already exists!',
+                    yes_no=False,
+                    btn_color=self.current_board.color)
                 continue
             if text:
                 break
-            dialog_factory(None, None, "Invalid Title",
-                           "Panel title cannot be empty!", yes_no=False, btn_color=self.current_board.color)
+            dialog_factory(
+                title="Invalid Title",
+                msg="Panel title cannot be empty!",
+                yes_no=False,
+                btn_color=self.current_board.color)
         data = Database.get_instance().data
         for i, db_board in enumerate(Database.get_instance().boards):
             if db_board.title == board.title:
-                panels_list = data["_Database__data"][i]["_Board__panels_lists"]
+                panels_list = data.get(
+                    "_Database__data")[i].get(
+                        "_Board__panels_lists")
                 try:
-                    panel = {"_Panel__title": text,
-                             "_Board__panels": []}
+                    panel = {
+                        "_Panel__title": text,
+                        "_Board__panels": []
+                    }
                     panels_list.append(panel)
                 except KeyError:
-                    panels_list = [
-                        {"_Panel__title": text, "_Board__panels": []}]
-                    data["_Database__data"][i]["_Board__panels_lists"] = panels_list
+                    panels_list = [{
+                        "_Panel__title": text, "_Board__panels": []
+                    }]
+                    data.get(
+                        "_Database__data")[i]["_Board__panels_lists"] = \
+                        panels_list
                 Database.get_instance().data = data
                 Database.get_instance().write()
                 self.change_board(
                     parent, Database.get_instance().boards[i])
-                parent.ui.scrollArea_panel_right.horizontalScrollBar().setValue(
-                    parent.ui.scrollArea_panel_right.horizontalScrollBar().maximum())
+                parent.ui.scrollArea_panel_right.horizontalScrollBar(
+                ).setValue(
+                    parent.ui.scrollArea_panel_right.horizontalScrollBar(
+                    ).maximum())
                 return None
 
     def add_card(self, parent: Ui_MainWindow, panel: Panel) -> None:
@@ -585,32 +651,57 @@ class MainScreen(QMainWindow):
         """
         while True:
             text = input_dialog_factory(
-                "New card", "Enter a new card title:", btn_color=self.current_board.color)
+                title="New card",
+                msg="Enter a new card title:",
+                btn_color=self.current_board.color
+            )
             if text is None:
                 return None
             if text:
                 break
-            dialog_factory(None, None, "Invalid Title",
-                           "Card title cannot be empty!", yes_no=False, btn_color=self.current_board.color)
+            dialog_factory(
+                title="Invalid Title",
+                msg="Card title cannot be empty!",
+                yes_no=False,
+                btn_color=self.current_board.color
+            )
         data = Database.get_instance().data
         for i, board in enumerate(Database.get_instance().boards):
             for j, panel_ in enumerate(board.panels):
                 if panel_.title == panel.title:
                     if any(card.title == text for card in panel_.cards):
-                        dialog_factory(None, None, "Invalid Title",
-                                       f'Card "{text}" already exists!', yes_no=False, btn_color=self.current_board.color)
+                        dialog_factory(
+                            title="Invalid Title",
+                            msg=f'Card "{text}" already exists!',
+                            yes_no=False,
+                            btn_color=self.current_board.color
+                        )
                         self.add_card(parent, panel)
                         return None
                     try:
-                        data["_Database__data"][i]["_Board__panels_lists"][j]["_Board__panels"].append(
-                            {"_Card__title": text, "_Card__description": "",
-                             "_Card__date": datetime.date.today().strftime("%d-%m-%Y"),
-                             "_Card__time": datetime.datetime.now().strftime("%H:%M")})
+                        data.get(
+                            "_Database__data")[i].get(
+                                "_Board__panels_lists")[j].get(
+                                    "_Board__panels").append({
+                                        "_Card__title": text,
+                                        "_Card__description": "",
+                                        "_Card__date": datetime.date.today()
+                                        .strftime("%d-%m-%Y"),
+                                        "_Card__time": datetime.datetime.now()
+                                        .strftime("%H:%M")
+                                    })
                     except KeyError:
-                        data["_Database__data"][i]["_Board__panels_lists"][j]["_Board__panels"] = [
-                            {"_Card__title": text, "_Card__description": "",
-                             "_Card__date": datetime.date.today().strftime("%d-%m-%Y"),
-                             "_Card__time": datetime.datetime.now().strftime("%H:%M")}]
+                        data.get(
+                            "_Database__data")[i].get(
+                                "_Board__panels_lists")[j]["_Board__panels"] =\
+                            [{
+                                "_Card__title": text,
+                                "_Card__description": "",
+                                "_Card__date": datetime.date.today()
+                                .strftime("%d-%m-%Y"),
+                                "_Card__time": datetime.datetime.now()
+                                .strftime("%H:%M")
+                            }]
                     Database.get_instance().data = data
                     Database.get_instance().write()
                     self.change_board(
@@ -620,7 +711,8 @@ class MainScreen(QMainWindow):
         """Change the board to the specified board
         - Remove all widgets from the layout
         - Create the new board
-        - Remove the add panel button and horizontal spacer then add panel button again
+        - Remove the add panel button and horizontal spacer then add panel
+        button again
 
         Parameters
         ----------
@@ -643,7 +735,8 @@ class MainScreen(QMainWindow):
         self.add_panel_button(parent, board, "TorusPro.ttf")
 
     @staticmethod
-    def change_card(source: Panel, destination: Panel, card: Card, index: int = None) -> None:
+    def change_card(source: Panel, destination: Panel, card: Card,
+                    index: int = None) -> None:
         """Change the card in a panel to another panel
         - Get the data from the database
         - Find the source panel and the specified card
@@ -660,17 +753,24 @@ class MainScreen(QMainWindow):
         card : Card
             The card to move
         index : int, optional
-            The index position to add the card in the destination panel, by default None (adds at the end)
+            The index position to add the card in the destination panel,
+            by default None (adds at the end)
         """
         data = Database.get_instance().data
-        source_list = next((lst for lst in data.get("_Database__data", [{}])[0].get("_Board__panels_lists", [])
-                            if lst.get("_Panel__title") == getattr(source, "data").title), {})
-        card_to_move = next((card_ for card_ in source_list.get("_Board__panels", [])
-                            if card_.get("_Card__title") == card.title), {})
+        source_list = next(
+            (lst for lst in data.get("_Database__data", [{}])[0].get(
+                "_Board__panels_lists", [])
+             if lst.get("_Panel__title") == getattr(source, "data").title), {})
+        card_to_move = next(
+            (card_ for card_ in source_list.get("_Board__panels", [])
+             if card_.get("_Card__title") == card.title), {})
         if card_to_move:
-            source_list["_Board__panels"].remove(card_to_move)
-            dest_list = next((lst for lst in data.get("_Database__data", [{}])[0].get("_Board__panels_lists", [])
-                              if lst.get("_Panel__title") == getattr(destination, "data").title), {})
+            source_list.get("_Board__panels").remove(card_to_move)
+            dest_list = next(
+                (lst for lst in data.get("_Database__data", [{}])[0].get(
+                    "_Board__panels_lists", [])
+                 if lst.get("_Panel__title") == getattr(
+                     destination, "data").title), {})
             try:
                 if index is None or index >= len(dest_list["_Board__panels"]):
                     dest_list["_Board__panels"].append(card_to_move)
@@ -812,8 +912,10 @@ class CustomListWidget(QListWidget):
     @Slot()
     @overrides(QListWidget)
     def dragMoveEvent(self, event) -> None:
-        """Override the dragMoveEvent method to customize the drag and drop event
-        - Scroll the main window when the cursor is near the left or right of the main window
+        """Override the dragMoveEvent method to customize the drag and drop
+        event
+        - Scroll the main window when the cursor is near the left or right of
+        the main window
         - Accept the drag and drop event if the cursor is over a list widget
 
         Parameters
@@ -835,8 +937,10 @@ class CustomListWidget(QListWidget):
     @overrides(QListWidget)
     def dropEvent(self, event: QDropEvent) -> None:
         """Override the dropEvent method to customize the drop event
-        - Check if the item to be dropped has the qabstractitemmodeldatalist format
-        - Get the source widget and the destination widget at the current mouse position
+        - Check if the item to be dropped has the qabstractitemmodeldatalist
+        format
+        - Get the source widget and the destination widget at the current mouse
+        position
         - Get the items that are being dragged
         - Remove those items from the source widget
         - Add those items to the destination widget at the mouse position
@@ -849,7 +953,8 @@ class CustomListWidget(QListWidget):
         """
         if event.keyboardModifiers() == Qt.ControlModifier:
             return event.ignore()
-        if not event.mimeData().hasFormat('application/x-qabstractitemmodeldatalist'):
+        if not event.mimeData().hasFormat(
+                'application/x-qabstractitemmodeldatalist'):
             return event.ignore()
         source_widget = event.source()
         dest_widget = QApplication.widgetAt(QCursor().pos()).parent()
@@ -865,8 +970,10 @@ class CustomListWidget(QListWidget):
                 dest_widget.insertItem(index, item)
 
             logging.info(
-                f'Moved {len(items)} Card(s) ({[item.data(Qt.UserRole).title for item in items]}) '
-                f'from panel "{source_widget.data.title}" to panel "{dest_widget.data.title} at {index=}"')
+                f'Moved {len(items)} Card(s) '
+                f'({[item.data(Qt.UserRole).title for item in items]}) '
+                f'from panel "{source_widget.data.title}" to panel '
+                f'"{dest_widget.data.title} at {index=}"')
 
             MainScreen.change_card(
                 source_widget, dest_widget, item.data(Qt.UserRole), index)

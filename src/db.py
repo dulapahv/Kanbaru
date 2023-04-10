@@ -21,7 +21,8 @@ class Database:
 
     def __init__(self: "Database") -> None:
         self._db_path: str = None
-        assert Database._instance is None, "Database class is a singleton class!"
+        assert Database._instance is None, \
+            "Database class is a singleton class!"
         Database._instance = self
 
         self.__username: str = ""
@@ -71,7 +72,8 @@ class Database:
         Raises
         ------
         Exception
-            If the database file cannot be created, an exception will be raised.
+            If the database file cannot be created,
+            an exception will be raised.
 
         Notes
         -----
@@ -84,9 +86,11 @@ class Database:
             logging.info("Database file created")
         except Exception as e:
             logging.warning(
-                "Failed to create/access database file! The application will now exit.", exc_info=True)
+                "Failed to create/access database file! "
+                "The application will now exit.", exc_info=True)
             raise Exception(
-                "Failed to create/access database file! The application will now exit.")
+                "Failed to create/access database file! "
+                "The application will now exit.")
         self.get_instance().read()
 
     def write(self: "Database") -> None:
@@ -96,11 +100,11 @@ class Database:
         Raises
         ------
         FileNotFoundError
-            If the database file cannot be found, a FileNotFoundError will be raised
-            and a new database file will be created.
+            If the database file cannot be found, a FileNotFoundError will be
+            raised and a new database file will be created.
         Exception
-            If the database file cannot be written to, an exception will be raised
-            and a new database file will be created.
+            If the database file cannot be written to, an exception will be
+            raised and a new database file will be created.
         """
         try:
             with open(self._db_path, "w") as f:
@@ -108,25 +112,28 @@ class Database:
                 logging.info("Database written to the database file")
         except FileNotFoundError:
             logging.warning(
-                "Database file not found! Creating new database...", exc_info=True)
+                "Database file not found! "
+                "Creating new database...", exc_info=True)
             self.create()
         except Exception as e:
             logging.warning(
-                "Failed to write data to database! Creating new database...", exc_info=True)
+                "Failed to write data to database! "
+                "Creating new database...", exc_info=True)
             self.create()
 
     def read(self: "Database") -> None:
-        """Reads data from the database file and stores it in the database instance.
-        If exceptions are raised, a new database file will be created.
+        """Reads data from the database file and stores it in the database
+        instance. If exceptions are raised, a new database file will be
+        created.
 
         Raises
         ------
         FileNotFoundError
-            If the database file cannot be found, a FileNotFoundError will be raised
-            and a new database file will be created.
+            If the database file cannot be found, a FileNotFoundError will be
+            raised and a new database file will be created.
         Exception
-            If the database file cannot be read from, an exception will be raised.
-            and a new database file will be created.
+            If the database file cannot be read from, an exception will be
+            raised and a new database file will be created.
         """
         logging.info("Reading database file...")
         try:
@@ -136,21 +143,26 @@ class Database:
                 self.__password = self.__data.get("_Database__password", "")
         except FileNotFoundError:
             logging.warning(
-                "Database file not found! Creating new database...", exc_info=True)
+                "Database file not found! "
+                "Creating new database...", exc_info=True)
             self.create()
         except Exception as e:
             logging.warning(
-                "Failed to read data from database! Creating new database...", exc_info=True)
+                "Failed to read data from database! "
+                "Creating new database...", exc_info=True)
             self.create()
         logging.info(f"Username: {self.username}")
         logging.info(
-            f"Loaded {len(self.boards)} board{'s' if len(self.boards) > 1 else ''}")
+            f"Loaded {len(self.boards)} "
+            f"board{'s' if len(self.boards) > 1 else ''}")
         for board in self.boards:
             logging.info(
-                f'+--"{board.title}" [{len(board.panels)} panel{"s" if len(board.panels) > 1 else ""}]')
+                f'+--"{board.title}" [{len(board.panels)} '
+                f'panel{"s" if len(board.panels) > 1 else ""}]')
             for panel in board.panels:
                 logging.info(
-                    f'|   +--"{panel.title}" [{len(panel.cards)} card{"s" if len(panel.cards) > 1 else ""}]')
+                    f'|   +--"{panel.title}" [{len(panel.cards)} '
+                    f'card{"s" if len(panel.cards) > 1 else ""}]')
                 for card in panel.cards:
                     logging.info(f'|   |   +--"{card.title}"')
         logging.info("Database read from the database file")
@@ -175,9 +187,11 @@ class Database:
             return None
         logging.info("Initializing Firebase...")
         cred = credentials.Certificate(cred_path)
+        url = ('https://kanbaru-42069-default-rtdb.asia-southeast1.'
+               'firebasedatabase.app/')
         try:
             firebase_admin.initialize_app(
-                cred, {'databaseURL': 'https://kanbaru-42069-default-rtdb.asia-southeast1.firebasedatabase.app/'})
+                cred, {'databaseURL': url})
             logging.info("Firebase credentials initialized")
         except Exception as e:
             logging.warning(
@@ -225,7 +239,8 @@ class Database:
         Raises
         ------
         Exception
-            If the database cannot be uploaded to Firebase, an exception will be raised.
+            If the database cannot be uploaded to Firebase, an exception will
+            be raised.
         """
         if not username:
             logging.warning(
@@ -289,14 +304,16 @@ class Database:
 
     @property
     def boards(self: "Database") -> List[Board]:
-        """Returns a list of boards containing their attributes and a list of panels 
-        containing their attributes and a list of cards containing their attributes.
+        """Returns a list of boards containing their attributes and a list of
+        panels containing their attributes and a list of cards containing their
+        attributes.
 
         Returns
         -------
         boards : List[Board]
-            A list of boards containing their attributes and a list of panels containing 
-            their attributes and a list of cards containing their attributes.
+            A list of boards containing their attributes and a list of panels
+            containing their attributes and a list of cards containing their
+            attributes.
         """
         boards = []
         board_lists = self.__data.get('_Database__data', [])
@@ -355,11 +372,13 @@ class Database:
             The new card to be updated to.
         """
         for index_b, board in enumerate(self.boards):
-            for index_l, panel in enumerate(board.panels):
+            for index_p, panel in enumerate(board.panels):
                 for index_c, card in enumerate(panel.cards):
                     if card == card_old:
-                        card_dict = self.data.get("_Database__data")[index_b].get(
-                            "_Board__panels_lists")[index_l].get("_Board__panels")[index_c]
+                        card_dict = self.data.get(
+                            "_Database__data")[index_b].get(
+                            "_Board__panels_lists")[index_p].get(
+                                "_Board__panels")[index_c]
                         card_dict["_Card__title"] = card_new.title
                         card_dict["_Card__description"] = card_new.description
                         card_dict["_Card__date"] = card_new.date
@@ -367,10 +386,14 @@ class Database:
                         Database.write(self)
                         logging.info("Card updated:")
                         logging.info(
-                            f"{card_old} -> title='{card_new.title}', date='{card_new.date}', time='{card_new.time}', description='{card_new.description}'")
+                            f"{card_old} -> title='{card_new.title}', "
+                            f"date='{card_new.date}', "
+                            f"time='{card_new.time}', "
+                            f"description='{card_new.description}'")
                         return None
 
-    def update_panel(self: "Database", panel_old: Panel, panel_new: Panel) -> None:
+    def update_panel(self: "Database", panel_old: Panel,
+                     panel_new: Panel) -> None:
         """Update panel info in database
 
         Parameters
@@ -381,18 +404,20 @@ class Database:
             The new panel to be updated to.
         """
         for index_b, board in enumerate(self.boards):
-            for index_l, panel in enumerate(board.panels):
+            for index_p, panel in enumerate(board.panels):
                 if panel == panel_old:
                     panel_dict = self.data.get("_Database__data")[index_b].get(
-                        "_Board__panels_lists")[index_l]
+                        "_Board__panels_lists")[index_p]
                     panel_dict["_Panel__title"] = panel_new.title
                     Database.write(self)
                     logging.info("Panel updated:")
                     logging.info(
-                        f"{panel_old} -> title='{panel_new.title}', cards={[card.title for card in panel_new.cards]}")
+                        f"{panel_old} -> title='{panel_new.title}', "
+                        f"cards={[card.title for card in panel_new.cards]}")
                     return None
 
-    def update_board(self: "Database", board_old: Board, board_new: Board) -> None:
+    def update_board(self: "Database", board_old: Board,
+                     board_new: Board) -> None:
         """Update board info in database.
 
         Parameters
@@ -409,11 +434,13 @@ class Database:
                 board_dict["_Board__color"] = Color(board_new.color).name
                 logging.info("Board updated:")
                 logging.info(
-                    f"{board_old} -> title='{board_new.title}', color='{Color(board_new.color).name}'")
+                    f"{board_old} -> title='{board_new.title}', "
+                    f"color='{Color(board_new.color).name}'")
                 Database.write(self)
                 return None
 
-    def update_panel_order(self: "Database", board: Board, new_panel_list: List[Panel]) -> None:
+    def update_panel_order(self: "Database", board: Board,
+                           new_panel_list: List[Panel]) -> None:
         """Update the order of panels in a board.
 
         Parameters
@@ -444,11 +471,13 @@ class Database:
                 ]
                 logging.info("Panel order updated:")
                 logging.info(
-                    f"{[panel.title for panel in old_panel_list]} -> {[panel.title for panel in new_panel_list]}")
+                    f"{[panel.title for panel in old_panel_list]} -> "
+                    f"{[panel.title for panel in new_panel_list]}")
                 Database.write(self)
                 return None
 
-    def update_board_order(self: "Database", new_board_list: List[Board]) -> None:
+    def update_board_order(self: "Database",
+                           new_board_list: List[Board]) -> None:
         """Update the order of boards.
 
         Parameters
@@ -481,9 +510,30 @@ class Database:
         ]
         logging.info("Board order updated:")
         logging.info(
-            f"{[board.title for board in old_board_list]} -> {[board.title for board in new_board_list]}")
+            f"{[board.title for board in old_board_list]} -> "
+            f"{[board.title for board in new_board_list]}")
         Database.write(self)
         return None
+
+    def delete_card(self: "Database", card_delete: Card) -> None:
+        """Delete card from database.
+
+        Parameters
+        ----------
+        card_delete : Card
+            The card to be deleted.
+        """
+        for index_b, board in enumerate(self.boards):
+            for index_p, panel in enumerate(board.panels):
+                for index_c, card in enumerate(panel.cards):
+                    if card == card_delete:
+                        del self.data.get(
+                            "_Database__data")[index_b].get(
+                                "_Board__panels_lists")[index_p].get(
+                                    "_Board__panels")[index_c]
+                        Database.write(self)
+                        logging.info(f'Card "{card_delete.title}" deleted')
+                        return None
 
     def delete_panel(self: "Database", panel_delete: Panel) -> None:
         """Delete panel from database.
@@ -494,10 +544,12 @@ class Database:
             The panel to be deleted.
         """
         for index_b, board in enumerate(self.boards):
-            for index_l, panel in enumerate(board.panels):
+            for index_p, panel in enumerate(board.panels):
                 if panel == panel_delete:
                     logging.info(f'Panel "{panel.title}" deleted.')
-                    del self.data["_Database__data"][index_b]["_Board__panels_lists"][index_l]
+                    del self.data.get(
+                        "_Database__data")[index_b].get(
+                            "_Board__panels_lists")[index_p]
                     Database.write(self)
                     logging.info(f'Panel "{panel.title}" deleted')
                     return None
@@ -517,7 +569,8 @@ class Database:
                 logging.info(f'Board "{board.title}" deleted')
                 return None
 
-    def change_board_color(self: "Database", board: Board, color: Color) -> None:
+    def change_board_color(self: "Database", board: Board,
+                           color: Color) -> None:
         """Change the color of a board.
 
         Parameters
@@ -562,7 +615,8 @@ class Database:
         Raises
         ------
         Exception
-            If the database cannot be written to the database file, an exception will be raised.
+            If the database cannot be written to the database file, an
+            exception will be raised.
         """
         logging.info("Logging out...")
         self.username: str = ""
@@ -580,7 +634,8 @@ class Database:
         Raises
         ------
         Exception
-            If the database cannot be deleted from the database file, an exception will be raised.
+            If the database cannot be deleted from the database file, an
+            exception will be raised.
         """
         logging.info("Deleting account...")
         try:

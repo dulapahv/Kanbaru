@@ -67,12 +67,16 @@ class Auth:
             ref = db.reference(username).get()
         except Exception as e:
             logging.warning(
-                f"Error while checking if username exists! Retrying...", exc_info=True)
+                "Error while checking if username exists! Retrying...",
+                exc_info=True,
+            )
             try:
                 ref = db.reference(username).get()
             except Exception as e:
                 raise Exception(
-                    f"Could not verify credentials! Please check your internet connection or try again later.\n{e}")
+                    f"Could not verify credentials! Please check your internet"
+                    f" connection or try again later.\n{e}"
+                )
         if ref is not None:
             logging.warning("Username already exists!")
             return 3
@@ -101,14 +105,18 @@ class Auth:
             return False
         try:
             ref = db.reference(username).get()
-        except:
+        except Exception as e:
             logging.warning(
-                f"Error while verifying credentials! Retrying...", exc_info=True)
+                "Error while verifying credentials! Retrying...",
+                exc_info=True,
+            )
             try:
                 ref = db.reference(username).get()
             except Exception as e:
                 raise Exception(
-                    f"Could not verify credentials! Please check your internet connection or try again later.\n{e}")
+                    f"Could not verify credentials! Please check your internet"
+                    f" connection or try again later.\n{e}"
+                )
         finally:
             ref = db.reference(username).get()
         if ref is None or password != ref["_Database__password"]:

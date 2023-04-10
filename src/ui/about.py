@@ -18,41 +18,51 @@ class About(QMainWindow):
 
         self.count: int = 0
 
-        self.ui.centralwidget.mousePressEvent = lambda event: self.deleteLater()
-        self.ui.label_logo_bottom.mousePressEvent = lambda event: self.easter_egg()
+        self.ui.centralwidget.mousePressEvent = lambda event: \
+            self.deleteLater()
+        self.ui.label_logo_bottom.mousePressEvent = lambda event: \
+            self.easter_egg()
         self.setWindowModality(Qt.ApplicationModal)
 
         self.ui.label_description_2.setText(QCoreApplication.translate(
             "About",
-            f"<html><head/><body>"
-            f"<p>1. Dulapah Vibulsanti (<a href=\"https://github.com/dulapahv\">"
-            f"<span style=\"font-weight:700; text-decoration: underline; color:{color};\">github/dulapahv</span>"
-            f"</a>)</p>"
-            f"<p>2. Anucha Cheewachanon (<a href=\"https://github.com/SpiralNuggets\">"
-            f"<span style=\"font-weight:700; text-decoration: underline; color:{color};\">github/SpiralNuggets</span>"
-            f"</a>)</p>"
-            f"<p>3. Annopdanai Pamarapa (<a href=\"https://github.com/beam2546\">"
-            f"<span style=\"font-weight:700; text-decoration: underline; color:{color};\">github/beam2546</span>"
-            f"</a>)</p>"
-            f"<p><span style=\"font-weight:700;\">View Kanbaru on </span>"
-            f"<a href=\"https://github.com/dulapahv/Kanbaru\">"
-            f"<span style=\"font-weight:700; text-decoration: underline; color:{color};\">Github</span></a></p>"
-            f"</body></html>",
-            None))
+            "<html><head/><body>"
+            "<p>1. Dulapah Vibulsanti"
+            "(<a href='https://github.com/dulapahv'>"
+            "<span style='font-weight:700; text-decoration: underline;"
+            f"color:{color};'>github/dulapahv</span></a>)</p>"
+            "<p>2. Anucha Cheewachanon"
+            "(<a href='https://github.com/SpiralNuggets'>"
+            "<span style='font-weight:700; text-decoration: underline;"
+            f"color:{color};'>github/SpiralNuggets</span></a>)</p>"
+            "<p>3. Annopdanai Pamarapa"
+            "(<a href='https://github.com/beam2546'>"
+            "<span style='font-weight:700; text-decoration: underline;"
+            f"color:{color};'>github/beam2546</span></a>)</p>"
+            "<p><span style='font-weight:700;'>View Kanbaru on </span>"
+            "<a href='https://github.com/dulapahv/Kanbaru'>"
+            "<span style='font-weight:700; text-decoration: underline;"
+            f"color:{color};'>Github</span></a></p>"
+            "</body></html>",
+            None)
+        )
 
         self.ui.label_license.setText(QCoreApplication.translate(
             "About",
-            f"<html><head/><body>"
-            f"<p>Kanbaru is released under the MIT license. See "
-            f"<a href=\"https://github.com/dulapahv/Kanbaru/blob/main/LICENSE\">"
-            f"<span style=\"font-weight:700; text-decoration: underline; color:{color};\">LICENSE</span></a>"
-            f" for more information.</p>"
-            f"</body></html>",
-            None))
+            "<html><head/><body>"
+            "<p>Kanbaru is released under the MIT license. See "
+            "<a href='https://github.com/dulapahv/Kanbaru/blob/main/LICENSE'>"
+            "<span style=\"font-weight:700; text-decoration: underline;"
+            f"color:{color};\">LICENSE</span></a>"
+            " for more information.</p>"
+            "</body></html>",
+            None)
+        )
 
     @overrides(QMainWindow)
     def deleteLater(self) -> None:
-        if self.ui.label_license.underMouse() or self.ui.label_description_2.underMouse():
+        if self.ui.label_license.underMouse() or \
+                self.ui.label_description_2.underMouse():
             return None
         super().deleteLater()
 
@@ -60,7 +70,8 @@ class About(QMainWindow):
         self.count += 1
         if self.count == 5:
             logging.info("Easter egg activated!")
-            with open(get_current_directory() + "\\resources\\img\\rainydevil.txt", "rb") as f:
+            with open(get_current_directory() +
+                      "\\resources\\img\\rainydevil.txt", "rb") as f:
                 b64data = f.read()
                 data = b64decode(b64data)
                 rainydevilpic = QPixmap()

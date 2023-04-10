@@ -112,7 +112,8 @@ def setup_font_db(font: str) -> QFontDatabase:
     return QFontDatabase.applicationFontFamilies(font_database)
 
 
-def keyPressEvent(event: QKeyEvent, parent: QMainWindow = None, function: Callable = None) -> Callable:
+def keyPressEvent(event: QKeyEvent, parent: QMainWindow = None,
+                  function: Callable = None) -> Callable:
     """This function is used to call a function when the enter key is pressed
 
     Parameters

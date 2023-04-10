@@ -32,7 +32,8 @@ class KanbaruObject(ABC):
 
 
 class Card(KanbaruObject):
-    def __init__(self, title: str = "New Card", date="", time="", description: str = "") -> None:
+    def __init__(self, title: str = "New Card", date="", time="",
+                 description: str = "") -> None:
         self.__title = title
         self.__date = date
         self.__time = time
@@ -87,15 +88,23 @@ class Card(KanbaruObject):
         self.__time = time
 
     def __eq__(self, card):
-        return self.__title == card.title and self.__date == card.date and self.__time == card.time and \
+        return (
+            self.__title == card.title and
+            self.__date == card.date and
+            self.__time == card.time and
             self.__description == card.description
+        )
 
     def __str__(self):
-        return f"{self.title=}, {self.date=}, {self.time=}, {self.description=}".replace("self.", "")
+        return (
+            f"{self.title=}, {self.date=}, {self.time=}, "
+            f"{self.description=}".replace("self.", "")
+        )
 
 
 class Panel(KanbaruObject):
-    def __init__(self, title: str = "New Panel", card_lists: List[Card] = []) -> None:
+    def __init__(self, title: str = "New Panel",
+                 card_lists: List[Card] = []) -> None:
         self.__title = title
         self.__card_lists = card_lists
 
@@ -122,22 +131,31 @@ class Panel(KanbaruObject):
         self.__card_lists.append(card)
 
     def __eq__(self, panel):
-        return self.__title == panel.title and self.__card_lists == panel.cards
+        return (
+            self.__title == panel.title
+            and self.__card_lists == panel.cards
+        )
 
     def __str__(self):
-        return f"{self.title=}, cards={[card.title for card in self.cards]}".replace("self.", "")
+        return (
+            f"{self.title=}, "
+            f"cards={[card.title for card in self.cards]}".replace("self.", "")
+        )
 
 
 class Board(KanbaruObject):
-    def __init__(self, title: str = "New Board", color="LIGHTBLUE", panels_lists: List[Panel] = []):
+    def __init__(self, title: str = "New Board", color="LIGHTBLUE",
+                 panels_lists: List[Panel] = []):
         self.__title = title
         self.__panels_lists = panels_lists
         try:
             self.__color = color
             Color[self.__color].value
-        except:
+        except Exception as e:
             raise ValueError(
-                "Board color must be one of the following: LIGHTBLUE, ROSE, GOLD, GREEN, LAVENDER, TEAL.")
+                "Board color must be one of the following: "
+                "LIGHTBLUE, ROSE, GOLD, GREEN, LAVENDER, TEAL."
+            )
 
     @property
     def title(self) -> str:
@@ -163,7 +181,9 @@ class Board(KanbaruObject):
             self.__color = color
         else:
             raise ValueError(
-                "Board color must be one of the following: LIGHTBLUE, ROSE, GOLD, GREEN, LAVENDER, TEAL.")
+                "Board color must be one of the following: "
+                "LIGHTBLUE, ROSE, GOLD, GREEN, LAVENDER, TEAL."
+            )
 
     @panels.setter
     def panels(self, panel: Panel) -> None:
@@ -174,7 +194,14 @@ class Board(KanbaruObject):
         self.__panels_lists.append(panel)
 
     def __eq__(self, board):
-        return self.title == board.title and self.color == board.color and self.panels == board.panels
+        return (
+            self.title == board.title and
+            self.color == board.color and
+            self.panels == board.panels
+        )
 
     def __str__(self):
-        return f"{self.title=}, color='{Color(self.color).name}'".replace("self.", "")
+        return (
+            f"{self.title=}, "
+            f"color='{Color(self.color).name}'".replace("self.", "")
+        )

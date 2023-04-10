@@ -20,12 +20,26 @@ class CardDescription(QMainWindow):
         self.ui.lineEdit_title.textChanged.connect(self.title_listener)
 
         self.ui.btn_delete.clicked.connect(
-            lambda: dialog_factory(None, self.delete, "Delete Card", "Are you sure you want to delete this card?\nThis action cannot be undone.", btn_color=color))
+            lambda: dialog_factory(
+                function=self.delete,
+                title="Delete Card",
+                msg="Are you sure you want to delete this card?\n"
+                "This action cannot be undone.",
+                btn_color=color
+            )
+        )
         self.ui.btn_cancel.clicked.connect(self.close)
         self.ui.btn_save.clicked.connect(self.save)
 
         self.ui.btn_delete.keyPressEvent = lambda event: keyPressEvent(
-            event, function=dialog_factory(None, self.delete, "Delete Card", "Are you sure you want to delete this card?\nThis action cannot be undone.", btn_color=color))
+            event, function=dialog_factory(
+                function=self.delete,
+                title="Delete Card",
+                msg="Are you sure you want to delete this card?\n"
+                "This action cannot be undone.",
+                btn_color=color
+            )
+        )
         self.ui.btn_cancel.keyPressEvent = lambda event: keyPressEvent(
             event, function=self.close)
         self.ui.btn_save.keyPressEvent = lambda event: keyPressEvent(
@@ -57,7 +71,12 @@ class CardDescription(QMainWindow):
         self.ui.label_card_desc.setStyleSheet(
             f"""
             background-color: qlineargradient(
-                spread:pad, x1:0.5, y1:0.5, x2:0.95, y2:0.5, stop:0 {self.color},
+                spread:pad,
+                x1:0.5,
+                y1:0.5,
+                x2:0.95,
+                y2:0.5,
+                stop:0 {self.color},
                 stop:1 rgba(69, 76, 90, 255)
             );
             color: #ffffff;
@@ -128,8 +147,12 @@ class CardDescription(QMainWindow):
 
     def save(self) -> None:
         if self.title_txt == "":
-            dialog_factory(None, None, "Invalid Title",
-                           "Card title cannot be empty!", yes_no=False, btn_color=self.color)
+            dialog_factory(
+                title="Invalid Title",
+                msg="Card title cannot be empty!",
+                yes_no=False,
+                btn_color=self.color
+            )
             return None
         card_old = Card(self.card.title, self.card.date,
                         self.card.time, self.card.description)
@@ -138,8 +161,12 @@ class CardDescription(QMainWindow):
                 for panel in board.panels:
                     for card in panel.cards:
                         if card.title == self.title_txt:
-                            dialog_factory(None, None, "Invalid Title",
-                                           "Card already exists!", yes_no=False, btn_color=self.color)
+                            dialog_factory(
+                                title="Invalid Title",
+                                msg="Card already exists!",
+                                yes_no=False,
+                                btn_color=self.color
+                            )
                             return None
         if card_old != self:
             Database.get_instance().update_card(card_old, self)

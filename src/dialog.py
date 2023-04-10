@@ -1,4 +1,4 @@
-from typing import Callable
+from typing import Callable, Type
 
 from PySide6.QtCore import Qt
 from PySide6.QtGui import QFont, QIcon
@@ -9,27 +9,34 @@ from PySide6.QtWidgets import (QDialog, QDialogButtonBox, QLabel, QLineEdit,
 from utils import get_current_directory, modify_hex_color, setup_font_db
 
 
-def dialog_factory(parent: QMainWindow, function: Callable, title: str, msg: str, yes_no: bool = True, btn_color:
-                   str = "#6badee") -> bool:
-    """Creates a dialog box with a title, message, and two buttons.
+def dialog_factory(parent: Type = None, function: Callable = None,
+                   title: str = "", msg: str = "", yes_no: bool = True,
+                   btn_color: str = "#6badee") -> bool | Callable:
+    """This function is used to create a dialog box.
+    If `yes_no` is True, the dialog box will have a "Yes" and "No" button.
+    If `yes_no` is False, the dialog box will only have a "Close" button.
 
     Parameters
     ----------
-    yes_no
-    btn_color
-    parent : QMainWindow
-        The parent window of the dialog box.
+    parent : Type
+        The parent of the dialog box.
     function : Callable
-        The function to be called when the user clicks the "Yes" button.
+        The function to call when the "Yes" button is clicked.
     title : str
-        The title of the dialog box.
+        The title of the dialog box, by default "".
     msg : str
-        The message of the dialog box.
+        The message to display in the dialog box, by default "".
+    yes_no : bool
+        Whether or not to display the "Yes" and "No" buttons, by default True.
+    btn_color : str
+        The color of the "Yes" button, by default "#6badee".
 
     Returns
     -------
     bool
         True if the user clicks the "Yes" button, False otherwise.
+    Callable
+        The function to call when the "Yes" button is clicked.
     """
     dialog = QMessageBox()
     icon = QIcon(f"{get_current_directory()}/resources/img/icon.png")
@@ -122,21 +129,25 @@ def dialog_factory(parent: QMainWindow, function: Callable, title: str, msg: str
     return False
 
 
-def input_dialog_factory(title: str, msg: str, default: str = "", btn_color: str = "#6badee") -> str:
-    """Creates an input dialog box with a title, message, and an input field.
+def input_dialog_factory(title: str = "", msg: str = "", default: str = "",
+                         btn_color: str = "#6badee") -> None | str:
+    """This function is used to create an input dialog box.
 
     Parameters
     ----------
-    btn_color
     title : str
-        The title of the dialog box.
+        The title of the dialog box, by default "".
     msg : str
-        The message of the dialog box.
-    default : str, optional
-        The default text in the input field, by default ""
+        The message to display in the dialog box, by default "".
+    default : str
+        The default text in the input field, by default "".
+    btn_color : str
+        The color of the "Ok" button, by default "#6badee".
 
     Returns
     -------
+    None
+        If the user clicks the "Cancel" button.
     str
         The text in the input field.
     """
