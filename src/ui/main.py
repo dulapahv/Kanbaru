@@ -758,18 +758,18 @@ class MainScreen(QMainWindow):
         """
         data = Database.get_instance().data
         source_list = next(
-            (lst for lst in data.get("_Database__data", [{}])[0].get(
+            (pan for pan in data.get("_Database__data", [{}])[0].get(
                 "_Board__panels_lists", [])
-             if lst.get("_Panel__title") == getattr(source, "data").title), {})
+             if pan.get("_Panel__title") == getattr(source, "data").title), {})
         card_to_move = next(
             (card_ for card_ in source_list.get("_Board__panels", [])
              if card_.get("_Card__title") == card.title), {})
         if card_to_move:
             source_list.get("_Board__panels").remove(card_to_move)
             dest_list = next(
-                (lst for lst in data.get("_Database__data", [{}])[0].get(
+                (pan for pan in data.get("_Database__data", [{}])[0].get(
                     "_Board__panels_lists", [])
-                 if lst.get("_Panel__title") == getattr(
+                 if pan.get("_Panel__title") == getattr(
                      destination, "data").title), {})
             try:
                 if index is None or index >= len(dest_list["_Board__panels"]):

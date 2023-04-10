@@ -3,8 +3,7 @@ from typing import Callable, Type
 from PySide6.QtCore import Qt
 from PySide6.QtGui import QFont, QIcon
 from PySide6.QtWidgets import (QDialog, QDialogButtonBox, QLabel, QLineEdit,
-                               QMainWindow, QMessageBox, QPushButton,
-                               QVBoxLayout)
+                               QMessageBox, QPushButton, QVBoxLayout)
 
 from utils import get_current_directory, modify_hex_color, setup_font_db
 
