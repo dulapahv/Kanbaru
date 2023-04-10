@@ -129,6 +129,7 @@ class AppSettings(QMainWindow):
         self.about.show()
 
     def delete(self, event) -> None:
+        """Deletes the selected board(s)"""
         selected_all = self.ui.listWidget_manage_board.selectedItems()
         if len(selected_all) == 0:
             dialog_factory(
@@ -159,6 +160,7 @@ class AppSettings(QMainWindow):
                     self.ui.listWidget_manage_board.row(selected_board))
 
     def save(self) -> None:
+        """Deletes the selected boards and saves the new board order"""
         for board in self.boards_to_delete:
             Database.get_instance().delete_board(board)
         if len(self.new_board_order) != 0:
@@ -166,6 +168,7 @@ class AppSettings(QMainWindow):
         self.close()
 
     def logout(self, parent: QMainWindow):
+        """Logs out the user"""
         Database.get_instance().logout()
         logging.info("Going to welcome screen...")
         self.close()
@@ -173,6 +176,7 @@ class AppSettings(QMainWindow):
         WelcomeScreen(parent)
 
     def delete_account(self, parent: QMainWindow):
+        """Deletes the user's account"""
         Database.get_instance().delete_account()
         logging.info("Going to welcome screen...")
         self.close()
@@ -182,6 +186,7 @@ class AppSettings(QMainWindow):
     def rowsMoved(self, source_parent: QModelIndex, source_start: int,
                   source_end: int, dest_parent: QModelIndex,
                   dest_row: int) -> None:
+        """Updates the new board order when the user changes the board order"""
         self.new_board_order = [
             self.ui.listWidget_manage_board.item(i).text()
             for i in range(self.ui.listWidget_manage_board.count())

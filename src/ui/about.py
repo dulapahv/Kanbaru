@@ -61,12 +61,16 @@ class About(QMainWindow):
 
     @overrides(QMainWindow)
     def deleteLater(self) -> None:
+        """Override deleteLater() to prevent closing the window when
+        clicking on the label.
+        """
         if self.ui.label_license.underMouse() or \
                 self.ui.label_description_2.underMouse():
             return None
         super().deleteLater()
 
     def easter_egg(self) -> None:
+        """Easter egg for the logo."""
         self.count += 1
         if self.count == 5:
             logging.info("Easter egg activated!")
@@ -86,6 +90,7 @@ class About(QMainWindow):
 
     @overrides(QMainWindow)
     def paintEvent(self, event):
+        """Override paintEvent() to make the window rounded."""
         painter = QPainter(self)
         painter.setRenderHint(QPainter.Antialiasing)
 

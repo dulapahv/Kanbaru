@@ -146,6 +146,7 @@ class CardDescription(QMainWindow):
         self.setup_font()
 
     def save(self) -> None:
+        """Saves the card to the database."""
         if self.title_txt == "":
             dialog_factory(
                 title="Invalid Title",
@@ -173,6 +174,7 @@ class CardDescription(QMainWindow):
         self.close()
 
     def delete(self, event) -> None:
+        """Deletes the card from the database."""
         Database.get_instance().delete_card(self)
         self.close()
 

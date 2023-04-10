@@ -100,6 +100,7 @@ class BoardSettings(QMainWindow):
         )
 
     def delete(self, event) -> None:
+        """Delete all selected panels."""
         selected_all = self.ui.listWidget_manage_panel.selectedItems()
         if len(selected_all) == 0:
             dialog_factory(
@@ -130,6 +131,7 @@ class BoardSettings(QMainWindow):
                     self.ui.listWidget_manage_panel.row(selected_panel))
 
     def rename(self, event) -> None:
+        """Rename selected panel."""
         selected_all = self.ui.listWidget_manage_panel.selectedItems()
         if len(selected_all) == 0:
             dialog_factory(
@@ -167,6 +169,7 @@ class BoardSettings(QMainWindow):
             self.ui.listWidget_manage_panel.currentRow() + 1, panel_obj.title)
 
     def save(self) -> None:
+        """Deletes the selected panels and saves the board order."""
         for panel in self.panels_to_delete:
             Database.get_instance().delete_panel(panel)
         if self.old_board != self:
@@ -229,6 +232,7 @@ class BoardSettings(QMainWindow):
     def rowsMoved(self, source_parent: QModelIndex, source_start: int,
                   source_end: int, dest_parent: QModelIndex,
                   dest_row: int) -> None:
+        """Updates the new panel order when the user moves a panel."""
         self.new_panel_order = [self.ui.listWidget_manage_panel.item(
             i).text() for i in range(self.ui.listWidget_manage_panel.count())]
         self.new_panel_order = [
