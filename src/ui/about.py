@@ -1,3 +1,4 @@
+import logging
 from base64 import b64decode
 
 from PySide6.QtCore import QCoreApplication, Qt
@@ -58,7 +59,7 @@ class About(QMainWindow):
     def easter_egg(self) -> None:
         self.count += 1
         if self.count == 5:
-            print("Easter egg found!")
+            logging.info("Easter egg activated!")
             with open(get_current_directory() + "\\resources\\img\\rainydevil.txt", "rb") as f:
                 b64data = f.read()
                 data = b64decode(b64data)
