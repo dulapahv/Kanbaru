@@ -6,7 +6,7 @@ from PySide6.QtGui import QFont
 from PySide6.QtWidgets import QMainWindow
 
 from db import Database
-from dialog import dialog_factory, input_dialog_factory
+from dialog import dialog_factory
 from kanbaru_objects import Board
 from ui.about import About
 from ui.app_settings_ui import Ui_SettingsWindow
