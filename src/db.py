@@ -20,7 +20,7 @@ class Database:
     _instance: "Database" = None
 
     def __init__(self: "Database") -> None:
-        self._db_path: str = None
+        self._db_path: str = ""
         assert Database._instance is None, \
             "Database class is a singleton class!"
         Database._instance = self
@@ -564,7 +564,7 @@ class Database:
         """
         for index_b, board in enumerate(self.boards):
             if board == board_delete:
-                del self.data["_Database__data"][index_b]
+                del self.data.get("_Database__data")[index_b]
                 Database.write(self)
                 logging.info(f'Board "{board.title}" deleted')
                 return None
@@ -582,7 +582,8 @@ class Database:
         """
         for index_b, board in enumerate(self.boards):
             if board == board:
-                self.data["_Database__data"][index_b]["_Board__color"] = Color(
+                self.data.get(
+                    "_Database__data")[index_b]["_Board__color"] = Color(
                     color).name
                 Database.write(self)
                 return None

@@ -177,7 +177,7 @@ class Board(KanbaruObject):
 
     @color.setter
     def color(self, color: str) -> None:
-        if color in Color._value2member_map_:
+        if color in Color.value2member_map_:
             self.__color = color
         else:
             raise ValueError(

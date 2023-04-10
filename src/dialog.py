@@ -26,7 +26,7 @@ def dialog_factory(parent: Type = None, function: Callable = None,
     msg : str
         The message to display in the dialog box, by default "".
     yes_no : bool
-        Whether or not to display the "Yes" and "No" buttons, by default True.
+        Whether to display the "Yes" and "No" buttons, by default True.
     btn_color : str
         The color of the "Yes" button, by default "#6badee".
 
