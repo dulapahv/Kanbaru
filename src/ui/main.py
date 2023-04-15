@@ -960,12 +960,14 @@ class CustomListWidget(QListWidget):
         dest_widget = QApplication.widgetAt(QCursor().pos()).parent()
         items = source_widget.selectedItems()
 
-        for item in items:
+        for i, item in enumerate(items):
             source_widget.takeItem(source_widget.row(item))
 
             index = dest_widget.row(dest_widget.itemAt(event.pos()))
-            if index == -1:
+            if index < 0:
                 index = dest_widget.count()
+
+            index += i
             if source_widget == dest_widget:
                 dest_widget.insertItem(index, item)
 
