@@ -975,7 +975,7 @@ class CustomListWidget(QListWidget):
                 f'Moved {len(items)} Card(s) '
                 f'({[item.data(Qt.UserRole).title for item in items]}) '
                 f'from panel "{source_widget.data.title}" to panel '
-                f'"{dest_widget.data.title} at {index=}"')
+                f'"{dest_widget.data.title}" at {index=}"')
 
             MainScreen.change_card(
                 source_widget, dest_widget, item.data(Qt.UserRole), index)
