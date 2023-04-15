@@ -123,13 +123,14 @@ class MainScreen(QMainWindow):
         parent.ui.btn_board = QPushButton(
             parent.ui.scrollAreaContent_panel_left)
         parent.ui.btn_board.setObjectName(u"btn_board")
-        size_policy = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Fixed)
+        size_policy = QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed)
         size_policy.setHorizontalStretch(0)
         size_policy.setVerticalStretch(0)
         size_policy.setHeightForWidth(
             parent.ui.btn_board.sizePolicy().hasHeightForWidth())
         parent.ui.btn_board.setSizePolicy(size_policy)
-        parent.ui.btn_board.setMinimumSize(QSize(0, 40))
+        parent.ui.btn_board.setMinimumSize(QSize(132, 40))
+        parent.ui.btn_board.setMaximumSize(QSize(132, 40))
         parent.ui.btn_board.setCursor(QCursor(Qt.PointingHandCursor))
         parent.ui.btn_board.setFocusPolicy(Qt.TabFocus)
         parent.ui.btn_board.setStyleSheet(
