@@ -24,7 +24,7 @@ class Ui_About(object):
         if not About.objectName():
             About.setObjectName(u"About")
         About.resize(628, 398)
-        About.setStyleSheet(u"background-color: #454c5a;")
+        About.setStyleSheet(u"background-color: #393f4b;")
         self.centralwidget = QWidget(About)
         self.centralwidget.setObjectName(u"centralwidget")
         self.verticalLayout_2 = QVBoxLayout(self.centralwidget)

@@ -14,7 +14,7 @@
    <string>About</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">background-color: #454c5a;</string>
+   <string notr="true">background-color: #393f4b;</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QVBoxLayout" name="verticalLayout_2">
