@@ -969,6 +969,7 @@ class CustomListWidget(QListWidget):
 
             index += i
             if source_widget == dest_widget:
+                index -= 1
                 dest_widget.insertItem(index, item)
 
             logging.info(
