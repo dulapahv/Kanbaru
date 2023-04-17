@@ -899,7 +899,7 @@ class CustomListWidget(QListWidget):
             }}
             QScrollBar:vertical {{
                 border: none;
-                background: #f4f5f7;
+                background: #ebecf0;
                 width: 10px;
                 margin: 1px 0 0 0;
                 border-radius: 5px;
