@@ -78,7 +78,7 @@ class Ui_BoardWindow(object):
         self.scrollArea.setWidgetResizable(True)
         self.scrollAreaWidgetContents = QWidget()
         self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
-        self.scrollAreaWidgetContents.setGeometry(QRect(0, -51, 516, 673))
+        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 516, 673))
         self.verticalLayout_4 = QVBoxLayout(self.scrollAreaWidgetContents)
         self.verticalLayout_4.setSpacing(0)
         self.verticalLayout_4.setObjectName(u"verticalLayout_4")
@@ -162,7 +162,7 @@ class Ui_BoardWindow(object):
         self.btn_color_3.setFont(font3)
         self.btn_color_3.setCursor(QCursor(Qt.PointingHandCursor))
         self.btn_color_3.setFocusPolicy(Qt.TabFocus)
-        self.btn_color_3.setStyleSheet(u"QRadioButton {background-color: #fbd945; color: #ffffff; padding: 0px 5px 0px 5px;}\n"
+        self.btn_color_3.setStyleSheet(u"QRadioButton {background-color: #f7c600; color: #ffffff; padding: 0px 5px 0px 5px;}\n"
 "QRadioButton:focus {border-color: #000000; border-width: 1.5px; border-style: solid; padding: 0px 3px 0px 3px;}")
 
         self.verticalLayout_6.addWidget(self.btn_color_3)

@@ -138,7 +138,7 @@ QScrollBar:horizontal {height: 10px; margin: 0px 0px 0px 0px; background-color: 
              <property name="geometry">
               <rect>
                <x>0</x>
-               <y>-51</y>
+               <y>0</y>
                <width>516</width>
                <height>673</height>
               </rect>
@@ -340,7 +340,7 @@ QRadioButton:focus {border-color: #000000; border-width: 1.5px; border-style: so
                          <enum>Qt::TabFocus</enum>
                         </property>
                         <property name="styleSheet">
-                         <string notr="true">QRadioButton {background-color: #fbd945; color: #ffffff; padding: 0px 5px 0px 5px;}
+                         <string notr="true">QRadioButton {background-color: #f7c600; color: #ffffff; padding: 0px 5px 0px 5px;}
 QRadioButton:focus {border-color: #000000; border-width: 1.5px; border-style: solid; padding: 0px 3px 0px 3px;}</string>
                         </property>
                         <property name="text">
