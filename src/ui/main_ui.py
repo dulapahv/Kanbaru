@@ -53,8 +53,8 @@ class Ui_MainWindow(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.panel_left.sizePolicy().hasHeightForWidth())
         self.panel_left.setSizePolicy(sizePolicy)
-        self.panel_left.setMinimumSize(QSize(150, 0))
-        self.panel_left.setMaximumSize(QSize(144, 16777215))
+        self.panel_left.setMinimumSize(QSize(160, 0))
+        self.panel_left.setMaximumSize(QSize(160, 16777215))
         self.panel_left.setStyleSheet(u"background-color: #282c34;")
         self.verticalLayout_2 = QVBoxLayout(self.panel_left)
         self.verticalLayout_2.setSpacing(8)
@@ -69,6 +69,7 @@ class Ui_MainWindow(object):
         self.label_logo.setStyleSheet(u"background-color: #282c34;\n"
 "color: #FFFFFF;")
         self.label_logo.setMargin(10)
+        self.label_logo.setIndent(8)
 
         self.verticalLayout_2.addWidget(self.label_logo)
 
@@ -79,12 +80,41 @@ class Ui_MainWindow(object):
         sizePolicy1.setVerticalStretch(0)
         sizePolicy1.setHeightForWidth(self.scrollArea_panel_left.sizePolicy().hasHeightForWidth())
         self.scrollArea_panel_left.setSizePolicy(sizePolicy1)
-        self.scrollArea_panel_left.setStyleSheet(u"QScrollBar:vertical {width: 10px; margin: 0px 0px 0px 0px; background-color: #343943}")
+        self.scrollArea_panel_left.setStyleSheet(u"QScrollBar:vertical {\n"
+"	border: none;\n"
+"    background: #282c34;\n"
+"    width: 14px;\n"
+"    margin: 1px 0 0 0;\n"
+"	border-radius: 7px;\n"
+" }\n"
+"QScrollBar::handle:vertical {	\n"
+"	background-color: #454c5a;\n"
+"	min-height: 30px;\n"
+"	border-radius: 7px;\n"
+"}\n"
+"QScrollBar::handle:vertical:hover{	\n"
+"	background-color: #343a44;\n"
+"}\n"
+"QScrollBar::handle:vertical:pressed {	\n"
+"	background-color: #323741;\n"
+"}\n"
+"QScrollBar::sub-line:vertical {\n"
+"	height: 0px;\n"
+"}\n"
+"QScrollBar::add-line:vertical {\n"
+"	height: 0px;\n"
+"}\n"
+"QScrollBar::up-arrow:vertical, QScrollBar::down-arrow:vertical {\n"
+"	background: none;\n"
+"}\n"
+"QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {\n"
+"	background: none;\n"
+"}")
         self.scrollArea_panel_left.setFrameShape(QFrame.NoFrame)
         self.scrollArea_panel_left.setWidgetResizable(True)
         self.scrollAreaContent_panel_left = QWidget()
         self.scrollAreaContent_panel_left.setObjectName(u"scrollAreaContent_panel_left")
-        self.scrollAreaContent_panel_left.setGeometry(QRect(0, 0, 134, 417))
+        self.scrollAreaContent_panel_left.setGeometry(QRect(0, 0, 144, 417))
         self.verticalLayout_4 = QVBoxLayout(self.scrollAreaContent_panel_left)
         self.verticalLayout_4.setSpacing(10)
         self.verticalLayout_4.setObjectName(u"verticalLayout_4")
@@ -185,13 +215,41 @@ class Ui_MainWindow(object):
         self.scrollArea_panel_right = QScrollArea(self.widget_panel_right)
         self.scrollArea_panel_right.setObjectName(u"scrollArea_panel_right")
         self.scrollArea_panel_right.setStyleSheet(u"QScrollBar:vertical {width: 10px; margin: 0px 0px 0px 0px; background-color: #acb2bf}\n"
-"QScrollBar:horizontal {height: 10px; margin: 0px 0px 0px 0px; background-color: #acb2bf}")
+"QScrollBar:horizontal {\n"
+"	border: none;\n"
+"    background: #454c5a;\n"
+"    height: 14px;\n"
+"	margin: 0 0 0 1px;\n"
+"	border-radius: 7px;\n"
+" }\n"
+"QScrollBar::handle:horizontal {	\n"
+"	background-color: #576072;\n"
+"	min-height: 30px;\n"
+"	border-radius: 7px;\n"
+"}\n"
+"QScrollBar::handle:horizontal:hover{	\n"
+"	background-color: #4f5767;\n"
+"}\n"
+"QScrollBar::handle:horizontal:pressed {	\n"
+"	background-color: #363c47;\n"
+"}\n"
+"QScrollBar::sub-line:horizontal {\n"
+"	height: 0px;\n"
+"}\n"
+"QScrollBar::add-line:horizontal {\n"
+"	height: 0px;\n"
+"}\n"
+"QScrollBar::up-arrow:horizontal, QScrollBar::down-arrow:horizontal {\n"
+"	background: none;\n"
+"}\n"
+"QScrollBar::add-page:horizontal, QScrollBar::sub-page:horizontal {\n"
+"	background: none;\n"
+"}")
         self.scrollArea_panel_right.setFrameShape(QFrame.NoFrame)
-        self.scrollArea_panel_right.setVerticalScrollBarPolicy(Qt.ScrollBarAsNeeded)
         self.scrollArea_panel_right.setWidgetResizable(True)
         self.scrollAreaContent_panel_right = QWidget()
         self.scrollAreaContent_panel_right.setObjectName(u"scrollAreaContent_panel_right")
-        self.scrollAreaContent_panel_right.setGeometry(QRect(0, 0, 872, 589))
+        self.scrollAreaContent_panel_right.setGeometry(QRect(0, 0, 862, 589))
         self.horizontalLayout_5 = QHBoxLayout(self.scrollAreaContent_panel_right)
         self.horizontalLayout_5.setObjectName(u"horizontalLayout_5")
         self.horizontalLayout_5.setContentsMargins(8, 0, 0, 8)

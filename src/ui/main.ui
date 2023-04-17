@@ -75,13 +75,13 @@ QPushButton:focus {border-color: #000000; border-width: 1.5px; border-style: sol
          </property>
          <property name="minimumSize">
           <size>
-           <width>150</width>
+           <width>160</width>
            <height>0</height>
           </size>
          </property>
          <property name="maximumSize">
           <size>
-           <width>144</width>
+           <width>160</width>
            <height>16777215</height>
           </size>
          </property>
@@ -123,6 +123,9 @@ baru</string>
             <property name="margin">
              <number>10</number>
             </property>
+            <property name="indent">
+             <number>8</number>
+            </property>
            </widget>
           </item>
           <item>
@@ -134,7 +137,36 @@ baru</string>
              </sizepolicy>
             </property>
             <property name="styleSheet">
-             <string notr="true">QScrollBar:vertical {width: 10px; margin: 0px 0px 0px 0px; background-color: #343943}</string>
+             <string notr="true">QScrollBar:vertical {
+	border: none;
+    background: #282c34;
+    width: 14px;
+    margin: 1px 0 0 0;
+	border-radius: 7px;
+ }
+QScrollBar::handle:vertical {	
+	background-color: #454c5a;
+	min-height: 30px;
+	border-radius: 7px;
+}
+QScrollBar::handle:vertical:hover{	
+	background-color: #343a44;
+}
+QScrollBar::handle:vertical:pressed {	
+	background-color: #323741;
+}
+QScrollBar::sub-line:vertical {
+	height: 0px;
+}
+QScrollBar::add-line:vertical {
+	height: 0px;
+}
+QScrollBar::up-arrow:vertical, QScrollBar::down-arrow:vertical {
+	background: none;
+}
+QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {
+	background: none;
+}</string>
             </property>
             <property name="frameShape">
              <enum>QFrame::NoFrame</enum>
@@ -147,7 +179,7 @@ baru</string>
               <rect>
                <x>0</x>
                <y>0</y>
-               <width>134</width>
+               <width>144</width>
                <height>417</height>
               </rect>
              </property>
@@ -351,13 +383,39 @@ color: #FFFFFF;</string>
              <widget class="QScrollArea" name="scrollArea_panel_right">
               <property name="styleSheet">
                <string notr="true">QScrollBar:vertical {width: 10px; margin: 0px 0px 0px 0px; background-color: #acb2bf}
-QScrollBar:horizontal {height: 10px; margin: 0px 0px 0px 0px; background-color: #acb2bf}</string>
+QScrollBar:horizontal {
+	border: none;
+    background: #454c5a;
+    height: 14px;
+	margin: 0 0 0 1px;
+	border-radius: 7px;
+ }
+QScrollBar::handle:horizontal {	
+	background-color: #576072;
+	min-height: 30px;
+	border-radius: 7px;
+}
+QScrollBar::handle:horizontal:hover{	
+	background-color: #4f5767;
+}
+QScrollBar::handle:horizontal:pressed {	
+	background-color: #363c47;
+}
+QScrollBar::sub-line:horizontal {
+	height: 0px;
+}
+QScrollBar::add-line:horizontal {
+	height: 0px;
+}
+QScrollBar::up-arrow:horizontal, QScrollBar::down-arrow:horizontal {
+	background: none;
+}
+QScrollBar::add-page:horizontal, QScrollBar::sub-page:horizontal {
+	background: none;
+}</string>
               </property>
               <property name="frameShape">
                <enum>QFrame::NoFrame</enum>
-              </property>
-              <property name="verticalScrollBarPolicy">
-               <enum>Qt::ScrollBarAsNeeded</enum>
               </property>
               <property name="widgetResizable">
                <bool>true</bool>
@@ -367,7 +425,7 @@ QScrollBar:horizontal {height: 10px; margin: 0px 0px 0px 0px; background-color: 
                 <rect>
                  <x>0</x>
                  <y>0</y>
-                 <width>872</width>
+                 <width>862</width>
                  <height>589</height>
                 </rect>
                </property>

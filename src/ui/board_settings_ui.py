@@ -73,12 +73,40 @@ class Ui_BoardWindow(object):
         self.verticalLayout.setContentsMargins(10, 10, 10, 10)
         self.scrollArea = QScrollArea(self.widget1)
         self.scrollArea.setObjectName(u"scrollArea")
-        self.scrollArea.setStyleSheet(u"QScrollBar:vertical {width: 10px; margin: 0px 0px 0px 0px; background-color: #acb2bf}\n"
-"QScrollBar:horizontal {height: 10px; margin: 0px 0px 0px 0px; background-color: #acb2bf}")
+        self.scrollArea.setStyleSheet(u"QScrollBar:vertical {\n"
+"	border: none;\n"
+"    background: #f4f5f7;\n"
+"    width: 14px;\n"
+"    margin: 1px 0 0 0;\n"
+"	border-radius: 7px;\n"
+" }\n"
+"QScrollBar::handle:vertical {	\n"
+"	background-color: #bfc0c5;\n"
+"	min-height: 30px;\n"
+"	border-radius: 7px;\n"
+"}\n"
+"QScrollBar::handle:vertical:hover{	\n"
+"	background-color: #afb0b4;\n"
+"}\n"
+"QScrollBar::handle:vertical:pressed {	\n"
+"	background-color: #929497;\n"
+"}\n"
+"QScrollBar::sub-line:vertical {\n"
+"	height: 0px;\n"
+"}\n"
+"QScrollBar::add-line:vertical {\n"
+"	height: 0px;\n"
+"}\n"
+"QScrollBar::up-arrow:vertical, QScrollBar::down-arrow:vertical {\n"
+"	background: none;\n"
+"}\n"
+"QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {\n"
+"	background: none;\n"
+"}")
         self.scrollArea.setWidgetResizable(True)
         self.scrollAreaWidgetContents = QWidget()
         self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
-        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 516, 673))
+        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 512, 673))
         self.verticalLayout_4 = QVBoxLayout(self.scrollAreaWidgetContents)
         self.verticalLayout_4.setSpacing(0)
         self.verticalLayout_4.setObjectName(u"verticalLayout_4")
@@ -248,7 +276,37 @@ class Ui_BoardWindow(object):
 "QListWidget::item:hover {background-color: #e2e4e9; color: #000000}\n"
 "QListWidget::item:selected {background-color: #cccccc; color: #000000}\n"
 "QListWidget::item:focus {background-color: #cccccc; color: #000000}\n"
-"QScrollBar:vertical {width: 10px; margin: 0px 0px 0px 0px; background-color: #acb2bf}")
+"QScrollBar:vertical {\n"
+"	border: none;\n"
+"    background: #f4f5f7;\n"
+"    width: 14px;\n"
+"    margin: 1px 0 0 0;\n"
+"	border-radius: 7px;\n"
+" }\n"
+"QScrollBar::handle:vertical {	\n"
+"	background-color: #bfc0c5;\n"
+"	min-height: 30px;\n"
+"	border-radius: 7px;\n"
+"}\n"
+"QScrollBar::handle:vertical:hover{	\n"
+"	background-color: #afb0b4;\n"
+"}\n"
+"QScrollBar::handle:vertical:pressed {	\n"
+"	background-color: #929497;\n"
+"}\n"
+"QScrollBar::sub-line:vertical {\n"
+"	height: 0px;\n"
+"}\n"
+"QScrollBar::add-line:vertical {\n"
+"	height: 0px;\n"
+"}\n"
+"QScrollBar::up-arrow:vertical, QScrollBar::down-arrow:vertical {\n"
+"	background: none;\n"
+"}\n"
+"QScro"
+                        "llBar::add-page:vertical, QScrollBar::sub-page:vertical {\n"
+"	background: none;\n"
+"}")
         self.listWidget_manage_panel.setFrameShape(QFrame.NoFrame)
         self.listWidget_manage_panel.setDragEnabled(True)
         self.listWidget_manage_panel.setDragDropMode(QAbstractItemView.InternalMove)

@@ -129,8 +129,8 @@ class MainScreen(QMainWindow):
         size_policy.setHeightForWidth(
             parent.ui.btn_board.sizePolicy().hasHeightForWidth())
         parent.ui.btn_board.setSizePolicy(size_policy)
-        parent.ui.btn_board.setMinimumSize(QSize(132, 40))
-        parent.ui.btn_board.setMaximumSize(QSize(132, 40))
+        parent.ui.btn_board.setMinimumSize(QSize(128, 40))
+        parent.ui.btn_board.setMaximumSize(QSize(142, 40))
         parent.ui.btn_board.setCursor(QCursor(Qt.PointingHandCursor))
         parent.ui.btn_board.setFocusPolicy(Qt.TabFocus)
         parent.ui.btn_board.setStyleSheet(
@@ -213,7 +213,7 @@ class MainScreen(QMainWindow):
         size_policy2.setHeightForWidth(
             parent.ui.panel.sizePolicy().hasHeightForWidth())
         parent.ui.panel.setSizePolicy(size_policy2)
-        parent.ui.panel.setMinimumSize(QSize(250, 0))
+        parent.ui.panel.setMinimumSize(QSize(260, 0))
         parent.ui.verticalLayout_1 = QVBoxLayout(parent.ui.panel)
         parent.ui.verticalLayout_1.setSpacing(0)
         parent.ui.verticalLayout_1.setObjectName(u"verticalLayout_1")
@@ -830,7 +830,7 @@ class CustomListWidget(QListWidget):
         size_policy2.setVerticalStretch(0)
         size_policy2.setHeightForWidth(self.sizePolicy().hasHeightForWidth())
         self.setSizePolicy(size_policy2)
-        self.setMaximumSize(QSize(250, 16777215))
+        self.setMaximumSize(QSize(260, 16777215))
         self.setFocusPolicy(Qt.TabFocus)
         self.setAcceptDrops(True)
         self.setFrameShape(QFrame.NoFrame)
@@ -897,15 +897,35 @@ class CustomListWidget(QListWidget):
                     stop:1 rgba(204, 204, 204, 255));
                     color: #000000
             }}
-            QScrollBar:vertical {{
-                width: 10px;
-                margin: 0px 0px 0px 0px;
-                background-color: #acb2bf
+             QScrollBar:vertical {{
+                border: none;
+                background: #ebecf0;
+                width: 14px;
+                margin: 1px 0 0px 0;
+                border-radius: 7px;
             }}
-            QScrollBar:horizontal {{
-                height: 10px;
-                margin: 0px 0px 0px 0px;
-                background-color: #acb2bf
+            QScrollBar::handle:vertical {{	
+                background-color: #bfc0c5;
+                min-height: 30px;
+                border-radius: 7px;
+            }}
+            QScrollBar::handle:vertical:hover {{	
+                background-color: #afb0b4;
+            }}
+            QScrollBar::handle:vertical:pressed {{	
+                background-color: #929497;
+            }}
+            QScrollBar::sub-line:vertical {{
+                height: 0px;
+            }}
+            QScrollBar::add-line:vertical {{
+                height: 0px;
+            }}
+            QScrollBar::up-arrow:vertical, QScrollBar::down-arrow:vertical {{
+                background: none;
+            }}
+            QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {{
+                background: none;
             }}
             """
         )
