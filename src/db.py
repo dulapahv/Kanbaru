@@ -14,7 +14,7 @@ class Database:
     Singleton class for database. This class is used to store, retrieve, and
     manipulate data from the local database and the Firebase.
 
-    Use Database.get_instance() to get the instance of the database class.
+    Use `Database.get_instance()` to get the instance of the database class.
     """
 
     _instance: "Database" = None
