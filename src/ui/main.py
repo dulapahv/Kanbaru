@@ -961,6 +961,12 @@ class CustomListWidget(QListWidget):
         dest_widget = QApplication.widgetAt(QCursor().pos()).parent()
         items = source_widget.selectedItems()
 
+        logging.info(
+            f'Moving {len(items)} Card(s) '
+            f'({[item.data(Qt.UserRole).title for item in items]}) '
+            f'from panel "{source_widget.data.title}" to panel '
+            f'"{dest_widget.data.title}"')
+
         for i, item in enumerate(items):
             source_widget.takeItem(source_widget.row(item))
 
@@ -975,10 +981,7 @@ class CustomListWidget(QListWidget):
                 dest_widget.insertItem(index, item)
 
             logging.info(
-                f'Moved {len(items)} Card(s) '
-                f'({[item.data(Qt.UserRole).title for item in items]}) '
-                f'from panel "{source_widget.data.title}" to panel '
-                f'"{dest_widget.data.title}" at {index=}"')
+                f'Moved card "{item.data(Qt.UserRole).title}" to {index=}')
 
             MainScreen.change_card(
                 source_widget, dest_widget, item.data(Qt.UserRole), index)
