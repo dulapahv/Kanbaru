@@ -982,7 +982,7 @@ class CustomListWidget(QListWidget):
         items = source_widget.selectedItems()
 
         logging.info(
-            f'Moving {len(items)} Card(s) '
+            f'Moving {len(items)} Card{"s" if len(items) > 1 else ""} '
             f'({[item.data(Qt.UserRole).title for item in items]}) '
             f'from panel "{source_widget.data.title}" to panel '
             f'"{dest_widget.data.title}"')
