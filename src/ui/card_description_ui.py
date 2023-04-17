@@ -124,7 +124,23 @@ class Ui_CardWindow(object):
         self.calendarWidget.setFont(font2)
         self.calendarWidget.setCursor(QCursor(Qt.PointingHandCursor))
         self.calendarWidget.setFocusPolicy(Qt.TabFocus)
-        self.calendarWidget.setStyleSheet(u"background-color: rgb(107, 173, 238);")
+        self.calendarWidget.setStyleSheet(u"QCalendarWidget QWidget {\n"
+"	background-color: #6badee;\n"
+"}\n"
+"\n"
+"QWidget#qt_calendar_calendarview {\n"
+"	selection-background-color: #43ace6;\n"
+"	alternate-background-color: #f4f5f7;\n"
+"}\n"
+"\n"
+"QCalendarWidget QAbstractItemView:!enabled {\n"
+"	color: #cecece\n"
+"}\n"
+"\n"
+"QCalendarWidget QAbstractItemView:enabled {\n"
+"	color: #000000\n"
+"}\n"
+"")
         self.calendarWidget.setGridVisible(False)
 
         self.verticalLayout_4.addWidget(self.calendarWidget)
@@ -357,7 +373,7 @@ class Ui_CardWindow(object):
 "li.unchecked::marker { content: \"\\2610\"; }\n"
 "li.checked::marker { content: \"\\2612\"; }\n"
 "</style></head><body style=\" font-family:'Noto Sans'; font-size:12pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0; margin-bottom:0; margin-left:0; margin-right:0; -qt-block-indent:0; text-indent:0; font-family:'Torus Pro';\"><br /></p></body></html>", None))
+"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Torus Pro';\"><br /></p></body></html>", None))
         self.textEdit_description.setPlaceholderText(QCoreApplication.translate("CardWindow", u"Add a more detailed description...", None))
         self.btn_delete.setText(QCoreApplication.translate("CardWindow", u"Delete Card", None))
         self.btn_cancel.setText(QCoreApplication.translate("CardWindow", u"Cancel", None))
