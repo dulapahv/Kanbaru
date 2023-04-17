@@ -52,7 +52,7 @@ class Ui_BoardWindow(object):
         self.label_board_desc.setFont(font)
         self.label_board_desc.setStyleSheet(u"background-color: qlineargradient(spread:pad, x1:0.5, y1:0.5, x2:0.95, y2:0.5, stop:0 rgba(107, 173, 238, 255), stop:1 rgba(69, 76, 90, 255));\n"
 "color: #ffffff;\n"
-"padding: 0px 0px 0px 10px;")
+"padding: 0 0 0 10px;")
         self.label_board_desc.setMargin(10)
 
         self.verticalLayout_3.addWidget(self.label_board_desc)
@@ -75,38 +75,48 @@ class Ui_BoardWindow(object):
         self.scrollArea.setObjectName(u"scrollArea")
         self.scrollArea.setStyleSheet(u"QScrollBar:vertical {\n"
 "	border: none;\n"
-"    background: #f4f5f7;\n"
-"    width: 14px;\n"
-"    margin: 1px 0 0 0;\n"
-"	border-radius: 7px;\n"
-" }\n"
-"QScrollBar::handle:vertical {	\n"
+"	background: #f4f5f7;\n"
+"	width: 10px;\n"
+"	margin: 1px 0 0 0;\n"
+"	border-radius: 5px;\n"
+"}\n"
+"\n"
+"QScrollBar::handle:vertical {\n"
 "	background-color: #bfc0c5;\n"
 "	min-height: 30px;\n"
-"	border-radius: 7px;\n"
+"	border-radius: 5px;\n"
 "}\n"
-"QScrollBar::handle:vertical:hover{	\n"
+"\n"
+"QScrollBar::handle:vertical:hover {\n"
 "	background-color: #afb0b4;\n"
 "}\n"
-"QScrollBar::handle:vertical:pressed {	\n"
+"\n"
+"QScrollBar::handle:vertical:pressed {\n"
 "	background-color: #929497;\n"
 "}\n"
+"\n"
 "QScrollBar::sub-line:vertical {\n"
-"	height: 0px;\n"
+"	height: 0;\n"
 "}\n"
+"\n"
 "QScrollBar::add-line:vertical {\n"
-"	height: 0px;\n"
+"	height: 0;\n"
 "}\n"
-"QScrollBar::up-arrow:vertical, QScrollBar::down-arrow:vertical {\n"
+"\n"
+"QScrollBar::up-arrow:vertical,\n"
+"QScrollBar::down-arrow:vertical {\n"
 "	background: none;\n"
 "}\n"
-"QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {\n"
+"\n"
+"QScrollBar::add-page:vertical,\n"
+"QScrollBar::sub-page:vertical {\n"
 "	background: none;\n"
-"}")
+"}\n"
+"")
         self.scrollArea.setWidgetResizable(True)
         self.scrollAreaWidgetContents = QWidget()
         self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
-        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 512, 673))
+        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 516, 673))
         self.verticalLayout_4 = QVBoxLayout(self.scrollAreaWidgetContents)
         self.verticalLayout_4.setSpacing(0)
         self.verticalLayout_4.setObjectName(u"verticalLayout_4")
@@ -135,8 +145,22 @@ class Ui_BoardWindow(object):
         font2.setFamilies([u"Noto Sans"])
         font2.setPointSize(12)
         self.lineEdit_title.setFont(font2)
-        self.lineEdit_title.setStyleSheet(u"QLineEdit {background-color: #ebecf0; color: #282c33; border-radius: 5px; padding: 0px 8px 0px 8px}\n"
-"QLineEdit:focus {background-color: #ffffff; border-color: #6badee; border-width: 1.5px; border-style: solid;; padding: 0px 6px 0px 6px}")
+        self.lineEdit_title.setStyleSheet(u"QLineEdit {\n"
+"	background-color: #ebecf0;\n"
+"	color: #282c33;\n"
+"	border-radius: 5px;\n"
+"	padding: 0 8px 0 8px\n"
+"}\n"
+"\n"
+"QLineEdit:focus {\n"
+"	background-color: #ffffff;\n"
+"	border-color: #6badee;\n"
+"	border-width: 1.5px;\n"
+"	border-style: solid;\n"
+"	;\n"
+"	padding: 0 6px 0 6px\n"
+"}\n"
+"")
 
         self.verticalLayout_2.addWidget(self.lineEdit_title)
 
@@ -167,8 +191,23 @@ class Ui_BoardWindow(object):
         self.btn_color_1.setFont(font3)
         self.btn_color_1.setCursor(QCursor(Qt.PointingHandCursor))
         self.btn_color_1.setFocusPolicy(Qt.TabFocus)
-        self.btn_color_1.setStyleSheet(u"QRadioButton {background-color: #6badee; color: #ffffff; padding: 0px 5px 0px 5px;}\n"
-"QRadioButton:focus {border-color: #000000; border-width: 1.5px; border-style: solid; padding: 0px 3px 0px 3px;}")
+        self.btn_color_1.setStyleSheet(u"QRadioButton {\n"
+"	background-color: #6badee;\n"
+"	color: #ffffff;\n"
+"	padding: 0 5px 0 5px;\n"
+"	border-top-left-radius: 5px;\n"
+"	border-top-right-radius: 0;\n"
+"	border-bottom-left-radius: 0;\n"
+"	border-bottom-right-radius: 0;\n"
+"}\n"
+"\n"
+"QRadioButton:focus {\n"
+"	border-color: #000000;\n"
+"	border-width: 1.5px;\n"
+"	border-style: solid;\n"
+"	padding: 0 3px 0 3px;\n"
+"}\n"
+"")
         self.btn_color_1.setChecked(True)
 
         self.verticalLayout_6.addWidget(self.btn_color_1)
@@ -179,8 +218,20 @@ class Ui_BoardWindow(object):
         self.btn_color_2.setFont(font3)
         self.btn_color_2.setCursor(QCursor(Qt.PointingHandCursor))
         self.btn_color_2.setFocusPolicy(Qt.TabFocus)
-        self.btn_color_2.setStyleSheet(u"QRadioButton {background-color: #fb568a; color: #ffffff; padding: 0px 5px 0px 5px;}\n"
-"QRadioButton:focus {border-color: #000000; border-width: 1.5px; border-style: solid; padding: 0px 3px 0px 3px;}")
+        self.btn_color_2.setStyleSheet(u"QRadioButton {\n"
+"	background-color: #fb568a;\n"
+"	color: #ffffff;\n"
+"	padding: 0 5px 0 5px;\n"
+"	border-radius: 0;\n"
+"}\n"
+"\n"
+"QRadioButton:focus {\n"
+"	border-color: #000000;\n"
+"	border-width: 1.5px;\n"
+"	border-style: solid;\n"
+"	padding: 0 3px 0 3px;\n"
+"}\n"
+"")
 
         self.verticalLayout_6.addWidget(self.btn_color_2)
 
@@ -190,8 +241,23 @@ class Ui_BoardWindow(object):
         self.btn_color_3.setFont(font3)
         self.btn_color_3.setCursor(QCursor(Qt.PointingHandCursor))
         self.btn_color_3.setFocusPolicy(Qt.TabFocus)
-        self.btn_color_3.setStyleSheet(u"QRadioButton {background-color: #f7c600; color: #ffffff; padding: 0px 5px 0px 5px;}\n"
-"QRadioButton:focus {border-color: #000000; border-width: 1.5px; border-style: solid; padding: 0px 3px 0px 3px;}")
+        self.btn_color_3.setStyleSheet(u"QRadioButton {\n"
+"	background-color: #f7c600;\n"
+"	color: #ffffff;\n"
+"	padding: 0 5px 0 5px;\n"
+"	border-top-left-radius: 0;\n"
+"	border-top-right-radius: 0;\n"
+"	border-bottom-left-radius: 5px;\n"
+"	border-bottom-right-radius: 0;\n"
+"}\n"
+"\n"
+"QRadioButton:focus {\n"
+"	border-color: #000000;\n"
+"	border-width: 1.5px;\n"
+"	border-style: solid;\n"
+"	padding: 0 3px 0 3px;\n"
+"}\n"
+"")
 
         self.verticalLayout_6.addWidget(self.btn_color_3)
 
@@ -207,8 +273,23 @@ class Ui_BoardWindow(object):
         self.btn_color_4.setFont(font3)
         self.btn_color_4.setCursor(QCursor(Qt.PointingHandCursor))
         self.btn_color_4.setFocusPolicy(Qt.TabFocus)
-        self.btn_color_4.setStyleSheet(u"QRadioButton {background-color: #99c37b; color: #ffffff; padding: 0px 5px 0px 5px;}\n"
-"QRadioButton:focus {border-color: #000000; border-width: 1.5px; border-style: solid; padding: 0px 3px 0px 3px;}")
+        self.btn_color_4.setStyleSheet(u"QRadioButton {\n"
+"	background-color: #99c37b;\n"
+"	color: #ffffff;\n"
+"	padding: 0 5px 0 5px;\n"
+"	border-top-left-radius: 0;\n"
+"	border-top-right-radius: 5px;\n"
+"	border-bottom-left-radius: 0;\n"
+"	border-bottom-right-radius: 0;\n"
+"}\n"
+"\n"
+"QRadioButton:focus {\n"
+"	border-color: #000000;\n"
+"	border-width: 1.5px;\n"
+"	border-style: solid;\n"
+"	padding: 0 3px 0 3px;\n"
+"}\n"
+"")
 
         self.verticalLayout_5.addWidget(self.btn_color_4)
 
@@ -218,8 +299,20 @@ class Ui_BoardWindow(object):
         self.btn_color_5.setFont(font3)
         self.btn_color_5.setCursor(QCursor(Qt.PointingHandCursor))
         self.btn_color_5.setFocusPolicy(Qt.TabFocus)
-        self.btn_color_5.setStyleSheet(u"QRadioButton {background-color: #c577dc; color: #ffffff; padding: 0px 5px 0px 5px;}\n"
-"QRadioButton:focus {border-color: #000000; border-width: 1.5px; border-style: solid; padding: 0px 3px 0px 3px;}")
+        self.btn_color_5.setStyleSheet(u"QRadioButton {\n"
+"	background-color: #c577dc;\n"
+"	color: #ffffff;\n"
+"	padding: 0 5px 0 5px;\n"
+"	border-radius: 0;\n"
+"}\n"
+"\n"
+"QRadioButton:focus {\n"
+"	border-color: #000000;\n"
+"	border-width: 1.5px;\n"
+"	border-style: solid;\n"
+"	padding: 0 3px 0 3px;\n"
+"}\n"
+"")
 
         self.verticalLayout_5.addWidget(self.btn_color_5)
 
@@ -229,8 +322,23 @@ class Ui_BoardWindow(object):
         self.btn_color_6.setFont(font3)
         self.btn_color_6.setCursor(QCursor(Qt.PointingHandCursor))
         self.btn_color_6.setFocusPolicy(Qt.TabFocus)
-        self.btn_color_6.setStyleSheet(u"QRadioButton {background-color: #5eb5c1; color: #ffffff; padding: 0px 5px 0px 5px;}\n"
-"QRadioButton:focus {border-color: #000000; border-width: 1.5px; border-style: solid; padding: 0px 3px 0px 3px;}")
+        self.btn_color_6.setStyleSheet(u"QRadioButton {\n"
+"	background-color: #5eb5c1;\n"
+"	color: #ffffff;\n"
+"	padding: 0 5px 0 5px;\n"
+"	border-top-left-radius: 0;\n"
+"	border-top-right-radius: 0;\n"
+"	border-bottom-left-radius: 0;\n"
+"	border-bottom-right-radius: 5px;\n"
+"}\n"
+"\n"
+"QRadioButton:focus {\n"
+"	border-color: #000000;\n"
+"	border-width: 1.5px;\n"
+"	border-style: solid;\n"
+"	padding: 0 3px 0 3px;\n"
+"}\n"
+"")
 
         self.verticalLayout_5.addWidget(self.btn_color_6)
 
@@ -271,42 +379,73 @@ class Ui_BoardWindow(object):
         font5.setBold(True)
         self.listWidget_manage_panel.setFont(font5)
         self.listWidget_manage_panel.setFocusPolicy(Qt.TabFocus)
-        self.listWidget_manage_panel.setStyleSheet(u"QListWidget::item {height: 40px; padding: 0px 8px 0px 8px}\n"
-"QListWidget::item {background-color: #ffffff; color: #000000; border-radius: 5px}\n"
-"QListWidget::item:hover {background-color: #e2e4e9; color: #000000}\n"
-"QListWidget::item:selected {background-color: #cccccc; color: #000000}\n"
-"QListWidget::item:focus {background-color: #cccccc; color: #000000}\n"
+        self.listWidget_manage_panel.setStyleSheet(u"QListWidget::item {\n"
+"	height: 40px;\n"
+"	padding: 0 8px 0 8px\n"
+"}\n"
+"\n"
+"QListWidget::item {\n"
+"	background-color: #ffffff;\n"
+"	color: #000000;\n"
+"	border-radius: 5px\n"
+"}\n"
+"\n"
+"QListWidget::item:hover {\n"
+"	background-color: #e2e4e9;\n"
+"	color: #000000\n"
+"}\n"
+"\n"
+"QListWidget::item:selected {\n"
+"	background-color: #cccccc;\n"
+"	color: #000000\n"
+"}\n"
+"\n"
+"QListWidget::item:focus {\n"
+"	background-color: #cccccc;\n"
+"	color: #000000\n"
+"}\n"
+"\n"
 "QScrollBar:vertical {\n"
 "	border: none;\n"
-"    background: #f4f5f7;\n"
-"    width: 14px;\n"
-"    margin: 1px 0 0 0;\n"
-"	border-radius: 7px;\n"
-" }\n"
-"QScrollBar::handle:vertical {	\n"
+"	background: #f4f5f7;\n"
+"	width: 10px;\n"
+"	margin: 1px 0 0 0;\n"
+"	border-radius: 5px;\n"
+"}\n"
+"\n"
+"QScrollBar::handle:vertical {\n"
 "	background-color: #bfc0c5;\n"
 "	min-height: 30px;\n"
-"	border-radius: 7px;\n"
+"	border-radius: 5px;\n"
 "}\n"
-"QScrollBar::handle:vertical:hover{	\n"
+"\n"
+"QScrollBar::handle:vertical:hover {\n"
 "	background-color: #afb0b4;\n"
 "}\n"
-"QScrollBar::handle:vertical:pressed {	\n"
+"\n"
+"QScrollBar::handle:vertical:pressed {\n"
 "	background-color: #929497;\n"
 "}\n"
+"\n"
 "QScrollBar::sub-line:vertical {\n"
-"	height: 0px;\n"
+"	height: 0;\n"
 "}\n"
+"\n"
 "QScrollBar::add-line:vertical {\n"
-"	height: 0px;\n"
+"	height: 0"
+                        ";\n"
 "}\n"
-"QScrollBar::up-arrow:vertical, QScrollBar::down-arrow:vertical {\n"
+"\n"
+"QScrollBar::up-arrow:vertical,\n"
+"QScrollBar::down-arrow:vertical {\n"
 "	background: none;\n"
 "}\n"
-"QScro"
-                        "llBar::add-page:vertical, QScrollBar::sub-page:vertical {\n"
+"\n"
+"QScrollBar::add-page:vertical,\n"
+"QScrollBar::sub-page:vertical {\n"
 "	background: none;\n"
-"}")
+"}\n"
+"")
         self.listWidget_manage_panel.setFrameShape(QFrame.NoFrame)
         self.listWidget_manage_panel.setDragEnabled(True)
         self.listWidget_manage_panel.setDragDropMode(QAbstractItemView.InternalMove)
@@ -387,9 +526,22 @@ class Ui_BoardWindow(object):
         self.btn_cancel.setFont(font3)
         self.btn_cancel.setCursor(QCursor(Qt.PointingHandCursor))
         self.btn_cancel.setFocusPolicy(Qt.TabFocus)
-        self.btn_cancel.setStyleSheet(u"QPushButton {background-color: #acb2bf; color: #ffffff; border-radius: 5px}\n"
-"QPushButton:hover {background-color: #7e828c;}\n"
-"QPushButton:focus {border-color: #000000; border-width: 1.5px; border-style: solid;}")
+        self.btn_cancel.setStyleSheet(u"QPushButton {\n"
+"	background-color: #acb2bf;\n"
+"	color: #ffffff;\n"
+"	border-radius: 5px\n"
+"}\n"
+"\n"
+"QPushButton:hover {\n"
+"	background-color: #7e828c;\n"
+"}\n"
+"\n"
+"QPushButton:focus {\n"
+"	border-color: #000000;\n"
+"	border-width: 1.5px;\n"
+"	border-style: solid;\n"
+"}\n"
+"")
 
         self.horizontalLayout.addWidget(self.btn_cancel)
 
@@ -401,9 +553,22 @@ class Ui_BoardWindow(object):
         self.btn_save.setFont(font3)
         self.btn_save.setCursor(QCursor(Qt.PointingHandCursor))
         self.btn_save.setFocusPolicy(Qt.TabFocus)
-        self.btn_save.setStyleSheet(u"QPushButton {background-color: #6badee; color: #ffffff; border-radius: 5px}\n"
-"QPushButton:hover {background-color: #5487bb;}\n"
-"QPushButton:focus {border-color: #000000; border-width: 1.5px; border-style: solid;}")
+        self.btn_save.setStyleSheet(u"QPushButton {\n"
+"	background-color: #6badee;\n"
+"	color: #ffffff;\n"
+"	border-radius: 5px\n"
+"}\n"
+"\n"
+"QPushButton:hover {\n"
+"	background-color: #5487bb;\n"
+"}\n"
+"\n"
+"QPushButton:focus {\n"
+"	border-color: #000000;\n"
+"	border-width: 1.5px;\n"
+"	border-style: solid;\n"
+"}\n"
+"")
 
         self.horizontalLayout.addWidget(self.btn_save)
 

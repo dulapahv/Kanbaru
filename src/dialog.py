@@ -58,7 +58,7 @@ def dialog_factory(parent: Type = None, function: Callable = None,
             QLabel {{
                 color: #ffffff;
                 font-size: 15px;
-                padding: 10px 18px 5px 0px;
+                padding: 10px 18px 5px 0;
             }}
             QPushButton {{
                 color: #ffffff;
@@ -100,7 +100,7 @@ def dialog_factory(parent: Type = None, function: Callable = None,
             QLabel {{
                 color: #ffffff;
                 font-size: 15px;
-                padding: 10px 18px 5px 0px;
+                padding: 10px 18px 5px 0;
             }}
             QPushButton {{
                 background-color: {btn_color};

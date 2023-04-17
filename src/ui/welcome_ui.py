@@ -120,8 +120,20 @@ class Ui_WelcomeWindow(object):
         font1.setFamilies([u"Manrope Medium"])
         font1.setPointSize(12)
         self.lineEdit_login_username.setFont(font1)
-        self.lineEdit_login_username.setStyleSheet(u"QLineEdit {border-color: #dfe1e6; border-width: 1.5px; border-style: solid; color: #282c33; border-radius: 5px; background-color: #ffffff; padding: 0px 0px 0px 8px}\n"
-"QLineEdit:focus {border-color: #6badee;}")
+        self.lineEdit_login_username.setStyleSheet(u"QLineEdit {\n"
+"	border-color: #dfe1e6;\n"
+"	border-width: 1.5px;\n"
+"	border-style: solid;\n"
+"	color: #282c33;\n"
+"	border-radius: 5px;\n"
+"	background-color: #ffffff;\n"
+"	padding: 0 0 0 8px\n"
+"}\n"
+"\n"
+"QLineEdit:focus {\n"
+"	border-color: #6badee;\n"
+"}\n"
+"")
         self.lineEdit_login_username.setClearButtonEnabled(True)
 
         self.verticalLayout_4.addWidget(self.lineEdit_login_username)
@@ -130,8 +142,20 @@ class Ui_WelcomeWindow(object):
         self.lineEdit_login_password.setObjectName(u"lineEdit_login_password")
         self.lineEdit_login_password.setMinimumSize(QSize(0, 40))
         self.lineEdit_login_password.setFont(font1)
-        self.lineEdit_login_password.setStyleSheet(u"QLineEdit {border-color: #dfe1e6; border-width: 1.5px; border-style: solid; color: #282c33; border-radius: 5px; background-color: #ffffff; padding: 0px 0px 0px 8px}\n"
-"QLineEdit:focus {border-color: #6badee;}")
+        self.lineEdit_login_password.setStyleSheet(u"QLineEdit {\n"
+"	border-color: #dfe1e6;\n"
+"	border-width: 1.5px;\n"
+"	border-style: solid;\n"
+"	color: #282c33;\n"
+"	border-radius: 5px;\n"
+"	background-color: #ffffff;\n"
+"	padding: 0 0 0 8px\n"
+"}\n"
+"\n"
+"QLineEdit:focus {\n"
+"	border-color: #6badee;\n"
+"}\n"
+"")
         self.lineEdit_login_password.setEchoMode(QLineEdit.Password)
         self.lineEdit_login_password.setClearButtonEnabled(True)
 
@@ -171,9 +195,22 @@ class Ui_WelcomeWindow(object):
         self.btn_login.setFont(font3)
         self.btn_login.setCursor(QCursor(Qt.PointingHandCursor))
         self.btn_login.setFocusPolicy(Qt.TabFocus)
-        self.btn_login.setStyleSheet(u"QPushButton {background-color: #5dac48; color: #ffffff; border-radius: 5px}\n"
-"QPushButton:hover {background-color: #64bd53;}\n"
-"QPushButton:focus {border-color: #000000; border-width: 1.5px; border-style: solid;}")
+        self.btn_login.setStyleSheet(u"QPushButton {\n"
+"	background-color: #5dac48;\n"
+"	color: #ffffff;\n"
+"	border-radius: 5px\n"
+"}\n"
+"\n"
+"QPushButton:hover {\n"
+"	background-color: #64bd53;\n"
+"}\n"
+"\n"
+"QPushButton:focus {\n"
+"	border-color: #000000;\n"
+"	border-width: 1.5px;\n"
+"	border-style: solid;\n"
+"}\n"
+"")
 
         self.horizontalLayout.addWidget(self.btn_login)
 
@@ -212,8 +249,20 @@ class Ui_WelcomeWindow(object):
         self.lineEdit_signup_username.setObjectName(u"lineEdit_signup_username")
         self.lineEdit_signup_username.setMinimumSize(QSize(0, 40))
         self.lineEdit_signup_username.setFont(font1)
-        self.lineEdit_signup_username.setStyleSheet(u"QLineEdit {border-color: #dfe1e6; border-width: 1.5px; border-style: solid; color: #282c33; border-radius: 5px; background-color: #ffffff; padding: 0px 0px 0px 8px}\n"
-"QLineEdit:focus {border-color: #6badee;}")
+        self.lineEdit_signup_username.setStyleSheet(u"QLineEdit {\n"
+"	border-color: #dfe1e6;\n"
+"	border-width: 1.5px;\n"
+"	border-style: solid;\n"
+"	color: #282c33;\n"
+"	border-radius: 5px;\n"
+"	background-color: #ffffff;\n"
+"	padding: 0 0 0 8px\n"
+"}\n"
+"\n"
+"QLineEdit:focus {\n"
+"	border-color: #6badee;\n"
+"}\n"
+"")
         self.lineEdit_signup_username.setClearButtonEnabled(True)
 
         self.verticalLayout_5.addWidget(self.lineEdit_signup_username)
@@ -222,8 +271,20 @@ class Ui_WelcomeWindow(object):
         self.lineEdit_signup_password.setObjectName(u"lineEdit_signup_password")
         self.lineEdit_signup_password.setMinimumSize(QSize(0, 40))
         self.lineEdit_signup_password.setFont(font1)
-        self.lineEdit_signup_password.setStyleSheet(u"QLineEdit {border-color: #dfe1e6; border-width: 1.5px; border-style: solid; color: #282c33; border-radius: 5px; background-color: #ffffff; padding: 0px 0px 0px 8px}\n"
-"QLineEdit:focus {border-color: #6badee;}")
+        self.lineEdit_signup_password.setStyleSheet(u"QLineEdit {\n"
+"	border-color: #dfe1e6;\n"
+"	border-width: 1.5px;\n"
+"	border-style: solid;\n"
+"	color: #282c33;\n"
+"	border-radius: 5px;\n"
+"	background-color: #ffffff;\n"
+"	padding: 0 0 0 8px\n"
+"}\n"
+"\n"
+"QLineEdit:focus {\n"
+"	border-color: #6badee;\n"
+"}\n"
+"")
         self.lineEdit_signup_password.setEchoMode(QLineEdit.Password)
         self.lineEdit_signup_password.setClearButtonEnabled(True)
 
@@ -233,8 +294,20 @@ class Ui_WelcomeWindow(object):
         self.lineEdit_signup_confirm_password.setObjectName(u"lineEdit_signup_confirm_password")
         self.lineEdit_signup_confirm_password.setMinimumSize(QSize(0, 40))
         self.lineEdit_signup_confirm_password.setFont(font1)
-        self.lineEdit_signup_confirm_password.setStyleSheet(u"QLineEdit {border-color: #dfe1e6; border-width: 1.5px; border-style: solid; color: #282c33; border-radius: 5px; background-color: #ffffff; padding: 0px 0px 0px 8px}\n"
-"QLineEdit:focus {border-color: #6badee;}")
+        self.lineEdit_signup_confirm_password.setStyleSheet(u"QLineEdit {\n"
+"	border-color: #dfe1e6;\n"
+"	border-width: 1.5px;\n"
+"	border-style: solid;\n"
+"	color: #282c33;\n"
+"	border-radius: 5px;\n"
+"	background-color: #ffffff;\n"
+"	padding: 0 0 0 8px\n"
+"}\n"
+"\n"
+"QLineEdit:focus {\n"
+"	border-color: #6badee;\n"
+"}\n"
+"")
         self.lineEdit_signup_confirm_password.setEchoMode(QLineEdit.Password)
         self.lineEdit_signup_confirm_password.setClearButtonEnabled(True)
 
@@ -263,9 +336,22 @@ class Ui_WelcomeWindow(object):
         self.btn_signup.setFont(font3)
         self.btn_signup.setCursor(QCursor(Qt.PointingHandCursor))
         self.btn_signup.setFocusPolicy(Qt.TabFocus)
-        self.btn_signup.setStyleSheet(u"QPushButton {background-color: #5dac48; color: #ffffff; border-radius: 5px}\n"
-"QPushButton:hover {background-color: #64bd53;}\n"
-"QPushButton:focus {border-color: #000000; border-width: 1.5px; border-style: solid;}")
+        self.btn_signup.setStyleSheet(u"QPushButton {\n"
+"	background-color: #5dac48;\n"
+"	color: #ffffff;\n"
+"	border-radius: 5px\n"
+"}\n"
+"\n"
+"QPushButton:hover {\n"
+"	background-color: #64bd53;\n"
+"}\n"
+"\n"
+"QPushButton:focus {\n"
+"	border-color: #000000;\n"
+"	border-width: 1.5px;\n"
+"	border-style: solid;\n"
+"}\n"
+"")
 
         self.horizontalLayout_4.addWidget(self.btn_signup)
 

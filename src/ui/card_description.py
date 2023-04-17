@@ -80,7 +80,7 @@ class CardDescription(QMainWindow):
                 stop:1 rgba(69, 76, 90, 255)
             );
             color: #ffffff;
-            padding: 0px 0px 0px 10px;
+            padding: 0 0 0 10px;
             """
         )
         self.ui.lineEdit_title.setStyleSheet(
@@ -89,14 +89,14 @@ class CardDescription(QMainWindow):
                 background-color: #ebecf0;
                 color: #282c33;
                 border-radius: 5px;
-                padding: 0px 8px 0px 8px
+                padding: 0 8px 0 8px
             }}
             QLineEdit:focus {{
                 background-color: #ffffff;
                 border-color: {self.color};
                 border-width: 1.5px;
                 border-style: solid;
-                padding: 0px 6px 0px 6px
+                padding: 0 6px 0 6px
             }}
             """
         )
@@ -111,13 +111,13 @@ class CardDescription(QMainWindow):
                 background-color: {modify_hex_color(self.color)};
                 color: #ffffff;
                 border-radius: 5px;
-                padding: 0px 5px 0px 5px;
+                padding: 0 5px 0 5px;
             }}
             QTimeEdit:focus {{
                 border-color: #000000;
                 border-width: 1.5px;
                 border-style: solid;
-                padding: 0px 3px 0px 3px;
+                padding: 0 3px 0 3px;
             }}
             """
         )
@@ -136,7 +136,7 @@ class CardDescription(QMainWindow):
             }}
             QScrollBar:vertical {{
                 width: 10px;
-                margin: 0px 0px 0px 0px;
+                margin: 0 0 0 0;
                 background-color: #acb2bf
             }}
             """

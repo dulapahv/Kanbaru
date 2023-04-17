@@ -69,14 +69,14 @@ class BoardSettings(QMainWindow):
                 background-color: #ebecf0;
                 color: #282c33;
                 border-radius: 5px;
-                padding: 0px 8px 0px 8px
+                padding: 0 8px 0 8px
             }}
             QLineEdit:focus {{
                 background-color: #ffffff;
                 border-color: {self.color};
                 border-width: 1.5px;
                 border-style: solid;
-                padding: 0px 6px 0px 6px
+                padding: 0 6px 0 6px
             }}
             """
         )
@@ -95,7 +95,7 @@ class BoardSettings(QMainWindow):
                 stop:1 rgba(69, 76, 90, 255)
             );
             color: #ffffff;
-            padding: 0px 0px 0px 10px;
+            padding: 0 0 0 10px;
             """
         )
 

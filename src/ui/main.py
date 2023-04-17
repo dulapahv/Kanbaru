@@ -249,7 +249,7 @@ class MainScreen(QMainWindow):
             color: #282c33;
             background-color: #ebecf0;
             border-radius: 5px;
-            padding: 5px 0px 0px 5px;
+            padding: 5px 0 0 5px;
             """
         )
         parent.ui.label_list.setMargin(0)
@@ -857,7 +857,7 @@ class CustomListWidget(QListWidget):
             }}
             QListWidget::item {{
                 height: 40px;
-                padding: 0px 8px 0px 8px;
+                padding: 0 8px 0 8px;
                 background-color: qlineargradient(
                     spread:pad, x1:0, y1:0.5, x2:0.95, y2:0.5,
                     stop:0 {color},
@@ -897,17 +897,17 @@ class CustomListWidget(QListWidget):
                     stop:1 rgba(204, 204, 204, 255));
                     color: #000000
             }}
-             QScrollBar:vertical {{
+            QScrollBar:vertical {{
                 border: none;
-                background: #ebecf0;
-                width: 14px;
-                margin: 1px 0 0px 0;
-                border-radius: 7px;
+                background: #f4f5f7;
+                width: 10px;
+                margin: 1px 0 0 0;
+                border-radius: 5px;
             }}
             QScrollBar::handle:vertical {{	
                 background-color: #bfc0c5;
                 min-height: 30px;
-                border-radius: 7px;
+                border-radius: 5px;
             }}
             QScrollBar::handle:vertical:hover {{	
                 background-color: #afb0b4;
@@ -916,10 +916,10 @@ class CustomListWidget(QListWidget):
                 background-color: #929497;
             }}
             QScrollBar::sub-line:vertical {{
-                height: 0px;
+                height: 0;
             }}
             QScrollBar::add-line:vertical {{
-                height: 0px;
+                height: 0;
             }}
             QScrollBar::up-arrow:vertical, QScrollBar::down-arrow:vertical {{
                 background: none;

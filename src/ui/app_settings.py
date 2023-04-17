@@ -114,7 +114,7 @@ class AppSettings(QMainWindow):
                 stop: 1 rgba(69, 76, 90, 255)
             );
             color: #ffffff;
-            padding: 0px 0px 0px 10px;
+            padding: 0 0 0 10px;
             """
         )
         self.ui.btn_about.setStyleSheet(stylesheet)

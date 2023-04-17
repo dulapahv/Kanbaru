@@ -51,7 +51,7 @@ class Ui_CardWindow(object):
         self.label_card_desc.setFont(font)
         self.label_card_desc.setStyleSheet(u"background-color: qlineargradient(spread:pad, x1:0.5, y1:0.5, x2:0.95, y2:0.5, stop:0 rgba(107, 173, 238, 255), stop:1 rgba(69, 76, 90, 255));\n"
 "color: #ffffff;\n"
-"padding: 0px 0px 0px 10px;")
+"padding: 0 0 0 10px;")
         self.label_card_desc.setMargin(10)
 
         self.verticalLayout_3.addWidget(self.label_card_desc)
@@ -88,8 +88,21 @@ class Ui_CardWindow(object):
         font2.setFamilies([u"Noto Sans"])
         font2.setPointSize(12)
         self.lineEdit_title.setFont(font2)
-        self.lineEdit_title.setStyleSheet(u"QLineEdit {background-color: #ebecf0; color: #282c33; border-radius: 5px; padding: 0px 8px 0px 8px}\n"
-"QLineEdit:focus {background-color: #ffffff; border-color: #6badee; border-width: 1.5px; border-style: solid;; padding: 0px 6px 0px 6px}")
+        self.lineEdit_title.setStyleSheet(u"QLineEdit {\n"
+"	background-color: #ebecf0;\n"
+"	color: #282c33;\n"
+"	border-radius: 5px;\n"
+"	padding: 0 8px 0 8px\n"
+"}\n"
+"\n"
+"QLineEdit:focus {\n"
+"	background-color: #ffffff;\n"
+"	border-color: #6badee;\n"
+"	border-width: 1.5px;\n"
+"	border-style: solid;\n"
+"	padding: 0 6px 0 6px\n"
+"}\n"
+"")
         self.lineEdit_title.setReadOnly(False)
 
         self.verticalLayout.addWidget(self.lineEdit_title)
@@ -135,10 +148,23 @@ class Ui_CardWindow(object):
         font3 = QFont()
         font3.setFamilies([u"Noto Sans"])
         font3.setPointSize(16)
+        font3.setBold(True)
         self.timeEdit.setFont(font3)
         self.timeEdit.setCursor(QCursor(Qt.PointingHandCursor))
-        self.timeEdit.setStyleSheet(u"QTimeEdit {background-color: #6badee; color: #ffffff; border-radius: 5px; padding: 0px 5px 0px 5px;}\n"
-"QTimeEdit:focus {border-color: #000000; border-width: 1.5px; border-style: solid; padding: 0px 3px 0px 3px;}")
+        self.timeEdit.setStyleSheet(u"QTimeEdit {\n"
+"	background-color: #6badee;\n"
+"	color: #ffffff;\n"
+"	border-radius: 5px;\n"
+"	padding: 0 5px 0 5px;\n"
+"}\n"
+"\n"
+"QTimeEdit:focus {\n"
+"	border-color: #000000;\n"
+"	border-width: 1.5px;\n"
+"	border-style: solid;\n"
+"	padding: 0 3px 0 3px;\n"
+"}\n"
+"")
         self.timeEdit.setTimeSpec(Qt.LocalTime)
 
         self.verticalLayout_2.addWidget(self.timeEdit)
@@ -172,9 +198,26 @@ class Ui_CardWindow(object):
         font4.setPointSize(12)
         font4.setBold(False)
         self.textEdit_description.setFont(font4)
-        self.textEdit_description.setStyleSheet(u"QTextEdit {background-color: #ebecf0; color: #282c33; border-radius: 5px; padding: 4px 8px 4px 8px}\n"
-"QTextEdit:focus {background-color: #ffffff; border-color: #6badee; border-width: 1.5px; border-style: solid;}\n"
-"QScrollBar:vertical {width: 10px; margin: 0px 0px 0px 0px; background-color: #acb2bf}")
+        self.textEdit_description.setStyleSheet(u"QTextEdit {\n"
+"	background-color: #ebecf0;\n"
+"	color: #282c33;\n"
+"	border-radius: 5px;\n"
+"	padding: 4px 8px 4px 8px\n"
+"}\n"
+"\n"
+"QTextEdit:focus {\n"
+"	background-color: #ffffff;\n"
+"	border-color: #6badee;\n"
+"	border-width: 1.5px;\n"
+"	border-style: solid;\n"
+"}\n"
+"\n"
+"QScrollBar:vertical {\n"
+"	width: 10px;\n"
+"	margin: 0 0 0 0;\n"
+"	background-color: #acb2bf\n"
+"}\n"
+"")
         self.textEdit_description.setFrameShape(QFrame.NoFrame)
         self.textEdit_description.setAutoFormatting(QTextEdit.AutoAll)
         self.textEdit_description.setTabChangesFocus(True)
@@ -199,9 +242,22 @@ class Ui_CardWindow(object):
         self.btn_delete.setFont(font5)
         self.btn_delete.setCursor(QCursor(Qt.PointingHandCursor))
         self.btn_delete.setFocusPolicy(Qt.TabFocus)
-        self.btn_delete.setStyleSheet(u"QPushButton {background-color: #d63a3e; color: #ffffff; border-radius: 5px}\n"
-"QPushButton:hover {background-color: #9e2a2a;}\n"
-"QPushButton:focus {border-color: #000000; border-width: 1.5px; border-style: solid;}")
+        self.btn_delete.setStyleSheet(u"QPushButton {\n"
+"	background-color: #d63a3e;\n"
+"	color: #ffffff;\n"
+"	border-radius: 5px\n"
+"}\n"
+"\n"
+"QPushButton:hover {\n"
+"	background-color: #9e2a2a;\n"
+"}\n"
+"\n"
+"QPushButton:focus {\n"
+"	border-color: #000000;\n"
+"	border-width: 1.5px;\n"
+"	border-style: solid;\n"
+"}\n"
+"")
 
         self.horizontalLayout.addWidget(self.btn_delete)
 
@@ -217,9 +273,22 @@ class Ui_CardWindow(object):
         self.btn_cancel.setFont(font5)
         self.btn_cancel.setCursor(QCursor(Qt.PointingHandCursor))
         self.btn_cancel.setFocusPolicy(Qt.TabFocus)
-        self.btn_cancel.setStyleSheet(u"QPushButton {background-color: #acb2bf; color: #ffffff; border-radius: 5px}\n"
-"QPushButton:hover {background-color: #7e828c;}\n"
-"QPushButton:focus {border-color: #000000; border-width: 1.5px; border-style: solid;}")
+        self.btn_cancel.setStyleSheet(u"QPushButton {\n"
+"	background-color: #acb2bf;\n"
+"	color: #ffffff;\n"
+"	border-radius: 5px\n"
+"}\n"
+"\n"
+"QPushButton:hover {\n"
+"	background-color: #7e828c;\n"
+"}\n"
+"\n"
+"QPushButton:focus {\n"
+"	border-color: #000000;\n"
+"	border-width: 1.5px;\n"
+"	border-style: solid;\n"
+"}\n"
+"")
 
         self.horizontalLayout.addWidget(self.btn_cancel)
 
@@ -231,9 +300,22 @@ class Ui_CardWindow(object):
         self.btn_save.setFont(font5)
         self.btn_save.setCursor(QCursor(Qt.PointingHandCursor))
         self.btn_save.setFocusPolicy(Qt.TabFocus)
-        self.btn_save.setStyleSheet(u"QPushButton {background-color: #6badee; color: #ffffff; border-radius: 5px}\n"
-"QPushButton:hover {background-color: #5487bb;}\n"
-"QPushButton:focus {border-color: #000000; border-width: 1.5px; border-style: solid;}")
+        self.btn_save.setStyleSheet(u"QPushButton {\n"
+"	background-color: #6badee;\n"
+"	color: #ffffff;\n"
+"	border-radius: 5px\n"
+"}\n"
+"\n"
+"QPushButton:hover {\n"
+"	background-color: #5487bb;\n"
+"}\n"
+"\n"
+"QPushButton:focus {\n"
+"	border-color: #000000;\n"
+"	border-width: 1.5px;\n"
+"	border-style: solid;\n"
+"}\n"
+"")
 
         self.horizontalLayout.addWidget(self.btn_save)
 
@@ -275,7 +357,7 @@ class Ui_CardWindow(object):
 "li.unchecked::marker { content: \"\\2610\"; }\n"
 "li.checked::marker { content: \"\\2612\"; }\n"
 "</style></head><body style=\" font-family:'Noto Sans'; font-size:12pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Torus Pro';\"><br /></p></body></html>", None))
+"<p style=\"-qt-paragraph-type:empty; margin-top:0; margin-bottom:0; margin-left:0; margin-right:0; -qt-block-indent:0; text-indent:0; font-family:'Torus Pro';\"><br /></p></body></html>", None))
         self.textEdit_description.setPlaceholderText(QCoreApplication.translate("CardWindow", u"Add a more detailed description...", None))
         self.btn_delete.setText(QCoreApplication.translate("CardWindow", u"Delete Card", None))
         self.btn_cancel.setText(QCoreApplication.translate("CardWindow", u"Cancel", None))
