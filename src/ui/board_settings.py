@@ -157,6 +157,17 @@ class BoardSettings(QMainWindow):
         )
         if text is None:
             return None
+        for board in Database.get_instance().boards:
+            for panel in board.panels:
+                if panel.title == text:
+                    dialog_factory(
+                        title="Invalid Name",
+                        msg="A panel with this name already exists.",
+                        yes_no=False,
+                        btn_color=self.color
+                    )
+                    self.rename(event)
+                    return None
         panel_obj = next(
             (panel for panel in self.board.panels if
              panel.title == selected_all[0].text()), None)
