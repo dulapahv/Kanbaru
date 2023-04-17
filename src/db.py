@@ -411,9 +411,13 @@ class Database:
                     panel_dict["_Panel__title"] = panel_new.title
                     Database.write(self)
                     logging.info("Panel updated:")
+                    cards = [
+                        card.title for card in panel_new.cards if hasattr(
+                            panel_new, 'cards')
+                    ] if hasattr(panel_new, 'cards') else []
                     logging.info(
                         f"{panel_old} -> title='{panel_new.title}', "
-                        f"cards={[card.title for card in panel_new.cards]}")
+                        f"cards={cards}")
                     return None
 
     def update_board(self: "Database", board_old: Board,
