@@ -175,6 +175,24 @@ QScrollBar::down-arrow:vertical {
 QScrollBar::add-page:vertical,
 QScrollBar::sub-page:vertical {
 	background: none;
+}
+
+QScrollBar QMenu {
+	background-color: #454c5a;
+	border: none;
+	padding: 5px;
+	margin: 0px;
+	font-size: 13px;
+}
+
+QScrollBar QMenu::item {
+	padding: 5px 13px 5px 13px;
+}
+
+QScrollBar QMenu::item:selected {
+	border-radius: 5px;
+	background-color: #ffffff;
+	color: #000000;
 }</string>
             </property>
             <property name="frameShape">
@@ -474,6 +492,24 @@ QScrollBar::down-arrow:horizontal {
 QScrollBar::add-page:horizontal,
 QScrollBar::sub-page:horizontal {
 	background: none;
+}
+
+QScrollBar QMenu {
+	background-color: #454c5a;
+	border: none;
+	padding: 5px;
+	margin: 0px;
+	font-size: 13px;
+}
+
+QScrollBar QMenu::item {
+	padding: 5px 13px 5px 13px;
+}
+
+QScrollBar QMenu::item:selected {
+	border-radius: 5px;
+	background-color: #ffffff;
+	color: #000000;
 }
 </string>
               </property>

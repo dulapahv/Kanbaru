@@ -927,6 +927,22 @@ class CustomListWidget(QListWidget):
             QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {{
                 background: none;
             }}
+            QScrollBar QMenu {{
+                background-color: #ebecf0;
+                border: none;
+                padding: 5px;
+                margin: 0px;
+                font-size: 13px;
+            }}
+            QScrollBar QMenu::item {{
+                padding: 5px 13px 5px 13px;
+                color: #000000;
+            }}
+            QScrollBar QMenu::item:selected {{
+                border-radius: 5px;
+                background-color: {modify_hex_color(color)};
+                color: #ffffff;
+            }}
             """
         )
 

@@ -1,5 +1,9 @@
 <RCC>
   <qresource prefix="img">
+    <file>resources/img/down-arrow.png</file>
+    <file>resources/img/left-arrow.png</file>
+    <file>resources/img/right-arrow.png</file>
+    <file>resources/img/up-arrow.png</file>
     <file>resources/img/kanbaru.png</file>
     <file>resources/img/settings_2.png</file>
     <file>resources/img/add.png</file>
