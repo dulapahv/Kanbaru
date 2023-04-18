@@ -490,10 +490,7 @@ class MainScreen(QMainWindow):
         list_widget_item = qlistwidget.item(index)
         list_widget_item.setData(Qt.UserRole, card)
         list_widget_item.setText(
-            QCoreApplication.translate(
-                "MainWindow",
-                card.title[:24] + (card.title[24:] and '...'), None
-            )
+            QCoreApplication.translate("MainWindow", card.title, None)
         )
         font_db = setup_font_db(font)[0]
         list_widget_item.setFont(QFont(font_db, 12))
