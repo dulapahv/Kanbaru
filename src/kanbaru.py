@@ -5,11 +5,11 @@ from tkinter import Tk, messagebox
 
 try:
     from PySide6.QtWidgets import QApplication, QMainWindow
-
     from auth import Auth
     from db import Database
     from ui.main import MainScreen
     from ui.welcome import WelcomeScreen
+    from utils import get_current_directory
 except ModuleNotFoundError:
     logging.warning("Required modules not found. Prompting user to install...")
     root = Tk()
