@@ -149,7 +149,7 @@ border-radius: 5px;</string>
                  </font>
                 </property>
                 <property name="text">
-                 <string>Drag to rearrange. Select and press Delete/Rename to update.
+                 <string>Drag to rearrange. Select and press Delete to delete.
 You can select multiple boards at the same time.</string>
                 </property>
                 <property name="wordWrap">
@@ -250,42 +250,6 @@ QPushButton:focus {border-color: #000000; border-width: 1.5px; border-style: sol
                   </property>
                   <property name="text">
                    <string>Delete Board</string>
-                  </property>
-                 </widget>
-                </item>
-                <item>
-                 <widget class="QPushButton" name="btn_rename">
-                  <property name="sizePolicy">
-                   <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-                    <horstretch>0</horstretch>
-                    <verstretch>0</verstretch>
-                   </sizepolicy>
-                  </property>
-                  <property name="minimumSize">
-                   <size>
-                    <width>150</width>
-                    <height>30</height>
-                   </size>
-                  </property>
-                  <property name="font">
-                   <font>
-                    <family>Torus Pro</family>
-                    <pointsize>12</pointsize>
-                   </font>
-                  </property>
-                  <property name="cursor">
-                   <cursorShape>PointingHandCursor</cursorShape>
-                  </property>
-                  <property name="focusPolicy">
-                   <enum>Qt::TabFocus</enum>
-                  </property>
-                  <property name="styleSheet">
-                   <string notr="true">QPushButton {background-color: #6badee; color: #ffffff; border-radius: 5px}
-QPushButton:hover {background-color: #5487bb;}
-QPushButton:focus {border-color: #000000; border-width: 1.5px; border-style: solid;}</string>
-                  </property>
-                  <property name="text">
-                   <string>Rename Board</string>
                   </property>
                  </widget>
                 </item>
@@ -598,14 +562,14 @@ QPushButton:focus {border-color: #000000; border-width: 1.5px; border-style: sol
   </widget>
  </widget>
  <tabstops>
+  <tabstop>widget</tabstop>
   <tabstop>listWidget_manage_board</tabstop>
   <tabstop>btn_delete</tabstop>
-  <tabstop>btn_rename</tabstop>
   <tabstop>btn_logout</tabstop>
   <tabstop>btn_delete_account</tabstop>
+  <tabstop>btn_about</tabstop>
   <tabstop>btn_cancel</tabstop>
   <tabstop>btn_save</tabstop>
-  <tabstop>widget</tabstop>
  </tabstops>
  <resources>
   <include location="../resources.qrc"/>

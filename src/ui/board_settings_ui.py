@@ -17,8 +17,8 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QPalette, QPixmap, QRadialGradient, QTransform)
 from PySide6.QtWidgets import (QAbstractItemView, QApplication, QFrame, QHBoxLayout,
     QLabel, QLineEdit, QListWidget, QListWidgetItem,
-    QMainWindow, QPushButton, QRadioButton, QSizePolicy,
-    QSpacerItem, QVBoxLayout, QWidget)
+    QMainWindow, QPushButton, QRadioButton, QScrollArea,
+    QSizePolicy, QSpacerItem, QVBoxLayout, QWidget)
 import resources_rc
 
 class Ui_BoardWindow(object):
@@ -26,6 +26,7 @@ class Ui_BoardWindow(object):
         if not BoardWindow.objectName():
             BoardWindow.setObjectName(u"BoardWindow")
         BoardWindow.resize(576, 678)
+        BoardWindow.setMinimumSize(QSize(0, 300))
         icon = QIcon()
         icon.addFile(u":/img/resources/img/icon.png", QSize(), QIcon.Normal, QIcon.Off)
         BoardWindow.setWindowIcon(icon)
@@ -70,12 +71,24 @@ class Ui_BoardWindow(object):
         self.verticalLayout.setSpacing(12)
         self.verticalLayout.setObjectName(u"verticalLayout")
         self.verticalLayout.setContentsMargins(10, 10, 10, 10)
+        self.scrollArea = QScrollArea(self.widget1)
+        self.scrollArea.setObjectName(u"scrollArea")
+        self.scrollArea.setStyleSheet(u"QScrollBar:vertical {width: 10px; margin: 0px 0px 0px 0px; background-color: #acb2bf}\n"
+"QScrollBar:horizontal {height: 10px; margin: 0px 0px 0px 0px; background-color: #acb2bf}")
+        self.scrollArea.setWidgetResizable(True)
+        self.scrollAreaWidgetContents = QWidget()
+        self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
+        self.scrollAreaWidgetContents.setGeometry(QRect(0, -51, 516, 673))
+        self.verticalLayout_4 = QVBoxLayout(self.scrollAreaWidgetContents)
+        self.verticalLayout_4.setSpacing(0)
+        self.verticalLayout_4.setObjectName(u"verticalLayout_4")
+        self.verticalLayout_4.setContentsMargins(0, 0, 4, 0)
         self.verticalLayout_8 = QVBoxLayout()
         self.verticalLayout_8.setObjectName(u"verticalLayout_8")
         self.verticalLayout_2 = QVBoxLayout()
         self.verticalLayout_2.setSpacing(6)
         self.verticalLayout_2.setObjectName(u"verticalLayout_2")
-        self.label_title = QLabel(self.widget1)
+        self.label_title = QLabel(self.scrollAreaWidgetContents)
         self.label_title.setObjectName(u"label_title")
         font1 = QFont()
         font1.setFamilies([u"Torus Pro"])
@@ -87,7 +100,7 @@ class Ui_BoardWindow(object):
 
         self.verticalLayout_2.addWidget(self.label_title)
 
-        self.lineEdit_title = QLineEdit(self.widget1)
+        self.lineEdit_title = QLineEdit(self.scrollAreaWidgetContents)
         self.lineEdit_title.setObjectName(u"lineEdit_title")
         self.lineEdit_title.setMinimumSize(QSize(0, 30))
         font2 = QFont()
@@ -103,7 +116,7 @@ class Ui_BoardWindow(object):
 
         self.verticalLayout_2.addItem(self.verticalSpacer_3)
 
-        self.label_color = QLabel(self.widget1)
+        self.label_color = QLabel(self.scrollAreaWidgetContents)
         self.label_color.setObjectName(u"label_color")
         self.label_color.setFont(font1)
         self.label_color.setStyleSheet(u"color: #282c33;")
@@ -117,7 +130,7 @@ class Ui_BoardWindow(object):
         self.verticalLayout_6 = QVBoxLayout()
         self.verticalLayout_6.setSpacing(0)
         self.verticalLayout_6.setObjectName(u"verticalLayout_6")
-        self.btn_color_1 = QRadioButton(self.widget1)
+        self.btn_color_1 = QRadioButton(self.scrollAreaWidgetContents)
         self.btn_color_1.setObjectName(u"btn_color_1")
         self.btn_color_1.setMinimumSize(QSize(120, 40))
         font3 = QFont()
@@ -132,7 +145,7 @@ class Ui_BoardWindow(object):
 
         self.verticalLayout_6.addWidget(self.btn_color_1)
 
-        self.btn_color_2 = QRadioButton(self.widget1)
+        self.btn_color_2 = QRadioButton(self.scrollAreaWidgetContents)
         self.btn_color_2.setObjectName(u"btn_color_2")
         self.btn_color_2.setMinimumSize(QSize(120, 40))
         self.btn_color_2.setFont(font3)
@@ -143,7 +156,7 @@ class Ui_BoardWindow(object):
 
         self.verticalLayout_6.addWidget(self.btn_color_2)
 
-        self.btn_color_3 = QRadioButton(self.widget1)
+        self.btn_color_3 = QRadioButton(self.scrollAreaWidgetContents)
         self.btn_color_3.setObjectName(u"btn_color_3")
         self.btn_color_3.setMinimumSize(QSize(120, 40))
         self.btn_color_3.setFont(font3)
@@ -160,7 +173,7 @@ class Ui_BoardWindow(object):
         self.verticalLayout_5 = QVBoxLayout()
         self.verticalLayout_5.setSpacing(0)
         self.verticalLayout_5.setObjectName(u"verticalLayout_5")
-        self.btn_color_4 = QRadioButton(self.widget1)
+        self.btn_color_4 = QRadioButton(self.scrollAreaWidgetContents)
         self.btn_color_4.setObjectName(u"btn_color_4")
         self.btn_color_4.setMinimumSize(QSize(120, 40))
         self.btn_color_4.setFont(font3)
@@ -171,7 +184,7 @@ class Ui_BoardWindow(object):
 
         self.verticalLayout_5.addWidget(self.btn_color_4)
 
-        self.btn_color_5 = QRadioButton(self.widget1)
+        self.btn_color_5 = QRadioButton(self.scrollAreaWidgetContents)
         self.btn_color_5.setObjectName(u"btn_color_5")
         self.btn_color_5.setMinimumSize(QSize(120, 40))
         self.btn_color_5.setFont(font3)
@@ -182,7 +195,7 @@ class Ui_BoardWindow(object):
 
         self.verticalLayout_5.addWidget(self.btn_color_5)
 
-        self.btn_color_6 = QRadioButton(self.widget1)
+        self.btn_color_6 = QRadioButton(self.scrollAreaWidgetContents)
         self.btn_color_6.setObjectName(u"btn_color_6")
         self.btn_color_6.setMinimumSize(QSize(120, 40))
         self.btn_color_6.setFont(font3)
@@ -203,7 +216,7 @@ class Ui_BoardWindow(object):
 
         self.verticalLayout_2.addItem(self.verticalSpacer_2)
 
-        self.label_manage_panel = QLabel(self.widget1)
+        self.label_manage_panel = QLabel(self.scrollAreaWidgetContents)
         self.label_manage_panel.setObjectName(u"label_manage_panel")
         self.label_manage_panel.setFont(font1)
         self.label_manage_panel.setStyleSheet(u"color: #282c33;")
@@ -211,7 +224,7 @@ class Ui_BoardWindow(object):
 
         self.verticalLayout_2.addWidget(self.label_manage_panel)
 
-        self.label_manage_panel_desc = QLabel(self.widget1)
+        self.label_manage_panel_desc = QLabel(self.scrollAreaWidgetContents)
         self.label_manage_panel_desc.setObjectName(u"label_manage_panel_desc")
         font4 = QFont()
         font4.setFamilies([u"Torus Pro"])
@@ -221,8 +234,9 @@ class Ui_BoardWindow(object):
 
         self.verticalLayout_2.addWidget(self.label_manage_panel_desc)
 
-        self.listWidget_manage_panel = QListWidget(self.widget1)
+        self.listWidget_manage_panel = QListWidget(self.scrollAreaWidgetContents)
         self.listWidget_manage_panel.setObjectName(u"listWidget_manage_panel")
+        self.listWidget_manage_panel.setMinimumSize(QSize(0, 300))
         font5 = QFont()
         font5.setFamilies([u"Torus Pro"])
         font5.setPointSize(12)
@@ -252,7 +266,7 @@ class Ui_BoardWindow(object):
 
         self.horizontalLayout_5 = QHBoxLayout()
         self.horizontalLayout_5.setObjectName(u"horizontalLayout_5")
-        self.btn_delete = QPushButton(self.widget1)
+        self.btn_delete = QPushButton(self.scrollAreaWidgetContents)
         self.btn_delete.setObjectName(u"btn_delete")
         sizePolicy1 = QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed)
         sizePolicy1.setHorizontalStretch(0)
@@ -269,7 +283,7 @@ class Ui_BoardWindow(object):
 
         self.horizontalLayout_5.addWidget(self.btn_delete)
 
-        self.btn_rename = QPushButton(self.widget1)
+        self.btn_rename = QPushButton(self.scrollAreaWidgetContents)
         self.btn_rename.setObjectName(u"btn_rename")
         sizePolicy1.setHeightForWidth(self.btn_rename.sizePolicy().hasHeightForWidth())
         self.btn_rename.setSizePolicy(sizePolicy1)
@@ -294,7 +308,11 @@ class Ui_BoardWindow(object):
         self.verticalLayout_8.addLayout(self.verticalLayout_2)
 
 
-        self.verticalLayout.addLayout(self.verticalLayout_8)
+        self.verticalLayout_4.addLayout(self.verticalLayout_8)
+
+        self.scrollArea.setWidget(self.scrollAreaWidgetContents)
+
+        self.verticalLayout.addWidget(self.scrollArea)
 
         self.horizontalLayout = QHBoxLayout()
         self.horizontalLayout.setSpacing(6)

@@ -2,40 +2,40 @@ import logging
 import os
 import sys
 
-try:
-    from PySide6.QtWidgets import QApplication, QMainWindow, QMessageBox
+import sys
+from tkinter import Tk, messagebox
 
+try:
+    from PySide6.QtWidgets import QApplication, QMainWindow
     from auth import Auth
     from db import Database
     from ui.main import MainScreen
     from ui.welcome import WelcomeScreen
     from utils import get_current_directory
 except ModuleNotFoundError:
-    from tkinter import messagebox, Tk
-
+    logging.warning("Required modules not found. Prompting user to install...")
     root = Tk()
     root.withdraw()
-    response = messagebox.askyesno("Error: Module Not Found",
-                                   "Required modules not found. Would you like to install them now?\n\nRequired "
-                                   "modules: PySide6, firebase-admin")
+    response = messagebox.askyesno(
+        "Error: Module Not Found",
+        "Required modules not found. Would you like to install them now?\n\n"
+        "Required modules: PySide6, firebase-admin"
+    )
 
     if response:
         try:
             import pip
-
             pip.main(["install", "-r", "requirements.txt"])
         except ModuleNotFoundError:
-            print(
-                "pip not found. Installing pip rn. Risky move, but I'll do it for you.\n btw why dont you have pip "
-                "installed yet?")
+            logging.warning(
+                "pip not found. Installing pip now. This is a risky move. "
+                "btw why don't you have pip installed yet?"
+            )
             import ensurepip
-
             ensurepip.bootstrap()
             pip.main(["install", "-r", "requirements.txt"])
         finally:
-            from PySide6.QtWidgets import (QApplication, QMainWindow,
-                                           QMessageBox)
-
+            from PySide6.QtWidgets import QApplication, QMainWindow
             from auth import Auth
             from db import Database
             from ui.main import MainScreen
@@ -54,8 +54,12 @@ class Kanbaru(QMainWindow):
         self.path = get_current_directory()
 
         # Set up event logger
-        self.init_event_logger(os.path.join(
-            self.path, "event.log"), "%(asctime)s - %(levelname)s - %(message)s", debug=True, stdout=True)
+        self.init_event_logger(
+            os.path.join(self.path, "event.log"),
+            "%(asctime)s - %(levelname)s - %(message)s",
+            debug=True,
+            stdout=True,
+        )
 
         logging.info("Starting Kanbaru...")
         logging.info(f'Current directory: "{self.path}"')
@@ -76,36 +80,42 @@ class Kanbaru(QMainWindow):
             self.show_welcome_screen()
 
     @staticmethod
-    def init_event_logger(path: str, fmt: str, debug: bool = False, stdout: bool = False) -> None:
+    def init_event_logger(path: str, fmt: str, debug: bool = False,
+                          stdout: bool = False) -> None:
         """Initializes the event logger.
-          - Set the path of the event log file
-          - Set the format of the event log file
-          - Set the debug level of the event log file
-          - Set up the event logger
+        - Set the path of the event log file
+        - Set the format of the event log file
+        - Set the debug level of the event log file
+        - Set up the event logger
         """
-        logging.basicConfig(filename=path,
-                            filemode='w',
-                            format=fmt,
-                            datefmt='%d-%b-%y %H:%M:%S',
-                            level=logging.DEBUG if debug else logging.INFO)
+        logging.basicConfig(
+            filename=path,
+            filemode="w",
+            format=fmt,
+            datefmt="%d-%b-%y %H:%M:%S",
+            level=logging.DEBUG if debug else logging.INFO,
+        )
         if stdout:
             logging.getLogger().addHandler(logging.StreamHandler(sys.stdout))
 
     def initialize_local_database(self) -> None:
         """Initializes the database instance.
-          - Determine database path
-          - Create database instance
-          - Set database path
-          - Read database file
+        - Determine database path
+        - Create database instance
+        - Set database path
+        - Read database file
         """
         if sys.platform == "win32":
             logging.info("Windows OS detected")
-            self.db_path = os.path.join(os.path.expanduser(
-                "~"), "Documents", "Kanbaru", "Database.json")
+            self.db_path = os.path.join(
+                os.path.expanduser(
+                    "~"), "Documents", "Kanbaru", "Database.json"
+            )
         else:
             logging.info("Unix OS detected")
-            self.db_path = os.path.join(os.path.expanduser(
-                "~"), "Kanbaru", "Database.json")
+            self.db_path = os.path.join(
+                os.path.expanduser("~"), "Kanbaru", "Database.json"
+            )
         db = Database.get_instance()
         db.set_path(self.db_path)
         db.read()
@@ -113,11 +123,13 @@ class Kanbaru(QMainWindow):
         logging.info("Database instance initialized and read successfully")
 
     @staticmethod
-    def initialize_firebase_database(db_instance: Database, cred_path: str) -> None:
+    def initialize_firebase_database(
+        db_instance: Database, cred_path: str
+    ) -> None:
         """Initializes the Firebase database instance.
-          - Set database instance
-          - Set credential path
-          - Set up Firebase database
+        - Set database instance
+        - Set credential path
+        - Set up Firebase database
         """
         db_instance.init_firebase(cred_path)
         logging.info("Firebase database initialized and connected")

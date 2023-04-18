@@ -1,28 +1,23 @@
 import datetime
 import logging
 
-from PySide6.QtCore import *
-from PySide6.QtGui import *
-from PySide6.QtWidgets import *
+from PySide6.QtCore import QCoreApplication, QSize, Qt, Slot
+from PySide6.QtGui import QCursor, QDropEvent, QFont
+from PySide6.QtWidgets import (QAbstractItemView, QAbstractScrollArea,
+                               QApplication, QFrame, QLabel, QListWidget,
+                               QListWidgetItem, QMainWindow, QPushButton,
+                               QSizePolicy, QSpacerItem, QVBoxLayout, QWidget)
 
 from db import Database
+from dialog import dialog_factory, input_dialog_factory
 from kanbaru_objects import Board, Card, Panel
 from ui.about import About
 from ui.app_settings import AppSettings
 from ui.board_settings import BoardSettings
 from ui.card_description import CardDescription
-from ui.ui_main import Ui_MainWindow
-from utils import (dialog_factory, hex_to_rgba, input_dialog_factory,
-                   keyPressEvent, modify_hex_color, setup_font_db)
-
-# from PySide6.QtCore import QCoreApplication, QSize, Qt, Slot
-# from PySide6.QtGui import (QCursor, QDragEnterEvent, QDragMoveEvent,
-#                            QDropEvent, QFont)
-# from PySide6.QtWidgets import (QAbstractItemView, QAbstractScrollArea,
-#                                QApplication, QFrame, QLabel,
-#                                QListWidget, QListWidgetItem, QMainWindow,
-#                                QPushButton, QSizePolicy, QSpacerItem,
-#                                QVBoxLayout, QWidget)
+from ui.main_ui import Ui_MainWindow
+from utils import (hex_to_rgba, keyPressEvent, modify_hex_color, overrides,
+                   setup_font_db)
 
 
 class MainScreen(QMainWindow):
@@ -43,45 +38,36 @@ class MainScreen(QMainWindow):
 
         parent.ui.btn_app_settings.keyPressEvent = lambda event: keyPressEvent(
             event, parent, self.show_app_settings(parent))
-        parent.ui.btn_board_settings.keyPressEvent = lambda event: keyPressEvent(
-            event, parent, self.show_board_settings(event, parent))
+        parent.ui.btn_board_settings.keyPressEvent = lambda event: \
+            keyPressEvent(
+                event, parent, self.show_board_settings(event, parent))
         parent.ui.btn_add_board.keyPressEvent = lambda event: keyPressEvent(
             event, parent, self.add_board(parent))
 
         self.update_whole_page(parent)
 
     def update_whole_page(self, parent: QMainWindow) -> None:
-        logging.info(
-            f"Loaded {len(Database.get_instance().boards)} board(s) from database")
+        db_boards = Database.get_instance().boards
+        push_buttons = []
 
-        parent.ui.qpushbutton = QPushButton()
-        new_name = f"{parent.ui.qpushbutton.__class__.__name__}_{id(parent.ui.qpushbutton)}"
-        setattr(parent.ui, new_name, parent.ui.qpushbutton)
-        push_button = getattr(parent.ui, new_name)
-        push_button.setObjectName(new_name)
-        delattr(parent.ui, "qpushbutton")
-        push_button = self.board_factory(
-            parent, Database.get_instance().boards[0], "TorusPro.ttf")
-        push_button.clicked.connect(lambda: self.change_board(
-            parent, Database.get_instance().boards[0]))
-        parent.ui.verticalLayout_4.addWidget(push_button)
-        for index, board in enumerate(Database.get_instance().boards[1:]):
-            parent.ui.qpushbutton = QPushButton()
-            new_name = f"{parent.ui.qpushbutton.__class__.__name__}_{id(parent.ui.qpushbutton)}"
-            setattr(parent.ui, new_name, parent.ui.qpushbutton)
-            push_button = getattr(parent.ui, new_name)
-            push_button.setObjectName(new_name)
-            delattr(parent.ui, "qpushbutton")
-            push_button = self.board_factory(
-                parent, self.get_updated_board(
-                    Database.get_instance().boards[index + 1]), "TorusPro.ttf",
-                is_constructed=False)
-            setattr(push_button, "board",
-                    Database.get_instance().boards[index + 1])
-            push_button.clicked.connect(lambda: self.change_board(
-                parent, self.get_updated_board(Database.get_instance().boards[index + 1])))
-            parent.ui.verticalLayout_4.addWidget(push_button)
-            # TODO: Fix changing board connections
+        def on_button_click(board):
+            def callback():
+                updated_board = self.get_updated_board(board)
+                self.change_board(parent, updated_board)
+            return callback
+
+        for index, board in enumerate(db_boards):
+            new_button = self.board_factory(
+                parent, self.get_updated_board(board), "TorusPro.ttf",
+                is_constructed=index == 0)
+            new_button.board = board
+            new_name = f"{new_button.__class__.__name__}_{id(new_button)}"
+            setattr(parent.ui, new_name, new_button)
+            push_buttons.append(getattr(parent.ui, new_name))
+            push_buttons[index].setObjectName(new_name)
+            parent.ui.verticalLayout_4.addWidget(push_buttons[index])
+            push_buttons[index].clicked.connect(
+                on_button_click(board))
 
         parent.ui.vertSpacer_scrollAreaContent = QSpacerItem(
             20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
@@ -92,7 +78,8 @@ class MainScreen(QMainWindow):
             parent, Database.get_instance().boards[0], "TorusPro.ttf")
 
         parent.ui.label_board.setText(
-            Database.get_instance().boards[0].title[:40] + (Database.get_instance().boards[0].title[40:] and '...'))
+            f"{Database.get_instance().boards[0].title[:40]}"
+            f"{(Database.get_instance().boards[0].title[40:] and '...')}")
 
         self.setup_font(parent, "TorusPro.ttf")
 
@@ -104,10 +91,12 @@ class MainScreen(QMainWindow):
         self.about = About(self.current_board.color)
         self.about.show()
 
-    def board_factory(self, parent: Ui_MainWindow, board: Board, font: str, is_constructed: bool = True) -> QPushButton:
+    def board_factory(self, parent: Ui_MainWindow, board: Board, font: str,
+                      is_constructed: bool = True) -> QPushButton:
         """Credsfates a board widget
         - Add a push button widget to the parent UI with specified style
-        - If the board is displayed, construct the list widgets and card widgets
+        - If the board is displayed, construct the list widgets and card
+        widgets
 
         Parameters
         ----------
@@ -127,9 +116,6 @@ class MainScreen(QMainWindow):
         if board is None:
             self.current_board = Database.get_instance().boards[-1]
             board = self.current_board
-
-        logging.info(
-            f'Loaded {len(board.panels)} panel(s) from board "{board.title}" [{board.color = }] [{is_constructed = }]')
 
         parent.ui.label_board.setText(
             board.title[:40] + (board.title[40:] and '...'))
@@ -154,7 +140,8 @@ class MainScreen(QMainWindow):
                 border-radius: 5px;
             }
             QPushButton:hover {
-                background-color: """ + f"{modify_hex_color(board.color, -30)}" + """;
+                background-color:
+                 """ + f"{modify_hex_color(board.color, -30)}" + """;
             }
             QPushButton:focus {
                 border-color: #000000;
@@ -187,7 +174,8 @@ class MainScreen(QMainWindow):
                 parent.ui.horizontalLayout_5.addWidget(qwidget)
         return parent.ui.btn_board
 
-    def panel_factory(self, parent: Ui_MainWindow, panel: Panel, font: str, color: str) -> QWidget:
+    def panel_factory(self, parent: Ui_MainWindow, panel: Panel, font: str,
+                      color: str) -> QWidget:
         """Creates a panel widget
         - Add a panel widget to the parent UI with specified style
         - Create a new name for the panel with its class name and id
@@ -211,14 +199,13 @@ class MainScreen(QMainWindow):
         QWidget
             The panel widget
         """
-        logging.info(
-            f'Loaded {len(panel.cards)} card(s) from panel "{panel.title}"')
-
         size_policy1 = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Fixed)
         size_policy1.setHorizontalStretch(0)
         size_policy1.setVerticalStretch(0)
+
         parent.ui.panel = QWidget(parent.ui.scrollAreaContent_panel_right)
         parent.ui.panel.setObjectName(u"panel")
+
         size_policy2 = QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Minimum)
         size_policy2.setHorizontalStretch(0)
         size_policy2.setVerticalStretch(0)
@@ -230,8 +217,10 @@ class MainScreen(QMainWindow):
         parent.ui.verticalLayout_1.setSpacing(0)
         parent.ui.verticalLayout_1.setObjectName(u"verticalLayout_1")
         parent.ui.verticalLayout_1.setContentsMargins(0, 0, 0, 0)
+
         parent.ui.widget = QWidget(parent.ui.panel)
         parent.ui.widget.setObjectName(u"widget_list_1")
+
         size_policy3 = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Minimum)
         size_policy3.setHorizontalStretch(0)
         size_policy3.setVerticalStretch(0)
@@ -247,6 +236,7 @@ class MainScreen(QMainWindow):
         parent.ui.verticalLayout_2 = QVBoxLayout(parent.ui.widget)
         parent.ui.verticalLayout_2.setObjectName(u"verticalLayout_11")
         parent.ui.verticalLayout_2.setContentsMargins(0, 0, 0, 0)
+
         parent.ui.label_list = QLabel(parent.ui.widget)
         parent.ui.label_list.setObjectName(u"label_list")
         size_policy1.setHeightForWidth(
@@ -262,102 +252,10 @@ class MainScreen(QMainWindow):
             """
         )
         parent.ui.label_list.setMargin(0)
-
         parent.ui.verticalLayout_2.addWidget(parent.ui.label_list)
 
-        parent.ui.listWidget = QListWidget(parent.ui.widget)
-
-        parent.ui.listWidget.setObjectName(u"listWidget")
-        size_policy2.setHeightForWidth(
-            parent.ui.listWidget.sizePolicy().hasHeightForWidth())
-        parent.ui.listWidget.setSizePolicy(size_policy2)
-        parent.ui.listWidget.setMaximumSize(QSize(250, 16777215))
-        parent.ui.listWidget.setFocusPolicy(Qt.TabFocus)
-        parent.ui.listWidget.setAcceptDrops(True)
-        color = hex_to_rgba(color)
-        color_item = modify_hex_color(color)
-        parent.ui.listWidget.setStyleSheet(
-            f"""
-            QListWidget {{
-                background-color: #ebecf0;
-                border-radius: 10px;
-            }}
-            QListWidget::item {{
-                height: 40px;
-                padding: 0px 8px 0px 8px;
-                background-color: qlineargradient(
-                    spread:pad, x1:0, y1:0.5, x2:0.95, y2:0.5,
-                    stop:0 {color_item},
-                    stop:0.0338983 {color_item},
-                    stop:0.039548 rgba(255, 255, 255, 255),
-                    stop:1 rgba(255, 255, 255, 255)
-                );
-                color: #000000;
-                border-radius: 5px;
-            }}
-            QListWidget::item:hover {{
-                background-color: qlineargradient(
-                    spread:pad, x1:0, y1:0.5, x2:0.95, y2:0.5,
-                    stop:0 {color_item},
-                    stop:0.0338983 {color_item},
-                    stop:0.039548 rgba(226, 228, 233, 255),
-                    stop:1 rgba(226, 228, 233, 255)
-                );
-                color: #000000;
-            }}
-            QListWidget::item:selected {{
-                background-color: qlineargradient(
-                    spread:pad, x1:0, y1:0.5, x2:0.95, y2:0.5,
-                    stop:0 {color_item},
-                    stop:0.0338983 {color_item},
-                    stop:0.039548 rgba(204, 204, 204, 255),
-                    stop:1 rgba(204, 204, 204, 255)
-                );
-                color: #000000;
-            }}
-            QListWidget::item:focus {{
-                background-color: qlineargradient(
-                    spread:pad, x1:0, y1:0.5, x2:0.95, y2:0.5,
-                    stop:0 {color_item},
-                    stop:0.0338983 {color_item},
-                    stop:0.039548 rgba(204, 204, 204, 255),
-                    stop:1 rgba(204, 204, 204, 255)
-                );
-                color: #000000;
-            }}
-            QScrollBar:vertical {{
-                width: 10px;
-                margin: 0px 0px 0px 0px;
-                background-color: #acb2bf;
-            }}
-            QScrollBar:horizontal {{
-                height: 10px;
-                margin: 0px 0px 0px 0px;
-                background-color: #acb2bf;
-            }}
-            """
-        )
-        parent.ui.listWidget.setFrameShape(QFrame.NoFrame)
-        parent.ui.listWidget.setSizeAdjustPolicy(
-            QAbstractScrollArea.AdjustIgnored)
-        parent.ui.listWidget.setAutoScroll(True)
-        parent.ui.listWidget.setDragEnabled(True)
-        parent.ui.listWidget.setDragDropMode(QAbstractItemView.DragDrop)
-        parent.ui.listWidget.setDefaultDropAction(Qt.MoveAction)
-        parent.ui.listWidget.setSelectionMode(
-            QAbstractItemView.ExtendedSelection)
-        parent.ui.listWidget.setVerticalScrollMode(
-            QAbstractItemView.ScrollPerPixel)
-        parent.ui.listWidget.setHorizontalScrollMode(
-            QAbstractItemView.ScrollPerPixel)
-        parent.ui.listWidget.setProperty("isWrapping", False)
-        parent.ui.listWidget.setSpacing(5)
-        parent.ui.listWidget.setUniformItemSizes(True)
-        parent.ui.listWidget.setWordWrap(True)
-        parent.ui.listWidget.setSelectionRectVisible(True)
-        # showDropIndicator for parent.ui.listWidget
-        parent.ui.listWidget.setProperty("showDropIndicator", True)
-
+        parent.ui.listWidget = CustomListWidget(
+            parent.ui.scrollArea_panel_right, modify_hex_color(color))
         parent.ui.verticalLayout_2.addWidget(parent.ui.listWidget)
 
         parent.ui.widget_add_card = QWidget(parent.ui.widget)
@@ -365,9 +263,11 @@ class MainScreen(QMainWindow):
         size_policy1.setHeightForWidth(
             parent.ui.widget_add_card.sizePolicy().hasHeightForWidth())
         parent.ui.widget_add_card.setSizePolicy(size_policy1)
+
         parent.ui.verticalLayout_3 = QVBoxLayout(parent.ui.widget_add_card)
         parent.ui.verticalLayout_3.setObjectName(u"verticalLayout_6")
         parent.ui.verticalLayout_3.setContentsMargins(6, 0, 6, 6)
+
         parent.ui.btn_add_card = QPushButton(parent.ui.widget_add_card)
         parent.ui.btn_add_card.setObjectName(u"btn_add_card_list_1")
         parent.ui.btn_add_card.setMinimumSize(QSize(0, 25))
@@ -392,11 +292,8 @@ class MainScreen(QMainWindow):
             """
         )
         parent.ui.verticalLayout_3.addWidget(parent.ui.btn_add_card)
-
         parent.ui.verticalLayout_2.addWidget(parent.ui.widget_add_card)
-
         parent.ui.verticalLayout_1.addWidget(parent.ui.widget)
-
         parent.ui.listWidget.setSortingEnabled(False)
 
         font_db = setup_font_db(font)
@@ -406,120 +303,45 @@ class MainScreen(QMainWindow):
         parent.ui.btn_add_card.clicked.connect(
             lambda: self.add_card(parent, panel))
 
-        new_name = f"{parent.ui.listWidget.__class__.__name__}_{id(parent.ui.listWidget)}"
+        new_name = f"{parent.ui.listWidget.__class__.__name__}_"
+        f"{id(parent.ui.listWidget)}"
         setattr(parent.ui, new_name, parent.ui.listWidget)
         listWidget = getattr(parent.ui, new_name)
         listWidget.setObjectName(new_name)
         delattr(parent.ui, "listWidget")
         setattr(listWidget, "data", panel)
-        listWidget.dragEnterEvent = lambda event: self.dragEnterEvent(event)
-        listWidget.dragMoveEvent = lambda event: self.dragMoveEvent(
-            event, parent)
-        listWidget.dropEvent = lambda event: self.dropEvent(event)
+
         for index, card in enumerate(panel.cards):
             qlistwidgetitem = self.card_factory(
                 listWidget, parent, card, font, index)
             listWidget.addItem(qlistwidgetitem)
+
         listWidget.clicked.connect(
-            lambda event: self.show_card_description(event, listWidget, parent, color))
+            lambda event: self.show_card_description(
+                event,
+                listWidget,
+                parent,
+                color
+            )
+        )
 
         parent.ui.label_list.setText(
-            QCoreApplication.translate("MainWindow", panel.title[:25] + (panel.title[25:] and '...'), None))
+            QCoreApplication.translate(
+                "MainWindow",
+                panel.title[:25] + (panel.title[25:] and '...'), None
+            )
+        )
         parent.ui.btn_add_card.setText(
-            QCoreApplication.translate("MainWindow", u"+ Add a card", None))
+            QCoreApplication.translate(
+                "MainWindow", u"+ Add a card", None
+            )
+        )
 
         return parent.ui.panel
 
-    @Slot(QDragEnterEvent)
-    def dragEnterEvent(self, event: QDragEnterEvent) -> None:
-        """Override the dragEnterEvent method to customize the drag enter event
-        - Check if the clicked item has the qabstractitemmodeldatalist format
-        - If it is, accept the event. If not, ignore the event
-
-        Parameters
-        ----------
-        event : QDragEnterEvent
-            The drag enter event
-        """
-        if event.mimeData().hasFormat("application/x-qabstractitemmodeldatalist"):
-            event.accept()
-        else:
-            event.ignore()
-        super().dragEnterEvent(event)
-
-    @Slot(QDragMoveEvent)
-    def dragMoveEvent(self, event: QDragMoveEvent, parent: QMainWindow) -> None:
-        """Override the dragMoveEvent method to customize the drag move event
-        - Check if the dragged item has the qabstractitemmodeldatalist format
-        - If it is, accept the event. If not, ignore the event
-
-        Parameters
-        ----------
-        parent
-        event : QDragMoveEvent
-            The drag move event
-        """
-        if QCursor().pos().x() > parent.width() + parent.x() - 160:
-            parent.ui.scrollArea_panel_right.horizontalScrollBar().setValue(
-                parent.ui.scrollArea_panel_right.horizontalScrollBar().value() + 8)
-        elif QCursor().pos().x() < parent.width() - (parent.width() - parent.x()) + 300:
-            parent.ui.scrollArea_panel_right.horizontalScrollBar().setValue(
-                parent.ui.scrollArea_panel_right.horizontalScrollBar().value() - 8)
-        if event.mimeData().hasFormat("application/x-qabstractitemmodeldatalist"):
-            panel = QApplication.widgetAt(QCursor().pos()).parent()
-            if isinstance(panel, QListWidget):
-                if QCursor.pos().y() > parent.height() + parent.y() - 140:
-                    panel.verticalScrollBar().setValue(
-                        panel.verticalScrollBar().value() + 3)
-                elif QCursor.pos().y() < parent.height() - (parent.height() - parent.y()) + 250:
-                    panel.verticalScrollBar().setValue(
-                        panel.verticalScrollBar().value() - 3)
-            event.accept()
-        else:
-            event.ignore()
-        super().dragMoveEvent(event)
-
-    @Slot(QDropEvent)
-    def dropEvent(self, event: QDropEvent) -> None:
-        """Override the dropEvent method to customize the drop event
-        - Check if the item to be dropped has the qabstractitemmodeldatalist format
-        - Get the source widget
-        - Get the widget at the current mouse position
-        - Get the items that is being dragged
-        - Remove those items from the source widget
-        - Add those items to the destination widget
-
-        Parameters
-        ----------
-        event : QDropEvent
-            The drop event
-        """
-        if event.mimeData().hasFormat('application/x-qabstractitemmodeldatalist'):
-            source_widget = event.source()
-            dest_widget = QApplication.widgetAt(QCursor().pos()).parent()
-            items = source_widget.selectedItems()
-            if source_widget == dest_widget:
-                # TODO: Implement rearranging items within the same panel
-                return None
-            else:
-                for item in items:
-                    source_widget.takeItem(source_widget.row(item))
-                    dest_widget.addItem(item)
-                    dest_widget.setCurrentItem(item)
-                    self.change_card(source_widget, dest_widget,
-                                     item.data(Qt.UserRole))
-            logging.info(
-                f'Moved {len(items)} Card(s) ({list(map(lambda x: getattr(x, "data")(Qt.UserRole).title, items))}) '
-                f'from panel "{getattr(source_widget, "data").title}" to panel "{getattr(dest_widget, "data").title}"')
-            Database.get_instance().write()
-            event.accept()
-        else:
-            event.ignore()
-        super().dropEvent(event)
-
     @staticmethod
-    def card_factory(qlistwidget: QListWidget, parent: Ui_MainWindow, card: Card, font: str,
-                     index: int) -> QListWidgetItem:
+    def card_factory(qlistwidget: QListWidget, parent: Ui_MainWindow,
+                     card: Card, font: str, index: int) -> QListWidgetItem:
         """Create a card item at the given QListWidget index
         - Create a new name for the card with its class name and id
         - Set the new name as an attribute of the parent UI and as the
@@ -547,22 +369,29 @@ class MainScreen(QMainWindow):
             The card item
         """
         parent.ui.qlistwidgetitem = QListWidgetItem(qlistwidget)
-        new_name = f"{parent.ui.qlistwidgetitem.__class__.__name__}_{id(parent.ui.qlistwidgetitem)}"
+        new_name = f"{parent.ui.qlistwidgetitem.__class__.__name__}_"
+        f"{id(parent.ui.qlistwidgetitem)}"
         setattr(parent.ui, new_name, parent.ui.qlistwidgetitem)
         list_widget_item = getattr(parent.ui, new_name)
         delattr(parent.ui, "qlistwidgetitem")
         list_widget_item.setFlags(
-            Qt.ItemIsSelectable | Qt.ItemIsDragEnabled | Qt.ItemIsUserCheckable | Qt.ItemIsEnabled)
+            Qt.ItemIsSelectable | Qt.ItemIsDragEnabled | Qt.ItemIsUserCheckable
+            | Qt.ItemIsEnabled)
         list_widget_item = qlistwidget.item(index)
         list_widget_item.setData(Qt.UserRole, card)
         list_widget_item.setText(
-            QCoreApplication.translate("MainWindow", card.title[:24] + (card.title[24:] and '...'), None))
+            QCoreApplication.translate(
+                "MainWindow",
+                card.title[:24] + (card.title[24:] and '...'), None
+            )
+        )
         font_db = setup_font_db(font)[0]
         list_widget_item.setFont(QFont(font_db, 12))
 
         return list_widget_item
 
-    def add_panel_button(self, parent: Ui_MainWindow, board: Board, font: str) -> None:
+    def add_panel_button(self, parent: Ui_MainWindow, board: Board,
+                         font: str) -> None:
         """Add a button to add a new panel
 
         Parameters
@@ -610,20 +439,16 @@ class MainScreen(QMainWindow):
             """
         )
         parent.ui.verticalLayout_9.addWidget(parent.ui.btn_add_list)
-
         parent.ui.vertSpacer_list_add = QSpacerItem(
             20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
-
         parent.ui.verticalLayout_9.addItem(parent.ui.vertSpacer_list_add)
         parent.ui.btn_add_list.setText(
             QCoreApplication.translate("MainWindow", u"+ Add a panel", None))
-
-        parent.ui.scrollAreaContent_panel_right.layout().addWidget(parent.ui.list_add)
+        parent.ui.scrollAreaContent_panel_right.layout().addWidget(
+            parent.ui.list_add)
         parent.ui.horzSpacer_panel_right = QSpacerItem(
             40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
-
         parent.ui.horizontalLayout_5.addItem(parent.ui.horzSpacer_panel_right)
-
         parent.ui.btn_add_list.clicked.connect(
             lambda: self.add_panel(parent, board))
 
@@ -645,7 +470,9 @@ class MainScreen(QMainWindow):
             QCoreApplication.processEvents()
         self.clear_page(parent)
         self.update_whole_page(parent)
-        self.change_board(parent, self.get_updated_board(self.current_board))
+        if self.current_board not in Database.get_instance().boards:
+            self.current_board = Database.get_instance().boards[-1]
+        self.change_board(parent, self.current_board)
 
     def show_board_settings(self, event, parent: QMainWindow) -> None:
         """Show the board settings window
@@ -657,15 +484,17 @@ class MainScreen(QMainWindow):
             The main window
         """
         board_settings = BoardSettings(self.current_board)
+        index = Database.get_instance().boards.index(self.current_board)
         board_settings.setWindowModality(Qt.ApplicationModal)
         board_settings.show()
         while board_settings.isVisible():
             QCoreApplication.processEvents()
         self.clear_page(parent)
         self.update_whole_page(parent)
-        self.change_board(parent, self.get_updated_board(self.current_board))
+        self.change_board(parent, Database.get_instance().boards[index])
 
-    def show_card_description(self, event, list_widget: QListWidget, parent: QMainWindow, color: str) -> None:
+    def show_card_description(self, event, list_widget: QListWidget,
+                              parent: QMainWindow, color: str) -> None:
         """Show the card description window
 
         Parameters
@@ -686,7 +515,6 @@ class MainScreen(QMainWindow):
         self.clear_page(parent)
         self.update_whole_page(parent)
         self.change_board(parent, self.get_updated_board(self.current_board))
-        # TODO: Save scrollbar position
 
     @staticmethod
     def get_updated_board(current_board: Board) -> Board:
@@ -709,27 +537,41 @@ class MainScreen(QMainWindow):
         parent : Ui_MainWindow
             The main window
         """
-        text = input_dialog_factory(
-            "Add a board", "Enter a new board title: ", btn_color=self.current_board.color)
-        if text is None:
-            return None
-        if not text:
-            dialog_factory(None, None, "Invalid Title",
-                           "Board title cannot be empty!", yes_no=False, btn_color=self.current_board.color)
-            self.add_board(parent)
-            return None
-        for board in Database.get_instance().boards:
-            if board.title == text:
-                dialog_factory(None, None, "Invalid Title",
-                               "Board already exists!", yes_no=False, btn_color=self.current_board.color)
-                self.add_board(parent)
+        while True:
+            text = input_dialog_factory(
+                title="Add a board",
+                msg="Enter a new board title: ",
+                btn_color=self.current_board.color
+            )
+            if text is None:
                 return None
+            if any(board.title == text for
+                   board in Database.get_instance().boards):
+                dialog_factory(
+                    title="Invalid Title",
+                    msg=f'Board "{text}" already exists!',
+                    yes_no=False,
+                    btn_color=self.current_board.color
+                )
+                continue
+            elif text:
+                break
+            dialog_factory(
+                title="Invalid Title",
+                msg="Board title cannot be empty!",
+                yes_no=False,
+                btn_color=self.current_board.color
+            )
         data = Database.get_instance().data
         data["_Database__data"].append(
-            {"_Board__title": text, "_Board__panels_lists": [], "_Board__color": "LIGHTBLUE"})
+            {
+                "_Board__title": text,
+                "_Board__panels_lists": [],
+                "_Board__color": "LIGHTBLUE"
+            }
+        )
         Database.get_instance().data = data
         Database.get_instance().write()
-
         self.clear_page(parent)
         self.update_whole_page(parent)
         self.change_board(parent, Database.get_instance().boards[-1])
@@ -744,38 +586,58 @@ class MainScreen(QMainWindow):
         board : Board
             The board to add the panel to
         """
-        text = input_dialog_factory(
-            "New panel", "Enter a new panel title:", btn_color=self.current_board.color)
-        if text is None:
-            return None
-        if not text:
-            dialog_factory(None, None, "Invalid Title",
-                           "Panel title cannot be empty!", yes_no=False, btn_color=self.current_board.color)
-            self.add_panel(parent, board)
-            return None
-        for board_ in Database.get_instance().boards:
-            for panel in board_.panels:
-                if panel.title == text:
-                    dialog_factory(None, None, "Invalid Title",
-                                   "Panel already exists!", yes_no=False, btn_color=self.current_board.color)
-                    self.add_card(parent, board_)
-                    return None
+        while True:
+            text = input_dialog_factory(
+                title="New panel",
+                msg="Enter a new panel title:",
+                btn_color=self.current_board.color
+            )
+            if text is None:
+                return None
+            if any(panel.title == text for
+                   other_board in Database.get_instance().boards for
+                   panel in other_board.panels):
+                dialog_factory(
+                    title="Invalid Title",
+                    msg=f'Panel "{text}" already exists!',
+                    yes_no=False,
+                    btn_color=self.current_board.color)
+                continue
+            if text:
+                break
+            dialog_factory(
+                title="Invalid Title",
+                msg="Panel title cannot be empty!",
+                yes_no=False,
+                btn_color=self.current_board.color)
         data = Database.get_instance().data
-        for i in range(len(Database.get_instance().boards)):
-            if Database.get_instance().boards[i].title == board.title:
-                print(Database.get_instance().boards[i].title, board.title)
+        for i, db_board in enumerate(Database.get_instance().boards):
+            if db_board.title == board.title:
+                panels_list = data.get(
+                    "_Database__data")[i].get(
+                        "_Board__panels_lists")
                 try:
-                    data["_Database__data"][i]["_Board__panels_lists"].append(
-                        {"_Panel__title": text, "_Board__panels": []})
+                    panel = {
+                        "_Panel__title": text,
+                        "_Board__panels": []
+                    }
+                    panels_list.append(panel)
                 except KeyError:
-                    data["_Database__data"][i]["_Board__panels_lists"] = [
-                        {"_Panel__title": text, "_Board__panels": []}]
+                    panels_list = [{
+                        "_Panel__title": text, "_Board__panels": []
+                    }]
+                    data.get(
+                        "_Database__data")[i]["_Board__panels_lists"] = \
+                        panels_list
                 Database.get_instance().data = data
                 Database.get_instance().write()
                 self.change_board(
                     parent, Database.get_instance().boards[i])
-        parent.ui.scrollArea_panel_right.horizontalScrollBar().setValue(
-            parent.ui.scrollArea_panel_right.horizontalScrollBar().maximum())
+                parent.ui.scrollArea_panel_right.horizontalScrollBar(
+                ).setValue(
+                    parent.ui.scrollArea_panel_right.horizontalScrollBar(
+                    ).maximum())
+                return None
 
     def add_card(self, parent: Ui_MainWindow, panel: Panel) -> None:
         """Add a new card
@@ -787,54 +649,70 @@ class MainScreen(QMainWindow):
         panel : Panel
             The panel to add the card to
         """
-        text = input_dialog_factory(
-            "New card", "Enter a new card title:", btn_color=self.current_board.color)
-        if text is None:
-            return None
-        if not text:
-            dialog_factory(None, None, "Invalid Title",
-                           "Card title cannot be empty!", yes_no=False, btn_color=self.current_board.color)
-            self.add_card(parent, panel)
-            return None
-        for board in Database.get_instance().boards:
-            for panel_ in board.panels:
-                for card in panel_.cards:
-                    if card.title == text:
-                        dialog_factory(None, None, "Invalid Title",
-                                       "Card already exists!", yes_no=False, btn_color=self.current_board.color)
+        while True:
+            text = input_dialog_factory(
+                title="New card",
+                msg="Enter a new card title:",
+                btn_color=self.current_board.color
+            )
+            if text is None:
+                return None
+            if text:
+                break
+            dialog_factory(
+                title="Invalid Title",
+                msg="Card title cannot be empty!",
+                yes_no=False,
+                btn_color=self.current_board.color
+            )
+        data = Database.get_instance().data
+        for i, board in enumerate(Database.get_instance().boards):
+            for j, panel_ in enumerate(board.panels):
+                if panel_.title == panel.title:
+                    if any(card.title == text for card in panel_.cards):
+                        dialog_factory(
+                            title="Invalid Title",
+                            msg=f'Card "{text}" already exists!',
+                            yes_no=False,
+                            btn_color=self.current_board.color
+                        )
                         self.add_card(parent, panel)
                         return None
-        data = Database.get_instance().data
-        for i in range(len(Database.get_instance().boards)):
-            for j in range(len(Database.get_instance().boards[i].panels)):
-                if Database.get_instance().boards[i].panels[j].title == panel.title:
                     try:
-                        data["_Database__data"][i]["_Board__panels_lists"][j]["_Board__panels"].append(
-                            {"_Card__title": text, "_Card__description": "",
-                             "_Card__date": datetime.date.today().strftime("%d-%m-%Y"),
-                             "_Card__time": datetime.datetime.now().strftime("%H:%M")})
+                        data.get(
+                            "_Database__data")[i].get(
+                                "_Board__panels_lists")[j].get(
+                                    "_Board__panels").append({
+                                        "_Card__title": text,
+                                        "_Card__description": "",
+                                        "_Card__date": datetime.date.today()
+                                        .strftime("%d-%m-%Y"),
+                                        "_Card__time": datetime.datetime.now()
+                                        .strftime("%H:%M")
+                                    })
                     except KeyError:
-                        data["_Database__data"][i]["_Board__panels_lists"][j]["_Board__panels"] = [
-                            {"_Card__title": text, "_Card__description": "",
-                             "_Card__date": datetime.date.today().strftime("%d-%m-%Y"),
-                             "_Card__time": datetime.datetime.now().strftime("%H:%M")}]
+                        data.get(
+                            "_Database__data")[i].get(
+                                "_Board__panels_lists")[j]["_Board__panels"] =\
+                            [{
+                                "_Card__title": text,
+                                "_Card__description": "",
+                                "_Card__date": datetime.date.today()
+                                .strftime("%d-%m-%Y"),
+                                "_Card__time": datetime.datetime.now()
+                                .strftime("%H:%M")
+                            }]
                     Database.get_instance().data = data
                     Database.get_instance().write()
                     self.change_board(
                         parent, Database.get_instance().boards[i])
-        # TODO: Scroll to the bottom after adding a card
-        try:
-            current_panel = QApplication.widgetAt(QCursor().pos()).parent()
-            current_panel.verticalScrollBar().setValue(
-                current_panel.verticalScrollBar().maximum())
-        except AttributeError:
-            pass
 
     def change_board(self, parent: Ui_MainWindow, board: Board) -> None:
         """Change the board to the specified board
         - Remove all widgets from the layout
         - Create the new board
-        - Remove the add panel button and horizontal spacer then add panel button again
+        - Remove the add panel button and horizontal spacer then add panel
+        button again
 
         Parameters
         ----------
@@ -857,11 +735,12 @@ class MainScreen(QMainWindow):
         self.add_panel_button(parent, board, "TorusPro.ttf")
 
     @staticmethod
-    def change_card(source: Panel, destination: Panel, card: Card) -> None:
+    def change_card(source: Panel, destination: Panel, card: Card,
+                    index: int = None) -> None:
         """Change the card in a panel to another panel
         - Get the data from the database
         - Find the source panel and the specified card
-        - Find the destination panel and add the card
+        - Find the destination panel and add the card at a specified index
         - Remove the card from the source panel
         - Update the database
 
@@ -873,25 +752,33 @@ class MainScreen(QMainWindow):
             The destination panel
         card : Card
             The card to move
+        index : int, optional
+            The index position to add the card in the destination panel,
+            by default None (adds at the end)
         """
         data = Database.get_instance().data
-        for i in range(len(data["_Database__data"][0]["_Board__panels_lists"])):
-            if data["_Database__data"][0]["_Board__panels_lists"][i]["_Panel__title"] == getattr(source, "data").title:
-                source_list = data["_Database__data"][0]["_Board__panels_lists"][i]
-                for j in range(len(source_list["_Board__panels"])):
-                    if source_list["_Board__panels"][j]["_Card__title"] == card.title:
-                        card_to_move = source_list["_Board__panels"].pop(j)
-                        break
-        for i in range(len(data["_Database__data"][0]["_Board__panels_lists"])):
-            if data["_Database__data"][0]["_Board__panels_lists"][i]["_Panel__title"] == getattr(destination,
-                                                                                                 "data").title:
-                dest_list = data["_Database__data"][0]["_Board__panels_lists"][i]
-                try:
+        source_list = next(
+            (pan for pan in data.get("_Database__data", [{}])[0].get(
+                "_Board__panels_lists", [])
+             if pan.get("_Panel__title") == getattr(source, "data").title), {})
+        card_to_move = next(
+            (card_ for card_ in source_list.get("_Board__panels", [])
+             if card_.get("_Card__title") == card.title), {})
+        if card_to_move:
+            source_list.get("_Board__panels").remove(card_to_move)
+            dest_list = next(
+                (pan for pan in data.get("_Database__data", [{}])[0].get(
+                    "_Board__panels_lists", [])
+                 if pan.get("_Panel__title") == getattr(
+                     destination, "data").title), {})
+            try:
+                if index is None or index >= len(dest_list["_Board__panels"]):
                     dest_list["_Board__panels"].append(card_to_move)
-                except KeyError:
-                    dest_list["_Board__panels"] = [card_to_move]
-                break
-        Database.get_instance().data = data
+                else:
+                    dest_list["_Board__panels"].insert(index, card_to_move)
+            except KeyError:
+                dest_list["_Board__panels"] = [card_to_move]
+            Database.get_instance().data = data
 
     @staticmethod
     def clear_page(parent: Ui_MainWindow) -> None:
@@ -928,3 +815,169 @@ class MainScreen(QMainWindow):
         parent.ui.btn_add_board.setFont(QFont(toruspro, 12))
         parent.ui.btn_board_settings.setFont(QFont(toruspro, 12))
         parent.ui.btn_app_settings.setFont(QFont(toruspro, 12))
+
+
+class CustomListWidget(QListWidget):
+    """Custom QListWidget class"""
+
+    def __init__(self: QListWidget, parent: QMainWindow, color: str) -> None:
+        super().__init__()
+        self.parent_ = parent
+        self.setObjectName(u"listWidget")
+        size_policy2 = QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Minimum)
+        size_policy2.setHorizontalStretch(0)
+        size_policy2.setVerticalStretch(0)
+        size_policy2.setHeightForWidth(self.sizePolicy().hasHeightForWidth())
+        self.setSizePolicy(size_policy2)
+        self.setMaximumSize(QSize(250, 16777215))
+        self.setFocusPolicy(Qt.TabFocus)
+        self.setAcceptDrops(True)
+        self.setFrameShape(QFrame.NoFrame)
+        self.setSizeAdjustPolicy(QAbstractScrollArea.AdjustIgnored)
+        self.setAutoScroll(True)
+        self.setDragEnabled(True)
+        self.setDragDropMode(QAbstractItemView.DragDrop)
+        self.setDefaultDropAction(Qt.MoveAction)
+        self.setSelectionMode(QAbstractItemView.ExtendedSelection)
+        self.setVerticalScrollMode(QAbstractItemView.ScrollPerPixel)
+        self.setHorizontalScrollMode(QAbstractItemView.ScrollPerPixel)
+        self.setProperty("isWrapping", False)
+        self.setSpacing(5)
+        self.setUniformItemSizes(True)
+        self.setWordWrap(True)
+        self.verticalScrollBar().setSingleStep(10)
+        self.setSelectionRectVisible(True)
+        self.setStyleSheet(
+            f"""
+            QListWidget {{
+                background-color: #ebecf0;
+                border-radius: 10px;
+                color: #000000;
+            }}
+            QListWidget::item {{
+                height: 40px;
+                padding: 0px 8px 0px 8px;
+                background-color: qlineargradient(
+                    spread:pad, x1:0, y1:0.5, x2:0.95, y2:0.5,
+                    stop:0 {color},
+                    stop:0.0338983 {color},
+                    stop:0.039548 rgba(255, 255, 255, 255),
+                    stop:1 rgba(255, 255, 255, 255)
+                );
+                color: #000000;
+                border-radius: 5px;
+            }}
+            QListWidget::item:hover {{
+                background-color: qlineargradient(
+                    spread:pad, x1:0, y1:0.5, x2:0.95, y2:0.5,
+                    stop:0 {color},
+                    stop:0.0338983 {color},
+                    stop:0.039548 rgba(226, 228, 233, 255),
+                    stop:1 rgba(226, 228, 233, 255)
+                );
+                color: #000000;
+            }}
+            QListWidget::item:selected {{
+                background-color: qlineargradient(
+                    spread:pad, x1:0, y1:0.5, x2:0.95, y2:0.5,
+                    stop:0 {color},
+                    stop:0.0338983 {color},
+                    stop:0.039548 rgba(204, 204, 204, 255),
+                    stop:1 rgba(204, 204, 204, 255)
+                );
+                color: #000000;
+            }}
+            QListWidget::item:focus {{
+                background-color: qlineargradient(
+                    spread:pad, x1:0, y1:0.5, x2:0.95, y2:0.5,
+                    stop:0 {color},
+                    stop:0.0338983 {color},
+                    stop:0.039548 rgba(204, 204, 204, 255),
+                    stop:1 rgba(204, 204, 204, 255));
+                    color: #000000
+            }}
+            QScrollBar:vertical {{
+                width: 10px;
+                margin: 0px 0px 0px 0px;
+                background-color: #acb2bf
+            }}
+            QScrollBar:horizontal {{
+                height: 10px;
+                margin: 0px 0px 0px 0px;
+                background-color: #acb2bf
+            }}
+            """
+        )
+
+    @Slot()
+    @overrides(QListWidget)
+    def dragMoveEvent(self, event) -> None:
+        """Override the dragMoveEvent method to customize the drag and drop
+        event
+        - Scroll the main window when the cursor is near the left or right of
+        the main window
+        - Accept the drag and drop event if the cursor is over a list widget
+
+        Parameters
+        ----------
+        event : QDragMoveEvent
+            The drag and drop event
+        """
+        cursor_pos = self.parent_.mapFromGlobal(QCursor.pos())
+        if cursor_pos.x() > self.parent_.width() + self.parent_.x() - 100:
+            self.parent_.horizontalScrollBar().setValue(
+                self.parent_.horizontalScrollBar().value() + 8)
+        elif cursor_pos.x() < self.parent_.x() + 100:
+            self.parent_.horizontalScrollBar().setValue(
+                self.parent_.horizontalScrollBar().value() - 8)
+
+        super().dragMoveEvent(event)
+
+    @Slot()
+    @overrides(QListWidget)
+    def dropEvent(self, event: QDropEvent) -> None:
+        """Override the dropEvent method to customize the drop event
+        - Check if the item to be dropped has the qabstractitemmodeldatalist
+        format
+        - Get the source widget and the destination widget at the current mouse
+        position
+        - Get the items that are being dragged
+        - Remove those items from the source widget
+        - Add those items to the destination widget at the mouse position
+        - Log the move and update the database
+
+        Parameters
+        ----------
+        event : QDropEvent
+            The drop event
+        """
+        if event.keyboardModifiers() == Qt.ControlModifier:
+            return event.ignore()
+        if not event.mimeData().hasFormat(
+                'application/x-qabstractitemmodeldatalist'):
+            return event.ignore()
+        source_widget = event.source()
+        dest_widget = QApplication.widgetAt(QCursor().pos()).parent()
+        items = source_widget.selectedItems()
+
+        for item in items:
+            source_widget.takeItem(source_widget.row(item))
+
+            index = dest_widget.row(dest_widget.itemAt(event.pos()))
+            if index == -1:
+                index = dest_widget.count()
+            if source_widget == dest_widget:
+                dest_widget.insertItem(index, item)
+
+            logging.info(
+                f'Moved {len(items)} Card(s) '
+                f'({[item.data(Qt.UserRole).title for item in items]}) '
+                f'from panel "{source_widget.data.title}" to panel '
+                f'"{dest_widget.data.title} at {index=}"')
+
+            MainScreen.change_card(
+                source_widget, dest_widget, item.data(Qt.UserRole), index)
+            Database.get_instance().write()
+        event.accept()
+
+        super().dropEvent(event)

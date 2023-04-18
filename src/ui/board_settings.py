@@ -1,21 +1,21 @@
 from typing import List
 
-from PySide6.QtCore import *
-from PySide6.QtGui import *
-from PySide6.QtWidgets import *
+from PySide6.QtCore import QModelIndex
+from PySide6.QtGui import QFont
+from PySide6.QtWidgets import QMainWindow
 
 from db import Database
-from kanbaru_objects import Board, Color, Panel
-from ui.ui_board_settings import Ui_BoardWindow
-from utils import (dialog_factory, input_dialog_factory, keyPressEvent,
-                   modify_hex_color, setup_font_db)
+from dialog import dialog_factory, input_dialog_factory
+from kanbaru_objects import Board, Color
+from ui.board_settings_ui import Ui_BoardWindow
+from utils import keyPressEvent, modify_hex_color, setup_font_db
 
 
 class BoardSettings(QMainWindow):
     def __init__(self, board: Board) -> None:
         QMainWindow.__init__(self)
 
-        self.title_txt = None
+        self.title_txt: str = None
         self.ui: Ui_BoardWindow = Ui_BoardWindow()
         self.ui.setupUi(self)
 
@@ -23,6 +23,8 @@ class BoardSettings(QMainWindow):
         self.ui.btn_rename.clicked.connect(self.rename)
         self.ui.btn_save.clicked.connect(self.save)
         self.ui.btn_cancel.clicked.connect(self.close)
+
+        self.ui.lineEdit_title.textChanged.connect(self.title_listener)
 
         self.ui.btn_delete.keyPressEvent = lambda event: keyPressEvent(
             event, function=self.delete(event))
@@ -33,10 +35,18 @@ class BoardSettings(QMainWindow):
         self.ui.btn_cancel.keyPressEvent = lambda event: keyPressEvent(
             event, function=self.close)
 
+        self.ui.listWidget_manage_panel.verticalScrollBar().setSingleStep(10)
+        self.ui.listWidget_manage_panel.model().rowsMoved.connect(
+            self.rowsMoved)
+
         self.board = board
+        self.old_board: Board = board
         self.title = board.title
         self.color = board.color
+        self.panels = board.panels
         self.panels_to_delete: List[Board] = []
+        self.new_panel_order: List[Board] = []
+        self.colors_to_change: Color.name = None
 
         stylesheet = \
             f"""
@@ -80,7 +90,7 @@ class BoardSettings(QMainWindow):
 
         self.ui.label_board_desc.setStyleSheet(
             f"""
-            background-color: qlineargradient(spread:pad, x1:0.5, y1:0.5, 
+            background-color: qlineargradient(spread:pad, x1:0.5, y1:0.5,
                 x2:0.95, y2:0.5, stop:0 {self.color},
                 stop:1 rgba(69, 76, 90, 255)
             );
@@ -90,40 +100,66 @@ class BoardSettings(QMainWindow):
         )
 
     def delete(self, event) -> None:
+        """Delete all selected panels."""
         selected_all = self.ui.listWidget_manage_panel.selectedItems()
         if len(selected_all) == 0:
-            dialog_factory(None, None, "Invalid Selection",
-                           "Please select a panel to delete. You can also select multiple panels to delete at the "
-                           "same time.", yes_no=False, btn_color=self.color)
+            dialog_factory(
+                title="Invalid Selection",
+                msg="Please select a panel to delete. You can also select "
+                "multiple panels to delete at the same time.",
+                yes_no=False,
+                btn_color=self.color
+            )
             return None
         msg_list = '\n'.join(
-            ["  - " + item for item in list(map(lambda x: x.text(), selected_all))])
-        if dialog_factory(None, None, "Delete Panel",
-                          f"Are you sure you want to delete {'these panels' if len(selected_all) > 1 else 'this panel'}"
-                          f"?\n{msg_list}\n\nYou can still undo by pressing the Cancel button.", btn_color=self.color):
+            ["  - " + item for item in list(
+                map(lambda x: x.text(), selected_all))])
+        if dialog_factory(
+            title="Delete Panel",
+            msg="Are you sure you want to delete "
+            f"{'these panels' if len(selected_all) > 1 else 'this panel'}"
+            f"?\n{msg_list}\n\nYou can still undo by pressing the Cancel "
+            "button.",
+            btn_color=self.color
+        ):
             for selected_panel in selected_all:
                 panel_obj = next(
-                    (panel for panel in self.board.panels if panel.title == selected_panel.text()), None)
+                    (panel for panel in self.board.panels if
+                     panel.title == selected_panel.text()), None)
                 self.panels_to_delete.append(panel_obj)
                 self.ui.listWidget_manage_panel.takeItem(
                     self.ui.listWidget_manage_panel.row(selected_panel))
 
     def rename(self, event) -> None:
+        """Rename selected panel."""
         selected_all = self.ui.listWidget_manage_panel.selectedItems()
         if len(selected_all) == 0:
-            dialog_factory(None, None, "Invalid Selection",
-                           "Please select a panel to rename.", yes_no=False, btn_color=self.color)
+            dialog_factory(
+                title="Invalid Selection",
+                msg="Please select a panel to rename.",
+                yes_no=False,
+                btn_color=self.color
+            )
             return None
         if len(selected_all) > 1:
-            dialog_factory(None, None, "Invalid Selection",
-                           "Please select only one panel to rename.", yes_no=False, btn_color=self.color)
+            dialog_factory(
+                title="Invalid Selection",
+                msg="Please select only one panel to rename.",
+                yes_no=False,
+                btn_color=self.color
+            )
             return None
         text = input_dialog_factory(
-            "Rename Panel", "Enter new panel name:", selected_all[0].text(), btn_color=self.color)
+            title="Rename Panel",
+            msg="Enter new panel name:",
+            default=selected_all[0].text(),
+            btn_color=self.color
+        )
         if text is None:
             return None
         panel_obj = next(
-            (panel for panel in self.board.panels if panel.title == selected_all[0].text()), None)
+            (panel for panel in self.board.panels if
+             panel.title == selected_all[0].text()), None)
         self.title = text
         Database.get_instance().update_panel(panel_obj, self)
         self.ui.listWidget_manage_panel.takeItem(
@@ -133,56 +169,77 @@ class BoardSettings(QMainWindow):
             self.ui.listWidget_manage_panel.currentRow() + 1, panel_obj.title)
 
     def save(self) -> None:
+        """Deletes the selected panels and saves the board order."""
         for panel in self.panels_to_delete:
             Database.get_instance().delete_panel(panel)
+        if self.old_board != self:
+            Database.get_instance().update_board(self.old_board, self)
+        if len(self.new_panel_order) != 0:
+            Database.get_instance().update_panel_order(
+                self.board, self.new_panel_order)
         self.close()
 
     @property
-    def title_line_edit(self) -> str:
+    def title(self) -> str:
         return self.title_txt
 
     @property
     def color(self) -> str:
-        button = next((btn for btn in (self.ui.btn_color_1, self.ui.btn_color_2, self.ui.btn_color_3,
-                                       self.ui.btn_color_4, self.ui.btn_color_5, self.ui.btn_color_6)
-                       if btn.isChecked()), None)
+        button = next(
+            (btn for btn in (
+                self.ui.btn_color_1, self.ui.btn_color_2, self.ui.btn_color_3,
+                self.ui.btn_color_4, self.ui.btn_color_5, self.ui.btn_color_6
+            ) if btn.isChecked()), None)
         match button:
             case self.ui.btn_color_1:
-                return Color.LIGHTBLUE._value_
+                return Color.LIGHTBLUE.value
             case self.ui.btn_color_2:
-                return Color.ROSE._value_
+                return Color.ROSE.value
             case self.ui.btn_color_3:
-                return Color.GOLD._value_
+                return Color.GOLD.value
             case self.ui.btn_color_4:
-                return Color.GREEN._value_
+                return Color.GREEN.value
             case self.ui.btn_color_5:
-                return Color.LAVENDER._value_
+                return Color.LAVENDER.value
             case self.ui.btn_color_6:
-                return Color.TEAL._value_
+                return Color.TEAL.value
             case _:
-                return Color.LIGHTBLUE._value_
+                return Color.LIGHTBLUE.value
 
-    @title_line_edit.setter
-    def title_line_edit(self, text: str) -> None:
+    @title.setter
+    def title(self, text: str) -> None:
         self.ui.lineEdit_title.setText(text)
+        self.title_txt = text
 
     @color.setter
     def color(self, color: str) -> None:
         match color:
-            case Color.LIGHTBLUE._value_:
+            case Color.LIGHTBLUE.value:
                 self.ui.btn_color_1.setChecked(True)
-            case Color.ROSE._value_:
+            case Color.ROSE.value:
                 self.ui.btn_color_2.setChecked(True)
-            case Color.GOLD._value_:
+            case Color.GOLD.value:
                 self.ui.btn_color_3.setChecked(True)
-            case Color.GREEN._value_:
+            case Color.GREEN.value:
                 self.ui.btn_color_4.setChecked(True)
-            case Color.LAVENDER._value_:
+            case Color.LAVENDER.value:
                 self.ui.btn_color_5.setChecked(True)
-            case Color.TEAL._value_:
+            case Color.TEAL.value:
                 self.ui.btn_color_6.setChecked(True)
             case _:
                 self.ui.btn_color_1.setChecked(True)
+
+    def rowsMoved(self, source_parent: QModelIndex, source_start: int,
+                  source_end: int, dest_parent: QModelIndex,
+                  dest_row: int) -> None:
+        """Updates the new panel order when the user moves a panel."""
+        self.new_panel_order = [self.ui.listWidget_manage_panel.item(
+            i).text() for i in range(self.ui.listWidget_manage_panel.count())]
+        self.new_panel_order = [
+            next((panel for panel in self.board.panels
+                  if panel.title == panel_title), None)
+            for panel_title in self.new_panel_order
+        ]
 
     def title_listener(self, text: str) -> None:
         self.title_txt = text

@@ -1,12 +1,12 @@
-from PySide6.QtCore import *
-from PySide6.QtGui import *
-from PySide6.QtWidgets import *
+from PySide6.QtCore import QDate, QTime
+from PySide6.QtGui import QFont
+from PySide6.QtWidgets import QMainWindow
 
 from db import Database
+from dialog import dialog_factory
 from kanbaru_objects import Card
-from ui.ui_card_description import Ui_CardWindow
-from utils import (dialog_factory, hex_to_rgba, keyPressEvent,
-                   modify_hex_color, setup_font_db)
+from ui.card_description_ui import Ui_CardWindow
+from utils import hex_to_rgba, keyPressEvent, modify_hex_color, setup_font_db
 
 
 class CardDescription(QMainWindow):
@@ -20,12 +20,26 @@ class CardDescription(QMainWindow):
         self.ui.lineEdit_title.textChanged.connect(self.title_listener)
 
         self.ui.btn_delete.clicked.connect(
-            lambda: dialog_factory(None, self.delete, "Delete Card", "Are you sure you want to delete this card?\nThis action cannot be undone.", btn_color=color))
+            lambda: dialog_factory(
+                function=self.delete,
+                title="Delete Card",
+                msg="Are you sure you want to delete this card?\n"
+                "This action cannot be undone.",
+                btn_color=color
+            )
+        )
         self.ui.btn_cancel.clicked.connect(self.close)
         self.ui.btn_save.clicked.connect(self.save)
 
         self.ui.btn_delete.keyPressEvent = lambda event: keyPressEvent(
-            event, function=dialog_factory(None, self.delete, "Delete Card", "Are you sure you want to delete this card?\nThis action cannot be undone.", btn_color=color))
+            event, function=dialog_factory(
+                function=self.delete,
+                title="Delete Card",
+                msg="Are you sure you want to delete this card?\n"
+                "This action cannot be undone.",
+                btn_color=color
+            )
+        )
         self.ui.btn_cancel.keyPressEvent = lambda event: keyPressEvent(
             event, function=self.close)
         self.ui.btn_save.keyPressEvent = lambda event: keyPressEvent(
@@ -57,7 +71,12 @@ class CardDescription(QMainWindow):
         self.ui.label_card_desc.setStyleSheet(
             f"""
             background-color: qlineargradient(
-                spread:pad, x1:0.5, y1:0.5, x2:0.95, y2:0.5, stop:0 {self.color},
+                spread:pad,
+                x1:0.5,
+                y1:0.5,
+                x2:0.95,
+                y2:0.5,
+                stop:0 {self.color},
                 stop:1 rgba(69, 76, 90, 255)
             );
             color: #ffffff;
@@ -127,23 +146,35 @@ class CardDescription(QMainWindow):
         self.setup_font()
 
     def save(self) -> None:
+        """Saves the card to the database."""
         if self.title_txt == "":
-            dialog_factory(None, None, "Invalid Title",
-                           "Card title cannot be empty!", yes_no=False, btn_color=self.color)
+            dialog_factory(
+                title="Invalid Title",
+                msg="Card title cannot be empty!",
+                yes_no=False,
+                btn_color=self.color
+            )
             return None
-        for board in Database.get_instance().boards:
-            for panel in board.panels:
-                for card in panel.cards:
-                    if card.title == self.title_txt:
-                        dialog_factory(None, None, "Invalid Title",
-                                       "Card already exists!", yes_no=False, btn_color=self.color)
-                        return None
         card_old = Card(self.card.title, self.card.date,
                         self.card.time, self.card.description)
-        Database.get_instance().update_card(card_old, self)
+        if card_old.title != self.title_txt:
+            for board in Database.get_instance().boards:
+                for panel in board.panels:
+                    for card in panel.cards:
+                        if card.title == self.title_txt:
+                            dialog_factory(
+                                title="Invalid Title",
+                                msg="Card already exists!",
+                                yes_no=False,
+                                btn_color=self.color
+                            )
+                            return None
+        if card_old != self:
+            Database.get_instance().update_card(card_old, self)
         self.close()
 
     def delete(self, event) -> None:
+        """Deletes the card from the database."""
         Database.get_instance().delete_card(self)
         self.close()
 
@@ -193,7 +224,7 @@ class CardDescription(QMainWindow):
         self.ui.label_description.setFont(QFont(toruspro, 14, QFont.Bold))
         self.ui.lineEdit_title.setFont(QFont(notosans, 12))
         self.ui.calendarWidget.setFont(QFont(notosans, 12))
-        self.ui.timeEdit.setFont(QFont(notosans, 12))
+        self.ui.timeEdit.setFont(QFont(notosans, 16, QFont.Bold))
         self.ui.textEdit_description.setFont(QFont(notosans, 12))
         self.ui.btn_delete.setFont(QFont(toruspro, 12))
         self.ui.btn_cancel.setFont(QFont(toruspro, 12))

@@ -147,20 +147,6 @@ class Ui_SettingsWindow(object):
 
         self.horizontalLayout_4.addWidget(self.btn_delete)
 
-        self.btn_rename = QPushButton(self.widget1)
-        self.btn_rename.setObjectName(u"btn_rename")
-        sizePolicy1.setHeightForWidth(self.btn_rename.sizePolicy().hasHeightForWidth())
-        self.btn_rename.setSizePolicy(sizePolicy1)
-        self.btn_rename.setMinimumSize(QSize(150, 30))
-        self.btn_rename.setFont(font4)
-        self.btn_rename.setCursor(QCursor(Qt.PointingHandCursor))
-        self.btn_rename.setFocusPolicy(Qt.TabFocus)
-        self.btn_rename.setStyleSheet(u"QPushButton {background-color: #6badee; color: #ffffff; border-radius: 5px}\n"
-"QPushButton:hover {background-color: #5487bb;}\n"
-"QPushButton:focus {border-color: #000000; border-width: 1.5px; border-style: solid;}")
-
-        self.horizontalLayout_4.addWidget(self.btn_rename)
-
         self.horizontalSpacer_3 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
 
         self.horizontalLayout_4.addItem(self.horizontalSpacer_3)
@@ -303,13 +289,13 @@ class Ui_SettingsWindow(object):
         self.verticalLayout_3.addWidget(self.widget)
 
         SettingsWindow.setCentralWidget(self.centralwidget)
+        QWidget.setTabOrder(self.widget, self.listWidget_manage_board)
         QWidget.setTabOrder(self.listWidget_manage_board, self.btn_delete)
-        QWidget.setTabOrder(self.btn_delete, self.btn_rename)
-        QWidget.setTabOrder(self.btn_rename, self.btn_logout)
+        QWidget.setTabOrder(self.btn_delete, self.btn_logout)
         QWidget.setTabOrder(self.btn_logout, self.btn_delete_account)
-        QWidget.setTabOrder(self.btn_delete_account, self.btn_cancel)
+        QWidget.setTabOrder(self.btn_delete_account, self.btn_about)
+        QWidget.setTabOrder(self.btn_about, self.btn_cancel)
         QWidget.setTabOrder(self.btn_cancel, self.btn_save)
-        QWidget.setTabOrder(self.btn_save, self.widget)
 
         self.retranslateUi(SettingsWindow)
 
@@ -320,10 +306,9 @@ class Ui_SettingsWindow(object):
         SettingsWindow.setWindowTitle(QCoreApplication.translate("SettingsWindow", u"App Settings", None))
         self.label_app_settings.setText(QCoreApplication.translate("SettingsWindow", u"App Settings", None))
         self.label_manage_board.setText(QCoreApplication.translate("SettingsWindow", u"Manage Board", None))
-        self.label_manage_board_desc.setText(QCoreApplication.translate("SettingsWindow", u"Drag to rearrange. Select and press Delete/Rename to update.\n"
+        self.label_manage_board_desc.setText(QCoreApplication.translate("SettingsWindow", u"Drag to rearrange. Select and press Delete to delete.\n"
 "You can select multiple boards at the same time.", None))
         self.btn_delete.setText(QCoreApplication.translate("SettingsWindow", u"Delete Board", None))
-        self.btn_rename.setText(QCoreApplication.translate("SettingsWindow", u"Rename Board", None))
         self.label_manage_account.setText(QCoreApplication.translate("SettingsWindow", u"Manage Account", None))
         self.btn_logout.setText(QCoreApplication.translate("SettingsWindow", u"Logout", None))
         self.btn_delete_account.setText(QCoreApplication.translate("SettingsWindow", u"Delete Account", None))
