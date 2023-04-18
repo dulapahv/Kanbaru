@@ -1,17 +1,17 @@
 import logging
 import os
 import sys
-
-import sys
 from tkinter import Tk, messagebox
+
+from utils import get_current_directory
 
 try:
     from PySide6.QtWidgets import QApplication, QMainWindow
+
     from auth import Auth
     from db import Database
     from ui.main import MainScreen
     from ui.welcome import WelcomeScreen
-    from utils import get_current_directory
 except ModuleNotFoundError:
     logging.warning("Required modules not found. Prompting user to install...")
     root = Tk()
@@ -38,6 +38,7 @@ except ModuleNotFoundError:
             pip.main(["install", "-r", "requirements.txt"])
         finally:
             from PySide6.QtWidgets import QApplication, QMainWindow
+
             from auth import Auth
             from db import Database
             from ui.main import MainScreen
@@ -78,7 +79,8 @@ class Kanbaru(QMainWindow):
         self.show_main_screen()
         # Check if user is logged in, if not, prompt login
         # if self.check_credentials():
-        #     Database.get_instance().pull_from_firebase(Database.get_instance().username)
+        #     Database.get_instance().pull_from_firebase(
+        #         Database.get_instance().username)
         #     self.show_main_screen()
         # else:
         #     self.show_welcome_screen()
