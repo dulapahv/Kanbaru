@@ -25,7 +25,9 @@ except ModuleNotFoundError:
     if response:
         try:
             import pip
-            pip.main(["install", "-r", "requirements.txt"])
+            pip.main(
+                ["install", "-r",
+                 f"{os.path.join(get_current_directory, 'requirements.txt')}"])
         except ModuleNotFoundError:
             logging.warning(
                 "pip not found. Installing pip now. This is a risky move. "
