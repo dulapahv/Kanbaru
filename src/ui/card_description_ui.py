@@ -340,10 +340,10 @@ class Ui_CardWindow(object):
 "	color: #ffffff;\n"
 "}")
         self.textEdit_description.setFrameShape(QFrame.NoFrame)
-        self.textEdit_description.setAutoFormatting(QTextEdit.AutoAll)
-        self.textEdit_description.setTabChangesFocus(True)
+        self.textEdit_description.setTabChangesFocus(False)
         self.textEdit_description.setTabStopDistance(20.000000000000000)
         self.textEdit_description.setAcceptRichText(False)
+        self.textEdit_description.setTextInteractionFlags(Qt.LinksAccessibleByKeyboard|Qt.LinksAccessibleByMouse|Qt.TextBrowserInteraction|Qt.TextEditable|Qt.TextEditorInteraction|Qt.TextSelectableByKeyboard|Qt.TextSelectableByMouse)
 
         self.verticalLayout.addWidget(self.textEdit_description)
 

@@ -266,6 +266,25 @@ border-radius: 5px;</string>
 QLineEdit:focus {
 	border-color: #6badee;
 }
+
+QLineEdit QMenu {
+background-color: #454c5a;
+border: none;
+padding: 5px;
+margin: 0px;
+font-size: 13px;
+}
+
+QLineEdit QMenu::item {
+	padding: 5px 13px 5px 13px;
+	color: #ffffff;
+}
+
+QLineEdit QMenu::item:selected {
+	border-radius: 5px;
+	background-color: #ffffff;
+	color: #000000;
+}
 </string>
                       </property>
                       <property name="placeholderText">
@@ -303,6 +322,25 @@ QLineEdit:focus {
 
 QLineEdit:focus {
 	border-color: #6badee;
+}
+
+QLineEdit QMenu {
+background-color: #454c5a;
+border: none;
+padding: 5px;
+margin: 0px;
+font-size: 13px;
+}
+
+QLineEdit QMenu::item {
+	padding: 5px 13px 5px 13px;
+	color: #ffffff;
+}
+
+QLineEdit QMenu::item:selected {
+	border-radius: 5px;
+	background-color: #ffffff;
+	color: #000000;
 }
 </string>
                       </property>
@@ -492,6 +530,25 @@ QPushButton:focus {
 QLineEdit:focus {
 	border-color: #6badee;
 }
+
+QLineEdit QMenu {
+background-color: #454c5a;
+border: none;
+padding: 5px;
+margin: 0px;
+font-size: 13px;
+}
+
+QLineEdit QMenu::item {
+	padding: 5px 13px 5px 13px;
+	color: #ffffff;
+}
+
+QLineEdit QMenu::item:selected {
+	border-radius: 5px;
+	background-color: #ffffff;
+	color: #000000;
+}
 </string>
                       </property>
                       <property name="placeholderText">
@@ -529,6 +586,25 @@ QLineEdit:focus {
 
 QLineEdit:focus {
 	border-color: #6badee;
+}
+
+QLineEdit QMenu {
+background-color: #454c5a;
+border: none;
+padding: 5px;
+margin: 0px;
+font-size: 13px;
+}
+
+QLineEdit QMenu::item {
+	padding: 5px 13px 5px 13px;
+	color: #ffffff;
+}
+
+QLineEdit QMenu::item:selected {
+	border-radius: 5px;
+	background-color: #ffffff;
+	color: #000000;
 }
 </string>
                       </property>
@@ -570,6 +646,25 @@ QLineEdit:focus {
 
 QLineEdit:focus {
 	border-color: #6badee;
+}
+
+QLineEdit QMenu {
+background-color: #454c5a;
+border: none;
+padding: 5px;
+margin: 0px;
+font-size: 13px;
+}
+
+QLineEdit QMenu::item {
+	padding: 5px 13px 5px 13px;
+	color: #ffffff;
+}
+
+QLineEdit QMenu::item:selected {
+	border-radius: 5px;
+	background-color: #ffffff;
+	color: #000000;
 }
 </string>
                       </property>

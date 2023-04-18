@@ -488,11 +488,8 @@ QTextEdit QMenu::item:selected {
             <property name="frameShape">
              <enum>QFrame::NoFrame</enum>
             </property>
-            <property name="autoFormatting">
-             <set>QTextEdit::AutoAll</set>
-            </property>
             <property name="tabChangesFocus">
-             <bool>true</bool>
+             <bool>false</bool>
             </property>
             <property name="html">
              <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
@@ -509,6 +506,9 @@ li.checked::marker { content: &quot;\2612&quot;; }
             </property>
             <property name="acceptRichText">
              <bool>false</bool>
+            </property>
+            <property name="textInteractionFlags">
+             <set>Qt::LinksAccessibleByKeyboard|Qt::LinksAccessibleByMouse|Qt::TextBrowserInteraction|Qt::TextEditable|Qt::TextEditorInteraction|Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse</set>
             </property>
             <property name="placeholderText">
              <string>Add a more detailed description...</string>
