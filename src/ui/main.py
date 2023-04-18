@@ -157,6 +157,63 @@ class MainScreen(QMainWindow):
         parent.ui.btn_board.setFont(QFont(font_db, 12))
 
         if is_constructed:
+            parent.ui.scrollArea_panel_right.setStyleSheet(
+                f"""
+            QScrollBar:vertical {{
+                width: 10px;
+                margin: 0 0 0 0;
+                background-color: #acb2bf
+            }}
+            QScrollBar:horizontal {{
+                border: none;
+                background: #454c5a;
+                height: 10px;
+                margin: 0 0 0 1px;
+                border-radius: 5px;
+            }}
+            QScrollBar::handle:horizontal {{
+                background-color: #76829b;
+                min-height: 30px;
+                border-radius: 5px;
+            }}
+            QScrollBar::handle:horizontal:hover {{
+                background-color: #646e83;
+            }}
+            QScrollBar::handle:horizontal:pressed {{
+                background-color: #576072;
+            }}
+            QScrollBar::sub-line:horizontal {{
+                height: 0;
+            }}
+            QScrollBar::add-line:horizontal {{
+                height: 0;
+            }}
+
+            QScrollBar::up-arrow:horizontal,
+            QScrollBar::down-arrow:horizontal {{
+                background: none;
+            }}
+            QScrollBar::add-page:horizontal,
+            QScrollBar::sub-page:horizontal {{
+                background: none;
+            }}
+            QScrollBar QMenu {{
+                background-color: #454c5a;
+                border: none;
+                padding: 5px;
+                margin: 0px;
+                font-size: 13px;
+            }}
+            QScrollBar QMenu::item {{
+                padding: 5px 13px 5px 13px;
+            }}
+            QScrollBar QMenu::item:selected {{
+                border-radius: 5px;
+                background-color: {modify_hex_color(self.current_board.color)};
+                color: #000000;
+            }}
+            """
+            )
             color = hex_to_rgba(board.color)
             parent.ui.label_board.setStyleSheet(
                 f"""
@@ -168,6 +225,58 @@ class MainScreen(QMainWindow):
                     stop:1 rgba(69, 76, 90, 255)
                 );
                 color: #FFFFFF;
+                """
+            )
+            parent.ui.scrollArea_panel_left.setStyleSheet(
+                f"""
+                QScrollBar:vertical {{
+                    border: none;
+                    background: #282c34;
+                    width: 10px;
+                    margin: 1px 0 0 5px;
+                    border-radius: 2px;
+                }}
+                QScrollBar::handle:vertical {{
+                    background-color: #454c5a;
+                    min-height: 30px;
+                    border-radius: 2px;
+                }}
+                QScrollBar::handle:vertical:hover {{
+                    background-color: #343a44;
+                }}
+                QScrollBar::handle:vertical:pressed {{
+                    background-color: #323741;
+                }}
+                QScrollBar::sub-line:vertical {{
+                    height: 0;
+                }}
+                QScrollBar::add-line:vertical {{
+                    height: 0;
+                }}
+                QScrollBar::up-arrow:vertical,
+                QScrollBar::down-arrow:vertical {{
+                    background: none;
+                }}
+                QScrollBar::add-page:vertical,
+                QScrollBar::sub-page:vertical {{
+                    background: none;
+                }}
+                QScrollBar QMenu {{
+                    background-color: #454c5a;
+                    border: none;
+                    padding: 5px;
+                    margin: 0px;
+                    font-size: 13px;
+                }}
+                QScrollBar QMenu::item {{
+                    padding: 5px 13px 5px 13px;
+                }}
+                QScrollBar QMenu::item:selected {{
+                    border-radius: 5px;
+                    background-color: {modify_hex_color(
+                        self.current_board.color)};
+                    color: #000000;
+                }}
                 """
             )
             for panel in board.panels:
@@ -904,15 +1013,15 @@ class CustomListWidget(QListWidget):
                 margin: 1px 0 0 0;
                 border-radius: 5px;
             }}
-            QScrollBar::handle:vertical {{	
+            QScrollBar::handle:vertical {{
                 background-color: #bfc0c5;
                 min-height: 30px;
                 border-radius: 5px;
             }}
-            QScrollBar::handle:vertical:hover {{	
+            QScrollBar::handle:vertical:hover {{
                 background-color: #afb0b4;
             }}
-            QScrollBar::handle:vertical:pressed {{	
+            QScrollBar::handle:vertical:pressed {{
                 background-color: #929497;
             }}
             QScrollBar::sub-line:vertical {{
@@ -928,7 +1037,7 @@ class CustomListWidget(QListWidget):
                 background: none;
             }}
             QScrollBar QMenu {{
-                background-color: #ebecf0;
+                background-color: #454c5a;
                 border: none;
                 padding: 5px;
                 margin: 0px;
@@ -936,12 +1045,12 @@ class CustomListWidget(QListWidget):
             }}
             QScrollBar QMenu::item {{
                 padding: 5px 13px 5px 13px;
-                color: #000000;
+                color: #ffffff;
             }}
             QScrollBar QMenu::item:selected {{
                 border-radius: 5px;
-                background-color: {modify_hex_color(color)};
-                color: #ffffff;
+                background-color: {color};
+                color: #000000;
             }}
             """
         )

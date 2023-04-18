@@ -211,6 +211,22 @@ def input_dialog_factory(title: str = "", msg: str = "", default: str = "",
             border-radius: 5px;
             height: 25%
         }}
+        QLineEdit QMenu {{
+            background-color: #454c5a;
+            border: none;
+            padding: 5px;
+            margin: 0px;
+            font-size: 13px;
+        }}
+        QLineEdit QMenu::item {{
+            padding: 5px 13px 5px 13px;
+            color: #ffffff;
+        }}
+        QLineEdit QMenu::item:selected {{
+            border-radius: 5px;
+            background-color: {modify_hex_color(btn_color)};
+            color: #000000;
+        }}
         """
     )
     line_edit.setFocus()

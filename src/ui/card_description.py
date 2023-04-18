@@ -99,7 +99,7 @@ class CardDescription(QMainWindow):
                 padding: 0 6px 0 6px
             }}
             QLineEdit QMenu {{
-                background-color: #f5f5f5;
+                background-color: #454c5a;
                 border: none;
                 padding: 5px;
                 margin: 0px;
@@ -107,11 +107,12 @@ class CardDescription(QMainWindow):
             }}
             QLineEdit QMenu::item {{
                 padding: 5px 13px 5px 13px;
+                color: #ffffff;
             }}
             QLineEdit QMenu::item:selected {{
                 border-radius: 5px;
                 background-color: {modify_hex_color(self.color)};
-                color: #ffffff;
+                color: #000000;
             }}
             """
         )
@@ -130,7 +131,7 @@ class CardDescription(QMainWindow):
                 padding: 5px;
             }}
             QCalendarWidget QMenu {{
-                background-color: #f5f5f5;
+                background-color: #454c5a;
                 border: none;
                 padding: 5px;
                 margin: 0px;
@@ -138,11 +139,12 @@ class CardDescription(QMainWindow):
             }}
             QCalendarWidget QMenu::item {{
                 padding: 5px 15px 5px 15px;
+                color: #ffffff;
             }}
             QCalendarWidget QMenu::item:selected {{
                 border-radius: 5px;
                 background-color: {modify_hex_color(self.color)};
-                color: #ffffff;
+                color: #000000;
             }}
             QCalendarWidget QToolButton {{
                 icon-size: 18px;
@@ -215,7 +217,7 @@ class CardDescription(QMainWindow):
                 height: 12px;
             }}
             QTimeEdit QMenu {{
-                background-color: #f5f5f5;
+                background-color: #454c5a;
                 border: none;
                 padding: 5px;
                 margin: 0px;
@@ -223,11 +225,12 @@ class CardDescription(QMainWindow):
             }}
             QTimeEdit QMenu::item {{
                 padding: 5px 13px 5px 13px;
+                color: #ffffff;
             }}
             QTimeEdit QMenu::item:selected {{
                 border-radius: 5px;
                 background-color: {modify_hex_color(self.color)};
-                color: #ffffff;
+                color: #000000;
             }}
             """
         )
@@ -250,7 +253,7 @@ class CardDescription(QMainWindow):
                 background-color: #acb2bf
             }}
             QTextEdit QMenu {{
-                background-color: #f5f5f5;
+                background-color: #454c5a;
                 border: none;
                 padding: 5px;
                 margin: 0px;
@@ -258,11 +261,12 @@ class CardDescription(QMainWindow):
             }}
             QTextEdit QMenu::item {{
                 padding: 5px 13px 5px 13px;
+                color: #ffffff;
             }}
             QTextEdit QMenu::item:selected {{
                 border-radius: 5px;
                 background-color: {modify_hex_color(self.color)};
-                color: #ffffff;
+                color: #000000;
             }}
             """
         )

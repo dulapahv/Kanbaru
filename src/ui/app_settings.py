@@ -117,6 +117,79 @@ class AppSettings(QMainWindow):
             padding: 0 0 0 10px;
             """
         )
+        self.ui.listWidget_manage_board.setStyleSheet(
+            f"""
+            QListWidget::item {{
+                height: 40px;
+                padding: 0 8px 0 8px
+            }}
+            QListWidget::item {{
+                background-color: #ffffff;
+                color: #000000;
+                border-radius: 5px
+            }}
+            QListWidget::item:hover {{
+                background-color: #e2e4e9;
+                color: #000000
+            }}
+            QListWidget::item:selected {{
+                background-color: #cccccc;
+                color: #000000
+            }}
+            QListWidget::item:focus {{
+                background-color: #cccccc;
+                color: #000000
+            }}
+            QScrollBar:vertical {{
+                border: none;
+                background: #f4f5f7;
+                width: 10px;
+                margin: 1px 0 0 0;
+                border-radius: 5px;
+            }}
+            QScrollBar::handle:vertical {{
+                background-color: #bfc0c5;
+                min-height: 30px;
+                border-radius: 5px;
+            }}
+            QScrollBar::handle:vertical:hover {{
+                background-color: #afb0b4;
+            }}
+            QScrollBar::handle:vertical:pressed {{
+                background-color: #929497;
+            }}
+            QScrollBar::sub-line:vertical {{
+                height: 0;
+            }}
+            QScrollBar::add-line:vertical {{
+                height: 0;
+            }}
+            QScrollBar::up-arrow:vertical,
+            QScrollBar::down-arrow:vertical {{
+                background: none;
+            }}
+            QScrollBar::add-page:vertical,
+            QScrollBar::sub-page:vertical {{
+                background: none;
+            }}
+            QScrollBar QMenu {{
+                background-color: #454c5a;
+                border: none;
+                padding: 5px;
+                margin: 0px;
+                font-size: 13px;
+            }}
+            QScrollBar QMenu::item {{
+                padding: 5px 13px 5px 13px;
+                color: #ffffff;
+            }}
+            QScrollBar QMenu::item:selected {{
+                border-radius: 5px;
+                background-color: {modify_hex_color(self.color)};
+                color: #000000;
+            }}
+            """
+        )
         self.ui.btn_about.setStyleSheet(stylesheet)
         self.ui.btn_save.setStyleSheet(stylesheet)
 
