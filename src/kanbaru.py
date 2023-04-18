@@ -3,8 +3,6 @@ import os
 import sys
 from tkinter import Tk, messagebox
 
-from utils import get_current_directory
-
 try:
     from PySide6.QtWidgets import QApplication, QMainWindow
 
@@ -23,11 +21,12 @@ except ModuleNotFoundError:
     )
 
     if response:
+        path = os.path.dirname(os.path.abspath(__file__))
         try:
             import pip
             pip.main(
-                ["install", "-r",
-                 f"{os.path.join(get_current_directory, 'requirements.txt')}"])
+                ["install", "-r", f"{os.path.join(path, 'requirements.txt')}"]
+            )
         except ModuleNotFoundError:
             logging.warning(
                 "pip not found. Installing pip now. This is a risky move. "
