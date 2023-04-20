@@ -646,6 +646,7 @@ class Database:
         try:
             if self.username == "":
                 raise Exception("Illegal attempt to delete account!")
+            username = username.replace(".", ",").replace("@", "_")
             ref = db.reference(self.username)
             if ref is None:
                 raise Exception("User does not exist!")
