@@ -253,8 +253,39 @@ border-radius: 5px;</string>
                        </font>
                       </property>
                       <property name="styleSheet">
-                       <string notr="true">QLineEdit {border-color: #dfe1e6; border-width: 1.5px; border-style: solid; color: #282c33; border-radius: 5px; background-color: #ffffff; padding: 0px 0px 0px 8px}
-QLineEdit:focus {border-color: #6badee;}</string>
+                       <string notr="true">QLineEdit {
+	border-color: #dfe1e6;
+	border-width: 1.5px;
+	border-style: solid;
+	color: #282c33;
+	border-radius: 5px;
+	background-color: #ffffff;
+	padding: 0 0 0 8px
+}
+
+QLineEdit:focus {
+	border-color: #6badee;
+}
+
+QLineEdit QMenu {
+background-color: #454c5a;
+border: none;
+padding: 5px;
+margin: 0px;
+font-size: 13px;
+}
+
+QLineEdit QMenu::item {
+	padding: 5px 13px 5px 13px;
+	color: #ffffff;
+}
+
+QLineEdit QMenu::item:selected {
+	border-radius: 5px;
+	background-color: #ffffff;
+	color: #000000;
+}
+</string>
                       </property>
                       <property name="placeholderText">
                        <string>Username</string>
@@ -279,8 +310,39 @@ QLineEdit:focus {border-color: #6badee;}</string>
                        </font>
                       </property>
                       <property name="styleSheet">
-                       <string notr="true">QLineEdit {border-color: #dfe1e6; border-width: 1.5px; border-style: solid; color: #282c33; border-radius: 5px; background-color: #ffffff; padding: 0px 0px 0px 8px}
-QLineEdit:focus {border-color: #6badee;}</string>
+                       <string notr="true">QLineEdit {
+	border-color: #dfe1e6;
+	border-width: 1.5px;
+	border-style: solid;
+	color: #282c33;
+	border-radius: 5px;
+	background-color: #ffffff;
+	padding: 0 0 0 8px
+}
+
+QLineEdit:focus {
+	border-color: #6badee;
+}
+
+QLineEdit QMenu {
+background-color: #454c5a;
+border: none;
+padding: 5px;
+margin: 0px;
+font-size: 13px;
+}
+
+QLineEdit QMenu::item {
+	padding: 5px 13px 5px 13px;
+	color: #ffffff;
+}
+
+QLineEdit QMenu::item:selected {
+	border-radius: 5px;
+	background-color: #ffffff;
+	color: #000000;
+}
+</string>
                       </property>
                       <property name="echoMode">
                        <enum>QLineEdit::Password</enum>
@@ -359,9 +421,22 @@ QLineEdit:focus {border-color: #6badee;}</string>
                          <enum>Qt::TabFocus</enum>
                         </property>
                         <property name="styleSheet">
-                         <string notr="true">QPushButton {background-color: #5dac48; color: #ffffff; border-radius: 5px}
-QPushButton:hover {background-color: #64bd53;}
-QPushButton:focus {border-color: #000000; border-width: 1.5px; border-style: solid;}</string>
+                         <string notr="true">QPushButton {
+	background-color: #5dac48;
+	color: #ffffff;
+	border-radius: 5px
+}
+
+QPushButton:hover {
+	background-color: #64bd53;
+}
+
+QPushButton:focus {
+	border-color: #000000;
+	border-width: 1.5px;
+	border-style: solid;
+}
+</string>
                         </property>
                         <property name="text">
                          <string>Login</string>
@@ -442,8 +517,39 @@ QPushButton:focus {border-color: #000000; border-width: 1.5px; border-style: sol
                        </font>
                       </property>
                       <property name="styleSheet">
-                       <string notr="true">QLineEdit {border-color: #dfe1e6; border-width: 1.5px; border-style: solid; color: #282c33; border-radius: 5px; background-color: #ffffff; padding: 0px 0px 0px 8px}
-QLineEdit:focus {border-color: #6badee;}</string>
+                       <string notr="true">QLineEdit {
+	border-color: #dfe1e6;
+	border-width: 1.5px;
+	border-style: solid;
+	color: #282c33;
+	border-radius: 5px;
+	background-color: #ffffff;
+	padding: 0 0 0 8px
+}
+
+QLineEdit:focus {
+	border-color: #6badee;
+}
+
+QLineEdit QMenu {
+background-color: #454c5a;
+border: none;
+padding: 5px;
+margin: 0px;
+font-size: 13px;
+}
+
+QLineEdit QMenu::item {
+	padding: 5px 13px 5px 13px;
+	color: #ffffff;
+}
+
+QLineEdit QMenu::item:selected {
+	border-radius: 5px;
+	background-color: #ffffff;
+	color: #000000;
+}
+</string>
                       </property>
                       <property name="placeholderText">
                        <string>Username</string>
@@ -468,8 +574,39 @@ QLineEdit:focus {border-color: #6badee;}</string>
                        </font>
                       </property>
                       <property name="styleSheet">
-                       <string notr="true">QLineEdit {border-color: #dfe1e6; border-width: 1.5px; border-style: solid; color: #282c33; border-radius: 5px; background-color: #ffffff; padding: 0px 0px 0px 8px}
-QLineEdit:focus {border-color: #6badee;}</string>
+                       <string notr="true">QLineEdit {
+	border-color: #dfe1e6;
+	border-width: 1.5px;
+	border-style: solid;
+	color: #282c33;
+	border-radius: 5px;
+	background-color: #ffffff;
+	padding: 0 0 0 8px
+}
+
+QLineEdit:focus {
+	border-color: #6badee;
+}
+
+QLineEdit QMenu {
+background-color: #454c5a;
+border: none;
+padding: 5px;
+margin: 0px;
+font-size: 13px;
+}
+
+QLineEdit QMenu::item {
+	padding: 5px 13px 5px 13px;
+	color: #ffffff;
+}
+
+QLineEdit QMenu::item:selected {
+	border-radius: 5px;
+	background-color: #ffffff;
+	color: #000000;
+}
+</string>
                       </property>
                       <property name="echoMode">
                        <enum>QLineEdit::Password</enum>
@@ -497,8 +634,39 @@ QLineEdit:focus {border-color: #6badee;}</string>
                        </font>
                       </property>
                       <property name="styleSheet">
-                       <string notr="true">QLineEdit {border-color: #dfe1e6; border-width: 1.5px; border-style: solid; color: #282c33; border-radius: 5px; background-color: #ffffff; padding: 0px 0px 0px 8px}
-QLineEdit:focus {border-color: #6badee;}</string>
+                       <string notr="true">QLineEdit {
+	border-color: #dfe1e6;
+	border-width: 1.5px;
+	border-style: solid;
+	color: #282c33;
+	border-radius: 5px;
+	background-color: #ffffff;
+	padding: 0 0 0 8px
+}
+
+QLineEdit:focus {
+	border-color: #6badee;
+}
+
+QLineEdit QMenu {
+background-color: #454c5a;
+border: none;
+padding: 5px;
+margin: 0px;
+font-size: 13px;
+}
+
+QLineEdit QMenu::item {
+	padding: 5px 13px 5px 13px;
+	color: #ffffff;
+}
+
+QLineEdit QMenu::item:selected {
+	border-radius: 5px;
+	background-color: #ffffff;
+	color: #000000;
+}
+</string>
                       </property>
                       <property name="echoMode">
                        <enum>QLineEdit::Password</enum>
@@ -577,9 +745,22 @@ QLineEdit:focus {border-color: #6badee;}</string>
                          <enum>Qt::TabFocus</enum>
                         </property>
                         <property name="styleSheet">
-                         <string notr="true">QPushButton {background-color: #5dac48; color: #ffffff; border-radius: 5px}
-QPushButton:hover {background-color: #64bd53;}
-QPushButton:focus {border-color: #000000; border-width: 1.5px; border-style: solid;}</string>
+                         <string notr="true">QPushButton {
+	background-color: #5dac48;
+	color: #ffffff;
+	border-radius: 5px
+}
+
+QPushButton:hover {
+	background-color: #64bd53;
+}
+
+QPushButton:focus {
+	border-color: #000000;
+	border-width: 1.5px;
+	border-style: solid;
+}
+</string>
                         </property>
                         <property name="text">
                          <string>Sign up</string>

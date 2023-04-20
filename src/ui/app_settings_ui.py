@@ -51,7 +51,7 @@ class Ui_SettingsWindow(object):
         self.label_app_settings.setFont(font)
         self.label_app_settings.setStyleSheet(u"background-color: qlineargradient(spread:pad, x1:0.5, y1:0.5, x2:0.95, y2:0.5, stop:0 rgba(107, 173, 238, 255), stop:1 rgba(69, 76, 90, 255));\n"
 "color: #ffffff;\n"
-"padding: 0px 0px 0px 10px;")
+"padding: 0 0 0 10px;")
         self.label_app_settings.setMargin(10)
 
         self.verticalLayout_3.addWidget(self.label_app_settings)
@@ -104,12 +104,92 @@ class Ui_SettingsWindow(object):
         font3.setBold(True)
         self.listWidget_manage_board.setFont(font3)
         self.listWidget_manage_board.setFocusPolicy(Qt.TabFocus)
-        self.listWidget_manage_board.setStyleSheet(u"QListWidget::item {height: 40px; padding: 0px 8px 0px 8px}\n"
-"QListWidget::item {background-color: #ffffff; color: #000000; border-radius: 5px}\n"
-"QListWidget::item:hover {background-color: #e2e4e9; color: #000000}\n"
-"QListWidget::item:selected {background-color: #cccccc; color: #000000}\n"
-"QListWidget::item:focus {background-color: #cccccc; color: #000000}\n"
-"QScrollBar:vertical {width: 10px; margin: 0px 0px 0px 0px; background-color: #acb2bf}")
+        self.listWidget_manage_board.setStyleSheet(u"QListWidget::item {\n"
+"	height: 40px;\n"
+"	padding: 0 8px 0 8px\n"
+"}\n"
+"\n"
+"QListWidget::item {\n"
+"	background-color: #ffffff;\n"
+"	color: #000000;\n"
+"	border-radius: 5px\n"
+"}\n"
+"\n"
+"QListWidget::item:hover {\n"
+"	background-color: #e2e4e9;\n"
+"	color: #000000\n"
+"}\n"
+"\n"
+"QListWidget::item:selected {\n"
+"	background-color: #cccccc;\n"
+"	color: #000000\n"
+"}\n"
+"\n"
+"QListWidget::item:focus {\n"
+"	background-color: #cccccc;\n"
+"	color: #000000\n"
+"}\n"
+"\n"
+"QScrollBar:vertical {\n"
+"	border: none;\n"
+"	background: #f4f5f7;\n"
+"	width: 10px;\n"
+"	margin: 1px 0 0 0;\n"
+"	border-radius: 5px;\n"
+"}\n"
+"\n"
+"QScrollBar::handle:vertical {\n"
+"	background-color: #bfc0c5;\n"
+"	min-height: 30px;\n"
+"	border-radius: 5px;\n"
+"}\n"
+"\n"
+"QScrollBar::handle:vertical:hover {\n"
+"	background-color: #afb0b4;\n"
+"}\n"
+"\n"
+"QScrollBar::handle:vertical:pressed {\n"
+"	background-color: #929497;\n"
+"}\n"
+"\n"
+"QScrollBar::sub-line:vertical {\n"
+"	height: 0;\n"
+"}\n"
+"\n"
+"QScrollBar::add-line:vertical {\n"
+"	height: 0"
+                        ";\n"
+"}\n"
+"\n"
+"QScrollBar::up-arrow:vertical,\n"
+"QScrollBar::down-arrow:vertical {\n"
+"	background: none;\n"
+"}\n"
+"\n"
+"QScrollBar::add-page:vertical,\n"
+"QScrollBar::sub-page:vertical {\n"
+"	background: none;\n"
+"}\n"
+"\n"
+"QScrollBar QMenu {\n"
+"	background-color: #ebecf0;\n"
+"	border: none;\n"
+"	padding: 5px;\n"
+"	margin: 0px;\n"
+"	font-size: 13px;\n"
+"}\n"
+"\n"
+"QScrollBar QMenu::item {\n"
+"	padding: 5px 13px 5px 13px;\n"
+"	color: #000000;\n"
+"}\n"
+"\n"
+"QScrollBar QMenu::item:selected {\n"
+"	border-radius: 5px;\n"
+"	background-color: #acb2bf;\n"
+"	color: #ffffff;\n"
+"}\n"
+"")
         self.listWidget_manage_board.setFrameShape(QFrame.NoFrame)
         self.listWidget_manage_board.setDragEnabled(True)
         self.listWidget_manage_board.setDragDropMode(QAbstractItemView.InternalMove)
@@ -141,9 +221,22 @@ class Ui_SettingsWindow(object):
         self.btn_delete.setFont(font4)
         self.btn_delete.setCursor(QCursor(Qt.PointingHandCursor))
         self.btn_delete.setFocusPolicy(Qt.TabFocus)
-        self.btn_delete.setStyleSheet(u"QPushButton {background-color: #d63a3e; color: #ffffff; border-radius: 5px}\n"
-"QPushButton:hover {background-color: #9e2a2a;}\n"
-"QPushButton:focus {border-color: #000000; border-width: 1.5px; border-style: solid;}")
+        self.btn_delete.setStyleSheet(u"QPushButton {\n"
+"	background-color: #d63a3e;\n"
+"	color: #ffffff;\n"
+"	border-radius: 5px\n"
+"}\n"
+"\n"
+"QPushButton:hover {\n"
+"	background-color: #9e2a2a;\n"
+"}\n"
+"\n"
+"QPushButton:focus {\n"
+"	border-color: #000000;\n"
+"	border-width: 1.5px;\n"
+"	border-style: solid;\n"
+"}\n"
+"")
 
         self.horizontalLayout_4.addWidget(self.btn_delete)
 
@@ -182,9 +275,22 @@ class Ui_SettingsWindow(object):
         self.btn_logout.setFont(font4)
         self.btn_logout.setCursor(QCursor(Qt.PointingHandCursor))
         self.btn_logout.setFocusPolicy(Qt.TabFocus)
-        self.btn_logout.setStyleSheet(u"QPushButton {background-color: #acb2bf; color: #ffffff; border-radius: 5px}\n"
-"QPushButton:hover {background-color: #7e828c;}\n"
-"QPushButton:focus {border-color: #000000; border-width: 1.5px; border-style: solid;}")
+        self.btn_logout.setStyleSheet(u"QPushButton {\n"
+"	background-color: #acb2bf;\n"
+"	color: #ffffff;\n"
+"	border-radius: 5px\n"
+"}\n"
+"\n"
+"QPushButton:hover {\n"
+"	background-color: #7e828c;\n"
+"}\n"
+"\n"
+"QPushButton:focus {\n"
+"	border-color: #000000;\n"
+"	border-width: 1.5px;\n"
+"	border-style: solid;\n"
+"}\n"
+"")
         icon1 = QIcon()
         icon1.addFile(u":/img/resources/img/logout.png", QSize(), QIcon.Normal, QIcon.Off)
         self.btn_logout.setIcon(icon1)
@@ -206,9 +312,27 @@ class Ui_SettingsWindow(object):
         self.btn_delete_account.setFont(font4)
         self.btn_delete_account.setCursor(QCursor(Qt.PointingHandCursor))
         self.btn_delete_account.setFocusPolicy(Qt.TabFocus)
-        self.btn_delete_account.setStyleSheet(u"QPushButton {border-color: #d63a3e; border-width: 1.5px; border-style: solid; color: #282c33; border-radius: 5px}\n"
-"QPushButton:hover {background-color: #d63a3e; color: #ffffff;}\n"
-"QPushButton:focus {border-color: #000000; border-width: 1.5px; border-style: solid; background-color: #d63a3e; color: #ffffff;}")
+        self.btn_delete_account.setStyleSheet(u"QPushButton {\n"
+"	border-color: #d63a3e;\n"
+"	border-width: 1.5px;\n"
+"	border-style: solid;\n"
+"	color: #282c33;\n"
+"	border-radius: 5px\n"
+"}\n"
+"\n"
+"QPushButton:hover {\n"
+"	background-color: #d63a3e;\n"
+"	color: #ffffff;\n"
+"}\n"
+"\n"
+"QPushButton:focus {\n"
+"	border-color: #000000;\n"
+"	border-width: 1.5px;\n"
+"	border-style: solid;\n"
+"	background-color: #d63a3e;\n"
+"	color: #ffffff;\n"
+"}\n"
+"")
         icon2 = QIcon()
         icon2.addFile(u":/img/resources/img/delete.png", QSize(), QIcon.Normal, QIcon.Off)
         self.btn_delete_account.setIcon(icon2)
@@ -241,9 +365,22 @@ class Ui_SettingsWindow(object):
         self.btn_about.setFont(font4)
         self.btn_about.setCursor(QCursor(Qt.PointingHandCursor))
         self.btn_about.setFocusPolicy(Qt.TabFocus)
-        self.btn_about.setStyleSheet(u"QPushButton {background-color: #6badee; color: #ffffff; border-radius: 5px}\n"
-"QPushButton:hover {background-color: #5487bb;}\n"
-"QPushButton:focus {border-color: #000000; border-width: 1.5px; border-style: solid;}")
+        self.btn_about.setStyleSheet(u"QPushButton {\n"
+"	background-color: #6badee;\n"
+"	color: #ffffff;\n"
+"	border-radius: 5px\n"
+"}\n"
+"\n"
+"QPushButton:hover {\n"
+"	background-color: #5487bb;\n"
+"}\n"
+"\n"
+"QPushButton:focus {\n"
+"	border-color: #000000;\n"
+"	border-width: 1.5px;\n"
+"	border-style: solid;\n"
+"}\n"
+"")
 
         self.horizontalLayout.addWidget(self.btn_about)
 
@@ -259,9 +396,22 @@ class Ui_SettingsWindow(object):
         self.btn_cancel.setFont(font4)
         self.btn_cancel.setCursor(QCursor(Qt.PointingHandCursor))
         self.btn_cancel.setFocusPolicy(Qt.TabFocus)
-        self.btn_cancel.setStyleSheet(u"QPushButton {background-color: #acb2bf; color: #ffffff; border-radius: 5px}\n"
-"QPushButton:hover {background-color: #7e828c;}\n"
-"QPushButton:focus {border-color: #000000; border-width: 1.5px; border-style: solid;}")
+        self.btn_cancel.setStyleSheet(u"QPushButton {\n"
+"	background-color: #acb2bf;\n"
+"	color: #ffffff;\n"
+"	border-radius: 5px\n"
+"}\n"
+"\n"
+"QPushButton:hover {\n"
+"	background-color: #7e828c;\n"
+"}\n"
+"\n"
+"QPushButton:focus {\n"
+"	border-color: #000000;\n"
+"	border-width: 1.5px;\n"
+"	border-style: solid;\n"
+"}\n"
+"")
 
         self.horizontalLayout.addWidget(self.btn_cancel)
 
@@ -273,9 +423,22 @@ class Ui_SettingsWindow(object):
         self.btn_save.setFont(font4)
         self.btn_save.setCursor(QCursor(Qt.PointingHandCursor))
         self.btn_save.setFocusPolicy(Qt.TabFocus)
-        self.btn_save.setStyleSheet(u"QPushButton {background-color: #6badee; color: #ffffff; border-radius: 5px}\n"
-"QPushButton:hover {background-color: #5487bb;}\n"
-"QPushButton:focus {border-color: #000000; border-width: 1.5px; border-style: solid;}")
+        self.btn_save.setStyleSheet(u"QPushButton {\n"
+"	background-color: #6badee;\n"
+"	color: #ffffff;\n"
+"	border-radius: 5px\n"
+"}\n"
+"\n"
+"QPushButton:hover {\n"
+"	background-color: #5487bb;\n"
+"}\n"
+"\n"
+"QPushButton:focus {\n"
+"	border-color: #000000;\n"
+"	border-width: 1.5px;\n"
+"	border-style: solid;\n"
+"}\n"
+"")
 
         self.horizontalLayout.addWidget(self.btn_save)
 
@@ -289,7 +452,7 @@ class Ui_SettingsWindow(object):
         self.verticalLayout_3.addWidget(self.widget)
 
         SettingsWindow.setCentralWidget(self.centralwidget)
-        QWidget.setTabOrder(self.widget, self.listWidget_manage_board)
+        QWidget.setTabOrder(self.widget1, self.listWidget_manage_board)
         QWidget.setTabOrder(self.listWidget_manage_board, self.btn_delete)
         QWidget.setTabOrder(self.btn_delete, self.btn_logout)
         QWidget.setTabOrder(self.btn_logout, self.btn_delete_account)

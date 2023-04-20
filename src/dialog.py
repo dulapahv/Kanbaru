@@ -58,7 +58,7 @@ def dialog_factory(parent: Type = None, function: Callable = None,
             QLabel {{
                 color: #ffffff;
                 font-size: 15px;
-                padding: 10px 18px 5px 0px;
+                padding: 10px 18px 5px 0;
             }}
             QPushButton {{
                 color: #ffffff;
@@ -100,7 +100,7 @@ def dialog_factory(parent: Type = None, function: Callable = None,
             QLabel {{
                 color: #ffffff;
                 font-size: 15px;
-                padding: 10px 18px 5px 0px;
+                padding: 10px 18px 5px 0;
             }}
             QPushButton {{
                 background-color: {btn_color};
@@ -210,6 +210,22 @@ def input_dialog_factory(title: str = "", msg: str = "", default: str = "",
         QLineEdit {{
             border-radius: 5px;
             height: 25%
+        }}
+        QLineEdit QMenu {{
+            background-color: #454c5a;
+            border: none;
+            padding: 5px;
+            margin: 0px;
+            font-size: 13px;
+        }}
+        QLineEdit QMenu::item {{
+            padding: 5px 13px 5px 13px;
+            color: #ffffff;
+        }}
+        QLineEdit QMenu::item:selected {{
+            border-radius: 5px;
+            background-color: {modify_hex_color(btn_color)};
+            color: #000000;
         }}
         """
     )

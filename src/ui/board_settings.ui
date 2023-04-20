@@ -72,7 +72,7 @@
       <property name="styleSheet">
        <string notr="true">background-color: qlineargradient(spread:pad, x1:0.5, y1:0.5, x2:0.95, y2:0.5, stop:0 rgba(107, 173, 238, 255), stop:1 rgba(69, 76, 90, 255));
 color: #ffffff;
-padding: 0px 0px 0px 10px;</string>
+padding: 0 0 0 10px;</string>
       </property>
       <property name="text">
        <string>Board Settings</string>
@@ -128,8 +128,65 @@ border-radius: 5px;</string>
           <item>
            <widget class="QScrollArea" name="scrollArea">
             <property name="styleSheet">
-             <string notr="true">QScrollBar:vertical {width: 10px; margin: 0px 0px 0px 0px; background-color: #acb2bf}
-QScrollBar:horizontal {height: 10px; margin: 0px 0px 0px 0px; background-color: #acb2bf}</string>
+             <string notr="true">QScrollBar:vertical {
+	border: none;
+	background: #f4f5f7;
+	width: 10px;
+	margin: 1px 0 0 0;
+	border-radius: 5px;
+}
+
+QScrollBar::handle:vertical {
+	background-color: #bfc0c5;
+	min-height: 30px;
+	border-radius: 5px;
+}
+
+QScrollBar::handle:vertical:hover {
+	background-color: #afb0b4;
+}
+
+QScrollBar::handle:vertical:pressed {
+	background-color: #929497;
+}
+
+QScrollBar::sub-line:vertical {
+	height: 0;
+}
+
+QScrollBar::add-line:vertical {
+	height: 0;
+}
+
+QScrollBar::up-arrow:vertical,
+QScrollBar::down-arrow:vertical {
+	background: none;
+}
+
+QScrollBar::add-page:vertical,
+QScrollBar::sub-page:vertical {
+	background: none;
+}
+
+QScrollBar QMenu {
+	background-color: #ebecf0;
+	border: none;
+	padding: 5px;
+	margin: 0px;
+	font-size: 13px;
+}
+
+QScrollBar QMenu::item {
+	padding: 5px 13px 5px 13px;
+	color: #000000;
+}
+
+QScrollBar QMenu::item:selected {
+	border-radius: 5px;
+	background-color: #acb2bf;
+	color: #ffffff;
+}
+</string>
             </property>
             <property name="widgetResizable">
              <bool>true</bool>
@@ -138,7 +195,7 @@ QScrollBar:horizontal {height: 10px; margin: 0px 0px 0px 0px; background-color: 
              <property name="geometry">
               <rect>
                <x>0</x>
-               <y>-51</y>
+               <y>0</y>
                <width>516</width>
                <height>673</height>
               </rect>
@@ -201,8 +258,22 @@ QScrollBar:horizontal {height: 10px; margin: 0px 0px 0px 0px; background-color: 
                      </font>
                     </property>
                     <property name="styleSheet">
-                     <string notr="true">QLineEdit {background-color: #ebecf0; color: #282c33; border-radius: 5px; padding: 0px 8px 0px 8px}
-QLineEdit:focus {background-color: #ffffff; border-color: #6badee; border-width: 1.5px; border-style: solid;; padding: 0px 6px 0px 6px}</string>
+                     <string notr="true">QLineEdit {
+	background-color: #ebecf0;
+	color: #282c33;
+	border-radius: 5px;
+	padding: 0 8px 0 8px
+}
+
+QLineEdit:focus {
+	background-color: #ffffff;
+	border-color: #6badee;
+	border-width: 1.5px;
+	border-style: solid;
+	;
+	padding: 0 6px 0 6px
+}
+</string>
                     </property>
                     <property name="text">
                      <string/>
@@ -279,8 +350,23 @@ QLineEdit:focus {background-color: #ffffff; border-color: #6badee; border-width:
                          <enum>Qt::TabFocus</enum>
                         </property>
                         <property name="styleSheet">
-                         <string notr="true">QRadioButton {background-color: #6badee; color: #ffffff; padding: 0px 5px 0px 5px;}
-QRadioButton:focus {border-color: #000000; border-width: 1.5px; border-style: solid; padding: 0px 3px 0px 3px;}</string>
+                         <string notr="true">QRadioButton {
+	background-color: #6badee;
+	color: #ffffff;
+	padding: 0 5px 0 5px;
+	border-top-left-radius: 5px;
+	border-top-right-radius: 0;
+	border-bottom-left-radius: 0;
+	border-bottom-right-radius: 0;
+}
+
+QRadioButton:focus {
+	border-color: #000000;
+	border-width: 1.5px;
+	border-style: solid;
+	padding: 0 3px 0 3px;
+}
+</string>
                         </property>
                         <property name="text">
                          <string>Light blue</string>
@@ -311,8 +397,20 @@ QRadioButton:focus {border-color: #000000; border-width: 1.5px; border-style: so
                          <enum>Qt::TabFocus</enum>
                         </property>
                         <property name="styleSheet">
-                         <string notr="true">QRadioButton {background-color: #fb568a; color: #ffffff; padding: 0px 5px 0px 5px;}
-QRadioButton:focus {border-color: #000000; border-width: 1.5px; border-style: solid; padding: 0px 3px 0px 3px;}</string>
+                         <string notr="true">QRadioButton {
+	background-color: #fb568a;
+	color: #ffffff;
+	padding: 0 5px 0 5px;
+	border-radius: 0;
+}
+
+QRadioButton:focus {
+	border-color: #000000;
+	border-width: 1.5px;
+	border-style: solid;
+	padding: 0 3px 0 3px;
+}
+</string>
                         </property>
                         <property name="text">
                          <string>Rose</string>
@@ -340,8 +438,23 @@ QRadioButton:focus {border-color: #000000; border-width: 1.5px; border-style: so
                          <enum>Qt::TabFocus</enum>
                         </property>
                         <property name="styleSheet">
-                         <string notr="true">QRadioButton {background-color: #fbd945; color: #ffffff; padding: 0px 5px 0px 5px;}
-QRadioButton:focus {border-color: #000000; border-width: 1.5px; border-style: solid; padding: 0px 3px 0px 3px;}</string>
+                         <string notr="true">QRadioButton {
+	background-color: #f7c600;
+	color: #ffffff;
+	padding: 0 5px 0 5px;
+	border-top-left-radius: 0;
+	border-top-right-radius: 0;
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 0;
+}
+
+QRadioButton:focus {
+	border-color: #000000;
+	border-width: 1.5px;
+	border-style: solid;
+	padding: 0 3px 0 3px;
+}
+</string>
                         </property>
                         <property name="text">
                          <string>Gold</string>
@@ -376,8 +489,23 @@ QRadioButton:focus {border-color: #000000; border-width: 1.5px; border-style: so
                          <enum>Qt::TabFocus</enum>
                         </property>
                         <property name="styleSheet">
-                         <string notr="true">QRadioButton {background-color: #99c37b; color: #ffffff; padding: 0px 5px 0px 5px;}
-QRadioButton:focus {border-color: #000000; border-width: 1.5px; border-style: solid; padding: 0px 3px 0px 3px;}</string>
+                         <string notr="true">QRadioButton {
+	background-color: #99c37b;
+	color: #ffffff;
+	padding: 0 5px 0 5px;
+	border-top-left-radius: 0;
+	border-top-right-radius: 5px;
+	border-bottom-left-radius: 0;
+	border-bottom-right-radius: 0;
+}
+
+QRadioButton:focus {
+	border-color: #000000;
+	border-width: 1.5px;
+	border-style: solid;
+	padding: 0 3px 0 3px;
+}
+</string>
                         </property>
                         <property name="text">
                          <string>Green</string>
@@ -405,8 +533,20 @@ QRadioButton:focus {border-color: #000000; border-width: 1.5px; border-style: so
                          <enum>Qt::TabFocus</enum>
                         </property>
                         <property name="styleSheet">
-                         <string notr="true">QRadioButton {background-color: #c577dc; color: #ffffff; padding: 0px 5px 0px 5px;}
-QRadioButton:focus {border-color: #000000; border-width: 1.5px; border-style: solid; padding: 0px 3px 0px 3px;}</string>
+                         <string notr="true">QRadioButton {
+	background-color: #c577dc;
+	color: #ffffff;
+	padding: 0 5px 0 5px;
+	border-radius: 0;
+}
+
+QRadioButton:focus {
+	border-color: #000000;
+	border-width: 1.5px;
+	border-style: solid;
+	padding: 0 3px 0 3px;
+}
+</string>
                         </property>
                         <property name="text">
                          <string>Lavender</string>
@@ -434,8 +574,23 @@ QRadioButton:focus {border-color: #000000; border-width: 1.5px; border-style: so
                          <enum>Qt::TabFocus</enum>
                         </property>
                         <property name="styleSheet">
-                         <string notr="true">QRadioButton {background-color: #5eb5c1; color: #ffffff; padding: 0px 5px 0px 5px;}
-QRadioButton:focus {border-color: #000000; border-width: 1.5px; border-style: solid; padding: 0px 3px 0px 3px;}</string>
+                         <string notr="true">QRadioButton {
+	background-color: #5eb5c1;
+	color: #ffffff;
+	padding: 0 5px 0 5px;
+	border-top-left-radius: 0;
+	border-top-right-radius: 0;
+	border-bottom-left-radius: 0;
+	border-bottom-right-radius: 5px;
+}
+
+QRadioButton:focus {
+	border-color: #000000;
+	border-width: 1.5px;
+	border-style: solid;
+	padding: 0 3px 0 3px;
+}
+</string>
                         </property>
                         <property name="text">
                          <string>Teal</string>
@@ -518,12 +673,92 @@ You can select multiple panels at the same time.</string>
                      <enum>Qt::TabFocus</enum>
                     </property>
                     <property name="styleSheet">
-                     <string notr="true">QListWidget::item {height: 40px; padding: 0px 8px 0px 8px}
-QListWidget::item {background-color: #ffffff; color: #000000; border-radius: 5px}
-QListWidget::item:hover {background-color: #e2e4e9; color: #000000}
-QListWidget::item:selected {background-color: #cccccc; color: #000000}
-QListWidget::item:focus {background-color: #cccccc; color: #000000}
-QScrollBar:vertical {width: 10px; margin: 0px 0px 0px 0px; background-color: #acb2bf}</string>
+                     <string notr="true">QListWidget::item {
+	height: 40px;
+	padding: 0 8px 0 8px
+}
+
+QListWidget::item {
+	background-color: #ffffff;
+	color: #000000;
+	border-radius: 5px
+}
+
+QListWidget::item:hover {
+	background-color: #e2e4e9;
+	color: #000000
+}
+
+QListWidget::item:selected {
+	background-color: #cccccc;
+	color: #000000
+}
+
+QListWidget::item:focus {
+	background-color: #cccccc;
+	color: #000000
+}
+
+QScrollBar:vertical {
+	border: none;
+	background: #f4f5f7;
+	width: 10px;
+	margin: 1px 0 0 0;
+	border-radius: 5px;
+}
+
+QScrollBar::handle:vertical {
+	background-color: #bfc0c5;
+	min-height: 30px;
+	border-radius: 5px;
+}
+
+QScrollBar::handle:vertical:hover {
+	background-color: #afb0b4;
+}
+
+QScrollBar::handle:vertical:pressed {
+	background-color: #929497;
+}
+
+QScrollBar::sub-line:vertical {
+	height: 0;
+}
+
+QScrollBar::add-line:vertical {
+	height: 0;
+}
+
+QScrollBar::up-arrow:vertical,
+QScrollBar::down-arrow:vertical {
+	background: none;
+}
+
+QScrollBar::add-page:vertical,
+QScrollBar::sub-page:vertical {
+	background: none;
+}
+
+
+QScrollBar QMenu {
+	background-color: #ebecf0;
+	border: none;
+	padding: 5px;
+	margin: 0px;
+	font-size: 13px;
+}
+
+QScrollBar QMenu::item {
+	padding: 5px 13px 5px 13px;
+	color: #000000;
+}
+
+QScrollBar QMenu::item:selected {
+	border-radius: 5px;
+	background-color: #acb2bf;
+	color: #ffffff;
+}
+</string>
                     </property>
                     <property name="frameShape">
                      <enum>QFrame::NoFrame</enum>
@@ -705,9 +940,22 @@ QPushButton:focus {border-color: #000000; border-width: 1.5px; border-style: sol
                <enum>Qt::TabFocus</enum>
               </property>
               <property name="styleSheet">
-               <string notr="true">QPushButton {background-color: #acb2bf; color: #ffffff; border-radius: 5px}
-QPushButton:hover {background-color: #7e828c;}
-QPushButton:focus {border-color: #000000; border-width: 1.5px; border-style: solid;}</string>
+               <string notr="true">QPushButton {
+	background-color: #acb2bf;
+	color: #ffffff;
+	border-radius: 5px
+}
+
+QPushButton:hover {
+	background-color: #7e828c;
+}
+
+QPushButton:focus {
+	border-color: #000000;
+	border-width: 1.5px;
+	border-style: solid;
+}
+</string>
               </property>
               <property name="text">
                <string>Cancel</string>
@@ -741,9 +989,22 @@ QPushButton:focus {border-color: #000000; border-width: 1.5px; border-style: sol
                <enum>Qt::TabFocus</enum>
               </property>
               <property name="styleSheet">
-               <string notr="true">QPushButton {background-color: #6badee; color: #ffffff; border-radius: 5px}
-QPushButton:hover {background-color: #5487bb;}
-QPushButton:focus {border-color: #000000; border-width: 1.5px; border-style: solid;}</string>
+               <string notr="true">QPushButton {
+	background-color: #6badee;
+	color: #ffffff;
+	border-radius: 5px
+}
+
+QPushButton:hover {
+	background-color: #5487bb;
+}
+
+QPushButton:focus {
+	border-color: #000000;
+	border-width: 1.5px;
+	border-style: solid;
+}
+</string>
               </property>
               <property name="text">
                <string>Save</string>

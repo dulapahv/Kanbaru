@@ -14,19 +14,19 @@ class Database:
     Singleton class for database. This class is used to store, retrieve, and
     manipulate data from the local database and the Firebase.
 
-    Use Database.get_instance() to get the instance of the database class.
+    Use `Database.get_instance()` to get the instance of the database class.
     """
 
     _instance: "Database" = None
 
     def __init__(self: "Database") -> None:
-        self._db_path: str = ""
         assert Database._instance is None, \
             "Database class is a singleton class!"
         Database._instance = self
 
         self.__username: str = ""
         self.__password: str = ""
+        self._db_path: str = ""
         self.__data: List[Dict] = [vars(Board())]
 
     @staticmethod
@@ -411,9 +411,13 @@ class Database:
                     panel_dict["_Panel__title"] = panel_new.title
                     Database.write(self)
                     logging.info("Panel updated:")
+                    cards = [
+                        card.title for card in panel_new.cards if hasattr(
+                            panel_new, 'cards')
+                    ] if hasattr(panel_new, 'cards') else []
                     logging.info(
                         f"{panel_old} -> title='{panel_new.title}', "
-                        f"cards={[card.title for card in panel_new.cards]}")
+                        f"cards={cards}")
                     return None
 
     def update_board(self: "Database", board_old: Board,

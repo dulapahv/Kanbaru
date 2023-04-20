@@ -53,8 +53,8 @@ class Ui_MainWindow(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.panel_left.sizePolicy().hasHeightForWidth())
         self.panel_left.setSizePolicy(sizePolicy)
-        self.panel_left.setMinimumSize(QSize(150, 0))
-        self.panel_left.setMaximumSize(QSize(144, 16777215))
+        self.panel_left.setMinimumSize(QSize(160, 0))
+        self.panel_left.setMaximumSize(QSize(160, 16777215))
         self.panel_left.setStyleSheet(u"background-color: #282c34;")
         self.verticalLayout_2 = QVBoxLayout(self.panel_left)
         self.verticalLayout_2.setSpacing(8)
@@ -69,6 +69,7 @@ class Ui_MainWindow(object):
         self.label_logo.setStyleSheet(u"background-color: #282c34;\n"
 "color: #FFFFFF;")
         self.label_logo.setMargin(10)
+        self.label_logo.setIndent(8)
 
         self.verticalLayout_2.addWidget(self.label_logo)
 
@@ -79,12 +80,69 @@ class Ui_MainWindow(object):
         sizePolicy1.setVerticalStretch(0)
         sizePolicy1.setHeightForWidth(self.scrollArea_panel_left.sizePolicy().hasHeightForWidth())
         self.scrollArea_panel_left.setSizePolicy(sizePolicy1)
-        self.scrollArea_panel_left.setStyleSheet(u"QScrollBar:vertical {width: 10px; margin: 0px 0px 0px 0px; background-color: #343943}")
+        self.scrollArea_panel_left.setStyleSheet(u"QScrollBar:vertical {\n"
+"	border: none;\n"
+"	background: #282c34;\n"
+"	width: 10px;\n"
+"	margin: 1px 0 0 5px;\n"
+"	border-radius: 2px;\n"
+"}\n"
+"\n"
+"QScrollBar::handle:vertical {\n"
+"	background-color: #454c5a;\n"
+"	min-height: 30px;\n"
+"	border-radius: 2px;\n"
+"}\n"
+"\n"
+"QScrollBar::handle:vertical:hover {\n"
+"	background-color: #343a44;\n"
+"}\n"
+"\n"
+"QScrollBar::handle:vertical:pressed {\n"
+"	background-color: #323741;\n"
+"}\n"
+"\n"
+"QScrollBar::sub-line:vertical {\n"
+"	height: 0;\n"
+"}\n"
+"\n"
+"QScrollBar::add-line:vertical {\n"
+"	height: 0;\n"
+"}\n"
+"\n"
+"QScrollBar::up-arrow:vertical,\n"
+"QScrollBar::down-arrow:vertical {\n"
+"	background: none;\n"
+"}\n"
+"\n"
+"QScrollBar::add-page:vertical,\n"
+"QScrollBar::sub-page:vertical {\n"
+"	background: none;\n"
+"}\n"
+"\n"
+"QScrollBar QMenu {\n"
+"	background-color: #454c5a;\n"
+"	border: none;\n"
+"	padding: 5px;\n"
+"	margin: 0px;\n"
+"	font-size: 13px;\n"
+"}\n"
+"\n"
+"QScrollBar QMenu::item {\n"
+"	padding: 5px 13px 5px 13px;\n"
+"}\n"
+"\n"
+"QScrollBar QMenu::item:sel"
+                        "ected {\n"
+"	border-radius: 5px;\n"
+"	background-color: #ffffff;\n"
+"	color: #000000;\n"
+"}")
         self.scrollArea_panel_left.setFrameShape(QFrame.NoFrame)
         self.scrollArea_panel_left.setWidgetResizable(True)
         self.scrollAreaContent_panel_left = QWidget()
         self.scrollAreaContent_panel_left.setObjectName(u"scrollAreaContent_panel_left")
-        self.scrollAreaContent_panel_left.setGeometry(QRect(0, 0, 134, 417))
+        self.scrollAreaContent_panel_left.setGeometry(QRect(0, 0, 144, 417))
         self.verticalLayout_4 = QVBoxLayout(self.scrollAreaContent_panel_left)
         self.verticalLayout_4.setSpacing(10)
         self.verticalLayout_4.setObjectName(u"verticalLayout_4")
@@ -102,9 +160,22 @@ class Ui_MainWindow(object):
         self.btn_add_board.setFont(font1)
         self.btn_add_board.setCursor(QCursor(Qt.PointingHandCursor))
         self.btn_add_board.setFocusPolicy(Qt.TabFocus)
-        self.btn_add_board.setStyleSheet(u"QPushButton {background-color: #acb2bf; color: #ffffff; border-radius: 5px}\n"
-"QPushButton:hover {background-color: #7e828c;}\n"
-"QPushButton:focus {border-color: #000000; border-width: 1.5px; border-style: solid;}")
+        self.btn_add_board.setStyleSheet(u"QPushButton {\n"
+"	background-color: #acb2bf;\n"
+"	color: #ffffff;\n"
+"	border-radius: 5px\n"
+"}\n"
+"\n"
+"QPushButton:hover {\n"
+"	background-color: #7e828c;\n"
+"}\n"
+"\n"
+"QPushButton:focus {\n"
+"	border-color: #000000;\n"
+"	border-width: 1.5px;\n"
+"	border-style: solid;\n"
+"}\n"
+"")
         icon1 = QIcon()
         icon1.addFile(u":/img/resources/img/add.png", QSize(), QIcon.Normal, QIcon.Off)
         self.btn_add_board.setIcon(icon1)
@@ -117,9 +188,22 @@ class Ui_MainWindow(object):
         self.btn_board_settings.setFont(font1)
         self.btn_board_settings.setCursor(QCursor(Qt.PointingHandCursor))
         self.btn_board_settings.setFocusPolicy(Qt.TabFocus)
-        self.btn_board_settings.setStyleSheet(u"QPushButton {background-color: #7f8ca6; color: #ffffff; border-radius: 5px}\n"
-"QPushButton:hover {background-color: #576073;}\n"
-"QPushButton:focus {border-color: #000000; border-width: 1.5px; border-style: solid;}")
+        self.btn_board_settings.setStyleSheet(u"QPushButton {\n"
+"	background-color: #7f8ca6;\n"
+"	color: #ffffff;\n"
+"	border-radius: 5px\n"
+"}\n"
+"\n"
+"QPushButton:hover {\n"
+"	background-color: #576073;\n"
+"}\n"
+"\n"
+"QPushButton:focus {\n"
+"	border-color: #000000;\n"
+"	border-width: 1.5px;\n"
+"	border-style: solid;\n"
+"}\n"
+"")
         icon2 = QIcon()
         icon2.addFile(u":/img/resources/img/settings_2.png", QSize(), QIcon.Normal, QIcon.Off)
         self.btn_board_settings.setIcon(icon2)
@@ -132,9 +216,22 @@ class Ui_MainWindow(object):
         self.btn_app_settings.setFont(font1)
         self.btn_app_settings.setCursor(QCursor(Qt.PointingHandCursor))
         self.btn_app_settings.setFocusPolicy(Qt.TabFocus)
-        self.btn_app_settings.setStyleSheet(u"QPushButton {background-color: #7f8ca6; color: #ffffff; border-radius: 5px}\n"
-"QPushButton:hover {background-color: #576073;}\n"
-"QPushButton:focus {border-color: #000000; border-width: 1.5px; border-style: solid;}")
+        self.btn_app_settings.setStyleSheet(u"QPushButton {\n"
+"	background-color: #7f8ca6;\n"
+"	color: #ffffff;\n"
+"	border-radius: 5px\n"
+"}\n"
+"\n"
+"QPushButton:hover {\n"
+"	background-color: #576073;\n"
+"}\n"
+"\n"
+"QPushButton:focus {\n"
+"	border-color: #000000;\n"
+"	border-width: 1.5px;\n"
+"	border-style: solid;\n"
+"}\n"
+"")
         icon3 = QIcon()
         icon3.addFile(u":/img/resources/img/settings.png", QSize(), QIcon.Normal, QIcon.Off)
         self.btn_app_settings.setIcon(icon3)
@@ -184,14 +281,76 @@ class Ui_MainWindow(object):
         self.horizontalLayout_2.setContentsMargins(0, 9, 0, 0)
         self.scrollArea_panel_right = QScrollArea(self.widget_panel_right)
         self.scrollArea_panel_right.setObjectName(u"scrollArea_panel_right")
-        self.scrollArea_panel_right.setStyleSheet(u"QScrollBar:vertical {width: 10px; margin: 0px 0px 0px 0px; background-color: #acb2bf}\n"
-"QScrollBar:horizontal {height: 10px; margin: 0px 0px 0px 0px; background-color: #acb2bf}")
+        self.scrollArea_panel_right.setStyleSheet(u"QScrollBar:vertical {\n"
+"	width: 10px;\n"
+"	margin: 0 0 0 0;\n"
+"	background-color: #acb2bf\n"
+"}\n"
+"\n"
+"QScrollBar:horizontal {\n"
+"	border: none;\n"
+"	background: #454c5a;\n"
+"	height: 10px;\n"
+"	margin: 0 0 0 1px;\n"
+"	border-radius: 5px;\n"
+"}\n"
+"\n"
+"QScrollBar::handle:horizontal {\n"
+"	background-color: #76829b;\n"
+"	min-height: 30px;\n"
+"	border-radius: 5px;\n"
+"}\n"
+"\n"
+"QScrollBar::handle:horizontal:hover {\n"
+"	background-color: #646e83;\n"
+"}\n"
+"\n"
+"QScrollBar::handle:horizontal:pressed {\n"
+"	background-color: #576072;\n"
+"}\n"
+"\n"
+"QScrollBar::sub-line:horizontal {\n"
+"	height: 0;\n"
+"}\n"
+"\n"
+"QScrollBar::add-line:horizontal {\n"
+"	height: 0;\n"
+"}\n"
+"\n"
+"QScrollBar::up-arrow:horizontal,\n"
+"QScrollBar::down-arrow:horizontal {\n"
+"	background: none;\n"
+"}\n"
+"\n"
+"QScrollBar::add-page:horizontal,\n"
+"QScrollBar::sub-page:horizontal {\n"
+"	background: none;\n"
+"}\n"
+"\n"
+"QScrollBar QMenu {\n"
+"	background-color: #454c5a;\n"
+"	border: none;\n"
+"	padding: 5px;\n"
+"	margin: 0px;\n"
+"	font"
+                        "-size: 13px;\n"
+"}\n"
+"\n"
+"QScrollBar QMenu::item {\n"
+"	padding: 5px 13px 5px 13px;\n"
+"}\n"
+"\n"
+"QScrollBar QMenu::item:selected {\n"
+"	border-radius: 5px;\n"
+"	background-color: #ffffff;\n"
+"	color: #000000;\n"
+"}\n"
+"")
         self.scrollArea_panel_right.setFrameShape(QFrame.NoFrame)
-        self.scrollArea_panel_right.setVerticalScrollBarPolicy(Qt.ScrollBarAsNeeded)
         self.scrollArea_panel_right.setWidgetResizable(True)
         self.scrollAreaContent_panel_right = QWidget()
         self.scrollAreaContent_panel_right.setObjectName(u"scrollAreaContent_panel_right")
-        self.scrollAreaContent_panel_right.setGeometry(QRect(0, 0, 872, 589))
+        self.scrollAreaContent_panel_right.setGeometry(QRect(0, 0, 862, 589))
         self.horizontalLayout_5 = QHBoxLayout(self.scrollAreaContent_panel_right)
         self.horizontalLayout_5.setObjectName(u"horizontalLayout_5")
         self.horizontalLayout_5.setContentsMargins(8, 0, 0, 8)

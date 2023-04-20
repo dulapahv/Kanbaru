@@ -80,7 +80,7 @@ class CardDescription(QMainWindow):
                 stop:1 rgba(69, 76, 90, 255)
             );
             color: #ffffff;
-            padding: 0px 0px 0px 10px;
+            padding: 0 0 0 10px;
             """
         )
         self.ui.lineEdit_title.setStyleSheet(
@@ -89,20 +89,98 @@ class CardDescription(QMainWindow):
                 background-color: #ebecf0;
                 color: #282c33;
                 border-radius: 5px;
-                padding: 0px 8px 0px 8px
+                padding: 0 8px 0 8px
             }}
             QLineEdit:focus {{
                 background-color: #ffffff;
                 border-color: {self.color};
                 border-width: 1.5px;
                 border-style: solid;
-                padding: 0px 6px 0px 6px
+                padding: 0 6px 0 6px
+            }}
+            QLineEdit QMenu {{
+                background-color: #454c5a;
+                border: none;
+                padding: 5px;
+                margin: 0px;
+                font-size: 13px;
+            }}
+            QLineEdit QMenu::item {{
+                padding: 5px 13px 5px 13px;
+                color: #ffffff;
+            }}
+            QLineEdit QMenu::item:selected {{
+                border-radius: 5px;
+                background-color: {modify_hex_color(self.color)};
+                color: #000000;
             }}
             """
         )
         self.ui.calendarWidget.setStyleSheet(
             f"""
-            background-color: {modify_hex_color(self.color)};
+            QCalendarWidget QWidget {{
+                background-color: {modify_hex_color(self.color)};
+            }}
+            QCalendarWidget QAbstractItemView:!enabled {{
+                color: #cecece
+            }}
+            QCalendarWidget QAbstractItemView:enabled {{
+                color: #000000
+            }}
+            QCalendarWidget QToolButton {{
+                padding: 5px;
+            }}
+            QCalendarWidget QMenu {{
+                background-color: #454c5a;
+                border: none;
+                padding: 5px;
+                margin: 0px;
+                font-size: 14px;
+            }}
+            QCalendarWidget QMenu::item {{
+                padding: 5px 15px 5px 15px;
+                color: #ffffff;
+            }}
+            QCalendarWidget QMenu::item:selected {{
+                border-radius: 5px;
+                background-color: {modify_hex_color(self.color)};
+                color: #000000;
+            }}
+            QCalendarWidget QToolButton {{
+                icon-size: 18px;
+            }}
+            QCalendarWidget QToolButton#qt_calendar_prevmonth {{
+                qproperty-icon: url(:/img/resources/img/left-arrow.png);
+            }}
+            QCalendarWidget QToolButton#qt_calendar_nextmonth {{
+                qproperty-icon: url(:/img/resources/img/right-arrow.png);
+            }}
+            QCalendarWidget QToolButton:pressed {{
+                background-color: {modify_hex_color(self.color, -30)};
+            }}
+            QCalendarWidget QSpinBox {{
+                border: none;
+                color: #000000;
+            }}
+            QCalendarWidget QSpinBox::up-button,
+            QCalendarWidget QSpinBox::down-button {{
+                border-radius: 5px;
+            }}
+            QCalendarWidget QSpinBox::up-arrow {{
+                image: url(:/img/resources/img/up-arrow.png);
+                width: 10px;
+                height: 10px
+            }}
+            QCalendarWidget QSpinBox::down-arrow {{
+                image: url(:/img/resources/img/down-arrow.png);
+                width: 10px;
+                height: 10px
+            }}
+            QCalendarWidget QSpinBox::up-arrow:pressed,
+            QCalendarWidget QSpinBox::down-arrow:pressed {{
+                width: 7px;
+                height: 7px;
+            }}
             """
         )
         self.ui.timeEdit.setStyleSheet(
@@ -111,13 +189,48 @@ class CardDescription(QMainWindow):
                 background-color: {modify_hex_color(self.color)};
                 color: #ffffff;
                 border-radius: 5px;
-                padding: 0px 5px 0px 5px;
+                padding: 0 5px 0 5px
             }}
             QTimeEdit:focus {{
                 border-color: #000000;
                 border-width: 1.5px;
                 border-style: solid;
-                padding: 0px 3px 0px 3px;
+                padding: 0 3px 0 3px
+            }}
+            QTimeEdit::up-button,
+            QTimeEdit::down-button {{
+                border-radius: 5px;
+            }}
+            QTimeEdit::up-arrow {{
+                image: url(:/img/resources/img/up-arrow.png);
+                width: 15px;
+                height: 15px
+            }}
+            QTimeEdit::down-arrow {{
+                image: url(:/img/resources/img/down-arrow.png);
+                width: 15px;
+                height: 15px
+            }}
+            QTimeEdit::up-arrow:pressed,
+            QTimeEdit::down-arrow:pressed {{
+                width: 12px;
+                height: 12px;
+            }}
+            QTimeEdit QMenu {{
+                background-color: #454c5a;
+                border: none;
+                padding: 5px;
+                margin: 0px;
+                font-size: 13px;
+            }}
+            QTimeEdit QMenu::item {{
+                padding: 5px 13px 5px 13px;
+                color: #ffffff;
+            }}
+            QTimeEdit QMenu::item:selected {{
+                border-radius: 5px;
+                background-color: {modify_hex_color(self.color)};
+                color: #000000;
             }}
             """
         )
@@ -136,8 +249,24 @@ class CardDescription(QMainWindow):
             }}
             QScrollBar:vertical {{
                 width: 10px;
-                margin: 0px 0px 0px 0px;
+                margin: 0 0 0 0;
                 background-color: #acb2bf
+            }}
+            QTextEdit QMenu {{
+                background-color: #454c5a;
+                border: none;
+                padding: 5px;
+                margin: 0px;
+                font-size: 13px;
+            }}
+            QTextEdit QMenu::item {{
+                padding: 5px 13px 5px 13px;
+                color: #ffffff;
+            }}
+            QTextEdit QMenu::item:selected {{
+                border-radius: 5px;
+                background-color: {modify_hex_color(self.color)};
+                color: #000000;
             }}
             """
         )

@@ -66,7 +66,7 @@
       <property name="styleSheet">
        <string notr="true">background-color: qlineargradient(spread:pad, x1:0.5, y1:0.5, x2:0.95, y2:0.5, stop:0 rgba(107, 173, 238, 255), stop:1 rgba(69, 76, 90, 255));
 color: #ffffff;
-padding: 0px 0px 0px 10px;</string>
+padding: 0 0 0 10px;</string>
       </property>
       <property name="text">
        <string>Card Description</string>
@@ -148,8 +148,26 @@ border-radius: 5px;</string>
              </font>
             </property>
             <property name="styleSheet">
-             <string notr="true">QLineEdit {background-color: #ebecf0; color: #282c33; border-radius: 5px; padding: 0px 8px 0px 8px}
-QLineEdit:focus {background-color: #ffffff; border-color: #6badee; border-width: 1.5px; border-style: solid;; padding: 0px 6px 0px 6px}</string>
+             <string notr="true">QLineEdit {
+	background-color: #ebecf0;
+	color: #282c33;
+	border-radius: 5px;
+	padding: 0 8px 0 8px
+}
+
+QLineEdit:focus {
+	background-color: #ffffff;
+	border-color: #6badee;
+	border-width: 1.5px;
+	border-style: solid;
+	padding: 0 6px 0 6px
+}
+
+QTextEdit QMenu::item:selected {
+	background-color: #6badee;
+	color: #ffffff;
+}
+</string>
             </property>
             <property name="text">
              <string/>
@@ -201,7 +219,83 @@ QLineEdit:focus {background-color: #ffffff; border-color: #6badee; border-width:
                  <enum>Qt::TabFocus</enum>
                 </property>
                 <property name="styleSheet">
-                 <string notr="true">background-color: rgb(107, 173, 238);</string>
+                 <string notr="true">QCalendarWidget QWidget {
+	background-color: #6badee;
+}
+
+QCalendarWidget QAbstractItemView:!enabled {
+	color: #cecece
+}
+
+QCalendarWidget QAbstractItemView:enabled {
+	color: #000000
+}
+
+QCalendarWidget QToolButton {
+	padding: 5px;
+}
+
+QCalendarWidget QMenu {
+	background-color: #f5f5f5;
+	border: none;
+	padding: 2px;
+	margin: 0px;
+	font-size: 14px;
+}
+
+QCalendarWidget QMenu::item {
+	padding: 5px;
+}
+
+QCalendarWidget QMenu::item:selected {
+	background-color: #007bff;
+	color: #ffffff;
+}
+
+QCalendarWidget QToolButton {
+	icon-size: 18px;
+}
+
+QCalendarWidget QToolButton#qt_calendar_prevmonth {
+	qproperty-icon: url(:/img/resources/img/left-arrow.png);
+}
+
+QCalendarWidget QToolButton#qt_calendar_nextmonth {
+	qproperty-icon: url(:/img/resources/img/right-arrow.png);
+}
+
+QCalendarWidget QToolButton:pressed {
+	background-color: #007bff;
+}
+
+QCalendarWidget QSpinBox {
+	border: none;
+	color: #000000;
+}
+
+QCalendarWidget QSpinBox::up-button,
+QCalendarWidget QSpinBox::down-button {
+	border-radius: 5px;
+}
+
+QCalendarWidget QSpinBox::up-arrow {
+	image: url(:/img/resources/img/up-arrow.png);
+	width: 10px;
+	height: 10px
+}
+
+QCalendarWidget QSpinBox::down-arrow {
+	image: url(:/img/resources/img/down-arrow.png);
+	width: 10px;
+	height: 10px
+}
+
+QCalendarWidget QSpinBox::up-arrow:pressed,
+QCalendarWidget QSpinBox::down-arrow:pressed {
+	width: 7px;
+	height: 7px;
+}
+</string>
                 </property>
                 <property name="gridVisible">
                  <bool>false</bool>
@@ -251,8 +345,43 @@ QLineEdit:focus {background-color: #ffffff; border-color: #6badee; border-width:
                  <cursorShape>PointingHandCursor</cursorShape>
                 </property>
                 <property name="styleSheet">
-                 <string notr="true">QTimeEdit {background-color: #6badee; color: #ffffff; border-radius: 5px; padding: 0px 5px 0px 5px;}
-QTimeEdit:focus {border-color: #000000; border-width: 1.5px; border-style: solid; padding: 0px 3px 0px 3px;}</string>
+                 <string notr="true">QTimeEdit {
+	background-color: #6badee;
+	color: #ffffff;
+	border-radius: 5px;
+	padding: 0 5px 0 5px
+}
+
+QTimeEdit:focus {
+	border-color: #000000;
+	border-width: 1.5px;
+	border-style: solid;
+	padding: 0 3px 0 3px
+}
+
+QTimeEdit::up-button,
+QTimeEdit::down-button {
+	border-radius: 5px;
+}
+
+QTimeEdit::up-arrow {
+	image: url(:/img/resources/img/up-arrow.png);
+	width: 15px;
+	height: 15px
+}
+
+QTimeEdit::down-arrow {
+	image: url(:/img/resources/img/down-arrow.png);
+	width: 15px;
+	height: 15px
+}
+
+QTimeEdit::up-arrow:pressed,
+QTimeEdit::down-arrow:pressed {
+	width: 12px;
+	height: 12px;
+}
+</string>
                 </property>
                 <property name="timeSpec">
                  <enum>Qt::LocalTime</enum>
@@ -319,18 +448,48 @@ QTimeEdit:focus {border-color: #000000; border-width: 1.5px; border-style: solid
              </font>
             </property>
             <property name="styleSheet">
-             <string notr="true">QTextEdit {background-color: #ebecf0; color: #282c33; border-radius: 5px; padding: 4px 8px 4px 8px}
-QTextEdit:focus {background-color: #ffffff; border-color: #6badee; border-width: 1.5px; border-style: solid;}
-QScrollBar:vertical {width: 10px; margin: 0px 0px 0px 0px; background-color: #acb2bf}</string>
+             <string notr="true">QTextEdit {
+	background-color: #ebecf0;
+	color: #282c33;
+	border-radius: 5px;
+	padding: 4px 8px 4px 8px
+}
+
+QTextEdit:focus {
+	background-color: #ffffff;
+	border-color: #6badee;
+	border-width: 1.5px;
+	border-style: solid;
+}
+
+QScrollBar:vertical {
+	width: 10px;
+	margin: 0 0 0 0;
+	background-color: #acb2bf
+}
+
+QTextEdit QMenu {
+	background-color: #f5f5f5;
+	border: none;
+	padding: 5px;
+	margin: 0px;
+	font-size: 14px;
+}
+
+QTextEdit QMenu::item {
+	padding: 5px;
+}
+
+QTextEdit QMenu::item:selected {
+	background-color: {modify_hex_color(self.color)};
+	color: #ffffff;
+}</string>
             </property>
             <property name="frameShape">
              <enum>QFrame::NoFrame</enum>
             </property>
-            <property name="autoFormatting">
-             <set>QTextEdit::AutoAll</set>
-            </property>
             <property name="tabChangesFocus">
-             <bool>true</bool>
+             <bool>false</bool>
             </property>
             <property name="html">
              <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
@@ -347,6 +506,9 @@ li.checked::marker { content: &quot;\2612&quot;; }
             </property>
             <property name="acceptRichText">
              <bool>false</bool>
+            </property>
+            <property name="textInteractionFlags">
+             <set>Qt::LinksAccessibleByKeyboard|Qt::LinksAccessibleByMouse|Qt::TextBrowserInteraction|Qt::TextEditable|Qt::TextEditorInteraction|Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse</set>
             </property>
             <property name="placeholderText">
              <string>Add a more detailed description...</string>
@@ -382,9 +544,22 @@ li.checked::marker { content: &quot;\2612&quot;; }
                <enum>Qt::TabFocus</enum>
               </property>
               <property name="styleSheet">
-               <string notr="true">QPushButton {background-color: #d63a3e; color: #ffffff; border-radius: 5px}
-QPushButton:hover {background-color: #9e2a2a;}
-QPushButton:focus {border-color: #000000; border-width: 1.5px; border-style: solid;}</string>
+               <string notr="true">QPushButton {
+	background-color: #d63a3e;
+	color: #ffffff;
+	border-radius: 5px
+}
+
+QPushButton:hover {
+	background-color: #9e2a2a;
+}
+
+QPushButton:focus {
+	border-color: #000000;
+	border-width: 1.5px;
+	border-style: solid;
+}
+</string>
               </property>
               <property name="text">
                <string>Delete Card</string>
@@ -431,9 +606,22 @@ QPushButton:focus {border-color: #000000; border-width: 1.5px; border-style: sol
                <enum>Qt::TabFocus</enum>
               </property>
               <property name="styleSheet">
-               <string notr="true">QPushButton {background-color: #acb2bf; color: #ffffff; border-radius: 5px}
-QPushButton:hover {background-color: #7e828c;}
-QPushButton:focus {border-color: #000000; border-width: 1.5px; border-style: solid;}</string>
+               <string notr="true">QPushButton {
+	background-color: #acb2bf;
+	color: #ffffff;
+	border-radius: 5px
+}
+
+QPushButton:hover {
+	background-color: #7e828c;
+}
+
+QPushButton:focus {
+	border-color: #000000;
+	border-width: 1.5px;
+	border-style: solid;
+}
+</string>
               </property>
               <property name="text">
                <string>Cancel</string>
@@ -467,9 +655,22 @@ QPushButton:focus {border-color: #000000; border-width: 1.5px; border-style: sol
                <enum>Qt::TabFocus</enum>
               </property>
               <property name="styleSheet">
-               <string notr="true">QPushButton {background-color: #6badee; color: #ffffff; border-radius: 5px}
-QPushButton:hover {background-color: #5487bb;}
-QPushButton:focus {border-color: #000000; border-width: 1.5px; border-style: solid;}</string>
+               <string notr="true">QPushButton {
+	background-color: #6badee;
+	color: #ffffff;
+	border-radius: 5px
+}
+
+QPushButton:hover {
+	background-color: #5487bb;
+}
+
+QPushButton:focus {
+	border-color: #000000;
+	border-width: 1.5px;
+	border-style: solid;
+}
+</string>
               </property>
               <property name="text">
                <string>Save</string>

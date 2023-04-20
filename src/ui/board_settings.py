@@ -69,14 +69,156 @@ class BoardSettings(QMainWindow):
                 background-color: #ebecf0;
                 color: #282c33;
                 border-radius: 5px;
-                padding: 0px 8px 0px 8px
+                padding: 0 8px 0 8px
             }}
             QLineEdit:focus {{
                 background-color: #ffffff;
                 border-color: {self.color};
                 border-width: 1.5px;
                 border-style: solid;
-                padding: 0px 6px 0px 6px
+                padding: 0 6px 0 6px
+            }}
+            QLineEdit QMenu {{
+                background-color: #454c5a;
+                border: none;
+                padding: 5px;
+                margin: 0px;
+                font-size: 13px;
+            }}
+            QLineEdit QMenu::item {{
+                padding: 5px 13px 5px 13px;
+                color: #ffffff;
+            }}
+            QLineEdit QMenu::item:selected {{
+                border-radius: 5px;
+                background-color: {modify_hex_color(self.color)};
+                color: #000000;
+            }}
+            """
+        )
+        self.ui.scrollArea.setStyleSheet(
+            f"""
+            QScrollBar:vertical {{
+                border: none;
+                background: #f4f5f7;
+                width: 10px;
+                margin: 1px 0 0 0;
+                border-radius: 5px;
+            }}
+            QScrollBar::handle:vertical {{
+                background-color: #bfc0c5;
+                min-height: 30px;
+                border-radius: 5px;
+            }}
+            QScrollBar::handle:vertical:hover {{
+                background-color: #afb0b4;
+            }}
+
+            QScrollBar::handle:vertical:pressed {{
+                background-color: #929497;
+            }}
+            QScrollBar::sub-line:vertical {{
+                height: 0;
+            }}
+            QScrollBar::add-line:vertical {{
+                height: 0;
+            }}
+            QScrollBar::up-arrow:vertical,
+            QScrollBar::down-arrow:vertical {{
+                background: none;
+            }}
+            QScrollBar::add-page:vertical,
+            QScrollBar::sub-page:vertical {{
+                background: none;
+            }}
+            QScrollBar QMenu {{
+                background-color: #454c5a;
+                border: none;
+                padding: 5px;
+                margin: 0px;
+                font-size: 13px;
+            }}
+            QScrollBar QMenu::item {{
+                padding: 5px 13px 5px 13px;
+                color: #ffffff;
+            }}
+            QScrollBar QMenu::item:selected {{
+                border-radius: 5px;
+                background-color: {modify_hex_color(self.color)};
+                color: #000000;
+            }}
+            """
+        )
+        self.ui.listWidget_manage_panel.setStyleSheet(
+            f"""
+            QListWidget::item {{
+                height: 40px;
+                padding: 0 8px 0 8px
+            }}
+            QListWidget::item {{
+                background-color: #ffffff;
+                color: #000000;
+                border-radius: 5px
+            }}
+            QListWidget::item:hover {{
+                background-color: #e2e4e9;
+                color: #000000
+            }}
+            QListWidget::item:selected {{
+                background-color: #cccccc;
+                color: #000000
+            }}
+            QListWidget::item:focus {{
+                background-color: #cccccc;
+                color: #000000
+            }}
+            QScrollBar:vertical {{
+                border: none;
+                background: #f4f5f7;
+                width: 10px;
+                margin: 1px 0 0 0;
+                border-radius: 5px;
+            }}
+            QScrollBar::handle:vertical {{
+                background-color: #bfc0c5;
+                min-height: 30px;
+                border-radius: 5px;
+            }}
+            QScrollBar::handle:vertical:hover {{
+                background-color: #afb0b4;
+            }}
+            QScrollBar::handle:vertical:pressed {{
+                background-color: #929497;
+            }}
+            QScrollBar::sub-line:vertical {{
+                height: 0;
+            }}
+            QScrollBar::add-line:vertical {{
+                height: 0;
+            }}
+            QScrollBar::up-arrow:vertical,
+            QScrollBar::down-arrow:vertical {{
+                background: none;
+            }}
+            QScrollBar::add-page:vertical,
+            QScrollBar::sub-page:vertical {{
+                background: none;
+            }}
+            QScrollBar QMenu {{
+                background-color: #454c5a;
+                border: none;
+                padding: 5px;
+                margin: 0px;
+                font-size: 13px;
+            }}
+            QScrollBar QMenu::item {{
+                padding: 5px 13px 5px 13px;
+                color: #ffffff;
+            }}
+            QScrollBar QMenu::item:selected {{
+                border-radius: 5px;
+                background-color: {modify_hex_color(self.color)};
+                color: #000000;
             }}
             """
         )
@@ -95,7 +237,7 @@ class BoardSettings(QMainWindow):
                 stop:1 rgba(69, 76, 90, 255)
             );
             color: #ffffff;
-            padding: 0px 0px 0px 10px;
+            padding: 0 0 0 10px;
             """
         )
 
@@ -157,6 +299,17 @@ class BoardSettings(QMainWindow):
         )
         if text is None:
             return None
+        for board in Database.get_instance().boards:
+            for panel in board.panels:
+                if panel.title == text:
+                    dialog_factory(
+                        title="Invalid Name",
+                        msg="A panel with this name already exists.",
+                        yes_no=False,
+                        btn_color=self.color
+                    )
+                    self.rename(event)
+                    return None
         panel_obj = next(
             (panel for panel in self.board.panels if
              panel.title == selected_all[0].text()), None)

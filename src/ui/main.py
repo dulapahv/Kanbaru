@@ -123,13 +123,14 @@ class MainScreen(QMainWindow):
         parent.ui.btn_board = QPushButton(
             parent.ui.scrollAreaContent_panel_left)
         parent.ui.btn_board.setObjectName(u"btn_board")
-        size_policy = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Fixed)
+        size_policy = QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed)
         size_policy.setHorizontalStretch(0)
         size_policy.setVerticalStretch(0)
         size_policy.setHeightForWidth(
             parent.ui.btn_board.sizePolicy().hasHeightForWidth())
         parent.ui.btn_board.setSizePolicy(size_policy)
-        parent.ui.btn_board.setMinimumSize(QSize(0, 40))
+        parent.ui.btn_board.setMinimumSize(QSize(128, 40))
+        parent.ui.btn_board.setMaximumSize(QSize(142, 40))
         parent.ui.btn_board.setCursor(QCursor(Qt.PointingHandCursor))
         parent.ui.btn_board.setFocusPolicy(Qt.TabFocus)
         parent.ui.btn_board.setStyleSheet(
@@ -156,6 +157,63 @@ class MainScreen(QMainWindow):
         parent.ui.btn_board.setFont(QFont(font_db, 12))
 
         if is_constructed:
+            parent.ui.scrollArea_panel_right.setStyleSheet(
+                f"""
+            QScrollBar:vertical {{
+                width: 10px;
+                margin: 0 0 0 0;
+                background-color: #acb2bf
+            }}
+            QScrollBar:horizontal {{
+                border: none;
+                background: #454c5a;
+                height: 10px;
+                margin: 0 0 0 1px;
+                border-radius: 5px;
+            }}
+            QScrollBar::handle:horizontal {{
+                background-color: #76829b;
+                min-height: 30px;
+                border-radius: 5px;
+            }}
+            QScrollBar::handle:horizontal:hover {{
+                background-color: #646e83;
+            }}
+            QScrollBar::handle:horizontal:pressed {{
+                background-color: #576072;
+            }}
+            QScrollBar::sub-line:horizontal {{
+                height: 0;
+            }}
+            QScrollBar::add-line:horizontal {{
+                height: 0;
+            }}
+
+            QScrollBar::up-arrow:horizontal,
+            QScrollBar::down-arrow:horizontal {{
+                background: none;
+            }}
+            QScrollBar::add-page:horizontal,
+            QScrollBar::sub-page:horizontal {{
+                background: none;
+            }}
+            QScrollBar QMenu {{
+                background-color: #454c5a;
+                border: none;
+                padding: 5px;
+                margin: 0px;
+                font-size: 13px;
+            }}
+            QScrollBar QMenu::item {{
+                padding: 5px 13px 5px 13px;
+            }}
+            QScrollBar QMenu::item:selected {{
+                border-radius: 5px;
+                background-color: {modify_hex_color(self.current_board.color)};
+                color: #000000;
+            }}
+            """
+            )
             color = hex_to_rgba(board.color)
             parent.ui.label_board.setStyleSheet(
                 f"""
@@ -167,6 +225,58 @@ class MainScreen(QMainWindow):
                     stop:1 rgba(69, 76, 90, 255)
                 );
                 color: #FFFFFF;
+                """
+            )
+            parent.ui.scrollArea_panel_left.setStyleSheet(
+                f"""
+                QScrollBar:vertical {{
+                    border: none;
+                    background: #282c34;
+                    width: 10px;
+                    margin: 1px 0 0 5px;
+                    border-radius: 2px;
+                }}
+                QScrollBar::handle:vertical {{
+                    background-color: #454c5a;
+                    min-height: 30px;
+                    border-radius: 2px;
+                }}
+                QScrollBar::handle:vertical:hover {{
+                    background-color: #343a44;
+                }}
+                QScrollBar::handle:vertical:pressed {{
+                    background-color: #323741;
+                }}
+                QScrollBar::sub-line:vertical {{
+                    height: 0;
+                }}
+                QScrollBar::add-line:vertical {{
+                    height: 0;
+                }}
+                QScrollBar::up-arrow:vertical,
+                QScrollBar::down-arrow:vertical {{
+                    background: none;
+                }}
+                QScrollBar::add-page:vertical,
+                QScrollBar::sub-page:vertical {{
+                    background: none;
+                }}
+                QScrollBar QMenu {{
+                    background-color: #454c5a;
+                    border: none;
+                    padding: 5px;
+                    margin: 0px;
+                    font-size: 13px;
+                }}
+                QScrollBar QMenu::item {{
+                    padding: 5px 13px 5px 13px;
+                }}
+                QScrollBar QMenu::item:selected {{
+                    border-radius: 5px;
+                    background-color: {modify_hex_color(
+                        self.current_board.color)};
+                    color: #000000;
+                }}
                 """
             )
             for panel in board.panels:
@@ -212,7 +322,7 @@ class MainScreen(QMainWindow):
         size_policy2.setHeightForWidth(
             parent.ui.panel.sizePolicy().hasHeightForWidth())
         parent.ui.panel.setSizePolicy(size_policy2)
-        parent.ui.panel.setMinimumSize(QSize(250, 0))
+        parent.ui.panel.setMinimumSize(QSize(260, 0))
         parent.ui.verticalLayout_1 = QVBoxLayout(parent.ui.panel)
         parent.ui.verticalLayout_1.setSpacing(0)
         parent.ui.verticalLayout_1.setObjectName(u"verticalLayout_1")
@@ -248,7 +358,7 @@ class MainScreen(QMainWindow):
             color: #282c33;
             background-color: #ebecf0;
             border-radius: 5px;
-            padding: 5px 0px 0px 5px;
+            padding: 5px 0 0 5px;
             """
         )
         parent.ui.label_list.setMargin(0)
@@ -380,10 +490,7 @@ class MainScreen(QMainWindow):
         list_widget_item = qlistwidget.item(index)
         list_widget_item.setData(Qt.UserRole, card)
         list_widget_item.setText(
-            QCoreApplication.translate(
-                "MainWindow",
-                card.title[:24] + (card.title[24:] and '...'), None
-            )
+            QCoreApplication.translate("MainWindow", card.title, None)
         )
         font_db = setup_font_db(font)[0]
         list_widget_item.setFont(QFont(font_db, 12))
@@ -829,7 +936,7 @@ class CustomListWidget(QListWidget):
         size_policy2.setVerticalStretch(0)
         size_policy2.setHeightForWidth(self.sizePolicy().hasHeightForWidth())
         self.setSizePolicy(size_policy2)
-        self.setMaximumSize(QSize(250, 16777215))
+        self.setMaximumSize(QSize(260, 16777215))
         self.setFocusPolicy(Qt.TabFocus)
         self.setAcceptDrops(True)
         self.setFrameShape(QFrame.NoFrame)
@@ -856,7 +963,7 @@ class CustomListWidget(QListWidget):
             }}
             QListWidget::item {{
                 height: 40px;
-                padding: 0px 8px 0px 8px;
+                padding: 0 8px 0 8px;
                 background-color: qlineargradient(
                     spread:pad, x1:0, y1:0.5, x2:0.95, y2:0.5,
                     stop:0 {color},
@@ -897,14 +1004,50 @@ class CustomListWidget(QListWidget):
                     color: #000000
             }}
             QScrollBar:vertical {{
+                border: none;
+                background: #ebecf0;
                 width: 10px;
-                margin: 0px 0px 0px 0px;
-                background-color: #acb2bf
+                margin: 1px 0 0 0;
+                border-radius: 5px;
             }}
-            QScrollBar:horizontal {{
-                height: 10px;
-                margin: 0px 0px 0px 0px;
-                background-color: #acb2bf
+            QScrollBar::handle:vertical {{
+                background-color: #bfc0c5;
+                min-height: 30px;
+                border-radius: 5px;
+            }}
+            QScrollBar::handle:vertical:hover {{
+                background-color: #afb0b4;
+            }}
+            QScrollBar::handle:vertical:pressed {{
+                background-color: #929497;
+            }}
+            QScrollBar::sub-line:vertical {{
+                height: 0;
+            }}
+            QScrollBar::add-line:vertical {{
+                height: 0;
+            }}
+            QScrollBar::up-arrow:vertical, QScrollBar::down-arrow:vertical {{
+                background: none;
+            }}
+            QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {{
+                background: none;
+            }}
+            QScrollBar QMenu {{
+                background-color: #454c5a;
+                border: none;
+                padding: 5px;
+                margin: 0px;
+                font-size: 13px;
+            }}
+            QScrollBar QMenu::item {{
+                padding: 5px 13px 5px 13px;
+                color: #ffffff;
+            }}
+            QScrollBar QMenu::item:selected {{
+                border-radius: 5px;
+                background-color: {color};
+                color: #000000;
             }}
             """
         )
@@ -960,20 +1103,27 @@ class CustomListWidget(QListWidget):
         dest_widget = QApplication.widgetAt(QCursor().pos()).parent()
         items = source_widget.selectedItems()
 
-        for item in items:
+        logging.info(
+            f'Moving {len(items)} Card{"s" if len(items) > 1 else ""} '
+            f'({[item.data(Qt.UserRole).title for item in items]}) '
+            f'from panel "{source_widget.data.title}" to panel '
+            f'"{dest_widget.data.title}"')
+
+        for i, item in enumerate(items):
             source_widget.takeItem(source_widget.row(item))
 
             index = dest_widget.row(dest_widget.itemAt(event.pos()))
-            if index == -1:
+            if index < 0:
                 index = dest_widget.count()
+
+            index += i
             if source_widget == dest_widget:
+                if len(items) > 1:
+                    index -= 1
                 dest_widget.insertItem(index, item)
 
             logging.info(
-                f'Moved {len(items)} Card(s) '
-                f'({[item.data(Qt.UserRole).title for item in items]}) '
-                f'from panel "{source_widget.data.title}" to panel '
-                f'"{dest_widget.data.title} at {index=}"')
+                f'Moved card "{item.data(Qt.UserRole).title}" to {index=}')
 
             MainScreen.change_card(
                 source_widget, dest_widget, item.data(Qt.UserRole), index)

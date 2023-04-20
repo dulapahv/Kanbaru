@@ -75,13 +75,13 @@ QPushButton:focus {border-color: #000000; border-width: 1.5px; border-style: sol
          </property>
          <property name="minimumSize">
           <size>
-           <width>150</width>
+           <width>160</width>
            <height>0</height>
           </size>
          </property>
          <property name="maximumSize">
           <size>
-           <width>144</width>
+           <width>160</width>
            <height>16777215</height>
           </size>
          </property>
@@ -123,6 +123,9 @@ baru</string>
             <property name="margin">
              <number>10</number>
             </property>
+            <property name="indent">
+             <number>8</number>
+            </property>
            </widget>
           </item>
           <item>
@@ -134,7 +137,63 @@ baru</string>
              </sizepolicy>
             </property>
             <property name="styleSheet">
-             <string notr="true">QScrollBar:vertical {width: 10px; margin: 0px 0px 0px 0px; background-color: #343943}</string>
+             <string notr="true">QScrollBar:vertical {
+	border: none;
+	background: #282c34;
+	width: 10px;
+	margin: 1px 0 0 5px;
+	border-radius: 2px;
+}
+
+QScrollBar::handle:vertical {
+	background-color: #454c5a;
+	min-height: 30px;
+	border-radius: 2px;
+}
+
+QScrollBar::handle:vertical:hover {
+	background-color: #343a44;
+}
+
+QScrollBar::handle:vertical:pressed {
+	background-color: #323741;
+}
+
+QScrollBar::sub-line:vertical {
+	height: 0;
+}
+
+QScrollBar::add-line:vertical {
+	height: 0;
+}
+
+QScrollBar::up-arrow:vertical,
+QScrollBar::down-arrow:vertical {
+	background: none;
+}
+
+QScrollBar::add-page:vertical,
+QScrollBar::sub-page:vertical {
+	background: none;
+}
+
+QScrollBar QMenu {
+	background-color: #454c5a;
+	border: none;
+	padding: 5px;
+	margin: 0px;
+	font-size: 13px;
+}
+
+QScrollBar QMenu::item {
+	padding: 5px 13px 5px 13px;
+}
+
+QScrollBar QMenu::item:selected {
+	border-radius: 5px;
+	background-color: #ffffff;
+	color: #000000;
+}</string>
             </property>
             <property name="frameShape">
              <enum>QFrame::NoFrame</enum>
@@ -147,7 +206,7 @@ baru</string>
               <rect>
                <x>0</x>
                <y>0</y>
-               <width>134</width>
+               <width>144</width>
                <height>417</height>
               </rect>
              </property>
@@ -192,9 +251,22 @@ baru</string>
              <enum>Qt::TabFocus</enum>
             </property>
             <property name="styleSheet">
-             <string notr="true">QPushButton {background-color: #acb2bf; color: #ffffff; border-radius: 5px}
-QPushButton:hover {background-color: #7e828c;}
-QPushButton:focus {border-color: #000000; border-width: 1.5px; border-style: solid;}</string>
+             <string notr="true">QPushButton {
+	background-color: #acb2bf;
+	color: #ffffff;
+	border-radius: 5px
+}
+
+QPushButton:hover {
+	background-color: #7e828c;
+}
+
+QPushButton:focus {
+	border-color: #000000;
+	border-width: 1.5px;
+	border-style: solid;
+}
+</string>
             </property>
             <property name="text">
              <string> Add a board</string>
@@ -226,9 +298,22 @@ QPushButton:focus {border-color: #000000; border-width: 1.5px; border-style: sol
              <enum>Qt::TabFocus</enum>
             </property>
             <property name="styleSheet">
-             <string notr="true">QPushButton {background-color: #7f8ca6; color: #ffffff; border-radius: 5px}
-QPushButton:hover {background-color: #576073;}
-QPushButton:focus {border-color: #000000; border-width: 1.5px; border-style: solid;}</string>
+             <string notr="true">QPushButton {
+	background-color: #7f8ca6;
+	color: #ffffff;
+	border-radius: 5px
+}
+
+QPushButton:hover {
+	background-color: #576073;
+}
+
+QPushButton:focus {
+	border-color: #000000;
+	border-width: 1.5px;
+	border-style: solid;
+}
+</string>
             </property>
             <property name="text">
              <string>Manage Board</string>
@@ -260,9 +345,22 @@ QPushButton:focus {border-color: #000000; border-width: 1.5px; border-style: sol
              <enum>Qt::TabFocus</enum>
             </property>
             <property name="styleSheet">
-             <string notr="true">QPushButton {background-color: #7f8ca6; color: #ffffff; border-radius: 5px}
-QPushButton:hover {background-color: #576073;}
-QPushButton:focus {border-color: #000000; border-width: 1.5px; border-style: solid;}</string>
+             <string notr="true">QPushButton {
+	background-color: #7f8ca6;
+	color: #ffffff;
+	border-radius: 5px
+}
+
+QPushButton:hover {
+	background-color: #576073;
+}
+
+QPushButton:focus {
+	border-color: #000000;
+	border-width: 1.5px;
+	border-style: solid;
+}
+</string>
             </property>
             <property name="text">
              <string> App Settings</string>
@@ -350,14 +448,73 @@ color: #FFFFFF;</string>
             <item>
              <widget class="QScrollArea" name="scrollArea_panel_right">
               <property name="styleSheet">
-               <string notr="true">QScrollBar:vertical {width: 10px; margin: 0px 0px 0px 0px; background-color: #acb2bf}
-QScrollBar:horizontal {height: 10px; margin: 0px 0px 0px 0px; background-color: #acb2bf}</string>
+               <string notr="true">QScrollBar:vertical {
+	width: 10px;
+	margin: 0 0 0 0;
+	background-color: #acb2bf
+}
+
+QScrollBar:horizontal {
+	border: none;
+	background: #454c5a;
+	height: 10px;
+	margin: 0 0 0 1px;
+	border-radius: 5px;
+}
+
+QScrollBar::handle:horizontal {
+	background-color: #76829b;
+	min-height: 30px;
+	border-radius: 5px;
+}
+
+QScrollBar::handle:horizontal:hover {
+	background-color: #646e83;
+}
+
+QScrollBar::handle:horizontal:pressed {
+	background-color: #576072;
+}
+
+QScrollBar::sub-line:horizontal {
+	height: 0;
+}
+
+QScrollBar::add-line:horizontal {
+	height: 0;
+}
+
+QScrollBar::up-arrow:horizontal,
+QScrollBar::down-arrow:horizontal {
+	background: none;
+}
+
+QScrollBar::add-page:horizontal,
+QScrollBar::sub-page:horizontal {
+	background: none;
+}
+
+QScrollBar QMenu {
+	background-color: #454c5a;
+	border: none;
+	padding: 5px;
+	margin: 0px;
+	font-size: 13px;
+}
+
+QScrollBar QMenu::item {
+	padding: 5px 13px 5px 13px;
+}
+
+QScrollBar QMenu::item:selected {
+	border-radius: 5px;
+	background-color: #ffffff;
+	color: #000000;
+}
+</string>
               </property>
               <property name="frameShape">
                <enum>QFrame::NoFrame</enum>
-              </property>
-              <property name="verticalScrollBarPolicy">
-               <enum>Qt::ScrollBarAsNeeded</enum>
               </property>
               <property name="widgetResizable">
                <bool>true</bool>
@@ -367,7 +524,7 @@ QScrollBar:horizontal {height: 10px; margin: 0px 0px 0px 0px; background-color: 
                 <rect>
                  <x>0</x>
                  <y>0</y>
-                 <width>872</width>
+                 <width>862</width>
                  <height>589</height>
                 </rect>
                </property>
