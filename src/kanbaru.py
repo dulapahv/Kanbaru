@@ -1,8 +1,6 @@
 import logging
 import os
 import sys
-
-import sys
 from tkinter import Tk, messagebox
 
 try:
@@ -23,9 +21,12 @@ except ModuleNotFoundError:
     )
 
     if response:
+        path = os.path.dirname(os.path.abspath(__file__))
         try:
             import pip
-            pip.main(["install", "-r", "requirements.txt"])
+            pip.main(
+                ["install", "-r", f"{os.path.join(path, 'requirements.txt')}"]
+            )
         except ModuleNotFoundError:
             logging.warning(
                 "pip not found. Installing pip now. This is a risky move. "
@@ -36,6 +37,7 @@ except ModuleNotFoundError:
             pip.main(["install", "-r", "requirements.txt"])
         finally:
             from PySide6.QtWidgets import QApplication, QMainWindow
+
             from auth import Auth
             from db import Database
             from ui.main import MainScreen
