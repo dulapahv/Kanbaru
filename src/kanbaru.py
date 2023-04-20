@@ -73,13 +73,13 @@ class Kanbaru(QMainWindow):
             os.path.join(self.path, "resources", "kanbaru-credentials.json"),
         )
 
-        self.show_main_screen()
+        # self.show_main_screen()
         # Check if user is logged in, if not, prompt login
-        # if self.check_credentials():
-        #     Database.get_instance().pull_from_firebase(Database.get_instance().username)
-        #     self.show_main_screen()
-        # else:
-        #     self.show_welcome_screen()
+        if self.check_credentials():
+            Database.get_instance().pull_from_firebase(Database.get_instance().username)
+            self.show_main_screen()
+        else:
+            self.show_welcome_screen()
 
     @staticmethod
     def init_event_logger(path: str, fmt: str, debug: bool = False,
