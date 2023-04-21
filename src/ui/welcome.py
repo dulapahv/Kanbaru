@@ -62,13 +62,19 @@ class WelcomeScreen(QMainWindow):
         if len(self.signup_username) >= 128:
             parent.ui.label_signup_msg.setText(
                 "Username must not exceed 128 characters!")
+            return None
         if len(self.signup_password) >= 128:
             parent.ui.label_signup_msg.setText(
                 "Password must not exceed 128 characters!")
+            return None
+        if len(self.signup_password) < 6:
+            parent.ui.label_signup_msg.setText(
+                "Password must be at least 6 characters long!")
+            return None
         if self.signup_password != self.signup_confirm_password:
             parent.ui.label_signup_msg.setText("Passwords do not match!")
-        else:
-            status = Auth.signup(self.signup_username, self.signup_password)
+            return None
+        status = Auth.signup(self.signup_username, self.signup_password)
         match status:
             case 0:
                 Database.get_instance().username = self.signup_username
@@ -100,11 +106,12 @@ class WelcomeScreen(QMainWindow):
         if len(self.login_username) >= 128:
             parent.ui.label_login_msg.setText(
                 "Username must not exceed 128 characters!")
+            return None
         if len(self.login_password) >= 128:
             parent.ui.label_login_msg.setText(
                 "Password must not exceed 128 characters!")
+            return None
         status = Auth.login(self.login_username, self.login_password)
-
         match status:
             case 0:
                 Database.get_instance().pull_from_firebase(self.login_username)

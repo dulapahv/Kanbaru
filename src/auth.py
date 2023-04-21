@@ -22,26 +22,52 @@ class Auth:
     @staticmethod
     def login(email: str, password: str) -> int:
         """Logs the user in.
-          - If the user is logged in, return 0
-          - If the user is not logged in, return 1
+
+        Parameters
+        ----------
+        email : str
+            The user's email.
+        password : str
+            The user's password.
+
+        Returns
+        -------
+        int
+            0 if credentials are valid, 1 if credentials are missing, 2 if
+            credentials are invalid.
         """
+        if not email or not password:
+            return 1
         try:
             auth.sign_in_with_email_and_password(email, password)
             return 0
         except:
-            return 1
+            return 2
 
     @staticmethod
     def signup(email: str, password: str) -> int:
         """Signs the user up.
-          - If the user is signed up, return 0
-          - If the user is not signed up, return 1
+
+        Parameters
+        ----------
+        email : str
+            The user's email.
+        password : str
+            The user's password.
+
+        Returns
+        -------
+        int
+            0 if signup is successful, 1 if credentials are missing, 2 if
+            credentials are invalid.
         """
+        if not email or not password:
+            return 1
         try:
             auth.create_user_with_email_and_password(email, password)
             return 0
         except:
-            return 1
+            return 2
 
     @staticmethod
     def verify_credentials(email: str, password: str) -> bool:
