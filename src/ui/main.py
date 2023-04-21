@@ -732,7 +732,7 @@ class MainScreen(QMainWindow):
                         "_Board__panels": []
                     }
                     panels_list.append(panel)
-                except KeyError:
+                except AttributeError:
                     panels_list = [{
                         "_Panel__title": text, "_Board__panels": []
                     }]
