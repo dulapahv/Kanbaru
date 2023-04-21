@@ -71,7 +71,8 @@ class Auth:
             auth.create_user_with_email_and_password(email, password)
             logging.info("Signup successful!")
             return 0
-        except:
+        except Exception as err:
+            print(err)
             logging.info("User already exists!")
             return 2
 
