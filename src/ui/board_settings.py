@@ -6,7 +6,7 @@ from PySide6.QtWidgets import QMainWindow
 
 from db import Database
 from dialog import dialog_factory, input_dialog_factory
-from kanbaru_objects import Board, Color
+from kanbaru_objects import Board, Color, Panel
 from ui.board_settings_ui import Ui_BoardWindow
 from utils import keyPressEvent, modify_hex_color, setup_font_db
 
@@ -313,8 +313,11 @@ class BoardSettings(QMainWindow):
         panel_obj = next(
             (panel for panel in self.board.panels if
              panel.title == selected_all[0].text()), None)
-        self.title = text
-        Database.get_instance().update_panel(panel_obj, self)
+        new_panel = Panel(
+            title=text,
+            card_lists=panel_obj.cards
+        )
+        Database.get_instance().update_panel(panel_obj, new_panel)
         self.ui.listWidget_manage_panel.takeItem(
             self.ui.listWidget_manage_panel.row(selected_all[0]))
         panel_obj.title = text
