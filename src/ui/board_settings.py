@@ -329,6 +329,15 @@ class BoardSettings(QMainWindow):
         for panel in self.panels_to_delete:
             Database.get_instance().delete_panel(panel)
         if self.old_board != self:
+            for board in Database.get_instance().boards:
+                if board.title == self.title_txt:
+                    dialog_factory(
+                        title="Invalid Name",
+                        msg="A board with this name already exists.",
+                        yes_no=False,
+                        btn_color=self.color
+                    )
+                    return None
             Database.get_instance().update_board(self.old_board, self)
         if len(self.new_panel_order) != 0:
             Database.get_instance().update_panel_order(
