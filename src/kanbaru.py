@@ -75,6 +75,7 @@ class Kanbaru(QMainWindow):
         # Database.get_instance().push_to_firebase("test")
         # self.show_main_screen()
         # Check if user is logged in, if not, prompt login
+
         if self.check_credentials():
             Database.get_instance().pull_from_firebase(Database.get_instance().username)
             self.show_main_screen()
@@ -143,7 +144,9 @@ class Kanbaru(QMainWindow):
             - If username or password is empty, return False
             - If credentials are invalid, return False
         """
-        pass
+        username = Database.get_instance().username
+        password = Database.get_instance().password
+        return Auth.verify_credentials(username, password)
 
     def show_welcome_screen(self):
         """Shows the welcome screen."""

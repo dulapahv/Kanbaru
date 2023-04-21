@@ -44,13 +44,23 @@ class Auth:
             return 1
 
     @staticmethod
-    def verify_credentials(email: str, password: str) -> int:
+    def verify_credentials(email: str, password: str) -> bool:
         """Verifies the user's credentials.
-          - If the credentials are correct, return 0
-          - If the credentials are incorrect, return 1
+
+        Parameters
+        ----------
+        email : str
+            The user's email.
+        password : str
+            The user's password.
+
+        Returns
+        -------
+        bool
+            True if the credentials are valid, False otherwise.
         """
         try:
             auth.sign_in_with_email_and_password(email, password)
-            return 0
+            return True
         except:
-            return 1
+            return False
