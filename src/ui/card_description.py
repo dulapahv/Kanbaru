@@ -283,6 +283,7 @@ class CardDescription(QMainWindow):
                 yes_no=False,
                 btn_color=self.color
             )
+            self.title = self.card.title
             return None
         card_old = Card(self.card.title, self.card.date,
                         self.card.time, self.card.description)
