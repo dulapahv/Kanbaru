@@ -37,11 +37,14 @@ class Auth:
             credentials are invalid.
         """
         if not email or not password:
+            logging.info("Missing credentials!")
             return 1
         try:
             auth.sign_in_with_email_and_password(email, password)
+            logging.info("Login successful!")
             return 0
         except:
+            logging.info("Invalid credentials!")
             return 2
 
     @staticmethod
@@ -62,11 +65,14 @@ class Auth:
             credentials are invalid.
         """
         if not email or not password:
+            logging.info("Missing credentials!")
             return 1
         try:
             auth.create_user_with_email_and_password(email, password)
+            logging.info("Signup successful!")
             return 0
         except:
+            logging.info("User already exists!")
             return 2
 
     @staticmethod
@@ -87,6 +93,8 @@ class Auth:
         """
         try:
             auth.sign_in_with_email_and_password(email, password)
+            logging.info("Credentials verified!")
             return True
         except:
+            logging.info("Invalid credentials!")
             return False
