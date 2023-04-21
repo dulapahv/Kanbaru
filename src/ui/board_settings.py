@@ -304,7 +304,7 @@ class BoardSettings(QMainWindow):
                 if panel.title == text:
                     dialog_factory(
                         title="Invalid Name",
-                        msg="A panel with this name already exists.",
+                        msg=f'Panel "{text}" already exists!',
                         yes_no=False,
                         btn_color=self.color
                     )
@@ -333,7 +333,7 @@ class BoardSettings(QMainWindow):
                 if board.title == self.title_txt:
                     dialog_factory(
                         title="Invalid Name",
-                        msg="A board with this name already exists.",
+                        msg=f'Board "{self.title_txt}" already exists!',
                         yes_no=False,
                         btn_color=self.color
                     )
