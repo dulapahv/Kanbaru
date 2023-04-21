@@ -65,8 +65,10 @@ class WelcomeScreen(QMainWindow):
         if len(self.signup_password) >= 128:
             parent.ui.label_signup_msg.setText(
                 "Password must not exceed 128 characters!")
-        status = Auth.signup(self.signup_username, self.signup_password,
-                             self.signup_confirm_password)
+        if self.signup_password != self.signup_confirm_password:
+            parent.ui.label_signup_msg.setText("Passwords do not match!")
+        else:
+            status = Auth.signup(self.signup_username, self.signup_password)
         match status:
             case 0:
                 Database.get_instance().username = self.signup_username

@@ -6,7 +6,7 @@ from PySide6.QtWidgets import QMainWindow
 
 from db import Database
 from dialog import dialog_factory, input_dialog_factory
-from kanbaru_objects import Board, Color
+from kanbaru_objects import Board, Color, Panel
 from ui.board_settings_ui import Ui_BoardWindow
 from utils import keyPressEvent, modify_hex_color, setup_font_db
 
@@ -299,12 +299,21 @@ class BoardSettings(QMainWindow):
         )
         if text is None:
             return None
+        if text == "":
+            dialog_factory(
+                title="Invalid Name",
+                msg="Panel name cannot be empty!",
+                yes_no=False,
+                btn_color=self.color
+            )
+            self.rename(event)
+            return None
         for board in Database.get_instance().boards:
             for panel in board.panels:
                 if panel.title == text:
                     dialog_factory(
                         title="Invalid Name",
-                        msg="A panel with this name already exists.",
+                        msg=f'Panel "{text}" already exists!',
                         yes_no=False,
                         btn_color=self.color
                     )
@@ -313,8 +322,11 @@ class BoardSettings(QMainWindow):
         panel_obj = next(
             (panel for panel in self.board.panels if
              panel.title == selected_all[0].text()), None)
-        self.title = text
-        Database.get_instance().update_panel(panel_obj, self)
+        new_panel = Panel(
+            title=text,
+            card_lists=panel_obj.cards
+        )
+        Database.get_instance().update_panel(panel_obj, new_panel)
         self.ui.listWidget_manage_panel.takeItem(
             self.ui.listWidget_manage_panel.row(selected_all[0]))
         panel_obj.title = text
@@ -325,8 +337,26 @@ class BoardSettings(QMainWindow):
         """Deletes the selected panels and saves the board order."""
         for panel in self.panels_to_delete:
             Database.get_instance().delete_panel(panel)
-        if self.old_board != self:
-            Database.get_instance().update_board(self.old_board, self)
+        if self.old_board.title != self.title_txt:
+            for board in Database.get_instance().boards:
+                if not self.title_txt:
+                    dialog_factory(
+                        title="Invalid Name",
+                        msg="Board name cannot be empty!",
+                        yes_no=False,
+                        btn_color=self.color
+                    )
+                    self.title = self.old_board.title
+                    return None
+                if board.title == self.title_txt:
+                    dialog_factory(
+                        title="Invalid Name",
+                        msg=f'Board "{self.title_txt}" already exists!',
+                        yes_no=False,
+                        btn_color=self.color
+                    )
+                    return None
+        Database.get_instance().update_board(self.old_board, self)
         if len(self.new_panel_order) != 0:
             Database.get_instance().update_panel_order(
                 self.board, self.new_panel_order)
