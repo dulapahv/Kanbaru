@@ -299,6 +299,15 @@ class BoardSettings(QMainWindow):
         )
         if text is None:
             return None
+        if text == "":
+            dialog_factory(
+                title="Invalid Name",
+                msg="Panel name cannot be empty!",
+                yes_no=False,
+                btn_color=self.color
+            )
+            self.rename(event)
+            return None
         for board in Database.get_instance().boards:
             for panel in board.panels:
                 if panel.title == text:
@@ -330,6 +339,15 @@ class BoardSettings(QMainWindow):
             Database.get_instance().delete_panel(panel)
         if self.old_board.title != self.title_txt:
             for board in Database.get_instance().boards:
+                if not self.title_txt:
+                    dialog_factory(
+                        title="Invalid Name",
+                        msg="Board name cannot be empty!",
+                        yes_no=False,
+                        btn_color=self.color
+                    )
+                    self.title = self.old_board.title
+                    return None
                 if board.title == self.title_txt:
                     dialog_factory(
                         title="Invalid Name",
