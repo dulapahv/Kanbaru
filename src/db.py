@@ -217,6 +217,7 @@ class Database:
                 "Cannot pull database to Firebase: username is empty")
             return None
         logging.info("Pulling database from Firebase...")
+        username = username.replace(".", ",").replace("@", "_")
         ref = db.reference(username)
         try:
             self.__data = ref.get()
@@ -243,18 +244,17 @@ class Database:
             be raised.
         """
         if not username:
-            logging.warning(
-                "Cannot push database to Firebase: username is empty")
+            logging.warning("Cannot push database to Firebase: username is empty")
             return None
-        ref = db.reference(username)
+        encoded_username = username.replace(".", ",").replace("@", "_")
+        ref = db.reference(encoded_username)
         try:
             Database.read(self)
             logging.info("Uploading database to Firebase...")
             ref.set(self.__data)
             logging.info("Database uploaded to Firebase")
         except Exception as e:
-            logging.warning(
-                "Failed to upload database to Firebase!", exc_info=True)
+            logging.warning("Failed to upload database to Firebase!", exc_info=True)
 
     @property
     def username(self: "Database") -> str:
@@ -646,6 +646,7 @@ class Database:
         try:
             if self.username == "":
                 raise Exception("Illegal attempt to delete account!")
+            username = username.replace(".", ",").replace("@", "_")
             ref = db.reference(self.username)
             if ref is None:
                 raise Exception("User does not exist!")
