@@ -1,6 +1,8 @@
+from kanbaru_objects import Board, Card, Color, Panel
 import json
 import logging
 import os
+import sys
 from typing import Dict, List
 
 import firebase_admin
@@ -21,8 +23,6 @@ config = {
 firebase = pyrebase.initialize_app(config)
 
 auth = firebase.auth()
-
-from kanbaru_objects import Board, Card, Color, Panel
 
 
 class Database:
@@ -106,9 +106,8 @@ class Database:
                 "The application will now exit.", exc_info=True)
             raise Exception(
                 "Failed to create/access database file! "
-                "The application will now exit.")
+                "The application will now exit.", sys.exit(1))
         self.get_instance().read()
-
     def write(self: "Database") -> None:
         """Writes data from the database instance to the database file.
         If exceptions are raised, a new database file will be created.
@@ -133,9 +132,11 @@ class Database:
             self.create()
         except Exception as e:
             logging.warning(
-                "Failed to write data to database! "
-                "Creating new database...", exc_info=True)
-            self.create()
+                "Failed to create/access database file! "
+                "The application will now exit.", exc_info=True)
+            raise Exception(
+                "Failed to create/access database file! "
+                "The application will now exit.", sys.exit(1))
 
     def read(self: "Database") -> None:
         """Reads data from the database file and stores it in the database
@@ -260,7 +261,8 @@ class Database:
             be raised.
         """
         if not username:
-            logging.warning("Cannot push database to Firebase: username is empty")
+            logging.warning(
+                "Cannot push database to Firebase: username is empty")
             return None
         encoded_username = username.replace(".", ",").replace("@", "_")
         ref = db.reference(encoded_username)
@@ -270,7 +272,8 @@ class Database:
             ref.set(self.__data)
             logging.info("Database uploaded to Firebase")
         except Exception as e:
-            logging.warning("Failed to upload database to Firebase!", exc_info=True)
+            logging.warning(
+                "Failed to upload database to Firebase!", exc_info=True)
 
     @property
     def username(self: "Database") -> str:
@@ -662,7 +665,8 @@ class Database:
         try:
             if self.username == "":
                 raise Exception("Illegal attempt to delete account!")
-            user = auth.sign_in_with_email_and_password(self.username, self.password)
+            user = auth.sign_in_with_email_and_password(
+                self.username, self.password)
             self.username = self.username.replace(".", ",").replace("@", "_")
             ref = db.reference(self.username)
             if ref is None:
