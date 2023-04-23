@@ -54,6 +54,10 @@ class Kanbaru(QMainWindow):
     def __init__(self) -> None:
         QMainWindow.__init__(self)
 
+        # i dont care. im moving the timer here.
+        from PySide6.QtCore import QTimer
+        self.timer = QTimer(self)
+
         # Get current directory
         self.db_path = None
         self.path = get_current_directory()
@@ -84,6 +88,36 @@ class Kanbaru(QMainWindow):
             self.show_main_screen()
         else:
             self.show_welcome_screen()
+            self.init_mouse_tracking()
+
+    def init_mouse_tracking(self):
+        self.timer.timeout.connect(self.check_activity)
+        self.setMouseTracking(True)
+        self.uploaded = False
+
+    def start_timer(self):
+        self.timer.start(3000)
+
+    #TODO: IT DOESNT PUSH TO FIREBASE NOR DETECT MOUSE MOVEMENT
+    def check_activity(self):
+        if not QApplication.mouseButtons() and not QApplication.keyboardModifiers():
+            if not self.uploaded:
+                Database.get_instance().push_to_firebase(Database.get_instance().username)
+                logging.info("Pushed to Firebase")
+                print("Incase it doesn't work, I'm pushing to firebase")
+                self.uploaded = True
+            self.start_timer()
+    
+    def mouseMoveEvent(self, event):
+        self.start_timer()
+        logging.info("Mouse moved")
+        self.uploaded = False
+    
+    def keyPressEvent(self, event):
+        self.start_timer()
+        logging.info("Key pressed")
+        self.uploaded = False
+
 
     @staticmethod
     def init_event_logger(path: str, fmt: str, debug: bool = False,
