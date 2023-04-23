@@ -5,6 +5,22 @@ from typing import Dict, List
 
 import firebase_admin
 from firebase_admin import credentials, db
+import pyrebase
+
+config = {
+    "apiKey": "AIzaSyBO6wkCcjnEfiXqfDGDvHriyw5p5trmmdk",
+    "authDomain": "kanbaru-42069.firebaseapp.com",
+    "databaseURL": "https://kanbaru-42069-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "projectId": "kanbaru-42069",
+    "storageBucket": "kanbaru-42069.appspot.com",
+    "messagingSenderId": "750001844634",
+    "appId": "1:750001844634:web:048364d270fbddea1d4a23",
+    "measurementId": "G-MRP7PQ53QB"
+}
+
+firebase = pyrebase.initialize_app(config)
+
+auth = firebase.auth()
 
 from kanbaru_objects import Board, Card, Color, Panel
 
@@ -646,11 +662,13 @@ class Database:
         try:
             if self.username == "":
                 raise Exception("Illegal attempt to delete account!")
-            username = username.replace(".", ",").replace("@", "_")
+            user = auth.sign_in_with_email_and_password(self.username, self.password)
+            self.username = self.username.replace(".", ",").replace("@", "_")
             ref = db.reference(self.username)
             if ref is None:
                 raise Exception("User does not exist!")
             ref.delete()
+            auth.delete_user_account(user['idToken'])
             self.logout()
             logging.info("Account deleted")
         except Exception as e:
