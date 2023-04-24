@@ -5,6 +5,7 @@ from tkinter import Tk, messagebox
 
 if sys.version_info < (3, 10):
     print("Python 3.10 or higher is required to run Kanbaru. Please consider upgrading.")
+    sys.exit(1)
 
 try:
     from PySide6.QtWidgets import QApplication, QMainWindow

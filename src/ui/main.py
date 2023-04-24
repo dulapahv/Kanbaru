@@ -1,7 +1,7 @@
 import datetime
 import logging
 
-from PySide6.QtCore import QCoreApplication, QSize, Qt, Slot
+from PySide6.QtCore import QCoreApplication, QSize, Qt, Slot, QTimer
 from PySide6.QtGui import QCursor, QDropEvent, QFont
 from PySide6.QtWidgets import (QAbstractItemView, QAbstractScrollArea,
                                QApplication, QFrame, QLabel, QListWidget,
@@ -26,6 +26,7 @@ class MainScreen(QMainWindow):
 
         parent.ui = Ui_MainWindow()
         parent.ui.setupUi(parent)
+
 
         self.current_board: Board = Database.get_instance().boards[0]
 
