@@ -569,7 +569,6 @@ class Database:
         for index_b, board in enumerate(self.boards):
             for index_p, panel in enumerate(board.panels):
                 if panel == panel_delete:
-                    logging.info(f'Panel "{panel.title}" deleted.')
                     del self.data.get(
                         "_Database__data")[index_b].get(
                             "_Board__panels_lists")[index_p]

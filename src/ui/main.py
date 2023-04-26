@@ -27,7 +27,6 @@ class MainScreen(QMainWindow):
         parent.ui = Ui_MainWindow()
         parent.ui.setupUi(parent)
 
-
         self.current_board: Board = Database.get_instance().boards[0]
 
         parent.ui.btn_app_settings.clicked.connect(
@@ -683,6 +682,7 @@ class MainScreen(QMainWindow):
         )
         Database.get_instance().data = data
         Database.get_instance().write()
+        logging.info(f'Board "{text}" added')
         self.clear_page(parent)
         self.update_whole_page(parent)
         self.change_board(parent, Database.get_instance().boards[-1])
@@ -742,6 +742,7 @@ class MainScreen(QMainWindow):
                         panels_list
                 Database.get_instance().data = data
                 Database.get_instance().write()
+                logging.info(f'Panel "{text}" added to board {board.title}')
                 self.change_board(
                     parent, Database.get_instance().boards[i])
                 parent.ui.scrollArea_panel_right.horizontalScrollBar(
@@ -815,6 +816,8 @@ class MainScreen(QMainWindow):
                             }]
                     Database.get_instance().data = data
                     Database.get_instance().write()
+                    logging.info(
+                        f'Card "{text}" added to panel "{panel.title}"')
                     self.change_board(
                         parent, Database.get_instance().boards[i])
 
