@@ -474,8 +474,8 @@ class Database:
             The new list of panels to be updated to.
         """
         old_panel_list = board.panels
-        for index_b, board in enumerate(self.boards):
-            if board == board:
+        for index_b, board_ in enumerate(self.boards):
+            if board_ == board:
                 board_dict = self.data.get("_Database__data")[index_b]
                 board_dict["_Board__panels_lists"] = [
                     {
