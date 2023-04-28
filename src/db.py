@@ -3,26 +3,8 @@ import json
 import logging
 import os
 import sys
+import pickle # REMOTE CODE EXECUTION TIME
 from typing import Dict, List
-
-import firebase_admin
-from firebase_admin import credentials, db
-import pyrebase
-
-config = {
-    "apiKey": "AIzaSyBO6wkCcjnEfiXqfDGDvHriyw5p5trmmdk",
-    "authDomain": "kanbaru-42069.firebaseapp.com",
-    "databaseURL": "https://kanbaru-42069-default-rtdb.asia-southeast1.firebasedatabase.app",
-    "projectId": "kanbaru-42069",
-    "storageBucket": "kanbaru-42069.appspot.com",
-    "messagingSenderId": "750001844634",
-    "appId": "1:750001844634:web:048364d270fbddea1d4a23",
-    "measurementId": "G-MRP7PQ53QB"
-}
-
-firebase = pyrebase.initialize_app(config)
-
-auth = firebase.auth()
 
 
 class Database:
@@ -40,8 +22,6 @@ class Database:
             "Database class is a singleton class!"
         Database._instance = self
 
-        self.__username: str = ""
-        self.__password: str = ""
         self._db_path: str = ""
         self.__data: List[Dict] = [vars(Board())]
 
@@ -97,8 +77,8 @@ class Database:
         """
         try:
             os.makedirs(os.path.dirname(self._db_path), exist_ok=True)
-            with open(self._db_path, "w") as f:
-                json.dump(vars(self.get_instance()), f, indent=4)
+            with open(self._db_path, "wb") as f:
+                pickle.dump(self.__data, f)
             logging.info("Database file created")
         except Exception as e:
             logging.warning(
@@ -123,7 +103,7 @@ class Database:
         """
         try:
             with open(self._db_path, "w") as f:
-                json.dump(self.__data, f, indent=4)
+                pickle.dump(self.__data, f)
                 logging.info("Database written to the database file")
         except FileNotFoundError:
             logging.warning(
@@ -155,9 +135,7 @@ class Database:
         logging.info("Reading database file...")
         try:
             with open(self._db_path, "r") as f:
-                self.__data = json.load(f)
-                self.__username = self.__data.get("_Database__username", "")
-                self.__password = self.__data.get("_Database__password", "")
+                self.__data = pickle.load(f)
         except FileNotFoundError:
             logging.warning(
                 "Database file not found! "
@@ -184,142 +162,7 @@ class Database:
                     logging.info(f'|   |   +--"{card.title}"')
         logging.info("Database read from the database file")
 
-    @staticmethod
-    def init_firebase(cred_path: str) -> None:
-        """Initializes Firebase.
 
-        Parameters
-        ----------
-        cred_path : str
-            The path of the Firebase credentials file.
-
-        Raises
-        ------
-        Exception
-            If Firebase cannot be initialized, an exception will be raised.
-        """
-        if not cred_path:
-            logging.warning(
-                "Cannot initialize Firebase: credential path is empty")
-            return None
-        logging.info("Initializing Firebase...")
-        cred = credentials.Certificate(cred_path)
-        url = ('https://kanbaru-42069-default-rtdb.asia-southeast1.'
-               'firebasedatabase.app/')
-        try:
-            firebase_admin.initialize_app(
-                cred, {'databaseURL': url})
-            logging.info("Firebase credentials initialized")
-        except Exception as e:
-            logging.warning(
-                "Failed to initialize Firebase!", exc_info=True)
-
-    def pull_from_firebase(self: "Database", username: str) -> None:
-        """Pulls the database of a user from Firebase then writes it to the
-        database file.
-
-        Parameters
-        ----------
-        username : str
-            The username of the user whose database is to be pulled.
-
-        Raises
-        ------
-        Exception
-            If the database cannot be pulled from Firebase, an exception will
-            be raised.
-        """
-        if not username:
-            logging.warning(
-                "Cannot pull database to Firebase: username is empty")
-            return None
-        logging.info("Pulling database from Firebase...")
-        username = username.replace(".", ",").replace("@", "_")
-        ref = db.reference(username)
-        try:
-            self.__data = ref.get()
-            self.username = self.__data.get("_Database__username")
-            self.password = self.__data.get("_Database__password")
-            logging.info("Database pulled from Firebase")
-            Database.write(self)
-        except Exception as e:
-            logging.warning(
-                "Failed to pull database from Firebase!", exc_info=True)
-
-    def push_to_firebase(self: "Database", username: str) -> None:
-        """Pushes the database of a user to Firebase.
-
-        Parameters
-        ----------
-        username : str
-            The username of the user whose database is to be pushed.
-
-        Raises
-        ------
-        Exception
-            If the database cannot be uploaded to Firebase, an exception will
-            be raised.
-        """
-        if not username:
-            logging.warning(
-                "Cannot push database to Firebase: username is empty")
-            return None
-        encoded_username = username.replace(".", ",").replace("@", "_")
-        ref = db.reference(encoded_username)
-        try:
-            Database.read(self)
-            logging.info("Uploading database to Firebase...")
-            ref.set(self.__data)
-            logging.info("Database uploaded to Firebase")
-        except Exception as e:
-            logging.warning(
-                "Failed to upload database to Firebase!", exc_info=True)
-
-    @property
-    def username(self: "Database") -> str:
-        """Returns the username of the user.
-
-        Returns
-        -------
-        username : str
-            The username of the user.
-        """
-        return self.__username
-
-    @property
-    def password(self: "Database") -> str:
-        """Returns the password of the user.
-
-        Returns
-        -------
-        password : str
-            The password of the user.
-        """
-        return self.__password
-
-    @username.setter
-    def username(self: "Database", username: str) -> None:
-        """Sets the username of the user.
-
-        Parameters
-        ----------
-        username : str
-            The username of the user.
-        """
-        self.__username = username
-        self.__data["_Database__username"] = username
-
-    @password.setter
-    def password(self: "Database", password: str) -> None:
-        """Sets the password of the user.
-
-        Parameters
-        ----------
-        password : str
-            The password of the user.
-        """
-        self.__password = password
-        self.__data["_Database__password"] = password
 
     @property
     def boards(self: "Database") -> List[Board]:
@@ -631,52 +474,7 @@ class Database:
             The data of the database.
         """
         self.__data = data
-
-    def logout(self: "Database") -> None:
-        """Logs the user out of the application.
-
-        Raises
-        ------
-        Exception
-            If the database cannot be written to the database file, an
-            exception will be raised.
-        """
-        logging.info("Logging out...")
-        self.username: str = ""
-        self.password: str = ""
-        self.__data: List[Dict] = [vars(Board())]
-        try:
-            Database.create(self)
-            logging.info("Logged out")
-        except Exception as e:
-            logging.warning("Failed to log out!", exc_info=True)
-
-    def delete_account(self: "Database") -> None:
-        """Deletes the user's account.
-
-        Raises
-        ------
-        Exception
-            If the database cannot be deleted from the database file, an
-            exception will be raised.
-        """
-        logging.info("Deleting account...")
-        try:
-            if self.username == "":
-                raise Exception("Illegal attempt to delete account!")
-            user = auth.sign_in_with_email_and_password(
-                self.username, self.password)
-            self.username = self.username.replace(".", ",").replace("@", "_")
-            ref = db.reference(self.username)
-            if ref is None:
-                raise Exception("User does not exist!")
-            ref.delete()
-            auth.delete_user_account(user['idToken'])
-            self.logout()
-            logging.info("Account deleted")
-        except Exception as e:
-            logging.warning("Failed to delete account!", exc_info=True)
-
+  
     def __str__(self: "Database") -> str:
         """Returns the database instance as a stringified dictionary.
 
