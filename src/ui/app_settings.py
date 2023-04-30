@@ -29,25 +29,6 @@ class AppSettings(QMainWindow):
         self.ui.btn_delete.clicked.connect(self.delete)
         self.ui.btn_cancel.clicked.connect(self.close)
         self.ui.btn_save.clicked.connect(self.save)
-        self.ui.btn_logout.clicked.connect(
-            lambda: dialog_factory(
-                parent=parent,
-                function=self.logout,
-                title="Logout",
-                msg="Are you sure you want to logout?",
-                btn_color=self.color
-            )
-        )
-        self.ui.btn_delete_account.clicked.connect(
-            lambda: dialog_factory(
-                parent=parent,
-                function=self.delete_account,
-                title="Delete Account",
-                msg="Are you sure you want to delete your account?\n"
-                "This action cannot be undone.",
-                btn_color=self.color
-            )
-        )
 
         self.ui.btn_delete.keyPressEvent = lambda event: keyPressEvent(
             event, function=self.delete(event))
@@ -55,28 +36,6 @@ class AppSettings(QMainWindow):
             event, function=self.close)
         self.ui.btn_save.keyPressEvent = lambda event: keyPressEvent(
             event, function=self.save)
-        self.ui.btn_logout.keyPressEvent = lambda event: keyPressEvent(
-            event, parent,
-            dialog_factory(
-                parent=parent,
-                function=self.logout,
-                title="Logout",
-                msg="Are you sure you want to logout?",
-                btn_color=self.color
-            )
-        )
-        self.ui.btn_delete_account.keyPressEvent = lambda event: keyPressEvent(
-            event,
-            parent,
-            dialog_factory(
-                parent=parent,
-                function=self.delete_account,
-                title="Delete Account",
-                msg="Are you sure you want to delete your account?\n"
-                "This action cannot be undone.",
-                btn_color=self.color
-            )
-        )
 
         self.ui.listWidget_manage_board.verticalScrollBar().setSingleStep(10)
         self.ui.listWidget_manage_board.model().rowsMoved.connect(
@@ -274,10 +233,7 @@ class AppSettings(QMainWindow):
         toruspro = setup_font_db("TorusPro.ttf")[0]
         self.ui.label_app_settings.setFont(QFont(toruspro, 28))
         self.ui.label_manage_board.setFont(QFont(toruspro, 14, QFont.Bold))
-        self.ui.label_manage_account.setFont(QFont(toruspro, 14, QFont.Bold))
         self.ui.label_manage_board_desc.setFont(QFont(toruspro, 11))
         self.ui.btn_delete.setFont(QFont(toruspro, 12))
-        self.ui.btn_logout.setFont(QFont(toruspro, 12))
-        self.ui.btn_delete_account.setFont(QFont(toruspro, 12))
         self.ui.btn_cancel.setFont(QFont(toruspro, 12))
         self.ui.btn_save.setFont(QFont(toruspro, 12))
