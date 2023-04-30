@@ -9,7 +9,6 @@ if sys.version_info < (3, 10):
 
 try:
     from PySide6.QtWidgets import QApplication, QMainWindow
-    from auth import Auth
     from db import Database
     from ui.main import MainScreen
     from ui.welcome import WelcomeScreen
@@ -42,7 +41,6 @@ except ModuleNotFoundError:
         finally:
             from PySide6.QtWidgets import QApplication, QMainWindow
 
-            from auth import Auth
             from db import Database
             from ui.main import MainScreen
             from ui.welcome import WelcomeScreen
@@ -79,36 +77,6 @@ class Kanbaru(QMainWindow):
 
         # straight to the main screen
         self.show_main_screen()
-        self.init_mouse_tracking()
-
-    def init_mouse_tracking(self):
-        self.timer.timeout.connect(self.check_activity)
-        self.setMouseTracking(True)
-        self.uploaded = False
-
-    def start_timer(self):
-        self.timer.start(3000)
-
-    #TODO: IT DOESNT PUSH TO FIREBASE NOR DETECT MOUSE MOVEMENT
-    def check_activity(self):
-        if not QApplication.mouseButtons() and not QApplication.keyboardModifiers():
-            if not self.uploaded:
-                Database.get_instance().push_to_firebase(Database.get_instance().username)
-                logging.info("Pushed to Firebase")
-                print("Incase it doesn't work, I'm pushing to firebase")
-                self.uploaded = True
-            self.start_timer()
-    
-    def mouseMoveEvent(self, event):
-        self.start_timer()
-        logging.info("Mouse moved")
-        self.uploaded = False
-    
-    def keyPressEvent(self, event):
-        self.start_timer()
-        logging.info("Key pressed")
-        self.uploaded = False
-
 
     @staticmethod
     def init_event_logger(path: str, fmt: str, debug: bool = False,
@@ -140,12 +108,12 @@ class Kanbaru(QMainWindow):
             logging.info("Windows OS detected")
             self.db_path = os.path.join(
                 os.path.expanduser(
-                    "~"), "Documents", "Kanbaru", "Database.json"
+                    "~"), "Documents", "Kanbaru", "Database.pickle"
             )
         else:
             logging.info("Unix OS detected")
             self.db_path = os.path.join(
-                os.path.expanduser("~"), "Kanbaru", "Database.json"
+                os.path.expanduser("~"), "Kanbaru", "Database.pickle"
             )
         db = Database.get_instance()
         db.set_path(self.db_path)
