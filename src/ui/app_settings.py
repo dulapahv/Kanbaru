@@ -213,6 +213,15 @@ class AppSettings(QMainWindow):
                 btn_color=self.color
             )
             return None
+        if len(selected_all) == len(Database.get_instance().boards):
+            dialog_factory(
+                title="Invalid Selection",
+                msg="You cannot delete all boards. Please select at least one "
+                "board to keep.",
+                yes_no=False,
+                btn_color=self.color
+            )
+            return None
         msg_list = '\n'.join(
             ["  - " + item for item in list(
                 map(lambda x: x.text(), selected_all))])
