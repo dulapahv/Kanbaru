@@ -870,8 +870,7 @@ class MainScreen(QMainWindow):
         """
         data = Database.get_instance().data
         source_list = next(
-            (pan for pan in data.get("_Database__data", [{}])[0].get(
-                "_Board__panels_lists", [])
+            (pan for pan in data[0].get("_Board__panels_lists", [])
              if pan.get("_Panel__title") == getattr(source, "data").title), {})
         card_to_move = next(
             (card_ for card_ in source_list.get("_Board__panels", [])
@@ -879,8 +878,7 @@ class MainScreen(QMainWindow):
         if card_to_move:
             source_list.get("_Board__panels").remove(card_to_move)
             dest_list = next(
-                (pan for pan in data.get("_Database__data", [{}])[0].get(
-                    "_Board__panels_lists", [])
+                (pan for pan in data[0].get("_Board__panels_lists", [])
                  if pan.get("_Panel__title") == getattr(
                      destination, "data").title), {})
             try:

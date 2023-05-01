@@ -389,10 +389,11 @@ class Database:
             for index_p, panel in enumerate(board.panels):
                 for index_c, card in enumerate(panel.cards):
                     if card == card_delete:
-                        del self.data[index_b][index_p].get(
-                            "_Board__panels")[index_c]
+                        del self.data[index_b].get(
+                            "_Board__panels_lists")[index_p].get(
+                                "_Board__panels")[index_c]
                         Database.write(self)
-                        logging.info(f'Card "{card_delete.title}" deleted')
+                        logging.info(f'Card "{card.title}" deleted')
                         return None
 
     def delete_panel(self: "Database", panel_delete: Panel) -> None:
