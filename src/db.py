@@ -3,14 +3,14 @@ import json
 import logging
 import os
 import sys
-import pickle  # REMOTE CODE EXECUTION TIME
+import pickle
 from typing import Dict, List
 
 
 class Database:
     """
     Singleton class for database. This class is used to store, retrieve, and
-    manipulate data from the local database and the Firebase.
+    manipulate data from the local database.
 
     Use `Database.get_instance()` to get the instance of the database class.
     """

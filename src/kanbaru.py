@@ -121,34 +121,6 @@ class Kanbaru(QMainWindow):
         logging.info(f'Database path: "{db.get_path()}"')
         logging.info("Database instance initialized and read successfully")
 
-    @staticmethod
-    def initialize_firebase_database(
-        db_instance: Database, cred_path: str
-    ) -> None:
-        """Initializes the Firebase database instance.
-        - Set database instance
-        - Set credential path
-        - Set up Firebase database
-        """
-        db_instance.init_firebase(cred_path)
-        logging.info("Firebase database initialized and connected")
-
-    @staticmethod
-    def check_credentials() -> bool:
-        """Checks credentials from the database file.
-            - Get username and password from database file
-            - If username or password is empty, return False
-            - If credentials are invalid, return False
-        """
-        username = Database.get_instance().username
-        password = Database.get_instance().password
-        return Auth.verify_credentials(username, password)
-
-    def show_welcome_screen(self):
-        """Shows the welcome screen."""
-        logging.info("Going to welcome screen...")
-        WelcomeScreen(self)
-
     def show_main_screen(self):
         """Shows the main screen."""
         logging.info("Going to main screen...")
