@@ -365,7 +365,7 @@ class Ui_SettingsWindow(object):
         self.verticalLayout_3.addWidget(self.widget)
 
         SettingsWindow.setCentralWidget(self.centralwidget)
-        QWidget.setTabOrder(self.widget1, self.listWidget_manage_board)
+        QWidget.setTabOrder(self.widget, self.listWidget_manage_board)
         QWidget.setTabOrder(self.listWidget_manage_board, self.btn_delete)
         QWidget.setTabOrder(self.btn_delete, self.btn_about)
         QWidget.setTabOrder(self.btn_about, self.btn_cancel)
