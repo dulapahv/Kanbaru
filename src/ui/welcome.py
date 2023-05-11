@@ -1,7 +1,6 @@
 from PySide6.QtGui import QFont
 from PySide6.QtWidgets import QMainWindow
 
-from auth import Auth
 from db import Database
 from ui.main import MainScreen
 from ui.welcome_ui import Ui_WelcomeWindow

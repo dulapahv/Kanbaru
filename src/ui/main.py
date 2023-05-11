@@ -673,7 +673,7 @@ class MainScreen(QMainWindow):
                 btn_color=self.current_board.color
             )
         data = Database.get_instance().data
-        data["_Database__data"].append(
+        data.append(
             {
                 "_Board__title": text,
                 "_Board__panels_lists": [],
@@ -724,9 +724,8 @@ class MainScreen(QMainWindow):
         data = Database.get_instance().data
         for i, db_board in enumerate(Database.get_instance().boards):
             if db_board.title == board.title:
-                panels_list = data.get(
-                    "_Database__data")[i].get(
-                        "_Board__panels_lists")
+                panels_list = data[i].get(
+                    "_Board__panels_lists")
                 try:
                     panel = {
                         "_Panel__title": text,
@@ -791,17 +790,16 @@ class MainScreen(QMainWindow):
                         self.add_card(parent, panel)
                         return None
                     try:
-                        data.get(
-                            "_Database__data")[i].get(
-                                "_Board__panels_lists")[j].get(
-                                    "_Board__panels").append({
-                                        "_Card__title": text,
-                                        "_Card__description": "",
-                                        "_Card__date": datetime.date.today()
-                                        .strftime("%d-%m-%Y"),
-                                        "_Card__time": datetime.datetime.now()
-                                        .strftime("%H:%M")
-                                    })
+                        data[i].get(
+                            "_Board__panels_lists")[j].get(
+                            "_Board__panels").append({
+                                "_Card__title": text,
+                                "_Card__description": "",
+                                "_Card__date": datetime.date.today()
+                                .strftime("%d-%m-%Y"),
+                                "_Card__time": datetime.datetime.now()
+                                .strftime("%H:%M")
+                            })
                     except KeyError:
                         data.get(
                             "_Database__data")[i].get(
@@ -872,8 +870,7 @@ class MainScreen(QMainWindow):
         """
         data = Database.get_instance().data
         source_list = next(
-            (pan for pan in data.get("_Database__data", [{}])[0].get(
-                "_Board__panels_lists", [])
+            (pan for pan in data[0].get("_Board__panels_lists", [])
              if pan.get("_Panel__title") == getattr(source, "data").title), {})
         card_to_move = next(
             (card_ for card_ in source_list.get("_Board__panels", [])
@@ -881,8 +878,7 @@ class MainScreen(QMainWindow):
         if card_to_move:
             source_list.get("_Board__panels").remove(card_to_move)
             dest_list = next(
-                (pan for pan in data.get("_Database__data", [{}])[0].get(
-                    "_Board__panels_lists", [])
+                (pan for pan in data[0].get("_Board__panels_lists", [])
                  if pan.get("_Panel__title") == getattr(
                      destination, "data").title), {})
             try:

@@ -247,97 +247,10 @@ class Ui_SettingsWindow(object):
 
         self.verticalLayout_2.addLayout(self.horizontalLayout_4)
 
-        self.line_1 = QFrame(self.widget1)
-        self.line_1.setObjectName(u"line_1")
-        self.line_1.setStyleSheet(u"background-color: #9096a6;")
-        self.line_1.setFrameShadow(QFrame.Plain)
-        self.line_1.setLineWidth(0)
-        self.line_1.setMidLineWidth(0)
-        self.line_1.setFrameShape(QFrame.HLine)
-
-        self.verticalLayout_2.addWidget(self.line_1)
-
-        self.label_manage_account = QLabel(self.widget1)
-        self.label_manage_account.setObjectName(u"label_manage_account")
-        self.label_manage_account.setFont(font1)
-        self.label_manage_account.setStyleSheet(u"color: #282c33;")
-        self.label_manage_account.setWordWrap(True)
-
-        self.verticalLayout_2.addWidget(self.label_manage_account)
-
         self.horizontalLayout_2 = QHBoxLayout()
         self.horizontalLayout_2.setObjectName(u"horizontalLayout_2")
-        self.btn_logout = QPushButton(self.widget1)
-        self.btn_logout.setObjectName(u"btn_logout")
-        sizePolicy1.setHeightForWidth(self.btn_logout.sizePolicy().hasHeightForWidth())
-        self.btn_logout.setSizePolicy(sizePolicy1)
-        self.btn_logout.setMinimumSize(QSize(110, 30))
-        self.btn_logout.setFont(font4)
-        self.btn_logout.setCursor(QCursor(Qt.PointingHandCursor))
-        self.btn_logout.setFocusPolicy(Qt.TabFocus)
-        self.btn_logout.setStyleSheet(u"QPushButton {\n"
-"	background-color: #acb2bf;\n"
-"	color: #ffffff;\n"
-"	border-radius: 5px\n"
-"}\n"
-"\n"
-"QPushButton:hover {\n"
-"	background-color: #7e828c;\n"
-"}\n"
-"\n"
-"QPushButton:focus {\n"
-"	border-color: #000000;\n"
-"	border-width: 1.5px;\n"
-"	border-style: solid;\n"
-"}\n"
-"")
-        icon1 = QIcon()
-        icon1.addFile(u":/img/resources/img/logout.png", QSize(), QIcon.Normal, QIcon.Off)
-        self.btn_logout.setIcon(icon1)
-
-        self.horizontalLayout_2.addWidget(self.btn_logout)
-
-        self.horizontalSpacer_2 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
-
-        self.horizontalLayout_2.addItem(self.horizontalSpacer_2)
-
 
         self.verticalLayout_2.addLayout(self.horizontalLayout_2)
-
-        self.btn_delete_account = QPushButton(self.widget1)
-        self.btn_delete_account.setObjectName(u"btn_delete_account")
-        sizePolicy1.setHeightForWidth(self.btn_delete_account.sizePolicy().hasHeightForWidth())
-        self.btn_delete_account.setSizePolicy(sizePolicy1)
-        self.btn_delete_account.setMinimumSize(QSize(160, 30))
-        self.btn_delete_account.setFont(font4)
-        self.btn_delete_account.setCursor(QCursor(Qt.PointingHandCursor))
-        self.btn_delete_account.setFocusPolicy(Qt.TabFocus)
-        self.btn_delete_account.setStyleSheet(u"QPushButton {\n"
-"	border-color: #d63a3e;\n"
-"	border-width: 1.5px;\n"
-"	border-style: solid;\n"
-"	color: #282c33;\n"
-"	border-radius: 5px\n"
-"}\n"
-"\n"
-"QPushButton:hover {\n"
-"	background-color: #d63a3e;\n"
-"	color: #ffffff;\n"
-"}\n"
-"\n"
-"QPushButton:focus {\n"
-"	border-color: #000000;\n"
-"	border-width: 1.5px;\n"
-"	border-style: solid;\n"
-"	background-color: #d63a3e;\n"
-"	color: #ffffff;\n"
-"}\n"
-"")
-        icon2 = QIcon()
-        icon2.addFile(u":/img/resources/img/delete.png", QSize(), QIcon.Normal, QIcon.Off)
-        self.btn_delete_account.setIcon(icon2)
-
-        self.verticalLayout_2.addWidget(self.btn_delete_account)
 
         self.line_2 = QFrame(self.widget1)
         self.line_2.setObjectName(u"line_2")
@@ -454,9 +367,7 @@ class Ui_SettingsWindow(object):
         SettingsWindow.setCentralWidget(self.centralwidget)
         QWidget.setTabOrder(self.widget1, self.listWidget_manage_board)
         QWidget.setTabOrder(self.listWidget_manage_board, self.btn_delete)
-        QWidget.setTabOrder(self.btn_delete, self.btn_logout)
-        QWidget.setTabOrder(self.btn_logout, self.btn_delete_account)
-        QWidget.setTabOrder(self.btn_delete_account, self.btn_about)
+        QWidget.setTabOrder(self.btn_delete, self.btn_about)
         QWidget.setTabOrder(self.btn_about, self.btn_cancel)
         QWidget.setTabOrder(self.btn_cancel, self.btn_save)
 
@@ -472,9 +383,6 @@ class Ui_SettingsWindow(object):
         self.label_manage_board_desc.setText(QCoreApplication.translate("SettingsWindow", u"Drag to rearrange. Select and press Delete to delete.\n"
 "You can select multiple boards at the same time.", None))
         self.btn_delete.setText(QCoreApplication.translate("SettingsWindow", u"Delete Board", None))
-        self.label_manage_account.setText(QCoreApplication.translate("SettingsWindow", u"Manage Account", None))
-        self.btn_logout.setText(QCoreApplication.translate("SettingsWindow", u"Logout", None))
-        self.btn_delete_account.setText(QCoreApplication.translate("SettingsWindow", u"Delete Account", None))
         self.btn_about.setText(QCoreApplication.translate("SettingsWindow", u"About", None))
         self.btn_cancel.setText(QCoreApplication.translate("SettingsWindow", u"Cancel", None))
         self.btn_save.setText(QCoreApplication.translate("SettingsWindow", u"Save", None))

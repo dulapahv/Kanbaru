@@ -9,7 +9,6 @@ if sys.version_info < (3, 10):
 
 try:
     from PySide6.QtWidgets import QApplication, QMainWindow
-    from auth import Auth
     from db import Database
     from ui.main import MainScreen
     from ui.welcome import WelcomeScreen
@@ -42,7 +41,6 @@ except ModuleNotFoundError:
         finally:
             from PySide6.QtWidgets import QApplication, QMainWindow
 
-            from auth import Auth
             from db import Database
             from ui.main import MainScreen
             from ui.welcome import WelcomeScreen
@@ -77,48 +75,8 @@ class Kanbaru(QMainWindow):
         # Initialize local database
         self.initialize_local_database()
 
-        # Initialize Firebase database
-        self.initialize_firebase_database(Database.get_instance(), os.path.join(
-            self.path, "resources", "kanbaru-credentials.json"))
-        # Database.get_instance().push_to_firebase("test")
-        # self.show_main_screen()
-        # Check if user is logged in, if not, prompt login
-
-        if self.check_credentials():
-            Database.get_instance().pull_from_firebase(Database.get_instance().username)
-            self.show_main_screen()
-        else:
-            self.show_welcome_screen()
-            self.init_mouse_tracking()
-
-    def init_mouse_tracking(self):
-        self.timer.timeout.connect(self.check_activity)
-        self.setMouseTracking(True)
-        self.uploaded = False
-
-    def start_timer(self):
-        self.timer.start(3000)
-
-    #TODO: IT DOESNT PUSH TO FIREBASE NOR DETECT MOUSE MOVEMENT
-    def check_activity(self):
-        if not QApplication.mouseButtons() and not QApplication.keyboardModifiers():
-            if not self.uploaded:
-                Database.get_instance().push_to_firebase(Database.get_instance().username)
-                logging.info("Pushed to Firebase")
-                print("Incase it doesn't work, I'm pushing to firebase")
-                self.uploaded = True
-            self.start_timer()
-    
-    def mouseMoveEvent(self, event):
-        self.start_timer()
-        logging.info("Mouse moved")
-        self.uploaded = False
-    
-    def keyPressEvent(self, event):
-        self.start_timer()
-        logging.info("Key pressed")
-        self.uploaded = False
-
+        # straight to the main screen
+        self.show_main_screen()
 
     @staticmethod
     def init_event_logger(path: str, fmt: str, debug: bool = False,
@@ -150,46 +108,18 @@ class Kanbaru(QMainWindow):
             logging.info("Windows OS detected")
             self.db_path = os.path.join(
                 os.path.expanduser(
-                    "~"), "Documents", "Kanbaru", "Database.json"
+                    "~"), "Documents", "Kanbaru", "Database.pickle"
             )
         else:
             logging.info("Unix OS detected")
             self.db_path = os.path.join(
-                os.path.expanduser("~"), "Kanbaru", "Database.json"
+                os.path.expanduser("~"), "Kanbaru", "Database.pickle"
             )
         db = Database.get_instance()
         db.set_path(self.db_path)
         db.read()
         logging.info(f'Database path: "{db.get_path()}"')
         logging.info("Database instance initialized and read successfully")
-
-    @staticmethod
-    def initialize_firebase_database(
-        db_instance: Database, cred_path: str
-    ) -> None:
-        """Initializes the Firebase database instance.
-        - Set database instance
-        - Set credential path
-        - Set up Firebase database
-        """
-        db_instance.init_firebase(cred_path)
-        logging.info("Firebase database initialized and connected")
-
-    @staticmethod
-    def check_credentials() -> bool:
-        """Checks credentials from the database file.
-            - Get username and password from database file
-            - If username or password is empty, return False
-            - If credentials are invalid, return False
-        """
-        username = Database.get_instance().username
-        password = Database.get_instance().password
-        return Auth.verify_credentials(username, password)
-
-    def show_welcome_screen(self):
-        """Shows the welcome screen."""
-        logging.info("Going to welcome screen...")
-        WelcomeScreen(self)
 
     def show_main_screen(self):
         """Shows the main screen."""

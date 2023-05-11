@@ -1,34 +1,15 @@
 from kanbaru_objects import Board, Card, Color, Panel
-import json
 import logging
 import os
 import sys
+import pickle
 from typing import Dict, List
-
-import firebase_admin
-from firebase_admin import credentials, db
-import pyrebase
-
-config = {
-    "apiKey": "AIzaSyBO6wkCcjnEfiXqfDGDvHriyw5p5trmmdk",
-    "authDomain": "kanbaru-42069.firebaseapp.com",
-    "databaseURL": "https://kanbaru-42069-default-rtdb.asia-southeast1.firebasedatabase.app",
-    "projectId": "kanbaru-42069",
-    "storageBucket": "kanbaru-42069.appspot.com",
-    "messagingSenderId": "750001844634",
-    "appId": "1:750001844634:web:048364d270fbddea1d4a23",
-    "measurementId": "G-MRP7PQ53QB"
-}
-
-firebase = pyrebase.initialize_app(config)
-
-auth = firebase.auth()
 
 
 class Database:
     """
     Singleton class for database. This class is used to store, retrieve, and
-    manipulate data from the local database and the Firebase.
+    manipulate data from the local database.
 
     Use `Database.get_instance()` to get the instance of the database class.
     """
@@ -40,8 +21,6 @@ class Database:
             "Database class is a singleton class!"
         Database._instance = self
 
-        self.__username: str = ""
-        self.__password: str = ""
         self._db_path: str = ""
         self.__data: List[Dict] = [vars(Board())]
 
@@ -97,8 +76,8 @@ class Database:
         """
         try:
             os.makedirs(os.path.dirname(self._db_path), exist_ok=True)
-            with open(self._db_path, "w") as f:
-                json.dump(vars(self.get_instance()), f, indent=4)
+            with open(self._db_path, "wb") as f:
+                pickle.dump(self.__data, f)
             logging.info("Database file created")
         except Exception as e:
             logging.warning(
@@ -108,6 +87,7 @@ class Database:
                 "Failed to create/access database file! "
                 "The application will now exit.", sys.exit(1))
         self.get_instance().read()
+
     def write(self: "Database") -> None:
         """Writes data from the database instance to the database file.
         If exceptions are raised, a new database file will be created.
@@ -122,8 +102,8 @@ class Database:
             raised and a new database file will be created.
         """
         try:
-            with open(self._db_path, "w") as f:
-                json.dump(self.__data, f, indent=4)
+            with open(self._db_path, "wb") as f:
+                pickle.dump(self.__data, f)
                 logging.info("Database written to the database file")
         except FileNotFoundError:
             logging.warning(
@@ -154,10 +134,8 @@ class Database:
         """
         logging.info("Reading database file...")
         try:
-            with open(self._db_path, "r") as f:
-                self.__data = json.load(f)
-                self.__username = self.__data.get("_Database__username", "")
-                self.__password = self.__data.get("_Database__password", "")
+            with open(self._db_path, "rb") as f:
+                self.__data = pickle.load(f)
         except FileNotFoundError:
             logging.warning(
                 "Database file not found! "
@@ -168,7 +146,6 @@ class Database:
                 "Failed to read data from database! "
                 "Creating new database...", exc_info=True)
             self.create()
-        logging.info(f"Username: {self.username}")
         logging.info(
             f"Loaded {len(self.boards)} "
             f"board{'s' if len(self.boards) > 1 else ''}")
@@ -184,143 +161,6 @@ class Database:
                     logging.info(f'|   |   +--"{card.title}"')
         logging.info("Database read from the database file")
 
-    @staticmethod
-    def init_firebase(cred_path: str) -> None:
-        """Initializes Firebase.
-
-        Parameters
-        ----------
-        cred_path : str
-            The path of the Firebase credentials file.
-
-        Raises
-        ------
-        Exception
-            If Firebase cannot be initialized, an exception will be raised.
-        """
-        if not cred_path:
-            logging.warning(
-                "Cannot initialize Firebase: credential path is empty")
-            return None
-        logging.info("Initializing Firebase...")
-        cred = credentials.Certificate(cred_path)
-        url = ('https://kanbaru-42069-default-rtdb.asia-southeast1.'
-               'firebasedatabase.app/')
-        try:
-            firebase_admin.initialize_app(
-                cred, {'databaseURL': url})
-            logging.info("Firebase credentials initialized")
-        except Exception as e:
-            logging.warning(
-                "Failed to initialize Firebase!", exc_info=True)
-
-    def pull_from_firebase(self: "Database", username: str) -> None:
-        """Pulls the database of a user from Firebase then writes it to the
-        database file.
-
-        Parameters
-        ----------
-        username : str
-            The username of the user whose database is to be pulled.
-
-        Raises
-        ------
-        Exception
-            If the database cannot be pulled from Firebase, an exception will
-            be raised.
-        """
-        if not username:
-            logging.warning(
-                "Cannot pull database to Firebase: username is empty")
-            return None
-        logging.info("Pulling database from Firebase...")
-        username = username.replace(".", ",").replace("@", "_")
-        ref = db.reference(username)
-        try:
-            self.__data = ref.get()
-            self.username = self.__data.get("_Database__username")
-            self.password = self.__data.get("_Database__password")
-            logging.info("Database pulled from Firebase")
-            Database.write(self)
-        except Exception as e:
-            logging.warning(
-                "Failed to pull database from Firebase!", exc_info=True)
-
-    def push_to_firebase(self: "Database", username: str) -> None:
-        """Pushes the database of a user to Firebase.
-
-        Parameters
-        ----------
-        username : str
-            The username of the user whose database is to be pushed.
-
-        Raises
-        ------
-        Exception
-            If the database cannot be uploaded to Firebase, an exception will
-            be raised.
-        """
-        if not username:
-            logging.warning(
-                "Cannot push database to Firebase: username is empty")
-            return None
-        encoded_username = username.replace(".", ",").replace("@", "_")
-        ref = db.reference(encoded_username)
-        try:
-            Database.read(self)
-            logging.info("Uploading database to Firebase...")
-            ref.set(self.__data)
-            logging.info("Database uploaded to Firebase")
-        except Exception as e:
-            logging.warning(
-                "Failed to upload database to Firebase!", exc_info=True)
-
-    @property
-    def username(self: "Database") -> str:
-        """Returns the username of the user.
-
-        Returns
-        -------
-        username : str
-            The username of the user.
-        """
-        return self.__username
-
-    @property
-    def password(self: "Database") -> str:
-        """Returns the password of the user.
-
-        Returns
-        -------
-        password : str
-            The password of the user.
-        """
-        return self.__password
-
-    @username.setter
-    def username(self: "Database", username: str) -> None:
-        """Sets the username of the user.
-
-        Parameters
-        ----------
-        username : str
-            The username of the user.
-        """
-        self.__username = username
-        self.__data["_Database__username"] = username
-
-    @password.setter
-    def password(self: "Database", password: str) -> None:
-        """Sets the password of the user.
-
-        Parameters
-        ----------
-        password : str
-            The password of the user.
-        """
-        self.__password = password
-        self.__data["_Database__password"] = password
-
     @property
     def boards(self: "Database") -> List[Board]:
         """Returns a list of boards containing their attributes and a list of
@@ -335,7 +175,7 @@ class Database:
             attributes.
         """
         boards = []
-        board_lists = self.__data.get('_Database__data', [])
+        board_lists = self.__data
 
         for board_item in board_lists:
             panel_data = board_item.get('_Board__panels_lists', [])
@@ -366,7 +206,6 @@ class Database:
                 panels_lists=panels
             )
             boards.append(board)
-
         return boards
 
     @boards.setter
@@ -394,8 +233,7 @@ class Database:
             for index_p, panel in enumerate(board.panels):
                 for index_c, card in enumerate(panel.cards):
                     if card == card_old:
-                        card_dict = self.data.get(
-                            "_Database__data")[index_b].get(
+                        card_dict = self.data[index_b].get(
                             "_Board__panels_lists")[index_p].get(
                                 "_Board__panels")[index_c]
                         card_dict["_Card__title"] = card_new.title
@@ -425,7 +263,7 @@ class Database:
         for index_b, board in enumerate(self.boards):
             for index_p, panel in enumerate(board.panels):
                 if panel == panel_old:
-                    panel_dict = self.data.get("_Database__data")[index_b].get(
+                    panel_dict = self.data[index_b].get(
                         "_Board__panels_lists")[index_p]
                     panel_dict["_Panel__title"] = panel_new.title
                     Database.write(self)
@@ -452,7 +290,7 @@ class Database:
         """
         for index_b, board in enumerate(self.boards):
             if board == board_old:
-                board_dict = self.data.get("_Database__data")[index_b]
+                board_dict = self.data[index_b]
                 board_dict["_Board__title"] = board_new.title
                 board_dict["_Board__color"] = Color(board_new.color).name
                 logging.info("Board updated:")
@@ -476,7 +314,7 @@ class Database:
         old_panel_list = board.panels
         for index_b, board_ in enumerate(self.boards):
             if board_ == board:
-                board_dict = self.data.get("_Database__data")[index_b]
+                board_dict = self.data[index_b]
                 board_dict["_Board__panels_lists"] = [
                     {
                         "_Panel__title": panel.title,
@@ -509,7 +347,7 @@ class Database:
             The new list of boards to be updated to.
         """
         old_board_list = self.boards
-        self.data["_Database__data"] = [
+        self.data = [
             {
                 "_Board__title": board.title,
                 "_Board__color": Color(board.color).name,
@@ -550,12 +388,11 @@ class Database:
             for index_p, panel in enumerate(board.panels):
                 for index_c, card in enumerate(panel.cards):
                     if card == card_delete:
-                        del self.data.get(
-                            "_Database__data")[index_b].get(
-                                "_Board__panels_lists")[index_p].get(
-                                    "_Board__panels")[index_c]
+                        del self.data[index_b].get(
+                            "_Board__panels_lists")[index_p].get(
+                                "_Board__panels")[index_c]
                         Database.write(self)
-                        logging.info(f'Card "{card_delete.title}" deleted')
+                        logging.info(f'Card "{card.title}" deleted')
                         return None
 
     def delete_panel(self: "Database", panel_delete: Panel) -> None:
@@ -569,9 +406,8 @@ class Database:
         for index_b, board in enumerate(self.boards):
             for index_p, panel in enumerate(board.panels):
                 if panel == panel_delete:
-                    del self.data.get(
-                        "_Database__data")[index_b].get(
-                            "_Board__panels_lists")[index_p]
+                    del self.data[index_b].get(
+                        "_Board__panels_lists")[index_p]
                     Database.write(self)
                     logging.info(f'Panel "{panel.title}" deleted')
                     return None
@@ -586,7 +422,7 @@ class Database:
         """
         for index_b, board in enumerate(self.boards):
             if board == board_delete:
-                del self.data.get("_Database__data")[index_b]
+                del self.data[index_b]
                 Database.write(self)
                 logging.info(f'Board "{board.title}" deleted')
                 return None
@@ -631,51 +467,6 @@ class Database:
             The data of the database.
         """
         self.__data = data
-
-    def logout(self: "Database") -> None:
-        """Logs the user out of the application.
-
-        Raises
-        ------
-        Exception
-            If the database cannot be written to the database file, an
-            exception will be raised.
-        """
-        logging.info("Logging out...")
-        self.username: str = ""
-        self.password: str = ""
-        self.__data: List[Dict] = [vars(Board())]
-        try:
-            Database.create(self)
-            logging.info("Logged out")
-        except Exception as e:
-            logging.warning("Failed to log out!", exc_info=True)
-
-    def delete_account(self: "Database") -> None:
-        """Deletes the user's account.
-
-        Raises
-        ------
-        Exception
-            If the database cannot be deleted from the database file, an
-            exception will be raised.
-        """
-        logging.info("Deleting account...")
-        try:
-            if self.username == "":
-                raise Exception("Illegal attempt to delete account!")
-            user = auth.sign_in_with_email_and_password(
-                self.username, self.password)
-            self.username = self.username.replace(".", ",").replace("@", "_")
-            ref = db.reference(self.username)
-            if ref is None:
-                raise Exception("User does not exist!")
-            ref.delete()
-            auth.delete_user_account(user['idToken'])
-            self.logout()
-            logging.info("Account deleted")
-        except Exception as e:
-            logging.warning("Failed to delete account!", exc_info=True)
 
     def __str__(self: "Database") -> str:
         """Returns the database instance as a stringified dictionary.
