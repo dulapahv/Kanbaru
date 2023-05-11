@@ -5,6 +5,8 @@ from tkinter import Tk, messagebox
 
 if sys.version_info < (3, 10):
     print("Python 3.10 or higher is required to run Kanbaru. Please consider upgrading.")
+    logging.warning(
+        "Python 3.10 or higher is required to run Kanbaru. Please consider upgrading.")
     sys.exit(1)
 
 try:
@@ -60,14 +62,6 @@ class Kanbaru(QMainWindow):
         # Get current directory
         self.db_path = None
         self.path = get_current_directory()
-
-        # Set up event logger
-        self.init_event_logger(
-            os.path.join(self.path, "event.log"),
-            "%(asctime)s - %(levelname)s - %(message)s",
-            debug=True,
-            stdout=True,
-        )
 
         logging.info("Starting Kanbaru...")
         logging.info(f'Current directory: "{self.path}"')
@@ -127,8 +121,36 @@ class Kanbaru(QMainWindow):
         MainScreen(self)
 
 
+def init_event_logger(path: str, fmt: str, debug: bool = False,
+                      stdout: bool = False) -> None:
+    """Initializes the event logger.
+    - Set the path of the event log file
+    - Set the format of the event log file
+    - Set the debug level of the event log file
+    - Set up the event logger
+    """
+    logging.basicConfig(
+        filename=path,
+        filemode="w",
+        format=fmt,
+        datefmt="%d-%b-%y %H:%M:%S",
+        level=logging.DEBUG if debug else logging.INFO,
+    )
+    if stdout:
+        logging.getLogger().addHandler(logging.StreamHandler(sys.stdout))
+
+
 if __name__ == "__main__":
     app = QApplication(sys.argv)
+
+    # Set up event logger
+    init_event_logger(
+        os.path.join(get_current_directory(), "event.log"),
+        "%(asctime)s - %(levelname)s - %(message)s",
+        stdout=True,
+        debug=True if "--debug" in sys.argv else False,
+    )
+
     window = Kanbaru()
     window.show()
     sys.exit(app.exec())
