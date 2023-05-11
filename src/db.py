@@ -1,5 +1,4 @@
 from kanbaru_objects import Board, Card, Color, Panel
-import json
 import logging
 import os
 import sys
