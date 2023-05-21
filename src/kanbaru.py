@@ -53,10 +53,6 @@ class Kanbaru(QMainWindow):
     def __init__(self) -> None:
         QMainWindow.__init__(self)
 
-        # i dont care. im moving the timer here.
-        from PySide6.QtCore import QTimer
-        self.timer = QTimer(self)
-
         # Get current directory
         self.db_path = None
         self.path = get_current_directory()
