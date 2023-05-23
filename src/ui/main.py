@@ -365,7 +365,8 @@ class MainScreen(QMainWindow):
         parent.ui.verticalLayout_2.addWidget(parent.ui.label_list)
 
         parent.ui.listWidget = CustomListWidget(
-            parent.ui.scrollArea_panel_right, modify_hex_color(color))
+            parent.ui.scrollArea_panel_right, self.current_board,
+            modify_hex_color(color))
         parent.ui.verticalLayout_2.addWidget(parent.ui.listWidget)
 
         parent.ui.widget_add_card = QWidget(parent.ui.widget)
@@ -847,7 +848,7 @@ class MainScreen(QMainWindow):
         self.add_panel_button(parent, board, "TorusPro.ttf")
 
     @staticmethod
-    def change_card(source: Panel, destination: Panel, card: Card,
+    def change_card(board: Board, source: Panel, destination: Panel, card: Card,
                     index: int = None) -> None:
         """Change the card in a panel to another panel
         - Get the data from the database
@@ -869,8 +870,12 @@ class MainScreen(QMainWindow):
             by default None (adds at the end)
         """
         data = Database.get_instance().data
+        for i, b in enumerate(Database.get_instance().boards):
+            if b.title == board.title:
+                break
+        print(source.data.title)
         source_list = next(
-            (pan for pan in data[0].get("_Board__panels_lists", [])
+            (pan for pan in data[i].get("_Board__panels_lists", [])
              if pan.get("_Panel__title") == getattr(source, "data").title), {})
         card_to_move = next(
             (card_ for card_ in source_list.get("_Board__panels", [])
@@ -878,7 +883,7 @@ class MainScreen(QMainWindow):
         if card_to_move:
             source_list.get("_Board__panels").remove(card_to_move)
             dest_list = next(
-                (pan for pan in data[0].get("_Board__panels_lists", [])
+                (pan for pan in data[i].get("_Board__panels_lists", [])
                  if pan.get("_Panel__title") == getattr(
                      destination, "data").title), {})
             try:
@@ -930,9 +935,11 @@ class MainScreen(QMainWindow):
 class CustomListWidget(QListWidget):
     """Custom QListWidget class"""
 
-    def __init__(self: QListWidget, parent: QMainWindow, color: str) -> None:
+    def __init__(self: QListWidget, parent: QMainWindow, board: Board,
+                 color: str) -> None:
         super().__init__()
         self.parent_ = parent
+        self.board = board
         self.setObjectName(u"listWidget")
         size_policy2 = QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Minimum)
         size_policy2.setHorizontalStretch(0)
@@ -1128,8 +1135,8 @@ class CustomListWidget(QListWidget):
             logging.info(
                 f'Moved card "{item.data(Qt.UserRole).title}" to {index=}')
 
-            MainScreen.change_card(
-                source_widget, dest_widget, item.data(Qt.UserRole), index)
+            MainScreen.change_card(self.board, source_widget, dest_widget,
+                                   item.data(Qt.UserRole), index)
             Database.get_instance().write()
         event.accept()
 
