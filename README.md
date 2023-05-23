@@ -1,4 +1,4 @@
-# 📋Kanbaru
+# 📋Kanbaru - Kanban Project Manager
 
 ![Kanbaru](https://i.imgur.com/AMBTh48.png)
 Kanbaru is a kanban-style, list-making project management application, built using Python, Qt Designer, and PySide6.
