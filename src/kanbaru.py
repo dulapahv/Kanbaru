@@ -4,9 +4,8 @@ import sys
 from tkinter import Tk, messagebox
 
 if sys.version_info < (3, 10):
-    print("Python 3.10 or higher is required to run Kanbaru. Please consider upgrading.")
-    logging.warning(
-        "Python 3.10 or higher is required to run Kanbaru. Please consider upgrading.")
+    print("Python 3.10 or higher is required to run Kanbaru. Please consider "
+          "upgrading.")
     sys.exit(1)
 
 try:
@@ -54,10 +53,6 @@ except ModuleNotFoundError:
 class Kanbaru(QMainWindow):
     def __init__(self) -> None:
         QMainWindow.__init__(self)
-
-        # i dont care. im moving the timer here.
-        from PySide6.QtCore import QTimer
-        self.timer = QTimer(self)
 
         # Get current directory
         self.db_path = None
