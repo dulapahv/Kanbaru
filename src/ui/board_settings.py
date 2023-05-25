@@ -1,6 +1,6 @@
 from typing import List
 
-from PySide6.QtCore import QModelIndex
+from PySide6.QtCore import QEvent
 from PySide6.QtGui import QFont
 from PySide6.QtWidgets import QMainWindow
 
@@ -46,7 +46,6 @@ class BoardSettings(QMainWindow):
         self.panels = board.panels
         self.panels_to_delete: List[Board] = []
         self.new_panel_order: List[Board] = []
-        self.colors_to_change: Color.name = None
 
         stylesheet = \
             f"""
@@ -241,7 +240,7 @@ class BoardSettings(QMainWindow):
             """
         )
 
-    def delete(self, event) -> None:
+    def delete(self, event: QEvent) -> None:
         """Delete all selected panels."""
         selected_all = self.ui.listWidget_manage_panel.selectedItems()
         if len(selected_all) == 0:
@@ -272,7 +271,7 @@ class BoardSettings(QMainWindow):
                 self.ui.listWidget_manage_panel.takeItem(
                     self.ui.listWidget_manage_panel.row(selected_panel))
 
-    def rename(self, event) -> None:
+    def rename(self, event: QEvent) -> None:
         """Rename selected panel."""
         selected_all = self.ui.listWidget_manage_panel.selectedItems()
         if len(selected_all) == 0:
@@ -412,9 +411,7 @@ class BoardSettings(QMainWindow):
             case _:
                 self.ui.btn_color_1.setChecked(True)
 
-    def rowsMoved(self, source_parent: QModelIndex, source_start: int,
-                  source_end: int, dest_parent: QModelIndex,
-                  dest_row: int) -> None:
+    def rowsMoved(self) -> None:
         """Updates the new panel order when the user moves a panel."""
         self.new_panel_order = [self.ui.listWidget_manage_panel.item(
             i).text() for i in range(self.ui.listWidget_manage_panel.count())]

@@ -1,4 +1,4 @@
-from PySide6.QtCore import QDate, QTime
+from PySide6.QtCore import QEvent, QDate, QTime
 from PySide6.QtGui import QFont
 from PySide6.QtWidgets import QMainWindow
 
@@ -303,7 +303,7 @@ class CardDescription(QMainWindow):
             Database.get_instance().update_card(card_old, self)
         self.close()
 
-    def delete(self, event) -> None:
+    def delete(self, event: QEvent) -> None:
         """Deletes the card from the database."""
         Database.get_instance().delete_card(self)
         self.close()

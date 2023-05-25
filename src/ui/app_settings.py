@@ -1,7 +1,7 @@
 import logging
 from typing import List
 
-from PySide6.QtCore import QModelIndex
+from PySide6.QtCore import QEvent
 from PySide6.QtGui import QFont
 from PySide6.QtWidgets import QMainWindow
 
@@ -14,7 +14,7 @@ from utils import keyPressEvent, modify_hex_color, setup_font_db
 
 
 class AppSettings(QMainWindow):
-    def __init__(self, parent: QMainWindow, board: Board) -> None:
+    def __init__(self, board: Board) -> None:
         QMainWindow.__init__(self)
 
         self.ui: Ui_SettingsWindow = Ui_SettingsWindow()
@@ -155,12 +155,12 @@ class AppSettings(QMainWindow):
         self.ui.btn_about.clicked.connect(
             lambda event: self.show_about(event, board.color))
 
-    def show_about(self, event, color: str) -> None:
+    def show_about(self, event: QEvent, color: str) -> None:
         """Shows the about dialog"""
         self.about: About = About(color)
         self.about.show()
 
-    def delete(self, event) -> None:
+    def delete(self, event: QEvent) -> None:
         """Deletes the selected board(s)"""
         selected_all = self.ui.listWidget_manage_board.selectedItems()
         if len(selected_all) == 0:
@@ -208,25 +208,7 @@ class AppSettings(QMainWindow):
             Database.get_instance().update_board_order(self.new_board_order)
         self.close()
 
-    def logout(self, parent: QMainWindow):
-        """Logs out the user"""
-        Database.get_instance().logout()
-        logging.info("Going to welcome screen...")
-        self.close()
-        from ui.welcome import WelcomeScreen
-        WelcomeScreen(parent)
-
-    def delete_account(self, parent: QMainWindow):
-        """Deletes the user's account"""
-        Database.get_instance().delete_account()
-        logging.info("Going to welcome screen...")
-        self.close()
-        from ui.welcome import WelcomeScreen
-        WelcomeScreen(parent)
-
-    def rowsMoved(self, source_parent: QModelIndex, source_start: int,
-                  source_end: int, dest_parent: QModelIndex,
-                  dest_row: int) -> None:
+    def rowsMoved(self) -> None:
         """Updates the new board order when the user changes the board order"""
         self.new_board_order = [
             self.ui.listWidget_manage_board.item(i).text()

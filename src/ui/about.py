@@ -2,7 +2,7 @@ import logging
 from base64 import b64decode
 
 from PySide6.QtCore import QCoreApplication, Qt
-from PySide6.QtGui import QPainter, QPainterPath, QPixmap, QRegion
+from PySide6.QtGui import QPaintEvent, QPainter, QPainterPath, QPixmap, QRegion
 from PySide6.QtWidgets import QMainWindow
 
 from ui.about_ui import Ui_About
@@ -89,7 +89,7 @@ class About(QMainWindow):
                 self.setFixedSize(628, 458)
 
     @overrides(QMainWindow)
-    def paintEvent(self, event):
+    def paintEvent(self, event: QPaintEvent) -> None:
         """Override paintEvent() to make the window rounded."""
         painter = QPainter(self)
         painter.setRenderHint(QPainter.Antialiasing)

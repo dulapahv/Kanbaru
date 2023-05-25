@@ -1,8 +1,8 @@
 import datetime
 import logging
 
-from PySide6.QtCore import QCoreApplication, QSize, Qt, Slot, QTimer
-from PySide6.QtGui import QCursor, QDropEvent, QFont
+from PySide6.QtCore import QCoreApplication, QEvent, QSize, Qt, Slot
+from PySide6.QtGui import QCursor, QDragMoveEvent, QDropEvent, QFont
 from PySide6.QtWidgets import (QAbstractItemView, QAbstractScrollArea,
                                QApplication, QFrame, QLabel, QListWidget,
                                QListWidgetItem, QMainWindow, QPushButton,
@@ -32,7 +32,7 @@ class MainScreen(QMainWindow):
         parent.ui.btn_app_settings.clicked.connect(
             lambda: self.show_app_settings(parent))
         parent.ui.btn_board_settings.clicked.connect(
-            lambda event: self.show_board_settings(event, parent))
+            lambda: self.show_board_settings(parent))
         parent.ui.btn_add_board.clicked.connect(
             lambda: self.add_board(parent))
 
@@ -40,7 +40,7 @@ class MainScreen(QMainWindow):
             event, parent, self.show_app_settings(parent))
         parent.ui.btn_board_settings.keyPressEvent = lambda event: \
             keyPressEvent(
-                event, parent, self.show_board_settings(event, parent))
+                event, parent, self.show_board_settings(parent))
         parent.ui.btn_add_board.keyPressEvent = lambda event: keyPressEvent(
             event, parent, self.add_board(parent))
 
@@ -86,14 +86,14 @@ class MainScreen(QMainWindow):
         parent.ui.label_logo.mousePressEvent = lambda event: self.show_about(
             event)
 
-    def show_about(self, event) -> None:
+    def show_about(self, event: QEvent) -> None:
         """Shows the about dialog"""
         self.about = About(self.current_board.color)
         self.about.show()
 
     def board_factory(self, parent: Ui_MainWindow, board: Board, font: str,
                       is_constructed: bool = True) -> QPushButton:
-        """Credsfates a board widget
+        """Creates a board button widget
         - Add a push button widget to the parent UI with specified style
         - If the board is displayed, construct the list widgets and card
         widgets
@@ -571,7 +571,7 @@ class MainScreen(QMainWindow):
         parent : Ui_MainWindow
             The main window
         """
-        app_settings = AppSettings(parent, self.current_board)
+        app_settings = AppSettings(self.current_board)
         app_settings.setWindowModality(Qt.ApplicationModal)
         app_settings.show()
         while app_settings.isVisible():
@@ -585,12 +585,11 @@ class MainScreen(QMainWindow):
         except AttributeError:
             return None
 
-    def show_board_settings(self, event, parent: QMainWindow) -> None:
+    def show_board_settings(self, parent: QMainWindow) -> None:
         """Show the board settings window
 
         Parameters
         ----------
-        event
         parent : Ui_MainWindow
             The main window
         """
@@ -604,7 +603,7 @@ class MainScreen(QMainWindow):
         self.update_whole_page(parent)
         self.change_board(parent, Database.get_instance().boards[index])
 
-    def show_card_description(self, event, list_widget: QListWidget,
+    def show_card_description(self, event: QEvent, list_widget: QListWidget,
                               parent: QMainWindow, color: str) -> None:
         """Show the card description window
 
@@ -1064,7 +1063,7 @@ class CustomListWidget(QListWidget):
 
     @Slot()
     @overrides(QListWidget)
-    def dragMoveEvent(self, event) -> None:
+    def dragMoveEvent(self, event: QDragMoveEvent) -> None:
         """Override the dragMoveEvent method to customize the drag and drop
         event
         - Scroll the main window when the cursor is near the left or right of

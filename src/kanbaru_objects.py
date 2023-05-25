@@ -32,7 +32,7 @@ class KanbaruObject(ABC):
 
 
 class Card(KanbaruObject):
-    def __init__(self, title: str = "New Card", date="", time="",
+    def __init__(self, title: str = "New Card", date: str = "", time: str = "",
                  description: str = "") -> None:
         self.__title = title
         self.__date = date
@@ -144,7 +144,7 @@ class Panel(KanbaruObject):
 
 
 class Board(KanbaruObject):
-    def __init__(self, title: str = "New Board", color="LIGHTBLUE",
+    def __init__(self, title: str = "New Board", color: str = "LIGHTBLUE",
                  panels_lists: List[Panel] = []):
         self.__title = title
         self.__panels_lists = panels_lists
