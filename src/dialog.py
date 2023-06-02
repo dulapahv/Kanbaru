@@ -5,7 +5,7 @@ from PySide6.QtGui import QFont, QIcon
 from PySide6.QtWidgets import (QDialog, QDialogButtonBox, QLabel, QLineEdit,
                                QMessageBox, QPushButton, QVBoxLayout)
 
-from utils import get_current_directory, modify_hex_color, setup_font_tb
+from utils import get_current_directory, modify_hex_color, setup_font_db
 
 
 def dialog_factory(parent: Type = None, function: Callable = None,
@@ -42,7 +42,7 @@ def dialog_factory(parent: Type = None, function: Callable = None,
     dialog.setWindowIcon(icon)
     dialog.setWindowTitle(title)
     dialog.setText(msg)
-    font = setup_font_tb("TorusPro.ttf")
+    font = setup_font_db("TorusPro.ttf")
     dialog.setFont(font[0])
     if yes_no:
         dialog.setStandardButtons(QMessageBox.Yes | QMessageBox.No)
@@ -168,7 +168,7 @@ def input_dialog_factory(title: str = "", msg: str = "", default: str = "",
     layout.addWidget(line_edit)
     layout.addWidget(buttons)
     dialog.setLayout(layout)
-    font = setup_font_tb("TorusPro.ttf")
+    font = setup_font_db("TorusPro.ttf")
     dialog.setFont(font[0])
     label.setFont(font[0])
     line_edit.setFont(QFont(font[0], 12))

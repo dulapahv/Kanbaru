@@ -1,10 +1,10 @@
 from PySide6.QtGui import QFont
 from PySide6.QtWidgets import QMainWindow
 
-from tb import Table
+from db import Table
 from ui.main import MainScreen
 from ui.welcome_ui import Ui_WelcomeWindow
-from utils import keyPressEvent, setup_font_tb
+from utils import keyPressEvent, setup_font_db
 
 
 class WelcomeScreen(QMainWindow):
@@ -122,8 +122,8 @@ class WelcomeScreen(QMainWindow):
 
     @staticmethod
     def setup_font(parent: Ui_WelcomeWindow) -> None:
-        notosans = setup_font_tb("NotoSans.ttf")[0]
-        toruspro = setup_font_tb("TorusPro.ttf")[0]
+        notosans = setup_font_db("NotoSans.ttf")[0]
+        toruspro = setup_font_db("TorusPro.ttf")[0]
         parent.ui.label_login.setFont(QFont(toruspro, 13, QFont.Bold))
         parent.ui.label_signup.setFont(QFont(toruspro, 13, QFont.Bold))
         parent.ui.lineEdit_login_username.setFont(QFont(notosans, 12))

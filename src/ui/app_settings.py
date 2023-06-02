@@ -5,12 +5,12 @@ from PySide6.QtCore import QEvent
 from PySide6.QtGui import QFont
 from PySide6.QtWidgets import QMainWindow
 
-from tb import Table
+from db import Table
 from dialog import dialog_factory
 from kanbaru_objects import Board
 from ui.about import About
 from ui.app_settings_ui import Ui_SettingsWindow
-from utils import keyPressEvent, modify_hex_color, setup_font_tb
+from utils import keyPressEvent, modify_hex_color, setup_font_db
 
 
 class AppSettings(QMainWindow):
@@ -221,7 +221,7 @@ class AppSettings(QMainWindow):
         ]
 
     def setup_font(self) -> None:
-        toruspro = setup_font_tb("TorusPro.ttf")[0]
+        toruspro = setup_font_db("TorusPro.ttf")[0]
         self.ui.label_app_settings.setFont(QFont(toruspro, 28))
         self.ui.label_manage_board.setFont(QFont(toruspro, 14, QFont.Bold))
         self.ui.label_manage_board_desc.setFont(QFont(toruspro, 11))

@@ -8,7 +8,7 @@ from PySide6.QtWidgets import (QAbstractItemView, QAbstractScrollArea,
                                QListWidgetItem, QMainWindow, QPushButton,
                                QSizePolicy, QSpacerItem, QVBoxLayout, QWidget)
 
-from tb import Table
+from db import Table
 from dialog import dialog_factory, input_dialog_factory
 from kanbaru_objects import Board, Card, Panel
 from ui.about import About
@@ -17,7 +17,7 @@ from ui.board_settings import BoardSettings
 from ui.card_description import CardDescription
 from ui.main_ui import Ui_MainWindow
 from utils import (hex_to_rgba, keyPressEvent, modify_hex_color, overrides,
-                   setup_font_tb)
+                   setup_font_db)
 
 
 class MainScreen(QMainWindow):
@@ -153,7 +153,7 @@ class MainScreen(QMainWindow):
         )
         parent.ui.btn_board.setText(
             board.title[:12] + (board.title[12:] and '...'))
-        font_tb = setup_font_tb(font)[0]
+        font_tb = setup_font_db(font)[0]
         parent.ui.btn_board.setFont(QFont(font_tb, 12))
 
         if is_constructed:
@@ -392,7 +392,7 @@ class MainScreen(QMainWindow):
                 border-radius: 5px;
             }
             QPushButton:hover {
-                background-color: #datbe2;
+                background-color: #dadbe2;
                 color: #505b76;
             }
             QPushButton:focus {
@@ -407,7 +407,7 @@ class MainScreen(QMainWindow):
         parent.ui.verticalLayout_1.addWidget(parent.ui.widget)
         parent.ui.listWidget.setSortingEnabled(False)
 
-        font_tb = setup_font_tb(font)
+        font_tb = setup_font_db(font)
         parent.ui.label_list.setFont(QFont(font_tb[0], 12, QFont.Bold))
         parent.ui.btn_add_card.setFont(QFont(font_tb[0], 12))
 
@@ -493,7 +493,7 @@ class MainScreen(QMainWindow):
         list_widget_item.setText(
             QCoreApplication.translate("MainWindow", card.title, None)
         )
-        font_tb = setup_font_tb(font)[0]
+        font_tb = setup_font_db(font)[0]
         list_widget_item.setFont(QFont(font_tb, 12))
 
         return list_widget_item
@@ -560,7 +560,7 @@ class MainScreen(QMainWindow):
         parent.ui.btn_add_list.clicked.connect(
             lambda: self.add_panel(parent, board))
 
-        font_tb = setup_font_tb(font)[0]
+        font_tb = setup_font_db(font)[0]
         parent.ui.btn_add_list.setFont(QFont(font_tb, 12))
 
     def show_app_settings(self, parent: Ui_MainWindow) -> None:
@@ -923,7 +923,7 @@ class MainScreen(QMainWindow):
 
     @staticmethod
     def setup_font(parent: Ui_MainWindow, font: str) -> None:
-        toruspro = setup_font_tb(font)[0]
+        toruspro = setup_font_db(font)[0]
         parent.ui.label_logo.setFont(QFont(toruspro, 36))
         parent.ui.label_board.setFont(QFont(toruspro, 28))
         parent.ui.btn_add_board.setFont(QFont(toruspro, 12))

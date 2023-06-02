@@ -10,7 +10,7 @@ if sys.version_info < (3, 10):
 
 try:
     from PySide6.QtWidgets import QApplication, QMainWindow
-    from tb import Table
+    from db import Table
     from ui.main import MainScreen
     from ui.welcome import WelcomeScreen
     from utils import get_current_directory
@@ -42,7 +42,7 @@ except ModuleNotFoundError:
         finally:
             from PySide6.QtWidgets import QApplication, QMainWindow
 
-            from tb import Table
+            from db import Table
             from ui.main import MainScreen
             from ui.welcome import WelcomeScreen
             from utils import get_current_directory
