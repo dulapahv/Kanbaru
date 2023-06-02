@@ -10,7 +10,7 @@ if sys.version_info < (3, 10):
 
 try:
     from PySide6.QtWidgets import QApplication, QMainWindow
-    from db import Database
+    from tb import Table
     from ui.main import MainScreen
     from ui.welcome import WelcomeScreen
     from utils import get_current_directory
@@ -42,7 +42,7 @@ except ModuleNotFoundError:
         finally:
             from PySide6.QtWidgets import QApplication, QMainWindow
 
-            from db import Database
+            from tb import Table
             from ui.main import MainScreen
             from ui.welcome import WelcomeScreen
             from utils import get_current_directory
@@ -55,14 +55,14 @@ class Kanbaru(QMainWindow):
         QMainWindow.__init__(self)
 
         # Get current directory
-        self.db_path = None
+        self.tb_path = None
         self.path = get_current_directory()
 
         logging.info("Starting Kanbaru...")
         logging.info(f'Current directory: "{self.path}"')
 
-        # Initialize local database
-        self.initialize_local_database()
+        # Initialize local table
+        self.initialize_local_table()
 
         # straight to the main screen
         self.show_main_screen()
@@ -86,29 +86,29 @@ class Kanbaru(QMainWindow):
         if stdout:
             logging.getLogger().addHandler(logging.StreamHandler(sys.stdout))
 
-    def initialize_local_database(self) -> None:
-        """Initializes the database instance.
-        - Determine database path
-        - Create database instance
-        - Set database path
-        - Read database file
+    def initialize_local_table(self) -> None:
+        """Initializes the table instance.
+        - Determine table path
+        - Create table instance
+        - Set table path
+        - Read table file
         """
         if sys.platform == "win32":
             logging.info("Windows OS detected")
-            self.db_path = os.path.join(
+            self.tb_path = os.path.join(
                 os.path.expanduser(
-                    "~"), "Documents", "Kanbaru", "Database.pickle"
+                    "~"), "Documents", "Kanbaru", "Table.pickle"
             )
         else:
             logging.info("Unix OS detected")
-            self.db_path = os.path.join(
-                os.path.expanduser("~"), "Kanbaru", "Database.pickle"
+            self.tb_path = os.path.join(
+                os.path.expanduser("~"), "Kanbaru", "Table.pickle"
             )
-        db = Database.get_instance()
-        db.set_path(self.db_path)
-        db.read()
-        logging.info(f'Database path: "{db.get_path()}"')
-        logging.info("Database instance initialized and read successfully")
+        tb = Table.get_instance()
+        tb.set_path(self.tb_path)
+        tb.read()
+        logging.info(f'Table path: "{tb.get_path()}"')
+        logging.info("Table instance initialized and read successfully")
 
     def show_main_screen(self):
         """Shows the main screen."""

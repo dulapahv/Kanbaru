@@ -2,11 +2,11 @@ from PySide6.QtCore import QEvent, QDate, QTime
 from PySide6.QtGui import QFont
 from PySide6.QtWidgets import QMainWindow
 
-from db import Database
+from tb import Table
 from dialog import dialog_factory
 from kanbaru_objects import Card
 from ui.card_description_ui import Ui_CardWindow
-from utils import hex_to_rgba, keyPressEvent, modify_hex_color, setup_font_db
+from utils import hex_to_rgba, keyPressEvent, modify_hex_color, setup_font_tb
 
 
 class CardDescription(QMainWindow):
@@ -275,7 +275,7 @@ class CardDescription(QMainWindow):
         self.setup_font()
 
     def save(self) -> None:
-        """Saves the card to the database."""
+        """Saves the card to the table."""
         if self.title_txt == "":
             dialog_factory(
                 title="Invalid Title",
@@ -288,7 +288,7 @@ class CardDescription(QMainWindow):
         card_old = Card(self.card.title, self.card.date,
                         self.card.time, self.card.description)
         if card_old.title != self.title_txt:
-            for board in Database.get_instance().boards:
+            for board in Table.get_instance().boards:
                 for panel in board.panels:
                     for card in panel.cards:
                         if card.title == self.title_txt:
@@ -300,12 +300,12 @@ class CardDescription(QMainWindow):
                             )
                             return None
         if card_old != self:
-            Database.get_instance().update_card(card_old, self)
+            Table.get_instance().update_card(card_old, self)
         self.close()
 
     def delete(self, event: QEvent) -> None:
-        """Deletes the card from the database."""
-        Database.get_instance().delete_card(self)
+        """Deletes the card from the table."""
+        Table.get_instance().delete_card(self)
         self.close()
 
     @property
@@ -345,8 +345,8 @@ class CardDescription(QMainWindow):
         self.title_txt = text
 
     def setup_font(self) -> None:
-        notosans = setup_font_db("NotoSans.ttf")[0]
-        toruspro = setup_font_db("TorusPro.ttf")[0]
+        notosans = setup_font_tb("NotoSans.ttf")[0]
+        toruspro = setup_font_tb("TorusPro.ttf")[0]
         self.ui.label_card_desc.setFont(QFont(toruspro, 28))
         self.ui.label_title.setFont(QFont(toruspro, 14, QFont.Bold))
         self.ui.label_date.setFont(QFont(toruspro, 14, QFont.Bold))

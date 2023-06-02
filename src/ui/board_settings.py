@@ -4,11 +4,11 @@ from PySide6.QtCore import QEvent
 from PySide6.QtGui import QFont
 from PySide6.QtWidgets import QMainWindow
 
-from db import Database
+from tb import Table
 from dialog import dialog_factory, input_dialog_factory
 from kanbaru_objects import Board, Color, Panel
 from ui.board_settings_ui import Ui_BoardWindow
-from utils import keyPressEvent, modify_hex_color, setup_font_db
+from utils import keyPressEvent, modify_hex_color, setup_font_tb
 
 
 class BoardSettings(QMainWindow):
@@ -307,7 +307,7 @@ class BoardSettings(QMainWindow):
             )
             self.rename(event)
             return None
-        for board in Database.get_instance().boards:
+        for board in Table.get_instance().boards:
             for panel in board.panels:
                 if panel.title == text:
                     dialog_factory(
@@ -325,7 +325,7 @@ class BoardSettings(QMainWindow):
             title=text,
             card_lists=panel_obj.cards
         )
-        Database.get_instance().update_panel(panel_obj, new_panel)
+        Table.get_instance().update_panel(panel_obj, new_panel)
         self.ui.listWidget_manage_panel.takeItem(
             self.ui.listWidget_manage_panel.row(selected_all[0]))
         panel_obj.title = text
@@ -335,9 +335,9 @@ class BoardSettings(QMainWindow):
     def save(self) -> None:
         """Deletes the selected panels and saves the board order."""
         for panel in self.panels_to_delete:
-            Database.get_instance().delete_panel(panel)
+            Table.get_instance().delete_panel(panel)
         if self.old_board.title != self.title_txt:
-            for board in Database.get_instance().boards:
+            for board in Table.get_instance().boards:
                 if not self.title_txt:
                     dialog_factory(
                         title="Invalid Name",
@@ -355,9 +355,9 @@ class BoardSettings(QMainWindow):
                         btn_color=self.color
                     )
                     return None
-        Database.get_instance().update_board(self.old_board, self)
+        Table.get_instance().update_board(self.old_board, self)
         if len(self.new_panel_order) != 0:
-            Database.get_instance().update_panel_order(
+            Table.get_instance().update_panel_order(
                 self.board, self.new_panel_order)
         self.close()
 
@@ -425,8 +425,8 @@ class BoardSettings(QMainWindow):
         self.title_txt = text
 
     def setup_font(self) -> None:
-        notosans = setup_font_db("NotoSans.ttf")[0]
-        toruspro = setup_font_db("TorusPro.ttf")[0]
+        notosans = setup_font_tb("NotoSans.ttf")[0]
+        toruspro = setup_font_tb("TorusPro.ttf")[0]
         self.ui.label_board_desc.setFont(QFont(toruspro, 28))
         self.ui.label_title.setFont(QFont(toruspro, 14, QFont.Bold))
         self.ui.label_color.setFont(QFont(toruspro, 14, QFont.Bold))

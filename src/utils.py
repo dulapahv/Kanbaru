@@ -2,7 +2,7 @@ import os
 from typing import Callable, Type
 
 from PySide6.QtCore import Qt
-from PySide6.QtGui import QFontDatabase, QKeyEvent
+from PySide6.QtGui import QFontTable, QKeyEvent
 from PySide6.QtWidgets import QMainWindow
 
 
@@ -89,27 +89,27 @@ def get_current_directory() -> str:
     return path
 
 
-def setup_font_db(font: str) -> QFontDatabase:
-    """Sets up the font database for the application.
+def setup_font_tb(font: str) -> QFontTable:
+    """Sets up the font table for the application.
 
     Parameters
     ----------
     font : str
-        The name of the font to be added to the database.
+        The name of the font to be added to the table.
 
     Returns
     -------
-    font_database : QFontDatabase
-        The font database for the application.
+    font_table : QFontTable
+        The font table for the application.
     """
     path = get_current_directory()
     font_path = os.path.dirname(path)
     font_path = os.path.join(path, "resources", "font", font)
-    font_database = QFontDatabase.addApplicationFont(font_path)
-    if font_database < 0:
+    font_table = QFontTable.addApplicationFont(font_path)
+    if font_table < 0:
         raise Exception(
             f'Font not found at path "{font_path}"! Exiting...')
-    return QFontDatabase.applicationFontFamilies(font_database)
+    return QFontTable.applicationFontFamilies(font_table)
 
 
 def keyPressEvent(event: QKeyEvent, parent: QMainWindow = None,

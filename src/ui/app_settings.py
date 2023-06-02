@@ -5,12 +5,12 @@ from PySide6.QtCore import QEvent
 from PySide6.QtGui import QFont
 from PySide6.QtWidgets import QMainWindow
 
-from db import Database
+from tb import Table
 from dialog import dialog_factory
 from kanbaru_objects import Board
 from ui.about import About
 from ui.app_settings_ui import Ui_SettingsWindow
-from utils import keyPressEvent, modify_hex_color, setup_font_db
+from utils import keyPressEvent, modify_hex_color, setup_font_tb
 
 
 class AppSettings(QMainWindow):
@@ -44,7 +44,7 @@ class AppSettings(QMainWindow):
         self.setup_font()
 
         self.ui.listWidget_manage_board.addItems(
-            [board.title for board in Database.get_instance().boards])
+            [board.title for board in Table.get_instance().boards])
 
         stylesheet = \
             f"""
@@ -172,7 +172,7 @@ class AppSettings(QMainWindow):
                 btn_color=self.color
             )
             return None
-        if len(selected_all) == len(Database.get_instance().boards):
+        if len(selected_all) == len(Table.get_instance().boards):
             dialog_factory(
                 title="Invalid Selection",
                 msg="You cannot delete all boards. Please select at least one "
@@ -194,7 +194,7 @@ class AppSettings(QMainWindow):
         ):
             for selected_board in selected_all:
                 board_obj = next(
-                    (board for board in Database.get_instance().boards if
+                    (board for board in Table.get_instance().boards if
                      board.title == selected_board.text()), None)
                 self.boards_to_delete.append(board_obj)
                 self.ui.listWidget_manage_board.takeItem(
@@ -203,9 +203,9 @@ class AppSettings(QMainWindow):
     def save(self) -> None:
         """Deletes the selected boards and saves the new board order"""
         for board in self.boards_to_delete:
-            Database.get_instance().delete_board(board)
+            Table.get_instance().delete_board(board)
         if len(self.new_board_order) != 0:
-            Database.get_instance().update_board_order(self.new_board_order)
+            Table.get_instance().update_board_order(self.new_board_order)
         self.close()
 
     def rowsMoved(self) -> None:
@@ -215,13 +215,13 @@ class AppSettings(QMainWindow):
             for i in range(self.ui.listWidget_manage_board.count())
         ]
         self.new_board_order = [
-            next((board for board in Database.get_instance().boards
+            next((board for board in Table.get_instance().boards
                   if board.title == board_title), None)
             for board_title in self.new_board_order
         ]
 
     def setup_font(self) -> None:
-        toruspro = setup_font_db("TorusPro.ttf")[0]
+        toruspro = setup_font_tb("TorusPro.ttf")[0]
         self.ui.label_app_settings.setFont(QFont(toruspro, 28))
         self.ui.label_manage_board.setFont(QFont(toruspro, 14, QFont.Bold))
         self.ui.label_manage_board_desc.setFont(QFont(toruspro, 11))

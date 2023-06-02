@@ -1,10 +1,10 @@
 from PySide6.QtGui import QFont
 from PySide6.QtWidgets import QMainWindow
 
-from db import Database
+from tb import Table
 from ui.main import MainScreen
 from ui.welcome_ui import Ui_WelcomeWindow
-from utils import keyPressEvent, setup_font_db
+from utils import keyPressEvent, setup_font_tb
 
 
 class WelcomeScreen(QMainWindow):
@@ -76,10 +76,10 @@ class WelcomeScreen(QMainWindow):
         status = Auth.signup(self.signup_username, self.signup_password)
         match status:
             case 0:
-                Database.get_instance().username = self.signup_username
-                Database.get_instance().password = self.signup_password
-                Database.get_instance().write()
-                Database.get_instance().push_to_firebase(self.signup_username)
+                Table.get_instance().username = self.signup_username
+                Table.get_instance().password = self.signup_password
+                Table.get_instance().write()
+                Table.get_instance().push_to_firebase(self.signup_username)
                 MainScreen(parent)
             case 1:
                 parent.ui.label_signup_msg.setText("Missing credentials!")
@@ -113,7 +113,7 @@ class WelcomeScreen(QMainWindow):
         status = Auth.login(self.login_username, self.login_password)
         match status:
             case 0:
-                Database.get_instance().pull_from_firebase(self.login_username)
+                Table.get_instance().pull_from_firebase(self.login_username)
                 MainScreen(parent)
             case 1:
                 parent.ui.label_login_msg.setText("Missing credentials!")
@@ -122,8 +122,8 @@ class WelcomeScreen(QMainWindow):
 
     @staticmethod
     def setup_font(parent: Ui_WelcomeWindow) -> None:
-        notosans = setup_font_db("NotoSans.ttf")[0]
-        toruspro = setup_font_db("TorusPro.ttf")[0]
+        notosans = setup_font_tb("NotoSans.ttf")[0]
+        toruspro = setup_font_tb("TorusPro.ttf")[0]
         parent.ui.label_login.setFont(QFont(toruspro, 13, QFont.Bold))
         parent.ui.label_signup.setFont(QFont(toruspro, 13, QFont.Bold))
         parent.ui.lineEdit_login_username.setFont(QFont(notosans, 12))

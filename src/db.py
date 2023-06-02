@@ -6,145 +6,145 @@ import pickle
 from typing import Dict, List
 
 
-class Database:
+class Table:
     """
-    Singleton class for database. This class is used to store, retrieve, and
-    manipulate data from the local database.
+    Singleton class for table. This class is used to store, retrieve, and
+    manipulate data from the local table.
 
-    Use `Database.get_instance()` to get the instance of the database class.
+    Use `Table.get_instance()` to get the instance of the table class.
     """
 
-    _instance: "Database" = None
+    _instance: "Table" = None
 
-    def __init__(self: "Database") -> None:
-        assert Database._instance is None, \
-            "Database class is a singleton class!"
-        Database._instance = self
+    def __init__(self: "Table") -> None:
+        assert Table._instance is None, \
+            "Table class is a singleton class!"
+        Table._instance = self
 
-        self._db_path: str = ""
+        self._tb_path: str = ""
         self.__data: List[Dict] = [vars(Board())]
 
     @staticmethod
-    def get_instance() -> "Database":
-        """Static method to return the instance of the database class.
+    def get_instance() -> "Table":
+        """Static method to return the instance of the table class.
 
         Returns
         -------
-        _instance : Database
-            The instance of the database class.
+        _instance : Table
+            The instance of the table class.
         """
-        if Database._instance is None:
-            Database()
-        return Database._instance
+        if Table._instance is None:
+            Table()
+        return Table._instance
 
-    def get_path(self: "Database") -> str:
-        """Returns the path of the database file.
+    def get_path(self: "Table") -> str:
+        """Returns the path of the table file.
 
         Returns
         -------
-        db_path : str
-            The path of the database file.
+        tb_path : str
+            The path of the table file.
         """
-        return self._db_path
+        return self._tb_path
 
-    def set_path(self: "Database", path: str) -> None:
-        """Sets the path of the database file.
+    def set_path(self: "Table", path: str) -> None:
+        """Sets the path of the table file.
 
         Parameters
         ----------
         path : str
-            The path of the database file.
+            The path of the table file.
         """
         if not path:
-            logging.warning("Database path is empty!")
+            logging.warning("Table path is empty!")
             return None
-        self._db_path = path
+        self._tb_path = path
 
-    def create(self: "Database") -> None:
-        """Creates a new database file at the path specified in self.db_path.
+    def create(self: "Table") -> None:
+        """Creates a new table file at the path specified in self.tb_path.
         If the directory does not exist, it will be created.
 
         Raises
         ------
         Exception
-            If the database file cannot be created,
+            If the table file cannot be created,
             an exception will be raised.
 
         Notes
         -----
-        The database file is a JSON file.
+        The table file is a JSON file.
         """
         try:
-            os.makedirs(os.path.dirname(self._db_path), exist_ok=True)
-            with open(self._db_path, "wb") as f:
+            os.makedirs(os.path.dirname(self._tb_path), exist_ok=True)
+            with open(self._tb_path, "wb") as f:
                 pickle.dump(self.__data, f)
-            logging.info("Database file created")
+            logging.info("Table file created")
         except Exception as e:
             logging.warning(
-                "Failed to create/access database file! "
+                "Failed to create/access table file! "
                 "The application will now exit.", exc_info=True)
             raise Exception(
-                "Failed to create/access database file! "
+                "Failed to create/access table file! "
                 "The application will now exit.", sys.exit(1))
         self.get_instance().read()
 
-    def write(self: "Database") -> None:
-        """Writes data from the database instance to the database file.
-        If exceptions are raised, a new database file will be created.
+    def write(self: "Table") -> None:
+        """Writes data from the table instance to the table file.
+        If exceptions are raised, a new table file will be created.
 
         Raises
         ------
         FileNotFoundError
-            If the database file cannot be found, a FileNotFoundError will be
-            raised and a new database file will be created.
+            If the table file cannot be found, a FileNotFoundError will be
+            raised and a new table file will be created.
         Exception
-            If the database file cannot be written to, an exception will be
-            raised and a new database file will be created.
+            If the table file cannot be written to, an exception will be
+            raised and a new table file will be created.
         """
         try:
-            with open(self._db_path, "wb") as f:
+            with open(self._tb_path, "wb") as f:
                 pickle.dump(self.__data, f)
-                logging.info("Database written to the database file")
+                logging.info("Table written to the table file")
         except FileNotFoundError:
             logging.warning(
-                "Database file not found! "
-                "Creating new database...", exc_info=True)
+                "Table file not found! "
+                "Creating new table...", exc_info=True)
             self.create()
         except Exception as e:
             logging.warning(
-                "Failed to create/access database file! "
+                "Failed to create/access table file! "
                 "The application will now exit.", exc_info=True)
             raise Exception(
-                "Failed to create/access database file! "
+                "Failed to create/access table file! "
                 "The application will now exit.", sys.exit(1))
 
-    def read(self: "Database") -> None:
-        """Reads data from the database file and stores it in the database
-        instance. If exceptions are raised, a new database file will be
+    def read(self: "Table") -> None:
+        """Reads data from the table file and stores it in the table
+        instance. If exceptions are raised, a new table file will be
         created.
 
         Raises
         ------
         FileNotFoundError
-            If the database file cannot be found, a FileNotFoundError will be
-            raised and a new database file will be created.
+            If the table file cannot be found, a FileNotFoundError will be
+            raised and a new table file will be created.
         Exception
-            If the database file cannot be read from, an exception will be
-            raised and a new database file will be created.
+            If the table file cannot be read from, an exception will be
+            raised and a new table file will be created.
         """
-        logging.info("Reading database file...")
+        logging.info("Reading table file...")
         try:
-            with open(self._db_path, "rb") as f:
+            with open(self._tb_path, "rb") as f:
                 self.__data = pickle.load(f)
         except FileNotFoundError:
             logging.warning(
-                "Database file not found! "
-                "Creating new database...", exc_info=True)
+                "Table file not found! "
+                "Creating new table...", exc_info=True)
             self.create()
         except Exception as e:
             logging.warning(
-                "Failed to read data from database! "
-                "Creating new database...", exc_info=True)
+                "Failed to read data from table! "
+                "Creating new table...", exc_info=True)
             self.create()
         logging.info(
             f"Loaded {len(self.boards)} "
@@ -159,10 +159,10 @@ class Database:
                     f'card{"s" if len(panel.cards) > 1 else ""}]')
                 for card in panel.cards:
                     logging.info(f'|   |   +--"{card.title}"')
-        logging.info("Database read from the database file")
+        logging.info("Table read from the table file")
 
     @property
-    def boards(self: "Database") -> List[Board]:
+    def boards(self: "Table") -> List[Board]:
         """Returns a list of boards containing their attributes and a list of
         panels containing their attributes and a list of cards containing their
         attributes.
@@ -209,7 +209,7 @@ class Database:
         return boards
 
     @boards.setter
-    def boards(self: "Database", boards: List[Board]) -> None:
+    def boards(self: "Table", boards: List[Board]) -> None:
         """Sets the list of boards.
 
         Parameters
@@ -219,8 +219,8 @@ class Database:
         """
         self.__data["_Board__title"] = boards
 
-    def update_card(self: "Database", card_old: Card, card_new: Card) -> None:
-        """Update card info in database.
+    def update_card(self: "Table", card_old: Card, card_new: Card) -> None:
+        """Update card info in table.
 
         Parameters
         ----------
@@ -240,7 +240,7 @@ class Database:
                         card_dict["_Card__description"] = card_new.description
                         card_dict["_Card__date"] = card_new.date
                         card_dict["_Card__time"] = card_new.time
-                        Database.write(self)
+                        Table.write(self)
                         logging.info("Card updated:")
                         logging.info(
                             f"{card_old} -> title='{card_new.title}', "
@@ -249,9 +249,9 @@ class Database:
                             f"description='{card_new.description}'")
                         return None
 
-    def update_panel(self: "Database", panel_old: Panel,
+    def update_panel(self: "Table", panel_old: Panel,
                      panel_new: Panel) -> None:
-        """Update panel info in database
+        """Update panel info in table
 
         Parameters
         ----------
@@ -266,7 +266,7 @@ class Database:
                     panel_dict = self.data[index_b].get(
                         "_Board__panels_lists")[index_p]
                     panel_dict["_Panel__title"] = panel_new.title
-                    Database.write(self)
+                    Table.write(self)
                     logging.info("Panel updated:")
                     cards = [
                         card.title for card in panel_new.cards if hasattr(
@@ -277,9 +277,9 @@ class Database:
                         f"cards={cards}")
                     return None
 
-    def update_board(self: "Database", board_old: Board,
+    def update_board(self: "Table", board_old: Board,
                      board_new: Board) -> None:
-        """Update board info in database.
+        """Update board info in table.
 
         Parameters
         ----------
@@ -297,10 +297,10 @@ class Database:
                 logging.info(
                     f"{board_old} -> title='{board_new.title}', "
                     f"color='{Color(board_new.color).name}'")
-                Database.write(self)
+                Table.write(self)
                 return None
 
-    def update_panel_order(self: "Database", board: Board,
+    def update_panel_order(self: "Table", board: Board,
                            new_panel_list: List[Panel]) -> None:
         """Update the order of panels in a board.
 
@@ -334,10 +334,10 @@ class Database:
                 logging.info(
                     f"{[panel.title for panel in old_panel_list]} -> "
                     f"{[panel.title for panel in new_panel_list]}")
-                Database.write(self)
+                Table.write(self)
                 return None
 
-    def update_board_order(self: "Database",
+    def update_board_order(self: "Table",
                            new_board_list: List[Board]) -> None:
         """Update the order of boards.
 
@@ -373,11 +373,11 @@ class Database:
         logging.info(
             f"{[board.title for board in old_board_list]} -> "
             f"{[board.title for board in new_board_list]}")
-        Database.write(self)
+        Table.write(self)
         return None
 
-    def delete_card(self: "Database", card_delete: Card) -> None:
-        """Delete card from database.
+    def delete_card(self: "Table", card_delete: Card) -> None:
+        """Delete card from table.
 
         Parameters
         ----------
@@ -391,12 +391,12 @@ class Database:
                         del self.data[index_b].get(
                             "_Board__panels_lists")[index_p].get(
                                 "_Board__panels")[index_c]
-                        Database.write(self)
+                        Table.write(self)
                         logging.info(f'Card "{card.title}" deleted')
                         return None
 
-    def delete_panel(self: "Database", panel_delete: Panel) -> None:
-        """Delete panel from database.
+    def delete_panel(self: "Table", panel_delete: Panel) -> None:
+        """Delete panel from table.
 
         Parameters
         ----------
@@ -408,12 +408,12 @@ class Database:
                 if panel == panel_delete:
                     del self.data[index_b].get(
                         "_Board__panels_lists")[index_p]
-                    Database.write(self)
+                    Table.write(self)
                     logging.info(f'Panel "{panel.title}" deleted')
                     return None
 
-    def delete_board(self: "Database", board_delete: Board) -> None:
-        """Delete board from database.
+    def delete_board(self: "Table", board_delete: Board) -> None:
+        """Delete board from table.
 
         Parameters
         ----------
@@ -423,11 +423,11 @@ class Database:
         for index_b, board in enumerate(self.boards):
             if board == board_delete:
                 del self.data[index_b]
-                Database.write(self)
+                Table.write(self)
                 logging.info(f'Board "{board.title}" deleted')
                 return None
 
-    def change_board_color(self: "Database", board: Board,
+    def change_board_color(self: "Table", board: Board,
                            color: Color) -> None:
         """Change the color of a board.
 
@@ -441,44 +441,44 @@ class Database:
         for index_b, board in enumerate(self.boards):
             if board == board:
                 self.data.get(
-                    "_Database__data")[index_b]["_Board__color"] = Color(
+                    "_Table__data")[index_b]["_Board__color"] = Color(
                     color).name
-                Database.write(self)
+                Table.write(self)
                 return None
 
     @property
-    def data(self: "Database") -> List[Dict]:
-        """Returns the data of the database.
+    def data(self: "Table") -> List[Dict]:
+        """Returns the data of the table.
 
         Returns
         -------
         data : List[Dict]
-            The data of the database.
+            The data of the table.
         """
         return self.__data
 
     @data.setter
-    def data(self: "Database", data: List[Dict]) -> None:
-        """Sets the data of the database.
+    def data(self: "Table", data: List[Dict]) -> None:
+        """Sets the data of the table.
 
         Parameters
         ----------
         data : List[Dict]
-            The data of the database.
+            The data of the table.
         """
         self.__data = data
 
-    def __str__(self: "Database") -> str:
-        """Returns the database instance as a stringified dictionary.
+    def __str__(self: "Table") -> str:
+        """Returns the table instance as a stringified dictionary.
 
         Returns
         -------
         str
-            The database instance as a stringified dictionary.
+            The table instance as a stringified dictionary.
 
         Notes
         -----
         This method is used for debugging purposes.
         """
-        logging.debug("Database printed")
+        logging.debug("Table printed")
         return str(self.__data)
